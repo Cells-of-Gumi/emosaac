@@ -24,6 +24,7 @@ const StarRating = ({onClick, readonly, initialValue = 0}: StarRatingProps) => {
   return (
     <div className='App'>
       <Rating
+        key={rating}
         onClick={handleRating}
         // onPointerEnter={onPointerEnter}
         // onPointerLeave={onPointerLeave}
