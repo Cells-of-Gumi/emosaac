@@ -1,11 +1,13 @@
 import axios from "axios";
 
 function getToken() {
+  
   if (typeof window !== "undefined") {
     const information = localStorage.getItem("access_token");
-    return `Bearer ${information}`;
+    return `Bearer ${information}`; 
   }
-  return "";
+  
+  return "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjc5NzI5MjYwLCJleHAiOjE2ODA1OTMyNjB9.XHPc_vgncmmMesknqWB9eBbL2VDDeH_oXlYqIuIUvM9EK0OM5qzWA6Zsa3JDGS6Tf2QSuH8d-_U7CKsbW-H1-g";
 }
 
 function defaultInstace() {

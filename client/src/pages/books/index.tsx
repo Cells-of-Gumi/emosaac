@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ScrollableCarousel from "@/components/UI/ScrollableCarousel/ScrollableCarousel";
 import SwipeableGallery from "@/components/UI/SwipeableCarousel/SwipeableGallery";
 import { recvBooks } from "@/api/DummyData";
@@ -38,6 +38,8 @@ export default function Home({highlightedBookData}: HomeProps) {
   //   setBookData(() => res)
   // );
   const [bookData, setBookData] = useState<object[]>([]);
+
+
   // ________________________________________________________________________________________________
 
 
@@ -115,7 +117,7 @@ export default function Home({highlightedBookData}: HomeProps) {
 
 export const getServerSideProps = async (context: any) => {
   // 임시 API
-  const data = await getBooksByGenre({genreCode: 11, typeCode: 0, prevId: 0, prevScore: 10, size: 20 })
+  const data = await getBooksByGenre({genreCode: 10, typeCode: 0, prevId: 0, prevScore: 10, size: 20 })
     .then((res) => {
       if (res !== null) {
         return res.content;

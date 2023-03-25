@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import BookCard from "@/components/UI/BookCard/BookCard";
 import Swipe from "react-easy-swipe";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { bookContentType } from "@/types/books";
+import { throttle } from "lodash";
 
 interface HighlightedCarousel {
   bookData: bookContentType[];
@@ -47,6 +48,43 @@ const HighlightedCarousel = ({ bookData, windowWrapperRef }: HighlightedCarousel
     // console.log(temp);
   }, []);
 
+
+  // const handleResize = () => {
+  //   if (carouselWrapperRef.current !== null) {
+  //     const calcLeft =
+  //     carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth
+  //       ? -(
+  //           carouselWrapperRef.current.clientWidth - windowWrapperRef?.current?.offsetWidth
+  //         ) / 2 + "px" : "0px";
+  //     carouselWrapperRef.current.style.left = calcLeft
+  //   }
+  // }
+
+  const handleResize = useMemo(
+    () =>
+        throttle((event) => {
+          if (carouselWrapperRef.current !== null) {
+            const calcLeft =
+            carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth
+              ? -(
+                  carouselWrapperRef.current.clientWidth - windowWrapperRef?.current?.offsetWidth
+                ) / 2 + "px" : "0px";
+            carouselWrapperRef.current.style.left = calcLeft
+          }
+        }, 300),
+    []
+);
+
+
+  useEffect(() => {
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    }
+  }, [])
+
+  
   const prevBtnHandler = () => {
     if (currentIdx > 0) {
       setCurrentIdx((prev) => prev - 1);
@@ -398,9 +436,10 @@ const carouselInnerWrapperCSS = ({
       ? -(
           carouselWrapperRef?.current?.clientWidth - windowWrapperRef?.current?.offsetWidth
         ) / 2 + "px" : "0px";
+        
   return css`
     width: ${calcWidth};
-    left: ${calcLeft};
+    /* left: ${calcLeft}; */
     position: relative;
     display: flex;
   `;

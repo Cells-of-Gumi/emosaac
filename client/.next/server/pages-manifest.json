@@ -1,18 +1,6 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
-  "/emopick": "pages/emopick.html",
-  "/": "pages/index.html",
-  "/login": "pages/login.html",
-  "/mypage/edit": "pages/mypage/edit.html",
-  "/mypage": "pages/mypage.html",
-  "/search": "pages/search.html",
-  "/survey": "pages/survey.html",
-  "/oauth2/redirect": "pages/oauth2/redirect.js",
-  "/books": "pages/books.js",
-  "/search/content": "pages/search/content.js",
-  "/books/[bookId]": "pages/books/[bookId].js",
-  "/search/tagname": "pages/search/tagname.js",
   "/_error": "pages/_error.js",
-  "/404": "pages/404.html"
+  "/_document": "pages/_document.js",
+  "/books/[bookId]": "pages/books/[bookId].js"
 }

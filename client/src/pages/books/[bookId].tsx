@@ -16,29 +16,13 @@ import StarRating from "@/components/bookDetail/StarRating";
 import FixedModal from "@/components/UI/FixedModal/FixedModal";
 import DetailComment from "@/components/DetailComment/DetailComment";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
+import { putBookRating } from "@/api/book/putBookRating";
+import { bookDetailType } from "@/types/books";
+import PlatformRatingHover from "@/components/bookDetail/PlatformRatingHover";
 
-type bookDataType = {
-  bookId: number;
-  platform: number;
-  thumbnail: string;
-  title: string;
-  author: string;
-  href: string;
-  story: string;
-  tag: string;
-  genre: string;
-  regist: string;
-  grade: string;
-  avgScore: number;
-  hit: number;
-  day: string;
-  bookmark: boolean;
-  read: boolean;
-  myScore: number;
-};
 
 interface BookDetailProps {
-  bookData: any;
+  bookData: bookDetailType;
 }
 
 
@@ -47,6 +31,7 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
 
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [commentModalState, setCommentModalState] = useState<boolean>(false)
+
 
   useEffect(() => {
     console.log(bookData);
@@ -75,6 +60,11 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
     </div>
   )
 
+  const putBookRatingHandler = (score: number) => {
+    putBookRating({bookId: bookData.bookId, score: score})
+  }
+
+
   const content = (
     <div className={'content'} css={contentCSS({isDeskTop})}>
               <div className={'rowGrid'} css={rowGridCSS({isDeskTop})}>
@@ -84,9 +74,17 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
                   
                   <div css={titleCSS({isDeskTop})}>{bookData.title}</div>
                   <div css={scoreDivCSS}>
-                    평균 평점 : {bookData.avgScore}
-                    <BiChevronRightCircle css={scoreBtnCSS} />
-                    {/* <StarRating /> */}
+                    <span css={myScoreStringCSS}>
+                      내 평점 : 
+                    </span>
+                    <div css={platformRatingWrapperCSS}>
+                      <PlatformRatingHover avgGrade={bookData.avgScore} grade={bookData.grade.split('_')}  />
+                      <BiChevronRightCircle css={scoreBtnCSS} />
+                    </div>
+                    <StarRating onClick={putBookRatingHandler} readonly={false} initialValue={bookData.myScore} />
+                    
+                    
+
                   </div>
                   {isDeskTop === false && <div css={lineCSS}/>}
                 </div>
@@ -133,7 +131,7 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
       <FixedModal
          modalState={commentModalState}
          stateHandler={setCommentModalState}
-         content={<DetailComment bookId={bookData.bookId} />}
+         content={<DetailComment bookTitle={bookData.title} bookId={bookData.bookId} />}
       />
 
       <div css={mainContentInnerWrapperCSS} className={"second-level-el"} >
@@ -296,7 +294,7 @@ const titleCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
 }
 
 const scoreDivCSS = css`
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -358,6 +356,19 @@ const lineCSS = css`
 const mainContentInnerWrapperCSS = css`
   height: 100%;
   width: 100%;
+`
+
+const myScoreStringCSS = css`
+  /* margin-right: 8px; */
+`
+
+const platformRatingWrapperCSS = css`
+  position: relative;
+  margin-right: 8px;
+
+  &:hover .platform-rating-wrapper {
+    opacity: 100%;
+  }
 `
 
 export default BookDetail;

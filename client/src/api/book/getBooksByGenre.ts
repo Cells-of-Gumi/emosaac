@@ -34,6 +34,7 @@ export async function getBooksByGenre({genreCode, typeCode, prevId, prevScore, s
     );
     return data.data
   } catch (error) {
+    console.log(error)
     throw error
   }
 }

@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
 
-const StarRating = () => {
-  const [rating, setRating] = useState(0)
+interface StarRatingProps {
+  onClick?: any;
+  initialValue: number;
+  readonly: boolean;
+}
+
+const StarRating = ({onClick, readonly, initialValue = 0}: StarRatingProps) => {
+  const [rating, setRating] = useState(initialValue)
 
   // Catch Rating value
   const handleRating = (rate: number) => {
-    setRating(rate)
-
+    setRating(rate * 2)
+    onClick(rate * 2)
     // other logic
   }
   // Optinal callback functions
@@ -25,9 +31,9 @@ const StarRating = () => {
         /* Available Props */
         transition={true}
         allowFraction={true}
-    
+        initialValue={rating / 2}
         allowHover={true}
-
+        readonly={readonly}
       />
     </div>
   )

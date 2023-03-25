@@ -9,7 +9,36 @@ const ModalOverlay = (props : {width?: string, height?: string, content: any, mo
   const [showModal, setShowModal] = useState<boolean>(false)
 
   useEffect(() => {
+    window.history.pushState(null, document.title, window.location.href);
+
+    const preventBack = async () => {
+      await modalHandler();
+      await window.history.pushState(
+        null,
+        document.title,
+        window.location.href
+      );
+    };
+    window.addEventListener("popstate", preventBack);
+    return () => {
+      window.removeEventListener("popstate", preventBack);
+    };
+  }, [window.history]);
+
+
+  useEffect(() => {
     setShowModal(() => true)
+    document.body.style.cssText = `
+    position: fixed; 
+    top: -${window.scrollY}px;
+    overflow-y: scroll;
+    width: 100%;`;
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.cssText = '';
+      window.scrollTo(0, parseInt(scrollY || '0', 10) * -1);
+    };
+    
   }, [])
 
   const modalHandler = () => {
@@ -20,22 +49,23 @@ const ModalOverlay = (props : {width?: string, height?: string, content: any, mo
   const content = React.cloneElement(props.content, {
     ...props,
     modalHandler: modalHandler,
+    
   });
 
   return (
-    <div css={backdrop({showModal: showModal})}>
-      <div css={modalCSS({width: props.width, height: props.height, overflow: props.overflow, showModal: showModal})}>  
+    <div css={backdrop({showModal: showModal})} onClick={modalHandler}>
+      <div css={modalCSS({width: props.width, height: props.height, overflow: props.overflow, showModal: showModal})} onClick={(event) => {event.stopPropagation()}}>  
           {content}
       </div>
     </div>
   );
 };
 
-const FixedModal = (props : {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string }) => {
+const FixedModal = (props : {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string,}) => {
   const [modal, setModal] = useState<any>()
   useEffect(() => {
     setModal(() => ReactDOM.createPortal(
-      <ModalOverlay {...props} />,
+      <ModalOverlay {...props}  />,
       document.getElementById("overlay-root")! as HTMLDivElement
     ))
   }, [])
@@ -65,12 +95,15 @@ const backdrop = ({showModal}: {showModal: boolean}) => {
 
 const modalCSS = ({width, height, overflow, showModal}: {width: string | undefined, height: string | undefined, overflow: string | undefined, showModal: boolean}) => {
   return css`
-    transition-property: transform;
+    position: relative;
+    transition-property: top;
     transition-duration: 0.3s;
     width: ${width};
     height: ${height};
     overflow: ${overflow};
-    transform: ${showModal ? "rotateX(0deg)" : "rotateX(90deg)"};
+    top: ${showModal ? "0px" : "100%"};
+
+  
   `
 }
 

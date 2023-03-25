@@ -1,1664 +1,163 @@
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (() => {
 var exports = {};
-exports.id = 672;
-exports.ids = [672];
+exports.id = "pages/books";
+exports.ids = ["pages/books"];
 exports.modules = {
 
-/***/ 5578:
+/***/ "./src/components/UI/SwipeableCarousel/SwipeableGallery.module.css":
+/*!*************************************************************************!*\
+  !*** ./src/components/UI/SwipeableCarousel/SwipeableGallery.module.css ***!
+  \*************************************************************************/
 /***/ ((module) => {
 
-// Exports
-module.exports = {
-	"wrapper": "SwipeableGallery_wrapper__6sK2n",
-	"moveable": "SwipeableGallery_moveable__T49jy",
-	"content": "SwipeableGallery_content__TGBBn"
-};
-
+eval("// Exports\nmodule.exports = {\n\t\"wrapper\": \"SwipeableGallery_wrapper__6sK2n\",\n\t\"moveable\": \"SwipeableGallery_moveable__T49jy\",\n\t\"content\": \"SwipeableGallery_content__TGBBn\"\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9VSS9Td2lwZWFibGVDYXJvdXNlbC9Td2lwZWFibGVHYWxsZXJ5Lm1vZHVsZS5jc3MuanMiLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvVUkvU3dpcGVhYmxlQ2Fyb3VzZWwvU3dpcGVhYmxlR2FsbGVyeS5tb2R1bGUuY3NzPzUyOWMiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gRXhwb3J0c1xubW9kdWxlLmV4cG9ydHMgPSB7XG5cdFwid3JhcHBlclwiOiBcIlN3aXBlYWJsZUdhbGxlcnlfd3JhcHBlcl9fNnNLMm5cIixcblx0XCJtb3ZlYWJsZVwiOiBcIlN3aXBlYWJsZUdhbGxlcnlfbW92ZWFibGVfX1Q0OWp5XCIsXG5cdFwiY29udGVudFwiOiBcIlN3aXBlYWJsZUdhbGxlcnlfY29udGVudF9fVEdCQm5cIlxufTtcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/components/UI/SwipeableCarousel/SwipeableGallery.module.css\n");
 
 /***/ }),
 
-/***/ 4105:
+/***/ "./src/api/book/getBooksByGenre.ts":
+/*!*****************************************!*\
+  !*** ./src/api/book/getBooksByGenre.ts ***!
+  \*****************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "f": () => (/* binding */ getBooksByGenre)
-/* harmony export */ });
-/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5394);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);
-_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
-async function getBooksByGenre({ genreCode , typeCode , prevId , prevScore , size  }) {
-    try {
-        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__/* .defaultAxiosInstance.get */ .E.get(`/books/genre/${genreCode}?typeCode=${typeCode}${prevId !== undefined ? `&prevId=${prevId}` : ""}${prevScore !== undefined ? `&prevScore=${prevScore}` : ""}${size !== undefined ? `&size=${size}` : ""}`);
-        return data.data;
-    } catch (error) {
-        throw error;
-    }
-}
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getBooksByGenre\": () => (/* binding */ getBooksByGenre)\n/* harmony export */ });\n/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../instance */ \"./src/api/instance.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);\n_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nasync function getBooksByGenre({ genreCode , typeCode , prevId , prevScore , size  }) {\n    try {\n        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__.defaultAxiosInstance.get(`/books/genre/${genreCode}?typeCode=${typeCode}${prevId !== undefined ? `&prevId=${prevId}` : \"\"}${prevScore !== undefined ? `&prevScore=${prevScore}` : \"\"}${size !== undefined ? `&size=${size}` : \"\"}`);\n        return data.data;\n    } catch (error) {\n        console.log(error);\n        throw error;\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2Jvb2svZ2V0Qm9va3NCeUdlbnJlLnRzLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQW1EO0FBNEI1QyxlQUFlQyxnQkFBZ0IsRUFBQ0MsVUFBUyxFQUFFQyxTQUFRLEVBQUVDLE9BQU0sRUFBRUMsVUFBUyxFQUFFQyxLQUFJLEVBQWEsRUFDbEU7SUFDNUIsSUFBSTtRQUNGLE1BQU0sRUFBRUMsS0FBSSxFQUFFLEdBQTJCLE1BQU1QLCtEQUF3QixDQUNyRSxDQUFDLGFBQWEsRUFBRUUsVUFBVSxVQUFVLEVBQUVDLFNBQVMsRUFBRUMsV0FBV0ssWUFBWSxDQUFDLFFBQVEsRUFBRUwsT0FBTyxDQUFDLEdBQUcsRUFBRSxDQUFDLEVBQUVDLGNBQWNJLFlBQVksQ0FBQyxXQUFXLEVBQUVKLFVBQVUsQ0FBQyxHQUFHLEVBQUUsQ0FBQyxFQUFFQyxTQUFTRyxZQUFZLENBQUMsTUFBTSxFQUFFSCxLQUFLLENBQUMsR0FBRyxFQUFFLENBQUMsQ0FBQztRQUUzTSxPQUFPQyxLQUFLQSxJQUFJO0lBQ2xCLEVBQUUsT0FBT0csT0FBTztRQUNkQyxRQUFRQyxHQUFHLENBQUNGO1FBQ1osTUFBTUEsTUFBSztJQUNiO0FBQ0YsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2NsaWVudC8uL3NyYy9hcGkvYm9vay9nZXRCb29rc0J5R2VucmUudHM/Yzc4NiJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBkZWZhdWx0QXhpb3NJbnN0YW5jZSB9IGZyb20gXCIuLi9pbnN0YW5jZVwiO1xyXG5pbXBvcnQgeyBib29rQ29udGVudFR5cGUsIHJldHVybkJvb2tDb250ZW50VHlwZSB9IGZyb20gXCJAL3R5cGVzL2Jvb2tzXCI7XHJcblxyXG5cclxudHlwZSBwYXJhbXNUeXBlID0ge1xyXG4gIGdlbnJlQ29kZTogbnVtYmVyO1xyXG4gIHR5cGVDb2RlOiBudW1iZXI7XHJcbiAgcHJldklkPzogbnVtYmVyO1xyXG4gIHByZXZTY29yZT86IG51bWJlcjtcclxuICBzaXplPzogbnVtYmVyO1xyXG59XHJcblxyXG50eXBlIHJldHVyblR5cGUgPSByZXR1cm5Cb29rQ29udGVudFR5cGVcclxuLy8gdHlwZSByZXR1cm5UeXBlID0ge1xyXG4vLyAgICAgXCJjb250ZW50XCI6IGJvb2tDb250ZW50VHlwZVtdO1xyXG4vLyAgICAgXCJwYWdlXCI6IG51bWJlcjtcclxuLy8gICAgIFwic2l6ZVwiOiBudW1iZXI7XHJcbi8vICAgICBcImZpcnN0XCI6IGJvb2xlYW47XHJcbi8vICAgICBcImxhc3RcIjogYm9vbGVhbjtcclxuLy8gICAgIFwiaGFzTmV4dFwiOiBib29sZWFuO1xyXG4vLyB9XHJcblxyXG50eXBlIHJlc3BvbnNlVHlwZSA9IHtcclxuICBzdGF0dXM6IG51bWJlcjtcclxuICBtZXNzYWdlOiBzdHJpbmc7XHJcbiAgZGF0YTogcmV0dXJuVHlwZTtcclxufVxyXG5cclxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGdldEJvb2tzQnlHZW5yZSh7Z2VucmVDb2RlLCB0eXBlQ29kZSwgcHJldklkLCBwcmV2U2NvcmUsIHNpemV9OiBwYXJhbXNUeXBlXHJcbik6IFByb21pc2U8cmV0dXJuVHlwZSB8IG51bGw+IHtcclxuICB0cnkge1xyXG4gICAgY29uc3QgeyBkYXRhIH06IHsgZGF0YTogcmVzcG9uc2VUeXBlIH0gPSBhd2FpdCBkZWZhdWx0QXhpb3NJbnN0YW5jZS5nZXQoXHJcbiAgICAgIGAvYm9va3MvZ2VucmUvJHtnZW5yZUNvZGV9P3R5cGVDb2RlPSR7dHlwZUNvZGV9JHtwcmV2SWQgIT09IHVuZGVmaW5lZCA/IGAmcHJldklkPSR7cHJldklkfWAgOiAnJ30ke3ByZXZTY29yZSAhPT0gdW5kZWZpbmVkID8gYCZwcmV2U2NvcmU9JHtwcmV2U2NvcmV9YCA6ICcnfSR7c2l6ZSAhPT0gdW5kZWZpbmVkID8gYCZzaXplPSR7c2l6ZX1gIDogJyd9YFxyXG4gICAgKTtcclxuICAgIHJldHVybiBkYXRhLmRhdGFcclxuICB9IGNhdGNoIChlcnJvcikge1xyXG4gICAgY29uc29sZS5sb2coZXJyb3IpXHJcbiAgICB0aHJvdyBlcnJvclxyXG4gIH1cclxufVxyXG4iXSwibmFtZXMiOlsiZGVmYXVsdEF4aW9zSW5zdGFuY2UiLCJnZXRCb29rc0J5R2VucmUiLCJnZW5yZUNvZGUiLCJ0eXBlQ29kZSIsInByZXZJZCIsInByZXZTY29yZSIsInNpemUiLCJkYXRhIiwiZ2V0IiwidW5kZWZpbmVkIiwiZXJyb3IiLCJjb25zb2xlIiwibG9nIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/api/book/getBooksByGenre.ts\n");
 
 /***/ }),
 
-/***/ 6878:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "Z": () => (/* binding */ BookCard_BookCard)
-});
-
-// EXTERNAL MODULE: external "@emotion/react/jsx-runtime"
-var jsx_runtime_ = __webpack_require__(5193);
-// EXTERNAL MODULE: external "@emotion/react"
-var react_ = __webpack_require__(2805);
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(6689);
-// EXTERNAL MODULE: external "react-icons/bs"
-var bs_ = __webpack_require__(567);
-// EXTERNAL MODULE: external "next/router"
-var router_ = __webpack_require__(1853);
-;// CONCATENATED MODULE: ./src/components/bookCardModal/BookCardModal.tsx
-/** @jsxImportSource @emotion/react */ 
-
-
-
-
-const BookCardModal = ({ modalToggler , isMouseOn , setModalToggler , bookData , parentRef , imgHeight , imgMinHeight  })=>{
-    const wrapperRef = (0,external_react_.useRef)(null);
-    const [contentToggler, setContentToggler] = (0,external_react_.useState)(false);
-    const [isOpened, setisOpened] = (0,external_react_.useState)(false);
-    const [isClosing, setIsClosing] = (0,external_react_.useState)(false);
-    const router = (0,router_.useRouter)();
-    const modalLayout = {
-        widthValue: 450,
-        heightValue: 500
-    };
-    (0,external_react_.useEffect)(()=>{
-        if (isMouseOn === true && modalToggler === true) {
-            setContentToggler(()=>true);
-            setisOpened(()=>true);
-        }
-    }, []);
-    (0,external_react_.useEffect)(()=>{
-        window.addEventListener("wheel", onWheelHandler);
-        return ()=>{
-            window.removeEventListener("wheel", onWheelHandler);
-        };
-    }, []);
-    const modalHandler = ()=>{
-        if (isMouseOn === true && contentToggler === true) {
-            setTimeout(function() {
-                if (wrapperRef.current !== null) {
-                    wrapperRef.current.style.opacity = "0";
-                }
-            }, 100);
-            setTimeout(function() {
-                setModalToggler(()=>false);
-            }, 500);
-        } else {
-            setModalToggler(()=>false);
-        }
-        setContentToggler(()=>false);
-        setIsClosing(()=>true);
-    };
-    const onWheelHandler = ()=>{
-        if (wrapperRef.current !== null) {
-            wrapperRef.current.style.width = parentRef.current.clientWidth + "px";
-            wrapperRef.current.style.height = parentRef.current.clientHeight + "px";
-            wrapperRef.current.style.left = parentRef.current.getBoundingClientRect().left + "px";
-            setTimeout(function() {
-                if (wrapperRef.current !== null) {
-                    wrapperRef.current.style.top = parentRef.current.getBoundingClientRect().top + "px";
-                    wrapperRef.current.style.opacity = "0";
-                }
-            }, 200);
-        }
-    };
-    const onClickNavigateHandler = ()=>{
-        router.push(`/books/${bookData.bookId}`);
-    };
-    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
-        onMouseLeave: modalHandler,
-        // onWheelCapture={onWheelHandler}
-        ref: wrapperRef,
-        css: wrapperCSS({
-            modalToggler: contentToggler,
-            parentRef: parentRef,
-            wrapperRef: wrapperRef,
-            widthValue: modalLayout.widthValue,
-            heightValue: modalLayout.heightValue
-        }),
-        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-            css: innerWrapperCSS({
-                modalToggler: modalToggler,
-                contentToggler: contentToggler,
-                isOpened: isOpened
-            }),
-            children: [
-                /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                    css: backgroundCSS({
-                        imgUrl: bookData.thumbnail
-                    })
-                }),
-                /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                    css: imageWrapperCSS,
-                    children: /*#__PURE__*/ jsx_runtime_.jsx("img", {
-                        src: bookData && bookData.thumbnail,
-                        alt: bookData && bookData.title,
-                        css: imageCSS({
-                            modalToggler: contentToggler,
-                            isClosing: isClosing,
-                            imgHeight: imgHeight,
-                            imgMinHeight: imgMinHeight
-                        })
-                    })
-                }),
-                /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                    css: spaceDivCSS
-                }),
-                /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                    css: contentDivCSS,
-                    children: [
-                        /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                            children: [
-                                /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                    css: titleCSS,
-                                    children: bookData.title
-                                }),
-                                /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                                    css: dateCSS,
-                                    children: bookData.regist
-                                })
-                            ]
-                        }),
-                        /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                            css: react_.css`display:flex; justify-content:space-between;`,
-                            children: [
-                                /*#__PURE__*/ jsx_runtime_.jsx("div", {}),
-                                /*#__PURE__*/ jsx_runtime_.jsx(bs_.BsFillArrowUpCircleFill, {
-                                    css: icons,
-                                    onClick: onClickNavigateHandler
-                                })
-                            ]
-                        })
-                    ]
-                })
-            ]
-        })
-    });
-};
-const wrapperCSS = ({ modalToggler , parentRef , wrapperRef , widthValue , heightValue  })=>{
-    const isLeftEdge = (widthValue - parentRef?.current?.clientWidth) / 2 >= parentRef?.current?.getBoundingClientRect().left;
-    const isRightEdge = parentRef?.current?.getBoundingClientRect().left + (widthValue - (widthValue - parentRef?.current?.clientWidth) / 2) >= document.body.offsetWidth;
-    const leftStandard = `left: ${modalToggler && isLeftEdge === true ? "42" : parentRef?.current?.getBoundingClientRect().left - (widthValue - parentRef?.current?.clientWidth) / 2}px;`; // parentRef?.current?.getBoundingClientRect().left
-    const rightStandard = `left: ${modalToggler && isRightEdge === true ? document.body.offsetWidth - widthValue - 42 : parentRef?.current?.getBoundingClientRect().left}px`;
-    const activated = isRightEdge === true ? rightStandard : leftStandard;
-    return react_.css`
-    position: absolute;
-    z-index: 999999;
-    transition-property: width height;
-    will-change: width height left top opacity transform;
-    transition-duration: 0.3s;
-    /* transition-timing-function: ease-in; */
-    overflow: hidden;
-
-    top: ${modalToggler ? parentRef?.current?.getBoundingClientRect().top - (heightValue - parentRef?.current?.clientHeight) / 2 : parentRef?.current?.getBoundingClientRect().top}px;
-    width: ${modalToggler ? `${widthValue}px` : `${parentRef?.current?.clientWidth}px`};
-    height: ${modalToggler ? `${heightValue}px` : `${parentRef?.current?.clientHeight}px`};
-    ${modalToggler ? activated : `left: ${parentRef?.current?.getBoundingClientRect().left}px`};
-    ${modalToggler ? `pointer-events: auto` : `pointer-events: none`};
-    /* background-color: white; */
-        background-color: ${modalToggler ? react_.css`var(--back-color-2)` : `rgba(0,0,0,0)`};
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
-  `;
-};
-const innerWrapperCSS = ({ modalToggler , contentToggler , isOpened  })=>{
-    return react_.css`
-    opacity: ${contentToggler ? "255" : isOpened ? "255" : "0"};
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  `;
-};
-const backgroundCSS = ({ imgUrl  })=>{
-    return react_.css`
-    width: 110%;
-    position: absolute;
-    left: -5%;
-    top: -5%;
-    height: 350px;
-    background: no-repeat url("${imgUrl}") 0 / cover;
-    filter: blur(10px);
-    -webkit-filter: blur(10px);
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-  `;
-};
-const imageWrapperCSS = react_.css`
-  width: 100%;
-  height: 350px;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  background: linear-gradient(rgba(0, 0, 0, 0), var(--back-color-2));
-  pointer-events: none;
-`;
-const imageCSS = ({ modalToggler , isClosing , imgHeight , imgMinHeight  })=>{
-    return react_.css`
-    will-change: width height transform;
-    transition-property: width height opacity transform;
-    transition-duration: 0.3s;
-    ${modalToggler ? `transform: scale(1.0)` : isClosing ? `transform: scale(1.0)` : `transform: scale(1.1)`};
-    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
-    width: auto;
-    height: ${modalToggler ? "350px" : imgHeight};
-    min-height: ${imgMinHeight};
-  `;
-};
-const spaceDivCSS = react_.css`
-  width: 100%;
-  height: 350px;
-`;
-const contentDivCSS = react_.css`
-  flex: 1 0 auto;
-  padding: 24px;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-`;
-const titleCSS = react_.css`
-  font-size: 20px;
-  color: var(--text-color);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-const dateCSS = react_.css`
-  font-size: 13px;
-  margin-top: 8px;
-  color: var(--text-color-4);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
-const icons = react_.css`
-  /* background-color: white; */
-  color: var(--text-color-4);
-  width: 52px;
-  height: 52px;
-`;
-/* harmony default export */ const bookCardModal_BookCardModal = (BookCardModal);
-
-// EXTERNAL MODULE: ./src/components/function/Portal.tsx
-var Portal = __webpack_require__(363);
-;// CONCATENATED MODULE: ./src/components/UI/BookCard/BookCard.tsx
-/** @jsxImportSource @emotion/react */ 
-
-
-
-
-
-const BookCard = ({ bookData , showPlatform , width , height , minWidth , minHeight  })=>{
-    const [user, setUser] = (0,external_react_.useState)(null);
-    (0,external_react_.useEffect)(()=>{
-        setUser(()=>navigator.userAgent);
-    }, []);
-    const isMobile = ()=>{
-        let is_mobile = false;
-        if (user !== undefined && user.length > 0 && user.indexOf("iPhone") > -1 || user.indexOf("Android") > -1 || user.indexOf("iPad") > -1 || user.indexOf("iPod") > -1) {
-            is_mobile = true;
-        }
-        return is_mobile;
-    };
-    const router = (0,router_.useRouter)();
-    const wrapperRef = (0,external_react_.useRef)(null);
-    const [modalToggler, setModalToggler] = (0,external_react_.useState)(false);
-    const [isMouseOn, setIsMouseOn] = (0,external_react_.useState)(false);
-    const platformBar = /*#__PURE__*/ jsx_runtime_.jsx("div", {
-        css: platformBarCSS
-    });
-    const showModal = ()=>{
-        setTimeout(function() {
-            setModalToggler(()=>true);
-        }, 400);
-        setIsMouseOn(()=>true);
-    };
-    const hideModal = ()=>{
-        setIsMouseOn(()=>false);
-        setTimeout(function() {
-            setModalToggler(()=>false);
-        }, 500);
-    };
-    const instantlyRedirect = ()=>{
-        if (isMobile() === true) {
-            // 모바일에서 Detail 페이지로 바로 이동
-            router.push(`/books/${bookData.bookId}`);
-        }
-    };
-    const modal = /*#__PURE__*/ jsx_runtime_.jsx(Portal/* default */.Z, {
-        selector: ".overlay-root",
-        children: /*#__PURE__*/ jsx_runtime_.jsx(bookCardModal_BookCardModal, {
-            modalToggler: modalToggler,
-            isMouseOn: isMouseOn,
-            setModalToggler: setModalToggler,
-            bookData: bookData,
-            parentRef: wrapperRef,
-            imgHeight: height,
-            imgMinHeight: minHeight
-        })
-    });
-    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-        className: "bookcard-outer-wrapper",
-        css: cardOuterWrapper({
-            width,
-            height,
-            minWidth,
-            minHeight
-        }),
-        ref: wrapperRef,
-        onClick: instantlyRedirect,
-        onMouseOver: (event)=>{
-            event.stopPropagation();
-            showModal();
-        },
-        onMouseLeave: hideModal,
-        children: [
-            user !== null && isMobile() === false && modalToggler && modal,
-            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
-                className: "bookcard-inner-wrapper",
-                css: cardInnerWrapperCSS({
-                    width,
-                    height,
-                    minWidth,
-                    minHeight
-                }),
-                children: [
-                    /*#__PURE__*/ jsx_runtime_.jsx("div", {
-                        css: skeletonLoadingTagCSS({
-                            state: bookData !== "LOADING" ? true : false
-                        })
-                    }),
-                    /*#__PURE__*/ jsx_runtime_.jsx("img", {
-                        className: "img",
-                        src: bookData && bookData.thumbnail,
-                        alt: bookData && bookData.title,
-                        css: BookCard_imageCSS
-                    }),
-                    showPlatform && bookData !== "LOADING" && platformBar
-                ]
-            })
-        ]
-    });
-};
-const cardOuterWrapper = ({ width , height , minWidth , minHeight  })=>{
-    return react_.css`
-    position: relative;
-    width: ${width !== undefined ? width : "auto"};
-    height: ${height !== undefined ? height : "100%"};
-    ${minWidth && `min-width: ${minWidth}`};
-    ${minHeight && `min-height: ${minHeight}`};
-  `;
-};
-const cardInnerWrapperCSS = ({ width , height , minWidth , minHeight  })=>{
-    return react_.css`
-    width: ${width !== undefined ? width : "auto"};
-    height: ${height !== undefined ? height : "100%"};
-    ${minWidth && `min-width: ${minWidth}`};
-    ${minHeight && `min-height: ${minHeight}`};
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  `;
-};
-const platformBarCSS = react_.css`
-  width: 100%;
-  height: 3vw;
-  min-height: 36px;
-  background-color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-  bottom: 0;
-  pointer-events: none;
-`;
-const BookCard_imageCSS = react_.css`
-  width: auto;
-  height: 100%;
-  transition: transform 0.3s;
-  &:hover {
-    transform: scale(1.1);
-  }
-`;
-const skeletonLoadingTagCSS = ({ state  })=>{
-    return react_.css`
-    width: 100%;
-    height: 100%;
-    transition-property: opacity;
-    transition-duration: 0.3s;
-    border-radius: 10px;
-    background-color: rgb(200, 200, 200);
-    position: absolute;
-    opacity: ${state ? "0" : "255"};
-    pointer-events: none;
-  `;
-};
-/* harmony default export */ const BookCard_BookCard = (BookCard);
-
-
-/***/ }),
-
-/***/ 2131:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6517);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4932);
-/* harmony import */ var _BookCard_BookCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6878);
-/** @jsxImportSource @emotion/react */ 
-
-
-
-
-// import Test from "./Test";
-
-const ScrollableCarousel = ({ API , identifier  })=>{
-    const wrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const cardsRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)([]);
-    const [bookListData, setBookListData] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
-    const [bookListResult, setBookListResult] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
-    const [page, setPage] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const [wrapperWidth, setWrapperWidth] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const [standard, setStandard] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const [quantityPerPage, setQuantityPerPage] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(10);
-    const [loadingTag, setLoadingTag] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(Array(9).fill("LOADING"));
-    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_4__/* .useIsResponsive */ .j)();
-    const cardLayout = {
-        width: "10vw",
-        height: "15vw",
-        minWidth: "150px",
-        minHeight: "225px",
-        padding: "0.5vw"
-    };
-    const generatePage = (value)=>{
-        if (wrapperRef.current !== null && wrapperRef.current.clientWidth !== wrapperWidth) {
-            const width = wrapperRef.current.clientWidth;
-            const quantity = Math.floor(wrapperRef.current.clientWidth / cardsRef.current[0].clientWidth);
-            const newPage = Math.ceil(standard / quantity);
-            setPage(()=>newPage);
-            setWrapperWidth(()=>width);
-            setQuantityPerPage(()=>quantity);
-            return newPage + value;
-        } else {
-            return page + value;
-        }
-    };
-    const nextBtnClickHandler = ()=>{
-        if (wrapperRef.current !== null) {
-            const quantity = Math.floor(wrapperRef.current.clientWidth / cardsRef.current[0].clientWidth);
-            const nextStandard = generatePage(1) * quantity;
-            const idx = nextStandard < cardsRef.current.length ? nextStandard : cardsRef.current.length - 1;
-            if (nextStandard < cardsRef.current.length) {
-                setPage((prev)=>prev + 1);
-            }
-            setStandard(()=>idx);
-            wrapperRef.current.scrollTo({
-                left: cardsRef.current[idx].offsetLeft,
-                top: 0,
-                behavior: "smooth"
-            });
-            fetchMoreData();
-        }
-    };
-    const prevBtnClickHandler = ()=>{
-        if (wrapperRef.current !== null) {
-            const quantity = Math.floor(wrapperRef.current.clientWidth / cardsRef.current[0].clientWidth);
-            const prevStandard = generatePage(-1) * quantity;
-            const idx = prevStandard >= 0 ? prevStandard : 0;
-            if (prevStandard >= 0) {
-                setPage((prev)=>prev - 1);
-            }
-            setStandard(()=>idx);
-            wrapperRef.current.scrollTo({
-                left: cardsRef.current[idx].offsetLeft,
-                top: 0,
-                behavior: "smooth"
-            });
-        }
-    };
-    const fetchMoreData = ()=>{
-        let standard = 0;
-        if (wrapperRef.current !== null && cardsRef.current[0] !== null) {
-            standard = Math.ceil(wrapperRef.current.scrollLeft / cardsRef.current[0]?.clientWidth);
-        }
-        if (wrapperRef.current !== null && wrapperRef.current.scrollWidth - wrapperRef.current.scrollLeft - 200 < wrapperRef.current.clientWidth || bookListData.length - loadingTag.length - standard <= loadingTag.length) {
-            API({
-                bookList: bookListData,
-                size: bookListData.length + quantityPerPage + 1
-            }).then((res)=>{
-                console.log(res);
-                setBookListData((prev)=>[
-                        ...prev,
-                        ...res.content
-                    ]);
-            });
-        }
-    };
-    const onScrollHandler = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>(0,lodash__WEBPACK_IMPORTED_MODULE_3__.throttle)(()=>{
-            if (wrapperRef.current !== null) {
-                fetchMoreData();
-                const standard = Math.ceil(wrapperRef.current.scrollLeft / cardsRef.current[0].clientWidth);
-                setStandard(()=>standard);
-            }
-        }, 300), [
-        bookListData,
-        setBookListData
-    ]);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        fetchMoreData();
-    }, []);
-    const generateLoadingData = ()=>{
-        setBookListResult(()=>[
-                ...bookListData,
-                ...loadingTag
-            ]);
-    };
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        generateLoadingData();
-    }, [
-        bookListData
-    ]);
-    const renderCards = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>bookListResult.map((el, idx)=>{
-            return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                ref: (el)=>cardsRef.current[idx] = el,
-                css: cardWrapperCSS({
-                    padding: cardLayout.padding
-                }),
-                children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_BookCard_BookCard__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
-                    bookData: el,
-                    showPlatform: true,
-                    width: cardLayout.width,
-                    height: cardLayout.height,
-                    minWidth: cardLayout.minWidth,
-                    minHeight: cardLayout.minHeight
-                })
-            }, `${identifier}-${idx}`);
-        }), [
-        bookListResult
-    ]);
-    return /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: carouselWrapper,
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: [
-                    indicatorBtn,
-                    prevBtn({
-                        isDeskTop,
-                        isTablet,
-                        isMobile
-                    })
-                ],
-                onClick: prevBtnClickHandler,
-                onMouseEnter: (event)=>{
-                    event.stopPropagation();
-                },
-                children: "〈"
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: [
-                    indicatorBtn,
-                    nextBtn({
-                        isDeskTop,
-                        isTablet,
-                        isMobile
-                    })
-                ],
-                onClick: nextBtnClickHandler,
-                onMouseEnter: (event)=>{
-                    event.stopPropagation();
-                },
-                children: "〉"
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                ref: wrapperRef,
-                css: carousel,
-                onWheel: onScrollHandler,
-                onTouchMove: onScrollHandler,
-                children: renderCards
-            })
-        ]
-    });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ScrollableCarousel);
-const cardWrapperCSS = ({ padding  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    padding-left: ${padding};
-    padding-right: ${padding};
-  `;
-};
-const carouselWrapper = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  position: relative;
-`;
-const carousel = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  display: flex;
-  width: 100%;
-  /* padding-left: 48px; */
-  box-sizing: border-box;
-  overflow-x: scroll;
-  border-radius: 10px;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-const indicatorBtn = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  z-index: 9;
-  position: absolute;
-
-  height: 100%;
-  display: flex;
-  align-items: center;
-  font-size: 48px;
-  font-weight: 700;
-  color: var(--text-color);
-  padding-left: 8px;
-  padding-right: 8px;
-
-  transition-property: background font-size;
-  transition-duration: 0.2s;
-  cursor: pointer;
-  user-select: none;
-
-  @media (max-width: 480px) {
-    display: none;
-  }
-`;
-const prevBtn = ({ isDeskTop , isTablet , isMobile  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    left: 0;
-    /* background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); */
-    transform: ${isDeskTop === true && `translate(-105px, 0px)` || isTablet === true && `translate(-50px, 0px)`};
-    &:hover {
-      /* background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); */
-      font-size: 54px;
-    }
-  `;
-};
-const nextBtn = ({ isDeskTop , isTablet , isMobile  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    right: 0;
-    /* background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); */
-    transform: ${isDeskTop === true && `translate(105px, 0px)` || isTablet === true && `translate(50px, 0px)`};
-    &:hover {
-      /* background: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); */
-      font-size: 54px;
-    }
-  `;
-};
-
-
-/***/ }),
-
-/***/ 3169:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_easy_swipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8252);
-/* harmony import */ var react_easy_swipe__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_easy_swipe__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5578);
-/* harmony import */ var _SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4932);
-/** @jsxImportSource @emotion/react */ 
-
-
-
-
-
-const SwipeableGallery = ({ parentRef , content  })=>{
-    const movingDiv = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const [positionx, setPositionx] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const [contentCount, setContentCount] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(1);
-    const [endSwipe, setEndSwipe] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const postData = content;
-    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_4__/* .useIsResponsive */ .j)();
-    const [width, setWidth] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
-    const [height, setHeight] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        setWidth(()=>parentRef.current.clientWidth);
-        setHeight(()=>parentRef.current.clientHeight);
-        const resize = ()=>{
-            setWidth(()=>parentRef.current.clientWidth);
-            setHeight(()=>parentRef.current.clientHeight);
-            if (movingDiv.current !== null && parentRef.current.clientWidth) {
-                movingDiv.current.style.transitionDuration = "0s";
-                movingDiv.current.style.transform = `translateX(${-parentRef.current.clientWidth * (contentCount - 1)}px)`;
-            }
-        };
-        window.addEventListener(`resize`, resize);
-        return ()=>{
-            window.removeEventListener(`resize`, resize);
-        };
-    }, [
-        contentCount
-    ]);
-    const onSwipeMove = (position = {
-        x: 0
-    })=>{
-        setEndSwipe(false);
-        if (postData.content.length === 1) {
-            return;
-        }
-        if (contentCount >= postData.content.length && positionx < 0 || contentCount === 1 && positionx > 0 || width !== null && Math.abs(positionx) > width) {
-            return;
-        }
-        if (movingDiv.current !== null && width !== null && position.x !== null) {
-            movingDiv.current.style.transitionDuration = "0s";
-            movingDiv.current.style.transform = `translateX(${positionx + -width * (contentCount - 1)}px)`;
-            const x = position.x;
-            setPositionx(()=>x);
-        }
-    };
-    const onSwipeEnd = ()=>{
-        if (movingDiv.current !== null && width !== null) {
-            movingDiv.current.style.transitionDuration = "0.3s";
-            if (positionx < -50 && contentCount < postData.content.length) {
-                setContentCount((prev)=>prev + 1);
-                movingDiv.current.style.transform = `translateX(${-width * contentCount}px)`;
-            }
-            if (positionx > 50 && contentCount > -1) {
-                setContentCount((prev)=>prev - 1);
-                movingDiv.current.style.transform = `translateX(${-width * (contentCount - 2)}px)`;
-            }
-            if (Math.abs(positionx) <= 50) {
-                movingDiv.current.style.transform = `translateX(${-width * (contentCount - 1)}px)`;
-            }
-        }
-        setPositionx(()=>0);
-        setEndSwipe(true);
-    };
-    const onClickNextBtn = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(()=>{
-        if (movingDiv.current !== null && width !== null) {
-            if (contentCount < postData.content.length) {
-                movingDiv.current.style.transitionProperty = "transform";
-                movingDiv.current.style.transitionDuration = "0.5s";
-                setContentCount((prev)=>prev + 1);
-                movingDiv.current.style.transform = `translateX(${-width * contentCount}px)`;
-            } else {
-                movingDiv.current.style.transitionProperty = "transform";
-                movingDiv.current.style.transitionDuration = "0.5s";
-                setContentCount(()=>1);
-                movingDiv.current.style.transform = `translateX(0px)`;
-            }
-        }
-    }, [
-        contentCount,
-        width
-    ]);
-    const onClickPrevBtn = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(()=>{
-        if (movingDiv.current !== null && width !== null) {
-            if (contentCount > 1) {
-                movingDiv.current.style.transitionProperty = "transform";
-                movingDiv.current.style.transitionDuration = "0.5s";
-                setContentCount((prev)=>prev - 1);
-                movingDiv.current.style.transform = `translateX(${-width * (contentCount - 2)}px)`;
-            } else {
-                movingDiv.current.style.transitionProperty = "transform";
-                movingDiv.current.style.transitionDuration = "0.5s";
-                setContentCount(()=>postData.content.length);
-                movingDiv.current.style.transform = `translateX(${-width * (postData.content.length - 1)}px)`;
-            }
-        }
-    }, [
-        contentCount,
-        width
-    ]);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        const autoSlide = setInterval(function() {
-            onClickNextBtn();
-        }, 10000);
-        return ()=>{
-            clearInterval(autoSlide);
-        };
-    }, [
-        width,
-        contentCount
-    ]);
-    //
-    const indicator = postData.content.map((el, idx)=>{
-        return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-            css: indicatorCSS({
-                idx,
-                contentCount
-            })
-        });
-    });
-    const indicatorBtn = /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: prevBtnCSS,
-                onClick: onClickPrevBtn,
-                children: "〈"
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: nextBtnCSS,
-                onClick: onClickNextBtn,
-                children: "〉"
-            })
-        ]
-    });
-    return /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: outerWrapperCSS,
-        children: [
-            isMobile === false && indicatorBtn,
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: indicatorWrapperCSS,
-                children: indicator
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react_easy_swipe__WEBPACK_IMPORTED_MODULE_3___default()), {
-                onSwipeStart: (event)=>{
-                    event.stopPropagation();
-                },
-                onSwipeEnd: onSwipeEnd,
-                onSwipeMove: onSwipeMove,
-                children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                    className: (_SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5___default().wrapper),
-                    children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        className: (_SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5___default().moveable),
-                        ref: movingDiv,
-                        children: postData.content.map((el)=>{
-                            return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                className: (_SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5___default().content),
-                                style: {
-                                    width: width + "px"
-                                },
-                                children: el
-                            }); //, height: height + 'px'
-                        })
-                    })
-                })
-            })
-        ]
-    });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SwipeableGallery);
-const outerWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  position: relative;
-`;
-const prevBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  z-index: 9;
-  position: absolute;
-  left: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  font-size: 48px;
-  font-weight: 700;
-  padding-left: 8px;
-  padding-right: 8px;
-  color: white;
-  transition-property: font-size;
-  transition-duration: 0.2s;
-  cursor: pointer;
-  user-select: none;
-
-  &:hover {
-    font-size: 54px;
-  }
-`;
-const nextBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  z-index: 9;
-  position: absolute;
-  right: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  font-size: 48px;
-  font-weight: 700;
-  padding-left: 8px;
-  padding-right: 8px;
-  color: white;
-  transition-property: font-size;
-  transition-duration: 0.2s;
-  cursor: pointer;
-  user-select: none;
-
-  &:hover {
-    font-size: 54px;
-  }
-`;
-const indicatorWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  z-index: 9;
-  position: absolute;
-  color: white;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  pointer-events: none;
-  padding-bottom: 16px;
-`;
-const indicatorCSS = ({ idx , contentCount  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: 30px;
-    height: 2px;
-    background-color: ${contentCount - 1 === idx ? "white" : "gray"};
-    margin: 2px;
-  `;
-};
-
-
-/***/ }),
-
-/***/ 7364:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_UI_BookCard_BookCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6878);
-/* harmony import */ var react_easy_swipe__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8252);
-/* harmony import */ var react_easy_swipe__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_easy_swipe__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4932);
-/** @jsxImportSource @emotion/react */ 
-
-
-
-
-
-const HighlightedCarousel = ({ bookData , windowWrapperRef  })=>{
-    const [bookDataList, setBookDataList] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([
-        ...bookData
-    ]);
-    const [currentIdx, setCurrentIdx] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const dummyNormalRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    // const wrapperRef = useRef<any>([]);
-    const carouselWrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const dummyHighlightedRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_5__/* .useIsResponsive */ .j)();
-    const cardLayout = {
-        widthValue: 13,
-        heightValue: 19,
-        highlightedWidthValue: 17,
-        highlightedHeightValue: 25,
-        spaceValue: 5,
-        unit: "vw",
-        // min 관련 값들의 단위는 px
-        minWidthValue: 150,
-        minHeightValue: 225,
-        minHighlightedWidthValue: 210,
-        minHighlightedHeightValue: 280,
-        minSpaceValue: 24
-    };
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        if (bookDataList[0].title !== bookDataList[bookDataList.length - 5].title) {
-            const temp = bookDataList.concat(bookDataList.slice(0, 5));
-            setBookDataList(()=>temp);
-        }
-    // console.log(bookDataList);
-    // console.log(temp);
-    }, []);
-    const prevBtnHandler = ()=>{
-        if (currentIdx > 0) {
-            setCurrentIdx((prev)=>prev - 1);
-        } else {
-            setCurrentIdx(()=>bookDataList.length - 6);
-        }
-    };
-    const nextBtnHandler = ()=>{
-        if (currentIdx < bookDataList.length - 6) {
-            setCurrentIdx((prev)=>prev + 1);
-        } else {
-            setCurrentIdx(()=>0);
-        }
-    };
-    const renderBooks = bookDataList.slice(currentIdx, currentIdx + 5).map((el, idx)=>{
-        return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-            css: imgWrapperCSS({
-                idx,
-                widthValue: cardLayout.widthValue,
-                heightValue: cardLayout.heightValue,
-                unit: cardLayout.unit,
-                highlightedWidthValue: cardLayout.highlightedWidthValue,
-                highlightedHeightValue: cardLayout.highlightedHeightValue,
-                spaceValue: cardLayout.spaceValue,
-                normalRef: dummyNormalRef,
-                minWidthValue: cardLayout.minWidthValue,
-                minHeightValue: cardLayout.minHeightValue,
-                minHighlightedWidthValue: cardLayout.minHighlightedWidthValue,
-                minHighlightedHeightValue: cardLayout.minHighlightedHeightValue,
-                minSpaceValue: cardLayout.minSpaceValue
-            }),
-            children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_UI_BookCard_BookCard__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-                bookData: el,
-                showPlatform: true
-            })
-        }, el.title);
-    });
-    const [positionx, setPositionx] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const onSwipeMove = (position = {
-        x: 0
-    })=>{
-        setPositionx(()=>position.x);
-    };
-    const onSwipeEnd = ()=>{
-        console.log(positionx);
-        if (positionx > 40) {
-            prevBtnHandler();
-        }
-        if (positionx < -40) {
-            nextBtnHandler();
-        }
-        setPositionx(()=>0);
-    };
-    const indicatorBtn = /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: prevBtnCSS,
-                onClick: prevBtnHandler,
-                children: "〈"
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: nextBtnCSS,
-                onClick: nextBtnHandler,
-                children: "〉"
-            })
-        ]
-    });
-    return(// <div css={carouselOuterWrapperCSS({highlightedHeightValue: cardLayout.highlightedHeightValue, unit: cardLayout.unit, minHighlightedHeightValue: cardLayout.minHighlightedHeightValue, highlightedRef: dummyHighlightedRef})}></div>
-    /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        className: "carousel-outer-wrapper",
-        css: carouselOuterWrapperCSS,
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: highlightedDecoratorCSS({
-                    highlightedHeightValue: cardLayout.highlightedHeightValue,
-                    minHighlightedHeightValue: cardLayout.minHighlightedHeightValue,
-                    unit: cardLayout.unit,
-                    highlightedRef: dummyHighlightedRef,
-                    carouselWrapperRef: carouselWrapperRef
-                })
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react_easy_swipe__WEBPACK_IMPORTED_MODULE_4___default()), {
-                onSwipeStart: (event)=>{
-                    event.stopPropagation();
-                },
-                // onSwipeEnd={onSwipeEnd}
-                onSwipeMove: onSwipeMove,
-                onSwipeEnd: onSwipeEnd,
-                children: /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                    children: [
-                        isMobile === false && indicatorBtn,
-                        /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            ref: carouselWrapperRef,
-                            className: "carousel-inner-wrapper",
-                            css: carouselInnerWrapperCSS({
-                                widthValue: cardLayout.widthValue,
-                                unit: cardLayout.unit,
-                                highlightedWidthValue: cardLayout.highlightedWidthValue,
-                                minWidthValue: cardLayout.minWidthValue,
-                                minHighlightedWidthValue: cardLayout.minHighlightedWidthValue,
-                                spaceValue: cardLayout.spaceValue,
-                                minSpaceValue: cardLayout.minSpaceValue,
-                                normalRef: dummyNormalRef,
-                                carouselWrapperRef: carouselWrapperRef,
-                                windowWrapperRef: windowWrapperRef
-                            }),
-                            children: renderBooks
-                        }),
-                        /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            css: dummyWrapper,
-                            children: [
-                                /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "dummy-normal",
-                                    ref: dummyNormalRef,
-                                    css: dummyNormalCSS({
-                                        widthValue: cardLayout.widthValue,
-                                        heightValue: cardLayout.heightValue,
-                                        unit: cardLayout.unit
-                                    })
-                                }),
-                                /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "dummy-highlighted",
-                                    ref: dummyHighlightedRef,
-                                    css: dummyHighlightedCSS({
-                                        highlightedWidthValue: cardLayout.highlightedWidthValue,
-                                        highlightedHeightValue: cardLayout.highlightedHeightValue,
-                                        unit: cardLayout.unit
-                                    })
-                                }),
-                                /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    className: "dummy-min-highlighted",
-                                    css: dummyMinHighlightedCSS({
-                                        minHighlightedHeightValue: cardLayout.minHighlightedHeightValue
-                                    })
-                                })
-                            ]
-                        })
-                    ]
-                })
-            })
-        ]
-    }));
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HighlightedCarousel);
-// interface carouselOuterWrapperCSSProps {
-//     highlightedHeightValue: number;
-//     unit: string;
-//     minHighlightedHeightValue: number;
-//     highlightedRef: any;
-// }
-// const carouselOuterWrapperCSS = ({highlightedHeightValue, unit, minHighlightedHeightValue, highlightedRef}: carouselOuterWrapperCSSProps) => {
-//     const calcHeight = highlightedRef?.current?.clientHeight < minHighlightedHeightValue ? minHighlightedHeightValue + 'px' : highlightedHeightValue + unit
-//     return css`
-//         width: 100%;
-//         height: ${calcHeight};
-//         margin: 0 auto;
-//         display:flex;
-//         justify-content: center;
-//     `
-// }
-const carouselOuterWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  margin: 0 auto;
-  /* display:flex;
-        justify-content: center; */
-  display: grid;
-  place-items: center;
-  position: relative;
-`;
-const imgWrapperCSS = ({ idx , widthValue , heightValue , unit , highlightedWidthValue , highlightedHeightValue , spaceValue , normalRef , minWidthValue , minHeightValue , minHighlightedWidthValue , minHighlightedHeightValue , minSpaceValue  })=>{
-    const calcWidth = normalRef?.current?.clientWidth < minWidthValue ? (idx === 2 ? minHighlightedWidthValue : minWidthValue) + "px" : (idx === 2 ? highlightedWidthValue : widthValue) + unit;
-    const calcHeight = normalRef?.current?.clientHeight < minHeightValue ? (idx === 2 ? minHighlightedHeightValue : minHeightValue) + "px" : (idx === 2 ? highlightedHeightValue : heightValue) + unit;
-    const calcLeft = normalRef?.current?.clientWidth < minWidthValue ? (idx > 2 ? idx * (minWidthValue + minSpaceValue) + (minHighlightedWidthValue - minWidthValue) : idx * (minWidthValue + minSpaceValue)) + "px" : (idx > 2 ? idx * (widthValue + spaceValue) + (highlightedWidthValue - widthValue) : idx * (widthValue + spaceValue)) + unit;
-    const calcTop = normalRef?.current?.clientWidth < minWidthValue ? (idx !== 2 ? (minHighlightedHeightValue - minHeightValue) / 2 : 0) + "px" : (idx !== 2 ? (highlightedHeightValue - heightValue) / 2 : 0) + unit;
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    transition-property: left top width height;
-    transition-duration: 0.3s;
-    position: absolute;
-    left: ${calcLeft};
-    top: ${calcTop};
-    /* left: ${(idx > 2 ? idx * (widthValue + spaceValue) + (highlightedWidthValue - widthValue) : idx * (widthValue + spaceValue)) + unit}; */
-    /* top: ${(idx === 2 ? -(highlightedHeightValue - heightValue) / 2 : 0) + unit}; */
-    width: ${calcWidth};
-    height: ${calcHeight};
-    visibility: ${idx < 5 ? "visible" : "hidden"};
-    overflow: hidden;
-  `;
-};
-// const imgWrapperCSS = ({idx, widthValue, heightValue, unit, highlightedWidthValue, highlightedHeightValue, spaceValue}: imgCSSProps) => {
-//     return css`
-//         transition-property: left top width height;
-//         transition-duration: 0.3s;
-//         position: absolute;
-//         left: ${(idx > 2 ? (idx * (widthValue + spaceValue) + (highlightedWidthValue - widthValue)) : idx * (widthValue + spaceValue)) + unit};
-//         top: ${(idx === 2 ? -(highlightedHeightValue - heightValue) / 2 : 0) + unit};
-//         width: ${(idx === 2 ? highlightedWidthValue : widthValue) + unit};
-//         height: ${(idx === 2 ? highlightedHeightValue : heightValue) + unit};
-//         visibility: ${idx < 5 ? 'visible' : 'hidden'};
-//         overflow: hidden;
-//     `
-// }
-// interface imgCSSProps {
-//     idx: number;
-//     widthValue: number;
-//     heightValue: number;
-//     unit: string;
-//     highlightedWidthValue: number;
-//     highlightedHeightValue: number;
-//     spaceValue: number;
-//     normalRef: any;
-//     highlightedRef: any;
-//     minWidthValue: number;
-//     minHeightValue: number;
-//     minHighlightedWidthValue: number;
-//     minHighlightedHeightValue: number;
-//     minSpaceValue: number;
-// }
-// const imgCSS = ({idx, widthValue, unit, highlightedWidthValue, spaceValue}: imgCSSProps) => {
-//     return css`
-//         /* width: ${(idx === 2 ? highlightedWidthValue : widthValue) + unit};
-//         height: auto; */
-//         width: 100%;
-//         height: auto;
-//     `
-// }
-const imgCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  height: auto;
-`;
-const carouselInnerWrapperCSS = ({ widthValue , unit , highlightedWidthValue , spaceValue , minSpaceValue , minWidthValue , minHighlightedWidthValue , normalRef , carouselWrapperRef , windowWrapperRef  })=>{
-    const calcWidth = normalRef?.current?.clientWidth < minWidthValue ? (minWidthValue + minSpaceValue) * 4 + minHighlightedWidthValue + "px" : (widthValue + spaceValue) * 4 + highlightedWidthValue + unit;
-    const calcLeft = carouselWrapperRef?.current?.clientWidth > windowWrapperRef?.current?.offsetWidth ? -(carouselWrapperRef?.current?.clientWidth - windowWrapperRef?.current?.offsetWidth) / 2 + "px" : "0px";
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: ${calcWidth};
-    left: ${calcLeft};
-    position: relative;
-    display: flex;
-  `;
-};
-const dummyNormalCSS = ({ widthValue , heightValue , unit  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: ${widthValue + unit};
-    height: ${heightValue + unit};
-    pointer-events: none;
-    /* display: none; */
-  `;
-};
-const dummyHighlightedCSS = ({ highlightedWidthValue , highlightedHeightValue , unit  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: ${highlightedWidthValue + unit};
-    height: ${highlightedHeightValue + unit};
-    pointer-events: none;
-    /* display: none; */
-  `;
-};
-const prevBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  z-index: 9;
-  position: absolute;
-  left: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  font-size: 48px;
-  font-weight: 700;
-  padding-left: 8px;
-  padding-right: 8px;
-  color: var(--text-color);
-  transition-property: font-size;
-  transition-duration: 0.2s;
-  cursor: pointer;
-  user-select: none;
-
-  &:hover {
-    font-size: 54px;
-  }
-`;
-const nextBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  z-index: 9;
-  position: absolute;
-  right: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  font-size: 48px;
-  font-weight: 700;
-  padding-left: 8px;
-  padding-right: 8px;
-  color: var(--text-color);
-  transition-property: font-size;
-  transition-duration: 0.2s;
-  cursor: pointer;
-  user-select: none;
-
-  &:hover {
-    font-size: 54px;
-  }
-`;
-const highlightedDecoratorCSS = ({ highlightedHeightValue , minHighlightedHeightValue , unit , highlightedRef  })=>{
-    const calcHeight = highlightedRef?.current?.clientHeight < minHighlightedHeightValue ? minHighlightedHeightValue + 48 + "px" : highlightedHeightValue + 5 + unit;
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: ${calcHeight};
-    height: ${calcHeight};
-    background-color: var(--border-color-2);
-    border-radius: 10000px;
-    position: absolute;
-  `;
-};
-const dummyMinHighlightedCSS = ({ minHighlightedHeightValue  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: 1px;
-    height: ${minHighlightedHeightValue}px;
-    pointer-events: none;
-  `;
-};
-const dummyWrapper = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  display: flex;
-  justify-content: center;
-`;
-
-
-/***/ }),
-
-/***/ 8932:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/** @jsxImportSource @emotion/react */ 
-
-const RowTitle = ({ beforeLabel , highlightedLabel , afterLabel , noLine , marginBottom  })=>{
-    return /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: rowTitleWrapperCSS({
-            marginBottom
-        }),
-        children: [
-            noLine !== true && /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: lineCSS
-            }),
-            /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                css: labelWrapperCSS,
-                children: [
-                    /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                        css: normalLabelCSS,
-                        children: beforeLabel
-                    }),
-                    /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                        css: highlightedLabelCSS,
-                        children: highlightedLabel
-                    }),
-                    /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                        css: normalLabelCSS,
-                        children: afterLabel
-                    })
-                ]
-            })
-        ]
-    });
-};
-const rowTitleWrapperCSS = ({ marginBottom  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-        width: 100%;
-        height: 36px;
-        position: relative;
-        display: flex;
-        align-items: center;
-        margin-bottom: ${marginBottom !== undefined ? marginBottom : `24px`};
-    `;
-};
-const lineCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: 100%;
-    height: 1px;
-    background-color: var(--border-color-2);
-`;
-const labelWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    position: absolute;
-    background-color: var(--back-color);
-    padding: 24px;
-    left: 1%;
-`;
-const normalLabelCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    font-size: 28px;
-    color: var(--text-color);
-`;
-const highlightedLabelCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    font-size: 36px;
-    color: #FF6565;
-`;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RowTitle);
-
-
-/***/ }),
-
-/***/ 363:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6405);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_0__);
-
-const Portal = ({ children , selector  })=>{
-    const element =  false && 0;
-    return element && children ? /*#__PURE__*/ react_dom__WEBPACK_IMPORTED_MODULE_0___default().createPortal(children, element) : null;
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Portal);
-
-
-/***/ }),
-
-/***/ 7790:
+/***/ "./src/api/instance.ts":
+/*!*****************************!*\
+  !*** ./src/api/instance.ts ***!
+  \*****************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ Home),
-/* harmony export */   "getServerSideProps": () => (/* binding */ getServerSideProps)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_UI_ScrollableCarousel_ScrollableCarousel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2131);
-/* harmony import */ var _components_UI_SwipeableCarousel_SwipeableGallery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3169);
-/* harmony import */ var _components_bookTab_HighlightedCarousel_HighlightedCarousel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7364);
-/* harmony import */ var _components_bookTab_RowTitle_RowTitle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8932);
-/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(4932);
-/* harmony import */ var _api_book_getBooksByGenre__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(4105);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_api_book_getBooksByGenre__WEBPACK_IMPORTED_MODULE_8__]);
-_api_book_getBooksByGenre__WEBPACK_IMPORTED_MODULE_8__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-/** @jsxImportSource @emotion/react */ 
-
-
-
-
-
-
-
-// import contentBannerDesktop from "/assets/content_banner_desktop_tablet.png"
-// import contentBannerMobile from "/assets/content_banner_mobile.png"
-
-function Home({ highlightedBookData  }) {
-    const parentRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const indexWrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_7__/* .useIsResponsive */ .j)();
-    // ________________________________________________________________________________________________
-    // 임시 데이터
-    const postData = {
-        content: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                src: "/assets/temp_banner_1.png",
-                alt: "",
-                css: bannerImage
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                src: "/assets/temp_banner_2.png",
-                alt: "",
-                css: bannerImage
-            })
-        ]
-    };
-    // const getBookData = recvBooks(0, 20).then((res: any) =>
-    //   setBookData(() => res)
-    // );
-    const [bookData, setBookData] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
-    // ________________________________________________________________________________________________
-    const getBooksByGenreAPI = ({ bookList , size  })=>{
-        const prevId = bookList.length ? bookList[bookList.length - 1].bookId : 0;
-        const prevScore = bookList.length ? bookList[bookList.length - 1].score : 10;
-        return (0,_api_book_getBooksByGenre__WEBPACK_IMPORTED_MODULE_8__/* .getBooksByGenre */ .f)({
-            genreCode: 10,
-            typeCode: 0,
-            prevId: prevId,
-            prevScore: prevScore,
-            size: size
-        });
-    };
-    return /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        ref: indexWrapperRef,
-        css: indexWrapperCSS,
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: bannerWrapperCSS,
-                ref: parentRef,
-                children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_UI_SwipeableCarousel_SwipeableGallery__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z, {
-                    parentRef: parentRef,
-                    content: postData
-                })
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: whiteSpace1CSS
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: innerLayoutWrapperCSS({
-                    isDeskTop,
-                    isTablet,
-                    isMobile
-                }),
-                children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_bookTab_RowTitle_RowTitle__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
-                    beforeLabel: "희MD",
-                    highlightedLabel: " EMOSAAC!",
-                    noLine: true,
-                    marginBottom: "45px"
-                })
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: highlightedCarouselWrapper,
-                children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_bookTab_HighlightedCarousel_HighlightedCarousel__WEBPACK_IMPORTED_MODULE_5__/* ["default"] */ .Z, {
-                    bookData: highlightedBookData,
-                    windowWrapperRef: indexWrapperRef
-                })
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: whiteSpace2CSS
-            }),
-            /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                css: innerLayoutWrapperCSS({
-                    isDeskTop,
-                    isTablet,
-                    isMobile
-                }),
-                children: [
-                    /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_bookTab_RowTitle_RowTitle__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
-                        beforeLabel: "너만의",
-                        highlightedLabel: " EMOSAAC!"
-                    }),
-                    /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        css: bookCarouselWrapperCSS,
-                        children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_UI_ScrollableCarousel_ScrollableCarousel__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-                            API: getBooksByGenreAPI,
-                            identifier: "test1"
-                        })
-                    }),
-                    /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        css: whiteSpace1CSS
-                    })
-                ]
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                src: isMobile === true ? "/assets/content_banner_mobile.png" : "/assets/content_banner_desktop_tablet.png",
-                alt: "",
-                css: bannerImage
-            })
-        ]
-    });
-}
-const getServerSideProps = async (context)=>{
-    // 임시 API
-    const data = await (0,_api_book_getBooksByGenre__WEBPACK_IMPORTED_MODULE_8__/* .getBooksByGenre */ .f)({
-        genreCode: 11,
-        typeCode: 0,
-        prevId: 0,
-        prevScore: 10,
-        size: 20
-    }).then((res)=>{
-        if (res !== null) {
-            return res.content;
-        }
-    }).catch((err)=>{
-        console.log("pages/books/index.tsx => getBooksByGenre", err);
-    });
-    return await {
-        props: {
-            highlightedBookData: data
-        }
-    };
-};
-const indexWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const bannerImage = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  height: auto;
-`;
-const whiteSpace1CSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  height: 5vw;
-  min-height: 48px;
-`;
-const whiteSpace2CSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  height: 7vw;
-  min-height: 72px;
-`;
-const bannerWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  overflow: hidden;
-`;
-const highlightedCarouselWrapper = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-const bookCarouselWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  /* overflow: hidden; */
-  border-radius: 10px; ;
-`;
-const innerLayoutWrapperCSS = ({ isDeskTop , isTablet , isMobile  })=>{
-    const whiteSpace = isDeskTop && 210 || isTablet && 100 || isMobile && 0;
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: calc(100% - ${whiteSpace}px);
-    /* margin: 0px 105px; */
-  `;
-};
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"defaultAxiosFormDataInstance\": () => (/* binding */ defaultAxiosFormDataInstance),\n/* harmony export */   \"defaultAxiosInstance\": () => (/* binding */ defaultAxiosInstance)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"axios\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([axios__WEBPACK_IMPORTED_MODULE_0__]);\naxios__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nfunction getToken() {\n    if (false) {}\n    return \"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjc5NzI5MjYwLCJleHAiOjE2ODA1OTMyNjB9.XHPc_vgncmmMesknqWB9eBbL2VDDeH_oXlYqIuIUvM9EK0OM5qzWA6Zsa3JDGS6Tf2QSuH8d-_U7CKsbW-H1-g\";\n}\nfunction defaultInstace() {\n    const token = getToken();\n    const instance = axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].create({\n        baseURL: \"http://j8d203.p.ssafy.io:8081/api\",\n        headers: {\n            \"Content-Type\": \"application/JSON;charset=utf-8\",\n            Authorization: token\n        }\n    });\n    return instance;\n}\nfunction defaultFormDataInstance() {\n    const token = getToken();\n    const instance = axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].create({\n        baseURL: \"http://j8d203.p.ssafy.io:8081/api\",\n        headers: {\n            \"Content-Type\": \"multipart/form-data\",\n            Authorization: token\n        }\n    });\n    return instance;\n}\nconst defaultAxiosInstance = defaultInstace();\nconst defaultAxiosFormDataInstance = defaultFormDataInstance();\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2luc3RhbmNlLnRzLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQUEwQjtBQUUxQixTQUFTQyxXQUFXO0lBRWxCLElBQUksS0FBNkIsRUFBRSxFQUdsQztJQUVELE9BQU87QUFDVDtBQUVBLFNBQVNJLGlCQUFpQjtJQUN4QixNQUFNQyxRQUFRTDtJQUNkLE1BQU1NLFdBQVdQLG9EQUFZLENBQUM7UUFDNUJTLFNBQVNDLG1DQUFvQztRQUM3Q0csU0FBUztZQUNQLGdCQUFnQjtZQUNoQkMsZUFBZVI7UUFDakI7SUFDRjtJQUNBLE9BQU9DO0FBQ1Q7QUFFQSxTQUFTUSwwQkFBMEI7SUFDakMsTUFBTVQsUUFBUUw7SUFDZCxNQUFNTSxXQUFXUCxvREFBWSxDQUFDO1FBQzVCUyxTQUFTQyxtQ0FBb0M7UUFDN0NHLFNBQVM7WUFBRSxnQkFBZ0I7WUFBdUJDLGVBQWVSO1FBQU07SUFDekU7SUFDQSxPQUFPQztBQUNUO0FBRU8sTUFBTVMsdUJBQXVCWCxpQkFBaUI7QUFDOUMsTUFBTVksK0JBQStCRiwwQkFBMEIiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvYXBpL2luc3RhbmNlLnRzPzkzN2EiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGF4aW9zIGZyb20gXCJheGlvc1wiO1xyXG5cclxuZnVuY3Rpb24gZ2V0VG9rZW4oKSB7XHJcbiAgXHJcbiAgaWYgKHR5cGVvZiB3aW5kb3cgIT09IFwidW5kZWZpbmVkXCIpIHtcclxuICAgIGNvbnN0IGluZm9ybWF0aW9uID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oXCJhY2Nlc3NfdG9rZW5cIik7XHJcbiAgICByZXR1cm4gYEJlYXJlciAke2luZm9ybWF0aW9ufWA7IFxyXG4gIH1cclxuICBcclxuICByZXR1cm4gXCJCZWFyZXIgZXlKaGJHY2lPaUpJVXpVeE1pSjkuZXlKemRXSWlPaUk0SWl3aWFXRjBJam94TmpjNU56STVNall3TENKbGVIQWlPakUyT0RBMU9UTXlOakI5LlhIUGNfdmduY21tTWVza25xV0I5ZUJiTDJWRERlSF9vWGxZcUl1SVV2TTlFSzBPTTVxeldBNlpzYTNKREdTNlRmMlFTdUg4ZC1fVTdDS3NiVy1IMS1nXCI7XHJcbn1cclxuXHJcbmZ1bmN0aW9uIGRlZmF1bHRJbnN0YWNlKCkge1xyXG4gIGNvbnN0IHRva2VuID0gZ2V0VG9rZW4oKTtcclxuICBjb25zdCBpbnN0YW5jZSA9IGF4aW9zLmNyZWF0ZSh7XHJcbiAgICBiYXNlVVJMOiBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19BUElfQkFTRV9VUkwsXHJcbiAgICBoZWFkZXJzOiB7XHJcbiAgICAgIFwiQ29udGVudC1UeXBlXCI6IFwiYXBwbGljYXRpb24vSlNPTjtjaGFyc2V0PXV0Zi04XCIsXHJcbiAgICAgIEF1dGhvcml6YXRpb246IHRva2VuLFxyXG4gICAgfSxcclxuICB9KTtcclxuICByZXR1cm4gaW5zdGFuY2U7XHJcbn1cclxuXHJcbmZ1bmN0aW9uIGRlZmF1bHRGb3JtRGF0YUluc3RhbmNlKCkge1xyXG4gIGNvbnN0IHRva2VuID0gZ2V0VG9rZW4oKTtcclxuICBjb25zdCBpbnN0YW5jZSA9IGF4aW9zLmNyZWF0ZSh7XHJcbiAgICBiYXNlVVJMOiBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19BUElfQkFTRV9VUkwsXHJcbiAgICBoZWFkZXJzOiB7IFwiQ29udGVudC1UeXBlXCI6IFwibXVsdGlwYXJ0L2Zvcm0tZGF0YVwiLCBBdXRob3JpemF0aW9uOiB0b2tlbiB9LFxyXG4gIH0pO1xyXG4gIHJldHVybiBpbnN0YW5jZTtcclxufVxyXG5cclxuZXhwb3J0IGNvbnN0IGRlZmF1bHRBeGlvc0luc3RhbmNlID0gZGVmYXVsdEluc3RhY2UoKTtcclxuZXhwb3J0IGNvbnN0IGRlZmF1bHRBeGlvc0Zvcm1EYXRhSW5zdGFuY2UgPSBkZWZhdWx0Rm9ybURhdGFJbnN0YW5jZSgpO1xyXG4iXSwibmFtZXMiOlsiYXhpb3MiLCJnZXRUb2tlbiIsImluZm9ybWF0aW9uIiwibG9jYWxTdG9yYWdlIiwiZ2V0SXRlbSIsImRlZmF1bHRJbnN0YWNlIiwidG9rZW4iLCJpbnN0YW5jZSIsImNyZWF0ZSIsImJhc2VVUkwiLCJwcm9jZXNzIiwiZW52IiwiTkVYVF9QVUJMSUNfQVBJX0JBU0VfVVJMIiwiaGVhZGVycyIsIkF1dGhvcml6YXRpb24iLCJkZWZhdWx0Rm9ybURhdGFJbnN0YW5jZSIsImRlZmF1bHRBeGlvc0luc3RhbmNlIiwiZGVmYXVsdEF4aW9zRm9ybURhdGFJbnN0YW5jZSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/api/instance.ts\n");
 
 /***/ }),
 
-/***/ 2805:
+/***/ "./src/components/Responsive/useIsClient.ts":
+/*!**************************************************!*\
+  !*** ./src/components/Responsive/useIsClient.ts ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"useIsClient\": () => (/* binding */ useIsClient)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n//useIsClient.ts\n\nconst useIsClient = ()=>{\n    const [isClient, setIsClient] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{\n        if (false) {}\n    }, []);\n    return isClient;\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzQ2xpZW50LnRzLmpzIiwibWFwcGluZ3MiOiI7Ozs7OztBQUFBLGdCQUFnQjtBQUM0QjtBQUVyQyxNQUFNRSxjQUFjLElBQU07SUFDL0IsTUFBTSxDQUFDQyxVQUFVQyxZQUFZLEdBQUdILCtDQUFRQSxDQUFDLEtBQUs7SUFFOUNELGdEQUFTQSxDQUFDLElBQU07UUFDZCxJQUFJLEtBQTZCLEVBQUUsRUFFbEM7SUFDSCxHQUFHLEVBQUU7SUFDTCxPQUFPRztBQUNULEVBQUUiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzQ2xpZW50LnRzPzcxYjEiXSwic291cmNlc0NvbnRlbnQiOlsiLy91c2VJc0NsaWVudC50c1xyXG5pbXBvcnQgeyB1c2VFZmZlY3QsIHVzZVN0YXRlIH0gZnJvbSBcInJlYWN0XCI7XHJcblxyXG5leHBvcnQgY29uc3QgdXNlSXNDbGllbnQgPSAoKSA9PiB7XHJcbiAgY29uc3QgW2lzQ2xpZW50LCBzZXRJc0NsaWVudF0gPSB1c2VTdGF0ZShmYWxzZSk7XHJcblxyXG4gIHVzZUVmZmVjdCgoKSA9PiB7XHJcbiAgICBpZiAodHlwZW9mIHdpbmRvdyAhPT0gXCJ1bmRlZmluZWRcIikge1xyXG4gICAgICBzZXRJc0NsaWVudCh0cnVlKTtcclxuICAgIH1cclxuICB9LCBbXSk7XHJcbiAgcmV0dXJuIGlzQ2xpZW50O1xyXG59O1xyXG4iXSwibmFtZXMiOlsidXNlRWZmZWN0IiwidXNlU3RhdGUiLCJ1c2VJc0NsaWVudCIsImlzQ2xpZW50Iiwic2V0SXNDbGllbnQiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/Responsive/useIsClient.ts\n");
+
+/***/ }),
+
+/***/ "./src/components/Responsive/useIsResponsive.ts":
+/*!******************************************************!*\
+  !*** ./src/components/Responsive/useIsResponsive.ts ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"useIsResponsive\": () => (/* binding */ useIsResponsive)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_responsive__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-responsive */ \"react-responsive\");\n/* harmony import */ var react_responsive__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_responsive__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_Responsive_useIsClient__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Responsive/useIsClient */ \"./src/components/Responsive/useIsClient.ts\");\n\n\n\nconst useIsResponsive = ()=>{\n    const isClient = (0,_components_Responsive_useIsClient__WEBPACK_IMPORTED_MODULE_2__.useIsClient)();\n    const isDeskTop = (0,react_responsive__WEBPACK_IMPORTED_MODULE_1__.useMediaQuery)({\n        query: \"(min-width: 1024px)\"\n    });\n    const isTablet = (0,react_responsive__WEBPACK_IMPORTED_MODULE_1__.useMediaQuery)({\n        query: \"(min-width: 768px)\"\n    });\n    const isMobile = true;\n    const [isClientDeskTop, setIsClientDeskTop] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n    const [isClientTablet, setIsClientTablet] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n    const [isClientMobile, setIsClientMobile] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{\n        setIsClientDeskTop(isClient && isDeskTop);\n        setIsClientTablet(isClient && !isDeskTop && isTablet);\n        setIsClientMobile(isClient && !isDeskTop && !isTablet && isMobile);\n    }, [\n        isClient,\n        isDeskTop,\n        isTablet,\n        isMobile\n    ]);\n    return [\n        isClientDeskTop,\n        isClientTablet,\n        isClientMobile\n    ];\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzUmVzcG9uc2l2ZS50cy5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFBNEM7QUFDSztBQUNpQjtBQUUzRCxNQUFNSSxrQkFBa0IsSUFBaUI7SUFDOUMsTUFBTUMsV0FBV0YsK0VBQVdBO0lBQzVCLE1BQU1HLFlBQVlKLCtEQUFhQSxDQUFDO1FBQzlCSyxPQUFPO0lBQ1Q7SUFDQSxNQUFNQyxXQUFXTiwrREFBYUEsQ0FBQztRQUM3QkssT0FBTztJQUNUO0lBQ0EsTUFBTUUsV0FBVyxJQUFJO0lBQ3JCLE1BQU0sQ0FBQ0MsaUJBQWlCQyxtQkFBbUIsR0FBR1gsK0NBQVFBLENBQUMsS0FBSztJQUM1RCxNQUFNLENBQUNZLGdCQUFnQkMsa0JBQWtCLEdBQUdiLCtDQUFRQSxDQUFDLEtBQUs7SUFDMUQsTUFBTSxDQUFDYyxnQkFBZ0JDLGtCQUFrQixHQUFHZiwrQ0FBUUEsQ0FBQyxLQUFLO0lBQzFEQyxnREFBU0EsQ0FBQyxJQUFNO1FBQ2RVLG1CQUFtQk4sWUFBWUM7UUFDL0JPLGtCQUFrQlIsWUFBWSxDQUFDQyxhQUFhRTtRQUM1Q08sa0JBQWtCVixZQUFZLENBQUNDLGFBQWEsQ0FBQ0UsWUFBWUM7SUFDM0QsR0FBRztRQUFDSjtRQUFVQztRQUFXRTtRQUFVQztLQUFTO0lBQzVDLE9BQU87UUFBQ0M7UUFBaUJFO1FBQWdCRTtLQUFlO0FBQzFELEVBQUUiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzUmVzcG9uc2l2ZS50cz8yMDlmIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IHVzZVN0YXRlLCB1c2VFZmZlY3QgfSBmcm9tIFwicmVhY3RcIjtcclxuaW1wb3J0IHsgdXNlTWVkaWFRdWVyeSB9IGZyb20gXCJyZWFjdC1yZXNwb25zaXZlXCI7XHJcbmltcG9ydCB7IHVzZUlzQ2xpZW50IH0gZnJvbSBcIkAvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzQ2xpZW50XCI7XHJcblxyXG5leHBvcnQgY29uc3QgdXNlSXNSZXNwb25zaXZlID0gKCk6IGJvb2xlYW5bXSA9PiB7XHJcbiAgY29uc3QgaXNDbGllbnQgPSB1c2VJc0NsaWVudCgpO1xyXG4gIGNvbnN0IGlzRGVza1RvcCA9IHVzZU1lZGlhUXVlcnkoe1xyXG4gICAgcXVlcnk6IFwiKG1pbi13aWR0aDogMTAyNHB4KVwiLFxyXG4gIH0pO1xyXG4gIGNvbnN0IGlzVGFibGV0ID0gdXNlTWVkaWFRdWVyeSh7XHJcbiAgICBxdWVyeTogXCIobWluLXdpZHRoOiA3NjhweClcIixcclxuICB9KTtcclxuICBjb25zdCBpc01vYmlsZSA9IHRydWU7XHJcbiAgY29uc3QgW2lzQ2xpZW50RGVza1RvcCwgc2V0SXNDbGllbnREZXNrVG9wXSA9IHVzZVN0YXRlKGZhbHNlKTtcclxuICBjb25zdCBbaXNDbGllbnRUYWJsZXQsIHNldElzQ2xpZW50VGFibGV0XSA9IHVzZVN0YXRlKGZhbHNlKTtcclxuICBjb25zdCBbaXNDbGllbnRNb2JpbGUsIHNldElzQ2xpZW50TW9iaWxlXSA9IHVzZVN0YXRlKGZhbHNlKTtcclxuICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgc2V0SXNDbGllbnREZXNrVG9wKGlzQ2xpZW50ICYmIGlzRGVza1RvcCk7XHJcbiAgICBzZXRJc0NsaWVudFRhYmxldChpc0NsaWVudCAmJiAhaXNEZXNrVG9wICYmIGlzVGFibGV0KTtcclxuICAgIHNldElzQ2xpZW50TW9iaWxlKGlzQ2xpZW50ICYmICFpc0Rlc2tUb3AgJiYgIWlzVGFibGV0ICYmIGlzTW9iaWxlKTtcclxuICB9LCBbaXNDbGllbnQsIGlzRGVza1RvcCwgaXNUYWJsZXQsIGlzTW9iaWxlXSk7XHJcbiAgcmV0dXJuIFtpc0NsaWVudERlc2tUb3AsIGlzQ2xpZW50VGFibGV0LCBpc0NsaWVudE1vYmlsZV07XHJcbn07XHJcbiJdLCJuYW1lcyI6WyJ1c2VTdGF0ZSIsInVzZUVmZmVjdCIsInVzZU1lZGlhUXVlcnkiLCJ1c2VJc0NsaWVudCIsInVzZUlzUmVzcG9uc2l2ZSIsImlzQ2xpZW50IiwiaXNEZXNrVG9wIiwicXVlcnkiLCJpc1RhYmxldCIsImlzTW9iaWxlIiwiaXNDbGllbnREZXNrVG9wIiwic2V0SXNDbGllbnREZXNrVG9wIiwiaXNDbGllbnRUYWJsZXQiLCJzZXRJc0NsaWVudFRhYmxldCIsImlzQ2xpZW50TW9iaWxlIiwic2V0SXNDbGllbnRNb2JpbGUiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/Responsive/useIsResponsive.ts\n");
+
+/***/ }),
+
+/***/ "./src/components/UI/BookCard/BookCard.tsx":
+/*!*************************************************!*\
+  !*** ./src/components/UI/BookCard/BookCard.tsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_bookCardModal_BookCardModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/bookCardModal/BookCardModal */ \"./src/components/bookCardModal/BookCardModal.tsx\");\n/* harmony import */ var _components_function_Portal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/function/Portal */ \"./src/components/function/Portal.tsx\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/router */ \"next/router\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_5__);\n/** @jsxImportSource @emotion/react */ \n\n\n\n\n\nconst BookCard = ({ bookData , showPlatform , width , height , minWidth , minHeight  })=>{\n    const [user, setUser] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        setUser(()=>navigator.userAgent);\n    }, []);\n    const isMobile = ()=>{\n        let is_mobile = false;\n        if (user !== undefined && user.length > 0 && user.indexOf(\"iPhone\") > -1 || user.indexOf(\"Android\") > -1 || user.indexOf(\"iPad\") > -1 || user.indexOf(\"iPod\") > -1) {\n            is_mobile = true;\n        }\n        return is_mobile;\n    };\n    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_5__.useRouter)();\n    const wrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);\n    const [modalToggler, setModalToggler] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);\n    const [isMouseOn, setIsMouseOn] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);\n    const platformBar = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: platformBarCSS\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\BookCard\\\\BookCard.tsx\",\n        lineNumber: 64,\n        columnNumber: 23\n    }, undefined);\n    const showModal = ()=>{\n        setTimeout(function() {\n            setModalToggler(()=>true);\n        }, 400);\n        setIsMouseOn(()=>true);\n    };\n    const hideModal = ()=>{\n        setIsMouseOn(()=>false);\n        setTimeout(function() {\n            setModalToggler(()=>false);\n        }, 500);\n    };\n    const instantlyRedirect = ()=>{\n        if (isMobile() === true) {\n            // 모바일에서 Detail 페이지로 바로 이동\n            router.push(`/books/${bookData.bookId}`);\n        }\n    };\n    const modal = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_function_Portal__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n        selector: \".overlay-root\",\n        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_bookCardModal_BookCardModal__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n            modalToggler: modalToggler,\n            isMouseOn: isMouseOn,\n            setModalToggler: setModalToggler,\n            bookData: bookData,\n            parentRef: wrapperRef,\n            imgHeight: height,\n            imgMinHeight: minHeight\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\BookCard\\\\BookCard.tsx\",\n            lineNumber: 89,\n            columnNumber: 7\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\BookCard\\\\BookCard.tsx\",\n        lineNumber: 88,\n        columnNumber: 5\n    }, undefined);\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        className: \"bookcard-outer-wrapper\",\n        css: cardOuterWrapper({\n            width,\n            height,\n            minWidth,\n            minHeight\n        }),\n        ref: wrapperRef,\n        onClick: instantlyRedirect,\n        onMouseOver: (event)=>{\n            event.stopPropagation();\n            showModal();\n        },\n        onMouseLeave: hideModal,\n        children: [\n            user !== null && isMobile() === false && modalToggler && modal,\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                className: \"bookcard-inner-wrapper\",\n                css: cardInnerWrapperCSS({\n                    width,\n                    height,\n                    minWidth,\n                    minHeight\n                }),\n                children: [\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        css: skeletonLoadingTagCSS({\n                            state: bookData !== \"LOADING\" ? true : false\n                        })\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\BookCard\\\\BookCard.tsx\",\n                        lineNumber: 119,\n                        columnNumber: 9\n                    }, undefined),\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"img\", {\n                        className: \"img\",\n                        src: bookData && bookData.thumbnail,\n                        alt: bookData && bookData.title,\n                        css: imageCSS\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\BookCard\\\\BookCard.tsx\",\n                        lineNumber: 124,\n                        columnNumber: 9\n                    }, undefined),\n                    showPlatform && bookData !== \"LOADING\" && platformBar\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\BookCard\\\\BookCard.tsx\",\n                lineNumber: 115,\n                columnNumber: 7\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\BookCard\\\\BookCard.tsx\",\n        lineNumber: 102,\n        columnNumber: 5\n    }, undefined);\n};\nconst cardOuterWrapper = ({ width , height , minWidth , minHeight  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    position: relative;\r\n    width: ${width !== undefined ? width : \"auto\"};\r\n    height: ${height !== undefined ? height : \"100%\"};\r\n    ${minWidth && `min-width: ${minWidth}`};\r\n    ${minHeight && `min-height: ${minHeight}`};\r\n  `;\n};\nconst cardInnerWrapperCSS = ({ width , height , minWidth , minHeight  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: ${width !== undefined ? width : \"auto\"};\r\n    height: ${height !== undefined ? height : \"100%\"};\r\n    ${minWidth && `min-width: ${minWidth}`};\r\n    ${minHeight && `min-height: ${minHeight}`};\r\n    position: relative;\r\n    overflow: hidden;\r\n    border-radius: 10px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n  `;\n};\nconst platformBarCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  height: 3vw;\r\n  min-height: 36px;\r\n  background-color: rgba(0, 0, 0, 0.2);\r\n  position: absolute;\r\n  bottom: 0;\r\n  pointer-events: none;\r\n`;\nconst imageCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: auto;\r\n  height: 100%;\r\n  transition: transform 0.3s;\r\n  &:hover {\r\n    transform: scale(1.1);\r\n  }\r\n`;\nconst skeletonLoadingTagCSS = ({ state  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 100%;\r\n    height: 100%;\r\n    transition-property: opacity;\r\n    transition-duration: 0.3s;\r\n    border-radius: 10px;\r\n    background-color: rgb(200, 200, 200);\r\n    position: absolute;\r\n    opacity: ${state ? \"0\" : \"255\"};\r\n    pointer-events: none;\r\n  `;\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BookCard);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9VSS9Cb29rQ2FyZC9Cb29rQ2FyZC50c3guanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7QUFBQSxvQ0FBb0M7QUFDTTtBQUNVO0FBT2lCO0FBQ25CO0FBQ1g7QUFtQnZDLE1BQU1PLFdBQVcsQ0FBQyxFQUNoQkMsU0FBUSxFQUNSQyxhQUFZLEVBQ1pDLE1BQUssRUFDTEMsT0FBTSxFQUNOQyxTQUFRLEVBQ1JDLFVBQVMsRUFDSCxHQUFLO0lBRVgsTUFBTSxDQUFDQyxNQUFNQyxRQUFRLEdBQUdkLCtDQUFRQSxDQUFNLElBQUk7SUFDMUNFLGdEQUFTQSxDQUFDLElBQU07UUFDZFksUUFBUSxJQUFNQyxVQUFVQyxTQUFTO0lBQ25DLEdBQUcsRUFBRTtJQUVMLE1BQU1DLFdBQVcsSUFBTTtRQUNyQixJQUFJQyxZQUFZLEtBQUs7UUFDckIsSUFDRSxTQUFVQyxhQUFhTixLQUFLTyxNQUFNLEdBQUcsS0FBS1AsS0FBS1EsT0FBTyxDQUFDLFlBQVksQ0FBQyxLQUNwRVIsS0FBS1EsT0FBTyxDQUFDLGFBQWEsQ0FBQyxLQUMzQlIsS0FBS1EsT0FBTyxDQUFDLFVBQVUsQ0FBQyxLQUN4QlIsS0FBS1EsT0FBTyxDQUFDLFVBQVUsQ0FBQyxHQUN4QjtZQUNBSCxZQUFZLElBQUk7UUFDbEIsQ0FBQztRQUNELE9BQU9BO0lBQ1Q7SUFHQSxNQUFNSSxTQUFTakIsc0RBQVNBO0lBQ3hCLE1BQU1rQixhQUFhdEIsNkNBQU1BLENBQWlCLElBQUk7SUFDOUMsTUFBTSxDQUFDdUIsY0FBY0MsZ0JBQWdCLEdBQUd6QiwrQ0FBUUEsQ0FBVSxLQUFLO0lBQy9ELE1BQU0sQ0FBQzBCLFdBQVdDLGFBQWEsR0FBRzNCLCtDQUFRQSxDQUFVLEtBQUs7SUFFekQsTUFBTTRCLDRCQUFjLHVFQUFDQztRQUFJOUIsS0FBSytCOzs7Ozs7SUFFOUIsTUFBTUMsWUFBWSxJQUFNO1FBQ3RCQyxXQUFXLFdBQVk7WUFDckJQLGdCQUFnQixJQUFNLElBQUk7UUFDNUIsR0FB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Q0FBQztBQUNIO0FBRUEsaUVBQWU5QyxRQUFRQSxFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvVUkvQm9va0NhcmQvQm9va0NhcmQudHN4PzVkNmYiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3hJbXBvcnRTb3VyY2UgQGVtb3Rpb24vcmVhY3QgKi9cclxuaW1wb3J0IHsganN4LCBjc3MgfSBmcm9tIFwiQGVtb3Rpb24vcmVhY3RcIjtcclxuaW1wb3J0IHsgdXNlU3RhdGUsIHVzZVJlZiwgdXNlRWZmZWN0IH0gZnJvbSBcInJlYWN0XCI7XHJcblxyXG5pbXBvcnQgcmlkaSBmcm9tIFwiLi4vLi4vLi4vYXNzZXRzL3BsYXRmb3JtX3JpZGkud2VicFwiO1xyXG5pbXBvcnQgbmF2ZXJTZXJpZXMgZnJvbSBcIi4uLy4uLy4uL2Fzc2V0cy9wbGF0Zm9ybV9uYXZlcl9zZXJpZXMud2VicFwiO1xyXG5pbXBvcnQgbmF2ZXJXZWJ0b29uIGZyb20gXCIuLi8uLi8uLi9hc3NldHMvcGxhdGZvcm1fbmF2ZXJfd2VidG9vbi53ZWJwXCI7XHJcbmltcG9ydCBrYWthb1BhZ2UgZnJvbSBcIi4uLy4uLy4uL2Fzc2V0cy9wbGF0Zm9ybV9rYWthb19wYWdlLnBuZ1wiO1xyXG5cclxuaW1wb3J0IEJvb2tDYXJkTW9kYWwgZnJvbSBcIkAvY29tcG9uZW50cy9ib29rQ2FyZE1vZGFsL0Jvb2tDYXJkTW9kYWxcIjtcclxuaW1wb3J0IFBvcnRhbCBmcm9tIFwiQC9jb21wb25lbnRzL2Z1bmN0aW9uL1BvcnRhbFwiO1xyXG5pbXBvcnQgeyB1c2VSb3V0ZXIgfSBmcm9tIFwibmV4dC9yb3V0ZXJcIlxyXG5cclxuaW1wb3J0IHsgYm9va0NvbnRlbnRUeXBlIH0gZnJvbSBcIkAvdHlwZXMvYm9va3NcIjtcclxuXHJcbmludGVyZmFjZSBCb29rRGF0YSB7XHJcbiAgdGl0bGU6IHN0cmluZztcclxuICBpbWc6IHN0cmluZztcclxuICBwbGF0Zm9ybTogc3RyaW5nO1xyXG59XHJcblxyXG5pbnRlcmZhY2UgUHJvcHMge1xyXG4gIGJvb2tEYXRhPzogYW55O1xyXG4gIHNob3dQbGF0Zm9ybTogYm9vbGVhbjtcclxuICB3aWR0aD86IHN0cmluZztcclxuICBoZWlnaHQ/OiBzdHJpbmc7XHJcbiAgbWluV2lkdGg/OiBzdHJpbmc7XHJcbiAgbWluSGVpZ2h0Pzogc3RyaW5nO1xyXG59XHJcblxyXG5jb25zdCBCb29rQ2FyZCA9ICh7XHJcbiAgYm9va0RhdGEsXHJcbiAgc2hvd1BsYXRmb3JtLFxyXG4gIHdpZHRoLFxyXG4gIGhlaWdodCxcclxuICBtaW5XaWR0aCxcclxuICBtaW5IZWlnaHQsXHJcbn06IFByb3BzKSA9PiB7XHJcblxyXG4gIGNvbnN0IFt1c2VyLCBzZXRVc2VyXSA9IHVzZVN0YXRlPGFueT4obnVsbCk7XHJcbiAgdXNlRWZmZWN0KCgpID0+IHtcclxuICAgIHNldFVzZXIoKCkgPT4gbmF2aWdhdG9yLnVzZXJBZ2VudCk7XHJcbiAgfSwgW10pO1xyXG5cclxuICBjb25zdCBpc01vYmlsZSA9ICgpID0+IHtcclxuICAgIGxldCBpc19tb2JpbGUgPSBmYWxzZTtcclxuICAgIGlmIChcclxuICAgICAgKHVzZXIgIT09IHVuZGVmaW5lZCAmJiB1c2VyLmxlbmd0aCA+IDAgJiYgdXNlci5pbmRleE9mKFwiaVBob25lXCIpID4gLTEpIHx8XHJcbiAgICAgIHVzZXIuaW5kZXhPZihcIkFuZHJvaWRcIikgPiAtMSB8fFxyXG4gICAgICB1c2VyLmluZGV4T2YoXCJpUGFkXCIpID4gLTEgfHxcclxuICAgICAgdXNlci5pbmRleE9mKFwiaVBvZFwiKSA+IC0xXHJcbiAgICApIHtcclxuICAgICAgaXNfbW9iaWxlID0gdHJ1ZTtcclxuICAgIH1cclxuICAgIHJldHVybiBpc19tb2JpbGU7XHJcbiAgfTtcclxuXHJcblxyXG4gIGNvbnN0IHJvdXRlciA9IHVzZVJvdXRlcigpXHJcbiAgY29uc3Qgd3JhcHBlclJlZiA9IHVzZVJlZjxIVE1MRGl2RWxlbWVudD4obnVsbCk7XHJcbiAgY29uc3QgW21vZGFsVG9nZ2xlciwgc2V0TW9kYWxUb2dnbGVyXSA9IHVzZVN0YXRlPGJvb2xlYW4+KGZhbHNlKTtcclxuICBjb25zdCBbaXNNb3VzZU9uLCBzZXRJc01vdXNlT25dID0gdXNlU3RhdGU8Ym9vbGVhbj4oZmFsc2UpO1xyXG5cclxuICBjb25zdCBwbGF0Zm9ybUJhciA9IDxkaXYgY3NzPXtwbGF0Zm9ybUJhckNTU30+PC9kaXY+O1xyXG5cclxuICBjb25zdCBzaG93TW9kYWwgPSAoKSA9PiB7XHJcbiAgICBzZXRUaW1lb3V0KGZ1bmN0aW9uICgpIHtcclxuICAgICAgc2V0TW9kYWxUb2dnbGVyKCgpID0+IHRydWUpO1xyXG4gICAgfSwgNDAwKTtcclxuICAgIHNldElzTW91c2VPbigoKSA9PiB0cnVlKTtcclxuICB9O1xyXG5cclxuICBjb25zdCBoaWRlTW9kYWwgPSAoKSA9PiB7XHJcbiAgICBzZXRJc01vdXNlT24oKCkgPT4gZmFsc2UpO1xyXG4gICAgc2V0VGltZW91dChmdW5jdGlvbiAoKSB7XHJcbiAgICAgIHNldE1vZGFsVG9nZ2xlcigoKSA9PiBmYWxzZSk7XHJcbiAgICB9LCA1MDApO1xyXG4gIH07XHJcblxyXG4gIGNvbnN0IGluc3RhbnRseVJlZGlyZWN0ID0gKCkgPT4ge1xyXG4gICAgaWYgKGlzTW9iaWxlKCkgPT09IHRydWUpIHtcclxuICAgICAgLy8g66qo67CU7J287JeQ7IScIERldGFpbCDtjpjsnbTsp4DroZwg67CU66GcIOydtOuPmVxyXG4gICAgICByb3V0ZXIucHVzaChgL2Jvb2tzLyR7Ym9va0RhdGEuYm9va0lkfWApXHJcbiAgICB9XHJcbiAgfTtcclxuXHJcbiAgY29uc3QgbW9kYWwgPSAoXHJcbiAgICA8UG9ydGFsIHNlbGVjdG9yPVwiLm92ZXJsYXktcm9vdFwiPlxyXG4gICAgICA8Qm9va0NhcmRNb2RhbFxyXG4gICAgICAgIG1vZGFsVG9nZ2xlcj17bW9kYWxUb2dnbGVyfVxyXG4gICAgICAgIGlzTW91c2VPbj17aXNNb3VzZU9ufVxyXG4gICAgICAgIHNldE1vZGFsVG9nZ2xlcj17c2V0TW9kYWxUb2dnbGVyfVxyXG4gICAgICAgIGJvb2tEYXRhPXtib29rRGF0YX1cclxuICAgICAgICBwYXJlbnRSZWY9e3dyYXBwZXJSZWZ9XHJcbiAgICAgICAgaW1nSGVpZ2h0PXtoZWlnaHR9XHJcbiAgICAgICAgaW1nTWluSGVpZ2h0PXttaW5IZWlnaHR9XHJcbiAgICAgIC8+XHJcbiAgICA8L1BvcnRhbD5cclxuICApO1xyXG5cclxuICByZXR1cm4gKFxyXG4gICAgPGRpdlxyXG4gICAgICBjbGFzc05hbWU9e1wiYm9va2NhcmQtb3V0ZXItd3JhcHBlclwifVxyXG4gICAgICBjc3M9e2NhcmRPdXRlcldyYXBwZXIoeyB3aWR0aCwgaGVpZ2h0LCBtaW5XaWR0aCwgbWluSGVpZ2h0IH0pfVxyXG4gICAgICByZWY9e3dyYXBwZXJSZWZ9XHJcbiAgICAgIG9uQ2xpY2s9e2luc3RhbnRseVJlZGlyZWN0fVxyXG4gICAgICBvbk1vdXNlT3Zlcj17KGV2ZW50KSA9PiB7XHJcbiAgICAgICAgZXZlbnQuc3RvcFByb3BhZ2F0aW9uKCk7XHJcbiAgICAgICAgc2hvd01vZGFsKCk7XHJcbiAgICAgIH19XHJcbiAgICAgIG9uTW91c2VMZWF2ZT17aGlkZU1vZGFsfVxyXG4gICAgPlxyXG4gICAgICB7dXNlciAhPT0gbnVsbCAmJiBpc01vYmlsZSgpID09PSBmYWxzZSAmJiBtb2RhbFRvZ2dsZXIgJiYgbW9kYWx9XHJcblxyXG4gICAgICA8ZGl2XHJcbiAgICAgICAgY2xhc3NOYW1lPXtcImJvb2tjYXJkLWlubmVyLXdyYXBwZXJcIn1cclxuICAgICAgICBjc3M9e2NhcmRJbm5lcldyYXBwZXJDU1MoeyB3aWR0aCwgaGVpZ2h0LCBtaW5XaWR0aCwgbWluSGVpZ2h0IH0pfVxyXG4gICAgICA+XHJcbiAgICAgICAgPGRpdlxyXG4gICAgICAgICAgY3NzPXtza2VsZXRvbkxvYWRpbmdUYWdDU1Moe1xyXG4gICAgICAgICAgICBzdGF0ZTogYm9va0RhdGEgIT09IFwiTE9BRElOR1wiID8gdHJ1ZSA6IGZhbHNlLFxyXG4gICAgICAgICAgfSl9XHJcbiAgICAgICAgLz5cclxuICAgICAgICA8aW1nXHJcbiAgICAgICAgICBjbGFzc05hbWU9e1wiaW1nXCJ9XHJcbiAgICAgICAgICBzcmM9e2Jvb2tEYXRhICYmIGJvb2tEYXRhLnRodW1ibmFpbH1cclxuICAgICAgICAgIGFsdD17Ym9va0RhdGEgJiYgYm9va0RhdGEudGl0bGV9XHJcbiAgICAgICAgICBjc3M9e2ltYWdlQ1NTfVxyXG4gICAgICAgIC8+XHJcbiAgICAgICAge3Nob3dQbGF0Zm9ybSAmJiBib29rRGF0YSAhPT0gXCJMT0FESU5HXCIgJiYgcGxhdGZvcm1CYXJ9XHJcbiAgICAgIDwvZGl2PlxyXG4gICAgPC9kaXY+XHJcbiAgKTtcclxufTtcclxuXHJcbmludGVyZmFjZSBjYXJkT3V0ZXJXcmFwcGVyUHJvcHMge1xyXG4gIHdpZHRoOiBzdHJpbmcgfCB1bmRlZmluZWQ7XHJcbiAgaGVpZ2h0OiBzdHJpbmcgfCB1bmRlZmluZWQ7XHJcbiAgbWluV2lkdGg6IHN0cmluZyB8IHVuZGVmaW5lZDtcclxuICBtaW5IZWlnaHQ6IHN0cmluZyB8IHVuZGVmaW5lZDtcclxufVxyXG5cclxuY29uc3QgY2FyZE91dGVyV3JhcHBlciA9ICh7XHJcbiAgd2lkdGgsXHJcbiAgaGVpZ2h0LFxyXG4gIG1pbldpZHRoLFxyXG4gIG1pbkhlaWdodCxcclxufTogY2FyZE91dGVyV3JhcHBlclByb3BzKSA9PiB7XHJcbiAgcmV0dXJuIGNzc2BcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIHdpZHRoOiAke3dpZHRoICE9PSB1bmRlZmluZWQgPyB3aWR0aCA6IFwiYXV0b1wifTtcclxuICAgIGhlaWdodDogJHtoZWlnaHQgIT09IHVuZGVmaW5lZCA/IGhlaWdodCA6IFwiMTAwJVwifTtcclxuICAgICR7bWluV2lkdGggJiYgYG1pbi13aWR0aDogJHttaW5XaWR0aH1gfTtcclxuICAgICR7bWluSGVpZ2h0ICYmIGBtaW4taGVpZ2h0OiAke21pbkhlaWdodH1gfTtcclxuICBgO1xyXG59O1xyXG5cclxuaW50ZXJmYWNlIENhcmRJbm5lcldyYXBwZXJQcm9wcyB7XHJcbiAgd2lkdGg6IHN0cmluZyB8IHVuZGVmaW5lZDtcclxuICBoZWlnaHQ6IHN0cmluZyB8IHVuZGVmaW5lZDtcclxuICBtaW5XaWR0aDogc3RyaW5nIHwgdW5kZWZpbmVkO1xyXG4gIG1pbkhlaWdodDogc3RyaW5nIHwgdW5kZWZpbmVkO1xyXG59XHJcblxyXG5jb25zdCBjYXJkSW5uZXJXcmFwcGVyQ1NTID0gKHtcclxuICB3aWR0aCxcclxuICBoZWlnaHQsXHJcbiAgbWluV2lkdGgsXHJcbiAgbWluSGVpZ2h0LFxyXG59OiBDYXJkSW5uZXJXcmFwcGVyUHJvcHMpID0+IHtcclxuICByZXR1cm4gY3NzYFxyXG4gICAgd2lkdGg6ICR7d2lkdGggIT09IHVuZGVmaW5lZCA/IHdpZHRoIDogXCJhdXRvXCJ9O1xyXG4gICAgaGVpZ2h0OiAke2hlaWdodCAhPT0gdW5kZWZpbmVkID8gaGVpZ2h0IDogXCIxMDAlXCJ9O1xyXG4gICAgJHttaW5XaWR0aCAmJiBgbWluLXdpZHRoOiAke21pbldpZHRofWB9O1xyXG4gICAgJHttaW5IZWlnaHQgJiYgYG1pbi1oZWlnaHQ6ICR7bWluSGVpZ2h0fWB9O1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGA7XHJcbn07XHJcblxyXG5jb25zdCBwbGF0Zm9ybUJhckNTUyA9IGNzc2BcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDN2dztcclxuICBtaW4taGVpZ2h0OiAzNnB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMCwgMCwgMC4yKTtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgYm90dG9tOiAwO1xyXG4gIHBvaW50ZXItZXZlbnRzOiBub25lO1xyXG5gO1xyXG5cclxuY29uc3QgaW1hZ2VDU1MgPSBjc3NgXHJcbiAgd2lkdGg6IGF1dG87XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjNzO1xyXG4gICY6aG92ZXIge1xyXG4gICAgdHJhbnNmb3JtOiBzY2FsZSgxLjEpO1xyXG4gIH1cclxuYDtcclxuXHJcbmludGVyZmFjZSBza2VsZXRvbkxvYWRpbmdUYWdDU1NQcm9wcyB7XHJcbiAgc3RhdGU6IGJvb2xlYW47XHJcbn1cclxuXHJcbmNvbnN0IHNrZWxldG9uTG9hZGluZ1RhZ0NTUyA9ICh7IHN0YXRlIH06IHNrZWxldG9uTG9hZGluZ1RhZ0NTU1Byb3BzKSA9PiB7XHJcbiAgcmV0dXJuIGNzc2BcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgaGVpZ2h0OiAxMDAlO1xyXG4gICAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogb3BhY2l0eTtcclxuICAgIHRyYW5zaXRpb24tZHVyYXRpb246IDAuM3M7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDIwMCwgMjAwLCAyMDApO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgb3BhY2l0eTogJHtzdGF0ZSA/IFwiMFwiIDogXCIyNTVcIn07XHJcbiAgICBwb2ludGVyLWV2ZW50czogbm9uZTtcclxuICBgO1xyXG59O1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgQm9va0NhcmQ7XHJcbiJdLCJuYW1lcyI6WyJjc3MiLCJ1c2VTdGF0ZSIsInVzZVJlZiIsInVzZUVmZmVjdCIsIkJvb2tDYXJkTW9kYWwiLCJQb3J0YWwiLCJ1c2VSb3V0ZXIiLCJCb29rQ2FyZCIsImJvb2tEYXRhIiwic2hvd1BsYXRmb3JtIiwid2lkdGgiLCJoZWlnaHQiLCJtaW5XaWR0aCIsIm1pbkhlaWdodCIsInVzZXIiLCJzZXRVc2VyIiwibmF2aWdhdG9yIiwidXNlckFnZW50IiwiaXNNb2JpbGUiLCJpc19tb2JpbGUiLCJ1bmRlZmluZWQiLCJsZW5ndGgiLCJpbmRleE9mIiwicm91dGVyIiwid3JhcHBlclJlZiIsIm1vZGFsVG9nZ2xlciIsInNldE1vZGFsVG9nZ2xlciIsImlzTW91c2VPbiIsInNldElzTW91c2VPbiIsInBsYXRmb3JtQmFyIiwiZGl2IiwicGxhdGZvcm1CYXJDU1MiLCJzaG93TW9kYWwiLCJzZXRUaW1lb3V0IiwiaGlkZU1vZGFsIiwiaW5zdGFudGx5UmVkaXJlY3QiLCJwdXNoIiwiYm9va0lkIiwibW9kYWwiLCJzZWxlY3RvciIsInBhcmVudFJlZiIsImltZ0hlaWdodCIsImltZ01pbkhlaWdodCIsImNsYXNzTmFtZSIsImNhcmRPdXRlcldyYXBwZXIiLCJyZWYiLCJvbkNsaWNrIiwib25Nb3VzZU92ZXIiLCJldmVudCIsInN0b3BQcm9wYWdhdGlvbiIsIm9uTW91c2VMZWF2ZSIsImNhcmRJbm5lcldyYXBwZXJDU1MiLCJza2VsZXRvbkxvYWRpbmdUYWdDU1MiLCJzdGF0ZSIsImltZyIsInNyYyIsInRodW1ibmFpbCIsImFsdCIsInRpdGxlIiwiaW1hZ2VDU1MiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/UI/BookCard/BookCard.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/UI/ScrollableCarousel/ScrollableCarousel.tsx":
+/*!*********************************************************************!*\
+  !*** ./src/components/UI/ScrollableCarousel/ScrollableCarousel.tsx ***!
+  \*********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ \"lodash\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/Responsive/useIsResponsive */ \"./src/components/Responsive/useIsResponsive.ts\");\n/* harmony import */ var _BookCard_BookCard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../BookCard/BookCard */ \"./src/components/UI/BookCard/BookCard.tsx\");\n/** @jsxImportSource @emotion/react */ \n\n\n\n\n// import Test from \"./Test\";\n\nconst ScrollableCarousel = ({ API , identifier  })=>{\n    const wrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);\n    const cardsRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)([]);\n    const [bookListData, setBookListData] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);\n    const [bookListResult, setBookListResult] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);\n    const [page, setPage] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);\n    const [wrapperWidth, setWrapperWidth] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);\n    const [standard, setStandard] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);\n    const [quantityPerPage, setQuantityPerPage] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(10);\n    const [loadingTag, setLoadingTag] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(Array(9).fill(\"LOADING\"));\n    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_4__.useIsResponsive)();\n    const cardLayout = {\n        width: \"10vw\",\n        height: \"15vw\",\n        minWidth: \"150px\",\n        minHeight: \"225px\",\n        padding: \"0.5vw\"\n    };\n    const generatePage = (value)=>{\n        if (wrapperRef.current !== null && wrapperRef.current.clientWidth !== wrapperWidth) {\n            const width = wrapperRef.current.clientWidth;\n            const quantity = Math.floor(wrapperRef.current.clientWidth / cardsRef.current[0].clientWidth);\n            const newPage = Math.ceil(standard / quantity);\n            setPage(()=>newPage);\n            setWrapperWidth(()=>width);\n            setQuantityPerPage(()=>quantity);\n            return newPage + value;\n        } else {\n            return page + value;\n        }\n    };\n    const nextBtnClickHandler = ()=>{\n        if (wrapperRef.current !== null) {\n            const quantity = Math.floor(wrapperRef.current.clientWidth / cardsRef.current[0].clientWidth);\n            const nextStandard = generatePage(1) * quantity;\n            const idx = nextStandard < cardsRef.current.length ? nextStandard : cardsRef.current.length - 1;\n            if (nextStandard < cardsRef.current.length) {\n                setPage((prev)=>prev + 1);\n            }\n            setStandard(()=>idx);\n            wrapperRef.current.scrollTo({\n                left: cardsRef.current[idx].offsetLeft,\n                top: 0,\n                behavior: \"smooth\"\n            });\n            fetchMoreData();\n        }\n    };\n    const prevBtnClickHandler = ()=>{\n        if (wrapperRef.current !== null) {\n            const quantity = Math.floor(wrapperRef.current.clientWidth / cardsRef.current[0].clientWidth);\n            const prevStandard = generatePage(-1) * quantity;\n            const idx = prevStandard >= 0 ? prevStandard : 0;\n            if (prevStandard >= 0) {\n                setPage((prev)=>prev - 1);\n            }\n            setStandard(()=>idx);\n            wrapperRef.current.scrollTo({\n                left: cardsRef.current[idx].offsetLeft,\n                top: 0,\n                behavior: \"smooth\"\n            });\n        }\n    };\n    const fetchMoreData = ()=>{\n        let standard = 0;\n        if (wrapperRef.current !== null && cardsRef.current[0] !== null) {\n            standard = Math.ceil(wrapperRef.current.scrollLeft / cardsRef.current[0]?.clientWidth);\n        }\n        if (wrapperRef.current !== null && wrapperRef.current.scrollWidth - wrapperRef.current.scrollLeft - 200 < wrapperRef.current.clientWidth || bookListData.length - loadingTag.length - standard <= loadingTag.length) {\n            API({\n                bookList: bookListData,\n                size: bookListData.length + quantityPerPage + 1\n            }).then((res)=>{\n                console.log(res);\n                setBookListData((prev)=>[\n                        ...prev,\n                        ...res.content\n                    ]);\n            });\n        }\n    };\n    const onScrollHandler = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>(0,lodash__WEBPACK_IMPORTED_MODULE_3__.throttle)(()=>{\n            if (wrapperRef.current !== null) {\n                fetchMoreData();\n                const standard = Math.ceil(wrapperRef.current.scrollLeft / cardsRef.current[0].clientWidth);\n                setStandard(()=>standard);\n            }\n        }, 300), [\n        bookListData,\n        setBookListData\n    ]);\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        fetchMoreData();\n    }, []);\n    const generateLoadingData = ()=>{\n        setBookListResult(()=>[\n                ...bookListData,\n                ...loadingTag\n            ]);\n    };\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        generateLoadingData();\n    }, [\n        bookListData\n    ]);\n    const renderCards = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>bookListResult.map((el, idx)=>{\n            return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                ref: (el)=>cardsRef.current[idx] = el,\n                css: cardWrapperCSS({\n                    padding: cardLayout.padding\n                }),\n                children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_BookCard_BookCard__WEBPACK_IMPORTED_MODULE_5__[\"default\"], {\n                    bookData: el,\n                    showPlatform: true,\n                    width: cardLayout.width,\n                    height: cardLayout.height,\n                    minWidth: cardLayout.minWidth,\n                    minHeight: cardLayout.minHeight\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\ScrollableCarousel\\\\ScrollableCarousel.tsx\",\n                    lineNumber: 152,\n                    columnNumber: 13\n                }, undefined)\n            }, `${identifier}-${idx}`, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\ScrollableCarousel\\\\ScrollableCarousel.tsx\",\n                lineNumber: 147,\n                columnNumber: 11\n            }, undefined);\n        }), [\n        bookListResult\n    ]);\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: carouselWrapper,\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: [\n                    indicatorBtn,\n                    prevBtn({\n                        isDeskTop,\n                        isTablet,\n                        isMobile\n                    })\n                ],\n                onClick: prevBtnClickHandler,\n                onMouseEnter: (event)=>{\n                    event.stopPropagation();\n                },\n                children: \"〈\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\ScrollableCarousel\\\\ScrollableCarousel.tsx\",\n                lineNumber: 168,\n                columnNumber: 7\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: [\n                    indicatorBtn,\n                    nextBtn({\n                        isDeskTop,\n                        isTablet,\n                        isMobile\n                    })\n                ],\n                onClick: nextBtnClickHandler,\n                onMouseEnter: (event)=>{\n                    event.stopPropagation();\n                },\n                children: \"〉\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\ScrollableCarousel\\\\ScrollableCarousel.tsx\",\n                lineNumber: 177,\n                columnNumber: 7\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                ref: wrapperRef,\n                css: carousel,\n                onWheel: onScrollHandler,\n                onTouchMove: onScrollHandler,\n                children: renderCards\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\ScrollableCarousel\\\\ScrollableCarousel.tsx\",\n                lineNumber: 186,\n                columnNumber: 7\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\ScrollableCarousel\\\\ScrollableCarousel.tsx\",\n        lineNumber: 167,\n        columnNumber: 5\n    }, undefined);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ScrollableCarousel);\nconst cardWrapperCSS = ({ padding  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    padding-left: ${padding};\r\n    padding-right: ${padding};\r\n  `;\n};\nconst carouselWrapper = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  position: relative;\r\n`;\nconst carousel = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  display: flex;\r\n  width: 100%;\r\n  /* padding-left: 48px; */\r\n  box-sizing: border-box;\r\n  overflow-x: scroll;\r\n  border-radius: 10px;\r\n\r\n  &::-webkit-scrollbar {\r\n    display: none;\r\n  }\r\n`;\nconst indicatorBtn = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  z-index: 9;\r\n  position: absolute;\r\n\r\n  height: 100%;\r\n  display: flex;\r\n  align-items: center;\r\n  font-size: 48px;\r\n  font-weight: 700;\r\n  color: var(--text-color);\r\n  padding-left: 8px;\r\n  padding-right: 8px;\r\n\r\n  transition-property: background font-size;\r\n  transition-duration: 0.2s;\r\n  cursor: pointer;\r\n  user-select: none;\r\n\r\n  @media (max-width: 480px) {\r\n    display: none;\r\n  }\r\n`;\nconst prevBtn = ({ isDeskTop , isTablet , isMobile  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    left: 0;\r\n    /* background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); */\r\n    transform: ${isDeskTop === true && `translate(-105px, 0px)` || isTablet === true && `translate(-50px, 0px)`};\r\n    &:hover {\r\n      /* background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); */\r\n      font-size: 54px;\r\n    }\r\n  `;\n};\nconst nextBtn = ({ isDeskTop , isTablet , isMobile  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    right: 0;\r\n    /* background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); */\r\n    transform: ${isDeskTop === true && `translate(105px, 0px)` || isTablet === true && `translate(50px, 0px)`};\r\n    &:hover {\r\n      /* background: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); */\r\n      font-size: 54px;\r\n    }\r\n  `;\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9VSS9TY3JvbGxhYmxlQ2Fyb3VzZWwvU2Nyb2xsYWJsZUNhcm91c2VsLnRzeC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLG9DQUFvQztBQUNNO0FBQzBCO0FBQ2xDO0FBQ3dDO0FBRzFFLDZCQUE2QjtBQUNlO0FBRTVDLE1BQU1TLHFCQUFxQixDQUFDLEVBQUVDLElBQUcsRUFBRUMsV0FBVSxFQUFPLEdBQUs7SUFDdkQsTUFBTUMsYUFBYVYsNkNBQU1BLENBQW1CLElBQUk7SUFDaEQsTUFBTVcsV0FBV1gsNkNBQU1BLENBQU0sRUFBRTtJQUMvQixNQUFNLENBQUNZLGNBQWNDLGdCQUFnQixHQUFHWiwrQ0FBUUEsQ0FBVyxFQUFFO0lBRTdELE1BQU0sQ0FBQ2EsZ0JBQWdCQyxrQkFBa0IsR0FBR2QsK0NBQVFBLENBQWEsRUFBRTtJQUNuRSxNQUFNLENBQUNlLE1BQU1DLFFBQVEsR0FBR2hCLCtDQUFRQSxDQUFTO0lBQ3pDLE1BQU0sQ0FBQ2lCLGNBQWNDLGdCQUFnQixHQUFHbEIsK0NBQVFBLENBQVM7SUFDekQsTUFBTSxDQUFDbUIsVUFBVUMsWUFBWSxHQUFHcEIsK0NBQVFBLENBQVM7SUFDakQsTUFBTSxDQUFDcUIsaUJBQWlCQyxtQkFBbUIsR0FBR3RCLCtDQUFRQSxDQUFTO0lBQy9ELE1BQU0sQ0FBQ3VCLFlBQVlDLGNBQWMsR0FBR3hCLCtDQUFRQSxDQUMxQ3lCLE1BQU0sR0FBR0MsSUFBSSxDQUFDO0lBRWhCLE1BQU0sQ0FBQ0MsV0FBV0MsVUFBVUMsU0FBUyxHQUFHekIsdUZBQWVBO0lBRXZELE1BQU0wQixhQUFhO1FBQ2pCQyxPQUFPO1FBQ1BDLFFBQVE7UUFDUkMsVUFBVTtRQUNWQyxXQUFXO1FBQ1hDLFNBQVM7SUFDWDtJQUVBLE1BQU1DLGVBQWUsQ0FBQ0MsUUFBa0I7UUFDdEMsSUFDRTVCLFdBQVc2QixPQUFPLEtBQUssSUFBSSxJQUMzQjdCLFdBQVc2QixPQUFPLENBQUNDLFdBQVcsS0FBS3RCLGNB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U0FBUSxFQUFvQixHQUFLO0lBQ3ZFLE9BQU9oQywrQ0FBRyxDQUFDOzs7ZUFHRSxFQUFFLGNBQWUsSUFBSSxJQUFJLENBQUMsc0JBQXNCLENBQUMsSUFDM0QrQixhQUFhLElBQUksSUFBSSxDQUFDLHFCQUFxQixDQUFDLENBQUU7Ozs7O0VBS2pELENBQUM7QUFDSDtBQUVBLE1BQU13RCxVQUFVLENBQUMsRUFBRXpELFVBQVMsRUFBRUMsU0FBUSxFQUFFQyxTQUFRLEVBQW9CLEdBQUs7SUFDdkUsT0FBT2hDLCtDQUFHLENBQUM7OztlQUdFLEVBQUUsY0FBZSxJQUFJLElBQUksQ0FBQyxxQkFBcUIsQ0FBQyxJQUMxRCtCLGFBQWEsSUFBSSxJQUFJLENBQUMsb0JBQW9CLENBQUMsQ0FBRTs7Ozs7RUFLaEQsQ0FBQztBQUNIIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvVUkvU2Nyb2xsYWJsZUNhcm91c2VsL1Njcm9sbGFibGVDYXJvdXNlbC50c3g/MjY1NSJdLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeEltcG9ydFNvdXJjZSBAZW1vdGlvbi9yZWFjdCAqL1xyXG5pbXBvcnQgeyBqc3gsIGNzcyB9IGZyb20gXCJAZW1vdGlvbi9yZWFjdFwiO1xyXG5pbXBvcnQgUmVhY3QsIHsgdXNlUmVmLCB1c2VTdGF0ZSwgdXNlRWZmZWN0LCB1c2VNZW1vIH0gZnJvbSBcInJlYWN0XCI7XHJcbmltcG9ydCB7IHRocm90dGxlIH0gZnJvbSBcImxvZGFzaFwiO1xyXG5pbXBvcnQgeyB1c2VJc1Jlc3BvbnNpdmUgfSBmcm9tIFwiQC9jb21wb25lbnRzL1Jlc3BvbnNpdmUvdXNlSXNSZXNwb25zaXZlXCI7XHJcbmltcG9ydCB7IHJldHVybkJvb2tDb250ZW50VHlwZSB9IGZyb20gXCJAL3R5cGVzL2Jvb2tzXCI7XHJcblxyXG4vLyBpbXBvcnQgVGVzdCBmcm9tIFwiLi9UZXN0XCI7XHJcbmltcG9ydCBCb29rQ2FyZCBmcm9tIFwiLi4vQm9va0NhcmQvQm9va0NhcmRcIjtcclxuXHJcbmNvbnN0IFNjcm9sbGFibGVDYXJvdXNlbCA9ICh7IEFQSSwgaWRlbnRpZmllciB9OiBhbnkpID0+IHtcclxuICBjb25zdCB3cmFwcGVyUmVmID0gdXNlUmVmPEhUTUxJbnB1dEVsZW1lbnQ+KG51bGwpO1xyXG4gIGNvbnN0IGNhcmRzUmVmID0gdXNlUmVmPGFueT4oW10pO1xyXG4gIGNvbnN0IFtib29rTGlzdERhdGEsIHNldEJvb2tMaXN0RGF0YV0gPSB1c2VTdGF0ZTxvYmplY3RbXT4oW10pO1xyXG4gIHR5cGUgQm9va0xpc3QgPSBvYmplY3QgfCBzdHJpbmc7XHJcbiAgY29uc3QgW2Jvb2tMaXN0UmVzdWx0LCBzZXRCb29rTGlzdFJlc3VsdF0gPSB1c2VTdGF0ZTxCb29rTGlzdFtdPihbXSk7XHJcbiAgY29uc3QgW3BhZ2UsIHNldFBhZ2VdID0gdXNlU3RhdGU8bnVtYmVyPigwKTtcclxuICBjb25zdCBbd3JhcHBlcldpZHRoLCBzZXRXcmFwcGVyV2lkdGhdID0gdXNlU3RhdGU8bnVtYmVyPigwKTtcclxuICBjb25zdCBbc3RhbmRhcmQsIHNldFN0YW5kYXJkXSA9IHVzZVN0YXRlPG51bWJlcj4oMCk7XHJcbiAgY29uc3QgW3F1YW50aXR5UGVyUGFnZSwgc2V0UXVhbnRpdHlQZXJQYWdlXSA9IHVzZVN0YXRlPG51bWJlcj4oMTApO1xyXG4gIGNvbnN0IFtsb2FkaW5nVGFnLCBzZXRMb2FkaW5nVGFnXSA9IHVzZVN0YXRlPHN0cmluZ1tdPihcclxuICAgIEFycmF5KDkpLmZpbGwoXCJMT0FESU5HXCIpXHJcbiAgKTtcclxuICBjb25zdCBbaXNEZXNrVG9wLCBpc1RhYmxldCwgaXNNb2JpbGVdID0gdXNlSXNSZXNwb25zaXZlKCk7XHJcblxyXG4gIGNvbnN0IGNhcmRMYXlvdXQgPSB7XHJcbiAgICB3aWR0aDogXCIxMHZ3XCIsXHJcbiAgICBoZWlnaHQ6IFwiMTV2d1wiLFxyXG4gICAgbWluV2lkdGg6IFwiMTUwcHhcIixcclxuICAgIG1pbkhlaWdodDogXCIyMjVweFwiLFxyXG4gICAgcGFkZGluZzogXCIwLjV2d1wiLFxyXG4gIH07XHJcblxyXG4gIGNvbnN0IGdlbmVyYXRlUGFnZSA9ICh2YWx1ZTogbnVtYmVyKSA9PiB7XHJcbiAgICBpZiAoXHJcbiAgICAgIHdyYXBwZXJSZWYuY3VycmVudCAhPT0gbnVsbCAmJlxyXG4gICAgICB3cmFwcGVyUmVmLmN1cnJlbnQuY2xpZW50V2lkdGggIT09IHdyYXBwZXJXaWR0aFxyXG4gICAgKSB7XHJcbiAgICAgIGNvbnN0IHdpZHRoID0gd3JhcHBlclJlZi5jdXJyZW50LmNsaWVudFdpZHRoO1xyXG4gICAgICBjb25zdCBxdWFudGl0eSA9IE1hdGguZmxvb3IoXHJcbiAgICAgICAgd3JhcHBlclJlZi5jdXJyZW50LmNsaWVudFdpZHRoIC8gY2FyZHNSZWYuY3VycmVudFswXS5jbGllbnRXaWR0aFxyXG4gICAgICApO1xyXG4gICAgICBjb25zdCBuZXdQYWdlID0gTWF0aC5jZWlsKHN0YW5kYXJkIC8gcXVhbnRpdHkpO1xyXG4gICAgICBzZXRQYWdlKCgpID0+IG5ld1BhZ2UpO1xyXG4gICAgICBzZXRXcmFwcGVyV2lkdGgoKCkgPT4gd2lkdGgpO1xyXG4gICAgICBzZXRRdWFudGl0eVBlclBhZ2UoKCkgPT4gcXVhbnRpdHkpO1xyXG4gICAgICByZXR1cm4gbmV3UGFnZSArIHZhbHVlO1xyXG4gICAgfSBlbHNlIHtcclxuICAgICAgcmV0dXJuIHBhZ2UgKyB2YWx1ZTtcclxuICAgIH1cclxuICB9O1xyXG5cclxuICBjb25zdCBuZXh0QnRuQ2xpY2tIYW5kbGVyID0gKCkgPT4ge1xyXG4gICAgaWYgKHdyYXBwZXJSZWYuY3VycmVudCAhPT0gbnVsbCkge1xyXG4gICAgICBjb25zdCBxdWFudGl0eSA9IE1hdGguZmxvb3IoXHJcbiAgICAgICAgd3JhcHBlclJlZi5jdXJyZW50LmNsaWVudFdpZHRoIC8gY2FyZHNSZWYuY3VycmVudFswXS5jbGllbnRXaWR0aFxyXG4gICAgICApO1xyXG4gICAgICBjb25zdCBuZXh0U3RhbmRhcmQgPSBnZW5lcmF0ZVBhZ2UoMSkgKiBxdWFudGl0eTtcclxuICAgICAgY29uc3QgaWR4ID1cclxuICAgICAgICBuZXh0U3RhbmRhcmQgPCBjYXJkc1JlZi5jdXJyZW50Lmxlbmd0aFxyXG4gICAgICAgICAgPyBuZXh0U3RhbmRhcmRcclxuICAgICAgICAgIDogY2FyZHNSZWYuY3VycmVudC5sZW5ndGggLSAxO1xyXG4gICAgICBpZiAobmV4dFN0YW5kYXJkIDwgY2FyZHNSZWYuY3VycmVudC5sZW5ndGgpIHtcclxuICAgICAgICBzZXRQYWdlKChwcmV2KSA9PiBwcmV2ICsgMSk7XHJcbiAgICAgIH1cclxuICAgICAgc2V0U3RhbmRhcmQoKCkgPT4gaWR4KTtcclxuICAgICAgd3JhcHBlclJlZi5jdXJyZW50LnNjcm9sbFRvKHtcclxuICAgICAgICBsZWZ0OiBjYXJkc1JlZi5jdXJyZW50W2lkeF0ub2Zmc2V0TGVmdCxcclxuICAgICAgICB0b3A6IDAsXHJcbiAgICAgICAgYmVoYXZpb3I6IFwic21vb3RoXCIsXHJcbiAgICAgIH0pO1xyXG4gICAgICBmZXRjaE1vcmVEYXRhKCk7XHJcbiAgICB9XHJcbiAgfTtcclxuXHJcbiAgY29uc3QgcHJldkJ0bkNsaWNrSGFuZGxlciA9ICgpID0+IHtcclxuICAgIGlmICh3cmFwcGVyUmVmLmN1cnJlbnQgIT09IG51bGwpIHtcclxuICAgICAgY29uc3QgcXVhbnRpdHkgPSBNYXRoLmZsb29yKFxyXG4gICAgICAgIHdyYXBwZXJSZWYuY3VycmVudC5jbGllbnRXaWR0aCAvIGNhcmRzUmVmLmN1cnJlbnRbMF0uY2xpZW50V2lkdGhcclxuICAgICAgKTtcclxuICAgICAgY29uc3QgcHJldlN0YW5kYXJkID0gZ2VuZXJhdGVQYWdlKC0xKSAqIHF1YW50aXR5O1xyXG4gICAgICBjb25zdCBpZHggPSBwcmV2U3RhbmRhcmQgPj0gMCA/IHByZXZTdGFuZGFyZCA6IDA7XHJcbiAgICAgIGlmIChwcmV2U3RhbmRhcmQgPj0gMCkge1xyXG4gICAgICAgIHNldFBhZ2UoKHByZXYpID0+IHByZXYgLSAxKTtcclxuICAgICAgfVxyXG4gICAgICBzZXRTdGFuZGFyZCgoKSA9PiBpZHgpO1xyXG4gICAgICB3cmFwcGVyUmVmLmN1cnJlbnQuc2Nyb2xsVG8oe1xyXG4gICAgICAgIGxlZnQ6IGNhcmRzUmVmLmN1cnJlbnRbaWR4XS5vZmZzZXRMZWZ0LFxyXG4gICAgICAgIHRvcDogMCxcclxuICAgICAgICBiZWhhdmlvcjogXCJzbW9vdGhcIixcclxuICAgICAgfSk7XHJcbiAgICB9XHJcbiAgfTtcclxuXHJcbiAgY29uc3QgZmV0Y2hNb3JlRGF0YSA9ICgpID0+IHtcclxuICAgIGxldCBzdGFuZGFyZCA9IDA7XHJcbiAgICBpZiAod3JhcHBlclJlZi5jdXJyZW50ICE9PSBudWxsICYmIGNhcmRzUmVmLmN1cnJlbnRbMF0gIT09IG51bGwpIHtcclxuICAgICAgc3RhbmRhcmQgPSBNYXRoLmNlaWwoXHJcbiAgICAgICAgd3JhcHBlclJlZi5jdXJyZW50LnNjcm9sbExlZnQgLyBjYXJkc1JlZi5jdXJyZW50WzBdPy5jbGllbnRXaWR0aFxyXG4gICAgICApO1xyXG4gICAgfVxyXG4gICAgaWYgKFxyXG4gICAgICAod3JhcHBlclJlZi5jdXJyZW50ICE9PSBudWxsICYmXHJcbiAgICAgICAgd3JhcHBlclJlZi5jdXJyZW50LnNjcm9sbFdpZHRoIC0gd3JhcHBlclJlZi5jdXJyZW50LnNjcm9sbExlZnQgLSAyMDAgPFxyXG4gICAgICAgICAgd3JhcHBlclJlZi5jdXJyZW50LmNsaWVudFdpZHRoKSB8fFxyXG4gICAgICBib29rTGlzdERhdGEubGVuZ3RoIC0gbG9hZGluZ1RhZy5sZW5ndGggLSBzdGFuZGFyZCA8PSBsb2FkaW5nVGFnLmxlbmd0aFxyXG4gICAgKSB7XHJcbiAgICAgIEFQSSh7Ym9va0xpc3Q6IGJvb2tMaXN0RGF0YSwgc2l6ZTogYm9va0xpc3REYXRhLmxlbmd0aCArIHF1YW50aXR5UGVyUGFnZSArIDF9KS50aGVuKFxyXG4gICAgICAgIChyZXM6IHJldHVybkJvb2tDb250ZW50VHlwZSkgPT4ge1xyXG4gICAgICAgICAgY29uc29sZS5sb2cocmVzKVxyXG4gICAgICAgICAgc2V0Qm9va0xpc3REYXRhKChwcmV2KSA9PiBbLi4ucHJldiwgLi4ucmVzLmNvbnRlbnRdKTtcclxuICAgICAgICB9XHJcbiAgICAgICk7XHJcbiAgICB9XHJcbiAgfTtcclxuXHJcbiAgY29uc3Qgb25TY3JvbGxIYW5kbGVyID0gdXNlTWVtbyhcclxuICAgICgpID0+XHJcbiAgICAgIHRocm90dGxlKCgpID0+IHtcclxuICAgICAgICBpZiAod3JhcHBlclJlZi5jdXJyZW50ICE9PSBudWxsKSB7XHJcbiAgICAgICAgICBmZXRjaE1vcmVEYXRhKCk7XHJcbiAgICAgICAgICBjb25zdCBzdGFuZGFyZCA9IE1hdGguY2VpbChcclxuICAgICAgICAgICAgd3JhcHBlclJlZi5jdXJyZW50LnNjcm9sbExlZnQgLyBjYXJkc1JlZi5jdXJyZW50WzBdLmNsaWVudFdpZHRoXHJcbiAgICAgICAgICApO1xyXG4gICAgICAgICAgc2V0U3RhbmRhcmQoKCkgPT4gc3RhbmRhcmQpO1xyXG4gICAgICAgIH1cclxuICAgICAgfSwgMzAwKSxcclxuICAgIFtib29rTGlzdERhdGEsIHNldEJvb2tMaXN0RGF0YV1cclxuICApO1xyXG5cclxuICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgZmV0Y2hNb3JlRGF0YSgpO1xyXG4gIH0sIFtdKTtcclxuXHJcbiAgY29uc3QgZ2VuZXJhdGVMb2FkaW5nRGF0YSA9ICgpID0+IHtcclxuICAgIHNldEJvb2tMaXN0UmVzdWx0KCgpID0+IFsuLi5ib29rTGlzdERhdGEsIC4uLmxvYWRpbmdUYWddKTtcclxuICB9O1xyXG5cclxuICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgZ2VuZXJhdGVMb2FkaW5nRGF0YSgpO1xyXG4gIH0sIFtib29rTGlzdERhdGFdKTtcclxuXHJcbiAgY29uc3QgcmVuZGVyQ2FyZHMgPSB1c2VNZW1vKFxyXG4gICAgKCkgPT5cclxuICAgICAgYm9va0xpc3RSZXN1bHQubWFwKChlbCwgaWR4KSA9PiB7XHJcbiAgICAgICAgcmV0dXJuIChcclxuICAgICAgICAgIDxkaXZcclxuICAgICAgICAgICAga2V5PXtgJHtpZGVudGlmaWVyfS0ke2lkeH1gfVxyXG4gICAgICAgICAgICByZWY9eyhlbCkgPT4gKGNhcmRzUmVmLmN1cnJlbnRbaWR4XSA9IGVsKX1cclxuICAgICAgICAgICAgY3NzPXtjYXJkV3JhcHBlckNTUyh7IHBhZGRpbmc6IGNhcmRMYXlvdXQucGFkZGluZyB9KX1cclxuICAgICAgICAgID5cclxuICAgICAgICAgICAgPEJvb2tDYXJkXHJcbiAgICAgICAgICAgICAgYm9va0RhdGE9e2VsfVxyXG4gICAgICAgICAgICAgIHNob3dQbGF0Zm9ybT17dHJ1ZX1cclxuICAgICAgICAgICAgICB3aWR0aD17Y2FyZExheW91dC53aWR0aH1cclxuICAgICAgICAgICAgICBoZWlnaHQ9e2NhcmRMYXlvdXQuaGVpZ2h0fVxyXG4gICAgICAgICAgICAgIG1pbldpZHRoPXtjYXJkTGF5b3V0Lm1pbldpZHRofVxyXG4gICAgICAgICAgICAgIG1pbkhlaWdodD17Y2FyZExheW91dC5taW5IZWlnaHR9XHJcbiAgICAgICAgICAgIC8+XHJcbiAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICApO1xyXG4gICAgICB9KSxcclxuICAgIFtib29rTGlzdFJlc3VsdF1cclxuICApO1xyXG5cclxuICByZXR1cm4gKFxyXG4gICAgPGRpdiBjc3M9e2Nhcm91c2VsV3JhcHBlcn0+XHJcbiAgICAgIDxkaXZcclxuICAgICAgICBjc3M9e1tpbmRpY2F0b3JCdG4sIHByZXZCdG4oeyBpc0Rlc2tUb3AsIGlzVGFibGV0LCBpc01vYmlsZSB9KV19XHJcbiAgICAgICAgb25DbGljaz17cHJldkJ0bkNsaWNrSGFuZGxlcn1cclxuICAgICAgICBvbk1vdXNlRW50ZXI9eyhldmVudCkgPT4ge1xyXG4gICAgICAgICAgZXZlbnQuc3RvcFByb3BhZ2F0aW9uKCk7XHJcbiAgICAgICAgfX1cclxuICAgICAgPlxyXG4gICAgICAgIOOAiFxyXG4gICAgICA8L2Rpdj5cclxuICAgICAgPGRpdlxyXG4gICAgICAgIGNzcz17W2luZGljYXRvckJ0biwgbmV4dEJ0bih7IGlzRGVza1RvcCwgaXNUYWJsZXQsIGlzTW9iaWxlIH0pXX1cclxuICAgICAgICBvbkNsaWNrPXtuZXh0QnRuQ2xpY2tIYW5kbGVyfVxyXG4gICAgICAgIG9uTW91c2VFbnRlcj17KGV2ZW50KSA9PiB7XHJcbiAgICAgICAgICBldmVudC5zdG9wUHJvcGFnYXRpb24oKTtcclxuICAgICAgICB9fVxyXG4gICAgICA+XHJcbiAgICAgICAg44CJXHJcbiAgICAgIDwvZGl2PlxyXG4gICAgICA8ZGl2XHJcbiAgICAgICAgcmVmPXt3cmFwcGVyUmVmfVxyXG4gICAgICAgIGNzcz17Y2Fyb3VzZWx9XHJcbiAgICAgICAgb25XaGVlbD17b25TY3JvbGxIYW5kbGVyfVxyXG4gICAgICAgIG9uVG91Y2hNb3ZlPXtvblNjcm9sbEhhbmRsZXJ9XHJcbiAgICAgID5cclxuICAgICAgICB7cmVuZGVyQ2FyZHN9XHJcbiAgICAgIDwvZGl2PlxyXG4gICAgPC9kaXY+XHJcbiAgKTtcclxufTtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IFNjcm9sbGFibGVDYXJvdXNlbDtcclxuXHJcbmNvbnN0IGNhcmRXcmFwcGVyQ1NTID0gKHsgcGFkZGluZyB9OiB7IHBhZGRpbmc6IHN0cmluZyB9KSA9PiB7XHJcbiAgcmV0dXJuIGNzc2BcclxuICAgIHBhZGRpbmctbGVmdDogJHtwYWRkaW5nfTtcclxuICAgIHBhZGRpbmctcmlnaHQ6ICR7cGFkZGluZ307XHJcbiAgYDtcclxufTtcclxuXHJcbmNvbnN0IGNhcm91c2VsV3JhcHBlciA9IGNzc2BcclxuICB3aWR0aDogMTAwJTtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbmA7XHJcblxyXG5jb25zdCBjYXJvdXNlbCA9IGNzc2BcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIC8qIHBhZGRpbmctbGVmdDogNDhweDsgKi9cclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gIG92ZXJmbG93LXg6IHNjcm9sbDtcclxuICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG5cclxuICAmOjotd2Via2l0LXNjcm9sbGJhciB7XHJcbiAgICBkaXNwbGF5OiBub25lO1xyXG4gIH1cclxuYDtcclxuXHJcbmNvbnN0IGluZGljYXRvckJ0biA9IGNzc2BcclxuICB6LWluZGV4OiA5O1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuXHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBmb250LXNpemU6IDQ4cHg7XHJcbiAgZm9udC13ZWlnaHQ6IDcwMDtcclxuICBjb2xvcjogdmFyKC0tdGV4dC1jb2xvcik7XHJcbiAgcGFkZGluZy1sZWZ0OiA4cHg7XHJcbiAgcGFkZGluZy1yaWdodDogOHB4O1xyXG5cclxuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBiYWNrZ3JvdW5kIGZvbnQtc2l6ZTtcclxuICB0cmFuc2l0aW9uLWR1cmF0aW9uOiAwLjJzO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICB1c2VyLXNlbGVjdDogbm9uZTtcclxuXHJcbiAgQG1lZGlhIChtYXgtd2lkdGg6IDQ4MHB4KSB7XHJcbiAgICBkaXNwbGF5OiBub25lO1xyXG4gIH1cclxuYDtcclxuXHJcbmludGVyZmFjZSBuZXh0UHJldkJ0blByb3BzIHtcclxuICBpc0Rlc2tUb3A6IGJvb2xlYW47XHJcbiAgaXNUYWJsZXQ6IGJvb2xlYW47XHJcbiAgaXNNb2JpbGU6IGJvb2xlYW47XHJcbn1cclxuXHJcbmNvbnN0IHByZXZCdG4gPSAoeyBpc0Rlc2tUb3AsIGlzVGFibGV0LCBpc01vYmlsZSB9OiBuZXh0UHJldkJ0blByb3BzKSA9PiB7XHJcbiAgcmV0dXJuIGNzc2BcclxuICAgIGxlZnQ6IDA7XHJcbiAgICAvKiBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsIHJnYmEoMCwgMCwgMCwgMC41KSwgcmdiYSgwLCAwLCAwLCAwKSk7ICovXHJcbiAgICB0cmFuc2Zvcm06ICR7KGlzRGVza1RvcCA9PT0gdHJ1ZSAmJiBgdHJhbnNsYXRlKC0xMDVweCwgMHB4KWApIHx8XHJcbiAgICAoaXNUYWJsZXQgPT09IHRydWUgJiYgYHRyYW5zbGF0ZSgtNTBweCwgMHB4KWApfTtcclxuICAgICY6aG92ZXIge1xyXG4gICAgICAvKiBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsIHJnYmEoMCwgMCwgMCwgMC43KSwgcmdiYSgwLCAwLCAwLCAwKSk7ICovXHJcbiAgICAgIGZvbnQtc2l6ZTogNTRweDtcclxuICAgIH1cclxuICBgO1xyXG59O1xyXG5cclxuY29uc3QgbmV4dEJ0biA9ICh7IGlzRGVza1RvcCwgaXNUYWJsZXQsIGlzTW9iaWxlIH06IG5leHRQcmV2QnRuUHJvcHMpID0+IHtcclxuICByZXR1cm4gY3NzYFxyXG4gICAgcmlnaHQ6IDA7XHJcbiAgICAvKiBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gbGVmdCwgcmdiYSgwLCAwLCAwLCAwLjUpLCByZ2JhKDAsIDAsIDAsIDApKTsgKi9cclxuICAgIHRyYW5zZm9ybTogJHsoaXNEZXNrVG9wID09PSB0cnVlICYmIGB0cmFuc2xhdGUoMTA1cHgsIDBweClgKSB8fFxyXG4gICAgKGlzVGFibGV0ID09PSB0cnVlICYmIGB0cmFuc2xhdGUoNTBweCwgMHB4KWApfTtcclxuICAgICY6aG92ZXIge1xyXG4gICAgICAvKiBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gbGVmdCwgcmdiYSgwLCAwLCAwLCAwLjcpLCByZ2JhKDAsIDAsIDAsIDApKTsgKi9cclxuICAgICAgZm9udC1zaXplOiA1NHB4O1xyXG4gICAgfVxyXG4gIGA7XHJcbn07XHJcbiJdLCJuYW1lcyI6WyJjc3MiLCJSZWFjdCIsInVzZVJlZiIsInVzZVN0YXRlIiwidXNlRWZmZWN0IiwidXNlTWVtbyIsInRocm90dGxlIiwidXNlSXNSZXNwb25zaXZlIiwiQm9va0NhcmQiLCJTY3JvbGxhYmxlQ2Fyb3VzZWwiLCJBUEkiLCJpZGVudGlmaWVyIiwid3JhcHBlclJlZiIsImNhcmRzUmVmIiwiYm9va0xpc3REYXRhIiwic2V0Qm9va0xpc3REYXRhIiwiYm9va0xpc3RSZXN1bHQiLCJzZXRCb29rTGlzdFJlc3VsdCIsInBhZ2UiLCJzZXRQYWdlIiwid3JhcHBlcldpZHRoIiwic2V0V3JhcHBlcldpZHRoIiwic3RhbmRhcmQiLCJzZXRTdGFuZGFyZCIsInF1YW50aXR5UGVyUGFnZSIsInNldFF1YW50aXR5UGVyUGFnZSIsImxvYWRpbmdUYWciLCJzZXRMb2FkaW5nVGFnIiwiQXJyYXkiLCJmaWxsIiwiaXNEZXNrVG9wIiwiaXNUYWJsZXQiLCJpc01vYmlsZSIsImNhcmRMYXlvdXQiLCJ3aWR0aCIsImhlaWdodCIsIm1pbldpZHRoIiwibWluSGVpZ2h0IiwicGFkZGluZyIsImdlbmVyYXRlUGFnZSIsInZhbHVlIiwiY3VycmVudCIsImNsaWVudFdpZHRoIiwicXVhbnRpdHkiLCJNYXRoIiwiZmxvb3IiLCJuZXdQYWdlIiwiY2VpbCIsIm5leHRCdG5DbGlja0hhbmRsZXIiLCJuZXh0U3RhbmRhcmQiLCJpZHgiLCJsZW5ndGgiLCJwcmV2Iiwic2Nyb2xsVG8iLCJsZWZ0Iiwib2Zmc2V0TGVmdCIsInRvcCIsImJlaGF2aW9yIiwiZmV0Y2hNb3JlRGF0YSIsInByZXZCdG5DbGlja0hhbmRsZXIiLCJwcmV2U3RhbmRhcmQiLCJzY3JvbGxMZWZ0Iiwic2Nyb2xsV2lkdGgiLCJib29rTGlzdCIsInNpemUiLCJ0aGVuIiwicmVzIiwiY29uc29sZSIsImxvZyIsImNvbnRlbnQiLCJvblNjcm9sbEhhbmRsZXIiLCJnZW5lcmF0ZUxvYWRpbmdEYXRhIiwicmVuZGVyQ2FyZHMiLCJtYXAiLCJlbCIsImRpdiIsInJlZiIsImNhcmRXcmFwcGVyQ1NTIiwiYm9va0RhdGEiLCJzaG93UGxhdGZvcm0iLCJjYXJvdXNlbFdyYXBwZXIiLCJpbmRpY2F0b3JCdG4iLCJwcmV2QnRuIiwib25DbGljayIsIm9uTW91c2VFbnRlciIsImV2ZW50Iiwic3RvcFByb3BhZ2F0aW9uIiwibmV4dEJ0biIsImNhcm91c2VsIiwib25XaGVlbCIsIm9uVG91Y2hNb3ZlIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/components/UI/ScrollableCarousel/ScrollableCarousel.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/UI/SwipeableCarousel/SwipeableGallery.tsx":
+/*!******************************************************************!*\
+  !*** ./src/components/UI/SwipeableCarousel/SwipeableGallery.tsx ***!
+  \******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var react_easy_swipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-easy-swipe */ \"react-easy-swipe\");\n/* harmony import */ var react_easy_swipe__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_easy_swipe__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SwipeableGallery.module.css */ \"./src/components/UI/SwipeableCarousel/SwipeableGallery.module.css\");\n/* harmony import */ var _SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/Responsive/useIsResponsive */ \"./src/components/Responsive/useIsResponsive.ts\");\n/** @jsxImportSource @emotion/react */ \n\n\n\n\n\nconst SwipeableGallery = ({ parentRef , content  })=>{\n    const movingDiv = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);\n    const [positionx, setPositionx] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);\n    const [contentCount, setContentCount] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(1);\n    const [endSwipe, setEndSwipe] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);\n    const postData = content;\n    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_4__.useIsResponsive)();\n    const [width, setWidth] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);\n    const [height, setHeight] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        setWidth(()=>parentRef.current.clientWidth);\n        setHeight(()=>parentRef.current.clientHeight);\n        const resize = ()=>{\n            setWidth(()=>parentRef.current.clientWidth);\n            setHeight(()=>parentRef.current.clientHeight);\n            if (movingDiv.current !== null && parentRef.current.clientWidth) {\n                movingDiv.current.style.transitionDuration = \"0s\";\n                movingDiv.current.style.transform = `translateX(${-parentRef.current.clientWidth * (contentCount - 1)}px)`;\n            }\n        };\n        window.addEventListener(`resize`, resize);\n        return ()=>{\n            window.removeEventListener(`resize`, resize);\n        };\n    }, [\n        contentCount\n    ]);\n    const onSwipeMove = (position = {\n        x: 0\n    })=>{\n        setEndSwipe(false);\n        if (postData.content.length === 1) {\n            return;\n        }\n        if (contentCount >= postData.content.length && positionx < 0 || contentCount === 1 && positionx > 0 || width !== null && Math.abs(positionx) > width) {\n            return;\n        }\n        if (movingDiv.current !== null && width !== null && position.x !== null) {\n            movingDiv.current.style.transitionDuration = \"0s\";\n            movingDiv.current.style.transform = `translateX(${positionx + -width * (contentCount - 1)}px)`;\n            const x = position.x;\n            setPositionx(()=>x);\n        }\n    };\n    const onSwipeEnd = ()=>{\n        if (movingDiv.current !== null && width !== null) {\n            movingDiv.current.style.transitionDuration = \"0.3s\";\n            if (positionx < -50 && contentCount < postData.content.length) {\n                setContentCount((prev)=>prev + 1);\n                movingDiv.current.style.transform = `translateX(${-width * contentCount}px)`;\n            }\n            if (positionx > 50 && contentCount > -1) {\n                setContentCount((prev)=>prev - 1);\n                movingDiv.current.style.transform = `translateX(${-width * (contentCount - 2)}px)`;\n            }\n            if (Math.abs(positionx) <= 50) {\n                movingDiv.current.style.transform = `translateX(${-width * (contentCount - 1)}px)`;\n            }\n        }\n        setPositionx(()=>0);\n        setEndSwipe(true);\n    };\n    const onClickNextBtn = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(()=>{\n        if (movingDiv.current !== null && width !== null) {\n            if (contentCount < postData.content.length) {\n                movingDiv.current.style.transitionProperty = \"transform\";\n                movingDiv.current.style.transitionDuration = \"0.5s\";\n                setContentCount((prev)=>prev + 1);\n                movingDiv.current.style.transform = `translateX(${-width * contentCount}px)`;\n            } else {\n                movingDiv.current.style.transitionProperty = \"transform\";\n                movingDiv.current.style.transitionDuration = \"0.5s\";\n                setContentCount(()=>1);\n                movingDiv.current.style.transform = `translateX(0px)`;\n            }\n        }\n    }, [\n        contentCount,\n        width\n    ]);\n    const onClickPrevBtn = (0,react__WEBPACK_IMPORTED_MODULE_2__.useCallback)(()=>{\n        if (movingDiv.current !== null && width !== null) {\n            if (contentCount > 1) {\n                movingDiv.current.style.transitionProperty = \"transform\";\n                movingDiv.current.style.transitionDuration = \"0.5s\";\n                setContentCount((prev)=>prev - 1);\n                movingDiv.current.style.transform = `translateX(${-width * (contentCount - 2)}px)`;\n            } else {\n                movingDiv.current.style.transitionProperty = \"transform\";\n                movingDiv.current.style.transitionDuration = \"0.5s\";\n                setContentCount(()=>postData.content.length);\n                movingDiv.current.style.transform = `translateX(${-width * (postData.content.length - 1)}px)`;\n            }\n        }\n    }, [\n        contentCount,\n        width\n    ]);\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        const autoSlide = setInterval(function() {\n            onClickNextBtn();\n        }, 10000);\n        return ()=>{\n            clearInterval(autoSlide);\n        };\n    }, [\n        width,\n        contentCount\n    ]);\n    //\n    const indicator = postData.content.map((el, idx)=>{\n        return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n            css: indicatorCSS({\n                idx,\n                contentCount\n            })\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\SwipeableCarousel\\\\SwipeableGallery.tsx\",\n            lineNumber: 141,\n            columnNumber: 12\n        }, undefined);\n    });\n    const indicatorBtn = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: prevBtnCSS,\n                onClick: onClickPrevBtn,\n                children: \"〈\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\SwipeableCarousel\\\\SwipeableGallery.tsx\",\n                lineNumber: 146,\n                columnNumber: 7\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: nextBtnCSS,\n                onClick: onClickNextBtn,\n                children: \"〉\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\SwipeableCarousel\\\\SwipeableGallery.tsx\",\n                lineNumber: 149,\n                columnNumber: 7\n            }, undefined)\n        ]\n    }, void 0, true);\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: outerWrapperCSS,\n        children: [\n            isMobile === false && indicatorBtn,\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: indicatorWrapperCSS,\n                children: indicator\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\SwipeableCarousel\\\\SwipeableGallery.tsx\",\n                lineNumber: 158,\n                columnNumber: 7\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((react_easy_swipe__WEBPACK_IMPORTED_MODULE_3___default()), {\n                onSwipeStart: (event)=>{\n                    event.stopPropagation();\n                },\n                onSwipeEnd: onSwipeEnd,\n                onSwipeMove: onSwipeMove,\n                children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    className: (_SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5___default().wrapper),\n                    children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        className: (_SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5___default().moveable),\n                        ref: movingDiv,\n                        children: postData.content.map((el)=>{\n                            return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                className: (_SwipeableGallery_module_css__WEBPACK_IMPORTED_MODULE_5___default().content),\n                                style: {\n                                    width: width + \"px\"\n                                },\n                                children: el\n                            }, void 0, false, {\n                                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\SwipeableCarousel\\\\SwipeableGallery.tsx\",\n                                lineNumber: 170,\n                                columnNumber: 17\n                            }, undefined); //, height: height + 'px'\n                        })\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\SwipeableCarousel\\\\SwipeableGallery.tsx\",\n                        lineNumber: 167,\n                        columnNumber: 11\n                    }, undefined)\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\SwipeableCarousel\\\\SwipeableGallery.tsx\",\n                    lineNumber: 166,\n                    columnNumber: 9\n                }, undefined)\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\SwipeableCarousel\\\\SwipeableGallery.tsx\",\n                lineNumber: 159,\n                columnNumber: 7\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\SwipeableCarousel\\\\SwipeableGallery.tsx\",\n        lineNumber: 156,\n        columnNumber: 5\n    }, undefined);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SwipeableGallery);\nconst outerWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  position: relative;\r\n`;\nconst prevBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  z-index: 9;\r\n  position: absolute;\r\n  left: 0;\r\n  height: 100%;\r\n  display: flex;\r\n  align-items: center;\r\n  font-size: 48px;\r\n  font-weight: 700;\r\n  padding-left: 8px;\r\n  padding-right: 8px;\r\n  color: white;\r\n  transition-property: font-size;\r\n  transition-duration: 0.2s;\r\n  cursor: pointer;\r\n  user-select: none;\r\n\r\n  &:hover {\r\n    font-size: 54px;\r\n  }\r\n`;\nconst nextBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  z-index: 9;\r\n  position: absolute;\r\n  right: 0;\r\n  height: 100%;\r\n  display: flex;\r\n  align-items: center;\r\n  font-size: 48px;\r\n  font-weight: 700;\r\n  padding-left: 8px;\r\n  padding-right: 8px;\r\n  color: white;\r\n  transition-property: font-size;\r\n  transition-duration: 0.2s;\r\n  cursor: pointer;\r\n  user-select: none;\r\n\r\n  &:hover {\r\n    font-size: 54px;\r\n  }\r\n`;\nconst indicatorWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  z-index: 9;\r\n  position: absolute;\r\n  color: white;\r\n  width: 100%;\r\n  height: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: end;\r\n  pointer-events: none;\r\n  padding-bottom: 16px;\r\n`;\nconst indicatorCSS = ({ idx , contentCount  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 30px;\r\n    height: 2px;\r\n    background-color: ${contentCount - 1 === idx ? \"white\" : \"gray\"};\r\n    margin: 2px;\r\n  `;\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9VSS9Td2lwZWFibGVDYXJvdXNlbC9Td2lwZWFibGVHYWxsZXJ5LnRzeC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7QUFBQSxvQ0FBb0M7QUFDTTtBQUM4QjtBQUNuQztBQUNjO0FBQ3VCO0FBRTFFLE1BQU1TLG1CQUFtQixDQUFDLEVBQUVDLFVBQVMsRUFBRUMsUUFBTyxFQUFPLEdBQUs7SUFDeEQsTUFBTUMsWUFBWVQsNkNBQU1BLENBQW1CLElBQUk7SUFDL0MsTUFBTSxDQUFDVSxXQUFXQyxhQUFhLEdBQUdaLCtDQUFRQSxDQUFTO0lBQ25ELE1BQU0sQ0FBQ2EsY0FBY0MsZ0JBQWdCLEdBQUdkLCtDQUFRQSxDQUFDO0lBQ2pELE1BQU0sQ0FBQ2UsVUFBVUMsWUFBWSxHQUFHaEIsK0NBQVFBLENBQUMsS0FBSztJQUM5QyxNQUFNaUIsV0FBV1I7SUFDakIsTUFBTSxDQUFDUyxXQUFXQyxVQUFVQyxTQUFTLEdBQUdkLHVGQUFlQTtJQUV2RCxNQUFNLENBQUNlLE9BQU9DLFNBQVMsR0FBR3RCLCtDQUFRQSxDQUFDLElBQUk7SUFDdkMsTUFBTSxDQUFDdUIsUUFBUUMsVUFBVSxHQUFHeEIsK0NBQVFBLENBQUMsSUFBSTtJQUV6Q0UsZ0RBQVNBLENBQUMsSUFBTTtRQUNkb0IsU0FBUyxJQUFNZCxVQUFVaUIsT0FBTyxDQUFDQyxXQUFXO1FBQzVDRixVQUFVLElBQU1oQixVQUFVaUIsT0FBTyxDQUFDRSxZQUFZO1FBRTlDLE1BQU1DLFNBQVMsSUFBTTtZQUNuQk4sU0FBUyxJQUFNZCxVQUFVaUIsT0FBTyxDQUFDQyxXQUFXO1lBQzVDRixVQUFVLElBQU1oQixVQUFVaUIsT0FBTyxDQUFDRSxZQUFZO1lBQzlDLElBQUlqQixVQUFVZSxPQUFPLEtBQUssSUFBSSxJQUFJakIsVUFBVWlCLE9BQU8sQ0FBQ0MsV0FBVyxFQUFFO2dCQUMvRGhCLFVBQVVlLE9BQU8sQ0FBQ0ksS0FBSyxDQUFDQyxrQkFBa0IsR0FBRztnQkFDN0NwQixV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LE9BQU87b0NBQUVSLE9BQU9BLFFBQVE7Z0NBQUs7MENBQzFEOEI7Ozs7OzJDQUVGLHlCQUF5Qjt3QkFDOUI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFVWjtBQUVBLGlFQUFlNUMsZ0JBQWdCQSxFQUFDO0FBRWhDLE1BQU1vRCxrQkFBa0I3RCwrQ0FBRyxDQUFDOztBQUU1QixDQUFDO0FBRUQsTUFBTTBELGFBQWExRCwrQ0FBRyxDQUFDOzs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQW9CdkIsQ0FBQztBQUVELE1BQU00RCxhQUFhNUQsK0NBQUcsQ0FBQzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFvQnZCLENBQUM7QUFFRCxNQUFNOEQsc0JBQXNCOUQsK0NBQUcsQ0FBQzs7Ozs7Ozs7Ozs7QUFXaEMsQ0FBQztBQU1ELE1BQU13RCxlQUFlLENBQUMsRUFBRUYsSUFBRyxFQUFFdkMsYUFBWSxFQUFxQixHQUFLO0lBQ2pFLE9BQU9mLCtDQUFHLENBQUM7OztzQkFHUyxFQUFFZSxlQUFlLE1BQU11QyxNQUFNLFVBQVUsTUFBTSxDQUFDOztFQUVsRSxDQUFDO0FBQ0giLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvY29tcG9uZW50cy9VSS9Td2lwZWFibGVDYXJvdXNlbC9Td2lwZWFibGVHYWxsZXJ5LnRzeD9jNjk0Il0sInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4SW1wb3J0U291cmNlIEBlbW90aW9uL3JlYWN0ICovXHJcbmltcG9ydCB7IGpzeCwgY3NzIH0gZnJvbSBcIkBlbW90aW9uL3JlYWN0XCI7XHJcbmltcG9ydCBSZWFjdCwgeyB1c2VTdGF0ZSwgdXNlUmVmLCB1c2VFZmZlY3QsIHVzZUNhbGxiYWNrIH0gZnJvbSBcInJlYWN0XCI7XHJcbmltcG9ydCBTd2lwZSBmcm9tIFwicmVhY3QtZWFzeS1zd2lwZVwiO1xyXG5pbXBvcnQgc3R5bGVzIGZyb20gXCIuL1N3aXBlYWJsZUdhbGxlcnkubW9kdWxlLmNzc1wiO1xyXG5pbXBvcnQgeyB1c2VJc1Jlc3BvbnNpdmUgfSBmcm9tIFwiQC9jb21wb25lbnRzL1Jlc3BvbnNpdmUvdXNlSXNSZXNwb25zaXZlXCI7XHJcblxyXG5jb25zdCBTd2lwZWFibGVHYWxsZXJ5ID0gKHsgcGFyZW50UmVmLCBjb250ZW50IH06IGFueSkgPT4ge1xyXG4gIGNvbnN0IG1vdmluZ0RpdiA9IHVzZVJlZjxIVE1MSW5wdXRFbGVtZW50PihudWxsKTtcclxuICBjb25zdCBbcG9zaXRpb254LCBzZXRQb3NpdGlvbnhdID0gdXNlU3RhdGU8bnVtYmVyPigwKTtcclxuICBjb25zdCBbY29udGVudENvdW50LCBzZXRDb250ZW50Q291bnRdID0gdXNlU3RhdGUoMSk7XHJcbiAgY29uc3QgW2VuZFN3aXBlLCBzZXRFbmRTd2lwZV0gPSB1c2VTdGF0ZShmYWxzZSk7XHJcbiAgY29uc3QgcG9zdERhdGEgPSBjb250ZW50O1xyXG4gIGNvbnN0IFtpc0Rlc2tUb3AsIGlzVGFibGV0LCBpc01vYmlsZV0gPSB1c2VJc1Jlc3BvbnNpdmUoKTtcclxuXHJcbiAgY29uc3QgW3dpZHRoLCBzZXRXaWR0aF0gPSB1c2VTdGF0ZShudWxsKTtcclxuICBjb25zdCBbaGVpZ2h0LCBzZXRIZWlnaHRdID0gdXNlU3RhdGUobnVsbCk7XHJcblxyXG4gIHVzZUVmZmVjdCgoKSA9PiB7XHJcbiAgICBzZXRXaWR0aCgoKSA9PiBwYXJlbnRSZWYuY3VycmVudC5jbGllbnRXaWR0aCk7XHJcbiAgICBzZXRIZWlnaHQoKCkgPT4gcGFyZW50UmVmLmN1cnJlbnQuY2xpZW50SGVpZ2h0KTtcclxuXHJcbiAgICBjb25zdCByZXNpemUgPSAoKSA9PiB7XHJcbiAgICAgIHNldFdpZHRoKCgpID0+IHBhcmVudFJlZi5jdXJyZW50LmNsaWVudFdpZHRoKTtcclxuICAgICAgc2V0SGVpZ2h0KCgpID0+IHBhcmVudFJlZi5jdXJyZW50LmNsaWVudEhlaWdodCk7XHJcbiAgICAgIGlmIChtb3ZpbmdEaXYuY3VycmVudCAhPT0gbnVsbCAmJiBwYXJlbnRSZWYuY3VycmVudC5jbGllbnRXaWR0aCkge1xyXG4gICAgICAgIG1vdmluZ0Rpdi5jdXJyZW50LnN0eWxlLnRyYW5zaXRpb25EdXJhdGlvbiA9IFwiMHNcIjtcclxuICAgICAgICBtb3ZpbmdEaXYuY3VycmVudC5zdHlsZS50cmFuc2Zvcm0gPSBgdHJhbnNsYXRlWCgke1xyXG4gICAgICAgICAgLXBhcmVudFJlZi5jdXJyZW50LmNsaWVudFdpZHRoICogKGNvbnRlbnRDb3VudCAtIDEpXHJcbiAgICAgICAgfXB4KWA7XHJcbiAgICAgIH1cclxuICAgIH07XHJcbiAgICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcihgcmVzaXplYCwgcmVzaXplKTtcclxuXHJcbiAgICByZXR1cm4gKCkgPT4ge1xyXG4gICAgICB3aW5kb3cucmVtb3ZlRXZlbnRMaXN0ZW5lcihgcmVzaXplYCwgcmVzaXplKTtcclxuICAgIH07XHJcbiAgfSwgW2NvbnRlbnRDb3VudF0pO1xyXG5cclxuICBjb25zdCBvblN3aXBlTW92ZSA9IChwb3NpdGlvbiA9IHsgeDogMCB9KSA9PiB7XHJcbiAgICBzZXRFbmRTd2lwZShmYWxzZSk7XHJcbiAgICBpZiAocG9zdERhdGEuY29udGVudC5sZW5ndGggPT09IDEpIHtcclxuICAgICAgcmV0dXJuO1xyXG4gICAgfVxyXG5cclxuICAgIGlmIChcclxuICAgICAgKGNvbnRlbnRDb3VudCA+PSBwb3N0RGF0YS5jb250ZW50Lmxlbmd0aCAmJiBwb3NpdGlvbnggPCAwKSB8fFxyXG4gICAgICAoY29udGVudENvdW50ID09PSAxICYmIHBvc2l0aW9ueCA+IDApIHx8XHJcbiAgICAgICh3aWR0aCAhPT0gbnVsbCAmJiBNYXRoLmFicyhwb3NpdGlvbngpID4gd2lkdGgpXHJcbiAgICApIHtcclxuICAgICAgcmV0dXJuO1xyXG4gICAgfVxyXG5cclxuICAgIGlmIChtb3ZpbmdEaXYuY3VycmVudCAhPT0gbnVsbCAmJiB3aWR0aCAhPT0gbnVsbCAmJiBwb3NpdGlvbi54ICE9PSBudWxsKSB7XHJcbiAgICAgIG1vdmluZ0Rpdi5jdXJyZW50LnN0eWxlLnRyYW5zaXRpb25EdXJhdGlvbiA9IFwiMHNcIjtcclxuICAgICAgbW92aW5nRGl2LmN1cnJlbnQuc3R5bGUudHJhbnNmb3JtID0gYHRyYW5zbGF0ZVgoJHtcclxuICAgICAgICBwb3NpdGlvbnggKyAtd2lkdGggKiAoY29udGVudENvdW50IC0gMSlcclxuICAgICAgfXB4KWA7XHJcbiAgICAgIGNvbnN0IHggPSBwb3NpdGlvbi54O1xyXG4gICAgICBzZXRQb3NpdGlvbngoKCkgPT4geCk7XHJcbiAgICB9XHJcbiAgfTtcclxuXHJcbiAgY29uc3Qgb25Td2lwZUVuZCA9ICgpID0+IHtcclxuICAgIGlmIChtb3ZpbmdEaXYuY3VycmVudCAhPT0gbnVsbCAmJiB3aWR0aCAhPT0gbnVsbCkge1xyXG4gICAgICBtb3ZpbmdEaXYuY3VycmVudC5zdHlsZS50cmFuc2l0aW9uRHVyYXRpb24gPSBcIjAuM3NcIjtcclxuXHJcbiAgICAgIGlmIChwb3NpdGlvbnggPCAtNTAgJiYgY29udGVudENvdW50IDwgcG9zdERhdGEuY29udGVudC5sZW5ndGgpIHtcclxuICAgICAgICBzZXRDb250ZW50Q291bnQoKHByZXYpID0+IHByZXYgKyAxKTtcclxuICAgICAgICBtb3ZpbmdEaXYuY3VycmVudC5zdHlsZS50cmFuc2Zvcm0gPSBgdHJhbnNsYXRlWCgke1xyXG4gICAgICAgICAgLXdpZHRoICogY29udGVudENvdW50XHJcbiAgICAgICAgfXB4KWA7XHJcbiAgICAgIH1cclxuICAgICAgaWYgKHBvc2l0aW9ueCA+IDUwICYmIGNvbnRlbnRDb3VudCA+IC0xKSB7XHJcbiAgICAgICAgc2V0Q29udGVudENvdW50KChwcmV2KSA9PiBwcmV2IC0gMSk7XHJcbiAgICAgICAgbW92aW5nRGl2LmN1cnJlbnQuc3R5bGUudHJhbnNmb3JtID0gYHRyYW5zbGF0ZVgoJHtcclxuICAgICAgICAgIC13aWR0aCAqIChjb250ZW50Q291bnQgLSAyKVxyXG4gICAgICAgIH1weClgO1xyXG4gICAgICB9XHJcbiAgICAgIGlmIChNYXRoLmFicyhwb3NpdGlvbngpIDw9IDUwKSB7XHJcbiAgICAgICAgbW92aW5nRGl2LmN1cnJlbnQuc3R5bGUudHJhbnNmb3JtID0gYHRyYW5zbGF0ZVgoJHtcclxuICAgICAgICAgIC13aWR0aCAqIChjb250ZW50Q291bnQgLSAxKVxyXG4gICAgICAgIH1weClgO1xyXG4gICAgICB9XHJcbiAgICB9XHJcblxyXG4gICAgc2V0UG9zaXRpb254KCgpID0+IDApO1xyXG4gICAgc2V0RW5kU3dpcGUodHJ1ZSk7XHJcbiAgfTtcclxuXHJcbiAgY29uc3Qgb25DbGlja05leHRCdG4gPSB1c2VDYWxsYmFjaygoKSA9PiB7XHJcbiAgICBpZiAobW92aW5nRGl2LmN1cnJlbnQgIT09IG51bGwgJiYgd2lkdGggIT09IG51bGwpIHtcclxuICAgICAgaWYgKGNvbnRlbnRDb3VudCA8IHBvc3REYXRhLmNvbnRlbnQubGVuZ3RoKSB7XHJcbiAgICAgICAgbW92aW5nRGl2LmN1cnJlbnQuc3R5bGUudHJhbnNpdGlvblByb3BlcnR5ID0gXCJ0cmFuc2Zvcm1cIjtcclxuICAgICAgICBtb3ZpbmdEaXYuY3VycmVudC5zdHlsZS50cmFuc2l0aW9uRHVyYXRpb24gPSBcIjAuNXNcIjtcclxuICAgICAgICBzZXRDb250ZW50Q291bnQoKHByZXYpID0+IHByZXYgKyAxKTtcclxuICAgICAgICBtb3ZpbmdEaXYuY3VycmVudC5zdHlsZS50cmFuc2Zvcm0gPSBgdHJhbnNsYXRlWCgke1xyXG4gICAgICAgICAgLXdpZHRoICogY29udGVudENvdW50XHJcbiAgICAgICAgfXB4KWA7XHJcbiAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgbW92aW5nRGl2LmN1cnJlbnQuc3R5bGUudHJhbnNpdGlvblByb3BlcnR5ID0gXCJ0cmFuc2Zvcm1cIjtcclxuICAgICAgICBtb3ZpbmdEaXYuY3VycmVudC5zdHlsZS50cmFuc2l0aW9uRHVyYXRpb24gPSBcIjAuNXNcIjtcclxuICAgICAgICBzZXRDb250ZW50Q291bnQoKCkgPT4gMSk7XHJcbiAgICAgICAgbW92aW5nRGl2LmN1cnJlbnQuc3R5bGUudHJhbnNmb3JtID0gYHRyYW5zbGF0ZVgoMHB4KWA7XHJcbiAgICAgIH1cclxuICAgIH1cclxuICB9LCBbY29udGVudENvdW50LCB3aWR0aF0pO1xyXG5cclxuICBjb25zdCBvbkNsaWNrUHJldkJ0biA9IHVzZUNhbGxiYWNrKCgpID0+IHtcclxuICAgIGlmIChtb3ZpbmdEaXYuY3VycmVudCAhPT0gbnVsbCAmJiB3aWR0aCAhPT0gbnVsbCkge1xyXG4gICAgICBpZiAoY29udGVudENvdW50ID4gMSkge1xyXG4gICAgICAgIG1vdmluZ0Rpdi5jdXJyZW50LnN0eWxlLnRyYW5zaXRpb25Qcm9wZXJ0eSA9IFwidHJhbnNmb3JtXCI7XHJcbiAgICAgICAgbW92aW5nRGl2LmN1cnJlbnQuc3R5bGUudHJhbnNpdGlvbkR1cmF0aW9uID0gXCIwLjVzXCI7XHJcbiAgICAgICAgc2V0Q29udGVudENvdW50KChwcmV2KSA9PiBwcmV2IC0gMSk7XHJcbiAgICAgICAgbW92aW5nRGl2LmN1cnJlbnQuc3R5bGUudHJhbnNmb3JtID0gYHRyYW5zbGF0ZVgoJHtcclxuICAgICAgICAgIC13aWR0aCAqIChjb250ZW50Q291bnQgLSAyKVxyXG4gICAgICAgIH1weClgO1xyXG4gICAgICB9IGVsc2Uge1xyXG4gICAgICAgIG1vdmluZ0Rpdi5jdXJyZW50LnN0eWxlLnRyYW5zaXRpb25Qcm9wZXJ0eSA9IFwidHJhbnNmb3JtXCI7XHJcbiAgICAgICAgbW92aW5nRGl2LmN1cnJlbnQuc3R5bGUudHJhbnNpdGlvbkR1cmF0aW9uID0gXCIwLjVzXCI7XHJcbiAgICAgICAgc2V0Q29udGVudENvdW50KCgpID0+IHBvc3REYXRhLmNvbnRlbnQubGVuZ3RoKTtcclxuICAgICAgICBtb3ZpbmdEaXYuY3VycmVudC5zdHlsZS50cmFuc2Zvcm0gPSBgdHJhbnNsYXRlWCgke1xyXG4gICAgICAgICAgLXdpZHRoICogKHBvc3REYXRhLmNvbnRlbnQubGVuZ3RoIC0gMSlcclxuICAgICAgICB9cHgpYDtcclxuICAgICAgfVxyXG4gICAgfVxyXG4gIH0sIFtjb250ZW50Q291bnQsIHdpZHRoXSk7XHJcblxyXG4gIHVzZUVmZmVjdCgoKSA9PiB7XHJcbiAgICBjb25zdCBhdXRvU2xpZGUgPSBzZXRJbnRlcnZhbChmdW5jdGlvbiAoKSB7XHJcbiAgICAgIG9uQ2xpY2tOZXh0QnRuKCk7XHJcbiAgICB9LCAxMDAwMCk7XHJcblxyXG4gICAgcmV0dXJuICgpID0+IHtcclxuICAgICAgY2xlYXJJbnRlcnZhbChhdXRvU2xpZGUpO1xyXG4gICAgfTtcclxuICB9LCBbd2lkdGgsIGNvbnRlbnRDb3VudF0pO1xyXG4gIC8vXHJcblxyXG4gIGNvbnN0IGluZGljYXRvciA9IHBvc3REYXRhLmNvbnRlbnQubWFwKChlbDogYW55LCBpZHg6IG51bWJlcikgPT4ge1xyXG4gICAgcmV0dXJuIDxkaXYgY3NzPXtpbmRpY2F0b3JDU1MoeyBpZHgsIGNvbnRlbnRDb3VudCB9KX0+PC9kaXY+O1xyXG4gIH0pO1xyXG5cclxuICBjb25zdCBpbmRpY2F0b3JCdG4gPSAoXHJcbiAgICA8PlxyXG4gICAgICA8ZGl2IGNzcz17cHJldkJ0bkNTU30gb25DbGljaz17b25DbGlja1ByZXZCdG59PlxyXG4gICAgICAgIOOAiFxyXG4gICAgICA8L2Rpdj5cclxuICAgICAgPGRpdiBjc3M9e25leHRCdG5DU1N9IG9uQ2xpY2s9e29uQ2xpY2tOZXh0QnRufT5cclxuICAgICAgICDjgIlcclxuICAgICAgPC9kaXY+XHJcbiAgICA8Lz5cclxuICApO1xyXG5cclxuICByZXR1cm4gKFxyXG4gICAgPGRpdiBjc3M9e291dGVyV3JhcHBlckNTU30+XHJcbiAgICAgIHtpc01vYmlsZSA9PT0gZmFsc2UgJiYgaW5kaWNhdG9yQnRufVxyXG4gICAgICA8ZGl2IGNzcz17aW5kaWNhdG9yV3JhcHBlckNTU30+e2luZGljYXRvcn08L2Rpdj5cclxuICAgICAgPFN3aXBlXHJcbiAgICAgICAgb25Td2lwZVN0YXJ0PXsoZXZlbnQ6IGFueSkgPT4ge1xyXG4gICAgICAgICAgZXZlbnQuc3RvcFByb3BhZ2F0aW9uKCk7XHJcbiAgICAgICAgfX1cclxuICAgICAgICBvblN3aXBlRW5kPXtvblN3aXBlRW5kfVxyXG4gICAgICAgIG9uU3dpcGVNb3ZlPXtvblN3aXBlTW92ZX1cclxuICAgICAgPlxyXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPXtzdHlsZXMud3JhcHBlcn0+XHJcbiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT17c3R5bGVzLm1vdmVhYmxlfSByZWY9e21vdmluZ0Rpdn0+XHJcbiAgICAgICAgICAgIHtwb3N0RGF0YS5jb250ZW50Lm1hcCgoZWw6IGFueSkgPT4ge1xyXG4gICAgICAgICAgICAgIHJldHVybiAoXHJcbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT17c3R5bGVzLmNvbnRlbnR9IHN0eWxlPXt7IHdpZHRoOiB3aWR0aCArIFwicHhcIiB9fT5cclxuICAgICAgICAgICAgICAgICAge2VsfVxyXG4gICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgKTsgLy8sIGhlaWdodDogaGVpZ2h0ICsgJ3B4J1xyXG4gICAgICAgICAgICB9KX1cclxuICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgICA8L1N3aXBlPlxyXG5cclxuICAgICAgey8qIHtwb3NpdGlvbnh9XHJcbiAgICAgIHtjb250ZW50Q291bnR9XHJcbiAgICAgIHtlbmRTd2lwZS50b1N0cmluZygpfSAqL31cclxuICAgIDwvZGl2PlxyXG4gICk7XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBTd2lwZWFibGVHYWxsZXJ5O1xyXG5cclxuY29uc3Qgb3V0ZXJXcmFwcGVyQ1NTID0gY3NzYFxyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuYDtcclxuXHJcbmNvbnN0IHByZXZCdG5DU1MgPSBjc3NgXHJcbiAgei1pbmRleDogOTtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbGVmdDogMDtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGZvbnQtc2l6ZTogNDhweDtcclxuICBmb250LXdlaWdodDogNzAwO1xyXG4gIHBhZGRpbmctbGVmdDogOHB4O1xyXG4gIHBhZGRpbmctcmlnaHQ6IDhweDtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogZm9udC1zaXplO1xyXG4gIHRyYW5zaXRpb24tZHVyYXRpb246IDAuMnM7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIHVzZXItc2VsZWN0OiBub25lO1xyXG5cclxuICAmOmhvdmVyIHtcclxuICAgIGZvbnQtc2l6ZTogNTRweDtcclxuICB9XHJcbmA7XHJcblxyXG5jb25zdCBuZXh0QnRuQ1NTID0gY3NzYFxyXG4gIHotaW5kZXg6IDk7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHJpZ2h0OiAwO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgZm9udC1zaXplOiA0OHB4O1xyXG4gIGZvbnQtd2VpZ2h0OiA3MDA7XHJcbiAgcGFkZGluZy1sZWZ0OiA4cHg7XHJcbiAgcGFkZGluZy1yaWdodDogOHB4O1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICB0cmFuc2l0aW9uLXByb3BlcnR5OiBmb250LXNpemU7XHJcbiAgdHJhbnNpdGlvbi1kdXJhdGlvbjogMC4ycztcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgdXNlci1zZWxlY3Q6IG5vbmU7XHJcblxyXG4gICY6aG92ZXIge1xyXG4gICAgZm9udC1zaXplOiA1NHB4O1xyXG4gIH1cclxuYDtcclxuXHJcbmNvbnN0IGluZGljYXRvcldyYXBwZXJDU1MgPSBjc3NgXHJcbiAgei1pbmRleDogOTtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogMTAwJTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGFsaWduLWl0ZW1zOiBlbmQ7XHJcbiAgcG9pbnRlci1ldmVudHM6IG5vbmU7XHJcbiAgcGFkZGluZy1ib3R0b206IDE2cHg7XHJcbmA7XHJcblxyXG5pbnRlcmZhY2UgaW5kaWNhdG9yQ1NTUHJvcHMge1xyXG4gIGlkeDogbnVtYmVyO1xyXG4gIGNvbnRlbnRDb3VudDogbnVtYmVyO1xyXG59XHJcbmNvbnN0IGluZGljYXRvckNTUyA9ICh7IGlkeCwgY29udGVudENvdW50IH06IGluZGljYXRvckNTU1Byb3BzKSA9PiB7XHJcbiAgcmV0dXJuIGNzc2BcclxuICAgIHdpZHRoOiAzMHB4O1xyXG4gICAgaGVpZ2h0OiAycHg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAke2NvbnRlbnRDb3VudCAtIDEgPT09IGlkeCA/IFwid2hpdGVcIiA6IFwiZ3JheVwifTtcclxuICAgIG1hcmdpbjogMnB4O1xyXG4gIGA7XHJcbn07XHJcbiJdLCJuYW1lcyI6WyJjc3MiLCJSZWFjdCIsInVzZVN0YXRlIiwidXNlUmVmIiwidXNlRWZmZWN0IiwidXNlQ2FsbGJhY2siLCJTd2lwZSIsInN0eWxlcyIsInVzZUlzUmVzcG9uc2l2ZSIsIlN3aXBlYWJsZUdhbGxlcnkiLCJwYXJlbnRSZWYiLCJjb250ZW50IiwibW92aW5nRGl2IiwicG9zaXRpb254Iiwic2V0UG9zaXRpb254IiwiY29udGVudENvdW50Iiwic2V0Q29udGVudENvdW50IiwiZW5kU3dpcGUiLCJzZXRFbmRTd2lwZSIsInBvc3REYXRhIiwiaXNEZXNrVG9wIiwiaXNUYWJsZXQiLCJpc01vYmlsZSIsIndpZHRoIiwic2V0V2lkdGgiLCJoZWlnaHQiLCJzZXRIZWlnaHQiLCJjdXJyZW50IiwiY2xpZW50V2lkdGgiLCJjbGllbnRIZWlnaHQiLCJyZXNpemUiLCJzdHlsZSIsInRyYW5zaXRpb25EdXJhdGlvbiIsInRyYW5zZm9ybSIsIndpbmRvdyIsImFkZEV2ZW50TGlzdGVuZXIiLCJyZW1vdmVFdmVudExpc3RlbmVyIiwib25Td2lwZU1vdmUiLCJwb3NpdGlvbiIsIngiLCJsZW5ndGgiLCJNYXRoIiwiYWJzIiwib25Td2lwZUVuZCIsInByZXYiLCJvbkNsaWNrTmV4dEJ0biIsInRyYW5zaXRpb25Qcm9wZXJ0eSIsIm9uQ2xpY2tQcmV2QnRuIiwiYXV0b1NsaWRlIiwic2V0SW50ZXJ2YWwiLCJjbGVhckludGVydmFsIiwiaW5kaWNhdG9yIiwibWFwIiwiZWwiLCJpZHgiLCJkaXYiLCJpbmRpY2F0b3JDU1MiLCJpbmRpY2F0b3JCdG4iLCJwcmV2QnRuQ1NTIiwib25DbGljayIsIm5leHRCdG5DU1MiLCJvdXRlcldyYXBwZXJDU1MiLCJpbmRpY2F0b3JXcmFwcGVyQ1NTIiwib25Td2lwZVN0YXJ0IiwiZXZlbnQiLCJzdG9wUHJvcGFnYXRpb24iLCJjbGFzc05hbWUiLCJ3cmFwcGVyIiwibW92ZWFibGUiLCJyZWYiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/UI/SwipeableCarousel/SwipeableGallery.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/bookCardModal/BookCardModal.tsx":
+/*!********************************************************!*\
+  !*** ./src/components/bookCardModal/BookCardModal.tsx ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var react_icons_bs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-icons/bs */ \"react-icons/bs\");\n/* harmony import */ var react_icons_bs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_icons_bs__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/router */ \"next/router\");\n/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);\n/** @jsxImportSource @emotion/react */ \n\n\n\n\nconst BookCardModal = ({ modalToggler , isMouseOn , setModalToggler , bookData , parentRef , imgHeight , imgMinHeight  })=>{\n    const wrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);\n    const [contentToggler, setContentToggler] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);\n    const [isOpened, setisOpened] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);\n    const [isClosing, setIsClosing] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);\n    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_4__.useRouter)();\n    const modalLayout = {\n        widthValue: 450,\n        heightValue: 500\n    };\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        if (isMouseOn === true && modalToggler === true) {\n            setContentToggler(()=>true);\n            setisOpened(()=>true);\n        }\n    }, []);\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        window.addEventListener(\"wheel\", onWheelHandler);\n        return ()=>{\n            window.removeEventListener(\"wheel\", onWheelHandler);\n        };\n    }, []);\n    const modalHandler = ()=>{\n        if (isMouseOn === true && contentToggler === true) {\n            setTimeout(function() {\n                if (wrapperRef.current !== null) {\n                    wrapperRef.current.style.opacity = \"0\";\n                }\n            }, 100);\n            setTimeout(function() {\n                setModalToggler(()=>false);\n            }, 500);\n        } else {\n            setModalToggler(()=>false);\n        }\n        setContentToggler(()=>false);\n        setIsClosing(()=>true);\n    };\n    const onWheelHandler = ()=>{\n        if (wrapperRef.current !== null) {\n            wrapperRef.current.style.width = parentRef.current.clientWidth + \"px\";\n            wrapperRef.current.style.height = parentRef.current.clientHeight + \"px\";\n            wrapperRef.current.style.left = parentRef.current.getBoundingClientRect().left + \"px\";\n            setTimeout(function() {\n                if (wrapperRef.current !== null) {\n                    wrapperRef.current.style.top = parentRef.current.getBoundingClientRect().top + \"px\";\n                    wrapperRef.current.style.opacity = \"0\";\n                }\n            }, 200);\n        }\n    };\n    const onClickNavigateHandler = ()=>{\n        router.push(`/books/${bookData.bookId}`);\n    };\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        onMouseLeave: modalHandler,\n        // onWheelCapture={onWheelHandler}\n        ref: wrapperRef,\n        css: wrapperCSS({\n            modalToggler: contentToggler,\n            parentRef: parentRef,\n            wrapperRef: wrapperRef,\n            widthValue: modalLayout.widthValue,\n            heightValue: modalLayout.heightValue\n        }),\n        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n            css: innerWrapperCSS({\n                modalToggler: modalToggler,\n                contentToggler: contentToggler,\n                isOpened: isOpened\n            }),\n            children: [\n                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    css: backgroundCSS({\n                        imgUrl: bookData.thumbnail\n                    })\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n                    lineNumber: 117,\n                    columnNumber: 9\n                }, undefined),\n                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    css: imageWrapperCSS,\n                    children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"img\", {\n                        src: bookData && bookData.thumbnail,\n                        alt: bookData && bookData.title,\n                        css: imageCSS({\n                            modalToggler: contentToggler,\n                            isClosing: isClosing,\n                            imgHeight: imgHeight,\n                            imgMinHeight: imgMinHeight\n                        })\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n                        lineNumber: 119,\n                        columnNumber: 11\n                    }, undefined)\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n                    lineNumber: 118,\n                    columnNumber: 9\n                }, undefined),\n                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    css: spaceDivCSS\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n                    lineNumber: 131,\n                    columnNumber: 9\n                }, undefined),\n                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    css: contentDivCSS,\n                    children: [\n                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            children: [\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                    css: titleCSS,\n                                    children: bookData.title\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n                                    lineNumber: 134,\n                                    columnNumber: 13\n                                }, undefined),\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                    css: dateCSS,\n                                    children: bookData.regist\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n                                    lineNumber: 135,\n                                    columnNumber: 13\n                                }, undefined)\n                            ]\n                        }, void 0, true, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n                            lineNumber: 133,\n                            columnNumber: 11\n                        }, undefined),\n                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            css: _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`display:flex; justify-content:space-between;`,\n                            children: [\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {}, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n                                    lineNumber: 139,\n                                    columnNumber: 13\n                                }, undefined),\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_icons_bs__WEBPACK_IMPORTED_MODULE_3__.BsFillArrowUpCircleFill, {\n                                    css: icons,\n                                    onClick: onClickNavigateHandler\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n                                    lineNumber: 140,\n                                    columnNumber: 13\n                                }, undefined)\n                            ]\n                        }, void 0, true, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n                            lineNumber: 138,\n                            columnNumber: 11\n                        }, undefined)\n                    ]\n                }, void 0, true, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n                    lineNumber: 132,\n                    columnNumber: 9\n                }, undefined)\n            ]\n        }, void 0, true, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n            lineNumber: 110,\n            columnNumber: 7\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookCardModal\\\\BookCardModal.tsx\",\n        lineNumber: 97,\n        columnNumber: 5\n    }, undefined);\n};\nconst wrapperCSS = ({ modalToggler , parentRef , wrapperRef , widthValue , heightValue  })=>{\n    const isLeftEdge = (widthValue - parentRef?.current?.clientWidth) / 2 >= parentRef?.current?.getBoundingClientRect().left;\n    const isRightEdge = parentRef?.current?.getBoundingClientRect().left + (widthValue - (widthValue - parentRef?.current?.clientWidth) / 2) >= document.body.offsetWidth;\n    const leftStandard = `left: ${modalToggler && isLeftEdge === true ? \"42\" : parentRef?.current?.getBoundingClientRect().left - (widthValue - parentRef?.current?.clientWidth) / 2}px;`; // parentRef?.current?.getBoundingClientRect().left\n    const rightStandard = `left: ${modalToggler && isRightEdge === true ? document.body.offsetWidth - widthValue - 42 : parentRef?.current?.getBoundingClientRect().left}px`;\n    const activated = isRightEdge === true ? rightStandard : leftStandard;\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    position: absolute;\r\n    z-index: 999999;\r\n    transition-property: width height;\r\n    will-change: width height left top opacity transform;\r\n    transition-duration: 0.3s;\r\n    /* transition-timing-function: ease-in; */\r\n    overflow: hidden;\r\n\r\n    top: ${modalToggler ? parentRef?.current?.getBoundingClientRect().top - (heightValue - parentRef?.current?.clientHeight) / 2 : parentRef?.current?.getBoundingClientRect().top}px;\r\n    width: ${modalToggler ? `${widthValue}px` : `${parentRef?.current?.clientWidth}px`};\r\n    height: ${modalToggler ? `${heightValue}px` : `${parentRef?.current?.clientHeight}px`};\r\n    ${modalToggler ? activated : `left: ${parentRef?.current?.getBoundingClientRect().left}px`};\r\n    ${modalToggler ? `pointer-events: auto` : `pointer-events: none`};\r\n    /* background-color: white; */\r\n        background-color: ${modalToggler ? _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`var(--back-color-2)` : `rgba(0,0,0,0)`};\r\n    border-radius: 10px;\r\n    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);\r\n  `;\n};\nconst innerWrapperCSS = ({ modalToggler , contentToggler , isOpened  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    opacity: ${contentToggler ? \"255\" : isOpened ? \"255\" : \"0\"};\r\n    height: 100%;\r\n    display: flex;\r\n    flex-direction: column;\r\n  `;\n};\nconst backgroundCSS = ({ imgUrl  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 110%;\r\n    position: absolute;\r\n    left: -5%;\r\n    top: -5%;\r\n    height: 350px;\r\n    background: no-repeat url(\"${imgUrl}\") 0 / cover;\r\n    filter: blur(10px);\r\n    -webkit-filter: blur(10px);\r\n    pointer-events: none;\r\n    display: flex;\r\n    justify-content: center;\r\n  `;\n};\nconst imageWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  height: 350px;\r\n  position: absolute;\r\n  display: flex;\r\n  justify-content: center;\r\n  background: linear-gradient(rgba(0, 0, 0, 0), var(--back-color-2));\r\n  pointer-events: none;\r\n`;\nconst imageCSS = ({ modalToggler , isClosing , imgHeight , imgMinHeight  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    will-change: width height transform;\r\n    transition-property: width height opacity transform;\r\n    transition-duration: 0.3s;\r\n    ${modalToggler ? `transform: scale(1.0)` : isClosing ? `transform: scale(1.0)` : `transform: scale(1.1)`};\r\n    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);\r\n    width: auto;\r\n    height: ${modalToggler ? \"350px\" : imgHeight};\r\n    min-height: ${imgMinHeight};\r\n  `;\n};\nconst spaceDivCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  height: 350px;\r\n`;\nconst contentDivCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  flex: 1 0 auto;\r\n  padding: 24px;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  flex-direction: column;\r\n`;\nconst titleCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  font-size: 20px;\r\n  color: var(--text-color);\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n`;\nconst dateCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  font-size: 13px;\r\n  margin-top: 8px;\r\n  color: var(--text-color-4);\r\n  overflow: hidden;\r\n  text-overflow: ellipsis;\r\n  white-space: nowrap;\r\n`;\nconst icons = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  /* background-color: white; */\r\n  color: var(--text-color-4);\r\n  width: 52px;\r\n  height: 52px;\r\n`;\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BookCardModal);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9ib29rQ2FyZE1vZGFsL0Jvb2tDYXJkTW9kYWwudHN4LmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7O0FBQUEsb0NBQW9DO0FBQ007QUFDVTtBQUdLO0FBQ2xCO0FBWXZDLE1BQU1NLGdCQUFnQixDQUFDLEVBQ3JCQyxhQUFZLEVBQ1pDLFVBQVMsRUFDVEMsZ0JBQWUsRUFDZkMsU0FBUSxFQUNSQyxVQUFTLEVBQ1RDLFVBQVMsRUFDVEMsYUFBWSxFQUNPLEdBQUs7SUFDeEIsTUFBTUMsYUFBYVosNkNBQU1BLENBQW1CLElBQUk7SUFDaEQsTUFBTSxDQUFDYSxnQkFBZ0JDLGtCQUFrQixHQUFHYiwrQ0FBUUEsQ0FBVSxLQUFLO0lBQ25FLE1BQU0sQ0FBQ2MsVUFBVUMsWUFBWSxHQUFHZiwrQ0FBUUEsQ0FBVSxLQUFLO0lBQ3ZELE1BQU0sQ0FBQ2dCLFdBQVdDLGFBQWEsR0FBR2pCLCtDQUFRQSxDQUFVLEtBQUs7SUFDekQsTUFBTWtCLFNBQVNoQixzREFBU0E7SUFFeEIsTUFBTWlCLGNBQWM7UUFDbEJDLFlBQVk7UUFDWkMsYUFBYTtJQUNmO0lBRUF2QixnREFBU0EsQ0FBQyxJQUFNO1FBQ2QsSUFBSU8sY0FBYyxJQUFJLElBQUlELGlCQUFpQixJQUFJLEVBQUU7WUFDL0NTLGtCQUFrQixJQUFNLElBQUk7WUFDNUJFLFlBQVksSUFBTSxJQUFJO1FBRXhCLENBQUM7SUFHSCxHQUFHLEVBQUU7SUFFTGpCLGdEQUFTQSxDQUFDLElBQU07UUFDZHdCLE9BQU9DLGdCQUFnQixDQUFDLFNBQVNDO1FBRWpDLE9BQU8sSUFBTTtZQUNYRixPQUFPRyxtQkFBbUIsQ0FBQyxTQUFTRDtRQUN0QztJQUNGLEdBQUcsRUFBRTtJQUVMLE1BQU1FLGVBQWUsSUFBTTtRQUN6QixJQUFJckIsY0FBYyxJQUFJLElBQUlPLG1CQUFtQixJQUFJLEVBQUU7WUFDakRlLFdBQVcsV0FBWTtnQkFDckIsSUFBSWhCLFdBQVdpQixPQUFPLEtBQUssSUFBSSxFQUFF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LE1BQU0yRCxnQkFBZ0IzRCwrQ0FBRyxDQUFDOzs7Ozs7QUFNMUIsQ0FBQztBQUVELE1BQU00RCxXQUFXNUQsK0NBQUcsQ0FBQzs7Ozs7O0FBTXJCLENBQUM7QUFFRCxNQUFNNkQsVUFBVTdELCtDQUFHLENBQUM7Ozs7Ozs7QUFPcEIsQ0FBQztBQUVELE1BQU0rRCxRQUFRL0QsK0NBQUcsQ0FBQzs7Ozs7QUFLbEIsQ0FBQztBQUdELGlFQUFlTSxhQUFhQSxFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvYm9va0NhcmRNb2RhbC9Cb29rQ2FyZE1vZGFsLnRzeD9iY2RjIl0sInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4SW1wb3J0U291cmNlIEBlbW90aW9uL3JlYWN0ICovXHJcbmltcG9ydCB7IGpzeCwgY3NzIH0gZnJvbSBcIkBlbW90aW9uL3JlYWN0XCI7XHJcbmltcG9ydCB7IHVzZUVmZmVjdCwgdXNlUmVmLCB1c2VTdGF0ZSB9IGZyb20gXCJyZWFjdFwiO1xyXG5pbXBvcnQgUmVhY3RET00gZnJvbSBcInJlYWN0LWRvbVwiO1xyXG5pbXBvcnQgeyB0aHJvdHRsZSB9IGZyb20gXCJsb2Rhc2hcIjtcclxuaW1wb3J0IHsgQnNGaWxsQXJyb3dVcENpcmNsZUZpbGwgfSBmcm9tIFwicmVhY3QtaWNvbnMvYnNcIjtcclxuaW1wb3J0IHsgdXNlUm91dGVyIH0gZnJvbSBcIm5leHQvcm91dGVyXCJcclxuXHJcbmludGVyZmFjZSBCb29rQ2FyZE1vZGFsUHJvcHMge1xyXG4gIG1vZGFsVG9nZ2xlcjogYm9vbGVhbjtcclxuICBpc01vdXNlT246IGJvb2xlYW47XHJcbiAgc2V0TW9kYWxUb2dnbGVyOiBGdW5jdGlvbjtcclxuICBib29rRGF0YTogYW55O1xyXG4gIHBhcmVudFJlZjogYW55O1xyXG4gIGltZ0hlaWdodDogc3RyaW5nIHwgdW5kZWZpbmVkO1xyXG4gIGltZ01pbkhlaWdodDogc3RyaW5nIHwgdW5kZWZpbmVkO1xyXG59XHJcblxyXG5jb25zdCBCb29rQ2FyZE1vZGFsID0gKHtcclxuICBtb2RhbFRvZ2dsZXIsXHJcbiAgaXNNb3VzZU9uLFxyXG4gIHNldE1vZGFsVG9nZ2xlcixcclxuICBib29rRGF0YSxcclxuICBwYXJlbnRSZWYsXHJcbiAgaW1nSGVpZ2h0LFxyXG4gIGltZ01pbkhlaWdodFxyXG59OiBCb29rQ2FyZE1vZGFsUHJvcHMpID0+IHtcclxuICBjb25zdCB3cmFwcGVyUmVmID0gdXNlUmVmPEhUTUxJbnB1dEVsZW1lbnQ+KG51bGwpO1xyXG4gIGNvbnN0IFtjb250ZW50VG9nZ2xlciwgc2V0Q29udGVudFRvZ2dsZXJdID0gdXNlU3RhdGU8Ym9vbGVhbj4oZmFsc2UpO1xyXG4gIGNvbnN0IFtpc09wZW5lZCwgc2V0aXNPcGVuZWRdID0gdXNlU3RhdGU8Ym9vbGVhbj4oZmFsc2UpO1xyXG4gIGNvbnN0IFtpc0Nsb3NpbmcsIHNldElzQ2xvc2luZ10gPSB1c2VTdGF0ZTxib29sZWFuPihmYWxzZSk7XHJcbiAgY29uc3Qgcm91dGVyID0gdXNlUm91dGVyKClcclxuXHJcbiAgY29uc3QgbW9kYWxMYXlvdXQgPSB7XHJcbiAgICB3aWR0aFZhbHVlOiA0NTAsXHJcbiAgICBoZWlnaHRWYWx1ZTogNTAwLFxyXG4gIH07XHJcblxyXG4gIHVzZUVmZmVjdCgoKSA9PiB7XHJcbiAgICBpZiAoaXNNb3VzZU9uID09PSB0cnVlICYmIG1vZGFsVG9nZ2xlciA9PT0gdHJ1ZSkge1xyXG4gICAgICBzZXRDb250ZW50VG9nZ2xlcigoKSA9PiB0cnVlKTtcclxuICAgICAgc2V0aXNPcGVuZWQoKCkgPT4gdHJ1ZSk7XHJcblxyXG4gICAgfVxyXG5cclxuICAgIFxyXG4gIH0sIFtdKTtcclxuXHJcbiAgdXNlRWZmZWN0KCgpID0+IHtcclxuICAgIHdpbmRvdy5hZGRFdmVudExpc3RlbmVyKFwid2hlZWxcIiwgb25XaGVlbEhhbmRsZXIpO1xyXG5cclxuICAgIHJldHVybiAoKSA9PiB7XHJcbiAgICAgIHdpbmRvdy5yZW1vdmVFdmVudExpc3RlbmVyKFwid2hlZWxcIiwgb25XaGVlbEhhbmRsZXIpO1xyXG4gICAgfVxyXG4gIH0sIFtdKVxyXG5cclxuICBjb25zdCBtb2RhbEhhbmRsZXIgPSAoKSA9PiB7XHJcbiAgICBpZiAoaXNNb3VzZU9uID09PSB0cnVlICYmIGNvbnRlbnRUb2dnbGVyID09PSB0cnVlKSB7XHJcbiAgICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gKCkge1xyXG4gICAgICAgIGlmICh3cmFwcGVyUmVmLmN1cnJlbnQgIT09IG51bGwpIHtcclxuICAgICAgICAgIHdyYXBwZXJSZWYuY3VycmVudC5zdHlsZS5vcGFjaXR5ID0gJzAnXHJcbiAgICAgICAgfVxyXG4gICAgICAgIFxyXG4gICAgICB9LCAxMDApO1xyXG4gICAgICBcclxuICAgICAgc2V0VGltZW91dChmdW5jdGlvbiAoKSB7XHJcbiAgICAgICAgc2V0TW9kYWxUb2dnbGVyKCgpID0+IGZhbHNlKTtcclxuICAgICAgICBcclxuICAgICAgICBcclxuICAgICAgfSwgNTAwKTtcclxuICAgIH0gZWxzZSB7XHJcbiAgICAgIHNldE1vZGFsVG9nZ2xlcigoKSA9PiBmYWxzZSk7XHJcbiAgICB9XHJcbiAgICBzZXRDb250ZW50VG9nZ2xlcigoKSA9PiBmYWxzZSk7XHJcbiAgICBzZXRJc0Nsb3NpbmcoKCkgPT4gdHJ1ZSlcclxuICB9O1xyXG5cclxuICBjb25zdCBvbldoZWVsSGFuZGxlciA9ICgpID0+IHtcclxuICAgIGlmICh3cmFwcGVyUmVmLmN1cnJlbnQgIT09IG51bGwpIHtcclxuICAgICAgd3JhcHBlclJlZi5jdXJyZW50LnN0eWxlLndpZHRoID0gcGFyZW50UmVmLmN1cnJlbnQuY2xpZW50V2lkdGggKyAncHgnXHJcbiAgICAgIHdyYXBwZXJSZWYuY3VycmVudC5zdHlsZS5oZWlnaHQgPSBwYXJlbnRSZWYuY3VycmVudC5jbGllbnRIZWlnaHQgKyAncHgnXHJcbiAgICAgIHdyYXBwZXJSZWYuY3VycmVudC5zdHlsZS5sZWZ0ID0gcGFyZW50UmVmLmN1cnJlbnQuZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCkubGVmdCArICdweCdcclxuICAgICAgc2V0VGltZW91dChmdW5jdGlvbigpIHsgXHJcbiAgICAgICAgaWYgKHdyYXBwZXJSZWYuY3VycmVudCAhPT0gbnVsbCkge1xyXG4gICAgICAgICAgd3JhcHBlclJlZi5jdXJyZW50LnN0eWxlLnRvcCA9IHBhcmVudFJlZi5jdXJyZW50LmdldEJvdW5kaW5nQ2xpZW50UmVjdCgpLnRvcCArICdweCcgXHJcbiAgICAgICAgICB3cmFwcGVyUmVmLmN1cnJlbnQuc3R5bGUub3BhY2l0eSA9ICcwJ1xyXG4gICAgICAgIH1cclxuICAgICAgfSwgMjAwKTtcclxuICAgIH1cclxuICB9XHJcblxyXG4gIGNvbnN0IG9uQ2xpY2tOYXZpZ2F0ZUhhbmRsZXIgPSAoKSA9PiB7XHJcbiAgICByb3V0ZXIucHVzaChgL2Jvb2tzLyR7Ym9va0RhdGEuYm9va0lkfWApXHJcbiAgfVxyXG5cclxuICByZXR1cm4gKFxyXG4gICAgPGRpdlxyXG4gICAgICBvbk1vdXNlTGVhdmU9e21vZGFsSGFuZGxlcn1cclxuICAgICAgLy8gb25XaGVlbENhcHR1cmU9e29uV2hlZWxIYW5kbGVyfVxyXG4gICAgICBcclxuICAgICAgcmVmPXt3cmFwcGVyUmVmfVxyXG4gICAgICBjc3M9e3dyYXBwZXJDU1Moe1xyXG4gICAgICAgIG1vZGFsVG9nZ2xlcjogY29udGVudFRvZ2dsZXIsXHJcbiAgICAgICAgcGFyZW50UmVmOiBwYXJlbnRSZWYsXHJcbiAgICAgICAgd3JhcHBlclJlZjogd3JhcHBlclJlZixcclxuICAgICAgICB3aWR0aFZhbHVlOiBtb2RhbExheW91dC53aWR0aFZhbHVlLFxyXG4gICAgICAgIGhlaWdodFZhbHVlOiBtb2RhbExheW91dC5oZWlnaHRWYWx1ZSxcclxuICAgICAgfSl9XHJcbiAgICA+XHJcbiAgICAgIDxkaXZcclxuICAgICAgICBjc3M9e2lubmVyV3JhcHBlckNTUyh7XHJcbiAgICAgICAgICBtb2RhbFRvZ2dsZXI6IG1vZGFsVG9nZ2xlcixcclxuICAgICAgICAgIGNvbnRlbnRUb2dnbGVyOiBjb250ZW50VG9nZ2xlcixcclxuICAgICAgICAgIGlzT3BlbmVkOiBpc09wZW5lZCxcclxuICAgICAgICB9KX1cclxuICAgICAgPlxyXG4gICAgICAgIDxkaXYgY3NzPXtiYWNrZ3JvdW5kQ1NTKHsgaW1nVXJsOiBib29rRGF0YS50aHVtYm5haWwgfSl9PjwvZGl2PlxyXG4gICAgICAgIDxkaXYgY3NzPXtpbWFnZVdyYXBwZXJDU1N9PlxyXG4gICAgICAgICAgPGltZ1xyXG4gICAgICAgICAgICBzcmM9e2Jvb2tEYXRhICYmIGJvb2tEYXRhLnRodW1ibmFpbH1cclxuICAgICAgICAgICAgYWx0PXtib29rRGF0YSAmJiBib29rRGF0YS50aXRsZX1cclxuICAgICAgICAgICAgY3NzPXtpbWFnZUNTUyh7XHJcbiAgICAgICAgICAgICAgbW9kYWxUb2dnbGVyOiBjb250ZW50VG9nZ2xlcixcclxuICAgICAgICAgICAgICBpc0Nsb3Npbmc6IGlzQ2xvc2luZyxcclxuICAgICAgICAgICAgICBpbWdIZWlnaHQ6IGltZ0hlaWdodCxcclxuICAgICAgICAgICAgICBpbWdNaW5IZWlnaHQ6IGltZ01pbkhlaWdodCxcclxuICAgICAgICAgICAgfSl9XHJcbiAgICAgICAgICAvPlxyXG4gICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICA8ZGl2IGNzcz17c3BhY2VEaXZDU1N9PjwvZGl2PlxyXG4gICAgICAgIDxkaXYgY3NzPXtjb250ZW50RGl2Q1NTfT5cclxuICAgICAgICAgIDxkaXY+XHJcbiAgICAgICAgICAgIDxkaXYgY3NzPXt0aXRsZUNTU30+e2Jvb2tEYXRhLnRpdGxlfTwvZGl2PlxyXG4gICAgICAgICAgICA8ZGl2IGNzcz17ZGF0ZUNTU30+e2Jvb2tEYXRhLnJlZ2lzdH08L2Rpdj5cclxuICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgXHJcbiAgICAgICAgICA8ZGl2IGNzcz17Y3NzYGRpc3BsYXk6ZmxleDsganVzdGlmeS1jb250ZW50OnNwYWNlLWJldHdlZW47YH0+XHJcbiAgICAgICAgICAgIDxkaXY+PC9kaXY+XHJcbiAgICAgICAgICAgIDxCc0ZpbGxBcnJvd1VwQ2lyY2xlRmlsbCBjc3M9e2ljb25zfSBvbkNsaWNrPXtvbkNsaWNrTmF2aWdhdGVIYW5kbGVyfSAvPlxyXG4gICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICBcclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgPC9kaXY+XHJcbiAgICA8L2Rpdj5cclxuICApO1xyXG59O1xyXG5cclxuaW50ZXJmYWNlIHdyYXBwZXJDU1NQcm9wcyB7XHJcbiAgbW9kYWxUb2dnbGVyOiBib29sZWFuO1xyXG4gIHBhcmVudFJlZjogYW55O1xyXG4gIHdyYXBwZXJSZWY6IGFueTtcclxuICB3aWR0aFZhbHVlOiBudW1iZXI7XHJcbiAgaGVpZ2h0VmFsdWU6IG51bWJlcjtcclxufVxyXG5cclxuY29uc3Qgd3JhcHBlckNTUyA9ICh7XHJcbiAgbW9kYWxUb2dnbGVyLFxyXG4gIHBhcmVudFJlZixcclxuICB3cmFwcGVyUmVmLFxyXG4gIHdpZHRoVmFsdWUsXHJcbiAgaGVpZ2h0VmFsdWUsXHJcbn06IHdyYXBwZXJDU1NQcm9wcykgPT4ge1xyXG4gIGNvbnN0IGlzTGVmdEVkZ2UgPVxyXG4gICAgKHdpZHRoVmFsdWUgLSBwYXJlbnRSZWY/LmN1cnJlbnQ/LmNsaWVudFdpZHRoKSAvIDIgPj1cclxuICAgIHBhcmVudFJlZj8uY3VycmVudD8uZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCkubGVmdDtcclxuICBjb25zdCBpc1JpZ2h0RWRnZSA9XHJcbiAgICBwYXJlbnRSZWY/LmN1cnJlbnQ/LmdldEJvdW5kaW5nQ2xpZW50UmVjdCgpLmxlZnQgK1xyXG4gICAgICAod2lkdGhWYWx1ZSAtICh3aWR0aFZhbHVlIC0gcGFyZW50UmVmPy5jdXJyZW50Py5jbGllbnRXaWR0aCkgLyAyKSA+PVxyXG4gICAgZG9jdW1lbnQuYm9keS5vZmZzZXRXaWR0aDtcclxuXHJcbiAgY29uc3QgbGVmdFN0YW5kYXJkID0gYGxlZnQ6ICR7XHJcbiAgICBtb2RhbFRvZ2dsZXIgJiYgaXNMZWZ0RWRnZSA9PT0gdHJ1ZVxyXG4gICAgICA/IFwiNDJcIlxyXG4gICAgICA6IHBhcmVudFJlZj8uY3VycmVudD8uZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCkubGVmdCAtXHJcbiAgICAgICAgKHdpZHRoVmFsdWUgLSBwYXJlbnRSZWY/LmN1cnJlbnQ/LmNsaWVudFdpZHRoKSAvIDJcclxuICB9cHg7YDsgLy8gcGFyZW50UmVmPy5jdXJyZW50Py5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKS5sZWZ0XHJcbiAgY29uc3QgcmlnaHRTdGFuZGFyZCA9IGBsZWZ0OiAke1xyXG4gICAgbW9kYWxUb2dnbGVyICYmIGlzUmlnaHRFZGdlID09PSB0cnVlXHJcbiAgICAgID8gZG9jdW1lbnQuYm9keS5vZmZzZXRXaWR0aCAtIHdpZHRoVmFsdWUgLSA0MlxyXG4gICAgICA6IHBhcmVudFJlZj8uY3VycmVudD8uZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCkubGVmdFxyXG4gIH1weGA7XHJcblxyXG4gIGNvbnN0IGFjdGl2YXRlZCA9IGlzUmlnaHRFZGdlID09PSB0cnVlID8gcmlnaHRTdGFuZGFyZCA6IGxlZnRTdGFuZGFyZDtcclxuXHJcbiAgcmV0dXJuIGNzc2BcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHotaW5kZXg6IDk5OTk5OTtcclxuICAgIHRyYW5zaXRpb24tcHJvcGVydHk6IHdpZHRoIGhlaWdodDtcclxuICAgIHdpbGwtY2hhbmdlOiB3aWR0aCBoZWlnaHQgbGVmdCB0b3Agb3BhY2l0eSB0cmFuc2Zvcm07XHJcbiAgICB0cmFuc2l0aW9uLWR1cmF0aW9uOiAwLjNzO1xyXG4gICAgLyogdHJhbnNpdGlvbi10aW1pbmctZnVuY3Rpb246IGVhc2UtaW47ICovXHJcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG5cclxuICAgIHRvcDogJHttb2RhbFRvZ2dsZXJcclxuICAgICAgPyBwYXJlbnRSZWY/LmN1cnJlbnQ/LmdldEJvdW5kaW5nQ2xpZW50UmVjdCgpLnRvcCAtXHJcbiAgICAgICAgKGhlaWdodFZhbHVlIC0gcGFyZW50UmVmPy5jdXJyZW50Py5jbGllbnRIZWlnaHQpIC8gMlxyXG4gICAgICA6IHBhcmVudFJlZj8uY3VycmVudD8uZ2V0Qm91bmRpbmdDbGllbnRSZWN0KCkudG9wfXB4O1xyXG4gICAgd2lkdGg6ICR7bW9kYWxUb2dnbGVyXHJcbiAgICAgID8gYCR7d2lkdGhWYWx1ZX1weGBcclxuICAgICAgOiBgJHtwYXJlbnRSZWY/LmN1cnJlbnQ/LmNsaWVudFdpZHRofXB4YH07XHJcbiAgICBoZWlnaHQ6ICR7bW9kYWxUb2dnbGVyXHJcbiAgICAgID8gYCR7aGVpZ2h0VmFsdWV9cHhgXHJcbiAgICAgIDogYCR7cGFyZW50UmVmPy5jdXJyZW50Py5jbGllbnRIZWlnaHR9cHhgfTtcclxuICAgICR7bW9kYWxUb2dnbGVyID8gYWN0aXZhdGVkIDogYGxlZnQ6ICR7cGFyZW50UmVmPy5jdXJyZW50Py5nZXRCb3VuZGluZ0NsaWVudFJlY3QoKS5sZWZ0fXB4YH07XHJcbiAgICAke21vZGFsVG9nZ2xlciA/IGBwb2ludGVyLWV2ZW50czogYXV0b2AgOiBgcG9pbnRlci1ldmVudHM6IG5vbmVgfTtcclxuICAgIC8qIGJhY2tncm91bmQtY29sb3I6IHdoaXRlOyAqL1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6ICR7bW9kYWxUb2dnbGVyXHJcbiAgICAgID8gY3NzYHZhcigtLWJhY2stY29sb3ItMilgXHJcbiAgICAgIDogYHJnYmEoMCwwLDAsMClgfTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbiAgICBib3gtc2hhZG93OiAwcHggMHB4IDEwcHggMXB4IHJnYmEoMCwgMCwgMCwgMC4yKTtcclxuICBgO1xyXG59O1xyXG5cclxuaW50ZXJmYWNlIGlubmVyV3JhcHBlckNTU1Byb3BzIHtcclxuICBtb2RhbFRvZ2dsZXI6IGJvb2xlYW47XHJcbiAgY29udGVudFRvZ2dsZXI6IGJvb2xlYW47XHJcbiAgaXNPcGVuZWQ6IGJvb2xlYW47XHJcbn1cclxuXHJcbmNvbnN0IGlubmVyV3JhcHBlckNTUyA9ICh7XHJcbiAgbW9kYWxUb2dnbGVyLFxyXG4gIGNvbnRlbnRUb2dnbGVyLFxyXG4gIGlzT3BlbmVkLFxyXG59OiBpbm5lcldyYXBwZXJDU1NQcm9wcykgPT4ge1xyXG4gIHJldHVybiBjc3NgXHJcbiAgICBvcGFjaXR5OiAke2NvbnRlbnRUb2dnbGVyID8gXCIyNTVcIiA6IGlzT3BlbmVkID8gXCIyNTVcIiA6IFwiMFwifTtcclxuICAgIGhlaWdodDogMTAwJTtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGA7XHJcbn07XHJcblxyXG5pbnRlcmZhY2UgYmFja2dyb3VuZENTU1Byb3BzIHtcclxuICBpbWdVcmw6IHN0cmluZztcclxufVxyXG5cclxuY29uc3QgYmFja2dyb3VuZENTUyA9ICh7IGltZ1VybCB9OiBiYWNrZ3JvdW5kQ1NTUHJvcHMpID0+IHtcclxuICByZXR1cm4gY3NzYFxyXG4gICAgd2lkdGg6IDExMCU7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBsZWZ0OiAtNSU7XHJcbiAgICB0b3A6IC01JTtcclxuICAgIGhlaWdodDogMzUwcHg7XHJcbiAgICBiYWNrZ3JvdW5kOiBuby1yZXBlYXQgdXJsKFwiJHtpbWdVcmx9XCIpIDAgLyBjb3ZlcjtcclxuICAgIGZpbHRlcjogYmx1cigxMHB4KTtcclxuICAgIC13ZWJraXQtZmlsdGVyOiBibHVyKDEwcHgpO1xyXG4gICAgcG9pbnRlci1ldmVudHM6IG5vbmU7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgYDtcclxufTtcclxuXHJcbmNvbnN0IGltYWdlV3JhcHBlckNTUyA9IGNzc2BcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDM1MHB4O1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudChyZ2JhKDAsIDAsIDAsIDApLCB2YXIoLS1iYWNrLWNvbG9yLTIpKTtcclxuICBwb2ludGVyLWV2ZW50czogbm9uZTtcclxuYDtcclxuXHJcbmludGVyZmFjZSBpbWFnZUNTU1Byb3BzIHtcclxuICBtb2RhbFRvZ2dsZXI6IGJvb2xlYW47XHJcbiAgaXNDbG9zaW5nOiBib29sZWFuO1xyXG4gIGltZ0hlaWdodDogc3RyaW5nIHwgdW5kZWZpbmVkO1xyXG4gIGltZ01pbkhlaWdodDogc3RyaW5nIHwgdW5kZWZpbmVkO1xyXG59XHJcblxyXG5jb25zdCBpbWFnZUNTUyA9ICh7IG1vZGFsVG9nZ2xlciwgaXNDbG9zaW5nLCBpbWdIZWlnaHQsIGltZ01pbkhlaWdodCB9OiBpbWFnZUNTU1Byb3BzKSA9PiB7XHJcbiAgcmV0dXJuIGNzc2BcclxuICAgIHdpbGwtY2hhbmdlOiB3aWR0aCBoZWlnaHQgdHJhbnNmb3JtO1xyXG4gICAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogd2lkdGggaGVpZ2h0IG9wYWNpdHkgdHJhbnNmb3JtO1xyXG4gICAgdHJhbnNpdGlvbi1kdXJhdGlvbjogMC4zcztcclxuICAgICR7bW9kYWxUb2dnbGVyID8gYHRyYW5zZm9ybTogc2NhbGUoMS4wKWAgOiAoaXNDbG9zaW5nID8gYHRyYW5zZm9ybTogc2NhbGUoMS4wKWAgOiBgdHJhbnNmb3JtOiBzY2FsZSgxLjEpYCl9O1xyXG4gICAgYm94LXNoYWRvdzogMHB4IDBweCAxMHB4IDFweCByZ2JhKDAsIDAsIDAsIDAuNSk7XHJcbiAgICB3aWR0aDogYXV0bztcclxuICAgIGhlaWdodDogJHttb2RhbFRvZ2dsZXIgPyBcIjM1MHB4XCIgOiBpbWdIZWlnaHR9O1xyXG4gICAgbWluLWhlaWdodDogJHtpbWdNaW5IZWlnaHR9O1xyXG4gIGA7XHJcbn07XHJcblxyXG5jb25zdCBzcGFjZURpdkNTUyA9IGNzc2BcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDM1MHB4O1xyXG5gO1xyXG5cclxuY29uc3QgY29udGVudERpdkNTUyA9IGNzc2BcclxuICBmbGV4OiAxIDAgYXV0bztcclxuICBwYWRkaW5nOiAyNHB4O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbmA7XHJcblxyXG5jb25zdCB0aXRsZUNTUyA9IGNzc2BcclxuICBmb250LXNpemU6IDIwcHg7XHJcbiAgY29sb3I6IHZhcigtLXRleHQtY29sb3IpO1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgdGV4dC1vdmVyZmxvdzogZWxsaXBzaXM7XHJcbiAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcclxuYDtcclxuXHJcbmNvbnN0IGRhdGVDU1MgPSBjc3NgXHJcbiAgZm9udC1zaXplOiAxM3B4O1xyXG4gIG1hcmdpbi10b3A6IDhweDtcclxuICBjb2xvcjogdmFyKC0tdGV4dC1jb2xvci00KTtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xyXG4gIHdoaXRlLXNwYWNlOiBub3dyYXA7XHJcbmA7XHJcblxyXG5jb25zdCBpY29ucyA9IGNzc2BcclxuICAvKiBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTsgKi9cclxuICBjb2xvcjogdmFyKC0tdGV4dC1jb2xvci00KTtcclxuICB3aWR0aDogNTJweDtcclxuICBoZWlnaHQ6IDUycHg7XHJcbmBcclxuXHJcblxyXG5leHBvcnQgZGVmYXVsdCBCb29rQ2FyZE1vZGFsO1xyXG4iXSwibmFtZXMiOlsiY3NzIiwidXNlRWZmZWN0IiwidXNlUmVmIiwidXNlU3RhdGUiLCJCc0ZpbGxBcnJvd1VwQ2lyY2xlRmlsbCIsInVzZVJvdXRlciIsIkJvb2tDYXJkTW9kYWwiLCJtb2RhbFRvZ2dsZXIiLCJpc01vdXNlT24iLCJzZXRNb2RhbFRvZ2dsZXIiLCJib29rRGF0YSIsInBhcmVudFJlZiIsImltZ0hlaWdodCIsImltZ01pbkhlaWdodCIsIndyYXBwZXJSZWYiLCJjb250ZW50VG9nZ2xlciIsInNldENvbnRlbnRUb2dnbGVyIiwiaXNPcGVuZWQiLCJzZXRpc09wZW5lZCIsImlzQ2xvc2luZyIsInNldElzQ2xvc2luZyIsInJvdXRlciIsIm1vZGFsTGF5b3V0Iiwid2lkdGhWYWx1ZSIsImhlaWdodFZhbHVlIiwid2luZG93IiwiYWRkRXZlbnRMaXN0ZW5lciIsIm9uV2hlZWxIYW5kbGVyIiwicmVtb3ZlRXZlbnRMaXN0ZW5lciIsIm1vZGFsSGFuZGxlciIsInNldFRpbWVvdXQiLCJjdXJyZW50Iiwic3R5bGUiLCJvcGFjaXR5Iiwid2lkdGgiLCJjbGllbnRXaWR0aCIsImhlaWdodCIsImNsaWVudEhlaWdodCIsImxlZnQiLCJnZXRCb3VuZGluZ0NsaWVudFJlY3QiLCJ0b3AiLCJvbkNsaWNrTmF2aWdhdGVIYW5kbGVyIiwicHVzaCIsImJvb2tJZCIsImRpdiIsIm9uTW91c2VMZWF2ZSIsInJlZiIsIndyYXBwZXJDU1MiLCJpbm5lcldyYXBwZXJDU1MiLCJiYWNrZ3JvdW5kQ1NTIiwiaW1nVXJsIiwidGh1bWJuYWlsIiwiaW1hZ2VXcmFwcGVyQ1NTIiwiaW1nIiwic3JjIiwiYWx0IiwidGl0bGUiLCJpbWFnZUNTUyIsInNwYWNlRGl2Q1NTIiwiY29udGVudERpdkNTUyIsInRpdGxlQ1NTIiwiZGF0ZUNTUyIsInJlZ2lzdCIsImljb25zIiwib25DbGljayIsImlzTGVmdEVkZ2UiLCJpc1JpZ2h0RWRnZSIsImRvY3VtZW50IiwiYm9keSIsIm9mZnNldFdpZHRoIiwibGVmdFN0YW5kYXJkIiwicmlnaHRTdGFuZGFyZCIsImFjdGl2YXRlZCJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/components/bookCardModal/BookCardModal.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/bookTab/HighlightedCarousel/HighlightedCarousel.tsx":
+/*!****************************************************************************!*\
+  !*** ./src/components/bookTab/HighlightedCarousel/HighlightedCarousel.tsx ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_UI_BookCard_BookCard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/UI/BookCard/BookCard */ \"./src/components/UI/BookCard/BookCard.tsx\");\n/* harmony import */ var react_easy_swipe__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-easy-swipe */ \"react-easy-swipe\");\n/* harmony import */ var react_easy_swipe__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_easy_swipe__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/Responsive/useIsResponsive */ \"./src/components/Responsive/useIsResponsive.ts\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! lodash */ \"lodash\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_6__);\n/** @jsxImportSource @emotion/react */ \n\n\n\n\n\n\nconst HighlightedCarousel = ({ bookData , windowWrapperRef  })=>{\n    const [bookDataList, setBookDataList] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([\n        ...bookData\n    ]);\n    const [currentIdx, setCurrentIdx] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);\n    const dummyNormalRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);\n    // const wrapperRef = useRef<any>([]);\n    const carouselWrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);\n    const dummyHighlightedRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);\n    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_5__.useIsResponsive)();\n    const cardLayout = {\n        widthValue: 13,\n        heightValue: 19,\n        highlightedWidthValue: 17,\n        highlightedHeightValue: 25,\n        spaceValue: 5,\n        unit: \"vw\",\n        // min 관련 값들의 단위는 px\n        minWidthValue: 150,\n        minHeightValue: 225,\n        minHighlightedWidthValue: 210,\n        minHighlightedHeightValue: 280,\n        minSpaceValue: 24\n    };\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        if (bookDataList[0].title !== bookDataList[bookDataList.length - 5].title) {\n            const temp = bookDataList.concat(bookDataList.slice(0, 5));\n            setBookDataList(()=>temp);\n        }\n    // console.log(bookDataList);\n    // console.log(temp);\n    }, []);\n    // const handleResize = () => {\n    //   if (carouselWrapperRef.current !== null) {\n    //     const calcLeft =\n    //     carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth\n    //       ? -(\n    //           carouselWrapperRef.current.clientWidth - windowWrapperRef?.current?.offsetWidth\n    //         ) / 2 + \"px\" : \"0px\";\n    //     carouselWrapperRef.current.style.left = calcLeft\n    //   }\n    // }\n    const handleResize = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>(0,lodash__WEBPACK_IMPORTED_MODULE_6__.throttle)((event)=>{\n            if (carouselWrapperRef.current !== null) {\n                const calcLeft = carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth ? -(carouselWrapperRef.current.clientWidth - windowWrapperRef?.current?.offsetWidth) / 2 + \"px\" : \"0px\";\n                carouselWrapperRef.current.style.left = calcLeft;\n            }\n        }, 300), []);\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        window.addEventListener(\"resize\", handleResize);\n        return ()=>{\n            window.removeEventListener(\"resize\", handleResize);\n        };\n    }, []);\n    const prevBtnHandler = ()=>{\n        if (currentIdx > 0) {\n            setCurrentIdx((prev)=>prev - 1);\n        } else {\n            setCurrentIdx(()=>bookDataList.length - 6);\n        }\n    };\n    const nextBtnHandler = ()=>{\n        if (currentIdx < bookDataList.length - 6) {\n            setCurrentIdx((prev)=>prev + 1);\n        } else {\n            setCurrentIdx(()=>0);\n        }\n    };\n    const renderBooks = bookDataList.slice(currentIdx, currentIdx + 5).map((el, idx)=>{\n        return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n            css: imgWrapperCSS({\n                idx,\n                widthValue: cardLayout.widthValue,\n                heightValue: cardLayout.heightValue,\n                unit: cardLayout.unit,\n                highlightedWidthValue: cardLayout.highlightedWidthValue,\n                highlightedHeightValue: cardLayout.highlightedHeightValue,\n                spaceValue: cardLayout.spaceValue,\n                normalRef: dummyNormalRef,\n                minWidthValue: cardLayout.minWidthValue,\n                minHeightValue: cardLayout.minHeightValue,\n                minHighlightedWidthValue: cardLayout.minHighlightedWidthValue,\n                minHighlightedHeightValue: cardLayout.minHighlightedHeightValue,\n                minSpaceValue: cardLayout.minSpaceValue\n            }),\n            children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_UI_BookCard_BookCard__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n                bookData: el,\n                showPlatform: true\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n                lineNumber: 129,\n                columnNumber: 11\n            }, undefined)\n        }, el.title, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n            lineNumber: 108,\n            columnNumber: 9\n        }, undefined);\n    });\n    const [positionx, setPositionx] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);\n    const onSwipeMove = (position = {\n        x: 0\n    })=>{\n        setPositionx(()=>position.x);\n    };\n    const onSwipeEnd = ()=>{\n        console.log(positionx);\n        if (positionx > 40) {\n            prevBtnHandler();\n        }\n        if (positionx < -40) {\n            nextBtnHandler();\n        }\n        setPositionx(()=>0);\n    };\n    const indicatorBtn = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: prevBtnCSS,\n                onClick: prevBtnHandler,\n                children: \"〈\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n                lineNumber: 159,\n                columnNumber: 7\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: nextBtnCSS,\n                onClick: nextBtnHandler,\n                children: \"〉\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n                lineNumber: 162,\n                columnNumber: 7\n            }, undefined)\n        ]\n    }, void 0, true);\n    return(// <div css={carouselOuterWrapperCSS({highlightedHeightValue: cardLayout.highlightedHeightValue, unit: cardLayout.unit, minHighlightedHeightValue: cardLayout.minHighlightedHeightValue, highlightedRef: dummyHighlightedRef})}></div>\n    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        className: \"carousel-outer-wrapper\",\n        css: carouselOuterWrapperCSS,\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: highlightedDecoratorCSS({\n                    highlightedHeightValue: cardLayout.highlightedHeightValue,\n                    minHighlightedHeightValue: cardLayout.minHighlightedHeightValue,\n                    unit: cardLayout.unit,\n                    highlightedRef: dummyHighlightedRef,\n                    carouselWrapperRef: carouselWrapperRef\n                })\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n                lineNumber: 171,\n                columnNumber: 7\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((react_easy_swipe__WEBPACK_IMPORTED_MODULE_4___default()), {\n                onSwipeStart: (event)=>{\n                    event.stopPropagation();\n                },\n                // onSwipeEnd={onSwipeEnd}\n                onSwipeMove: onSwipeMove,\n                onSwipeEnd: onSwipeEnd,\n                children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    children: [\n                        isMobile === false && indicatorBtn,\n                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            ref: carouselWrapperRef,\n                            className: \"carousel-inner-wrapper\",\n                            css: carouselInnerWrapperCSS({\n                                widthValue: cardLayout.widthValue,\n                                unit: cardLayout.unit,\n                                highlightedWidthValue: cardLayout.highlightedWidthValue,\n                                minWidthValue: cardLayout.minWidthValue,\n                                minHighlightedWidthValue: cardLayout.minHighlightedWidthValue,\n                                spaceValue: cardLayout.spaceValue,\n                                minSpaceValue: cardLayout.minSpaceValue,\n                                normalRef: dummyNormalRef,\n                                carouselWrapperRef: carouselWrapperRef,\n                                windowWrapperRef: windowWrapperRef\n                            }),\n                            children: renderBooks\n                        }, void 0, false, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n                            lineNumber: 201,\n                            columnNumber: 11\n                        }, undefined),\n                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            css: dummyWrapper,\n                            children: [\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                    className: \"dummy-normal\",\n                                    ref: dummyNormalRef,\n                                    css: dummyNormalCSS({\n                                        widthValue: cardLayout.widthValue,\n                                        heightValue: cardLayout.heightValue,\n                                        unit: cardLayout.unit\n                                    })\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n                                    lineNumber: 222,\n                                    columnNumber: 13\n                                }, undefined),\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                    className: \"dummy-highlighted\",\n                                    ref: dummyHighlightedRef,\n                                    css: dummyHighlightedCSS({\n                                        highlightedWidthValue: cardLayout.highlightedWidthValue,\n                                        highlightedHeightValue: cardLayout.highlightedHeightValue,\n                                        unit: cardLayout.unit\n                                    })\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n                                    lineNumber: 231,\n                                    columnNumber: 13\n                                }, undefined),\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                    className: \"dummy-min-highlighted\",\n                                    css: dummyMinHighlightedCSS({\n                                        minHighlightedHeightValue: cardLayout.minHighlightedHeightValue\n                                    })\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n                                    lineNumber: 240,\n                                    columnNumber: 13\n                                }, undefined)\n                            ]\n                        }, void 0, true, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n                            lineNumber: 221,\n                            columnNumber: 11\n                        }, undefined)\n                    ]\n                }, void 0, true, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n                    lineNumber: 188,\n                    columnNumber: 9\n                }, undefined)\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n                lineNumber: 180,\n                columnNumber: 7\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\HighlightedCarousel\\\\HighlightedCarousel.tsx\",\n        lineNumber: 170,\n        columnNumber: 5\n    }, undefined));\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (HighlightedCarousel);\n// interface carouselOuterWrapperCSSProps {\n//     highlightedHeightValue: number;\n//     unit: string;\n//     minHighlightedHeightValue: number;\n//     highlightedRef: any;\n// }\n// const carouselOuterWrapperCSS = ({highlightedHeightValue, unit, minHighlightedHeightValue, highlightedRef}: carouselOuterWrapperCSSProps) => {\n//     const calcHeight = highlightedRef?.current?.clientHeight < minHighlightedHeightValue ? minHighlightedHeightValue + 'px' : highlightedHeightValue + unit\n//     return css`\n//         width: 100%;\n//         height: ${calcHeight};\n//         margin: 0 auto;\n//         display:flex;\n//         justify-content: center;\n//     `\n// }\nconst carouselOuterWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  margin: 0 auto;\r\n  /* display:flex;\r\n        justify-content: center; */\r\n  display: grid;\r\n  place-items: center;\r\n  position: relative;\r\n`;\nconst imgWrapperCSS = ({ idx , widthValue , heightValue , unit , highlightedWidthValue , highlightedHeightValue , spaceValue , normalRef , minWidthValue , minHeightValue , minHighlightedWidthValue , minHighlightedHeightValue , minSpaceValue  })=>{\n    const calcWidth = normalRef?.current?.clientWidth < minWidthValue ? (idx === 2 ? minHighlightedWidthValue : minWidthValue) + \"px\" : (idx === 2 ? highlightedWidthValue : widthValue) + unit;\n    const calcHeight = normalRef?.current?.clientHeight < minHeightValue ? (idx === 2 ? minHighlightedHeightValue : minHeightValue) + \"px\" : (idx === 2 ? highlightedHeightValue : heightValue) + unit;\n    const calcLeft = normalRef?.current?.clientWidth < minWidthValue ? (idx > 2 ? idx * (minWidthValue + minSpaceValue) + (minHighlightedWidthValue - minWidthValue) : idx * (minWidthValue + minSpaceValue)) + \"px\" : (idx > 2 ? idx * (widthValue + spaceValue) + (highlightedWidthValue - widthValue) : idx * (widthValue + spaceValue)) + unit;\n    const calcTop = normalRef?.current?.clientWidth < minWidthValue ? (idx !== 2 ? (minHighlightedHeightValue - minHeightValue) / 2 : 0) + \"px\" : (idx !== 2 ? (highlightedHeightValue - heightValue) / 2 : 0) + unit;\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    transition-property: left top width height;\r\n    transition-duration: 0.3s;\r\n    position: absolute;\r\n    left: ${calcLeft};\r\n    top: ${calcTop};\r\n    /* left: ${(idx > 2 ? idx * (widthValue + spaceValue) + (highlightedWidthValue - widthValue) : idx * (widthValue + spaceValue)) + unit}; */\r\n    /* top: ${(idx === 2 ? -(highlightedHeightValue - heightValue) / 2 : 0) + unit}; */\r\n    width: ${calcWidth};\r\n    height: ${calcHeight};\r\n    visibility: ${idx < 5 ? \"visible\" : \"hidden\"};\r\n    overflow: hidden;\r\n  `;\n};\n// const imgWrapperCSS = ({idx, widthValue, heightValue, unit, highlightedWidthValue, highlightedHeightValue, spaceValue}: imgCSSProps) => {\n//     return css`\n//         transition-property: left top width height;\n//         transition-duration: 0.3s;\n//         position: absolute;\n//         left: ${(idx > 2 ? (idx * (widthValue + spaceValue) + (highlightedWidthValue - widthValue)) : idx * (widthValue + spaceValue)) + unit};\n//         top: ${(idx === 2 ? -(highlightedHeightValue - heightValue) / 2 : 0) + unit};\n//         width: ${(idx === 2 ? highlightedWidthValue : widthValue) + unit};\n//         height: ${(idx === 2 ? highlightedHeightValue : heightValue) + unit};\n//         visibility: ${idx < 5 ? 'visible' : 'hidden'};\n//         overflow: hidden;\n//     `\n// }\n// interface imgCSSProps {\n//     idx: number;\n//     widthValue: number;\n//     heightValue: number;\n//     unit: string;\n//     highlightedWidthValue: number;\n//     highlightedHeightValue: number;\n//     spaceValue: number;\n//     normalRef: any;\n//     highlightedRef: any;\n//     minWidthValue: number;\n//     minHeightValue: number;\n//     minHighlightedWidthValue: number;\n//     minHighlightedHeightValue: number;\n//     minSpaceValue: number;\n// }\n// const imgCSS = ({idx, widthValue, unit, highlightedWidthValue, spaceValue}: imgCSSProps) => {\n//     return css`\n//         /* width: ${(idx === 2 ? highlightedWidthValue : widthValue) + unit};\n//         height: auto; */\n//         width: 100%;\n//         height: auto;\n//     `\n// }\nconst imgCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  height: auto;\r\n`;\nconst carouselInnerWrapperCSS = ({ widthValue , unit , highlightedWidthValue , spaceValue , minSpaceValue , minWidthValue , minHighlightedWidthValue , normalRef , carouselWrapperRef , windowWrapperRef  })=>{\n    const calcWidth = normalRef?.current?.clientWidth < minWidthValue ? (minWidthValue + minSpaceValue) * 4 + minHighlightedWidthValue + \"px\" : (widthValue + spaceValue) * 4 + highlightedWidthValue + unit;\n    const calcLeft = carouselWrapperRef?.current?.clientWidth > windowWrapperRef?.current?.offsetWidth ? -(carouselWrapperRef?.current?.clientWidth - windowWrapperRef?.current?.offsetWidth) / 2 + \"px\" : \"0px\";\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: ${calcWidth};\r\n    /* left: ${calcLeft}; */\r\n    position: relative;\r\n    display: flex;\r\n  `;\n};\nconst dummyNormalCSS = ({ widthValue , heightValue , unit  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: ${widthValue + unit};\r\n    height: ${heightValue + unit};\r\n    pointer-events: none;\r\n    /* display: none; */\r\n  `;\n};\nconst dummyHighlightedCSS = ({ highlightedWidthValue , highlightedHeightValue , unit  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: ${highlightedWidthValue + unit};\r\n    height: ${highlightedHeightValue + unit};\r\n    pointer-events: none;\r\n    /* display: none; */\r\n  `;\n};\nconst prevBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  z-index: 9;\r\n  position: absolute;\r\n  left: 0;\r\n  height: 100%;\r\n  display: flex;\r\n  align-items: center;\r\n  font-size: 48px;\r\n  font-weight: 700;\r\n  padding-left: 8px;\r\n  padding-right: 8px;\r\n  color: var(--text-color);\r\n  transition-property: font-size;\r\n  transition-duration: 0.2s;\r\n  cursor: pointer;\r\n  user-select: none;\r\n\r\n  &:hover {\r\n    font-size: 54px;\r\n  }\r\n`;\nconst nextBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  z-index: 9;\r\n  position: absolute;\r\n  right: 0;\r\n  height: 100%;\r\n  display: flex;\r\n  align-items: center;\r\n  font-size: 48px;\r\n  font-weight: 700;\r\n  padding-left: 8px;\r\n  padding-right: 8px;\r\n  color: var(--text-color);\r\n  transition-property: font-size;\r\n  transition-duration: 0.2s;\r\n  cursor: pointer;\r\n  user-select: none;\r\n\r\n  &:hover {\r\n    font-size: 54px;\r\n  }\r\n`;\nconst highlightedDecoratorCSS = ({ highlightedHeightValue , minHighlightedHeightValue , unit , highlightedRef  })=>{\n    const calcHeight = highlightedRef?.current?.clientHeight < minHighlightedHeightValue ? minHighlightedHeightValue + 48 + \"px\" : highlightedHeightValue + 5 + unit;\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: ${calcHeight};\r\n    height: ${calcHeight};\r\n    background-color: var(--border-color-2);\r\n    border-radius: 10000px;\r\n    position: absolute;\r\n  `;\n};\nconst dummyMinHighlightedCSS = ({ minHighlightedHeightValue  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 1px;\r\n    height: ${minHighlightedHeightValue}px;\r\n    pointer-events: none;\r\n  `;\n};\nconst dummyWrapper = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  display: flex;\r\n  justify-content: center;\r\n`;\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9ib29rVGFiL0hpZ2hsaWdodGVkQ2Fyb3VzZWwvSGlnaGxpZ2h0ZWRDYXJvdXNlbC50c3guanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7OztBQUFBLG9DQUFvQztBQUNNO0FBQ21CO0FBQ0o7QUFDcEI7QUFDcUM7QUFFeEM7QUFPbEMsTUFBTVMsc0JBQXNCLENBQUMsRUFBRUMsU0FBUSxFQUFFQyxpQkFBZ0IsRUFBdUIsR0FBSztJQUNuRixNQUFNLENBQUNDLGNBQWNDLGdCQUFnQixHQUFHWiwrQ0FBUUEsQ0FBb0I7V0FBSVM7S0FBUztJQUNqRixNQUFNLENBQUNJLFlBQVlDLGNBQWMsR0FBR2QsK0NBQVFBLENBQVM7SUFDckQsTUFBTWUsaUJBQWlCYiw2Q0FBTUEsQ0FBbUIsSUFBSTtJQUNwRCxzQ0FBc0M7SUFDdEMsTUFBTWMscUJBQXFCZCw2Q0FBTUEsQ0FBbUIsSUFBSTtJQUV4RCxNQUFNZSxzQkFBc0JmLDZDQUFNQSxDQUFtQixJQUFJO0lBQ3pELE1BQU0sQ0FBQ2dCLFdBQVdDLFVBQVVDLFNBQVMsR0FBR2QsdUZBQWVBO0lBRXZELE1BQU1lLGFBQWE7UUFDakJDLFlBQVk7UUFDWkMsYUFBYTtRQUNiQyx1QkFBdUI7UUFDdkJDLHdCQUF3QjtRQUN4QkMsWUFBWTtRQUNaQyxNQUFNO1FBRU4sb0JBQW9CO1FBQ3BCQyxlQUFlO1FBQ2ZDLGdCQUFnQjtRQUNoQkMsMEJBQTBCO1FBQzFCQywyQkFBMkI7UUFDM0JDLGVBQWU7SUFDakI7SUFFQS9CLGdEQUFTQSxDQUFDLElBQU07UUFDZCxJQUFJVSxZQUFZLENBQUMsRUFBRSxDQUFDc0IsS0FBSyxLQUFLdEIsWUFBWSxDQUFDQSxhQUFhdUIsTUFBTSxHQUFHLEVBQUUsQ0FBQ0QsS0FBSyxFQUFFO1lBQ3pFLE1BQU1FLE9BQU94QixhQUFheUIsTUFBTSxDQUFDekIsYUFBYTBCLEtBQUssQ0FBQyxHQUFHO1lBQ3ZEekIsZ0JBQWdCLElBQU11QjtRQUN4QixDQUFDO0lBRUQsNkJB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T0FBT2hDLCtDQUFHLENBQUM7O1lBRUQsRUFBRWdDLDBCQUEwQjs7RUFFdEMsQ0FBQztBQUNIO0FBRUEsTUFBTWlELGVBQWVqRiwrQ0FBRyxDQUFDOzs7QUFHekIsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2NsaWVudC8uL3NyYy9jb21wb25lbnRzL2Jvb2tUYWIvSGlnaGxpZ2h0ZWRDYXJvdXNlbC9IaWdobGlnaHRlZENhcm91c2VsLnRzeD9lMmNhIl0sInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4SW1wb3J0U291cmNlIEBlbW90aW9uL3JlYWN0ICovXHJcbmltcG9ydCB7IGpzeCwgY3NzIH0gZnJvbSBcIkBlbW90aW9uL3JlYWN0XCI7XHJcbmltcG9ydCB7IHVzZVN0YXRlLCB1c2VFZmZlY3QsIHVzZVJlZiwgdXNlTWVtbyB9IGZyb20gXCJyZWFjdFwiO1xyXG5pbXBvcnQgQm9va0NhcmQgZnJvbSBcIkAvY29tcG9uZW50cy9VSS9Cb29rQ2FyZC9Cb29rQ2FyZFwiO1xyXG5pbXBvcnQgU3dpcGUgZnJvbSBcInJlYWN0LWVhc3ktc3dpcGVcIjtcclxuaW1wb3J0IHsgdXNlSXNSZXNwb25zaXZlIH0gZnJvbSBcIkAvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzUmVzcG9uc2l2ZVwiO1xyXG5pbXBvcnQgeyBib29rQ29udGVudFR5cGUgfSBmcm9tIFwiQC90eXBlcy9ib29rc1wiO1xyXG5pbXBvcnQgeyB0aHJvdHRsZSB9IGZyb20gXCJsb2Rhc2hcIjtcclxuXHJcbmludGVyZmFjZSBIaWdobGlnaHRlZENhcm91c2VsIHtcclxuICBib29rRGF0YTogYm9va0NvbnRlbnRUeXBlW107XHJcbiAgd2luZG93V3JhcHBlclJlZjogYW55O1xyXG59XHJcblxyXG5jb25zdCBIaWdobGlnaHRlZENhcm91c2VsID0gKHsgYm9va0RhdGEsIHdpbmRvd1dyYXBwZXJSZWYgfTogSGlnaGxpZ2h0ZWRDYXJvdXNlbCkgPT4ge1xyXG4gIGNvbnN0IFtib29rRGF0YUxpc3QsIHNldEJvb2tEYXRhTGlzdF0gPSB1c2VTdGF0ZTxib29rQ29udGVudFR5cGVbXT4oWy4uLmJvb2tEYXRhXSk7XHJcbiAgY29uc3QgW2N1cnJlbnRJZHgsIHNldEN1cnJlbnRJZHhdID0gdXNlU3RhdGU8bnVtYmVyPigwKTtcclxuICBjb25zdCBkdW1teU5vcm1hbFJlZiA9IHVzZVJlZjxIVE1MSW5wdXRFbGVtZW50PihudWxsKTtcclxuICAvLyBjb25zdCB3cmFwcGVyUmVmID0gdXNlUmVmPGFueT4oW10pO1xyXG4gIGNvbnN0IGNhcm91c2VsV3JhcHBlclJlZiA9IHVzZVJlZjxIVE1MSW5wdXRFbGVtZW50PihudWxsKTtcclxuXHJcbiAgY29uc3QgZHVtbXlIaWdobGlnaHRlZFJlZiA9IHVzZVJlZjxIVE1MSW5wdXRFbGVtZW50PihudWxsKTtcclxuICBjb25zdCBbaXNEZXNrVG9wLCBpc1RhYmxldCwgaXNNb2JpbGVdID0gdXNlSXNSZXNwb25zaXZlKCk7XHJcblxyXG4gIGNvbnN0IGNhcmRMYXlvdXQgPSB7XHJcbiAgICB3aWR0aFZhbHVlOiAxMyxcclxuICAgIGhlaWdodFZhbHVlOiAxOSxcclxuICAgIGhpZ2hsaWdodGVkV2lkdGhWYWx1ZTogMTcsXHJcbiAgICBoaWdobGlnaHRlZEhlaWdodFZhbHVlOiAyNSxcclxuICAgIHNwYWNlVmFsdWU6IDUsXHJcbiAgICB1bml0OiBcInZ3XCIsXHJcblxyXG4gICAgLy8gbWluIOq0gOugqCDqsJLrk6TsnZgg64uo7JyE64qUIHB4XHJcbiAgICBtaW5XaWR0aFZhbHVlOiAxNTAsXHJcbiAgICBtaW5IZWlnaHRWYWx1ZTogMjI1LFxyXG4gICAgbWluSGlnaGxpZ2h0ZWRXaWR0aFZhbHVlOiAyMTAsXHJcbiAgICBtaW5IaWdobGlnaHRlZEhlaWdodFZhbHVlOiAyODAsXHJcbiAgICBtaW5TcGFjZVZhbHVlOiAyNCxcclxuICB9O1xyXG5cclxuICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgaWYgKGJvb2tEYXRhTGlzdFswXS50aXRsZSAhPT0gYm9va0RhdGFMaXN0W2Jvb2tEYXRhTGlzdC5sZW5ndGggLSA1XS50aXRsZSkge1xyXG4gICAgICBjb25zdCB0ZW1wID0gYm9va0RhdGFMaXN0LmNvbmNhdChib29rRGF0YUxpc3Quc2xpY2UoMCwgNSkpO1xyXG4gICAgICBzZXRCb29rRGF0YUxpc3QoKCkgPT4gdGVtcCk7XHJcbiAgICB9XHJcblxyXG4gICAgLy8gY29uc29sZS5sb2coYm9va0RhdGFMaXN0KTtcclxuICAgIC8vIGNvbnNvbGUubG9nKHRlbXApO1xyXG4gIH0sIFtdKTtcclxuXHJcblxyXG4gIC8vIGNvbnN0IGhhbmRsZVJlc2l6ZSA9ICgpID0+IHtcclxuICAvLyAgIGlmIChjYXJvdXNlbFdyYXBwZXJSZWYuY3VycmVudCAhPT0gbnVsbCkge1xyXG4gIC8vICAgICBjb25zdCBjYWxjTGVmdCA9XHJcbiAgLy8gICAgIGNhcm91c2VsV3JhcHBlclJlZi5jdXJyZW50LmNsaWVudFdpZHRoID4gd2luZG93V3JhcHBlclJlZj8uY3VycmVudD8ub2Zmc2V0V2lkdGhcclxuICAvLyAgICAgICA/IC0oXHJcbiAgLy8gICAgICAgICAgIGNhcm91c2VsV3JhcHBlclJlZi5jdXJyZW50LmNsaWVudFdpZHRoIC0gd2luZG93V3JhcHBlclJlZj8uY3VycmVudD8ub2Zmc2V0V2lkdGhcclxuICAvLyAgICAgICAgICkgLyAyICsgXCJweFwiIDogXCIwcHhcIjtcclxuICAvLyAgICAgY2Fyb3VzZWxXcmFwcGVyUmVmLmN1cnJlbnQuc3R5bGUubGVmdCA9IGNhbGNMZWZ0XHJcbiAgLy8gICB9XHJcbiAgLy8gfVxyXG5cclxuICBjb25zdCBoYW5kbGVSZXNpemUgPSB1c2VNZW1vKFxyXG4gICAgKCkgPT5cclxuICAgICAgICB0aHJvdHRsZSgoZXZlbnQpID0+IHtcclxuICAgICAgICAgIGlmIChjYXJvdXNlbFdyYXBwZXJSZWYuY3VycmVudCAhPT0gbnVsbCkge1xyXG4gICAgICAgICAgICBjb25zdCBjYWxjTGVmdCA9XHJcbiAgICAgICAgICAgIGNhcm91c2VsV3JhcHBlclJlZi5jdXJyZW50LmNsaWVudFdpZHRoID4gd2luZG93V3JhcHBlclJlZj8uY3VycmVudD8ub2Zmc2V0V2lkdGhcclxuICAgICAgICAgICAgICA/IC0oXHJcbiAgICAgICAgICAgICAgICAgIGNhcm91c2VsV3JhcHBlclJlZi5jdXJyZW50LmNsaWVudFdpZHRoIC0gd2luZG93V3JhcHBlclJlZj8uY3VycmVudD8ub2Zmc2V0V2lkdGhcclxuICAgICAgICAgICAgICAgICkgLyAyICsgXCJweFwiIDogXCIwcHhcIjtcclxuICAgICAgICAgICAgY2Fyb3VzZWxXcmFwcGVyUmVmLmN1cnJlbnQuc3R5bGUubGVmdCA9IGNhbGNMZWZ0XHJcbiAgICAgICAgICB9XHJcbiAgICAgICAgfSwgMzAwKSxcclxuICAgIFtdXHJcbik7XHJcblxyXG5cclxuICB1c2VFZmZlY3QoKCkgPT4ge1xyXG5cclxuICAgIHdpbmRvdy5hZGRFdmVudExpc3RlbmVyKFwicmVzaXplXCIsIGhhbmRsZVJlc2l6ZSk7XHJcbiAgICByZXR1cm4gKCkgPT4ge1xyXG4gICAgICB3aW5kb3cucmVtb3ZlRXZlbnRMaXN0ZW5lcihcInJlc2l6ZVwiLCBoYW5kbGVSZXNpemUpO1xyXG4gICAgfVxyXG4gIH0sIFtdKVxyXG5cclxuICBcclxuICBjb25zdCBwcmV2QnRuSGFuZGxlciA9ICgpID0+IHtcclxuICAgIGlmIChjdXJyZW50SWR4ID4gMCkge1xyXG4gICAgICBzZXRDdXJyZW50SWR4KChwcmV2KSA9PiBwcmV2IC0gMSk7XHJcbiAgICB9IGVsc2Uge1xyXG4gICAgICBzZXRDdXJyZW50SWR4KCgpID0+IGJvb2tEYXRhTGlzdC5sZW5ndGggLSA2KTtcclxuICAgIH1cclxuICB9O1xyXG5cclxuICBjb25zdCBuZXh0QnRuSGFuZGxlciA9ICgpID0+IHtcclxuICAgIGlmIChjdXJyZW50SWR4IDwgYm9va0RhdGFMaXN0Lmxlbmd0aCAtIDYpIHtcclxuICAgICAgc2V0Q3VycmVudElkeCgocHJldikgPT4gcHJldiArIDEpO1xyXG4gICAgfSBlbHNlIHtcclxuICAgICAgc2V0Q3VycmVudElkeCgoKSA9PiAwKTtcclxuICAgIH1cclxuICB9O1xyXG5cclxuICBjb25zdCByZW5kZXJCb29rcyA9IGJvb2tEYXRhTGlzdFxyXG4gICAgLnNsaWNlKGN1cnJlbnRJZHgsIGN1cnJlbnRJZHggKyA1KVxyXG4gICAgLm1hcCgoZWwsIGlkeCkgPT4ge1xyXG4gICAgICByZXR1cm4gKFxyXG4gICAgICAgIDxkaXZcclxuICAgICAgICAgIC8vIHJlZj17KGVsZSkgPT4gKHdyYXBwZXJSZWYuY3VycmVudFtpZHhdID0gZWxlKX1cclxuICAgICAgICAgIGtleT17ZWwudGl0bGV9XHJcbiAgICAgICAgICBjc3M9e2ltZ1dyYXBwZXJDU1Moe1xyXG4gICAgICAgICAgICBpZHgsXHJcbiAgICAgICAgICAgIHdpZHRoVmFsdWU6IGNhcmRMYXlvdXQud2lkdGhWYWx1ZSxcclxuICAgICAgICAgICAgaGVpZ2h0VmFsdWU6IGNhcmRMYXlvdXQuaGVpZ2h0VmFsdWUsXHJcbiAgICAgICAgICAgIHVuaXQ6IGNhcmRMYXlvdXQudW5pdCxcclxuICAgICAgICAgICAgaGlnaGxpZ2h0ZWRXaWR0aFZhbHVlOiBjYXJkTGF5b3V0LmhpZ2hsaWdodGVkV2lkdGhWYWx1ZSxcclxuICAgICAgICAgICAgaGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZTogY2FyZExheW91dC5oaWdobGlnaHRlZEhlaWdodFZhbHVlLFxyXG4gICAgICAgICAgICBzcGFjZVZhbHVlOiBjYXJkTGF5b3V0LnNwYWNlVmFsdWUsXHJcbiAgICAgICAgICAgIG5vcm1hbFJlZjogZHVtbXlOb3JtYWxSZWYsXHJcbiAgICAgICAgICAgIG1pbldpZHRoVmFsdWU6IGNhcmRMYXlvdXQubWluV2lkdGhWYWx1ZSxcclxuICAgICAgICAgICAgbWluSGVpZ2h0VmFsdWU6IGNhcmRMYXlvdXQubWluSGVpZ2h0VmFsdWUsXHJcbiAgICAgICAgICAgIG1pbkhpZ2hsaWdodGVkV2lkdGhWYWx1ZTogY2FyZExheW91dC5taW5IaWdobGlnaHRlZFdpZHRoVmFsdWUsXHJcbiAgICAgICAgICAgIG1pbkhpZ2hsaWdodGVkSGVpZ2h0VmFsdWU6IGNhcmRMYXlvdXQubWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSxcclxuICAgICAgICAgICAgbWluU3BhY2VWYWx1ZTogY2FyZExheW91dC5taW5TcGFjZVZhbHVlLFxyXG4gICAgICAgICAgfSl9XHJcbiAgICAgICAgPlxyXG4gICAgICAgICAgey8qIDxpbWcgc3JjPXtlbC5pbWd9IGNzcz17aW1nQ1NTfSAvPiAqL31cclxuXHJcbiAgICAgICAgICA8Qm9va0NhcmRcclxuICAgICAgICAgICAgYm9va0RhdGE9e2VsfVxyXG4gICAgICAgICAgICBzaG93UGxhdGZvcm09e3RydWV9XHJcbiAgICAgICAgICAgIC8vIHdpZHRoPXtgJHt3cmFwcGVyUmVmPy5jdXJyZW50W2lkeF0/LmNsaWVudFdpZHRofXB4YH1cclxuICAgICAgICAgICAgLy8gaGVpZ2h0PXtgJHt3cmFwcGVyUmVmPy5jdXJyZW50W2lkeF0/LmNsaWVudEhlaWdodH1weGB9XHJcbiAgICAgICAgICAvPlxyXG4gICAgICAgICAgey8qIDxpbWcgc3JjPXtlbC5pbWd9IGNzcz17aW1nQ1NTKHtpZHgsIHdpZHRoVmFsdWU6IGNhcmRMYXlvdXQud2lkdGhWYWx1ZSwgaGVpZ2h0VmFsdWU6IGNhcmRMYXlvdXQuaGVpZ2h0VmFsdWUsIHVuaXQ6IGNhcmRMYXlvdXQudW5pdCwgaGlnaGxpZ2h0ZWRXaWR0aFZhbHVlOiBjYXJkTGF5b3V0LmhpZ2hsaWdodGVkV2lkdGhWYWx1ZSwgaGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZTogY2FyZExheW91dC5oaWdobGlnaHRlZEhlaWdodFZhbHVlLCBzcGFjZVZhbHVlOiBjYXJkTGF5b3V0LnNwYWNlVmFsdWUsIG5vcm1hbFJlZjogZHVtbXlOb3JtYWxSZWYsIGhpZ2hsaWdodGVkUmVmOiBkdW1teUhpZ2hsaWdodGVkUmVmLCBtaW5XaWR0aFZhbHVlOiBjYXJkTGF5b3V0Lm1pbldpZHRoVmFsdWUsIG1pbkhlaWdodFZhbHVlOiBjYXJkTGF5b3V0Lm1pbkhlaWdodFZhbHVlLCBtaW5IaWdobGlnaHRlZFdpZHRoVmFsdWU6IGNhcmRMYXlvdXQubWluSGlnaGxpZ2h0ZWRXaWR0aFZhbHVlLCBtaW5IaWdobGlnaHRlZEhlaWdodFZhbHVlOiBjYXJkTGF5b3V0Lm1pbkhpZ2hsaWdodGVkSGVpZ2h0VmFsdWUsIG1pblNwYWNlVmFsdWU6IGNhcmRMYXlvdXQubWluU3BhY2VWYWx1ZSB9KX0gLz4gKi99XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICAgICk7XHJcbiAgICB9KTtcclxuXHJcbiAgY29uc3QgW3Bvc2l0aW9ueCwgc2V0UG9zaXRpb254XSA9IHVzZVN0YXRlPG51bWJlcj4oMCk7XHJcblxyXG4gIGNvbnN0IG9uU3dpcGVNb3ZlID0gKHBvc2l0aW9uID0geyB4OiAwIH0pID0+IHtcclxuICAgIHNldFBvc2l0aW9ueCgoKSA9PiBwb3NpdGlvbi54KTtcclxuICB9O1xyXG5cclxuICBjb25zdCBvblN3aXBlRW5kID0gKCkgPT4ge1xyXG4gICAgY29uc29sZS5sb2cocG9zaXRpb254KTtcclxuICAgIGlmIChwb3NpdGlvbnggPiA0MCkge1xyXG4gICAgICBwcmV2QnRuSGFuZGxlcigpO1xyXG4gICAgfVxyXG4gICAgaWYgKHBvc2l0aW9ueCA8IC00MCkge1xyXG4gICAgICBuZXh0QnRuSGFuZGxlcigpO1xyXG4gICAgfVxyXG4gICAgc2V0UG9zaXRpb254KCgpID0+IDApO1xyXG4gIH07XHJcblxyXG4gIGNvbnN0IGluZGljYXRvckJ0biA9IChcclxuICAgIDw+XHJcbiAgICAgIDxkaXYgY3NzPXtwcmV2QnRuQ1NTfSBvbkNsaWNrPXtwcmV2QnRuSGFuZGxlcn0+XHJcbiAgICAgICAg44CIXHJcbiAgICAgIDwvZGl2PlxyXG4gICAgICA8ZGl2IGNzcz17bmV4dEJ0bkNTU30gb25DbGljaz17bmV4dEJ0bkhhbmRsZXJ9PlxyXG4gICAgICAgIOOAiVxyXG4gICAgICA8L2Rpdj5cclxuICAgIDwvPlxyXG4gICk7XHJcbiAgcmV0dXJuIChcclxuICAgIC8vIDxkaXYgY3NzPXtjYXJvdXNlbE91dGVyV3JhcHBlckNTUyh7aGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZTogY2FyZExheW91dC5oaWdobGlnaHRlZEhlaWdodFZhbHVlLCB1bml0OiBjYXJkTGF5b3V0LnVuaXQsIG1pbkhpZ2hsaWdodGVkSGVpZ2h0VmFsdWU6IGNhcmRMYXlvdXQubWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSwgaGlnaGxpZ2h0ZWRSZWY6IGR1bW15SGlnaGxpZ2h0ZWRSZWZ9KX0+PC9kaXY+XHJcblxyXG4gICAgPGRpdiBjbGFzc05hbWU9e1wiY2Fyb3VzZWwtb3V0ZXItd3JhcHBlclwifSBjc3M9e2Nhcm91c2VsT3V0ZXJXcmFwcGVyQ1NTfT5cclxuICAgICAgPGRpdlxyXG4gICAgICAgIGNzcz17aGlnaGxpZ2h0ZWREZWNvcmF0b3JDU1Moe1xyXG4gICAgICAgICAgaGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZTogY2FyZExheW91dC5oaWdobGlnaHRlZEhlaWdodFZhbHVlLFxyXG4gICAgICAgICAgbWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZTogY2FyZExheW91dC5taW5IaWdobGlnaHRlZEhlaWdodFZhbHVlLFxyXG4gICAgICAgICAgdW5pdDogY2FyZExheW91dC51bml0LFxyXG4gICAgICAgICAgaGlnaGxpZ2h0ZWRSZWY6IGR1bW15SGlnaGxpZ2h0ZWRSZWYsXHJcbiAgICAgICAgICBjYXJvdXNlbFdyYXBwZXJSZWY6IGNhcm91c2VsV3JhcHBlclJlZixcclxuICAgICAgICB9KX1cclxuICAgICAgLz5cclxuICAgICAgPFN3aXBlXHJcbiAgICAgICAgb25Td2lwZVN0YXJ0PXsoZXZlbnQ6IGFueSkgPT4ge1xyXG4gICAgICAgICAgZXZlbnQuc3RvcFByb3BhZ2F0aW9uKCk7XHJcbiAgICAgICAgfX1cclxuICAgICAgICAvLyBvblN3aXBlRW5kPXtvblN3aXBlRW5kfVxyXG4gICAgICAgIG9uU3dpcGVNb3ZlPXtvblN3aXBlTW92ZX1cclxuICAgICAgICBvblN3aXBlRW5kPXtvblN3aXBlRW5kfVxyXG4gICAgICA+XHJcbiAgICAgICAgPGRpdj5cclxuICAgICAgICAgIHsvKiA8YnV0dG9uIG9uQ2xpY2s9e3ByZXZCdG5IYW5kbGVyfT5wcmV2PC9idXR0b24+XHJcbiAgICAgICAgICA8YnV0dG9uXHJcbiAgICAgICAgICAgIG9uQ2xpY2s9eygpID0+IHtcclxuICAgICAgICAgICAgICBjb25zb2xlLmxvZyhib29rRGF0YUxpc3QpO1xyXG4gICAgICAgICAgICB9fVxyXG4gICAgICAgICAgPlxyXG4gICAgICAgICAgICBzaG93XHJcbiAgICAgICAgICA8L2J1dHRvbj5cclxuICAgICAgICAgIDxidXR0b24gb25DbGljaz17bmV4dEJ0bkhhbmRsZXJ9Pm5leHQ8L2J1dHRvbj4gKi99XHJcblxyXG4gICAgICAgICAge2lzTW9iaWxlID09PSBmYWxzZSAmJiBpbmRpY2F0b3JCdG59XHJcblxyXG4gICAgICAgICAgPGRpdlxyXG4gICAgICAgICAgICByZWY9e2Nhcm91c2VsV3JhcHBlclJlZn1cclxuICAgICAgICAgICAgY2xhc3NOYW1lPXtcImNhcm91c2VsLWlubmVyLXdyYXBwZXJcIn1cclxuICAgICAgICAgICAgY3NzPXtjYXJvdXNlbElubmVyV3JhcHBlckNTUyh7XHJcbiAgICAgICAgICAgICAgd2lkdGhWYWx1ZTogY2FyZExheW91dC53aWR0aFZhbHVlLFxyXG4gICAgICAgICAgICAgIHVuaXQ6IGNhcmRMYXlvdXQudW5pdCxcclxuICAgICAgICAgICAgICBoaWdobGlnaHRlZFdpZHRoVmFsdWU6IGNhcmRMYXlvdXQuaGlnaGxpZ2h0ZWRXaWR0aFZhbHVlLFxyXG4gICAgICAgICAgICAgIG1pbldpZHRoVmFsdWU6IGNhcmRMYXlvdXQubWluV2lkdGhWYWx1ZSxcclxuICAgICAgICAgICAgICBtaW5IaWdobGlnaHRlZFdpZHRoVmFsdWU6IGNhcmRMYXlvdXQubWluSGlnaGxpZ2h0ZWRXaWR0aFZhbHVlLFxyXG4gICAgICAgICAgICAgIHNwYWNlVmFsdWU6IGNhcmRMYXlvdXQuc3BhY2VWYWx1ZSxcclxuICAgICAgICAgICAgICBtaW5TcGFjZVZhbHVlOiBjYXJkTGF5b3V0Lm1pblNwYWNlVmFsdWUsXHJcbiAgICAgICAgICAgICAgbm9ybWFsUmVmOiBkdW1teU5vcm1hbFJlZixcclxuICAgICAgICAgICAgICBjYXJvdXNlbFdyYXBwZXJSZWY6IGNhcm91c2VsV3JhcHBlclJlZixcclxuICAgICAgICAgICAgICB3aW5kb3dXcmFwcGVyUmVmOiB3aW5kb3dXcmFwcGVyUmVmLFxyXG4gICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICB9KX1cclxuICAgICAgICAgID5cclxuICAgICAgICAgICAge3JlbmRlckJvb2tzfVxyXG4gICAgICAgICAgPC9kaXY+XHJcblxyXG4gICAgICAgICAgPGRpdiBjc3M9e2R1bW15V3JhcHBlcn0+XHJcbiAgICAgICAgICAgIDxkaXZcclxuICAgICAgICAgICAgICBjbGFzc05hbWU9e1wiZHVtbXktbm9ybWFsXCJ9XHJcbiAgICAgICAgICAgICAgcmVmPXtkdW1teU5vcm1hbFJlZn1cclxuICAgICAgICAgICAgICBjc3M9e2R1bW15Tm9ybWFsQ1NTKHtcclxuICAgICAgICAgICAgICAgIHdpZHRoVmFsdWU6IGNhcmRMYXlvdXQud2lkdGhWYWx1ZSxcclxuICAgICAgICAgICAgICAgIGhlaWdodFZhbHVlOiBjYXJkTGF5b3V0LmhlaWdodFZhbHVlLFxyXG4gICAgICAgICAgICAgICAgdW5pdDogY2FyZExheW91dC51bml0LFxyXG4gICAgICAgICAgICAgIH0pfVxyXG4gICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICA8ZGl2XHJcbiAgICAgICAgICAgICAgY2xhc3NOYW1lPXtcImR1bW15LWhpZ2hsaWdodGVkXCJ9XHJcbiAgICAgICAgICAgICAgcmVmPXtkdW1teUhpZ2hsaWdodGVkUmVmfVxyXG4gICAgICAgICAgICAgIGNzcz17ZHVtbXlIaWdobGlnaHRlZENTUyh7XHJcbiAgICAgICAgICAgICAgICBoaWdobGlnaHRlZFdpZHRoVmFsdWU6IGNhcmRMYXlvdXQuaGlnaGxpZ2h0ZWRXaWR0aFZhbHVlLFxyXG4gICAgICAgICAgICAgICAgaGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZTogY2FyZExheW91dC5oaWdobGlnaHRlZEhlaWdodFZhbHVlLFxyXG4gICAgICAgICAgICAgICAgdW5pdDogY2FyZExheW91dC51bml0LFxyXG4gICAgICAgICAgICAgIH0pfVxyXG4gICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICA8ZGl2XHJcbiAgICAgICAgICAgICAgY2xhc3NOYW1lPXtcImR1bW15LW1pbi1oaWdobGlnaHRlZFwifVxyXG4gICAgICAgICAgICAgIGNzcz17ZHVtbXlNaW5IaWdobGlnaHRlZENTUyh7XHJcbiAgICAgICAgICAgICAgICBtaW5IaWdobGlnaHRlZEhlaWdodFZhbHVlOiBjYXJkTGF5b3V0Lm1pbkhpZ2hsaWdodGVkSGVpZ2h0VmFsdWUsXHJcbiAgICAgICAgICAgICAgfSl9XHJcbiAgICAgICAgICAgIC8+XHJcbiAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgPC9Td2lwZT5cclxuICAgIDwvZGl2PlxyXG4gICk7XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBIaWdobGlnaHRlZENhcm91c2VsO1xyXG5cclxuLy8gaW50ZXJmYWNlIGNhcm91c2VsT3V0ZXJXcmFwcGVyQ1NTUHJvcHMge1xyXG4vLyAgICAgaGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZTogbnVtYmVyO1xyXG4vLyAgICAgdW5pdDogc3RyaW5nO1xyXG4vLyAgICAgbWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZTogbnVtYmVyO1xyXG4vLyAgICAgaGlnaGxpZ2h0ZWRSZWY6IGFueTtcclxuLy8gfVxyXG5cclxuLy8gY29uc3QgY2Fyb3VzZWxPdXRlcldyYXBwZXJDU1MgPSAoe2hpZ2hsaWdodGVkSGVpZ2h0VmFsdWUsIHVuaXQsIG1pbkhpZ2hsaWdodGVkSGVpZ2h0VmFsdWUsIGhpZ2hsaWdodGVkUmVmfTogY2Fyb3VzZWxPdXRlcldyYXBwZXJDU1NQcm9wcykgPT4ge1xyXG4vLyAgICAgY29uc3QgY2FsY0hlaWdodCA9IGhpZ2hsaWdodGVkUmVmPy5jdXJyZW50Py5jbGllbnRIZWlnaHQgPCBtaW5IaWdobGlnaHRlZEhlaWdodFZhbHVlID8gbWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSArICdweCcgOiBoaWdobGlnaHRlZEhlaWdodFZhbHVlICsgdW5pdFxyXG4vLyAgICAgcmV0dXJuIGNzc2BcclxuLy8gICAgICAgICB3aWR0aDogMTAwJTtcclxuLy8gICAgICAgICBoZWlnaHQ6ICR7Y2FsY0hlaWdodH07XHJcbi8vICAgICAgICAgbWFyZ2luOiAwIGF1dG87XHJcbi8vICAgICAgICAgZGlzcGxheTpmbGV4O1xyXG4vLyAgICAgICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4vLyAgICAgYFxyXG4vLyB9XHJcblxyXG5jb25zdCBjYXJvdXNlbE91dGVyV3JhcHBlckNTUyA9IGNzc2BcclxuICB3aWR0aDogMTAwJTtcclxuICBtYXJnaW46IDAgYXV0bztcclxuICAvKiBkaXNwbGF5OmZsZXg7XHJcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7ICovXHJcbiAgZGlzcGxheTogZ3JpZDtcclxuICBwbGFjZS1pdGVtczogY2VudGVyO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuYDtcclxuXHJcbmludGVyZmFjZSBpbWdXcmFwcGVyQ1NTUHJvcHMge1xyXG4gIGlkeDogbnVtYmVyO1xyXG4gIHdpZHRoVmFsdWU6IG51bWJlcjtcclxuICBoZWlnaHRWYWx1ZTogbnVtYmVyO1xyXG4gIHVuaXQ6IHN0cmluZztcclxuICBoaWdobGlnaHRlZFdpZHRoVmFsdWU6IG51bWJlcjtcclxuICBoaWdobGlnaHRlZEhlaWdodFZhbHVlOiBudW1iZXI7XHJcbiAgc3BhY2VWYWx1ZTogbnVtYmVyO1xyXG4gIG5vcm1hbFJlZjogYW55O1xyXG5cclxuICBtaW5XaWR0aFZhbHVlOiBudW1iZXI7XHJcbiAgbWluSGVpZ2h0VmFsdWU6IG51bWJlcjtcclxuICBtaW5IaWdobGlnaHRlZFdpZHRoVmFsdWU6IG51bWJlcjtcclxuICBtaW5IaWdobGlnaHRlZEhlaWdodFZhbHVlOiBudW1iZXI7XHJcbiAgbWluU3BhY2VWYWx1ZTogbnVtYmVyO1xyXG59XHJcblxyXG5jb25zdCBpbWdXcmFwcGVyQ1NTID0gKHtcclxuICBpZHgsXHJcbiAgd2lkdGhWYWx1ZSxcclxuICBoZWlnaHRWYWx1ZSxcclxuICB1bml0LFxyXG4gIGhpZ2hsaWdodGVkV2lkdGhWYWx1ZSxcclxuICBoaWdobGlnaHRlZEhlaWdodFZhbHVlLFxyXG4gIHNwYWNlVmFsdWUsXHJcbiAgbm9ybWFsUmVmLFxyXG4gIG1pbldpZHRoVmFsdWUsXHJcbiAgbWluSGVpZ2h0VmFsdWUsXHJcbiAgbWluSGlnaGxpZ2h0ZWRXaWR0aFZhbHVlLFxyXG4gIG1pbkhpZ2hsaWdodGVkSGVpZ2h0VmFsdWUsXHJcbiAgbWluU3BhY2VWYWx1ZSxcclxufTogaW1nV3JhcHBlckNTU1Byb3BzKSA9PiB7XHJcbiAgY29uc3QgY2FsY1dpZHRoID1cclxuICAgIG5vcm1hbFJlZj8uY3VycmVudD8uY2xpZW50V2lkdGggPCBtaW5XaWR0aFZhbHVlXHJcbiAgICAgID8gKGlkeCA9PT0gMiA/IG1pbkhpZ2hsaWdodGVkV2lkdGhWYWx1ZSA6IG1pbldpZHRoVmFsdWUpICsgXCJweFwiXHJcbiAgICAgIDogKGlkeCA9PT0gMiA/IGhpZ2hsaWdodGVkV2lkdGhWYWx1ZSA6IHdpZHRoVmFsdWUpICsgdW5pdDtcclxuICBjb25zdCBjYWxjSGVpZ2h0ID1cclxuICAgIG5vcm1hbFJlZj8uY3VycmVudD8uY2xpZW50SGVpZ2h0IDwgbWluSGVpZ2h0VmFsdWVcclxuICAgICAgPyAoaWR4ID09PSAyID8gbWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSA6IG1pbkhlaWdodFZhbHVlKSArIFwicHhcIlxyXG4gICAgICA6IChpZHggPT09IDIgPyBoaWdobGlnaHRlZEhlaWdodFZhbHVlIDogaGVpZ2h0VmFsdWUpICsgdW5pdDtcclxuICBjb25zdCBjYWxjTGVmdCA9XHJcbiAgICBub3JtYWxSZWY/LmN1cnJlbnQ/LmNsaWVudFdpZHRoIDwgbWluV2lkdGhWYWx1ZVxyXG4gICAgICA/IChpZHggPiAyXHJcbiAgICAgICAgICA/IGlkeCAqIChtaW5XaWR0aFZhbHVlICsgbWluU3BhY2VWYWx1ZSkgK1xyXG4gICAgICAgICAgICAobWluSGlnaGxpZ2h0ZWRXaWR0aFZhbHVlIC0gbWluV2lkdGhWYWx1ZSlcclxuICAgICAgICAgIDogaWR4ICogKG1pbldpZHRoVmFsdWUgKyBtaW5TcGFjZVZhbHVlKSkgKyBcInB4XCJcclxuICAgICAgOiAoaWR4ID4gMlxyXG4gICAgICAgICAgPyBpZHggKiAod2lkdGhWYWx1ZSArIHNwYWNlVmFsdWUpICtcclxuICAgICAgICAgICAgKGhpZ2hsaWdodGVkV2lkdGhWYWx1ZSAtIHdpZHRoVmFsdWUpXHJcbiAgICAgICAgICA6IGlkeCAqICh3aWR0aFZhbHVlICsgc3BhY2VWYWx1ZSkpICsgdW5pdDtcclxuICBjb25zdCBjYWxjVG9wID1cclxuICAgIG5vcm1hbFJlZj8uY3VycmVudD8uY2xpZW50V2lkdGggPCBtaW5XaWR0aFZhbHVlXHJcbiAgICAgID8gKGlkeCAhPT0gMiA/IChtaW5IaWdobGlnaHRlZEhlaWdodFZhbHVlIC0gbWluSGVpZ2h0VmFsdWUpIC8gMiA6IDApICtcclxuICAgICAgICBcInB4XCJcclxuICAgICAgOiAoaWR4ICE9PSAyID8gKGhpZ2hsaWdodGVkSGVpZ2h0VmFsdWUgLSBoZWlnaHRWYWx1ZSkgLyAyIDogMCkgKyB1bml0O1xyXG4gIHJldHVybiBjc3NgXHJcbiAgICB0cmFuc2l0aW9uLXByb3BlcnR5OiBsZWZ0IHRvcCB3aWR0aCBoZWlnaHQ7XHJcbiAgICB0cmFuc2l0aW9uLWR1cmF0aW9uOiAwLjNzO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgbGVmdDogJHtjYWxjTGVmdH07XHJcbiAgICB0b3A6ICR7Y2FsY1RvcH07XHJcbiAgICAvKiBsZWZ0OiAkeyhpZHggPiAyXHJcbiAgICAgID8gaWR4ICogKHdpZHRoVmFsdWUgKyBzcGFjZVZhbHVlKSArIChoaWdobGlnaHRlZFdpZHRoVmFsdWUgLSB3aWR0aFZhbHVlKVxyXG4gICAgICA6IGlkeCAqICh3aWR0aFZhbHVlICsgc3BhY2VWYWx1ZSkpICsgdW5pdH07ICovXHJcbiAgICAvKiB0b3A6ICR7KGlkeCA9PT0gMiA/IC0oaGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSAtIGhlaWdodFZhbHVlKSAvIDIgOiAwKSArXHJcbiAgICB1bml0fTsgKi9cclxuICAgIHdpZHRoOiAke2NhbGNXaWR0aH07XHJcbiAgICBoZWlnaHQ6ICR7Y2FsY0hlaWdodH07XHJcbiAgICB2aXNpYmlsaXR5OiAke2lkeCA8IDUgPyBcInZpc2libGVcIiA6IFwiaGlkZGVuXCJ9O1xyXG4gICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuICBgO1xyXG59O1xyXG5cclxuLy8gY29uc3QgaW1nV3JhcHBlckNTUyA9ICh7aWR4LCB3aWR0aFZhbHVlLCBoZWlnaHRWYWx1ZSwgdW5pdCwgaGlnaGxpZ2h0ZWRXaWR0aFZhbHVlLCBoaWdobGlnaHRlZEhlaWdodFZhbHVlLCBzcGFjZVZhbHVlfTogaW1nQ1NTUHJvcHMpID0+IHtcclxuLy8gICAgIHJldHVybiBjc3NgXHJcbi8vICAgICAgICAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogbGVmdCB0b3Agd2lkdGggaGVpZ2h0O1xyXG4vLyAgICAgICAgIHRyYW5zaXRpb24tZHVyYXRpb246IDAuM3M7XHJcbi8vICAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4vLyAgICAgICAgIGxlZnQ6ICR7KGlkeCA+IDIgPyAoaWR4ICogKHdpZHRoVmFsdWUgKyBzcGFjZVZhbHVlKSArIChoaWdobGlnaHRlZFdpZHRoVmFsdWUgLSB3aWR0aFZhbHVlKSkgOiBpZHggKiAod2lkdGhWYWx1ZSArIHNwYWNlVmFsdWUpKSArIHVuaXR9O1xyXG4vLyAgICAgICAgIHRvcDogJHsoaWR4ID09PSAyID8gLShoaWdobGlnaHRlZEhlaWdodFZhbHVlIC0gaGVpZ2h0VmFsdWUpIC8gMiA6IDApICsgdW5pdH07XHJcbi8vICAgICAgICAgd2lkdGg6ICR7KGlkeCA9PT0gMiA/IGhpZ2hsaWdodGVkV2lkdGhWYWx1ZSA6IHdpZHRoVmFsdWUpICsgdW5pdH07XHJcbi8vICAgICAgICAgaGVpZ2h0OiAkeyhpZHggPT09IDIgPyBoaWdobGlnaHRlZEhlaWdodFZhbHVlIDogaGVpZ2h0VmFsdWUpICsgdW5pdH07XHJcbi8vICAgICAgICAgdmlzaWJpbGl0eTogJHtpZHggPCA1ID8gJ3Zpc2libGUnIDogJ2hpZGRlbid9O1xyXG4vLyAgICAgICAgIG92ZXJmbG93OiBoaWRkZW47XHJcblxyXG4vLyAgICAgYFxyXG4vLyB9XHJcblxyXG4vLyBpbnRlcmZhY2UgaW1nQ1NTUHJvcHMge1xyXG4vLyAgICAgaWR4OiBudW1iZXI7XHJcbi8vICAgICB3aWR0aFZhbHVlOiBudW1iZXI7XHJcbi8vICAgICBoZWlnaHRWYWx1ZTogbnVtYmVyO1xyXG4vLyAgICAgdW5pdDogc3RyaW5nO1xyXG4vLyAgICAgaGlnaGxpZ2h0ZWRXaWR0aFZhbHVlOiBudW1iZXI7XHJcbi8vICAgICBoaWdobGlnaHRlZEhlaWdodFZhbHVlOiBudW1iZXI7XHJcbi8vICAgICBzcGFjZVZhbHVlOiBudW1iZXI7XHJcbi8vICAgICBub3JtYWxSZWY6IGFueTtcclxuLy8gICAgIGhpZ2hsaWdodGVkUmVmOiBhbnk7XHJcblxyXG4vLyAgICAgbWluV2lkdGhWYWx1ZTogbnVtYmVyO1xyXG4vLyAgICAgbWluSGVpZ2h0VmFsdWU6IG51bWJlcjtcclxuLy8gICAgIG1pbkhpZ2hsaWdodGVkV2lkdGhWYWx1ZTogbnVtYmVyO1xyXG4vLyAgICAgbWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZTogbnVtYmVyO1xyXG4vLyAgICAgbWluU3BhY2VWYWx1ZTogbnVtYmVyO1xyXG5cclxuLy8gfVxyXG5cclxuLy8gY29uc3QgaW1nQ1NTID0gKHtpZHgsIHdpZHRoVmFsdWUsIHVuaXQsIGhpZ2hsaWdodGVkV2lkdGhWYWx1ZSwgc3BhY2VWYWx1ZX06IGltZ0NTU1Byb3BzKSA9PiB7XHJcbi8vICAgICByZXR1cm4gY3NzYFxyXG4vLyAgICAgICAgIC8qIHdpZHRoOiAkeyhpZHggPT09IDIgPyBoaWdobGlnaHRlZFdpZHRoVmFsdWUgOiB3aWR0aFZhbHVlKSArIHVuaXR9O1xyXG4vLyAgICAgICAgIGhlaWdodDogYXV0bzsgKi9cclxuLy8gICAgICAgICB3aWR0aDogMTAwJTtcclxuLy8gICAgICAgICBoZWlnaHQ6IGF1dG87XHJcbi8vICAgICBgXHJcbi8vIH1cclxuXHJcbmNvbnN0IGltZ0NTUyA9IGNzc2BcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IGF1dG87XHJcbmA7XHJcblxyXG5pbnRlcmZhY2UgY2Fyb3VzZWxJbm5lcldyYXBwZXJDU1NQcm9wcyB7XHJcbiAgd2lkdGhWYWx1ZTogbnVtYmVyO1xyXG4gIHVuaXQ6IHN0cmluZztcclxuICBoaWdobGlnaHRlZFdpZHRoVmFsdWU6IG51bWJlcjtcclxuICBtaW5XaWR0aFZhbHVlOiBudW1iZXI7XHJcbiAgbWluSGlnaGxpZ2h0ZWRXaWR0aFZhbHVlOiBudW1iZXI7XHJcbiAgc3BhY2VWYWx1ZTogbnVtYmVyO1xyXG4gIG1pblNwYWNlVmFsdWU6IG51bWJlcjtcclxuICBub3JtYWxSZWY6IGFueTtcclxuICBjYXJvdXNlbFdyYXBwZXJSZWY6IGFueTtcclxuICB3aW5kb3dXcmFwcGVyUmVmOiBhbnk7XHJcbn1cclxuXHJcbmNvbnN0IGNhcm91c2VsSW5uZXJXcmFwcGVyQ1NTID0gKHtcclxuICB3aWR0aFZhbHVlLFxyXG4gIHVuaXQsXHJcbiAgaGlnaGxpZ2h0ZWRXaWR0aFZhbHVlLFxyXG4gIHNwYWNlVmFsdWUsXHJcbiAgbWluU3BhY2VWYWx1ZSxcclxuICBtaW5XaWR0aFZhbHVlLFxyXG4gIG1pbkhpZ2hsaWdodGVkV2lkdGhWYWx1ZSxcclxuICBub3JtYWxSZWYsXHJcbiAgY2Fyb3VzZWxXcmFwcGVyUmVmLFxyXG4gIHdpbmRvd1dyYXBwZXJSZWYsXHJcbn06IGNhcm91c2VsSW5uZXJXcmFwcGVyQ1NTUHJvcHMpID0+IHtcclxuICBjb25zdCBjYWxjV2lkdGggPVxyXG4gICAgbm9ybWFsUmVmPy5jdXJyZW50Py5jbGllbnRXaWR0aCA8IG1pbldpZHRoVmFsdWVcclxuICAgICAgPyAobWluV2lkdGhWYWx1ZSArIG1pblNwYWNlVmFsdWUpICogNCArIG1pbkhpZ2hsaWdodGVkV2lkdGhWYWx1ZSArIFwicHhcIlxyXG4gICAgICA6ICh3aWR0aFZhbHVlICsgc3BhY2VWYWx1ZSkgKiA0ICsgaGlnaGxpZ2h0ZWRXaWR0aFZhbHVlICsgdW5pdDtcclxuICBcclxuICBjb25zdCBjYWxjTGVmdCA9XHJcbiAgICBjYXJvdXNlbFdyYXBwZXJSZWY/LmN1cnJlbnQ/LmNsaWVudFdpZHRoID4gd2luZG93V3JhcHBlclJlZj8uY3VycmVudD8ub2Zmc2V0V2lkdGhcclxuICAgICAgPyAtKFxyXG4gICAgICAgICAgY2Fyb3VzZWxXcmFwcGVyUmVmPy5jdXJyZW50Py5jbGllbnRXaWR0aCAtIHdpbmRvd1dyYXBwZXJSZWY/LmN1cnJlbnQ/Lm9mZnNldFdpZHRoXHJcbiAgICAgICAgKSAvIDIgKyBcInB4XCIgOiBcIjBweFwiO1xyXG4gICAgICAgIFxyXG4gIHJldHVybiBjc3NgXHJcbiAgICB3aWR0aDogJHtjYWxjV2lkdGh9O1xyXG4gICAgLyogbGVmdDogJHtjYWxjTGVmdH07ICovXHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gIGA7XHJcbn07XHJcblxyXG5pbnRlcmZhY2UgZHVtbXlOb3JtYWxDU1NQcm9wcyB7XHJcbiAgd2lkdGhWYWx1ZTogbnVtYmVyO1xyXG4gIGhlaWdodFZhbHVlOiBudW1iZXI7XHJcbiAgdW5pdDogc3RyaW5nO1xyXG59XHJcblxyXG5jb25zdCBkdW1teU5vcm1hbENTUyA9ICh7XHJcbiAgd2lkdGhWYWx1ZSxcclxuICBoZWlnaHRWYWx1ZSxcclxuICB1bml0LFxyXG59OiBkdW1teU5vcm1hbENTU1Byb3BzKSA9PiB7XHJcbiAgcmV0dXJuIGNzc2BcclxuICAgIHdpZHRoOiAke3dpZHRoVmFsdWUgKyB1bml0fTtcclxuICAgIGhlaWdodDogJHtoZWlnaHRWYWx1ZSArIHVuaXR9O1xyXG4gICAgcG9pbnRlci1ldmVudHM6IG5vbmU7XHJcbiAgICAvKiBkaXNwbGF5OiBub25lOyAqL1xyXG4gIGA7XHJcbn07XHJcblxyXG5pbnRlcmZhY2UgZHVtbXlIaWdobGlnaHRlZENTU1Byb3BzIHtcclxuICBoaWdobGlnaHRlZFdpZHRoVmFsdWU6IG51bWJlcjtcclxuICBoaWdobGlnaHRlZEhlaWdodFZhbHVlOiBudW1iZXI7XHJcbiAgdW5pdDogc3RyaW5nO1xyXG59XHJcblxyXG5jb25zdCBkdW1teUhpZ2hsaWdodGVkQ1NTID0gKHtcclxuICBoaWdobGlnaHRlZFdpZHRoVmFsdWUsXHJcbiAgaGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSxcclxuICB1bml0LFxyXG59OiBkdW1teUhpZ2hsaWdodGVkQ1NTUHJvcHMpID0+IHtcclxuICByZXR1cm4gY3NzYFxyXG4gICAgd2lkdGg6ICR7aGlnaGxpZ2h0ZWRXaWR0aFZhbHVlICsgdW5pdH07XHJcbiAgICBoZWlnaHQ6ICR7aGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSArIHVuaXR9O1xyXG4gICAgcG9pbnRlci1ldmVudHM6IG5vbmU7XHJcbiAgICAvKiBkaXNwbGF5OiBub25lOyAqL1xyXG4gIGA7XHJcbn07XHJcblxyXG5jb25zdCBwcmV2QnRuQ1NTID0gY3NzYFxyXG4gIHotaW5kZXg6IDk7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGxlZnQ6IDA7XHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBmb250LXNpemU6IDQ4cHg7XHJcbiAgZm9udC13ZWlnaHQ6IDcwMDtcclxuICBwYWRkaW5nLWxlZnQ6IDhweDtcclxuICBwYWRkaW5nLXJpZ2h0OiA4cHg7XHJcbiAgY29sb3I6IHZhcigtLXRleHQtY29sb3IpO1xyXG4gIHRyYW5zaXRpb24tcHJvcGVydHk6IGZvbnQtc2l6ZTtcclxuICB0cmFuc2l0aW9uLWR1cmF0aW9uOiAwLjJzO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICB1c2VyLXNlbGVjdDogbm9uZTtcclxuXHJcbiAgJjpob3ZlciB7XHJcbiAgICBmb250LXNpemU6IDU0cHg7XHJcbiAgfVxyXG5gO1xyXG5cclxuY29uc3QgbmV4dEJ0bkNTUyA9IGNzc2BcclxuICB6LWluZGV4OiA5O1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICByaWdodDogMDtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGZvbnQtc2l6ZTogNDhweDtcclxuICBmb250LXdlaWdodDogNzAwO1xyXG4gIHBhZGRpbmctbGVmdDogOHB4O1xyXG4gIHBhZGRpbmctcmlnaHQ6IDhweDtcclxuICBjb2xvcjogdmFyKC0tdGV4dC1jb2xvcik7XHJcbiAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogZm9udC1zaXplO1xyXG4gIHRyYW5zaXRpb24tZHVyYXRpb246IDAuMnM7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIHVzZXItc2VsZWN0OiBub25lO1xyXG5cclxuICAmOmhvdmVyIHtcclxuICAgIGZvbnQtc2l6ZTogNTRweDtcclxuICB9XHJcbmA7XHJcblxyXG5pbnRlcmZhY2UgaGlnaGxpZ2h0ZWREZWNvcmF0b3JDU1Mge1xyXG4gIHVuaXQ6IHN0cmluZztcclxuICBoaWdobGlnaHRlZEhlaWdodFZhbHVlOiBudW1iZXI7XHJcbiAgbWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZTogbnVtYmVyO1xyXG4gIGhpZ2hsaWdodGVkUmVmOiBhbnk7XHJcbiAgY2Fyb3VzZWxXcmFwcGVyUmVmOiBhbnk7XHJcbn1cclxuXHJcbmNvbnN0IGhpZ2hsaWdodGVkRGVjb3JhdG9yQ1NTID0gKHtcclxuICBoaWdobGlnaHRlZEhlaWdodFZhbHVlLFxyXG4gIG1pbkhpZ2hsaWdodGVkSGVpZ2h0VmFsdWUsXHJcbiAgdW5pdCxcclxuICBoaWdobGlnaHRlZFJlZixcclxufTogaGlnaGxpZ2h0ZWREZWNvcmF0b3JDU1MpID0+IHtcclxuICBjb25zdCBjYWxjSGVpZ2h0ID1cclxuICAgIGhpZ2hsaWdodGVkUmVmPy5jdXJyZW50Py5jbGllbnRIZWlnaHQgPCBtaW5IaWdobGlnaHRlZEhlaWdodFZhbHVlXHJcbiAgICAgID8gbWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSArIDQ4ICsgXCJweFwiXHJcbiAgICAgIDogaGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSArIDUgKyB1bml0O1xyXG5cclxuICByZXR1cm4gY3NzYFxyXG4gICAgd2lkdGg6ICR7Y2FsY0hlaWdodH07XHJcbiAgICBoZWlnaHQ6ICR7Y2FsY0hlaWdodH07XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1ib3JkZXItY29sb3ItMik7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMDAwMHB4O1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGA7XHJcbn07XHJcblxyXG5pbnRlcmZhY2UgZHVtbXlNaW5IaWdobGlnaHRlZENTU1Byb3BzIHtcclxuICBtaW5IaWdobGlnaHRlZEhlaWdodFZhbHVlOiBudW1iZXI7XHJcbn1cclxuY29uc3QgZHVtbXlNaW5IaWdobGlnaHRlZENTUyA9ICh7XHJcbiAgbWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSxcclxufTogZHVtbXlNaW5IaWdobGlnaHRlZENTU1Byb3BzKSA9PiB7XHJcbiAgcmV0dXJuIGNzc2BcclxuICAgIHdpZHRoOiAxcHg7XHJcbiAgICBoZWlnaHQ6ICR7bWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZX1weDtcclxuICAgIHBvaW50ZXItZXZlbnRzOiBub25lO1xyXG4gIGA7XHJcbn07XHJcblxyXG5jb25zdCBkdW1teVdyYXBwZXIgPSBjc3NgXHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuYDtcclxuIl0sIm5hbWVzIjpbImNzcyIsInVzZVN0YXRlIiwidXNlRWZmZWN0IiwidXNlUmVmIiwidXNlTWVtbyIsIkJvb2tDYXJkIiwiU3dpcGUiLCJ1c2VJc1Jlc3BvbnNpdmUiLCJ0aHJvdHRsZSIsIkhpZ2hsaWdodGVkQ2Fyb3VzZWwiLCJib29rRGF0YSIsIndpbmRvd1dyYXBwZXJSZWYiLCJib29rRGF0YUxpc3QiLCJzZXRCb29rRGF0YUxpc3QiLCJjdXJyZW50SWR4Iiwic2V0Q3VycmVudElkeCIsImR1bW15Tm9ybWFsUmVmIiwiY2Fyb3VzZWxXcmFwcGVyUmVmIiwiZHVtbXlIaWdobGlnaHRlZFJlZiIsImlzRGVza1RvcCIsImlzVGFibGV0IiwiaXNNb2JpbGUiLCJjYXJkTGF5b3V0Iiwid2lkdGhWYWx1ZSIsImhlaWdodFZhbHVlIiwiaGlnaGxpZ2h0ZWRXaWR0aFZhbHVlIiwiaGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSIsInNwYWNlVmFsdWUiLCJ1bml0IiwibWluV2lkdGhWYWx1ZSIsIm1pbkhlaWdodFZhbHVlIiwibWluSGlnaGxpZ2h0ZWRXaWR0aFZhbHVlIiwibWluSGlnaGxpZ2h0ZWRIZWlnaHRWYWx1ZSIsIm1pblNwYWNlVmFsdWUiLCJ0aXRsZSIsImxlbmd0aCIsInRlbXAiLCJjb25jYXQiLCJzbGljZSIsImhhbmRsZVJlc2l6ZSIsImV2ZW50IiwiY3VycmVudCIsImNhbGNMZWZ0IiwiY2xpZW50V2lkdGgiLCJvZmZzZXRXaWR0aCIsInN0eWxlIiwibGVmdCIsIndpbmRvdyIsImFkZEV2ZW50TGlzdGVuZXIiLCJyZW1vdmVFdmVudExpc3RlbmVyIiwicHJldkJ0bkhhbmRsZXIiLCJwcmV2IiwibmV4dEJ0bkhhbmRsZXIiLCJyZW5kZXJCb29rcyIsIm1hcCIsImVsIiwiaWR4IiwiZGl2IiwiaW1nV3JhcHBlckNTUyIsIm5vcm1hbFJlZiIsInNob3dQbGF0Zm9ybSIsInBvc2l0aW9ueCIsInNldFBvc2l0aW9ueCIsIm9uU3dpcGVNb3ZlIiwicG9zaXRpb24iLCJ4Iiwib25Td2lwZUVuZCIsImNvbnNvbGUiLCJsb2ciLCJpbmRpY2F0b3JCdG4iLCJwcmV2QnRuQ1NTIiwib25DbGljayIsIm5leHRCdG5DU1MiLCJjbGFzc05hbWUiLCJjYXJvdXNlbE91dGVyV3JhcHBlckNTUyIsImhpZ2hsaWdodGVkRGVjb3JhdG9yQ1NTIiwiaGlnaGxpZ2h0ZWRSZWYiLCJvblN3aXBlU3RhcnQiLCJzdG9wUHJvcGFnYXRpb24iLCJyZWYiLCJjYXJvdXNlbElubmVyV3JhcHBlckNTUyIsImR1bW15V3JhcHBlciIsImR1bW15Tm9ybWFsQ1NTIiwiZHVtbXlIaWdobGlnaHRlZENTUyIsImR1bW15TWluSGlnaGxpZ2h0ZWRDU1MiLCJjYWxjV2lkdGgiLCJjYWxjSGVpZ2h0IiwiY2xpZW50SGVpZ2h0IiwiY2FsY1RvcCIsImltZ0NTUyJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/components/bookTab/HighlightedCarousel/HighlightedCarousel.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/bookTab/RowTitle/RowTitle.tsx":
+/*!******************************************************!*\
+  !*** ./src/components/bookTab/RowTitle/RowTitle.tsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/** @jsxImportSource @emotion/react */ \n\nconst RowTitle = ({ beforeLabel , highlightedLabel , afterLabel , noLine , marginBottom  })=>{\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: rowTitleWrapperCSS({\n            marginBottom\n        }),\n        children: [\n            noLine !== true && /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: lineCSS\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\RowTitle\\\\RowTitle.tsx\",\n                lineNumber: 16,\n                columnNumber: 33\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: labelWrapperCSS,\n                children: [\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                        css: normalLabelCSS,\n                        children: beforeLabel\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\RowTitle\\\\RowTitle.tsx\",\n                        lineNumber: 18,\n                        columnNumber: 17\n                    }, undefined),\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                        css: highlightedLabelCSS,\n                        children: highlightedLabel\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\RowTitle\\\\RowTitle.tsx\",\n                        lineNumber: 19,\n                        columnNumber: 17\n                    }, undefined),\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                        css: normalLabelCSS,\n                        children: afterLabel\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\RowTitle\\\\RowTitle.tsx\",\n                        lineNumber: 20,\n                        columnNumber: 17\n                    }, undefined)\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\RowTitle\\\\RowTitle.tsx\",\n                lineNumber: 17,\n                columnNumber: 13\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookTab\\\\RowTitle\\\\RowTitle.tsx\",\n        lineNumber: 15,\n        columnNumber: 9\n    }, undefined);\n};\nconst rowTitleWrapperCSS = ({ marginBottom  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n        width: 100%;\r\n        height: 36px;\r\n        position: relative;\r\n        display: flex;\r\n        align-items: center;\r\n        margin-bottom: ${marginBottom !== undefined ? marginBottom : `24px`};\r\n    `;\n};\nconst lineCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 100%;\r\n    height: 1px;\r\n    background-color: var(--border-color-2);\r\n`;\nconst labelWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    position: absolute;\r\n    background-color: var(--back-color);\r\n    padding: 24px;\r\n    left: 1%;\r\n`;\nconst normalLabelCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    font-size: 28px;\r\n    color: var(--text-color);\r\n`;\nconst highlightedLabelCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    font-size: 36px;\r\n    color: #FF6565;\r\n`;\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RowTitle);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9ib29rVGFiL1Jvd1RpdGxlL1Jvd1RpdGxlLnRzeC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBLG9DQUFvQztBQUNNO0FBVTFDLE1BQU1DLFdBQVcsQ0FBQyxFQUFDQyxZQUFXLEVBQUVDLGlCQUFnQixFQUFFQyxXQUFVLEVBQUVDLE9BQU0sRUFBRUMsYUFBWSxFQUFnQixHQUFLO0lBRW5HLHFCQUNJLHVFQUFDQztRQUFJUCxLQUFLUSxtQkFBbUI7WUFBQ0Y7UUFBWTs7WUFDckNELFdBQVcsSUFBSSxrQkFBSSx1RUFBQ0U7Z0JBQUlQLEtBQUtTOzs7Ozs7MEJBQzlCLHVFQUFDRjtnQkFBSVAsS0FBS1U7O2tDQUNOLHVFQUFDQzt3QkFBS1gsS0FBS1k7a0NBQWlCVjs7Ozs7O2tDQUM1Qix1RUFBQ1M7d0JBQUtYLEtBQUthO2tDQUFzQlY7Ozs7OztrQ0FDakMsdUVBQUNRO3dCQUFLWCxLQUFLWTtrQ0FBaUJSOzs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFLNUM7QUFNQSxNQUFNSSxxQkFBcUIsQ0FBQyxFQUFDRixhQUFZLEVBQTBCLEdBQUs7SUFFcEUsT0FBT04sK0NBQUcsQ0FBQzs7Ozs7O3VCQU1RLEVBQUVNLGlCQUFpQlEsWUFBWVIsZUFBZSxDQUFDLElBQUksQ0FBQyxDQUFDO0lBQ3hFLENBQUM7QUFDTDtBQUdBLE1BQU1HLFVBQVVULCtDQUFHLENBQUM7Ozs7QUFJcEIsQ0FBQztBQUVELE1BQU1VLGtCQUFrQlYsK0NBQUcsQ0FBQzs7Ozs7QUFLNUIsQ0FBQztBQUVELE1BQU1ZLGlCQUFpQlosK0NBQUcsQ0FBQzs7O0FBRzNCLENBQUM7QUFFRCxNQUFNYSxzQkFBc0JiLCtDQUFHLENBQUM7OztBQUdoQyxDQUFDO0FBR0QsaUVBQWVDLFFBQVFBLEVBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvY29tcG9uZW50cy9ib29rVGFiL1Jvd1RpdGxlL1Jvd1RpdGxlLnRzeD83ZmZkIl0sInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4SW1wb3J0U291cmNlIEBlbW90aW9uL3JlYWN0ICovXHJcbmltcG9ydCB7IGpzeCwgY3NzIH0gZnJvbSBcIkBlbW90aW9uL3JlYWN0XCI7XHJcblxyXG5pbnRlcmZhY2UgUm93VGl0bGVQcm9wcyB7XHJcbiAgICBiZWZvcmVMYWJlbD86IHN0cmluZztcclxuICAgIGhpZ2hsaWdodGVkTGFiZWw/OiBzdHJpbmc7XHJcbiAgICBhZnRlckxhYmVsPzogc3RyaW5nO1xyXG4gICAgbm9MaW5lPzogdHJ1ZTtcclxuICAgIG1hcmdpbkJvdHRvbT86IHN0cmluZztcclxufVxyXG5cclxuY29uc3QgUm93VGl0bGUgPSAoe2JlZm9yZUxhYmVsLCBoaWdobGlnaHRlZExhYmVsLCBhZnRlckxhYmVsLCBub0xpbmUsIG1hcmdpbkJvdHRvbX06IFJvd1RpdGxlUHJvcHMpID0+IHtcclxuXHJcbiAgICByZXR1cm4gKFxyXG4gICAgICAgIDxkaXYgY3NzPXtyb3dUaXRsZVdyYXBwZXJDU1Moe21hcmdpbkJvdHRvbX0pfT5cclxuICAgICAgICAgICAge25vTGluZSAhPT0gdHJ1ZSAmJiA8ZGl2IGNzcz17bGluZUNTU30gLz59XHJcbiAgICAgICAgICAgIDxkaXYgY3NzPXtsYWJlbFdyYXBwZXJDU1N9PlxyXG4gICAgICAgICAgICAgICAgPHNwYW4gY3NzPXtub3JtYWxMYWJlbENTU30+e2JlZm9yZUxhYmVsfTwvc3Bhbj5cclxuICAgICAgICAgICAgICAgIDxzcGFuIGNzcz17aGlnaGxpZ2h0ZWRMYWJlbENTU30+e2hpZ2hsaWdodGVkTGFiZWx9PC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgPHNwYW4gY3NzPXtub3JtYWxMYWJlbENTU30+e2FmdGVyTGFiZWx9PC9zcGFuPlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgXHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICApXHJcbn1cclxuXHJcbmludGVyZmFjZSByb3dUaXRsZVdyYXBwZXJDU1NQcm9wcyB7XHJcbiAgICBtYXJnaW5Cb3R0b206IHN0cmluZyB8IHVuZGVmaW5lZDtcclxufVxyXG5cclxuY29uc3Qgcm93VGl0bGVXcmFwcGVyQ1NTID0gKHttYXJnaW5Cb3R0b219OiByb3dUaXRsZVdyYXBwZXJDU1NQcm9wcykgPT4ge1xyXG5cclxuICAgIHJldHVybiBjc3NgXHJcbiAgICAgICAgd2lkdGg6IDEwMCU7XHJcbiAgICAgICAgaGVpZ2h0OiAzNnB4O1xyXG4gICAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgICAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogJHttYXJnaW5Cb3R0b20gIT09IHVuZGVmaW5lZCA/IG1hcmdpbkJvdHRvbSA6IGAyNHB4YH07XHJcbiAgICBgXHJcbn1cclxuXHJcblxyXG5jb25zdCBsaW5lQ1NTID0gY3NzYFxyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDFweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWJvcmRlci1jb2xvci0yKTtcclxuYFxyXG5cclxuY29uc3QgbGFiZWxXcmFwcGVyQ1NTID0gY3NzYFxyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tYmFjay1jb2xvcik7XHJcbiAgICBwYWRkaW5nOiAyNHB4O1xyXG4gICAgbGVmdDogMSU7XHJcbmBcclxuXHJcbmNvbnN0IG5vcm1hbExhYmVsQ1NTID0gY3NzYFxyXG4gICAgZm9udC1zaXplOiAyOHB4O1xyXG4gICAgY29sb3I6IHZhcigtLXRleHQtY29sb3IpO1xyXG5gXHJcblxyXG5jb25zdCBoaWdobGlnaHRlZExhYmVsQ1NTID0gY3NzYFxyXG4gICAgZm9udC1zaXplOiAzNnB4O1xyXG4gICAgY29sb3I6ICNGRjY1NjU7XHJcbmBcclxuXHJcblxyXG5leHBvcnQgZGVmYXVsdCBSb3dUaXRsZSJdLCJuYW1lcyI6WyJjc3MiLCJSb3dUaXRsZSIsImJlZm9yZUxhYmVsIiwiaGlnaGxpZ2h0ZWRMYWJlbCIsImFmdGVyTGFiZWwiLCJub0xpbmUiLCJtYXJnaW5Cb3R0b20iLCJkaXYiLCJyb3dUaXRsZVdyYXBwZXJDU1MiLCJsaW5lQ1NTIiwibGFiZWxXcmFwcGVyQ1NTIiwic3BhbiIsIm5vcm1hbExhYmVsQ1NTIiwiaGlnaGxpZ2h0ZWRMYWJlbENTUyIsInVuZGVmaW5lZCJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/components/bookTab/RowTitle/RowTitle.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/function/Portal.tsx":
+/*!********************************************!*\
+  !*** ./src/components/function/Portal.tsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-dom */ \"react-dom\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_0__);\n\nconst Portal = ({ children , selector  })=>{\n    const element =  false && 0;\n    return element && children ? /*#__PURE__*/ react_dom__WEBPACK_IMPORTED_MODULE_0___default().createPortal(children, element) : null;\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Portal);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9mdW5jdGlvbi9Qb3J0YWwudHN4LmpzIiwibWFwcGluZ3MiOiI7Ozs7OztBQUFpQztBQUVqQyxNQUFNQyxTQUFTLENBQUMsRUFBRUMsU0FBUSxFQUFFQyxTQUFRLEVBQU8sR0FBSztJQUM5QyxNQUFNQyxVQUNKLE1BQTZCLElBQUlDLENBQWdDRjtJQUNuRSxPQUFPQyxXQUFXRix5QkFBV0YsNkRBQXFCLENBQUNFLFVBQVVFLFdBQVcsSUFBSTtBQUM5RTtBQUVBLGlFQUFlSCxNQUFNQSxFQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvZnVuY3Rpb24vUG9ydGFsLnRzeD9lYmY3Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdERPTSBmcm9tIFwicmVhY3QtZG9tXCI7XHJcblxyXG5jb25zdCBQb3J0YWwgPSAoeyBjaGlsZHJlbiwgc2VsZWN0b3IgfTogYW55KSA9PiB7XHJcbiAgY29uc3QgZWxlbWVudCA9XHJcbiAgICB0eXBlb2Ygd2luZG93ICE9PSBcInVuZGVmaW5lZFwiICYmIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3Ioc2VsZWN0b3IpO1xyXG4gIHJldHVybiBlbGVtZW50ICYmIGNoaWxkcmVuID8gUmVhY3RET00uY3JlYXRlUG9ydGFsKGNoaWxkcmVuLCBlbGVtZW50KSA6IG51bGw7XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBQb3J0YWw7Il0sIm5hbWVzIjpbIlJlYWN0RE9NIiwiUG9ydGFsIiwiY2hpbGRyZW4iLCJzZWxlY3RvciIsImVsZW1lbnQiLCJkb2N1bWVudCIsInF1ZXJ5U2VsZWN0b3IiLCJjcmVhdGVQb3J0YWwiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/function/Portal.tsx\n");
+
+/***/ }),
+
+/***/ "./src/pages/books/index.tsx":
+/*!***********************************!*\
+  !*** ./src/pages/books/index.tsx ***!
+  \***********************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Home),\n/* harmony export */   \"getServerSideProps\": () => (/* binding */ getServerSideProps)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _components_UI_ScrollableCarousel_ScrollableCarousel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/UI/ScrollableCarousel/ScrollableCarousel */ \"./src/components/UI/ScrollableCarousel/ScrollableCarousel.tsx\");\n/* harmony import */ var _components_UI_SwipeableCarousel_SwipeableGallery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/UI/SwipeableCarousel/SwipeableGallery */ \"./src/components/UI/SwipeableCarousel/SwipeableGallery.tsx\");\n/* harmony import */ var _components_bookTab_HighlightedCarousel_HighlightedCarousel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/components/bookTab/HighlightedCarousel/HighlightedCarousel */ \"./src/components/bookTab/HighlightedCarousel/HighlightedCarousel.tsx\");\n/* harmony import */ var _components_bookTab_RowTitle_RowTitle__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/bookTab/RowTitle/RowTitle */ \"./src/components/bookTab/RowTitle/RowTitle.tsx\");\n/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/Responsive/useIsResponsive */ \"./src/components/Responsive/useIsResponsive.ts\");\n/* harmony import */ var _api_book_getBooksByGenre__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/api/book/getBooksByGenre */ \"./src/api/book/getBooksByGenre.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_api_book_getBooksByGenre__WEBPACK_IMPORTED_MODULE_8__]);\n_api_book_getBooksByGenre__WEBPACK_IMPORTED_MODULE_8__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n/** @jsxImportSource @emotion/react */ \n\n\n\n\n\n\n\n// import contentBannerDesktop from \"/assets/content_banner_desktop_tablet.png\"\n// import contentBannerMobile from \"/assets/content_banner_mobile.png\"\n\nfunction Home({ highlightedBookData  }) {\n    const parentRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);\n    const indexWrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);\n    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_7__.useIsResponsive)();\n    // ________________________________________________________________________________________________\n    // 임시 데이터\n    const postData = {\n        content: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"img\", {\n                src: \"/assets/temp_banner_1.png\",\n                alt: \"\",\n                css: bannerImage\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                lineNumber: 32,\n                columnNumber: 7\n            }, this),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"img\", {\n                src: \"/assets/temp_banner_2.png\",\n                alt: \"\",\n                css: bannerImage\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                lineNumber: 33,\n                columnNumber: 7\n            }, this)\n        ]\n    };\n    // const getBookData = recvBooks(0, 20).then((res: any) =>\n    //   setBookData(() => res)\n    // );\n    const [bookData, setBookData] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);\n    // ________________________________________________________________________________________________\n    const getBooksByGenreAPI = ({ bookList , size  })=>{\n        const prevId = bookList.length ? bookList[bookList.length - 1].bookId : 0;\n        const prevScore = bookList.length ? bookList[bookList.length - 1].score : 10;\n        return (0,_api_book_getBooksByGenre__WEBPACK_IMPORTED_MODULE_8__.getBooksByGenre)({\n            genreCode: 10,\n            typeCode: 0,\n            prevId: prevId,\n            prevScore: prevScore,\n            size: size\n        });\n    };\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        ref: indexWrapperRef,\n        css: indexWrapperCSS,\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: bannerWrapperCSS,\n                ref: parentRef,\n                children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_UI_SwipeableCarousel_SwipeableGallery__WEBPACK_IMPORTED_MODULE_4__[\"default\"], {\n                    parentRef: parentRef,\n                    content: postData\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                    lineNumber: 57,\n                    columnNumber: 9\n                }, this)\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                lineNumber: 56,\n                columnNumber: 7\n            }, this),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: whiteSpace1CSS\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                lineNumber: 60,\n                columnNumber: 7\n            }, this),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: innerLayoutWrapperCSS({\n                    isDeskTop,\n                    isTablet,\n                    isMobile\n                }),\n                children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_bookTab_RowTitle_RowTitle__WEBPACK_IMPORTED_MODULE_6__[\"default\"], {\n                    beforeLabel: \"희MD\",\n                    highlightedLabel: \" EMOSAAC!\",\n                    noLine: true,\n                    marginBottom: \"45px\"\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                    lineNumber: 62,\n                    columnNumber: 9\n                }, this)\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                lineNumber: 61,\n                columnNumber: 7\n            }, this),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: highlightedCarouselWrapper,\n                children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_bookTab_HighlightedCarousel_HighlightedCarousel__WEBPACK_IMPORTED_MODULE_5__[\"default\"], {\n                    bookData: highlightedBookData,\n                    windowWrapperRef: indexWrapperRef\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                    lineNumber: 71,\n                    columnNumber: 9\n                }, this)\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                lineNumber: 70,\n                columnNumber: 7\n            }, this),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: whiteSpace2CSS\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                lineNumber: 73,\n                columnNumber: 7\n            }, this),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: innerLayoutWrapperCSS({\n                    isDeskTop,\n                    isTablet,\n                    isMobile\n                }),\n                children: [\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_bookTab_RowTitle_RowTitle__WEBPACK_IMPORTED_MODULE_6__[\"default\"], {\n                        beforeLabel: \"너만의\",\n                        highlightedLabel: \" EMOSAAC!\"\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                        lineNumber: 76,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        css: bookCarouselWrapperCSS,\n                        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_UI_ScrollableCarousel_ScrollableCarousel__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n                            API: getBooksByGenreAPI,\n                            identifier: \"test1\"\n                        }, void 0, false, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                            lineNumber: 78,\n                            columnNumber: 11\n                        }, this)\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                        lineNumber: 77,\n                        columnNumber: 9\n                    }, this),\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        css: whiteSpace1CSS\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                        lineNumber: 80,\n                        columnNumber: 9\n                    }, this)\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                lineNumber: 75,\n                columnNumber: 7\n            }, this),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"img\", {\n                src: isMobile === true ? \"/assets/content_banner_mobile.png\" : \"/assets/content_banner_desktop_tablet.png\",\n                alt: \"\",\n                css: bannerImage\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n                lineNumber: 88,\n                columnNumber: 7\n            }, this)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\index.tsx\",\n        lineNumber: 55,\n        columnNumber: 5\n    }, this);\n}\nconst getServerSideProps = async (context)=>{\n    // 임시 API\n    const data = await (0,_api_book_getBooksByGenre__WEBPACK_IMPORTED_MODULE_8__.getBooksByGenre)({\n        genreCode: 10,\n        typeCode: 0,\n        prevId: 0,\n        prevScore: 10,\n        size: 20\n    }).then((res)=>{\n        if (res !== null) {\n            return res.content;\n        }\n    }).catch((err)=>{\n        console.log(\"pages/books/index.tsx => getBooksByGenre\", err);\n    });\n    return await {\n        props: {\n            highlightedBookData: data\n        }\n    };\n};\nconst indexWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  overflow: hidden;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n`;\nconst bannerImage = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  height: auto;\r\n`;\nconst whiteSpace1CSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  height: 5vw;\r\n  min-height: 48px;\r\n`;\nconst whiteSpace2CSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  height: 7vw;\r\n  min-height: 72px;\r\n`;\nconst bannerWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  overflow: hidden;\r\n`;\nconst highlightedCarouselWrapper = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n`;\nconst bookCarouselWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  /* overflow: hidden; */\r\n  border-radius: 10px; ;\r\n`;\nconst innerLayoutWrapperCSS = ({ isDeskTop , isTablet , isMobile  })=>{\n    const whiteSpace = isDeskTop && 210 || isTablet && 100 || isMobile && 0;\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: calc(100% - ${whiteSpace}px);\r\n    /* margin: 0px 105px; */\r\n  `;\n};\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,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LE9BQU8sTUFBTTVDLDBFQUFlQSxDQUFDO1FBQUN3QixXQUFXO1FBQUlDLFVBQVU7UUFBR04sUUFBUTtRQUFHRyxXQUFXO1FBQUlKLE1BQU07SUFBRyxHQUNoRzJCLElBQUksQ0FBQyxDQUFDQyxNQUFRO1FBQ2IsSUFBSUEsUUFBUSxJQUFJLEVBQUU7WUFDaEIsT0FBT0EsSUFBSXJDLE9BQU87UUFDcEIsQ0FBQztJQUNILEdBQ0NzQyxLQUFLLENBQUMsQ0FBQ0MsTUFBUTtRQUNkQyxRQUFRQyxHQUFHLENBQUMsNENBQTRDRjtJQUMxRDtJQUVGLE9BQU8sTUFBTTtRQUNYRyxPQUFPO1lBQ0xqRCxxQkFBcUIwQztRQUN2QjtJQUNGO0FBQ0YsRUFBRTtBQUVGLE1BQU1oQixrQkFBa0JwQywrQ0FBRyxDQUFDOzs7OztBQUs1QixDQUFDO0FBRUQsTUFBTXFCLGNBQWNyQiwrQ0FBRyxDQUFDOzs7QUFHeEIsQ0FBQztBQUVELE1BQU1zQyxpQkFBaUJ0QywrQ0FBRyxDQUFDOzs7O0FBSTNCLENBQUM7QUFFRCxNQUFNOEMsaUJBQWlCOUMsK0NBQUcsQ0FBQzs7OztBQUkzQixDQUFDO0FBRUQsTUFBTXFDLG1CQUFtQnJDLCtDQUFHLENBQUM7OztBQUc3QixDQUFDO0FBRUQsTUFBTTRDLDZCQUE2QjVDLCtDQUFHLENBQUM7Ozs7QUFJdkMsQ0FBQztBQUVELE1BQU0rQyx5QkFBeUIvQywrQ0FBRyxDQUFDOzs7O0FBSW5DLENBQUM7QUFPRCxNQUFNdUMsd0JBQXdCLENBQUMsRUFDN0IxQixVQUFTLEVBQ1RDLFNBQVEsRUFDUkMsU0FBUSxFQUNtQixHQUFLO0lBQ2hDLE1BQU02QyxhQUFhLGFBQWMsT0FBUzlDLFlBQVksT0FBU0MsWUFBWTtJQUMzRSxPQUFPZiwrQ0FBRyxDQUFDO3VCQUNVLEVBQUU0RCxXQUFXOztFQUVsQyxDQUFDO0FBQ0giLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvcGFnZXMvYm9va3MvaW5kZXgudHN4PzY3OWMiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3hJbXBvcnRTb3VyY2UgQGVtb3Rpb24vcmVhY3QgKi9cclxuaW1wb3J0IHsganN4LCBjc3MgfSBmcm9tIFwiQGVtb3Rpb24vcmVhY3RcIjtcclxuaW1wb3J0IHsgdXNlU3RhdGUsIHVzZVJlZiwgdXNlRWZmZWN0IH0gZnJvbSBcInJlYWN0XCI7XHJcbmltcG9ydCBTY3JvbGxhYmxlQ2Fyb3VzZWwgZnJvbSBcIkAvY29tcG9uZW50cy9VSS9TY3JvbGxhYmxlQ2Fyb3VzZWwvU2Nyb2xsYWJsZUNhcm91c2VsXCI7XHJcbmltcG9ydCBTd2lwZWFibGVHYWxsZXJ5IGZyb20gXCJAL2NvbXBvbmVudHMvVUkvU3dpcGVhYmxlQ2Fyb3VzZWwvU3dpcGVhYmxlR2FsbGVyeVwiO1xyXG5pbXBvcnQgeyByZWN2Qm9va3MgfSBmcm9tIFwiQC9hcGkvRHVtbXlEYXRhXCI7XHJcbi8vIGltcG9ydCBiYW5uZXIxIGZyb20gXCIuLi8uLi9hc3NldHMvdGVtcF9iYW5uZXJfMS5wbmdcIjtcclxuLy8gaW1wb3J0IGJhbm5lcjIgZnJvbSBcIi4uLy4uL2Fzc2V0cy90ZW1wX2Jhbm5lcl8yLnBuZ1wiO1xyXG5pbXBvcnQgSW1hZ2UgZnJvbSBcIm5leHQvaW1hZ2VcIjtcclxuaW1wb3J0IEhpZ2hsaWdodGVkQ2Fyb3VzZWwgZnJvbSBcIkAvY29tcG9uZW50cy9ib29rVGFiL0hpZ2hsaWdodGVkQ2Fyb3VzZWwvSGlnaGxpZ2h0ZWRDYXJvdXNlbFwiO1xyXG5pbXBvcnQgUm93VGl0bGUgZnJvbSBcIkAvY29tcG9uZW50cy9ib29rVGFiL1Jvd1RpdGxlL1Jvd1RpdGxlXCI7XHJcbmltcG9ydCB7IHVzZUlzUmVzcG9uc2l2ZSB9IGZyb20gXCJAL2NvbXBvbmVudHMvUmVzcG9uc2l2ZS91c2VJc1Jlc3BvbnNpdmVcIjtcclxuLy8gaW1wb3J0IGNvbnRlbnRCYW5uZXJEZXNrdG9wIGZyb20gXCIvYXNzZXRzL2NvbnRlbnRfYmFubmVyX2Rlc2t0b3BfdGFibGV0LnBuZ1wiXHJcbi8vIGltcG9ydCBjb250ZW50QmFubmVyTW9iaWxlIGZyb20gXCIvYXNzZXRzL2NvbnRlbnRfYmFubmVyX21vYmlsZS5wbmdcIlxyXG5pbXBvcnQgeyBnZXRCb29rc0J5R2VucmUgfSBmcm9tIFwiQC9hcGkvYm9vay9nZXRCb29rc0J5R2VucmVcIjtcclxuaW1wb3J0IHsgYm9va0NvbnRlbnRUeXBlIH0gZnJvbSBcIkAvdHlwZXMvYm9va3NcIjtcclxuXHJcbmludGVyZmFjZSBIb21lUHJvcHMge1xyXG4gIGhpZ2hsaWdodGVkQm9va0RhdGE6IGJvb2tDb250ZW50VHlwZVtdXHJcbn1cclxuXHJcbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIEhvbWUoe2hpZ2hsaWdodGVkQm9va0RhdGF9OiBIb21lUHJvcHMpIHtcclxuICBjb25zdCBwYXJlbnRSZWYgPSB1c2VSZWY8SFRNTERpdkVsZW1lbnQ+KG51bGwpO1xyXG4gIGNvbnN0IGluZGV4V3JhcHBlclJlZiA9IHVzZVJlZjxIVE1MRGl2RWxlbWVudD4obnVsbCk7XHJcblxyXG4gIGNvbnN0IFtpc0Rlc2tUb3AsIGlzVGFibGV0LCBpc01vYmlsZV0gPSB1c2VJc1Jlc3BvbnNpdmUoKTtcclxuXHJcbiAgLy8gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXHJcbiAgLy8g7J6E7IucIOuNsOydtO2EsFxyXG4gIGNvbnN0IHBvc3REYXRhID0ge1xyXG4gICAgY29udGVudDogW1xyXG4gICAgICA8aW1nIHNyYz17XCIvYXNzZXRzL3RlbXBfYmFubmVyXzEucG5nXCJ9IGFsdD17XCJcIn0gY3NzPXtiYW5uZXJJbWFnZX0gLz4sXHJcbiAgICAgIDxpbWcgc3JjPXtcIi9hc3NldHMvdGVtcF9iYW5uZXJfMi5wbmdcIn0gYWx0PXtcIlwifSBjc3M9e2Jhbm5lckltYWdlfSAvPixcclxuICAgIF0sXHJcbiAgfTtcclxuXHJcbiAgLy8gY29uc3QgZ2V0Qm9va0RhdGEgPSByZWN2Qm9va3MoMCwgMjApLnRoZW4oKHJlczogYW55KSA9PlxyXG4gIC8vICAgc2V0Qm9va0RhdGEoKCkgPT4gcmVzKVxyXG4gIC8vICk7XHJcbiAgY29uc3QgW2Jvb2tEYXRhLCBzZXRCb29rRGF0YV0gPSB1c2VTdGF0ZTxvYmplY3RbXT4oW10pO1xyXG5cclxuXHJcbiAgLy8gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXHJcblxyXG5cclxuICBcclxuXHJcbiAgY29uc3QgZ2V0Qm9va3NCeUdlbnJlQVBJID0gKHtib29rTGlzdCwgc2l6ZX06IHtib29rTGlzdDogYm9va0NvbnRlbnRUeXBlW107IHNpemU6IG51bWJlcn0pID0+IHtcclxuICAgIGNvbnN0IHByZXZJZCA9IGJvb2tMaXN0Lmxlbmd0aCA/IGJvb2tMaXN0W2Jvb2tMaXN0Lmxlbmd0aCAtIDFdLmJvb2tJZCA6IDBcclxuICAgIGNvbnN0IHByZXZTY29yZSA9IGJvb2tMaXN0Lmxlbmd0aCA/IGJvb2tMaXN0W2Jvb2tMaXN0Lmxlbmd0aCAtIDFdLnNjb3JlIDogMTBcclxuICAgIHJldHVybiBnZXRCb29rc0J5R2VucmUoe2dlbnJlQ29kZTogMTAsIHR5cGVDb2RlOiAwLCBwcmV2SWQ6IHByZXZJZCwgcHJldlNjb3JlOiBwcmV2U2NvcmUsIHNpemU6IHNpemUgfSlcclxuICB9XHJcblxyXG4gIHJldHVybiAoXHJcbiAgICA8ZGl2IHJlZj17aW5kZXhXcmFwcGVyUmVmfSBjc3M9e2luZGV4V3JhcHBlckNTU30+XHJcbiAgICAgIDxkaXYgY3NzPXtiYW5uZXJXcmFwcGVyQ1NTfSByZWY9e3BhcmVudFJlZn0+XHJcbiAgICAgICAgPFN3aXBlYWJsZUdhbGxlcnkgcGFyZW50UmVmPXtwYXJlbnRSZWZ9IGNvbnRlbnQ9e3Bvc3REYXRhfSAvPlxyXG4gICAgICA8L2Rpdj5cclxuXHJcbiAgICAgIDxkaXYgY3NzPXt3aGl0ZVNwYWNlMUNTU30gLz5cclxuICAgICAgPGRpdiBjc3M9e2lubmVyTGF5b3V0V3JhcHBlckNTUyh7IGlzRGVza1RvcCwgaXNUYWJsZXQsIGlzTW9iaWxlIH0pfT5cclxuICAgICAgICA8Um93VGl0bGVcclxuICAgICAgICAgIGJlZm9yZUxhYmVsPVwi7Z2sTURcIlxyXG4gICAgICAgICAgaGlnaGxpZ2h0ZWRMYWJlbD1cIiBFTU9TQUFDIVwiXHJcbiAgICAgICAgICBub0xpbmU9e3RydWV9XHJcbiAgICAgICAgICBtYXJnaW5Cb3R0b209e1wiNDVweFwifVxyXG4gICAgICAgIC8+XHJcbiAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgPGRpdiBjc3M9e2hpZ2hsaWdodGVkQ2Fyb3VzZWxXcmFwcGVyfT5cclxuICAgICAgICA8SGlnaGxpZ2h0ZWRDYXJvdXNlbCBib29rRGF0YT17aGlnaGxpZ2h0ZWRCb29rRGF0YX0gd2luZG93V3JhcHBlclJlZj17aW5kZXhXcmFwcGVyUmVmfSAvPlxyXG4gICAgICA8L2Rpdj5cclxuICAgICAgPGRpdiBjc3M9e3doaXRlU3BhY2UyQ1NTfSAvPlxyXG5cclxuICAgICAgPGRpdiBjc3M9e2lubmVyTGF5b3V0V3JhcHBlckNTUyh7IGlzRGVza1RvcCwgaXNUYWJsZXQsIGlzTW9iaWxlIH0pfT5cclxuICAgICAgICA8Um93VGl0bGUgYmVmb3JlTGFiZWw9XCLrhIjrp4zsnZhcIiBoaWdobGlnaHRlZExhYmVsPVwiIEVNT1NBQUMhXCIgLz5cclxuICAgICAgICA8ZGl2IGNzcz17Ym9va0Nhcm91c2VsV3JhcHBlckNTU30+XHJcbiAgICAgICAgICA8U2Nyb2xsYWJsZUNhcm91c2VsIEFQST17Z2V0Qm9va3NCeUdlbnJlQVBJfSBpZGVudGlmaWVyPXtcInRlc3QxXCJ9IC8+XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgPGRpdiBjc3M9e3doaXRlU3BhY2UxQ1NTfSAvPlxyXG4gICAgICAgIHsvKiA8Um93VGl0bGUgYmVmb3JlTGFiZWw9XCLrhIjrp4zsnZhcIiBoaWdobGlnaHRlZExhYmVsPVwiIEVNT1NBQUMhXCIgLz5cclxuICAgICAgICA8ZGl2IGNzcz17Ym9va0Nhcm91c2VsV3JhcHBlckNTU30+XHJcbiAgICAgICAgICA8U2Nyb2xsYWJsZUNhcm91c2VsIEFQST17cmVjdkJvb2tzfSBpZGVudGlmaWVyPXtcInRlc3QxXCJ9IC8+XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgPGRpdiBjc3M9e3doaXRlU3BhY2UxQ1NTfSAvPiAqL31cclxuICAgICAgPC9kaXY+XHJcblxyXG4gICAgICA8aW1nXHJcbiAgICAgICAgc3JjPXtcclxuICAgICAgICAgIGlzTW9iaWxlID09PSB0cnVlXHJcbiAgICAgICAgICAgID8gXCIvYXNzZXRzL2NvbnRlbnRfYmFubmVyX21vYmlsZS5wbmdcIlxyXG4gICAgICAgICAgICA6IFwiL2Fzc2V0cy9jb250ZW50X2Jhbm5lcl9kZXNrdG9wX3RhYmxldC5wbmdcIlxyXG4gICAgICAgIH1cclxuICAgICAgICBhbHQ9e1wiXCJ9XHJcbiAgICAgICAgY3NzPXtiYW5uZXJJbWFnZX1cclxuICAgICAgLz5cclxuXHJcbiAgICAgIHsvKiA8ZGl2IGNzcz17aW5uZXJMYXlvdXRXcmFwcGVyQ1NTKHsgaXNEZXNrVG9wLCBpc1RhYmxldCwgaXNNb2JpbGUgfSl9PlxyXG4gICAgICAgIDxkaXYgY3NzPXt3aGl0ZVNwYWNlMUNTU30gLz5cclxuICAgICAgICA8Um93VGl0bGUgYmVmb3JlTGFiZWw9XCLrhIjrp4zsnZhcIiBoaWdobGlnaHRlZExhYmVsPVwiIEVNT1NBQUMhXCIgLz5cclxuICAgICAgICA8ZGl2IGNzcz17Ym9va0Nhcm91c2VsV3JhcHBlckNTU30+XHJcbiAgICAgICAgICA8U2Nyb2xsYWJsZUNhcm91c2VsIEFQST17cmVjdkJvb2tzfSBpZGVudGlmaWVyPXtcInRlc3QxXCJ9IC8+XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgPGRpdiBjc3M9e3doaXRlU3BhY2UxQ1NTfSAvPlxyXG4gICAgICAgIDxSb3dUaXRsZSBiZWZvcmVMYWJlbD1cIuuEiOunjOydmFwiIGhpZ2hsaWdodGVkTGFiZWw9XCIgRU1PU0FBQyFcIiAvPlxyXG4gICAgICAgIDxkaXYgY3NzPXtib29rQ2Fyb3VzZWxXcmFwcGVyQ1NTfT5cclxuICAgICAgICAgIDxTY3JvbGxhYmxlQ2Fyb3VzZWwgQVBJPXtyZWN2Qm9va3N9IGlkZW50aWZpZXI9e1widGVzdDFcIn0gLz5cclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgICA8ZGl2IGNzcz17d2hpdGVTcGFjZTFDU1N9IC8+XHJcbiAgICAgIDwvZGl2PiAqL31cclxuXHJcblxyXG4gICAgPC9kaXY+XHJcbiAgKTtcclxufVxyXG5cclxuXHJcbmV4cG9ydCBjb25zdCBnZXRTZXJ2ZXJTaWRlUHJvcHMgPSBhc3luYyAoY29udGV4dDogYW55KSA9PiB7XHJcbiAgLy8g7J6E7IucIEFQSVxyXG4gIGNvbnN0IGRhdGEgPSBhd2FpdCBnZXRCb29rc0J5R2VucmUoe2dlbnJlQ29kZTogMTAsIHR5cGVDb2RlOiAwLCBwcmV2SWQ6IDAsIHByZXZTY29yZTogMTAsIHNpemU6IDIwIH0pXHJcbiAgICAudGhlbigocmVzKSA9PiB7XHJcbiAgICAgIGlmIChyZXMgIT09IG51bGwpIHtcclxuICAgICAgICByZXR1cm4gcmVzLmNvbnRlbnQ7XHJcbiAgICAgIH1cclxuICAgIH0pXHJcbiAgICAuY2F0Y2goKGVycikgPT4ge1xyXG4gICAgICBjb25zb2xlLmxvZyhcInBhZ2VzL2Jvb2tzL2luZGV4LnRzeCA9PiBnZXRCb29rc0J5R2VucmVcIiwgZXJyKTtcclxuICAgIH0pO1xyXG5cclxuICByZXR1cm4gYXdhaXQge1xyXG4gICAgcHJvcHM6IHtcclxuICAgICAgaGlnaGxpZ2h0ZWRCb29rRGF0YTogZGF0YSxcclxuICAgIH0sXHJcbiAgfTtcclxufTtcclxuXHJcbmNvbnN0IGluZGV4V3JhcHBlckNTUyA9IGNzc2BcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG5gO1xyXG5cclxuY29uc3QgYmFubmVySW1hZ2UgPSBjc3NgXHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiBhdXRvO1xyXG5gO1xyXG5cclxuY29uc3Qgd2hpdGVTcGFjZTFDU1MgPSBjc3NgXHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgaGVpZ2h0OiA1dnc7XHJcbiAgbWluLWhlaWdodDogNDhweDtcclxuYDtcclxuXHJcbmNvbnN0IHdoaXRlU3BhY2UyQ1NTID0gY3NzYFxyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGhlaWdodDogN3Z3O1xyXG4gIG1pbi1oZWlnaHQ6IDcycHg7XHJcbmA7XHJcblxyXG5jb25zdCBiYW5uZXJXcmFwcGVyQ1NTID0gY3NzYFxyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbmA7XHJcblxyXG5jb25zdCBoaWdobGlnaHRlZENhcm91c2VsV3JhcHBlciA9IGNzc2BcclxuICB3aWR0aDogMTAwJTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG5gO1xyXG5cclxuY29uc3QgYm9va0Nhcm91c2VsV3JhcHBlckNTUyA9IGNzc2BcclxuICB3aWR0aDogMTAwJTtcclxuICAvKiBvdmVyZmxvdzogaGlkZGVuOyAqL1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwcHg7IDtcclxuYDtcclxuXHJcbmludGVyZmFjZSBpbm5lckxheW91dFdyYXBwZXJDU1NQcm9wcyB7XHJcbiAgaXNEZXNrVG9wOiBib29sZWFuO1xyXG4gIGlzVGFibGV0OiBib29sZWFuO1xyXG4gIGlzTW9iaWxlOiBib29sZWFuO1xyXG59XHJcbmNvbnN0IGlubmVyTGF5b3V0V3JhcHBlckNTUyA9ICh7XHJcbiAgaXNEZXNrVG9wLFxyXG4gIGlzVGFibGV0LFxyXG4gIGlzTW9iaWxlLFxyXG59OiBpbm5lckxheW91dFdyYXBwZXJDU1NQcm9wcykgPT4ge1xyXG4gIGNvbnN0IHdoaXRlU3BhY2UgPSAoaXNEZXNrVG9wICYmIDIxMCkgfHwgKGlzVGFibGV0ICYmIDEwMCkgfHwgKGlzTW9iaWxlICYmIDApO1xyXG4gIHJldHVybiBjc3NgXHJcbiAgICB3aWR0aDogY2FsYygxMDAlIC0gJHt3aGl0ZVNwYWNlfXB4KTtcclxuICAgIC8qIG1hcmdpbjogMHB4IDEwNXB4OyAqL1xyXG4gIGA7XHJcbn07XHJcbiJdLCJuYW1lcyI6WyJjc3MiLCJ1c2VTdGF0ZSIsInVzZVJlZiIsIlNjcm9sbGFibGVDYXJvdXNlbCIsIlN3aXBlYWJsZUdhbGxlcnkiLCJIaWdobGlnaHRlZENhcm91c2VsIiwiUm93VGl0bGUiLCJ1c2VJc1Jlc3BvbnNpdmUiLCJnZXRCb29rc0J5R2VucmUiLCJIb21lIiwiaGlnaGxpZ2h0ZWRCb29rRGF0YSIsInBhcmVudFJlZiIsImluZGV4V3JhcHBlclJlZiIsImlzRGVza1RvcCIsImlzVGFibGV0IiwiaXNNb2JpbGUiLCJwb3N0RGF0YSIsImNvbnRlbnQiLCJpbWciLCJzcmMiLCJhbHQiLCJiYW5uZXJJbWFnZSIsImJvb2tEYXRhIiwic2V0Qm9va0RhdGEiLCJnZXRCb29rc0J5R2VucmVBUEkiLCJib29rTGlzdCIsInNpemUiLCJwcmV2SWQiLCJsZW5ndGgiLCJib29rSWQiLCJwcmV2U2NvcmUiLCJzY29yZSIsImdlbnJlQ29kZSIsInR5cGVDb2RlIiwiZGl2IiwicmVmIiwiaW5kZXhXcmFwcGVyQ1NTIiwiYmFubmVyV3JhcHBlckNTUyIsIndoaXRlU3BhY2UxQ1NTIiwiaW5uZXJMYXlvdXRXcmFwcGVyQ1NTIiwiYmVmb3JlTGFiZWwiLCJoaWdobGlnaHRlZExhYmVsIiwibm9MaW5lIiwibWFyZ2luQm90dG9tIiwiaGlnaGxpZ2h0ZWRDYXJvdXNlbFdyYXBwZXIiLCJ3aW5kb3dXcmFwcGVyUmVmIiwid2hpdGVTcGFjZTJDU1MiLCJib29rQ2Fyb3VzZWxXcmFwcGVyQ1NTIiwiQVBJIiwiaWRlbnRpZmllciIsImdldFNlcnZlclNpZGVQcm9wcyIsImNvbnRleHQiLCJkYXRhIiwidGhlbiIsInJlcyIsImNhdGNoIiwiZXJyIiwiY29uc29sZSIsImxvZyIsInByb3BzIiwid2hpdGVTcGFjZSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/pages/books/index.tsx\n");
+
+/***/ }),
+
+/***/ "@emotion/react":
+/*!*********************************!*\
+  !*** external "@emotion/react" ***!
+  \*********************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1666,15 +165,21 @@ module.exports = require("@emotion/react");
 
 /***/ }),
 
-/***/ 5193:
+/***/ "@emotion/react/jsx-dev-runtime":
+/*!*************************************************!*\
+  !*** external "@emotion/react/jsx-dev-runtime" ***!
+  \*************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("@emotion/react/jsx-runtime");
+module.exports = require("@emotion/react/jsx-dev-runtime");
 
 /***/ }),
 
-/***/ 6517:
+/***/ "lodash":
+/*!*************************!*\
+  !*** external "lodash" ***!
+  \*************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1682,7 +187,10 @@ module.exports = require("lodash");
 
 /***/ }),
 
-/***/ 1853:
+/***/ "next/router":
+/*!******************************!*\
+  !*** external "next/router" ***!
+  \******************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1690,7 +198,10 @@ module.exports = require("next/router");
 
 /***/ }),
 
-/***/ 6689:
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1698,7 +209,10 @@ module.exports = require("react");
 
 /***/ }),
 
-/***/ 6405:
+/***/ "react-dom":
+/*!****************************!*\
+  !*** external "react-dom" ***!
+  \****************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1706,7 +220,10 @@ module.exports = require("react-dom");
 
 /***/ }),
 
-/***/ 8252:
+/***/ "react-easy-swipe":
+/*!***********************************!*\
+  !*** external "react-easy-swipe" ***!
+  \***********************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1714,7 +231,10 @@ module.exports = require("react-easy-swipe");
 
 /***/ }),
 
-/***/ 567:
+/***/ "react-icons/bs":
+/*!*********************************!*\
+  !*** external "react-icons/bs" ***!
+  \*********************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1722,7 +242,10 @@ module.exports = require("react-icons/bs");
 
 /***/ }),
 
-/***/ 6666:
+/***/ "react-responsive":
+/*!***********************************!*\
+  !*** external "react-responsive" ***!
+  \***********************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1730,7 +253,10 @@ module.exports = require("react-responsive");
 
 /***/ }),
 
-/***/ 9648:
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
 /***/ ((module) => {
 
 "use strict";
@@ -1745,7 +271,7 @@ module.exports = import("axios");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [932,394], () => (__webpack_exec__(7790)));
+var __webpack_exports__ = (__webpack_exec__("./src/pages/books/index.tsx"));
 module.exports = __webpack_exports__;
 
 })();
