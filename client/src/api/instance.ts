@@ -7,7 +7,7 @@ function getToken() {
     return `Bearer ${information}`; 
   }
   
-  return "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjc5NzI5MjYwLCJleHAiOjE2ODA1OTMyNjB9.XHPc_vgncmmMesknqWB9eBbL2VDDeH_oXlYqIuIUvM9EK0OM5qzWA6Zsa3JDGS6Tf2QSuH8d-_U7CKsbW-H1-g";
+  return "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjc5NzM5NjczLCJleHAiOjE2ODA2MDM2NzN9.WtIMfSj612i75FPfpTuL0b-3D-HDYKwB9o9NpAMpDOyAF5Lnae31c0Sn8mT_ujn1jhD8LYD3atBG-V_JceqmKA";
 }
 
 function defaultInstace() {

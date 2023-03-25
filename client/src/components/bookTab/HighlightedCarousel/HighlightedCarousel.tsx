@@ -84,7 +84,7 @@ const HighlightedCarousel = ({ bookData, windowWrapperRef }: HighlightedCarousel
     }
   }, [])
 
-  
+
   const prevBtnHandler = () => {
     if (currentIdx > 0) {
       setCurrentIdx((prev) => prev - 1);
@@ -439,7 +439,7 @@ const carouselInnerWrapperCSS = ({
         
   return css`
     width: ${calcWidth};
-    /* left: ${calcLeft}; */
+    left: ${calcLeft};
     position: relative;
     display: flex;
   `;

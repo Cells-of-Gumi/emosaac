@@ -8,23 +8,51 @@ type gradeType = string | number
 interface PlatformRatingHoverProps {
     avgGrade: gradeType;
     grade: gradeType[];
+    href: string;
 }
 
-const PlatformRatingHover = ({avgGrade, grade}: PlatformRatingHoverProps) => {
+const PlatformRatingHover = ({avgGrade, grade, href}: PlatformRatingHoverProps) => {
     const [rating, setRating] = useState<gradeType[]>(grade)
 
-    const ratingRender = rating.map((el, idx) => {
+    const [hrefArr, setHrefArr] = useState<string[]>(href.split(" "))
+    const platformBase = ["https://comic.naver.com/", "https://series.naver.com/", "https://page.kakao.com/", "https://ridibooks.com/"]
+
+    
+    const ratingRender = hrefArr.map((el, idx) => {
+        const findPlatform = (element: string) => {
+            if (el.includes(element)) {
+                return true
+            }
+        }
+        const result = platformBase.findIndex(findPlatform)
         return (
             <div css={ratingWrapperCSS}>
-                <div css={ratingStringWrapperCSS}>플랫폼 : </div>
+                <div css={ratingStringWrapperCSS}>
+                    <img src={(result === 0 && "/assets/platform_naver_webtoon.webp") || (result === 1 && "/assets/platform_naver_series.webp") || (result === 2 && "/assets/platform_kakao_page.png") || (result === 3 && "/assets/platform_ridi.webp") || ''} css={platformIconCSS} />
+                </div>
                 <StarRating initialValue={Number(el)} readonly={true}/>
             </div>
+
+                
+
+            
         )
     })
+
+
+    // const ratingRender = rating.map((el, idx) => {
+    //     return (
+    //         <div css={ratingWrapperCSS}>
+    //             <div css={ratingStringWrapperCSS}>플랫폼 : </div>
+    //             <StarRating initialValue={Number(el)} readonly={true}/>
+    //         </div>
+    //     )
+    // })
+
     return (
         <div className={"platform-rating-wrapper"} css={platformRatingHoverWrapperCSS}>
             <div css={ratingWrapperCSS}>
-                <div css={ratingStringWrapperCSS}>평균 : </div>
+                <div css={ratingStringWrapperCSS}>평균 </div>
                 <StarRating initialValue={Number(avgGrade)} readonly={true}/>
             </div>
             
@@ -57,6 +85,16 @@ const ratingWrapperCSS = css`
 
 const ratingStringWrapperCSS = css`
     width: 64px;
+    font-size:18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const platformIconCSS = css`
+    width: 36px;
+    height: auto;
+    margin: 10px;
 `
 
 export default PlatformRatingHover
