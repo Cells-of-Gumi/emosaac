@@ -1,1716 +1,372 @@
 "use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
 (() => {
 var exports = {};
-exports.id = 152;
-exports.ids = [152];
+exports.id = "pages/books/[bookId]";
+exports.ids = ["pages/books/[bookId]"];
 exports.modules = {
 
-/***/ 7546:
+/***/ "./src/api/book/getBookDetail.ts":
+/*!***************************************!*\
+  !*** ./src/api/book/getBookDetail.ts ***!
+  \***************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "G": () => (/* binding */ getBookDetail)
-/* harmony export */ });
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9648);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([axios__WEBPACK_IMPORTED_MODULE_0__]);
-axios__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-// export async function getBookDetail(
-//   bookId: number
-// ): Promise<bookDataType | null> {
-//   try {
-//     const { data }: { data: bookDataResponse } = await defaultAxiosInstance.get(
-//       `/books/${bookId}`
-//     );
-//     if (data.status === 200) {
-//       return data.data;
-//     } else {
-//       return null;
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     throw error
-//   }
-// }
-
-const getBookDetail = async (bookId)=>{
-    return await (0,axios__WEBPACK_IMPORTED_MODULE_0__["default"])({
-        method: "get",
-        url: `${"http://j8d203.p.ssafy.io:8081/api"}/books/${bookId}`,
-        headers: {
-            Authorization: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjc5MzU5MDQwLCJleHAiOjE2ODAyMjMwNDB9.5rJDelPFgBQRZclfOF5KE7teD-xIKTGyMkPEw7BQRJtETqM36wUqOaEnmNN12cIwz1drC9SOo03gLshlqGhuLw"
-        }
-    }).then((res)=>{
-        return res.data.data;
-    });
-};
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getBookDetail\": () => (/* binding */ getBookDetail)\n/* harmony export */ });\n/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../instance */ \"./src/api/instance.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);\n_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n// import { defaultAxiosInstance } from \"../instance\";\n// import { AxiosResponse } from \"axios\";\n// type bookDataType = {\n//     \"bookId\": number,\n//     \"platform\": number,\n//     \"thumbnail\": string,\n//     \"title\": string,\n//     \"author\": string,\n//     \"href\": string,\n//     \"story\": string,\n//     \"tag\": string,\n//     \"genre\": string,\n//     \"regist\": string,\n//     \"grade\": string,\n//     \"avgScore\": number,\n//     \"hit\": number,\n//     \"day\": string,\n//     \"bookmark\": boolean,\n//     \"read\": boolean,\n//     \"myScore\": number\n// }[]\n// interface bookDataResponse {\n//   status: number;\n//   message: string;\n//   data: bookDataType;\n// }\n// // export async function getBookDetail(\n// //   bookId: number\n// // ): Promise<bookDataType | null> {\n// //   try {\n// //     const { data }: { data: bookDataResponse } = await defaultAxiosInstance.get(\n// //       `/books/${bookId}`\n// //     );\n// //     if (data.status === 200) {\n// //       return data.data;\n// //     } else {\n// //       return null;\n// //     }\n// //   } catch (error) {\n// //     console.log(error);\n// //     throw error\n// //   }\n// // }\n// import axios from \"axios\";\n// export const getBookDetail = async (bookId: number): Promise<bookDataType> => {\n//   return await axios({\n//     method: \"get\",\n//     url: `${process.env.NEXT_PUBLIC_API_BASE_URL}/books/${bookId}`,\n//     headers: {\n//       Authorization: \"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjc5MzU5MDQwLCJleHAiOjE2ODAyMjMwNDB9.5rJDelPFgBQRZclfOF5KE7teD-xIKTGyMkPEw7BQRJtETqM36wUqOaEnmNN12cIwz1drC9SOo03gLshlqGhuLw\",\n//     },\n//   }).then((res: AxiosResponse<bookDataResponse>) => {\n//     return res.data.data;\n//   });\n// };\n\nasync function getBookDetail({ bookId  }) {\n    try {\n        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__.defaultAxiosInstance.get(`/books/${bookId}`);\n        return data.data;\n    } catch (error) {\n        console.log(error);\n        throw error;\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2Jvb2svZ2V0Qm9va0RldGFpbC50cy5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBLHNEQUFzRDtBQUV0RCx5Q0FBeUM7QUFFekMsd0JBQXdCO0FBQ3hCLHdCQUF3QjtBQUN4QiwwQkFBMEI7QUFDMUIsMkJBQTJCO0FBQzNCLHVCQUF1QjtBQUN2Qix3QkFBd0I7QUFDeEIsc0JBQXNCO0FBQ3RCLHVCQUF1QjtBQUN2QixxQkFBcUI7QUFDckIsdUJBQXVCO0FBQ3ZCLHdCQUF3QjtBQUN4Qix1QkFBdUI7QUFDdkIsMEJBQTBCO0FBQzFCLHFCQUFxQjtBQUNyQixxQkFBcUI7QUFDckIsMkJBQTJCO0FBQzNCLHVCQUF1QjtBQUN2Qix3QkFBd0I7QUFDeEIsTUFBTTtBQUVOLCtCQUErQjtBQUMvQixvQkFBb0I7QUFDcEIscUJBQXFCO0FBQ3JCLHdCQUF3QjtBQUN4QixJQUFJO0FBRUosMENBQTBDO0FBQzFDLHNCQUFzQjtBQUN0Qix1Q0FBdUM7QUFDdkMsYUFBYTtBQUNiLHNGQUFzRjtBQUN0Riw4QkFBOEI7QUFDOUIsWUFBWTtBQUNaLG9DQUFvQztBQUNwQyw2QkFBNkI7QUFDN0Isa0JBQWtCO0FBQ2xCLHdCQUF3QjtBQUN4QixXQUFXO0FBQ1gseUJBQXlCO0FBQ3pCLDZCQUE2QjtBQUM3QixxQkFBcUI7QUFDckIsU0FBUztBQUNULE9BQU87QUFHUCw2QkFBNkI7QUFFN0Isa0ZBQWtGO0FBQ2xGLHlCQUF5QjtBQUN6QixxQkFBcUI7QUFDckIsc0VBQXNFO0FBQ3RFLGlCQUFpQjtBQUNqQiwwTUFBME07QUFDMU0sU0FBUztBQUNULHdEQUF3RDtBQUN4RCw0QkFBNEI7QUFDNUIsUUFBUTtBQUNSLEtBQUs7QUFFOEM7QUF3QjVDLGVBQWVDLGNBQWMsRUFBQ0MsT0FBTSxFQUFhLEVBQzFCO0lBQzVCLElBQUk7UUFDRixNQUFNLEVBQUVDLEtBQUksRUFBRSxHQUEyQixNQUFNSCwrREFBd0IsQ0FDckUsQ0FBQyxPQUFPLEVBQUVFLE9BQU8sQ0FBQztRQUVwQixPQUFPQyxLQUFLQSxJQUFJO0lBQ2xCLEVBQUUsT0FBT0UsT0FBTztRQUNkQyxRQUFRQyxHQUFHLENBQUNGO1FBQ1osTUFBTUEsTUFBSztJQUNiO0FBQ0YsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2NsaWVudC8uL3NyYy9hcGkvYm9vay9nZXRCb29rRGV0YWlsLnRzPzRlN2YiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gaW1wb3J0IHsgZGVmYXVsdEF4aW9zSW5zdGFuY2UgfSBmcm9tIFwiLi4vaW5zdGFuY2VcIjtcclxuXHJcbi8vIGltcG9ydCB7IEF4aW9zUmVzcG9uc2UgfSBmcm9tIFwiYXhpb3NcIjtcclxuXHJcbi8vIHR5cGUgYm9va0RhdGFUeXBlID0ge1xyXG4vLyAgICAgXCJib29rSWRcIjogbnVtYmVyLFxyXG4vLyAgICAgXCJwbGF0Zm9ybVwiOiBudW1iZXIsXHJcbi8vICAgICBcInRodW1ibmFpbFwiOiBzdHJpbmcsXHJcbi8vICAgICBcInRpdGxlXCI6IHN0cmluZyxcclxuLy8gICAgIFwiYXV0aG9yXCI6IHN0cmluZyxcclxuLy8gICAgIFwiaHJlZlwiOiBzdHJpbmcsXHJcbi8vICAgICBcInN0b3J5XCI6IHN0cmluZyxcclxuLy8gICAgIFwidGFnXCI6IHN0cmluZyxcclxuLy8gICAgIFwiZ2VucmVcIjogc3RyaW5nLFxyXG4vLyAgICAgXCJyZWdpc3RcIjogc3RyaW5nLFxyXG4vLyAgICAgXCJncmFkZVwiOiBzdHJpbmcsXHJcbi8vICAgICBcImF2Z1Njb3JlXCI6IG51bWJlcixcclxuLy8gICAgIFwiaGl0XCI6IG51bWJlcixcclxuLy8gICAgIFwiZGF5XCI6IHN0cmluZyxcclxuLy8gICAgIFwiYm9va21hcmtcIjogYm9vbGVhbixcclxuLy8gICAgIFwicmVhZFwiOiBib29sZWFuLFxyXG4vLyAgICAgXCJteVNjb3JlXCI6IG51bWJlclxyXG4vLyB9W11cclxuXHJcbi8vIGludGVyZmFjZSBib29rRGF0YVJlc3BvbnNlIHtcclxuLy8gICBzdGF0dXM6IG51bWJlcjtcclxuLy8gICBtZXNzYWdlOiBzdHJpbmc7XHJcbi8vICAgZGF0YTogYm9va0RhdGFUeXBlO1xyXG4vLyB9XHJcblxyXG4vLyAvLyBleHBvcnQgYXN5bmMgZnVuY3Rpb24gZ2V0Qm9va0RldGFpbChcclxuLy8gLy8gICBib29rSWQ6IG51bWJlclxyXG4vLyAvLyApOiBQcm9taXNlPGJvb2tEYXRhVHlwZSB8IG51bGw+IHtcclxuLy8gLy8gICB0cnkge1xyXG4vLyAvLyAgICAgY29uc3QgeyBkYXRhIH06IHsgZGF0YTogYm9va0RhdGFSZXNwb25zZSB9ID0gYXdhaXQgZGVmYXVsdEF4aW9zSW5zdGFuY2UuZ2V0KFxyXG4vLyAvLyAgICAgICBgL2Jvb2tzLyR7Ym9va0lkfWBcclxuLy8gLy8gICAgICk7XHJcbi8vIC8vICAgICBpZiAoZGF0YS5zdGF0dXMgPT09IDIwMCkge1xyXG4vLyAvLyAgICAgICByZXR1cm4gZGF0YS5kYXRhO1xyXG4vLyAvLyAgICAgfSBlbHNlIHtcclxuLy8gLy8gICAgICAgcmV0dXJuIG51bGw7XHJcbi8vIC8vICAgICB9XHJcbi8vIC8vICAgfSBjYXRjaCAoZXJyb3IpIHtcclxuLy8gLy8gICAgIGNvbnNvbGUubG9nKGVycm9yKTtcclxuLy8gLy8gICAgIHRocm93IGVycm9yXHJcbi8vIC8vICAgfVxyXG4vLyAvLyB9XHJcblxyXG5cclxuLy8gaW1wb3J0IGF4aW9zIGZyb20gXCJheGlvc1wiO1xyXG5cclxuLy8gZXhwb3J0IGNvbnN0IGdldEJvb2tEZXRhaWwgPSBhc3luYyAoYm9va0lkOiBudW1iZXIpOiBQcm9taXNlPGJvb2tEYXRhVHlwZT4gPT4ge1xyXG4vLyAgIHJldHVybiBhd2FpdCBheGlvcyh7XHJcbi8vICAgICBtZXRob2Q6IFwiZ2V0XCIsXHJcbi8vICAgICB1cmw6IGAke3Byb2Nlc3MuZW52Lk5FWFRfUFVCTElDX0FQSV9CQVNFX1VSTH0vYm9va3MvJHtib29rSWR9YCxcclxuLy8gICAgIGhlYWRlcnM6IHtcclxuLy8gICAgICAgQXV0aG9yaXphdGlvbjogXCJCZWFyZXIgZXlKaGJHY2lPaUpJVXpVeE1pSjkuZXlKemRXSWlPaUk0SWl3aWFXRjBJam94TmpjNU16VTVNRFF3TENKbGVIQWlPakUyT0RBeU1qTXdOREI5LjVySkRlbFBGZ0JRUlpjbGZPRjVLRTd0ZUQteElLVEd5TWtQRXc3QlFSSnRFVHFNMzZ3VXFPYUVubU5OMTJjSXd6MWRyQzlTT28wM2dMc2hscUdodUx3XCIsXHJcbi8vICAgICB9LFxyXG4vLyAgIH0pLnRoZW4oKHJlczogQXhpb3NSZXNwb25zZTxib29rRGF0YVJlc3BvbnNlPikgPT4ge1xyXG4vLyAgICAgcmV0dXJuIHJlcy5kYXRhLmRhdGE7XHJcbi8vICAgfSk7XHJcbi8vIH07XHJcblxyXG5pbXBvcnQgeyBkZWZhdWx0QXhpb3NJbnN0YW5jZSB9IGZyb20gXCIuLi9pbnN0YW5jZVwiO1xyXG5pbXBvcnQgeyBib29rRGV0YWlsVHlwZSAgfSBmcm9tIFwiQC90eXBlcy9ib29rc1wiO1xyXG5cclxuXHJcbnR5cGUgcGFyYW1zVHlwZSA9IHtcclxuICBib29rSWQ6IG51bWJlcjtcclxufVxyXG5cclxudHlwZSByZXR1cm5UeXBlID0gYm9va0RldGFpbFR5cGVcclxuLy8gdHlwZSByZXR1cm5UeXBlID0ge1xyXG4vLyAgICAgXCJjb250ZW50XCI6IGJvb2tDb250ZW50VHlwZVtdO1xyXG4vLyAgICAgXCJwYWdlXCI6IG51bWJlcjtcclxuLy8gICAgIFwic2l6ZVwiOiBudW1iZXI7XHJcbi8vICAgICBcImZpcnN0XCI6IGJvb2xlYW47XHJcbi8vICAgICBcImxhc3RcIjogYm9vbGVhbjtcclxuLy8gICAgIFwiaGFzTmV4dFwiOiBib29sZWFuO1xyXG4vLyB9XHJcblxyXG50eXBlIHJlc3BvbnNlVHlwZSA9IHtcclxuICBzdGF0dXM6IG51bWJlcjtcclxuICBtZXNzYWdlOiBzdHJpbmc7XHJcbiAgZGF0YTogcmV0dXJuVHlwZTtcclxufVxyXG5cclxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGdldEJvb2tEZXRhaWwoe2Jvb2tJZH06IHBhcmFtc1R5cGVcclxuKTogUHJvbWlzZTxyZXR1cm5UeXBlIHwgbnVsbD4ge1xyXG4gIHRyeSB7XHJcbiAgICBjb25zdCB7IGRhdGEgfTogeyBkYXRhOiByZXNwb25zZVR5cGUgfSA9IGF3YWl0IGRlZmF1bHRBeGlvc0luc3RhbmNlLmdldChcclxuICAgICAgYC9ib29rcy8ke2Jvb2tJZH1gXHJcbiAgICApO1xyXG4gICAgcmV0dXJuIGRhdGEuZGF0YVxyXG4gIH0gY2F0Y2ggKGVycm9yKSB7XHJcbiAgICBjb25zb2xlLmxvZyhlcnJvcilcclxuICAgIHRocm93IGVycm9yXHJcbiAgfVxyXG59XHJcbiJdLCJuYW1lcyI6WyJkZWZhdWx0QXhpb3NJbnN0YW5jZSIsImdldEJvb2tEZXRhaWwiLCJib29rSWQiLCJkYXRhIiwiZ2V0IiwiZXJyb3IiLCJjb25zb2xlIiwibG9nIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/api/book/getBookDetail.ts\n");
 
 /***/ }),
 
-/***/ 2043:
+/***/ "./src/api/book/putBookRating.ts":
+/*!***************************************!*\
+  !*** ./src/api/book/putBookRating.ts ***!
+  \***************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Y": () => (/* binding */ deleteComment)
-/* harmony export */ });
-/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5394);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);
-_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
-async function deleteComment({ commentId  }) {
-    try {
-        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__/* .defaultAxiosInstance["delete"] */ .E["delete"](`/book/comments/${commentId}`);
-        return data.data;
-    } catch (error) {
-        throw error;
-    }
-}
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"putBookRating\": () => (/* binding */ putBookRating)\n/* harmony export */ });\n/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../instance */ \"./src/api/instance.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);\n_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nasync function putBookRating({ bookId , score  }) {\n    try {\n        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__.defaultAxiosInstance.put(`/books/score/${bookId}?score=${score}`);\n        return data.data;\n    } catch (error) {\n        console.log(error);\n        throw error;\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2Jvb2svcHV0Qm9va1JhdGluZy50cy5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFtRDtBQWlCNUMsZUFBZUMsY0FBYyxFQUFDQyxPQUFNLEVBQUVDLE1BQUssRUFBYSxFQUMvQjtJQUM1QixJQUFJO1FBQ0YsTUFBTSxFQUFFQyxLQUFJLEVBQUUsR0FBMkIsTUFBTUosK0RBQXdCLENBQ3JFLENBQUMsYUFBYSxFQUFFRSxPQUFPLE9BQU8sRUFBRUMsTUFBTSxDQUFDO1FBRXpDLE9BQU9DLEtBQUtBLElBQUk7SUFDbEIsRUFBRSxPQUFPRSxPQUFPO1FBQ2RDLFFBQVFDLEdBQUcsQ0FBQ0Y7UUFDWixNQUFNQSxNQUFLO0lBQ2I7QUFDRixDQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2FwaS9ib29rL3B1dEJvb2tSYXRpbmcudHM/ZDRlOCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBkZWZhdWx0QXhpb3NJbnN0YW5jZSB9IGZyb20gXCIuLi9pbnN0YW5jZVwiO1xyXG5cclxuaW1wb3J0IHsgQXhpb3NSZXNwb25zZSB9IGZyb20gXCJheGlvc1wiO1xyXG5cclxudHlwZSBwYXJhbXNUeXBlID0ge1xyXG4gIGJvb2tJZDogbnVtYmVyO1xyXG4gIHNjb3JlOiBudW1iZXI7XHJcbn1cclxuXHJcbnR5cGUgcmV0dXJuVHlwZSA9IG51bWJlclxyXG5cclxudHlwZSByZXNwb25zZVR5cGUgPSB7XHJcbiAgc3RhdHVzOiBudW1iZXI7XHJcbiAgbWVzc2FnZTogc3RyaW5nO1xyXG4gIGRhdGE6IHJldHVyblR5cGU7XHJcbn1cclxuXHJcbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBwdXRCb29rUmF0aW5nKHtib29rSWQsIHNjb3JlfTogcGFyYW1zVHlwZVxyXG4gICk6IFByb21pc2U8cmV0dXJuVHlwZSB8IG51bGw+IHtcclxuICAgIHRyeSB7XHJcbiAgICAgIGNvbnN0IHsgZGF0YSB9OiB7IGRhdGE6IHJlc3BvbnNlVHlwZSB9ID0gYXdhaXQgZGVmYXVsdEF4aW9zSW5zdGFuY2UucHV0KFxyXG4gICAgICAgIGAvYm9va3Mvc2NvcmUvJHtib29rSWR9P3Njb3JlPSR7c2NvcmV9YFxyXG4gICAgICApO1xyXG4gICAgICByZXR1cm4gZGF0YS5kYXRhXHJcbiAgICB9IGNhdGNoIChlcnJvcikge1xyXG4gICAgICBjb25zb2xlLmxvZyhlcnJvcilcclxuICAgICAgdGhyb3cgZXJyb3JcclxuICAgIH1cclxuICB9XHJcbiAgIl0sIm5hbWVzIjpbImRlZmF1bHRBeGlvc0luc3RhbmNlIiwicHV0Qm9va1JhdGluZyIsImJvb2tJZCIsInNjb3JlIiwiZGF0YSIsInB1dCIsImVycm9yIiwiY29uc29sZSIsImxvZyJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/api/book/putBookRating.ts\n");
 
 /***/ }),
 
-/***/ 6252:
+/***/ "./src/api/book/putBookmark.ts":
+/*!*************************************!*\
+  !*** ./src/api/book/putBookmark.ts ***!
+  \*************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "y": () => (/* binding */ getChildComments)
-/* harmony export */ });
-/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5394);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);
-_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
-async function getChildComments({ parentId , criteria , offset , size  }) {
-    try {
-        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__/* .defaultAxiosInstance.get */ .E.get(`/book/comments/child/${parentId}${criteria !== undefined ? `?criteria=${criteria}` : ""}${offset !== undefined ? `&offset=${offset}` : ""}${size !== undefined ? `&size=${size}` : ""}`);
-        return data.data;
-    } catch (error) {
-        throw error;
-    }
-}
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"putBookmark\": () => (/* binding */ putBookmark)\n/* harmony export */ });\n/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../instance */ \"./src/api/instance.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);\n_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nasync function putBookmark({ bookId  }) {\n    try {\n        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__.defaultAxiosInstance.put(`/books/bookmark/${bookId}`);\n        return data.data;\n    } catch (error) {\n        console.log(error);\n        throw error;\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2Jvb2svcHV0Qm9va21hcmsudHMuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBbUQ7QUFnQjVDLGVBQWVDLFlBQVksRUFBQ0MsT0FBTSxFQUFhLEVBQ3RCO0lBQzVCLElBQUk7UUFDRixNQUFNLEVBQUVDLEtBQUksRUFBRSxHQUEyQixNQUFNSCwrREFBd0IsQ0FDckUsQ0FBQyxnQkFBZ0IsRUFBRUUsT0FBTyxDQUFDO1FBRTdCLE9BQU9DLEtBQUtBLElBQUk7SUFDbEIsRUFBRSxPQUFPRSxPQUFPO1FBQ2RDLFFBQVFDLEdBQUcsQ0FBQ0Y7UUFDWixNQUFNQSxNQUFLO0lBQ2I7QUFDRixDQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2FwaS9ib29rL3B1dEJvb2ttYXJrLnRzPzQwNjMiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgZGVmYXVsdEF4aW9zSW5zdGFuY2UgfSBmcm9tIFwiLi4vaW5zdGFuY2VcIjtcclxuXHJcbmltcG9ydCB7IEF4aW9zUmVzcG9uc2UgfSBmcm9tIFwiYXhpb3NcIjtcclxuXHJcbnR5cGUgcGFyYW1zVHlwZSA9IHtcclxuICBib29rSWQ6IG51bWJlcjtcclxufVxyXG5cclxudHlwZSByZXR1cm5UeXBlID0gYm9vbGVhblxyXG5cclxudHlwZSByZXNwb25zZVR5cGUgPSB7XHJcbiAgc3RhdHVzOiBudW1iZXI7XHJcbiAgbWVzc2FnZTogc3RyaW5nO1xyXG4gIGRhdGE6IHJldHVyblR5cGU7XHJcbn1cclxuXHJcbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBwdXRCb29rbWFyayh7Ym9va0lkfTogcGFyYW1zVHlwZVxyXG4gICk6IFByb21pc2U8cmV0dXJuVHlwZSB8IG51bGw+IHtcclxuICAgIHRyeSB7XHJcbiAgICAgIGNvbnN0IHsgZGF0YSB9OiB7IGRhdGE6IHJlc3BvbnNlVHlwZSB9ID0gYXdhaXQgZGVmYXVsdEF4aW9zSW5zdGFuY2UucHV0KFxyXG4gICAgICAgIGAvYm9va3MvYm9va21hcmsvJHtib29rSWR9YFxyXG4gICAgICApO1xyXG4gICAgICByZXR1cm4gZGF0YS5kYXRhXHJcbiAgICB9IGNhdGNoIChlcnJvcikge1xyXG4gICAgICBjb25zb2xlLmxvZyhlcnJvcilcclxuICAgICAgdGhyb3cgZXJyb3JcclxuICAgIH1cclxuICB9XHJcbiAgIl0sIm5hbWVzIjpbImRlZmF1bHRBeGlvc0luc3RhbmNlIiwicHV0Qm9va21hcmsiLCJib29rSWQiLCJkYXRhIiwicHV0IiwiZXJyb3IiLCJjb25zb2xlIiwibG9nIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/api/book/putBookmark.ts\n");
 
 /***/ }),
 
-/***/ 9613:
+/***/ "./src/api/book/putHasBeenRead.ts":
+/*!****************************************!*\
+  !*** ./src/api/book/putHasBeenRead.ts ***!
+  \****************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "a": () => (/* binding */ getParentComments)
-/* harmony export */ });
-/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5394);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);
-_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
-async function getParentComments({ bookId , criteria , offset , size  }) {
-    try {
-        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__/* .defaultAxiosInstance.get */ .E.get(`/book/comments/parent/${bookId}${criteria !== undefined ? `?criteria=${criteria}` : ""}${offset !== undefined ? `&offset=${offset}` : ""}${size !== undefined ? `&size=${size}` : ""}`);
-        return data.data;
-    } catch (error) {
-        throw error;
-    }
-}
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"putHasBeenRead\": () => (/* binding */ putHasBeenRead)\n/* harmony export */ });\n/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../instance */ \"./src/api/instance.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);\n_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nasync function putHasBeenRead({ bookId  }) {\n    try {\n        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__.defaultAxiosInstance.put(`/books/read-check/${bookId}`);\n        return data.data;\n    } catch (error) {\n        console.log(error);\n        throw error;\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2Jvb2svcHV0SGFzQmVlblJlYWQudHMuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBbUQ7QUFnQjVDLGVBQWVDLGVBQWUsRUFBQ0MsT0FBTSxFQUFhLEVBQ3pCO0lBQzVCLElBQUk7UUFDRixNQUFNLEVBQUVDLEtBQUksRUFBRSxHQUEyQixNQUFNSCwrREFBd0IsQ0FDckUsQ0FBQyxrQkFBa0IsRUFBRUUsT0FBTyxDQUFDO1FBRS9CLE9BQU9DLEtBQUtBLElBQUk7SUFDbEIsRUFBRSxPQUFPRSxPQUFPO1FBQ2RDLFFBQVFDLEdBQUcsQ0FBQ0Y7UUFDWixNQUFNQSxNQUFLO0lBQ2I7QUFDRixDQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2FwaS9ib29rL3B1dEhhc0JlZW5SZWFkLnRzP2UzZjgiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgZGVmYXVsdEF4aW9zSW5zdGFuY2UgfSBmcm9tIFwiLi4vaW5zdGFuY2VcIjtcclxuXHJcbmltcG9ydCB7IEF4aW9zUmVzcG9uc2UgfSBmcm9tIFwiYXhpb3NcIjtcclxuXHJcbnR5cGUgcGFyYW1zVHlwZSA9IHtcclxuICBib29rSWQ6IG51bWJlcjtcclxufVxyXG5cclxudHlwZSByZXR1cm5UeXBlID0gYm9vbGVhblxyXG5cclxudHlwZSByZXNwb25zZVR5cGUgPSB7XHJcbiAgc3RhdHVzOiBudW1iZXI7XHJcbiAgbWVzc2FnZTogc3RyaW5nO1xyXG4gIGRhdGE6IHJldHVyblR5cGU7XHJcbn1cclxuXHJcbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBwdXRIYXNCZWVuUmVhZCh7Ym9va0lkfTogcGFyYW1zVHlwZVxyXG4gICk6IFByb21pc2U8cmV0dXJuVHlwZSB8IG51bGw+IHtcclxuICAgIHRyeSB7XHJcbiAgICAgIGNvbnN0IHsgZGF0YSB9OiB7IGRhdGE6IHJlc3BvbnNlVHlwZSB9ID0gYXdhaXQgZGVmYXVsdEF4aW9zSW5zdGFuY2UucHV0KFxyXG4gICAgICAgIGAvYm9va3MvcmVhZC1jaGVjay8ke2Jvb2tJZH1gXHJcbiAgICAgICk7XHJcbiAgICAgIHJldHVybiBkYXRhLmRhdGFcclxuICAgIH0gY2F0Y2ggKGVycm9yKSB7XHJcbiAgICAgIGNvbnNvbGUubG9nKGVycm9yKVxyXG4gICAgICB0aHJvdyBlcnJvclxyXG4gICAgfVxyXG4gIH1cclxuICAiXSwibmFtZXMiOlsiZGVmYXVsdEF4aW9zSW5zdGFuY2UiLCJwdXRIYXNCZWVuUmVhZCIsImJvb2tJZCIsImRhdGEiLCJwdXQiLCJlcnJvciIsImNvbnNvbGUiLCJsb2ciXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/api/book/putHasBeenRead.ts\n");
 
 /***/ }),
 
-/***/ 427:
+/***/ "./src/api/comment/deleteComment.ts":
+/*!******************************************!*\
+  !*** ./src/api/comment/deleteComment.ts ***!
+  \******************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "w": () => (/* binding */ postComment)
-/* harmony export */ });
-/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5394);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);
-_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
-async function postComment({ bookId , content , parentId  }) {
-    try {
-        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__/* .defaultAxiosInstance.post */ .E.post(`/book/comments/${bookId}`, {
-            content,
-            parentId
-        });
-        return data.data;
-    } catch (error) {
-        throw error;
-    }
-}
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"deleteComment\": () => (/* binding */ deleteComment)\n/* harmony export */ });\n/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../instance */ \"./src/api/instance.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);\n_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nasync function deleteComment({ commentId  }) {\n    try {\n        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__.defaultAxiosInstance[\"delete\"](`/book/comments/${commentId}`);\n        return data.data;\n    } catch (error) {\n        throw error;\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2NvbW1lbnQvZGVsZXRlQ29tbWVudC50cy5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFtRDtBQStCNUMsZUFBZUMsY0FBYyxFQUFDQyxVQUFTLEVBQWEsRUFDN0I7SUFDNUIsSUFBSTtRQUNGLE1BQU0sRUFBRUMsS0FBSSxFQUFFLEdBQTJCLE1BQU1ILHFFQUEyQixDQUN4RSxDQUFDLGVBQWUsRUFBRUUsVUFBVSxDQUFDO1FBRS9CLE9BQU9DLEtBQUtBLElBQUk7SUFDbEIsRUFBRSxPQUFPRSxPQUFPO1FBQ2QsTUFBTUEsTUFBSztJQUNiO0FBQ0YsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2NsaWVudC8uL3NyYy9hcGkvY29tbWVudC9kZWxldGVDb21tZW50LnRzPzFlY2EiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgZGVmYXVsdEF4aW9zSW5zdGFuY2UgfSBmcm9tIFwiLi4vaW5zdGFuY2VcIjtcclxuaW1wb3J0IHsgcmV0dXJuQ29tbWVudEFycmF5VHlwZSB9IGZyb20gXCJAL3R5cGVzL2NvbW1lbnRzXCI7XHJcblxyXG5cclxudHlwZSBwYXJhbXNUeXBlID0ge1xyXG4gIGNvbW1lbnRJZDogbnVtYmVyO1xyXG59XHJcblxyXG50eXBlIHJldHVyblR5cGUgPSBudW1iZXJcclxuLy8gdHlwZSByZXR1cm5UeXBlID0ge1xyXG4vLyAgIFwiY29tbWVudElkXCI6IG51bWJlcjtcclxuLy8gICBcImNvbnRlbnRcIjogc3RyaW5nO1xyXG4vLyAgIFwid3JpdGVySW5mb1wiOiB7XHJcbi8vICAgICBcInVzZXJJZFwiOiBzdHJpbmc7XHJcbi8vICAgICBcIm5pY2tuYW1lXCI6IHN0cmluZztcclxuLy8gICAgIFwicHJvZmlsZUltZ1wiOiBzdHJpbmc7XHJcbi8vICAgfSxcclxuLy8gICBcInBhcmVudFdyaXRlck5pY2tOYW1lXCI6IHN0cmluZyB8IG51bGw7XHJcbi8vICAgXCJkZXB0aFwiOiBudW1iZXI7XHJcbi8vICAgXCJjcmVhdGVkRGF0ZVwiOiBzdHJpbmc7XHJcbi8vICAgXCJtb2RpZmllZERhdGVcIjogc3RyaW5nO1xyXG4vLyAgIFwiaXNEZWxldGVcIjogYm9vbGVhbjtcclxuLy8gICBcImlzQ2hpbGRcIjogYm9vbGVhbjtcclxuLy8gfVtdXHJcblxyXG50eXBlIHJlc3BvbnNlVHlwZSA9IHtcclxuICBzdGF0dXM6IG51bWJlcjtcclxuICBtZXNzYWdlOiBzdHJpbmc7XHJcbiAgZGF0YTogcmV0dXJuVHlwZTtcclxufVxyXG5cclxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIGRlbGV0ZUNvbW1lbnQoe2NvbW1lbnRJZH06IHBhcmFtc1R5cGVcclxuKTogUHJvbWlzZTxyZXR1cm5UeXBlIHwgbnVsbD4ge1xyXG4gIHRyeSB7XHJcbiAgICBjb25zdCB7IGRhdGEgfTogeyBkYXRhOiByZXNwb25zZVR5cGUgfSA9IGF3YWl0IGRlZmF1bHRBeGlvc0luc3RhbmNlLmRlbGV0ZShcclxuICAgICAgYC9ib29rL2NvbW1lbnRzLyR7Y29tbWVudElkfWBcclxuICAgICk7XHJcbiAgICByZXR1cm4gZGF0YS5kYXRhXHJcbiAgfSBjYXRjaCAoZXJyb3IpIHtcclxuICAgIHRocm93IGVycm9yXHJcbiAgfVxyXG59XHJcblxyXG5cclxuIl0sIm5hbWVzIjpbImRlZmF1bHRBeGlvc0luc3RhbmNlIiwiZGVsZXRlQ29tbWVudCIsImNvbW1lbnRJZCIsImRhdGEiLCJkZWxldGUiLCJlcnJvciJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/api/comment/deleteComment.ts\n");
 
 /***/ }),
 
-/***/ 4565:
+/***/ "./src/api/comment/getChildComments.ts":
+/*!*********************************************!*\
+  !*** ./src/api/comment/getChildComments.ts ***!
+  \*********************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "_": () => (/* binding */ putComment)
-/* harmony export */ });
-/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5394);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);
-_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
-async function putComment({ commentId , content  }) {
-    try {
-        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__/* .defaultAxiosInstance.put */ .E.put(`/book/comments/${commentId}`, {
-            content
-        });
-        return data.data;
-    } catch (error) {
-        throw error;
-    }
-}
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getChildComments\": () => (/* binding */ getChildComments)\n/* harmony export */ });\n/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../instance */ \"./src/api/instance.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);\n_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nasync function getChildComments({ parentId , criteria , offset , size  }) {\n    try {\n        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__.defaultAxiosInstance.get(`/book/comments/child/${parentId}${criteria !== undefined ? `?criteria=${criteria}` : \"\"}${offset !== undefined ? `&offset=${offset}` : \"\"}${size !== undefined ? `&size=${size}` : \"\"}`);\n        return data.data;\n    } catch (error) {\n        throw error;\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2NvbW1lbnQvZ2V0Q2hpbGRDb21tZW50cy50cy5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFtRDtBQWtDNUMsZUFBZUMsaUJBQWlCLEVBQUNDLFNBQVEsRUFBRUMsU0FBUSxFQUFFQyxPQUFNLEVBQUVDLEtBQUksRUFBYyxFQUN4RDtJQUM1QixJQUFJO1FBQ0YsTUFBTSxFQUFFQyxLQUFJLEVBQUUsR0FBMkIsTUFBTU4sK0RBQXdCLENBQ3JFLENBQUMscUJBQXFCLEVBQUVFLFNBQVMsRUFBRUMsYUFBYUssWUFBWSxDQUFDLFVBQVUsRUFBRUwsU0FBUyxDQUFDLEdBQUcsRUFBRSxDQUFDLEVBQUVDLFdBQVdJLFlBQVksQ0FBQyxRQUFRLEVBQUVKLE9BQU8sQ0FBQyxHQUFHLEVBQUUsQ0FBQyxFQUFFQyxTQUFTRyxZQUFZLENBQUMsTUFBTSxFQUFFSCxLQUFLLENBQUMsR0FBRyxFQUFFLENBQUMsQ0FBQztRQUUxTCxPQUFPQyxLQUFLQSxJQUFJO0lBQ2xCLEVBQUUsT0FBT0csT0FBTztRQUNkLE1BQU1BLE1BQUs7SUFDYjtBQUNGLENBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvYXBpL2NvbW1lbnQvZ2V0Q2hpbGRDb21tZW50cy50cz81OWY2Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGRlZmF1bHRBeGlvc0luc3RhbmNlIH0gZnJvbSBcIi4uL2luc3RhbmNlXCI7XHJcbmltcG9ydCB7IHJldHVybkNvbW1lbnRBcnJheVR5cGUgfSBmcm9tIFwiQC90eXBlcy9jb21tZW50c1wiO1xyXG5cclxuXHJcbnR5cGUgcGFyYW1zVHlwZSA9IHtcclxuICBwYXJlbnRJZDogbnVtYmVyO1xyXG4gIGNyaXRlcmlhPzogJ2RhdGUnIHwgJ2xpa2UnO1xyXG4gIG9mZnNldD86IG51bWJlcjtcclxuICBzaXplPzogbnVtYmVyO1xyXG59XHJcblxyXG50eXBlIHJldHVyblR5cGUgPSByZXR1cm5Db21tZW50QXJyYXlUeXBlXHJcbi8vIHR5cGUgcmV0dXJuVHlwZSA9IHtcclxuLy8gICBcImNvbW1lbnRJZFwiOiBudW1iZXI7XHJcbi8vICAgXCJjb250ZW50XCI6IHN0cmluZztcclxuLy8gICBcIndyaXRlckluZm9cIjoge1xyXG4vLyAgICAgXCJ1c2VySWRcIjogc3RyaW5nO1xyXG4vLyAgICAgXCJuaWNrbmFtZVwiOiBzdHJpbmc7XHJcbi8vICAgICBcInByb2ZpbGVJbWdcIjogc3RyaW5nO1xyXG4vLyAgIH0sXHJcbi8vICAgXCJwYXJlbnRXcml0ZXJOaWNrTmFtZVwiOiBzdHJpbmcgfCBudWxsO1xyXG4vLyAgIFwiZGVwdGhcIjogbnVtYmVyO1xyXG4vLyAgIFwiY3JlYXRlZERhdGVcIjogc3RyaW5nO1xyXG4vLyAgIFwibW9kaWZpZWREYXRlXCI6IHN0cmluZztcclxuLy8gICBcImlzRGVsZXRlXCI6IGJvb2xlYW47XHJcbi8vICAgXCJpc0NoaWxkXCI6IGJvb2xlYW47XHJcbi8vIH1bXVxyXG5cclxudHlwZSByZXNwb25zZVR5cGUgPSB7XHJcbiAgc3RhdHVzOiBudW1iZXI7XHJcbiAgbWVzc2FnZTogc3RyaW5nO1xyXG4gIGRhdGE6IHJldHVyblR5cGU7XHJcbn1cclxuXHJcbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBnZXRDaGlsZENvbW1lbnRzKHtwYXJlbnRJZCwgY3JpdGVyaWEsIG9mZnNldCwgc2l6ZSB9OiBwYXJhbXNUeXBlXHJcbik6IFByb21pc2U8cmV0dXJuVHlwZSB8IG51bGw+IHtcclxuICB0cnkge1xyXG4gICAgY29uc3QgeyBkYXRhIH06IHsgZGF0YTogcmVzcG9uc2VUeXBlIH0gPSBhd2FpdCBkZWZhdWx0QXhpb3NJbnN0YW5jZS5nZXQoXHJcbiAgICAgIGAvYm9vay9jb21tZW50cy9jaGlsZC8ke3BhcmVudElkfSR7Y3JpdGVyaWEgIT09IHVuZGVmaW5lZCA/IGA/Y3JpdGVyaWE9JHtjcml0ZXJpYX1gIDogJyd9JHtvZmZzZXQgIT09IHVuZGVmaW5lZCA/IGAmb2Zmc2V0PSR7b2Zmc2V0fWAgOiAnJ30ke3NpemUgIT09IHVuZGVmaW5lZCA/IGAmc2l6ZT0ke3NpemV9YCA6ICcnfWBcclxuICAgICk7XHJcbiAgICByZXR1cm4gZGF0YS5kYXRhXHJcbiAgfSBjYXRjaCAoZXJyb3IpIHtcclxuICAgIHRocm93IGVycm9yXHJcbiAgfVxyXG59XHJcblxyXG5cclxuIl0sIm5hbWVzIjpbImRlZmF1bHRBeGlvc0luc3RhbmNlIiwiZ2V0Q2hpbGRDb21tZW50cyIsInBhcmVudElkIiwiY3JpdGVyaWEiLCJvZmZzZXQiLCJzaXplIiwiZGF0YSIsImdldCIsInVuZGVmaW5lZCIsImVycm9yIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/api/comment/getChildComments.ts\n");
 
 /***/ }),
 
-/***/ 4636:
+/***/ "./src/api/comment/getParentComments.ts":
+/*!**********************************************!*\
+  !*** ./src/api/comment/getParentComments.ts ***!
+  \**********************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "J": () => (/* binding */ putLikeComment)
-/* harmony export */ });
-/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5394);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);
-_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-
-async function putLikeComment({ commentId  }) {
-    try {
-        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__/* .defaultAxiosInstance.put */ .E.put(`/book/comments/like/${commentId}`);
-        return data.data;
-    } catch (error) {
-        throw error;
-    }
-}
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"getParentComments\": () => (/* binding */ getParentComments)\n/* harmony export */ });\n/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../instance */ \"./src/api/instance.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);\n_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nasync function getParentComments({ bookId , criteria , offset , size  }) {\n    try {\n        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__.defaultAxiosInstance.get(`/book/comments/parent/${bookId}${criteria !== undefined ? `?criteria=${criteria}` : \"\"}${offset !== undefined ? `&offset=${offset}` : \"\"}${size !== undefined ? `&size=${size}` : \"\"}`);\n        return data.data;\n    } catch (error) {\n        throw error;\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2NvbW1lbnQvZ2V0UGFyZW50Q29tbWVudHMudHMuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBbUQ7QUFrQzVDLGVBQWVDLGtCQUFrQixFQUFDQyxPQUFNLEVBQUVDLFNBQVEsRUFBRUMsT0FBTSxFQUFFQyxLQUFJLEVBQWMsRUFDdkQ7SUFDNUIsSUFBSTtRQUNGLE1BQU0sRUFBRUMsS0FBSSxFQUFFLEdBQTJCLE1BQU1OLCtEQUF3QixDQUNyRSxDQUFDLHNCQUFzQixFQUFFRSxPQUFPLEVBQUVDLGFBQWFLLFlBQVksQ0FBQyxVQUFVLEVBQUVMLFNBQVMsQ0FBQyxHQUFHLEVBQUUsQ0FBQyxFQUFFQyxXQUFXSSxZQUFZLENBQUMsUUFBUSxFQUFFSixPQUFPLENBQUMsR0FBRyxFQUFFLENBQUMsRUFBRUMsU0FBU0csWUFBWSxDQUFDLE1BQU0sRUFBRUgsS0FBSyxDQUFDLEdBQUcsRUFBRSxDQUFDLENBQUM7UUFFekwsT0FBT0MsS0FBS0EsSUFBSTtJQUNsQixFQUFFLE9BQU9HLE9BQU87UUFDZCxNQUFNQSxNQUFLO0lBQ2I7QUFDRixDQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2FwaS9jb21tZW50L2dldFBhcmVudENvbW1lbnRzLnRzPzhlOGYiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgZGVmYXVsdEF4aW9zSW5zdGFuY2UgfSBmcm9tIFwiLi4vaW5zdGFuY2VcIjtcclxuaW1wb3J0IHsgcmV0dXJuQ29tbWVudEFycmF5VHlwZSB9IGZyb20gXCJAL3R5cGVzL2NvbW1lbnRzXCI7XHJcblxyXG5cclxudHlwZSBwYXJhbXNUeXBlID0ge1xyXG4gIGJvb2tJZDogbnVtYmVyO1xyXG4gIGNyaXRlcmlhPzogJ2RhdGUnIHwgJ2xpa2UnO1xyXG4gIG9mZnNldD86IG51bWJlcjtcclxuICBzaXplPzogbnVtYmVyO1xyXG59XHJcblxyXG50eXBlIHJldHVyblR5cGUgPSByZXR1cm5Db21tZW50QXJyYXlUeXBlXHJcbi8vIHR5cGUgcmV0dXJuVHlwZSA9IHtcclxuLy8gICBcImNvbW1lbnRJZFwiOiBudW1iZXI7XHJcbi8vICAgXCJjb250ZW50XCI6IHN0cmluZztcclxuLy8gICBcIndyaXRlckluZm9cIjoge1xyXG4vLyAgICAgXCJ1c2VySWRcIjogc3RyaW5nO1xyXG4vLyAgICAgXCJuaWNrbmFtZVwiOiBzdHJpbmc7XHJcbi8vICAgICBcInByb2ZpbGVJbWdcIjogc3RyaW5nO1xyXG4vLyAgIH0sXHJcbi8vICAgXCJwYXJlbnRXcml0ZXJOaWNrTmFtZVwiOiBzdHJpbmcgfCBudWxsO1xyXG4vLyAgIFwiZGVwdGhcIjogbnVtYmVyO1xyXG4vLyAgIFwiY3JlYXRlZERhdGVcIjogc3RyaW5nO1xyXG4vLyAgIFwibW9kaWZpZWREYXRlXCI6IHN0cmluZztcclxuLy8gICBcImlzRGVsZXRlXCI6IGJvb2xlYW47XHJcbi8vICAgXCJpc0NoaWxkXCI6IGJvb2xlYW47XHJcbi8vIH1bXVxyXG5cclxudHlwZSByZXNwb25zZVR5cGUgPSB7XHJcbiAgc3RhdHVzOiBudW1iZXI7XHJcbiAgbWVzc2FnZTogc3RyaW5nO1xyXG4gIGRhdGE6IHJldHVyblR5cGU7XHJcbn1cclxuXHJcbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBnZXRQYXJlbnRDb21tZW50cyh7Ym9va0lkLCBjcml0ZXJpYSwgb2Zmc2V0LCBzaXplIH06IHBhcmFtc1R5cGVcclxuKTogUHJvbWlzZTxyZXR1cm5UeXBlIHwgbnVsbD4ge1xyXG4gIHRyeSB7XHJcbiAgICBjb25zdCB7IGRhdGEgfTogeyBkYXRhOiByZXNwb25zZVR5cGUgfSA9IGF3YWl0IGRlZmF1bHRBeGlvc0luc3RhbmNlLmdldChcclxuICAgICAgYC9ib29rL2NvbW1lbnRzL3BhcmVudC8ke2Jvb2tJZH0ke2NyaXRlcmlhICE9PSB1bmRlZmluZWQgPyBgP2NyaXRlcmlhPSR7Y3JpdGVyaWF9YCA6ICcnfSR7b2Zmc2V0ICE9PSB1bmRlZmluZWQgPyBgJm9mZnNldD0ke29mZnNldH1gIDogJyd9JHtzaXplICE9PSB1bmRlZmluZWQgPyBgJnNpemU9JHtzaXplfWAgOiAnJ31gXHJcbiAgICApO1xyXG4gICAgcmV0dXJuIGRhdGEuZGF0YVxyXG4gIH0gY2F0Y2ggKGVycm9yKSB7XHJcbiAgICB0aHJvdyBlcnJvclxyXG4gIH1cclxufVxyXG5cclxuXHJcbiJdLCJuYW1lcyI6WyJkZWZhdWx0QXhpb3NJbnN0YW5jZSIsImdldFBhcmVudENvbW1lbnRzIiwiYm9va0lkIiwiY3JpdGVyaWEiLCJvZmZzZXQiLCJzaXplIiwiZGF0YSIsImdldCIsInVuZGVmaW5lZCIsImVycm9yIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/api/comment/getParentComments.ts\n");
 
 /***/ }),
 
-/***/ 6490:
+/***/ "./src/api/comment/postComment.ts":
+/*!****************************************!*\
+  !*** ./src/api/comment/postComment.ts ***!
+  \****************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _DetailCommentView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2571);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_DetailCommentView__WEBPACK_IMPORTED_MODULE_3__]);
-_DetailCommentView__WEBPACK_IMPORTED_MODULE_3__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
-/** @jsxImportSource @emotion/react */ 
-
-
-
-const DetailComment = ({ bookId , modalHandler  })=>{
-    const commentsWrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
-    return /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        ref: commentsWrapperRef,
-        css: modalWrapperCSS,
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                onClick: modalHandler,
-                children: "닫기"
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_DetailCommentView__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-                bookId: bookId,
-                parentId: null,
-                position: 0,
-                criteria: "date",
-                commentsWrapperRef: commentsWrapperRef
-            })
-        ]
-    });
-};
-const modalWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: 60vw;
-    height: 90vh;
-    background-color: var(--back-color);
-    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
-    /* border-radius: 20px; */
-    padding: 36px;
-    display: flex;
-    flex-direction: column;
-    overflow: scroll;
-    overflow-x: hidden;
-`;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailComment);
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"postComment\": () => (/* binding */ postComment)\n/* harmony export */ });\n/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../instance */ \"./src/api/instance.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);\n_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nasync function postComment({ bookId , content , parentId  }) {\n    try {\n        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__.defaultAxiosInstance.post(`/book/comments/${bookId}`, {\n            content,\n            parentId\n        });\n        return data.data;\n    } catch (error) {\n        throw error;\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2NvbW1lbnQvcG9zdENvbW1lbnQudHMuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBbUQ7QUFpQjVDLGVBQWVDLFlBQVksRUFBQ0MsT0FBTSxFQUFFQyxRQUFPLEVBQUVDLFNBQVEsRUFBYSxFQUMzQztJQUM1QixJQUFJO1FBQ0YsTUFBTSxFQUFFQyxLQUFJLEVBQUUsR0FBMkIsTUFBTUwsZ0VBQXlCLENBQ3RFLENBQUMsZUFBZSxFQUFFRSxPQUFPLENBQUMsRUFBRTtZQUFFQztZQUFTQztRQUFTO1FBRWxELE9BQU9DLEtBQUtBLElBQUk7SUFDbEIsRUFBRSxPQUFPRSxPQUFPO1FBQ2QsTUFBTUEsTUFBSztJQUNiO0FBQ0YsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2NsaWVudC8uL3NyYy9hcGkvY29tbWVudC9wb3N0Q29tbWVudC50cz9lNGVjIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGRlZmF1bHRBeGlvc0luc3RhbmNlIH0gZnJvbSBcIi4uL2luc3RhbmNlXCI7XHJcblxyXG5cclxudHlwZSBwYXJhbXNUeXBlID0ge1xyXG4gIGJvb2tJZDogbnVtYmVyO1xyXG4gIGNvbnRlbnQ6IHN0cmluZztcclxuICBwYXJlbnRJZDogbnVtYmVyIHwgbnVsbDtcclxufVxyXG5cclxudHlwZSByZXR1cm5UeXBlID0gbnVtYmVyXHJcblxyXG50eXBlIHJlc3BvbnNlVHlwZSA9IHtcclxuICBzdGF0dXM6IG51bWJlcjtcclxuICBtZXNzYWdlOiBzdHJpbmc7XHJcbiAgZGF0YTogcmV0dXJuVHlwZTtcclxufVxyXG5cclxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIHBvc3RDb21tZW50KHtib29rSWQsIGNvbnRlbnQsIHBhcmVudElkfTogcGFyYW1zVHlwZVxyXG4pOiBQcm9taXNlPHJldHVyblR5cGUgfCBudWxsPiB7XHJcbiAgdHJ5IHtcclxuICAgIGNvbnN0IHsgZGF0YSB9OiB7IGRhdGE6IHJlc3BvbnNlVHlwZSB9ID0gYXdhaXQgZGVmYXVsdEF4aW9zSW5zdGFuY2UucG9zdChcclxuICAgICAgYC9ib29rL2NvbW1lbnRzLyR7Ym9va0lkfWAsIHsgY29udGVudCwgcGFyZW50SWQgfVxyXG4gICAgKTtcclxuICAgIHJldHVybiBkYXRhLmRhdGFcclxuICB9IGNhdGNoIChlcnJvcikge1xyXG4gICAgdGhyb3cgZXJyb3JcclxuICB9XHJcbn1cclxuXHJcblxyXG4iXSwibmFtZXMiOlsiZGVmYXVsdEF4aW9zSW5zdGFuY2UiLCJwb3N0Q29tbWVudCIsImJvb2tJZCIsImNvbnRlbnQiLCJwYXJlbnRJZCIsImRhdGEiLCJwb3N0IiwiZXJyb3IiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/api/comment/postComment.ts\n");
 
 /***/ }),
 
-/***/ 9813:
+/***/ "./src/api/comment/putComment.ts":
+/*!***************************************!*\
+  !*** ./src/api/comment/putComment.ts ***!
+  \***************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _api_comment_postComment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(427);
-/* harmony import */ var _api_comment_putComment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4565);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_api_comment_postComment__WEBPACK_IMPORTED_MODULE_2__, _api_comment_putComment__WEBPACK_IMPORTED_MODULE_3__]);
-([_api_comment_postComment__WEBPACK_IMPORTED_MODULE_2__, _api_comment_putComment__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
-/** @jsxImportSource @emotion/react */ 
-
-
-
-
-const DetailCommentInput = ({ action , bookId , parentId , defaultValue , commentId , refreshCommentsHandler  })=>{
-    const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_4__.useRef)(null);
-    const commentHandler = ()=>{
-        if (inputRef.current && inputRef.current.value.trim() !== "") {
-            if (action === "post") {
-                (0,_api_comment_postComment__WEBPACK_IMPORTED_MODULE_2__/* .postComment */ .w)({
-                    bookId: bookId,
-                    content: inputRef.current.value,
-                    parentId: parentId
-                }).then(()=>{
-                    refreshCommentsHandler();
-                    if (inputRef.current) {
-                        inputRef.current.value = "";
-                    }
-                });
-            } else if (action === "put" && commentId !== undefined) {
-                (0,_api_comment_putComment__WEBPACK_IMPORTED_MODULE_3__/* .putComment */ ._)({
-                    commentId: commentId,
-                    content: inputRef.current.value
-                }).then(()=>{
-                    refreshCommentsHandler();
-                    if (inputRef.current) {
-                        inputRef.current.value = "";
-                    }
-                });
-            }
-        }
-    };
-    return /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: inputWrapperCSS,
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("input", {
-                css: inputCSS,
-                ref: inputRef,
-                placeholder: `댓글을 입력해 주세요. ${parentId}`,
-                defaultValue: defaultValue ? defaultValue : ``
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                onClick: commentHandler,
-                css: confirmBtnCSS,
-                children: "작성"
-            })
-        ]
-    });
-};
-const inputCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: 100%;
-    height: 48px;
-    border-radius: 10px 0px 0px 10px;
-    border: none;
-    padding: 16px;
-    background-color: var(--back-color-2);
-    &:focus {outline: none;};
-`;
-const confirmBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    background-color: var(--back-color-2);
-    width: 96px;
-    height: 48px;
-    display: flex;
-    border-radius: 0px 10px 10px 0px;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-    transition-property: background-color;
-    transition-duration: 0.3s;
-
-    &:hover {
-        background-color: var(--back-color-3);
-    }
-`;
-const inputWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    display: flex;
-`;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailCommentInput);
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"putComment\": () => (/* binding */ putComment)\n/* harmony export */ });\n/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../instance */ \"./src/api/instance.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);\n_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nasync function putComment({ commentId , content  }) {\n    try {\n        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__.defaultAxiosInstance.put(`/book/comments/${commentId}`, {\n            content\n        });\n        return data.data;\n    } catch (error) {\n        throw error;\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2NvbW1lbnQvcHV0Q29tbWVudC50cy5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFtRDtBQWdDNUMsZUFBZUMsV0FBVyxFQUFDQyxVQUFTLEVBQUVDLFFBQU8sRUFBYSxFQUNuQztJQUM1QixJQUFJO1FBQ0YsTUFBTSxFQUFFQyxLQUFJLEVBQUUsR0FBMkIsTUFBTUosK0RBQXdCLENBQ3JFLENBQUMsZUFBZSxFQUFFRSxVQUFVLENBQUMsRUFBRTtZQUFFQztRQUFRO1FBRTNDLE9BQU9DLEtBQUtBLElBQUk7SUFDbEIsRUFBRSxPQUFPRSxPQUFPO1FBQ2QsTUFBTUEsTUFBSztJQUNiO0FBQ0YsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2NsaWVudC8uL3NyYy9hcGkvY29tbWVudC9wdXRDb21tZW50LnRzPzE1MjUiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgZGVmYXVsdEF4aW9zSW5zdGFuY2UgfSBmcm9tIFwiLi4vaW5zdGFuY2VcIjtcclxuaW1wb3J0IHsgcmV0dXJuQ29tbWVudEFycmF5VHlwZSB9IGZyb20gXCJAL3R5cGVzL2NvbW1lbnRzXCI7XHJcblxyXG5cclxudHlwZSBwYXJhbXNUeXBlID0ge1xyXG4gIGNvbW1lbnRJZDogbnVtYmVyO1xyXG4gIGNvbnRlbnQ6IHN0cmluZztcclxufVxyXG5cclxudHlwZSByZXR1cm5UeXBlID0gbnVtYmVyXHJcbi8vIHR5cGUgcmV0dXJuVHlwZSA9IHtcclxuLy8gICBcImNvbW1lbnRJZFwiOiBudW1iZXI7XHJcbi8vICAgXCJjb250ZW50XCI6IHN0cmluZztcclxuLy8gICBcIndyaXRlckluZm9cIjoge1xyXG4vLyAgICAgXCJ1c2VySWRcIjogc3RyaW5nO1xyXG4vLyAgICAgXCJuaWNrbmFtZVwiOiBzdHJpbmc7XHJcbi8vICAgICBcInByb2ZpbGVJbWdcIjogc3RyaW5nO1xyXG4vLyAgIH0sXHJcbi8vICAgXCJwYXJlbnRXcml0ZXJOaWNrTmFtZVwiOiBzdHJpbmcgfCBudWxsO1xyXG4vLyAgIFwiZGVwdGhcIjogbnVtYmVyO1xyXG4vLyAgIFwiY3JlYXRlZERhdGVcIjogc3RyaW5nO1xyXG4vLyAgIFwibW9kaWZpZWREYXRlXCI6IHN0cmluZztcclxuLy8gICBcImlzRGVsZXRlXCI6IGJvb2xlYW47XHJcbi8vICAgXCJpc0NoaWxkXCI6IGJvb2xlYW47XHJcbi8vIH1bXVxyXG5cclxudHlwZSByZXNwb25zZVR5cGUgPSB7XHJcbiAgc3RhdHVzOiBudW1iZXI7XHJcbiAgbWVzc2FnZTogc3RyaW5nO1xyXG4gIGRhdGE6IHJldHVyblR5cGU7XHJcbn1cclxuXHJcbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBwdXRDb21tZW50KHtjb21tZW50SWQsIGNvbnRlbnR9OiBwYXJhbXNUeXBlXHJcbik6IFByb21pc2U8cmV0dXJuVHlwZSB8IG51bGw+IHtcclxuICB0cnkge1xyXG4gICAgY29uc3QgeyBkYXRhIH06IHsgZGF0YTogcmVzcG9uc2VUeXBlIH0gPSBhd2FpdCBkZWZhdWx0QXhpb3NJbnN0YW5jZS5wdXQoXHJcbiAgICAgIGAvYm9vay9jb21tZW50cy8ke2NvbW1lbnRJZH1gLCB7IGNvbnRlbnQgfVxyXG4gICAgKTtcclxuICAgIHJldHVybiBkYXRhLmRhdGFcclxuICB9IGNhdGNoIChlcnJvcikge1xyXG4gICAgdGhyb3cgZXJyb3JcclxuICB9XHJcbn1cclxuXHJcblxyXG4iXSwibmFtZXMiOlsiZGVmYXVsdEF4aW9zSW5zdGFuY2UiLCJwdXRDb21tZW50IiwiY29tbWVudElkIiwiY29udGVudCIsImRhdGEiLCJwdXQiLCJlcnJvciJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/api/comment/putComment.ts\n");
 
 /***/ }),
 
-/***/ 2571:
+/***/ "./src/api/comment/putLikeComment.ts":
+/*!*******************************************!*\
+  !*** ./src/api/comment/putLikeComment.ts ***!
+  \*******************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _api_comment_getParentComments__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9613);
-/* harmony import */ var _api_comment_getChildComments__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6252);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6517);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _DetailCommentInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9813);
-/* harmony import */ var _DetailCommentViewElement__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3861);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_api_comment_getParentComments__WEBPACK_IMPORTED_MODULE_3__, _api_comment_getChildComments__WEBPACK_IMPORTED_MODULE_4__, _DetailCommentInput__WEBPACK_IMPORTED_MODULE_6__, _DetailCommentViewElement__WEBPACK_IMPORTED_MODULE_7__]);
-([_api_comment_getParentComments__WEBPACK_IMPORTED_MODULE_3__, _api_comment_getChildComments__WEBPACK_IMPORTED_MODULE_4__, _DetailCommentInput__WEBPACK_IMPORTED_MODULE_6__, _DetailCommentViewElement__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
-/** @jsxImportSource @emotion/react */ 
-
-
-
-
-
-
-
-var Position;
-(function(Position) {
-    Position[Position["PARENTS"] = 0] = "PARENTS";
-    Position[Position["CHILDREN"] = 1] = "CHILDREN";
-})(Position || (Position = {}));
-const DetailCommentView = ({ bookId , parentId , position , criteria , commentsWrapperRef  })=>{
-    const [comments, setComments] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
-    const [offset, setOffset] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(2);
-    const [getComments, setGetComments] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        refreshCommentsHandler();
-    }, []);
-    const refreshCommentsHandler = ()=>{
-        if (position === 0) {
-            (0,_api_comment_getParentComments__WEBPACK_IMPORTED_MODULE_3__/* .getParentComments */ .a)({
-                bookId,
-                criteria
-            }).then((res)=>{
-                if (res !== null) {
-                    setComments(()=>res);
-                    setOffset(()=>2);
-                }
-            });
-        } else if (position === 1 && parentId !== null) {
-            (0,_api_comment_getChildComments__WEBPACK_IMPORTED_MODULE_4__/* .getChildComments */ .y)({
-                parentId,
-                criteria: "date"
-            }).then((res)=>{
-                if (res !== null) {
-                    setComments(()=>res);
-                    setOffset(()=>2);
-                }
-            });
-        }
-    };
-    const getCommentsHandler = ()=>{
-        if (position === 0) {
-            (0,_api_comment_getParentComments__WEBPACK_IMPORTED_MODULE_3__/* .getParentComments */ .a)({
-                bookId,
-                criteria,
-                offset
-            }).then((res)=>{
-                if (res !== null) {
-                    setComments((prev)=>[
-                            ...prev,
-                            ...res
-                        ]);
-                    setOffset((prev)=>prev + 1);
-                }
-            });
-        } else if (position === 1 && parentId !== null) {
-            (0,_api_comment_getChildComments__WEBPACK_IMPORTED_MODULE_4__/* .getChildComments */ .y)({
-                parentId,
-                criteria: "date",
-                offset
-            }).then((res)=>{
-                if (res !== null) {
-                    setComments((prev)=>[
-                            ...prev,
-                            ...res
-                        ]);
-                    setOffset((prev)=>prev + 1);
-                }
-            });
-        }
-    };
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        if (getComments === true) {
-            getCommentsHandler();
-            setGetComments(()=>false);
-        }
-    }, [
-        getComments,
-        comments
-    ]);
-    const setGetCommentsHandler = ()=>{
-        setGetComments(()=>true);
-    };
-    const onWheelGetParentCommentsHandler = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>(0,lodash__WEBPACK_IMPORTED_MODULE_5__.throttle)((event)=>{
-            if (position === 0 && event.deltaY > 0) {
-                if (commentsWrapperRef?.current && (commentsWrapperRef.current.scrollHeight - 10 < commentsWrapperRef.current.clientHeight || commentsWrapperRef.current.scrollTop > commentsWrapperRef.current.scrollHeight - commentsWrapperRef.current.clientHeight - 100)) {
-                    setGetCommentsHandler();
-                }
-            }
-        }, 300), [
-        comments
-    ]);
-    const onClickGetChildCommentsHandler = ()=>{
-        setGetCommentsHandler();
-    };
-    const commentsRender = comments.map((el, idx)=>{
-        return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-            children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_DetailCommentViewElement__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
-                bookId: bookId,
-                comment: el,
-                parentId: el.commentId,
-                refreshCommentsHandler: refreshCommentsHandler
-            })
-        });
-    });
-    const showMoreChildComments = /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        onClick: onClickGetChildCommentsHandler,
-        css: childCommentsShowMoreCSS,
-        children: "답글 더보기 ∨"
-    });
-    const inputRender = /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_DetailCommentInput__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
-        action: "post",
-        bookId: bookId,
-        parentId: parentId,
-        refreshCommentsHandler: refreshCommentsHandler
-    });
-    const noCommentsRender = /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        css: noCommentsWrapperCSS,
-        children: "댓글을 작성해 주세요!"
-    });
-    return /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        ref: commentsWrapperRef,
-        onWheel: onWheelGetParentCommentsHandler,
-        children: [
-            position === 0 && inputRender,
-            comments.length !== 0 ? commentsRender : noCommentsRender,
-            position === 1 && /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: childCommentsInputWrapperCSS,
-                children: inputRender
-            }),
-            position === 1 && comments.length !== 0 && showMoreChildComments
-        ]
-    });
-};
-const childCommentsShowMoreCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: 100%;
-    height: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    color: var(--text-color-4);
-    cursor: pointer;
-    user-select: none;
-
-`;
-const childCommentsInputWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    margin-top: 16px;
-    margin-bottom: 16px;
-`;
-const noCommentsWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    height: 64px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailCommentView);
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"putLikeComment\": () => (/* binding */ putLikeComment)\n/* harmony export */ });\n/* harmony import */ var _instance__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../instance */ \"./src/api/instance.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_instance__WEBPACK_IMPORTED_MODULE_0__]);\n_instance__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nasync function putLikeComment({ commentId  }) {\n    try {\n        const { data  } = await _instance__WEBPACK_IMPORTED_MODULE_0__.defaultAxiosInstance.put(`/book/comments/like/${commentId}`);\n        return data.data;\n    } catch (error) {\n        throw error;\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2NvbW1lbnQvcHV0TGlrZUNvbW1lbnQudHMuanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7QUFBbUQ7QUErQjVDLGVBQWVDLGVBQWUsRUFBQ0MsVUFBUyxFQUFhLEVBQzlCO0lBQzVCLElBQUk7UUFDRixNQUFNLEVBQUVDLEtBQUksRUFBRSxHQUEyQixNQUFNSCwrREFBd0IsQ0FDckUsQ0FBQyxvQkFBb0IsRUFBRUUsVUFBVSxDQUFDO1FBRXBDLE9BQU9DLEtBQUtBLElBQUk7SUFDbEIsRUFBRSxPQUFPRSxPQUFPO1FBQ2QsTUFBTUEsTUFBSztJQUNiO0FBQ0YsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2NsaWVudC8uL3NyYy9hcGkvY29tbWVudC9wdXRMaWtlQ29tbWVudC50cz9mM2U3Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IGRlZmF1bHRBeGlvc0luc3RhbmNlIH0gZnJvbSBcIi4uL2luc3RhbmNlXCI7XHJcbmltcG9ydCB7IHJldHVybkNvbW1lbnRBcnJheVR5cGUsIGxpa2VDb21tZW50VHlwZSB9IGZyb20gXCJAL3R5cGVzL2NvbW1lbnRzXCI7XHJcblxyXG5cclxudHlwZSBwYXJhbXNUeXBlID0ge1xyXG4gIGNvbW1lbnRJZDogbnVtYmVyO1xyXG59XHJcblxyXG50eXBlIHJldHVyblR5cGUgPSBsaWtlQ29tbWVudFR5cGVcclxuLy8gdHlwZSByZXR1cm5UeXBlID0ge1xyXG4vLyAgIFwiY29tbWVudElkXCI6IG51bWJlcjtcclxuLy8gICBcImNvbnRlbnRcIjogc3RyaW5nO1xyXG4vLyAgIFwid3JpdGVySW5mb1wiOiB7XHJcbi8vICAgICBcInVzZXJJZFwiOiBzdHJpbmc7XHJcbi8vICAgICBcIm5pY2tuYW1lXCI6IHN0cmluZztcclxuLy8gICAgIFwicHJvZmlsZUltZ1wiOiBzdHJpbmc7XHJcbi8vICAgfSxcclxuLy8gICBcInBhcmVudFdyaXRlck5pY2tOYW1lXCI6IHN0cmluZyB8IG51bGw7XHJcbi8vICAgXCJkZXB0aFwiOiBudW1iZXI7XHJcbi8vICAgXCJjcmVhdGVkRGF0ZVwiOiBzdHJpbmc7XHJcbi8vICAgXCJtb2RpZmllZERhdGVcIjogc3RyaW5nO1xyXG4vLyAgIFwiaXNEZWxldGVcIjogYm9vbGVhbjtcclxuLy8gICBcImlzQ2hpbGRcIjogYm9vbGVhbjtcclxuLy8gfVtdXHJcblxyXG50eXBlIHJlc3BvbnNlVHlwZSA9IHtcclxuICBzdGF0dXM6IG51bWJlcjtcclxuICBtZXNzYWdlOiBzdHJpbmc7XHJcbiAgZGF0YTogcmV0dXJuVHlwZTtcclxufVxyXG5cclxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIHB1dExpa2VDb21tZW50KHtjb21tZW50SWR9OiBwYXJhbXNUeXBlXHJcbik6IFByb21pc2U8cmV0dXJuVHlwZSB8IG51bGw+IHtcclxuICB0cnkge1xyXG4gICAgY29uc3QgeyBkYXRhIH06IHsgZGF0YTogcmVzcG9uc2VUeXBlIH0gPSBhd2FpdCBkZWZhdWx0QXhpb3NJbnN0YW5jZS5wdXQoXHJcbiAgICAgIGAvYm9vay9jb21tZW50cy9saWtlLyR7Y29tbWVudElkfWBcclxuICAgICk7XHJcbiAgICByZXR1cm4gZGF0YS5kYXRhXHJcbiAgfSBjYXRjaCAoZXJyb3IpIHtcclxuICAgIHRocm93IGVycm9yXHJcbiAgfVxyXG59XHJcblxyXG5cclxuIl0sIm5hbWVzIjpbImRlZmF1bHRBeGlvc0luc3RhbmNlIiwicHV0TGlrZUNvbW1lbnQiLCJjb21tZW50SWQiLCJkYXRhIiwicHV0IiwiZXJyb3IiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/api/comment/putLikeComment.ts\n");
 
 /***/ }),
 
-/***/ 3861:
+/***/ "./src/api/instance.ts":
+/*!*****************************!*\
+  !*** ./src/api/instance.ts ***!
+  \*****************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _DetailCommentInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9813);
-/* harmony import */ var _api_comment_deleteComment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2043);
-/* harmony import */ var _api_comment_putLikeComment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4636);
-/* harmony import */ var react_icons_fc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(178);
-/* harmony import */ var react_icons_fc__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_icons_fc__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(6290);
-/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_icons_fa__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _DetailCommentView__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2571);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_DetailCommentInput__WEBPACK_IMPORTED_MODULE_3__, _api_comment_deleteComment__WEBPACK_IMPORTED_MODULE_4__, _api_comment_putLikeComment__WEBPACK_IMPORTED_MODULE_5__, _DetailCommentView__WEBPACK_IMPORTED_MODULE_8__]);
-([_DetailCommentInput__WEBPACK_IMPORTED_MODULE_3__, _api_comment_deleteComment__WEBPACK_IMPORTED_MODULE_4__, _api_comment_putLikeComment__WEBPACK_IMPORTED_MODULE_5__, _DetailCommentView__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
-/** @jsxImportSource @emotion/react */ 
-
-
-
-
-
-
-
-
-// export type CommentType = {
-//     "commentId": number;
-//     "content": string;
-//     "writerInfo": {
-//         "userId": string;
-//         "nickname": string;
-//         "profileImg": string;
-//     },
-//     "parentWriterNickName": string | null;
-//     "depth": number;
-//     "createdDate": string;
-//     "modifiedDate": string;
-//     "isDelete": boolean;
-//     "isChild": boolean;
-//     }
-const DetailCommentViewElement = ({ bookId , comment , parentId , refreshCommentsHandler  })=>{
-    const [likeState, setLikeState] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const [likeStatusSize, setLikeStatusSize] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);
-    const [toggleEditComment, setToggleEditComment] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const [toggleChildComments, setToggleChildComments] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    const refreshCommentsReHandler = ()=>{
-        refreshCommentsHandler();
-        setToggleEditComment(()=>false);
-    };
-    const toggleEditCommentHandler = ()=>{
-        setToggleEditComment((prev)=>!prev);
-    };
-    const toggleChildCommentsHandler = ()=>{
-        setToggleChildComments((prev)=>!prev);
-    };
-    const deleteCommentHandler = ()=>{
-        (0,_api_comment_deleteComment__WEBPACK_IMPORTED_MODULE_4__/* .deleteComment */ .Y)({
-            commentId: comment.commentId
-        }).then(()=>{
-            refreshCommentsReHandler();
-        });
-    };
-    const likeCommentHandler = ()=>{
-        (0,_api_comment_putLikeComment__WEBPACK_IMPORTED_MODULE_5__/* .putLikeComment */ .J)({
-            commentId: comment.commentId
-        }).then((res)=>{
-            if (res?.likeCount !== undefined) {
-                setLikeStatusSize(()=>res?.likeCount);
-                setLikeState(()=>res?.likeState);
-            }
-        });
-    };
-    const commentHeader = /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: commentInfoWrapperCSS,
-        children: [
-            /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                css: writerInfoWrapperCSS,
-                children: [
-                    /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        css: profileImgWrapperCSS,
-                        children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                            src: comment.writerInfo.profileImg
-                        })
-                    }),
-                    /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                        children: comment.writerInfo.nickname
-                    })
-                ]
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                css: dateStringCSS,
-                children: comment.createdDate
-            })
-        ]
-    });
-    const commentFooter = /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: commentFooterCSS,
-        children: [
-            comment.isDelete === false && /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                css: footerElementCSS,
-                onClick: likeCommentHandler,
-                children: [
-                    likeState ? /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_icons_fc__WEBPACK_IMPORTED_MODULE_6__.FcLike, {
-                        css: footerIconCSS
-                    }) : /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_icons_fc__WEBPACK_IMPORTED_MODULE_6__.FcLikePlaceholder, {
-                        css: footerIconCSS
-                    }),
-                    " ",
-                    likeStatusSize ? likeStatusSize : "좋아요"
-                ]
-            }),
-            comment.depth === 0 && /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                css: footerElementCSS,
-                onClick: toggleChildCommentsHandler,
-                children: [
-                    /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_icons_fa__WEBPACK_IMPORTED_MODULE_7__.FaRegComment, {
-                        css: footerIconCSS
-                    }),
-                    "답글 보기"
-                ]
-            }),
-            comment.writerInfo.userId !== "=== example" && comment.isDelete === false && /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: footerElementCSS,
-                onClick: deleteCommentHandler,
-                children: "삭제"
-            }),
-            comment.writerInfo.userId !== "=== example" && comment.isDelete === false && /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: footerElementCSS,
-                onClick: toggleEditCommentHandler,
-                children: toggleEditComment ? "취소" : "수정"
-            })
-        ]
-    });
-    const editInput = /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_DetailCommentInput__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .Z, {
-        action: "put",
-        defaultValue: comment.content,
-        bookId: bookId,
-        commentId: comment.commentId,
-        parentId: parentId,
-        refreshCommentsHandler: refreshCommentsReHandler
-    });
-    const commentContent = toggleEditComment ? editInput : comment.isDelete ? /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        css: deletedStringCSS,
-        children: "삭제된 댓글입니다."
-    }) : `${comment.content}`;
-    const childCommentsRender = /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        css: childCommentsWrapperCSS({
-            depth: comment.depth
-        }),
-        children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_DetailCommentView__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
-            bookId: bookId,
-            position: 1,
-            parentId: comment.commentId,
-            criteria: "date"
-        })
-    });
-    return /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: commentWrapperCSS,
-        children: [
-            comment.isDelete === false && commentHeader,
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: commentContentWrapperCSS,
-                children: commentContent
-            }),
-            commentFooter,
-            toggleChildComments && childCommentsRender
-        ]
-    });
-};
-const commentWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  border-bottom: 1px solid var(--back-color-op);
-`;
-const commentInfoWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 16px;
-  margin-bottom: 16px;
-`;
-const writerInfoWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  display: flex;
-`;
-const profileImgWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 36px;
-  height: 36px;
-  border-radius: 100px;
-  background-color: var(--back-color-op);
-  overflow: hidden;
-`;
-const commentContentWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  margin-bottom: 16px;
-`;
-const commentFooterCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-`;
-const footerElementCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  margin-right: 12px;
-  font-size: 12px;
-  color: var(--text-color-4);
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  user-select: none;
-`;
-const childCommentsWrapperCSS = ({ depth  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    margin-left: ${depth === 0 ? "48px" : "0px"};
-  `;
-};
-const footerIconCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 20px;
-  height: 20px;
-  margin-right: 6px;
-`;
-const dateStringCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  font-size: 12px;
-  color: var(--text-color-4);
-`;
-const childCommentInputWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  margin-bottom: 16px;
-`;
-const deletedStringCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  margin-top: 16px;
-  color: var(--text-color-4);
-`;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailCommentViewElement);
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"defaultAxiosFormDataInstance\": () => (/* binding */ defaultAxiosFormDataInstance),\n/* harmony export */   \"defaultAxiosInstance\": () => (/* binding */ defaultAxiosInstance)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"axios\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([axios__WEBPACK_IMPORTED_MODULE_0__]);\naxios__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n\nfunction getToken() {\n    if (false) {}\n    return \"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjc5NzQzNjk3LCJleHAiOjE2ODA2MDc2OTd9.Jeg3gk6I64d7-6SiOu5HiaZ08GrCLaAaISW6zTtKYMHZ7ACvIhowhvQJFarFtxu3j8QzLzwvUYFVG4nI-vfchw\";\n}\nfunction defaultInstace() {\n    const token = getToken();\n    const instance = axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].create({\n        baseURL: \"http://j8d203.p.ssafy.io:8081/api\",\n        headers: {\n            \"Content-Type\": \"application/JSON;charset=utf-8\",\n            Authorization: token\n        }\n    });\n    return instance;\n}\nfunction defaultFormDataInstance() {\n    const token = getToken();\n    const instance = axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].create({\n        baseURL: \"http://j8d203.p.ssafy.io:8081/api\",\n        headers: {\n            \"Content-Type\": \"multipart/form-data\",\n            Authorization: token\n        }\n    });\n    return instance;\n}\nconst defaultAxiosInstance = defaultInstace();\nconst defaultAxiosFormDataInstance = defaultFormDataInstance();\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvYXBpL2luc3RhbmNlLnRzLmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQUEwQjtBQUUxQixTQUFTQyxXQUFXO0lBRWxCLElBQUksS0FBNkIsRUFBRSxFQUdsQztJQUVELE9BQU87QUFDVDtBQUVBLFNBQVNJLGlCQUFpQjtJQUN4QixNQUFNQyxRQUFRTDtJQUNkLE1BQU1NLFdBQVdQLG9EQUFZLENBQUM7UUFDNUJTLFNBQVNDLG1DQUFvQztRQUM3Q0csU0FBUztZQUNQLGdCQUFnQjtZQUNoQkMsZUFBZVI7UUFDakI7SUFDRjtJQUNBLE9BQU9DO0FBQ1Q7QUFFQSxTQUFTUSwwQkFBMEI7SUFDakMsTUFBTVQsUUFBUUw7SUFDZCxNQUFNTSxXQUFXUCxvREFBWSxDQUFDO1FBQzVCUyxTQUFTQyxtQ0FBb0M7UUFDN0NHLFNBQVM7WUFBRSxnQkFBZ0I7WUFBdUJDLGVBQWVSO1FBQU07SUFDekU7SUFDQSxPQUFPQztBQUNUO0FBRU8sTUFBTVMsdUJBQXVCWCxpQkFBaUI7QUFDOUMsTUFBTVksK0JBQStCRiwwQkFBMEIiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvYXBpL2luc3RhbmNlLnRzPzkzN2EiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IGF4aW9zIGZyb20gXCJheGlvc1wiO1xyXG5cclxuZnVuY3Rpb24gZ2V0VG9rZW4oKSB7XHJcbiAgXHJcbiAgaWYgKHR5cGVvZiB3aW5kb3cgIT09IFwidW5kZWZpbmVkXCIpIHtcclxuICAgIGNvbnN0IGluZm9ybWF0aW9uID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oXCJhY2Nlc3NfdG9rZW5cIik7XHJcbiAgICByZXR1cm4gYEJlYXJlciAke2luZm9ybWF0aW9ufWA7IFxyXG4gIH1cclxuICBcclxuICByZXR1cm4gXCJCZWFyZXIgZXlKaGJHY2lPaUpJVXpVeE1pSjkuZXlKemRXSWlPaUk0SWl3aWFXRjBJam94TmpjNU56UXpOamszTENKbGVIQWlPakUyT0RBMk1EYzJPVGQ5LkplZzNnazZJNjRkNy02U2lPdTVIaWFaMDhHckNMYUFhSVNXNnpUdEtZTUhaN0FDdklob3dodlFKRmFyRnR4dTNqOFF6THp3dlVZRlZHNG5JLXZmY2h3XCI7XHJcbn1cclxuXHJcbmZ1bmN0aW9uIGRlZmF1bHRJbnN0YWNlKCkge1xyXG4gIGNvbnN0IHRva2VuID0gZ2V0VG9rZW4oKTtcclxuICBjb25zdCBpbnN0YW5jZSA9IGF4aW9zLmNyZWF0ZSh7XHJcbiAgICBiYXNlVVJMOiBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19BUElfQkFTRV9VUkwsXHJcbiAgICBoZWFkZXJzOiB7XHJcbiAgICAgIFwiQ29udGVudC1UeXBlXCI6IFwiYXBwbGljYXRpb24vSlNPTjtjaGFyc2V0PXV0Zi04XCIsXHJcbiAgICAgIEF1dGhvcml6YXRpb246IHRva2VuLFxyXG4gICAgfSxcclxuICB9KTtcclxuICByZXR1cm4gaW5zdGFuY2U7XHJcbn1cclxuXHJcbmZ1bmN0aW9uIGRlZmF1bHRGb3JtRGF0YUluc3RhbmNlKCkge1xyXG4gIGNvbnN0IHRva2VuID0gZ2V0VG9rZW4oKTtcclxuICBjb25zdCBpbnN0YW5jZSA9IGF4aW9zLmNyZWF0ZSh7XHJcbiAgICBiYXNlVVJMOiBwcm9jZXNzLmVudi5ORVhUX1BVQkxJQ19BUElfQkFTRV9VUkwsXHJcbiAgICBoZWFkZXJzOiB7IFwiQ29udGVudC1UeXBlXCI6IFwibXVsdGlwYXJ0L2Zvcm0tZGF0YVwiLCBBdXRob3JpemF0aW9uOiB0b2tlbiB9LFxyXG4gIH0pO1xyXG4gIHJldHVybiBpbnN0YW5jZTtcclxufVxyXG5cclxuZXhwb3J0IGNvbnN0IGRlZmF1bHRBeGlvc0luc3RhbmNlID0gZGVmYXVsdEluc3RhY2UoKTtcclxuZXhwb3J0IGNvbnN0IGRlZmF1bHRBeGlvc0Zvcm1EYXRhSW5zdGFuY2UgPSBkZWZhdWx0Rm9ybURhdGFJbnN0YW5jZSgpO1xyXG4iXSwibmFtZXMiOlsiYXhpb3MiLCJnZXRUb2tlbiIsImluZm9ybWF0aW9uIiwibG9jYWxTdG9yYWdlIiwiZ2V0SXRlbSIsImRlZmF1bHRJbnN0YWNlIiwidG9rZW4iLCJpbnN0YW5jZSIsImNyZWF0ZSIsImJhc2VVUkwiLCJwcm9jZXNzIiwiZW52IiwiTkVYVF9QVUJMSUNfQVBJX0JBU0VfVVJMIiwiaGVhZGVycyIsIkF1dGhvcml6YXRpb24iLCJkZWZhdWx0Rm9ybURhdGFJbnN0YW5jZSIsImRlZmF1bHRBeGlvc0luc3RhbmNlIiwiZGVmYXVsdEF4aW9zRm9ybURhdGFJbnN0YW5jZSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/api/instance.ts\n");
 
 /***/ }),
 
-/***/ 6826:
+/***/ "./src/components/DetailComment/DetailComment.tsx":
+/*!********************************************************!*\
+  !*** ./src/components/DetailComment/DetailComment.tsx ***!
+  \********************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _DetailCommentView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DetailCommentView */ \"./src/components/DetailComment/DetailCommentView.tsx\");\n/* harmony import */ var _Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Responsive/useIsResponsive */ \"./src/components/Responsive/useIsResponsive.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_DetailCommentView__WEBPACK_IMPORTED_MODULE_3__]);\n_DetailCommentView__WEBPACK_IMPORTED_MODULE_3__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];\n/** @jsxImportSource @emotion/react */ \n\n\n\n\nconst DetailComment = ({ bookTitle , bookId , modalHandler  })=>{\n    const commentsWrapperRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);\n    const [isDeskTop, isTablet, isMobile] = (0,_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_4__.useIsResponsive)();\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        ref: commentsWrapperRef,\n        css: modalWrapperCSS({\n            isMobile\n        }),\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: titleWrapperCSS,\n                children: bookTitle\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailComment.tsx\",\n                lineNumber: 26,\n                columnNumber: 13\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_DetailCommentView__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n                bookId: bookId,\n                parentId: null,\n                position: 0,\n                criteria: \"date\",\n                commentsWrapperRef: commentsWrapperRef\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailComment.tsx\",\n                lineNumber: 31,\n                columnNumber: 13\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailComment.tsx\",\n        lineNumber: 25,\n        columnNumber: 9\n    }, undefined);\n};\nconst titleWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    font-size: 24px;\r\n    font-weight: 700;\r\n    margin-bottom: 24px;\r\n    display: inline-block;\r\n    width: 100%;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n`;\nconst modalWrapperCSS = ({ isMobile  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n        width: ${isMobile ? \"100vw\" : \"60vw\"};\r\n        height: ${isMobile ? \"100vh\" : \"90vh\"};\r\n        background-color: var(--back-color);\r\n        box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);\r\n        /* border-radius: 20px; */\r\n        padding: 36px;\r\n        display: flex;\r\n        flex-direction: column;\r\n        overflow: scroll;\r\n        overflow-x: hidden;\r\n    `;\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailComment);\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9EZXRhaWxDb21tZW50L0RldGFpbENvbW1lbnQudHN4LmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7OztBQUFBLG9DQUFvQztBQUNNO0FBRVU7QUFJQTtBQUNZO0FBVWhFLE1BQU1JLGdCQUFnQixDQUFDLEVBQUNDLFVBQVMsRUFBRUMsT0FBTSxFQUFFQyxhQUFZLEVBQXFCLEdBQUs7SUFFN0UsTUFBTUMscUJBQXFCUCw2Q0FBTUEsQ0FBaUIsSUFBSTtJQUN0RCxNQUFNLENBQUNRLFdBQVdDLFVBQVVDLFNBQVMsR0FBR1IsNEVBQWVBO0lBRXZELHFCQUNJLHVFQUFDUztRQUFJQyxLQUFLTDtRQUFvQlIsS0FBS2MsZ0JBQWdCO1lBQUNIO1FBQVE7OzBCQUN4RCx1RUFBQ0M7Z0JBQUlaLEtBQUtlOzBCQUNMVjs7Ozs7OzBCQUlMLHVFQUFDSCwwREFBaUJBO2dCQUFDSSxRQUFRQTtnQkFBUVUsVUFBVSxJQUFJO2dCQUFFQyxVQUFVO2dCQUFHQyxVQUFVO2dCQUFRVixvQkFBb0JBOzs7Ozs7Ozs7Ozs7QUFHbEg7QUFFQSxNQUFNTyxrQkFBa0JmLCtDQUFHLENBQUM7Ozs7Ozs7OztBQVM1QixDQUFDO0FBRUQsTUFBTWMsa0JBQWtCLENBQUMsRUFBQ0gsU0FBUSxFQUFzQixHQUFLO0lBQ3pELE9BQU9YLCtDQUFHLENBQUM7ZUFDQSxFQUFFVyxXQUFXLFVBQVUsTUFBTSxDQUFDO2dCQUM3QixFQUFFQSxXQUFXLFVBQVUsTUFBTSxDQUFDOzs7Ozs7Ozs7SUFTMUMsQ0FBQztBQUNMO0FBR0EsaUVBQWVQLGFBQWFBLEVBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvY29tcG9uZW50cy9EZXRhaWxDb21tZW50L0RldGFpbENvbW1lbnQudHN4PzNhZTAiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3hJbXBvcnRTb3VyY2UgQGVtb3Rpb24vcmVhY3QgKi9cclxuaW1wb3J0IHsganN4LCBjc3MgfSBmcm9tIFwiQGVtb3Rpb24vcmVhY3RcIjtcclxuaW1wb3J0IHsgcG9zdENvbW1lbnQgfSBmcm9tIFwiQC9hcGkvY29tbWVudC9wb3N0Q29tbWVudFwiO1xyXG5pbXBvcnQgeyB1c2VSZWYsIHVzZUVmZmVjdCwgdXNlU3RhdGUgfSBmcm9tIFwicmVhY3RcIjtcclxuaW1wb3J0IERldGFpbENvbW1lbnRJbnB1dCBmcm9tIFwiLi9EZXRhaWxDb21tZW50SW5wdXRcIjtcclxuaW1wb3J0IHsgcmV0dXJuQ29tbWVudEFycmF5VHlwZSB9IGZyb20gXCJAL3R5cGVzL2NvbW1lbnRzXCI7XHJcbmltcG9ydCB7IGdldFBhcmVudENvbW1lbnRzIH0gZnJvbSBcIkAvYXBpL2NvbW1lbnQvZ2V0UGFyZW50Q29tbWVudHNcIjtcclxuaW1wb3J0IERldGFpbENvbW1lbnRWaWV3IGZyb20gXCIuL0RldGFpbENvbW1lbnRWaWV3XCI7XHJcbmltcG9ydCB7IHVzZUlzUmVzcG9uc2l2ZSB9IGZyb20gXCIuLi9SZXNwb25zaXZlL3VzZUlzUmVzcG9uc2l2ZVwiO1xyXG5cclxuXHJcblxyXG5pbnRlcmZhY2UgRGV0YWlsQ29tbWVudFByb3BzIHtcclxuICAgIGJvb2tUaXRsZTogc3RyaW5nO1xyXG4gICAgYm9va0lkOiBudW1iZXI7XHJcbiAgICBtb2RhbEhhbmRsZXI/OiBhbnk7XHJcbn1cclxuXHJcbmNvbnN0IERldGFpbENvbW1lbnQgPSAoe2Jvb2tUaXRsZSwgYm9va0lkLCBtb2RhbEhhbmRsZXJ9OiBEZXRhaWxDb21tZW50UHJvcHMpID0+IHtcclxuXHJcbiAgICBjb25zdCBjb21tZW50c1dyYXBwZXJSZWYgPSB1c2VSZWY8SFRNTERpdkVsZW1lbnQ+KG51bGwpXHJcbiAgICBjb25zdCBbaXNEZXNrVG9wLCBpc1RhYmxldCwgaXNNb2JpbGVdID0gdXNlSXNSZXNwb25zaXZlKCk7XHJcblxyXG4gICAgcmV0dXJuIChcclxuICAgICAgICA8ZGl2IHJlZj17Y29tbWVudHNXcmFwcGVyUmVmfSBjc3M9e21vZGFsV3JhcHBlckNTUyh7aXNNb2JpbGV9KX0+XHJcbiAgICAgICAgICAgIDxkaXYgY3NzPXt0aXRsZVdyYXBwZXJDU1N9PlxyXG4gICAgICAgICAgICAgICAge2Jvb2tUaXRsZX1cclxuICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICB7LyogPGJ1dHRvbiBvbkNsaWNrPXttb2RhbEhhbmRsZXJ9PuuLq+q4sDwvYnV0dG9uPiAqL31cclxuICAgICAgICAgICAgPERldGFpbENvbW1lbnRWaWV3IGJvb2tJZD17Ym9va0lkfSBwYXJlbnRJZD17bnVsbH0gcG9zaXRpb249ezB9IGNyaXRlcmlhPXsnZGF0ZSd9IGNvbW1lbnRzV3JhcHBlclJlZj17Y29tbWVudHNXcmFwcGVyUmVmfSAvPlxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgKVxyXG59XHJcblxyXG5jb25zdCB0aXRsZVdyYXBwZXJDU1MgPSBjc3NgXHJcbiAgICBmb250LXNpemU6IDI0cHg7XHJcbiAgICBmb250LXdlaWdodDogNzAwO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMjRweDtcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgd2hpdGUtc3BhY2U6IG5vd3JhcDtcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgICB0ZXh0LW92ZXJmbG93OiBlbGxpcHNpcztcclxuYFxyXG5cclxuY29uc3QgbW9kYWxXcmFwcGVyQ1NTID0gKHtpc01vYmlsZX06IHtpc01vYmlsZTogYm9vbGVhbn0pID0+IHtcclxuICAgIHJldHVybiBjc3NgXHJcbiAgICAgICAgd2lkdGg6ICR7aXNNb2JpbGUgPyAnMTAwdncnIDogJzYwdncnfTtcclxuICAgICAgICBoZWlnaHQ6ICR7aXNNb2JpbGUgPyAnMTAwdmgnIDogJzkwdmgnfTtcclxuICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1iYWNrLWNvbG9yKTtcclxuICAgICAgICBib3gtc2hhZG93OiAwcHggMHB4IDEwcHggMXB4IHJnYmEoMCwgMCwgMCwgMC4yKTtcclxuICAgICAgICAvKiBib3JkZXItcmFkaXVzOiAyMHB4OyAqL1xyXG4gICAgICAgIHBhZGRpbmc6IDM2cHg7XHJcbiAgICAgICAgZGlzcGxheTogZmxleDtcclxuICAgICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgICAgIG92ZXJmbG93OiBzY3JvbGw7XHJcbiAgICAgICAgb3ZlcmZsb3cteDogaGlkZGVuO1xyXG4gICAgYFxyXG59IFxyXG5cclxuXHJcbmV4cG9ydCBkZWZhdWx0IERldGFpbENvbW1lbnQiXSwibmFtZXMiOlsiY3NzIiwidXNlUmVmIiwiRGV0YWlsQ29tbWVudFZpZXciLCJ1c2VJc1Jlc3BvbnNpdmUiLCJEZXRhaWxDb21tZW50IiwiYm9va1RpdGxlIiwiYm9va0lkIiwibW9kYWxIYW5kbGVyIiwiY29tbWVudHNXcmFwcGVyUmVmIiwiaXNEZXNrVG9wIiwiaXNUYWJsZXQiLCJpc01vYmlsZSIsImRpdiIsInJlZiIsIm1vZGFsV3JhcHBlckNTUyIsInRpdGxlV3JhcHBlckNTUyIsInBhcmVudElkIiwicG9zaXRpb24iLCJjcml0ZXJpYSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/components/DetailComment/DetailComment.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/DetailComment/DetailCommentInput.tsx":
+/*!*************************************************************!*\
+  !*** ./src/components/DetailComment/DetailCommentInput.tsx ***!
+  \*************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _api_comment_postComment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/api/comment/postComment */ \"./src/api/comment/postComment.ts\");\n/* harmony import */ var _api_comment_putComment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/api/comment/putComment */ \"./src/api/comment/putComment.ts\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_api_comment_postComment__WEBPACK_IMPORTED_MODULE_2__, _api_comment_putComment__WEBPACK_IMPORTED_MODULE_3__]);\n([_api_comment_postComment__WEBPACK_IMPORTED_MODULE_2__, _api_comment_putComment__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);\n/** @jsxImportSource @emotion/react */ \n\n\n\n\nconst DetailCommentInput = ({ action , bookId , parentId , defaultValue , commentId , refreshCommentsHandler  })=>{\n    const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_4__.useRef)(null);\n    const commentHandler = ()=>{\n        if (inputRef.current && inputRef.current.value.trim() !== \"\") {\n            if (action === \"post\") {\n                (0,_api_comment_postComment__WEBPACK_IMPORTED_MODULE_2__.postComment)({\n                    bookId: bookId,\n                    content: inputRef.current.value,\n                    parentId: parentId\n                }).then(()=>{\n                    refreshCommentsHandler();\n                    if (inputRef.current) {\n                        inputRef.current.value = \"\";\n                    }\n                });\n            } else if (action === \"put\" && commentId !== undefined) {\n                (0,_api_comment_putComment__WEBPACK_IMPORTED_MODULE_3__.putComment)({\n                    commentId: commentId,\n                    content: inputRef.current.value\n                }).then(()=>{\n                    refreshCommentsHandler();\n                    if (inputRef.current) {\n                        inputRef.current.value = \"\";\n                    }\n                });\n            }\n        }\n    };\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: inputWrapperCSS,\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"input\", {\n                css: inputCSS,\n                ref: inputRef,\n                placeholder: `댓글을 입력해 주세요.`,\n                defaultValue: defaultValue ? defaultValue : ``\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentInput.tsx\",\n                lineNumber: 50,\n                columnNumber: 13\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                onClick: commentHandler,\n                css: confirmBtnCSS,\n                children: \"작성\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentInput.tsx\",\n                lineNumber: 51,\n                columnNumber: 13\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentInput.tsx\",\n        lineNumber: 49,\n        columnNumber: 9\n    }, undefined);\n};\nconst inputCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 100%;\r\n    height: 48px;\r\n    border-radius: 10px 0px 0px 10px;\r\n    border: none;\r\n    padding: 16px;\r\n    background-color: var(--back-color-2);\r\n    &:focus {outline: none;};\r\n`;\nconst confirmBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    background-color: var(--back-color-2);\r\n    width: 96px;\r\n    height: 48px;\r\n    display: flex;\r\n    border-radius: 0px 10px 10px 0px;\r\n    justify-content: center;\r\n    align-items: center;\r\n    cursor: pointer;\r\n    user-select: none;\r\n    transition-property: background-color;\r\n    transition-duration: 0.3s;\r\n\r\n    &:hover {\r\n        background-color: var(--back-color-3);\r\n    }\r\n`;\nconst inputWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    display: flex;\r\n`;\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailCommentInput);\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9EZXRhaWxDb21tZW50L0RldGFpbENvbW1lbnRJbnB1dC50c3guanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsb0NBQW9DO0FBQ007QUFDYztBQUNGO0FBQ3ZCO0FBYS9CLE1BQU1JLHFCQUFxQixDQUFDLEVBQUVDLE9BQU0sRUFBRUMsT0FBTSxFQUFFQyxTQUFRLEVBQUVDLGFBQVksRUFBRUMsVUFBUyxFQUFFQyx1QkFBc0IsRUFBMkIsR0FBSztJQUNuSSxNQUFNQyxXQUFXUiw2Q0FBTUEsQ0FBbUIsSUFBSTtJQUU5QyxNQUFNUyxpQkFBaUIsSUFBTTtRQUN6QixJQUFJRCxTQUFTRSxPQUFPLElBQUlGLFNBQVNFLE9BQU8sQ0FBQ0MsS0FBSyxDQUFDQyxJQUFJLE9BQU8sSUFBSTtZQUMxRCxJQUFJVixXQUFXLFFBQVE7Z0JBQ25CSixxRUFBV0EsQ0FBQztvQkFBQ0ssUUFBUUE7b0JBQVFVLFNBQVNMLFNBQVNFLE9BQU8sQ0FBQ0MsS0FBSztvQkFBRVAsVUFBVUE7Z0JBQVEsR0FDL0VVLElBQUksQ0FBQyxJQUFNO29CQUNSUDtvQkFDQSxJQUFJQyxTQUFTRSxPQUFPLEVBQUU7d0JBQ2xCRixTQUFTRSxPQUFPLENBQUNDLEtBQUssR0FBRztvQkFDN0IsQ0FBQztnQkFFTDtZQUNKLE9BQU8sSUFBSVQsV0FBVyxTQUFTSSxjQUFjUyxXQUFXO2dCQUVwRGhCLG1FQUFVQSxDQUFDO29CQUFDTyxXQUFXQTtvQkFBV08sU0FBU0wsU0FBU0UsT0FBTyxDQUFDQyxLQUFLO2dCQUFBLEdBQ2hFRyxJQUFJLENBQUMsSUFBTTtvQkFDUlA7b0JBQ0EsSUFBSUMsU0FBU0UsT0FBTyxFQUFFO3dCQUNsQkYsU0FBU0UsT0FBTyxDQUFDQyxLQUFLLEdBQUc7b0JBQzdCLENBQUM7Z0JBQ0w7WUFDSixDQUFDO1FBRUwsQ0FBQztJQUNMO0lBSUEscUJBQ0ksdUVBQUNLO1FBQUluQixLQUFLb0I7OzBCQUNOLHVFQUFDQztnQkFBTXJCLEtBQUtzQjtnQkFBVUMsS0FBS1o7Z0JBQVVhLGFBQWEsQ0FBQyxZQUFZLENBQUM7Z0JBQUVoQixjQUFjQSxlQUFlQSxlQUFlLENBQUMsQ0FBQzs7Ozs7OzBCQUNoSCx1RUFBQ1c7Z0JBQUlNLFNBQVNiO2dCQUFnQlosS0FBSzBCOzBCQUFnQjs7Ozs7Ozs7Ozs7O0FBSS9EO0FBRUEsTUFBTUosV0FBV3RCLCtDQUFHLENBQUM7Ozs7Ozs7O0FBUXJCLENBQUM7QUFFRCxNQUFNMEIsZ0JBQWdCMUIsK0NBQUcsQ0FBQzs7Ozs7Ozs7Ozs7Ozs7OztBQWdCMUIsQ0FBQztBQUVELE1BQU1vQixrQkFBa0JwQiwrQ0FBRyxDQUFDOztBQUU1QixDQUFDO0FBRUQsaUVBQWVJLGtCQUFrQkEsRUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovL2NsaWVudC8uL3NyYy9jb21wb25lbnRzL0RldGFpbENvbW1lbnQvRGV0YWlsQ29tbWVudElucHV0LnRzeD84MDlhIl0sInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4SW1wb3J0U291cmNlIEBlbW90aW9uL3JlYWN0ICovXHJcbmltcG9ydCB7IGpzeCwgY3NzIH0gZnJvbSBcIkBlbW90aW9uL3JlYWN0XCI7XHJcbmltcG9ydCB7IHBvc3RDb21tZW50IH0gZnJvbSBcIkAvYXBpL2NvbW1lbnQvcG9zdENvbW1lbnRcIjtcclxuaW1wb3J0IHsgcHV0Q29tbWVudCB9IGZyb20gXCJAL2FwaS9jb21tZW50L3B1dENvbW1lbnRcIjtcclxuaW1wb3J0IHsgdXNlUmVmIH0gZnJvbSBcInJlYWN0XCI7XHJcblxyXG5cclxuaW50ZXJmYWNlIERldGFpbENvbW1lbnRJbnB1dFByb3BzIHtcclxuICAgIGFjdGlvbjogc3RyaW5nO1xyXG4gICAgYm9va0lkOiBudW1iZXI7XHJcbiAgICBwYXJlbnRJZDogbnVtYmVyIHwgbnVsbDtcclxuICAgIGRlZmF1bHRWYWx1ZT86IHN0cmluZztcclxuICAgIGNvbW1lbnRJZD86IG51bWJlcjtcclxuICAgIHJlZnJlc2hDb21tZW50c0hhbmRsZXI6IEZ1bmN0aW9uO1xyXG4gICAgXHJcbn1cclxuXHJcbmNvbnN0IERldGFpbENvbW1lbnRJbnB1dCA9ICh7IGFjdGlvbiwgYm9va0lkLCBwYXJlbnRJZCwgZGVmYXVsdFZhbHVlLCBjb21tZW50SWQsIHJlZnJlc2hDb21tZW50c0hhbmRsZXIgfTogRGV0YWlsQ29tbWVudElucHV0UHJvcHMpID0+IHtcclxuICAgIGNvbnN0IGlucHV0UmVmID0gdXNlUmVmPEhUTUxJbnB1dEVsZW1lbnQ+KG51bGwpXHJcblxyXG4gICAgY29uc3QgY29tbWVudEhhbmRsZXIgPSAoKSA9PiB7XHJcbiAgICAgICAgaWYgKGlucHV0UmVmLmN1cnJlbnQgJiYgaW5wdXRSZWYuY3VycmVudC52YWx1ZS50cmltKCkgIT09ICcnKSB7XHJcbiAgICAgICAgICAgIGlmIChhY3Rpb24gPT09ICdwb3N0Jykge1xyXG4gICAgICAgICAgICAgICAgcG9zdENvbW1lbnQoe2Jvb2tJZDogYm9va0lkLCBjb250ZW50OiBpbnB1dFJlZi5jdXJyZW50LnZhbHVlLCBwYXJlbnRJZDogcGFyZW50SWR9KVxyXG4gICAgICAgICAgICAgICAgLnRoZW4oKCkgPT4ge1xyXG4gICAgICAgICAgICAgICAgICAgIHJlZnJlc2hDb21tZW50c0hhbmRsZXIoKVxyXG4gICAgICAgICAgICAgICAgICAgIGlmIChpbnB1dFJlZi5jdXJyZW50KSB7XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIGlucHV0UmVmLmN1cnJlbnQudmFsdWUgPSAnJ1xyXG4gICAgICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgICAgICBcclxuICAgICAgICAgICAgICAgIH0pXHJcbiAgICAgICAgICAgIH0gZWxzZSBpZiAoYWN0aW9uID09PSAncHV0JyAmJiBjb21tZW50SWQgIT09IHVuZGVmaW5lZCkge1xyXG4gICAgICAgICAgICAgICAgXHJcbiAgICAgICAgICAgICAgICBwdXRDb21tZW50KHtjb21tZW50SWQ6IGNvbW1lbnRJZCwgY29udGVudDogaW5wdXRSZWYuY3VycmVudC52YWx1ZX0pXHJcbiAgICAgICAgICAgICAgICAudGhlbigoKSA9PiB7XHJcbiAgICAgICAgICAgICAgICAgICAgcmVmcmVzaENvbW1lbnRzSGFuZGxlcigpXHJcbiAgICAgICAgICAgICAgICAgICAgaWYgKGlucHV0UmVmLmN1cnJlbnQpIHtcclxuICAgICAgICAgICAgICAgICAgICAgICAgaW5wdXRSZWYuY3VycmVudC52YWx1ZSA9ICcnXHJcbiAgICAgICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICAgICAgfSlcclxuICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICBcclxuICAgICAgICB9XHJcbiAgICB9XHJcblxyXG5cclxuXHJcbiAgICByZXR1cm4gKFxyXG4gICAgICAgIDxkaXYgY3NzPXtpbnB1dFdyYXBwZXJDU1N9PlxyXG4gICAgICAgICAgICA8aW5wdXQgY3NzPXtpbnB1dENTU30gcmVmPXtpbnB1dFJlZn0gcGxhY2Vob2xkZXI9e2DrjJPquIDsnYQg7J6F66Cl7ZW0IOyjvOyEuOyalC5gfSBkZWZhdWx0VmFsdWU9e2RlZmF1bHRWYWx1ZSA/IGRlZmF1bHRWYWx1ZSA6IGBgfSAvPlxyXG4gICAgICAgICAgICA8ZGl2IG9uQ2xpY2s9e2NvbW1lbnRIYW5kbGVyfSBjc3M9e2NvbmZpcm1CdG5DU1N9ID7snpHshLE8L2Rpdj5cclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgICBcclxuICAgIClcclxufVxyXG5cclxuY29uc3QgaW5wdXRDU1MgPSBjc3NgXHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGhlaWdodDogNDhweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDEwcHggMHB4IDBweCAxMHB4O1xyXG4gICAgYm9yZGVyOiBub25lO1xyXG4gICAgcGFkZGluZzogMTZweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWJhY2stY29sb3ItMik7XHJcbiAgICAmOmZvY3VzIHtvdXRsaW5lOiBub25lO307XHJcbmBcclxuXHJcbmNvbnN0IGNvbmZpcm1CdG5DU1MgPSBjc3NgXHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1iYWNrLWNvbG9yLTIpO1xyXG4gICAgd2lkdGg6IDk2cHg7XHJcbiAgICBoZWlnaHQ6IDQ4cHg7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogMHB4IDEwcHggMTBweCAwcHg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICB1c2VyLXNlbGVjdDogbm9uZTtcclxuICAgIHRyYW5zaXRpb24tcHJvcGVydHk6IGJhY2tncm91bmQtY29sb3I7XHJcbiAgICB0cmFuc2l0aW9uLWR1cmF0aW9uOiAwLjNzO1xyXG5cclxuICAgICY6aG92ZXIge1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWJhY2stY29sb3ItMyk7XHJcbiAgICB9XHJcbmBcclxuXHJcbmNvbnN0IGlucHV0V3JhcHBlckNTUyA9IGNzc2BcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbmBcclxuXHJcbmV4cG9ydCBkZWZhdWx0IERldGFpbENvbW1lbnRJbnB1dCJdLCJuYW1lcyI6WyJjc3MiLCJwb3N0Q29tbWVudCIsInB1dENvbW1lbnQiLCJ1c2VSZWYiLCJEZXRhaWxDb21tZW50SW5wdXQiLCJhY3Rpb24iLCJib29rSWQiLCJwYXJlbnRJZCIsImRlZmF1bHRWYWx1ZSIsImNvbW1lbnRJZCIsInJlZnJlc2hDb21tZW50c0hhbmRsZXIiLCJpbnB1dFJlZiIsImNvbW1lbnRIYW5kbGVyIiwiY3VycmVudCIsInZhbHVlIiwidHJpbSIsImNvbnRlbnQiLCJ0aGVuIiwidW5kZWZpbmVkIiwiZGl2IiwiaW5wdXRXcmFwcGVyQ1NTIiwiaW5wdXQiLCJpbnB1dENTUyIsInJlZiIsInBsYWNlaG9sZGVyIiwib25DbGljayIsImNvbmZpcm1CdG5DU1MiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/DetailComment/DetailCommentInput.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/DetailComment/DetailCommentView.tsx":
+/*!************************************************************!*\
+  !*** ./src/components/DetailComment/DetailCommentView.tsx ***!
+  \************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _api_comment_getParentComments__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/api/comment/getParentComments */ \"./src/api/comment/getParentComments.ts\");\n/* harmony import */ var _api_comment_getChildComments__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/api/comment/getChildComments */ \"./src/api/comment/getChildComments.ts\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! lodash */ \"lodash\");\n/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _DetailCommentInput__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./DetailCommentInput */ \"./src/components/DetailComment/DetailCommentInput.tsx\");\n/* harmony import */ var _DetailCommentViewElement__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./DetailCommentViewElement */ \"./src/components/DetailComment/DetailCommentViewElement.tsx\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_api_comment_getParentComments__WEBPACK_IMPORTED_MODULE_3__, _api_comment_getChildComments__WEBPACK_IMPORTED_MODULE_4__, _DetailCommentInput__WEBPACK_IMPORTED_MODULE_6__, _DetailCommentViewElement__WEBPACK_IMPORTED_MODULE_7__]);\n([_api_comment_getParentComments__WEBPACK_IMPORTED_MODULE_3__, _api_comment_getChildComments__WEBPACK_IMPORTED_MODULE_4__, _DetailCommentInput__WEBPACK_IMPORTED_MODULE_6__, _DetailCommentViewElement__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);\n/** @jsxImportSource @emotion/react */ \n\n\n\n\n\n\n\nvar Position;\n(function(Position) {\n    Position[Position[\"PARENTS\"] = 0] = \"PARENTS\";\n    Position[Position[\"CHILDREN\"] = 1] = \"CHILDREN\";\n})(Position || (Position = {}));\nconst DetailCommentView = ({ bookId , parentId , position , criteria , commentsWrapperRef  })=>{\n    const [comments, setComments] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);\n    const [offset, setOffset] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(2);\n    const [getComments, setGetComments] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        refreshCommentsHandler();\n    }, []);\n    const refreshCommentsHandler = ()=>{\n        if (position === 0) {\n            (0,_api_comment_getParentComments__WEBPACK_IMPORTED_MODULE_3__.getParentComments)({\n                bookId,\n                criteria\n            }).then((res)=>{\n                if (res !== null) {\n                    setComments(()=>res);\n                    setOffset(()=>2);\n                }\n            });\n        } else if (position === 1 && parentId !== null) {\n            (0,_api_comment_getChildComments__WEBPACK_IMPORTED_MODULE_4__.getChildComments)({\n                parentId,\n                criteria: \"date\"\n            }).then((res)=>{\n                if (res !== null) {\n                    setComments(()=>res);\n                    setOffset(()=>2);\n                }\n            });\n        }\n    };\n    const getCommentsHandler = ()=>{\n        if (position === 0) {\n            (0,_api_comment_getParentComments__WEBPACK_IMPORTED_MODULE_3__.getParentComments)({\n                bookId,\n                criteria,\n                offset\n            }).then((res)=>{\n                if (res !== null) {\n                    setComments((prev)=>[\n                            ...prev,\n                            ...res\n                        ]);\n                    setOffset((prev)=>prev + 1);\n                }\n            });\n        } else if (position === 1 && parentId !== null) {\n            (0,_api_comment_getChildComments__WEBPACK_IMPORTED_MODULE_4__.getChildComments)({\n                parentId,\n                criteria: \"date\",\n                offset\n            }).then((res)=>{\n                if (res !== null) {\n                    setComments((prev)=>[\n                            ...prev,\n                            ...res\n                        ]);\n                    setOffset((prev)=>prev + 1);\n                }\n            });\n        }\n    };\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        if (getComments === true) {\n            getCommentsHandler();\n            setGetComments(()=>false);\n        }\n    }, [\n        getComments,\n        comments\n    ]);\n    const setGetCommentsHandler = ()=>{\n        setGetComments(()=>true);\n    };\n    const onWheelGetParentCommentsHandler = (0,react__WEBPACK_IMPORTED_MODULE_2__.useMemo)(()=>(0,lodash__WEBPACK_IMPORTED_MODULE_5__.throttle)((event)=>{\n            if (position === 0 && event.deltaY > 0) {\n                if (commentsWrapperRef?.current && (commentsWrapperRef.current.scrollHeight - 10 < commentsWrapperRef.current.clientHeight || commentsWrapperRef.current.scrollTop > commentsWrapperRef.current.scrollHeight - commentsWrapperRef.current.clientHeight - 100)) {\n                    setGetCommentsHandler();\n                }\n            }\n        }, 300), [\n        comments\n    ]);\n    const onClickGetChildCommentsHandler = ()=>{\n        setGetCommentsHandler();\n    };\n    const commentsRender = comments.map((el, idx)=>{\n        return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_DetailCommentViewElement__WEBPACK_IMPORTED_MODULE_7__[\"default\"], {\n            bookId: bookId,\n            comment: el,\n            parentId: el.commentId,\n            refreshCommentsHandler: refreshCommentsHandler\n        }, `${idx}${el.commentId}${el.likeStatusSize}`, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentView.tsx\",\n            lineNumber: 114,\n            columnNumber: 17\n        }, undefined);\n    });\n    const showMoreChildComments = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        onClick: onClickGetChildCommentsHandler,\n        css: childCommentsShowMoreCSS,\n        children: \"답글 더보기 ∨\"\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentView.tsx\",\n        lineNumber: 120,\n        columnNumber: 9\n    }, undefined);\n    const inputRender = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_DetailCommentInput__WEBPACK_IMPORTED_MODULE_6__[\"default\"], {\n        action: \"post\",\n        bookId: bookId,\n        parentId: parentId,\n        refreshCommentsHandler: refreshCommentsHandler\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentView.tsx\",\n        lineNumber: 124,\n        columnNumber: 9\n    }, undefined);\n    const noCommentsRender = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: noCommentsWrapperCSS,\n        children: \"댓글을 작성해 주세요!\"\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentView.tsx\",\n        lineNumber: 128,\n        columnNumber: 9\n    }, undefined);\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        ref: commentsWrapperRef,\n        onWheel: onWheelGetParentCommentsHandler,\n        children: [\n            position === 0 && inputRender,\n            comments.length !== 0 ? commentsRender : noCommentsRender,\n            position === 1 && /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: childCommentsInputWrapperCSS,\n                children: inputRender\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentView.tsx\",\n                lineNumber: 137,\n                columnNumber: 32\n            }, undefined),\n            position === 1 && comments.length !== 0 && comments.length < comments[0]?.totalCount && showMoreChildComments\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentView.tsx\",\n        lineNumber: 134,\n        columnNumber: 9\n    }, undefined);\n};\nconst childCommentsShowMoreCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 100%;\r\n    height: 36px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    font-size: 14px;\r\n    color: var(--text-color-4);\r\n    cursor: pointer;\r\n    user-select: none;\r\n\r\n`;\nconst childCommentsInputWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    margin-top: 16px;\r\n    margin-bottom: 16px;\r\n`;\nconst noCommentsWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    height: 64px;\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n`;\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailCommentView);\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9EZXRhaWxDb21tZW50L0RldGFpbENvbW1lbnRWaWV3LnRzeC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsb0NBQW9DO0FBQ007QUFDbUI7QUFDTztBQUNGO0FBRWhDO0FBQ29CO0FBQ1k7SUFFbEU7VUFBS1MsUUFBUTtJQUFSQSxTQUFBQSxTQUNEO0lBRENBLFNBQUFBLFNBRUQ7R0FGQ0EsYUFBQUE7QUFjTCxNQUFNQyxvQkFBb0IsQ0FBQyxFQUFDQyxPQUFNLEVBQUVDLFNBQVEsRUFBRUMsU0FBUSxFQUFFQyxTQUFRLEVBQUVDLG1CQUFrQixFQUF5QixHQUFLO0lBRzlHLE1BQU0sQ0FBQ0MsVUFBVUMsWUFBWSxHQUFHaEIsK0NBQVFBLENBQXlCLEVBQUU7SUFDbkUsTUFBTSxDQUFDaUIsUUFBUUMsVUFBVSxHQUFHbEIsK0NBQVFBLENBQVM7SUFDN0MsTUFBTSxDQUFDbUIsYUFBYUMsZUFBZSxHQUFHcEIsK0NBQVFBLENBQVUsS0FBSztJQUc3REMsZ0RBQVNBLENBQUMsSUFBTTtRQUNab0I7SUFDSixHQUFHLEVBQUU7SUFHTCxNQUFNQSx5QkFBeUIsSUFBTTtRQUNqQyxJQUFJVCxhQUFhLEdBQUc7WUFDaEJULGlGQUFpQkEsQ0FBQztnQkFBQ087Z0JBQVFHO1lBQVEsR0FDbENTLElBQUksQ0FBQyxDQUFDQyxNQUF1QztnQkFDMUMsSUFBSUEsUUFBUSxJQUFJLEVBQUU7b0JBQ2RQLFlBQVksSUFBTU87b0JBQ2xCTCxVQUFVLElBQU07Z0JBQ3BCLENBQUM7WUFDTDtRQUNKLE9BQU8sSUFBSU4sYUFBYSxLQUFLRCxhQUFhLElBQUksRUFBRTtZQUM1Q1AsK0VBQWdCQSxDQUFDO2dCQUFDTztnQkFBVUUsVUFBVTtZQUFRLEdBQzdDUyxJQUFJLENBQUMsQ0FBQ0MsTUFBdUM7Z0JBQzFDLElBQUlBLFFBQVEsSUFBSSxFQUFFO29CQUNkUCxZQUFZLElBQU1PO29CQUNsQkwsVUFBVSxJQUFNO2dCQUNwQixDQUFDO1lBQ0w7UUFDSixDQUFDO0lBQ0w7SUFHQSxNQUFNTSxxQkFBcUIsSUFBTTtRQUM3QixJQUFJWixhQUFhLEdBQUc7WUFDaEJULGlGQUFpQkEsQ0FBQztnQkFBQ087Z0JBQVFHO2dCQUFVSTtZQUFNLEdBQzFDSyxJQUFJLENBQUMsQ0FBQ0MsTUFBdUM7Z0JBQzFDLElBQUlBLFFBQVEsSUFBSSxFQUFFO29CQUNkUCxZQUFZLENBQUNTLE9BQVM7K0JBQUlBOytCQUFTRjt5QkFBSTtvQkFDdkNMLFVBQVUsQ0FBQ08sT0FBU0EsT0FBTztnQkFDL0IsQ0FBQztZQUNMO1FBQ0osT0FBTyxJQUFJYixhQUFhLEtBQUtELGFBQWEsSUFBSSxFQUFFO1lBQzVDUCwrRUFBZ0JBLENBQUM7Z0JBQUVPO2dCQUFVRSxVQUFVO2dCQUFRSTtZQUFNLEdBQ3BESyxJQUFJLENBQUMsQ0FBQ0MsTUFBdUM7Z0JBQzFDLElBQUlBLFFBQVEsSUFBSSxFQUFFO29CQUNkUCxZQUFZLENBQUNTLE9BQVM7K0JBQUlBOytCQUFTRjt5QkFBSTtvQkFDdkNMLFVBQVUsQ0FBQ08sT0FBU0EsT0FBTztnQkFDL0IsQ0FBQztZQUNMO1FBQ0osQ0FBQztJQUNMO0lBTUF4QixnREFBU0EsQ0FBQyxJQUFNO1FBQ1osSUFBSWtCLGdCQUFnQixJQUFJLEVBQUU7WUFDdEJLO1lBQ0FKLGVBQWUsSUFBTSxLQUFLO1FBQzlCLENBQUM7SUFDTCxHQUFHO1FBQUNEO1FBQWFKO0tBQVM7SUFFMUIsTUFBTVcsd0JBQXdCLElBQU07UUFDaENOLGVBQWUsSUFBTSxJQUFJO0lBQzdCO0lBRUEsTUFBTU8sa0NBQWtDekIsOENBQU9BLENBQzNDLElBQ0lHLGdEQUFRQSxDQUFDLENBQUN1QixRQUFVO1lBQ2hCLElBQUloQixhQUFhLEtBQUtnQixNQUFNQyxNQUFNLEdBQUcsR0FBRztnQkFDcEMsSUFBSWYsb0JBQW9CZ0IsV0FBWSxvQkFBcUJBLE9BQU8sQ0FBQ0MsWUFBWSxHQUFHLEtBQU1qQixtQkFBbUJnQixPQUFPLENBQUNFLFlBQVksSUFBS2xCLG1CQUFtQmdCLE9BQU8sQ0FBQ0csU0FBUyxHQUFHbkIsbUJBQW1CZ0IsT0FBTyxDQUFDQyxZQUFZLEdBQUdqQixtQkFBbUJnQixPQUFPLENBQUNFLFlBQVksR0FBRyxHQUFFLEdBQUk7b0JBQy9QTjtnQkFDSixDQUFDO1lBQ0wsQ0FBQztRQUNMLEdBQUcsTUFDUDtRQUFDWDtLQUFTO0lBR2QsTUFBTW1CLGlDQUFpQyxJQUFNO1FBQ3pDUjtJQUNKO0lBR0EsTUFBTVMsaUJBQWlCcEIsU0FBU3FCLEdBQUcsQ0FBQyxDQUFDQyxJQUFJQyxNQUFRO1FBQzdDLHFCQUVRLHVFQUFDL0IsaUVBQXdCQTtZQUFtREcsUUFBUUE7WUFBUTZCLFNBQVNGO1lBQUkxQixVQUFVMEIsR0FBR0csU0FBUztZQUFFbkIsd0JBQXdCQTtXQUExSCxDQUFDLEVBQUVpQixJQUFJLEVBQUVELEdBQUdHLFNBQVMsQ0FBQyxFQUFFSCxHQUFHSSxjQUFjLENBQUMsQ0FBQzs7Ozs7SUFHdEY7SUFFQSxNQUFNQyxzQ0FDRix1RUFBQ0M7UUFBSUMsU0FBU1Y7UUFBZ0NuQyxLQUFLOEM7a0JBQTBCOzs7Ozs7SUFHakYsTUFBTUMsNEJBQ0YsdUVBQUN4QywyREFBa0JBO1FBQUN5QyxRQUFRO1FBQVFyQyxRQUFRQTtRQUFRQyxVQUFVQTtRQUFVVSx3QkFBd0JBOzs7Ozs7SUFHcEcsTUFBTTJCLGlDQUNGLHVFQUFDTDtRQUFJNUMsS0FBS2tEO2tCQUFzQjs7Ozs7O0lBS3BDLHFCQUNJLHVFQUFDTjtRQUFJTyxLQUFLcEM7UUFBb0JxQyxTQUFTeEI7O1lBQ2xDZixhQUFhLEtBQUtrQztZQUNsQi9CLFNBQVNxQyxNQUFNLEtBQUssSUFBSWpCLGlCQUFpQmEsZ0JBQWdCO1lBQ3pEcEMsYUFBYSxtQkFBSyx1RUFBQytCO2dCQUFJNUMsS0FBS3NEOzBCQUErQlA7Ozs7OztZQUMxRGxDLGFBQWEsS0FBS0csU0FBU3FDLE1BQU0sS0FBSyxLQUFLckMsU0FBU3FDLE1BQU0sR0FBR3JDLFFBQVEsQ0FBQyxFQUFFLEVBQUV1QyxjQUFlWjs7Ozs7OztBQUl2RztBQUdBLE1BQU1HLDJCQUEyQjlDLCtDQUFHLENBQUM7Ozs7Ozs7Ozs7O0FBV3JDLENBQUM7QUFFRCxNQUFNc0QsK0JBQStCdEQsK0NBQUcsQ0FBQzs7O0FBR3pDLENBQUM7QUFFRCxNQUFNa0QsdUJBQXVCbEQsK0NBQUcsQ0FBQzs7Ozs7O0FBTWpDLENBQUM7QUFFRCxpRUFBZVUsaUJBQWlCQSxFQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvRGV0YWlsQ29tbWVudC9EZXRhaWxDb21tZW50Vmlldy50c3g/YTQwYyJdLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeEltcG9ydFNvdXJjZSBAZW1vdGlvbi9yZWFjdCAqL1xyXG5pbXBvcnQgeyBqc3gsIGNzcyB9IGZyb20gXCJAZW1vdGlvbi9yZWFjdFwiO1xyXG5pbXBvcnQgeyB1c2VTdGF0ZSwgdXNlRWZmZWN0LCB1c2VNZW1vLCB1c2VSZWYgfSBmcm9tIFwicmVhY3RcIjtcclxuaW1wb3J0IHsgZ2V0UGFyZW50Q29tbWVudHMgfSBmcm9tIFwiQC9hcGkvY29tbWVudC9nZXRQYXJlbnRDb21tZW50c1wiO1xyXG5pbXBvcnQgeyBnZXRDaGlsZENvbW1lbnRzIH0gZnJvbSBcIkAvYXBpL2NvbW1lbnQvZ2V0Q2hpbGRDb21tZW50c1wiO1xyXG5pbXBvcnQgeyByZXR1cm5Db21tZW50QXJyYXlUeXBlIH0gZnJvbSBcIkAvdHlwZXMvY29tbWVudHNcIjtcclxuaW1wb3J0IHsgdGhyb3R0bGUgfSBmcm9tIFwibG9kYXNoXCI7XHJcbmltcG9ydCBEZXRhaWxDb21tZW50SW5wdXQgZnJvbSBcIi4vRGV0YWlsQ29tbWVudElucHV0XCI7XHJcbmltcG9ydCBEZXRhaWxDb21tZW50Vmlld0VsZW1lbnQgZnJvbSBcIi4vRGV0YWlsQ29tbWVudFZpZXdFbGVtZW50XCI7XHJcblxyXG5lbnVtIFBvc2l0aW9uIHtcclxuICAgICdQQVJFTlRTJyxcclxuICAgICdDSElMRFJFTidcclxufVxyXG5cclxuaW50ZXJmYWNlIERldGFpbENvbW1lbnRWaWV3UHJvcHMge1xyXG4gICAgYm9va0lkOiBudW1iZXI7XHJcbiAgICBwYXJlbnRJZDogbnVtYmVyIHwgbnVsbDtcclxuICAgIHBvc2l0aW9uOiBQb3NpdGlvbjtcclxuICAgIGNyaXRlcmlhOiBcImRhdGVcIiB8IFwibGlrZVwiO1xyXG4gICAgY29tbWVudHNXcmFwcGVyUmVmPzogYW55O1xyXG59XHJcblxyXG5cclxuY29uc3QgRGV0YWlsQ29tbWVudFZpZXcgPSAoe2Jvb2tJZCwgcGFyZW50SWQsIHBvc2l0aW9uLCBjcml0ZXJpYSwgY29tbWVudHNXcmFwcGVyUmVmfTogRGV0YWlsQ29tbWVudFZpZXdQcm9wcykgPT4ge1xyXG5cclxuXHJcbiAgICBjb25zdCBbY29tbWVudHMsIHNldENvbW1lbnRzXSA9IHVzZVN0YXRlPHJldHVybkNvbW1lbnRBcnJheVR5cGU+KFtdKVxyXG4gICAgY29uc3QgW29mZnNldCwgc2V0T2Zmc2V0XSA9IHVzZVN0YXRlPG51bWJlcj4oMilcclxuICAgIGNvbnN0IFtnZXRDb21tZW50cywgc2V0R2V0Q29tbWVudHNdID0gdXNlU3RhdGU8Ym9vbGVhbj4oZmFsc2UpXHJcblxyXG5cclxuICAgIHVzZUVmZmVjdCgoKSA9PiB7XHJcbiAgICAgICAgcmVmcmVzaENvbW1lbnRzSGFuZGxlcigpXHJcbiAgICB9LCBbXSlcclxuXHJcbiAgICBcclxuICAgIGNvbnN0IHJlZnJlc2hDb21tZW50c0hhbmRsZXIgPSAoKSA9PiB7XHJcbiAgICAgICAgaWYgKHBvc2l0aW9uID09PSAwKSB7XHJcbiAgICAgICAgICAgIGdldFBhcmVudENvbW1lbnRzKHtib29rSWQsIGNyaXRlcmlhfSlcclxuICAgICAgICAgICAgLnRoZW4oKHJlczogcmV0dXJuQ29tbWVudEFycmF5VHlwZSB8IG51bGwpID0+IHtcclxuICAgICAgICAgICAgICAgIGlmIChyZXMgIT09IG51bGwpIHtcclxuICAgICAgICAgICAgICAgICAgICBzZXRDb21tZW50cygoKSA9PiByZXMpXHJcbiAgICAgICAgICAgICAgICAgICAgc2V0T2Zmc2V0KCgpID0+IDIpXHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIH0pXHJcbiAgICAgICAgfSBlbHNlIGlmIChwb3NpdGlvbiA9PT0gMSAmJiBwYXJlbnRJZCAhPT0gbnVsbCkge1xyXG4gICAgICAgICAgICBnZXRDaGlsZENvbW1lbnRzKHtwYXJlbnRJZCwgY3JpdGVyaWE6ICdkYXRlJywgfSlcclxuICAgICAgICAgICAgLnRoZW4oKHJlczogcmV0dXJuQ29tbWVudEFycmF5VHlwZSB8IG51bGwpID0+IHtcclxuICAgICAgICAgICAgICAgIGlmIChyZXMgIT09IG51bGwpIHtcclxuICAgICAgICAgICAgICAgICAgICBzZXRDb21tZW50cygoKSA9PiByZXMpXHJcbiAgICAgICAgICAgICAgICAgICAgc2V0T2Zmc2V0KCgpID0+IDIpO1xyXG4gICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICB9KTtcclxuICAgICAgICB9XHJcbiAgICB9XHJcblxyXG5cclxuICAgIGNvbnN0IGdldENvbW1lbnRzSGFuZGxlciA9ICgpID0+IHtcclxuICAgICAgICBpZiAocG9zaXRpb24gPT09IDApIHtcclxuICAgICAgICAgICAgZ2V0UGFyZW50Q29tbWVudHMoe2Jvb2tJZCwgY3JpdGVyaWEsIG9mZnNldH0pXHJcbiAgICAgICAgICAgIC50aGVuKChyZXM6IHJldHVybkNvbW1lbnRBcnJheVR5cGUgfCBudWxsKSA9PiB7XHJcbiAgICAgICAgICAgICAgICBpZiAocmVzICE9PSBudWxsKSB7XHJcbiAgICAgICAgICAgICAgICAgICAgc2V0Q29tbWVudHMoKHByZXYpID0+IFsuLi5wcmV2LCAuLi5yZXNdKVxyXG4gICAgICAgICAgICAgICAgICAgIHNldE9mZnNldCgocHJldikgPT4gcHJldiArIDEpXHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIH0pXHJcbiAgICAgICAgfSBlbHNlIGlmIChwb3NpdGlvbiA9PT0gMSAmJiBwYXJlbnRJZCAhPT0gbnVsbCkge1xyXG4gICAgICAgICAgICBnZXRDaGlsZENvbW1lbnRzKHsgcGFyZW50SWQsIGNyaXRlcmlhOiAnZGF0ZScsIG9mZnNldH0pXHJcbiAgICAgICAgICAgIC50aGVuKChyZXM6IHJldHVybkNvbW1lbnRBcnJheVR5cGUgfCBudWxsKSA9PiB7XHJcbiAgICAgICAgICAgICAgICBpZiAocmVzICE9PSBudWxsKSB7XHJcbiAgICAgICAgICAgICAgICAgICAgc2V0Q29tbWVudHMoKHByZXYpID0+IFsuLi5wcmV2LCAuLi5yZXNdKVxyXG4gICAgICAgICAgICAgICAgICAgIHNldE9mZnNldCgocHJldikgPT4gcHJldiArIDEpXHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIH0pO1xyXG4gICAgICAgIH1cclxuICAgIH1cclxuXHJcblxyXG5cclxuICAgIFxyXG5cclxuICAgIHVzZUVmZmVjdCgoKSA9PiB7XHJcbiAgICAgICAgaWYgKGdldENvbW1lbnRzID09PSB0cnVlKSB7XHJcbiAgICAgICAgICAgIGdldENvbW1lbnRzSGFuZGxlcigpXHJcbiAgICAgICAgICAgIHNldEdldENvbW1lbnRzKCgpID0+IGZhbHNlKVxyXG4gICAgICAgIH1cclxuICAgIH0sIFtnZXRDb21tZW50cywgY29tbWVudHNdKVxyXG5cclxuICAgIGNvbnN0IHNldEdldENvbW1lbnRzSGFuZGxlciA9ICgpID0+IHtcclxuICAgICAgICBzZXRHZXRDb21tZW50cygoKSA9PiB0cnVlKVxyXG4gICAgfVxyXG5cclxuICAgIGNvbnN0IG9uV2hlZWxHZXRQYXJlbnRDb21tZW50c0hhbmRsZXIgPSB1c2VNZW1vKFxyXG4gICAgICAgICgpID0+XHJcbiAgICAgICAgICAgIHRocm90dGxlKChldmVudCkgPT4ge1xyXG4gICAgICAgICAgICAgICAgaWYgKHBvc2l0aW9uID09PSAwICYmIGV2ZW50LmRlbHRhWSA+IDApIHtcclxuICAgICAgICAgICAgICAgICAgICBpZiAoY29tbWVudHNXcmFwcGVyUmVmPy5jdXJyZW50ICYmICgoKGNvbW1lbnRzV3JhcHBlclJlZi5jdXJyZW50LnNjcm9sbEhlaWdodCAtIDEwKSA8IGNvbW1lbnRzV3JhcHBlclJlZi5jdXJyZW50LmNsaWVudEhlaWdodCkgfHwgY29tbWVudHNXcmFwcGVyUmVmLmN1cnJlbnQuc2Nyb2xsVG9wID4gY29tbWVudHNXcmFwcGVyUmVmLmN1cnJlbnQuc2Nyb2xsSGVpZ2h0IC0gY29tbWVudHNXcmFwcGVyUmVmLmN1cnJlbnQuY2xpZW50SGVpZ2h0IC0gMTAwKSkge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBzZXRHZXRDb21tZW50c0hhbmRsZXIoKVxyXG4gICAgICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgfSwgMzAwKSxcclxuICAgICAgICBbY29tbWVudHNdXHJcbiAgICApO1xyXG5cclxuICAgIGNvbnN0IG9uQ2xpY2tHZXRDaGlsZENvbW1lbnRzSGFuZGxlciA9ICgpID0+IHtcclxuICAgICAgICBzZXRHZXRDb21tZW50c0hhbmRsZXIoKVxyXG4gICAgfVxyXG5cclxuXHJcbiAgICBjb25zdCBjb21tZW50c1JlbmRlciA9IGNvbW1lbnRzLm1hcCgoZWwsIGlkeCkgPT4ge1xyXG4gICAgICAgIHJldHVybiAoXHJcblxyXG4gICAgICAgICAgICAgICAgPERldGFpbENvbW1lbnRWaWV3RWxlbWVudCBrZXk9e2Ake2lkeH0ke2VsLmNvbW1lbnRJZH0ke2VsLmxpa2VTdGF0dXNTaXplfWB9IGJvb2tJZD17Ym9va0lkfSBjb21tZW50PXtlbH0gcGFyZW50SWQ9e2VsLmNvbW1lbnRJZH0gcmVmcmVzaENvbW1lbnRzSGFuZGxlcj17cmVmcmVzaENvbW1lbnRzSGFuZGxlcn0gLz5cclxuXHJcbiAgICAgICAgKVxyXG4gICAgfSlcclxuXHJcbiAgICBjb25zdCBzaG93TW9yZUNoaWxkQ29tbWVudHMgPSAoXHJcbiAgICAgICAgPGRpdiBvbkNsaWNrPXtvbkNsaWNrR2V0Q2hpbGRDb21tZW50c0hhbmRsZXJ9IGNzcz17Y2hpbGRDb21tZW50c1Nob3dNb3JlQ1NTfT7ri7XquIAg642U67O06riwIOKIqDwvZGl2PlxyXG4gICAgKVxyXG5cclxuICAgIGNvbnN0IGlucHV0UmVuZGVyID0gKFxyXG4gICAgICAgIDxEZXRhaWxDb21tZW50SW5wdXQgYWN0aW9uPXsncG9zdCd9IGJvb2tJZD17Ym9va0lkfSBwYXJlbnRJZD17cGFyZW50SWR9IHJlZnJlc2hDb21tZW50c0hhbmRsZXI9e3JlZnJlc2hDb21tZW50c0hhbmRsZXJ9Lz5cclxuICAgIClcclxuXHJcbiAgICBjb25zdCBub0NvbW1lbnRzUmVuZGVyID0gKFxyXG4gICAgICAgIDxkaXYgY3NzPXtub0NvbW1lbnRzV3JhcHBlckNTU30+XHJcbiAgICAgICAgICAgIOuMk+q4gOydhCDsnpHshLHtlbQg7KO87IS47JqUIVxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgKVxyXG5cclxuICAgIHJldHVybiAoXHJcbiAgICAgICAgPGRpdiByZWY9e2NvbW1lbnRzV3JhcHBlclJlZn0gb25XaGVlbD17b25XaGVlbEdldFBhcmVudENvbW1lbnRzSGFuZGxlcn0+XHJcbiAgICAgICAgICAgIHtwb3NpdGlvbiA9PT0gMCAmJiBpbnB1dFJlbmRlcn1cclxuICAgICAgICAgICAge2NvbW1lbnRzLmxlbmd0aCAhPT0gMCA/IGNvbW1lbnRzUmVuZGVyIDogbm9Db21tZW50c1JlbmRlcn1cclxuICAgICAgICAgICAge3Bvc2l0aW9uID09PSAxICYmIDxkaXYgY3NzPXtjaGlsZENvbW1lbnRzSW5wdXRXcmFwcGVyQ1NTfT57aW5wdXRSZW5kZXJ9PC9kaXY+fVxyXG4gICAgICAgICAgICB7KHBvc2l0aW9uID09PSAxICYmIGNvbW1lbnRzLmxlbmd0aCAhPT0gMCAmJiBjb21tZW50cy5sZW5ndGggPCBjb21tZW50c1swXT8udG90YWxDb3VudCkgJiYgc2hvd01vcmVDaGlsZENvbW1lbnRzfVxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgKVxyXG5cclxufVxyXG5cclxuXHJcbmNvbnN0IGNoaWxkQ29tbWVudHNTaG93TW9yZUNTUyA9IGNzc2BcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgaGVpZ2h0OiAzNnB4O1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGZvbnQtc2l6ZTogMTRweDtcclxuICAgIGNvbG9yOiB2YXIoLS10ZXh0LWNvbG9yLTQpO1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG4gICAgdXNlci1zZWxlY3Q6IG5vbmU7XHJcblxyXG5gXHJcblxyXG5jb25zdCBjaGlsZENvbW1lbnRzSW5wdXRXcmFwcGVyQ1NTID0gY3NzYFxyXG4gICAgbWFyZ2luLXRvcDogMTZweDtcclxuICAgIG1hcmdpbi1ib3R0b206IDE2cHg7XHJcbmBcclxuXHJcbmNvbnN0IG5vQ29tbWVudHNXcmFwcGVyQ1NTID0gY3NzYFxyXG4gICAgaGVpZ2h0OiA2NHB4O1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG5gXHJcblxyXG5leHBvcnQgZGVmYXVsdCBEZXRhaWxDb21tZW50Vmlld1xyXG4iXSwibmFtZXMiOlsiY3NzIiwidXNlU3RhdGUiLCJ1c2VFZmZlY3QiLCJ1c2VNZW1vIiwiZ2V0UGFyZW50Q29tbWVudHMiLCJnZXRDaGlsZENvbW1lbnRzIiwidGhyb3R0bGUiLCJEZXRhaWxDb21tZW50SW5wdXQiLCJEZXRhaWxDb21tZW50Vmlld0VsZW1lbnQiLCJQb3NpdGlvbiIsIkRldGFpbENvbW1lbnRWaWV3IiwiYm9va0lkIiwicGFyZW50SWQiLCJwb3NpdGlvbiIsImNyaXRlcmlhIiwiY29tbWVudHNXcmFwcGVyUmVmIiwiY29tbWVudHMiLCJzZXRDb21tZW50cyIsIm9mZnNldCIsInNldE9mZnNldCIsImdldENvbW1lbnRzIiwic2V0R2V0Q29tbWVudHMiLCJyZWZyZXNoQ29tbWVudHNIYW5kbGVyIiwidGhlbiIsInJlcyIsImdldENvbW1lbnRzSGFuZGxlciIsInByZXYiLCJzZXRHZXRDb21tZW50c0hhbmRsZXIiLCJvbldoZWVsR2V0UGFyZW50Q29tbWVudHNIYW5kbGVyIiwiZXZlbnQiLCJkZWx0YVkiLCJjdXJyZW50Iiwic2Nyb2xsSGVpZ2h0IiwiY2xpZW50SGVpZ2h0Iiwic2Nyb2xsVG9wIiwib25DbGlja0dldENoaWxkQ29tbWVudHNIYW5kbGVyIiwiY29tbWVudHNSZW5kZXIiLCJtYXAiLCJlbCIsImlkeCIsImNvbW1lbnQiLCJjb21tZW50SWQiLCJsaWtlU3RhdHVzU2l6ZSIsInNob3dNb3JlQ2hpbGRDb21tZW50cyIsImRpdiIsIm9uQ2xpY2siLCJjaGlsZENvbW1lbnRzU2hvd01vcmVDU1MiLCJpbnB1dFJlbmRlciIsImFjdGlvbiIsIm5vQ29tbWVudHNSZW5kZXIiLCJub0NvbW1lbnRzV3JhcHBlckNTUyIsInJlZiIsIm9uV2hlZWwiLCJsZW5ndGgiLCJjaGlsZENvbW1lbnRzSW5wdXRXcmFwcGVyQ1NTIiwidG90YWxDb3VudCJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/components/DetailComment/DetailCommentView.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/DetailComment/DetailCommentViewElement.tsx":
+/*!*******************************************************************!*\
+  !*** ./src/components/DetailComment/DetailCommentViewElement.tsx ***!
+  \*******************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _DetailCommentInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DetailCommentInput */ \"./src/components/DetailComment/DetailCommentInput.tsx\");\n/* harmony import */ var _api_comment_deleteComment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/api/comment/deleteComment */ \"./src/api/comment/deleteComment.ts\");\n/* harmony import */ var _api_comment_putLikeComment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/api/comment/putLikeComment */ \"./src/api/comment/putLikeComment.ts\");\n/* harmony import */ var react_icons_fc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-icons/fc */ \"react-icons/fc\");\n/* harmony import */ var react_icons_fc__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_icons_fc__WEBPACK_IMPORTED_MODULE_6__);\n/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-icons/fa */ \"react-icons/fa\");\n/* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_icons_fa__WEBPACK_IMPORTED_MODULE_7__);\n/* harmony import */ var _DetailCommentView__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./DetailCommentView */ \"./src/components/DetailComment/DetailCommentView.tsx\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_DetailCommentInput__WEBPACK_IMPORTED_MODULE_3__, _api_comment_deleteComment__WEBPACK_IMPORTED_MODULE_4__, _api_comment_putLikeComment__WEBPACK_IMPORTED_MODULE_5__, _DetailCommentView__WEBPACK_IMPORTED_MODULE_8__]);\n([_DetailCommentInput__WEBPACK_IMPORTED_MODULE_3__, _api_comment_deleteComment__WEBPACK_IMPORTED_MODULE_4__, _api_comment_putLikeComment__WEBPACK_IMPORTED_MODULE_5__, _DetailCommentView__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);\n/** @jsxImportSource @emotion/react */ \n\n\n\n\n\n\n\n\n// export type CommentType = {\n//     \"commentId\": number;\n//     \"content\": string;\n//     \"writerInfo\": {\n//         \"userId\": string;\n//         \"nickname\": string;\n//         \"profileImg\": string;\n//     },\n//     \"parentWriterNickName\": string | null;\n//     \"depth\": number;\n//     \"createdDate\": string;\n//     \"modifiedDate\": string;\n//     \"isDelete\": boolean;\n//     \"isChild\": boolean;\n//     }\nconst DetailCommentViewElement = ({ bookId , comment , parentId , refreshCommentsHandler  })=>{\n    const [likeState, setLikeState] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);\n    const [likeStatusSize, setLikeStatusSize] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(0);\n    const [toggleEditComment, setToggleEditComment] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);\n    const [toggleChildComments, setToggleChildComments] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);\n    const refreshCommentsReHandler = ()=>{\n        refreshCommentsHandler();\n        setToggleEditComment(()=>false);\n    };\n    const toggleEditCommentHandler = ()=>{\n        setToggleEditComment((prev)=>!prev);\n    };\n    const toggleChildCommentsHandler = ()=>{\n        setToggleChildComments((prev)=>!prev);\n    };\n    const deleteCommentHandler = ()=>{\n        (0,_api_comment_deleteComment__WEBPACK_IMPORTED_MODULE_4__.deleteComment)({\n            commentId: comment.commentId\n        }).then(()=>{\n            refreshCommentsReHandler();\n        });\n    };\n    const likeCommentHandler = ()=>{\n        (0,_api_comment_putLikeComment__WEBPACK_IMPORTED_MODULE_5__.putLikeComment)({\n            commentId: comment.commentId\n        }).then((res)=>{\n            if (res?.likeCount !== undefined) {\n                setLikeStatusSize(()=>res?.likeCount);\n                setLikeState(()=>res?.likeState);\n            }\n        });\n    };\n    const commentHeader = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: commentInfoWrapperCSS,\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: writerInfoWrapperCSS,\n                children: [\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        css: profileImgWrapperCSS,\n                        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"img\", {\n                            src: comment.writerInfo.profileImg\n                        }, void 0, false, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                            lineNumber: 83,\n                            columnNumber: 11\n                        }, undefined)\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                        lineNumber: 82,\n                        columnNumber: 9\n                    }, undefined),\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                        children: comment.writerInfo.nickname\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                        lineNumber: 86,\n                        columnNumber: 9\n                    }, undefined)\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                lineNumber: 81,\n                columnNumber: 7\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                css: dateStringCSS,\n                children: comment.createdDate\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                lineNumber: 88,\n                columnNumber: 7\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n        lineNumber: 80,\n        columnNumber: 5\n    }, undefined);\n    const commentFooter = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: commentFooterCSS,\n        children: [\n            comment.isDelete === false && /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: footerElementCSS,\n                onClick: likeCommentHandler,\n                children: [\n                    likeState ? /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_icons_fc__WEBPACK_IMPORTED_MODULE_6__.FcLike, {\n                        css: footerIconCSS\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                        lineNumber: 97,\n                        columnNumber: 13\n                    }, undefined) : /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_icons_fc__WEBPACK_IMPORTED_MODULE_6__.FcLikePlaceholder, {\n                        css: footerIconCSS\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                        lineNumber: 99,\n                        columnNumber: 13\n                    }, undefined),\n                    \" \",\n                    likeStatusSize ? likeStatusSize : \"좋아요\"\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                lineNumber: 95,\n                columnNumber: 9\n            }, undefined),\n            comment.depth === 0 && /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: footerElementCSS,\n                onClick: toggleChildCommentsHandler,\n                children: [\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_icons_fa__WEBPACK_IMPORTED_MODULE_7__.FaRegComment, {\n                        css: footerIconCSS\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                        lineNumber: 106,\n                        columnNumber: 11\n                    }, undefined),\n                    \"답글 보기\"\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                lineNumber: 105,\n                columnNumber: 9\n            }, undefined),\n            comment.writerInfo.userId !== \"=== example\" && comment.isDelete === false && /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: footerElementCSS,\n                onClick: deleteCommentHandler,\n                children: \"삭제\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                lineNumber: 112,\n                columnNumber: 11\n            }, undefined),\n            comment.writerInfo.userId !== \"=== example\" && comment.isDelete === false && /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: footerElementCSS,\n                onClick: toggleEditCommentHandler,\n                children: toggleEditComment ? \"취소\" : \"수정\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                lineNumber: 118,\n                columnNumber: 11\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n        lineNumber: 93,\n        columnNumber: 5\n    }, undefined);\n    const editInput = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_DetailCommentInput__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n        action: \"put\",\n        defaultValue: comment.content,\n        bookId: bookId,\n        commentId: comment.commentId,\n        parentId: parentId,\n        refreshCommentsHandler: refreshCommentsReHandler\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n        lineNumber: 128,\n        columnNumber: 22\n    }, undefined);\n    const commentContent = toggleEditComment ? editInput : comment.isDelete ? /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: deletedStringCSS,\n        children: \"삭제된 댓글입니다.\"\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n        lineNumber: 129,\n        columnNumber: 80\n    }, undefined) : `${comment.content}`;\n    const childCommentsRender = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: childCommentsWrapperCSS({\n            depth: comment.depth\n        }),\n        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_DetailCommentView__WEBPACK_IMPORTED_MODULE_8__[\"default\"], {\n            bookId: bookId,\n            position: 1,\n            parentId: comment.commentId,\n            criteria: \"date\"\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n            lineNumber: 133,\n            columnNumber: 7\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n        lineNumber: 132,\n        columnNumber: 5\n    }, undefined);\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: commentWrapperCSS,\n        children: [\n            comment.isDelete === false && commentHeader,\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: commentContentWrapperCSS,\n                children: commentContent\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n                lineNumber: 143,\n                columnNumber: 7\n            }, undefined),\n            commentFooter,\n            toggleChildComments && childCommentsRender\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\DetailComment\\\\DetailCommentViewElement.tsx\",\n        lineNumber: 140,\n        columnNumber: 5\n    }, undefined);\n};\nconst commentWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  border-bottom: 1px solid var(--back-color-op);\r\n`;\nconst commentInfoWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  display: flex;\r\n  justify-content: space-between;\r\n  margin-top: 16px;\r\n  margin-bottom: 16px;\r\n`;\nconst writerInfoWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  display: flex;\r\n`;\nconst profileImgWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 36px;\r\n  height: 36px;\r\n  border-radius: 100px;\r\n  background-color: var(--back-color-op);\r\n  overflow: hidden;\r\n`;\nconst commentContentWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  margin-bottom: 16px;\r\n`;\nconst commentFooterCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  display: flex;\r\n  align-items: center;\r\n  margin-bottom: 12px;\r\n`;\nconst footerElementCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  margin-right: 12px;\r\n  font-size: 12px;\r\n  color: var(--text-color-4);\r\n  display: flex;\r\n  align-items: center;\r\n  cursor: pointer;\r\n  user-select: none;\r\n`;\nconst childCommentsWrapperCSS = ({ depth  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    margin-left: ${depth === 0 ? \"24px\" : \"0px\"};\r\n  `;\n};\nconst footerIconCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 20px;\r\n  height: 20px;\r\n  margin-right: 6px;\r\n`;\nconst dateStringCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  font-size: 12px;\r\n  color: var(--text-color-4);\r\n`;\nconst childCommentInputWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  margin-bottom: 16px;\r\n`;\nconst deletedStringCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  margin-top: 16px;\r\n  color: var(--text-color-4);\r\n`;\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (DetailCommentViewElement);\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9EZXRhaWxDb21tZW50L0RldGFpbENvbW1lbnRWaWV3RWxlbWVudC50c3guanMiLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsb0NBQW9DO0FBQ007QUFHVDtBQUVxQjtBQUNNO0FBQ0U7QUFDSDtBQUNiO0FBQ007QUFFcEQsOEJBQThCO0FBQzlCLDJCQUEyQjtBQUMzQix5QkFBeUI7QUFDekIsc0JBQXNCO0FBQ3RCLDRCQUE0QjtBQUM1Qiw4QkFBOEI7QUFDOUIsZ0NBQWdDO0FBQ2hDLFNBQVM7QUFDVCw2Q0FBNkM7QUFDN0MsdUJBQXVCO0FBQ3ZCLDZCQUE2QjtBQUM3Qiw4QkFBOEI7QUFDOUIsMkJBQTJCO0FBQzNCLDBCQUEwQjtBQUMxQixRQUFRO0FBRVIsTUFBTVMsMkJBQTJCLENBQUMsRUFDaENDLE9BQU0sRUFDTkMsUUFBTyxFQUNQQyxTQUFRLEVBQ1JDLHVCQUFzQixFQU12QixHQUFLO0lBRUosTUFBTSxDQUFDQyxXQUFXQyxhQUFhLEdBQUdkLCtDQUFRQSxDQUFVLEtBQUs7SUFDekQsTUFBTSxDQUFDZSxnQkFBZ0JDLGtCQUFrQixHQUFHaEIsK0NBQVFBLENBQVM7SUFDN0QsTUFBTSxDQUFDaUIsbUJBQW1CQyxxQkFBcUIsR0FBR2xCLCtDQUFRQSxDQUFVLEtBQUs7SUFDekUsTUFBTSxDQUFDbUIscUJBQXFCQyx1QkFBdUIsR0FBR3BCLCtDQUFRQSxDQUFVLEtBQUs7SUFJN0UsTUFBTXFCLDJCQUEyQixJQUFNO1FBQ3JDVDtRQUNBTSxxQkFBcUIsSUFBTSxLQUFLO0lBQ2xDO0lBRUEsTUFBTUksMkJBQTJCLElBQU07UUFDckNKLHFCQUFxQixDQUFDSyxPQUFTLENBQUNBO0lBQ2xDO0lBRUEsTUFBTUMsNkJBQTZCLElBQU07UUFDdkNKLHVCQUF1QixDQUFDRyxPQUFTLENBQUNBO0lBQ3BDO0lBRUEsTUFBTUUsdUJBQXVCLElBQU07UUFDakN2Qix5RUFBYUEsQ0FBQztZQUFDd0IsV0FBV2hCLFFBQVFnQixTQUFTO1FBQUEsR0FDMUNDLElBQUksQ0FBQyxJQUFNO1lBQ1ZOO1FBQ0Y7SUFDRjtJQUVBLE1BQU1PLHFCQUFxQixJQUFNO1FBQy9CekIsMkVBQWNBLENBQUM7WUFBRXVCLFdBQVdoQixRQUFRZ0IsU0FBUztRQUFDLEdBQUdDLElBQUksQ0FBQyxDQUFDRSxNQUFRO1lBQzdELElBQUlBLEtBQUtDLGNBQWNDLFdBQVc7Z0JBQ2hDZixrQkFBa0IsSUFBTWEsS0FBS0M7Z0JBQzdCaEIsYUFBYSxJQUFNZSxLQUFLaEI7WUFDMUIsQ0FBQztRQUNIO0lBQ0Y7SUFHQSxNQUFNbUIsOEJBQ0osdUVBQUNDO1FBQUlsQyxLQUFLbUM7OzBCQUNSLHVFQUFDRDtnQkFBSWxDLEtBQUtvQzs7a0NBQ1IsdUVBQUNGO3dCQUFJbEMsS0FBS3FDO2tDQUNSLHFGQUFDQzs0QkFBSUMsS0FBSzVCLFFBQVE2QixVQUFVLENBQUNDLFVBQVU7Ozs7Ozs7Ozs7O2tDQUd6Qyx1RUFBQ0M7a0NBQU0vQixRQUFRNkIsVUFBVSxDQUFDRyxRQUFROzs7Ozs7Ozs7Ozs7MEJBRXBDLHVFQUFDRDtnQkFBSzFDLEtBQUs0QzswQkFBZ0JqQyxRQUFRa0MsV0FBVzs7Ozs7Ozs7Ozs7O0lBSWxELE1BQU1DLDhCQUNKLHVFQUFDWjtRQUFJbEMsS0FBSytDOztZQUNQcEMsUUFBUXFDLFFBQVEsS0FBSyxLQUFLLGtCQUN6Qix1RUFBQ2Q7Z0JBQUlsQyxLQUFLaUQ7Z0JBQWtCQyxTQUFTckI7O29CQUNsQ2YsMEJBQ0MsdUVBQUNULGtEQUFNQTt3QkFBQ0wsS0FBS21EOzs7OztrREFFYix1RUFBQzdDLDZEQUFpQkE7d0JBQUNOLEtBQUttRDs7Ozs7aUNBQ3pCO29CQUFFO29CQUNGbkMsaUJBQWlCQSxpQkFBaUIsS0FBSzs7Ozs7OztZQUczQ0wsUUFBUXlDLEtBQUssS0FBSyxtQkFDakIsdUVBQUNsQjtnQkFBSWxDLEtBQUtpRDtnQkFBa0JDLFNBQVN6Qjs7a0NBQ25DLHVFQUFDbEIsd0RBQVlBO3dCQUFDUCxLQUFLbUQ7Ozs7OztvQkFBaUI7Ozs7Ozs7WUFJdkN4QyxRQUFRNkIsVUFBVSxDQUFDYSxNQUFNLEtBQUssaUJBQzdCMUMsUUFBUXFDLFFBQVEsS0FBSyxLQUFLLGtCQUN4Qix1RUFBQ2Q7Z0JBQUlsQyxLQUFLaUQ7Z0JBQWtCQyxTQUFTeEI7MEJBQXNCOzs7Ozs7WUFJOURmLFFBQVE2QixVQUFVLENBQUNhLE1BQU0sS0FBSyxpQkFDN0IxQyxRQUFRcUMsUUFBUSxLQUFLLEtBQUssa0JBQ3hCLHVFQUFDZDtnQkFBSWxDLEtBQUtpRDtnQkFBa0JDLFNBQVMzQjswQkFDbENMLG9CQUFvQixPQUFPLElBQUk7Ozs7Ozs7Ozs7OztJQVMxQyxNQUFNb0MsMEJBQWEsdUVBQUNwRCwyREFBa0JBO1FBQUNxRCxRQUFRO1FBQU9DLGNBQWM3QyxRQUFROEMsT0FBTztRQUFFL0MsUUFBUUE7UUFBUWlCLFdBQVdoQixRQUFRZ0IsU0FBUztRQUFFZixVQUFVQTtRQUFVQyx3QkFBd0JTOzs7Ozs7SUFDL0ssTUFBTW9DLGlCQUFpQnhDLG9CQUFxQm9DLFlBQWEzQyxRQUFRcUMsUUFBUSxpQkFBSSx1RUFBQ2Q7UUFBSWxDLEtBQUsyRDtrQkFBa0I7Ozs7O29CQUFxQixDQUFDLEVBQUVoRCxRQUFROEMsT0FBTyxDQUFDLENBQUM7SUFFbEosTUFBTUcsb0NBQ0osdUVBQUMxQjtRQUFJbEMsS0FBSzZELHdCQUF3QjtZQUFDVCxPQUFPekMsUUFBUXlDLEtBQUs7UUFBQTtrQkFDckQscUZBQUM1QywwREFBaUJBO1lBQUNFLFFBQVFBO1lBQVFvRCxVQUFVO1lBQUdsRCxVQUFVRCxRQUFRZ0IsU0FBUztZQUFFb0MsVUFBVTs7Ozs7Ozs7Ozs7SUFNM0YscUJBQ0UsdUVBQUM3QjtRQUFJbEMsS0FBS2dFOztZQUNQckQsUUFBUXFDLFFBQVEsS0FBSyxLQUFLLElBQUlmOzBCQUUvQix1RUFBQ0M7Z0JBQUlsQyxLQUFLaUU7MEJBQ1BQOzs7Ozs7WUFJRlo7WUFDQTFCLHVCQUF1QndDOzs7Ozs7O0FBRzlCO0FBRUEsTUFBTUksb0JBQW9CaEUsK0NBQUcsQ0FBQzs7QUFFOUIsQ0FBQztBQUVELE1BQU1tQyx3QkFBd0JuQywrQ0FBRyxDQUFDOzs7OztBQUtsQyxDQUFDO0FBRUQsTUFBTW9DLHVCQUF1QnBDLCtDQUFHLENBQUM7O0FBRWpDLENBQUM7QUFFRCxNQUFNcUMsdUJBQXVCckMsK0NBQUcsQ0FBQzs7Ozs7O0FBTWpDLENBQUM7QUFFRCxNQUFNaUUsMkJBQTJCakUsK0NBQUcsQ0FBQzs7QUFFckMsQ0FBQztBQUVELE1BQU0rQyxtQkFBbUIvQywrQ0FBRyxDQUFDOzs7O0FBSTdCLENBQUM7QUFFRCxNQUFNaUQsbUJBQW1CakQsK0NBQUcsQ0FBQzs7Ozs7Ozs7QUFRN0IsQ0FBQztBQUVELE1BQU02RCwwQkFBMEIsQ0FBQyxFQUFDVCxNQUFLLEVBQWtCLEdBQUs7SUFDNUQsT0FBT3BELCtDQUFHLENBQUM7aUJBQ0ksRUFBRW9ELFVBQVUsSUFBSSxTQUFTLEtBQUssQ0FBQztFQUM5QyxDQUFDO0FBQ0g7QUFFQSxNQUFNRCxnQkFBZ0JuRCwrQ0FBRyxDQUFDOzs7O0FBSTFCLENBQUM7QUFFRCxNQUFNNEMsZ0JBQWdCNUMsK0NBQUcsQ0FBQzs7O0FBRzFCLENBQUM7QUFFRCxNQUFNa0UsOEJBQThCbEUsK0NBQUcsQ0FBQzs7QUFFeEMsQ0FBQztBQUVELE1BQU0yRCxtQkFBbUIzRCwrQ0FBRyxDQUFDOzs7QUFHN0IsQ0FBQztBQUNELGlFQUFlUyx3QkFBd0JBLEVBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvY29tcG9uZW50cy9EZXRhaWxDb21tZW50L0RldGFpbENvbW1lbnRWaWV3RWxlbWVudC50c3g/YzY1ZCJdLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeEltcG9ydFNvdXJjZSBAZW1vdGlvbi9yZWFjdCAqL1xyXG5pbXBvcnQgeyBqc3gsIGNzcyB9IGZyb20gXCJAZW1vdGlvbi9yZWFjdFwiO1xyXG5pbXBvcnQgeyBDb21tZW50VHlwZSB9IGZyb20gXCJAL3R5cGVzL2NvbW1lbnRzXCI7XHJcbmltcG9ydCB7IHJldHVybkNvbW1lbnRBcnJheVR5cGUgfSBmcm9tIFwiQC90eXBlcy9jb21tZW50c1wiO1xyXG5pbXBvcnQgeyB1c2VTdGF0ZSB9IGZyb20gXCJyZWFjdFwiO1xyXG5pbXBvcnQgeyBnZXRDaGlsZENvbW1lbnRzIH0gZnJvbSBcIkAvYXBpL2NvbW1lbnQvZ2V0Q2hpbGRDb21tZW50c1wiO1xyXG5pbXBvcnQgRGV0YWlsQ29tbWVudElucHV0IGZyb20gXCIuL0RldGFpbENvbW1lbnRJbnB1dFwiO1xyXG5pbXBvcnQgeyBkZWxldGVDb21tZW50IH0gZnJvbSBcIkAvYXBpL2NvbW1lbnQvZGVsZXRlQ29tbWVudFwiO1xyXG5pbXBvcnQgeyBwdXRMaWtlQ29tbWVudCB9IGZyb20gXCJAL2FwaS9jb21tZW50L3B1dExpa2VDb21tZW50XCI7XHJcbmltcG9ydCB7IEZjTGlrZSwgRmNMaWtlUGxhY2Vob2xkZXIgfSBmcm9tIFwicmVhY3QtaWNvbnMvZmNcIjtcclxuaW1wb3J0IHsgRmFSZWdDb21tZW50IH0gZnJvbSBcInJlYWN0LWljb25zL2ZhXCI7XHJcbmltcG9ydCBEZXRhaWxDb21tZW50VmlldyBmcm9tIFwiLi9EZXRhaWxDb21tZW50Vmlld1wiO1xyXG5cclxuLy8gZXhwb3J0IHR5cGUgQ29tbWVudFR5cGUgPSB7XHJcbi8vICAgICBcImNvbW1lbnRJZFwiOiBudW1iZXI7XHJcbi8vICAgICBcImNvbnRlbnRcIjogc3RyaW5nO1xyXG4vLyAgICAgXCJ3cml0ZXJJbmZvXCI6IHtcclxuLy8gICAgICAgICBcInVzZXJJZFwiOiBzdHJpbmc7XHJcbi8vICAgICAgICAgXCJuaWNrbmFtZVwiOiBzdHJpbmc7XHJcbi8vICAgICAgICAgXCJwcm9maWxlSW1nXCI6IHN0cmluZztcclxuLy8gICAgIH0sXHJcbi8vICAgICBcInBhcmVudFdyaXRlck5pY2tOYW1lXCI6IHN0cmluZyB8IG51bGw7XHJcbi8vICAgICBcImRlcHRoXCI6IG51bWJlcjtcclxuLy8gICAgIFwiY3JlYXRlZERhdGVcIjogc3RyaW5nO1xyXG4vLyAgICAgXCJtb2RpZmllZERhdGVcIjogc3RyaW5nO1xyXG4vLyAgICAgXCJpc0RlbGV0ZVwiOiBib29sZWFuO1xyXG4vLyAgICAgXCJpc0NoaWxkXCI6IGJvb2xlYW47XHJcbi8vICAgICB9XHJcblxyXG5jb25zdCBEZXRhaWxDb21tZW50Vmlld0VsZW1lbnQgPSAoe1xyXG4gIGJvb2tJZCxcclxuICBjb21tZW50LFxyXG4gIHBhcmVudElkLFxyXG4gIHJlZnJlc2hDb21tZW50c0hhbmRsZXIsXHJcbn06IHtcclxuICBib29rSWQ6IG51bWJlcjtcclxuICBjb21tZW50OiBDb21tZW50VHlwZTtcclxuICBwYXJlbnRJZDogbnVtYmVyIHwgbnVsbDtcclxuICByZWZyZXNoQ29tbWVudHNIYW5kbGVyOiBGdW5jdGlvbjtcclxufSkgPT4ge1xyXG5cclxuICBjb25zdCBbbGlrZVN0YXRlLCBzZXRMaWtlU3RhdGVdID0gdXNlU3RhdGU8Ym9vbGVhbj4oZmFsc2UpXHJcbiAgY29uc3QgW2xpa2VTdGF0dXNTaXplLCBzZXRMaWtlU3RhdHVzU2l6ZV0gPSB1c2VTdGF0ZTxudW1iZXI+KDApXHJcbiAgY29uc3QgW3RvZ2dsZUVkaXRDb21tZW50LCBzZXRUb2dnbGVFZGl0Q29tbWVudF0gPSB1c2VTdGF0ZTxib29sZWFuPihmYWxzZSlcclxuICBjb25zdCBbdG9nZ2xlQ2hpbGRDb21tZW50cywgc2V0VG9nZ2xlQ2hpbGRDb21tZW50c10gPSB1c2VTdGF0ZTxib29sZWFuPihmYWxzZSlcclxuXHJcbiAgXHJcblxyXG4gIGNvbnN0IHJlZnJlc2hDb21tZW50c1JlSGFuZGxlciA9ICgpID0+IHtcclxuICAgIHJlZnJlc2hDb21tZW50c0hhbmRsZXIoKVxyXG4gICAgc2V0VG9nZ2xlRWRpdENvbW1lbnQoKCkgPT4gZmFsc2UpXHJcbiAgfVxyXG5cclxuICBjb25zdCB0b2dnbGVFZGl0Q29tbWVudEhhbmRsZXIgPSAoKSA9PiB7XHJcbiAgICBzZXRUb2dnbGVFZGl0Q29tbWVudCgocHJldikgPT4gIXByZXYpXHJcbiAgfVxyXG4gIFxyXG4gIGNvbnN0IHRvZ2dsZUNoaWxkQ29tbWVudHNIYW5kbGVyID0gKCkgPT4ge1xyXG4gICAgc2V0VG9nZ2xlQ2hpbGRDb21tZW50cygocHJldikgPT4gIXByZXYpXHJcbiAgfVxyXG5cclxuICBjb25zdCBkZWxldGVDb21tZW50SGFuZGxlciA9ICgpID0+IHtcclxuICAgIGRlbGV0ZUNvbW1lbnQoe2NvbW1lbnRJZDogY29tbWVudC5jb21tZW50SWR9KVxyXG4gICAgLnRoZW4oKCkgPT4ge1xyXG4gICAgICByZWZyZXNoQ29tbWVudHNSZUhhbmRsZXIoKVxyXG4gICAgfSlcclxuICB9XHJcblxyXG4gIGNvbnN0IGxpa2VDb21tZW50SGFuZGxlciA9ICgpID0+IHtcclxuICAgIHB1dExpa2VDb21tZW50KHsgY29tbWVudElkOiBjb21tZW50LmNvbW1lbnRJZCB9KS50aGVuKChyZXMpID0+IHtcclxuICAgICAgaWYgKHJlcz8ubGlrZUNvdW50ICE9PSB1bmRlZmluZWQpIHtcclxuICAgICAgICBzZXRMaWtlU3RhdHVzU2l6ZSgoKSA9PiByZXM/Lmxpa2VDb3VudCk7XHJcbiAgICAgICAgc2V0TGlrZVN0YXRlKCgpID0+IHJlcz8ubGlrZVN0YXRlKTtcclxuICAgICAgfVxyXG4gICAgfSk7XHJcbiAgfTtcclxuICBcclxuXHJcbiAgY29uc3QgY29tbWVudEhlYWRlciA9IChcclxuICAgIDxkaXYgY3NzPXtjb21tZW50SW5mb1dyYXBwZXJDU1N9PlxyXG4gICAgICA8ZGl2IGNzcz17d3JpdGVySW5mb1dyYXBwZXJDU1N9PlxyXG4gICAgICAgIDxkaXYgY3NzPXtwcm9maWxlSW1nV3JhcHBlckNTU30+XHJcbiAgICAgICAgICA8aW1nIHNyYz17Y29tbWVudC53cml0ZXJJbmZvLnByb2ZpbGVJbWd9IC8+XHJcbiAgICAgICAgICBcclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgICA8c3Bhbj57Y29tbWVudC53cml0ZXJJbmZvLm5pY2tuYW1lfTwvc3Bhbj5cclxuICAgICAgPC9kaXY+XHJcbiAgICAgIDxzcGFuIGNzcz17ZGF0ZVN0cmluZ0NTU30+e2NvbW1lbnQuY3JlYXRlZERhdGV9PC9zcGFuPlxyXG4gICAgPC9kaXY+XHJcbiAgKTtcclxuXHJcbiAgY29uc3QgY29tbWVudEZvb3RlciA9IChcclxuICAgIDxkaXYgY3NzPXtjb21tZW50Rm9vdGVyQ1NTfT5cclxuICAgICAge2NvbW1lbnQuaXNEZWxldGUgPT09IGZhbHNlICYmIChcclxuICAgICAgICA8ZGl2IGNzcz17Zm9vdGVyRWxlbWVudENTU30gb25DbGljaz17bGlrZUNvbW1lbnRIYW5kbGVyfT5cclxuICAgICAgICAgIHtsaWtlU3RhdGUgPyAoXHJcbiAgICAgICAgICAgIDxGY0xpa2UgY3NzPXtmb290ZXJJY29uQ1NTfSAvPlxyXG4gICAgICAgICAgKSA6IChcclxuICAgICAgICAgICAgPEZjTGlrZVBsYWNlaG9sZGVyIGNzcz17Zm9vdGVySWNvbkNTU30gLz5cclxuICAgICAgICAgICl9e1wiIFwifVxyXG4gICAgICAgICAge2xpa2VTdGF0dXNTaXplID8gbGlrZVN0YXR1c1NpemUgOiBcIuyii+yVhOyalFwifVxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgICApfVxyXG4gICAgICB7Y29tbWVudC5kZXB0aCA9PT0gMCAmJiBcclxuICAgICAgICA8ZGl2IGNzcz17Zm9vdGVyRWxlbWVudENTU30gb25DbGljaz17dG9nZ2xlQ2hpbGRDb21tZW50c0hhbmRsZXJ9PlxyXG4gICAgICAgICAgPEZhUmVnQ29tbWVudCBjc3M9e2Zvb3Rlckljb25DU1N9IC8+XHJcbiAgICAgICAgICDri7XquIAg67O06riwXHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICAgIH1cclxuICAgICAge2NvbW1lbnQud3JpdGVySW5mby51c2VySWQgIT09IFwiPT09IGV4YW1wbGVcIiAmJlxyXG4gICAgICAgIGNvbW1lbnQuaXNEZWxldGUgPT09IGZhbHNlICYmIChcclxuICAgICAgICAgIDxkaXYgY3NzPXtmb290ZXJFbGVtZW50Q1NTfSBvbkNsaWNrPXtkZWxldGVDb21tZW50SGFuZGxlcn0+XHJcbiAgICAgICAgICAgIOyCreygnFxyXG4gICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgKX1cclxuICAgICAge2NvbW1lbnQud3JpdGVySW5mby51c2VySWQgIT09IFwiPT09IGV4YW1wbGVcIiAmJlxyXG4gICAgICAgIGNvbW1lbnQuaXNEZWxldGUgPT09IGZhbHNlICYmIChcclxuICAgICAgICAgIDxkaXYgY3NzPXtmb290ZXJFbGVtZW50Q1NTfSBvbkNsaWNrPXt0b2dnbGVFZGl0Q29tbWVudEhhbmRsZXJ9PlxyXG4gICAgICAgICAgICB7dG9nZ2xlRWRpdENvbW1lbnQgPyBcIuy3qOyGjFwiIDogXCLsiJjsoJVcIn1cclxuICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICl9XHJcbiAgICA8L2Rpdj5cclxuICApO1xyXG5cclxuXHJcbiAgXHJcblxyXG4gIGNvbnN0IGVkaXRJbnB1dCA9ICg8RGV0YWlsQ29tbWVudElucHV0IGFjdGlvbj17J3B1dCd9IGRlZmF1bHRWYWx1ZT17Y29tbWVudC5jb250ZW50fSBib29rSWQ9e2Jvb2tJZH0gY29tbWVudElkPXtjb21tZW50LmNvbW1lbnRJZH0gcGFyZW50SWQ9e3BhcmVudElkfSByZWZyZXNoQ29tbWVudHNIYW5kbGVyPXtyZWZyZXNoQ29tbWVudHNSZUhhbmRsZXJ9Lz4pXHJcbiAgY29uc3QgY29tbWVudENvbnRlbnQgPSB0b2dnbGVFZGl0Q29tbWVudCA/IChlZGl0SW5wdXQpIDogY29tbWVudC5pc0RlbGV0ZSA/ICg8ZGl2IGNzcz17ZGVsZXRlZFN0cmluZ0NTU30+7IKt7KCc65CcIOuMk+q4gOyeheuLiOuLpC48L2Rpdj4pIDogKGAke2NvbW1lbnQuY29udGVudH1gKTtcclxuICBcclxuICBjb25zdCBjaGlsZENvbW1lbnRzUmVuZGVyID0gKFxyXG4gICAgPGRpdiBjc3M9e2NoaWxkQ29tbWVudHNXcmFwcGVyQ1NTKHtkZXB0aDogY29tbWVudC5kZXB0aH0pfT5cclxuICAgICAgPERldGFpbENvbW1lbnRWaWV3IGJvb2tJZD17Ym9va0lkfSBwb3NpdGlvbj17MX0gcGFyZW50SWQ9e2NvbW1lbnQuY29tbWVudElkfSBjcml0ZXJpYT17J2RhdGUnfS8+XHJcbiAgICA8L2Rpdj5cclxuICAgIFxyXG4gIClcclxuXHJcblxyXG4gIHJldHVybiAoXHJcbiAgICA8ZGl2IGNzcz17Y29tbWVudFdyYXBwZXJDU1N9PlxyXG4gICAgICB7Y29tbWVudC5pc0RlbGV0ZSA9PT0gZmFsc2UgJiYgY29tbWVudEhlYWRlcn1cclxuXHJcbiAgICAgIDxkaXYgY3NzPXtjb21tZW50Q29udGVudFdyYXBwZXJDU1N9PlxyXG4gICAgICAgIHtjb21tZW50Q29udGVudH1cclxuICAgICAgICB7Lyoge2NvbW1lbnQuY29udGVudH0gKi99XHJcbiAgICAgICBcclxuICAgICAgPC9kaXY+XHJcbiAgICAgIHtjb21tZW50Rm9vdGVyfVxyXG4gICAgICB7dG9nZ2xlQ2hpbGRDb21tZW50cyAmJiBjaGlsZENvbW1lbnRzUmVuZGVyfVxyXG4gICAgPC9kaXY+XHJcbiAgKTtcclxufTtcclxuXHJcbmNvbnN0IGNvbW1lbnRXcmFwcGVyQ1NTID0gY3NzYFxyXG4gIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCB2YXIoLS1iYWNrLWNvbG9yLW9wKTtcclxuYDtcclxuXHJcbmNvbnN0IGNvbW1lbnRJbmZvV3JhcHBlckNTUyA9IGNzc2BcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxuICBtYXJnaW4tdG9wOiAxNnB4O1xyXG4gIG1hcmdpbi1ib3R0b206IDE2cHg7XHJcbmA7XHJcblxyXG5jb25zdCB3cml0ZXJJbmZvV3JhcHBlckNTUyA9IGNzc2BcclxuICBkaXNwbGF5OiBmbGV4O1xyXG5gO1xyXG5cclxuY29uc3QgcHJvZmlsZUltZ1dyYXBwZXJDU1MgPSBjc3NgXHJcbiAgd2lkdGg6IDM2cHg7XHJcbiAgaGVpZ2h0OiAzNnB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDEwMHB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWJhY2stY29sb3Itb3ApO1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbmA7XHJcblxyXG5jb25zdCBjb21tZW50Q29udGVudFdyYXBwZXJDU1MgPSBjc3NgXHJcbiAgbWFyZ2luLWJvdHRvbTogMTZweDtcclxuYDtcclxuXHJcbmNvbnN0IGNvbW1lbnRGb290ZXJDU1MgPSBjc3NgXHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIG1hcmdpbi1ib3R0b206IDEycHg7XHJcbmA7XHJcblxyXG5jb25zdCBmb290ZXJFbGVtZW50Q1NTID0gY3NzYFxyXG4gIG1hcmdpbi1yaWdodDogMTJweDtcclxuICBmb250LXNpemU6IDEycHg7XHJcbiAgY29sb3I6IHZhcigtLXRleHQtY29sb3ItNCk7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICB1c2VyLXNlbGVjdDogbm9uZTtcclxuYDtcclxuXHJcbmNvbnN0IGNoaWxkQ29tbWVudHNXcmFwcGVyQ1NTID0gKHtkZXB0aH06IHtkZXB0aDogbnVtYmVyfSkgPT4ge1xyXG4gIHJldHVybiBjc3NgXHJcbiAgICBtYXJnaW4tbGVmdDogJHtkZXB0aCA9PT0gMCA/ICcyNHB4JyA6ICcwcHgnfTtcclxuICBgO1xyXG59XHJcblxyXG5jb25zdCBmb290ZXJJY29uQ1NTID0gY3NzYFxyXG4gIHdpZHRoOiAyMHB4O1xyXG4gIGhlaWdodDogMjBweDtcclxuICBtYXJnaW4tcmlnaHQ6IDZweDtcclxuYDtcclxuXHJcbmNvbnN0IGRhdGVTdHJpbmdDU1MgPSBjc3NgXHJcbiAgZm9udC1zaXplOiAxMnB4O1xyXG4gIGNvbG9yOiB2YXIoLS10ZXh0LWNvbG9yLTQpO1xyXG5gO1xyXG5cclxuY29uc3QgY2hpbGRDb21tZW50SW5wdXRXcmFwcGVyQ1NTID0gY3NzYFxyXG4gIG1hcmdpbi1ib3R0b206IDE2cHg7XHJcbmA7XHJcblxyXG5jb25zdCBkZWxldGVkU3RyaW5nQ1NTID0gY3NzYFxyXG4gIG1hcmdpbi10b3A6IDE2cHg7XHJcbiAgY29sb3I6IHZhcigtLXRleHQtY29sb3ItNCk7XHJcbmA7XHJcbmV4cG9ydCBkZWZhdWx0IERldGFpbENvbW1lbnRWaWV3RWxlbWVudDtcclxuIl0sIm5hbWVzIjpbImNzcyIsInVzZVN0YXRlIiwiRGV0YWlsQ29tbWVudElucHV0IiwiZGVsZXRlQ29tbWVudCIsInB1dExpa2VDb21tZW50IiwiRmNMaWtlIiwiRmNMaWtlUGxhY2Vob2xkZXIiLCJGYVJlZ0NvbW1lbnQiLCJEZXRhaWxDb21tZW50VmlldyIsIkRldGFpbENvbW1lbnRWaWV3RWxlbWVudCIsImJvb2tJZCIsImNvbW1lbnQiLCJwYXJlbnRJZCIsInJlZnJlc2hDb21tZW50c0hhbmRsZXIiLCJsaWtlU3RhdGUiLCJzZXRMaWtlU3RhdGUiLCJsaWtlU3RhdHVzU2l6ZSIsInNldExpa2VTdGF0dXNTaXplIiwidG9nZ2xlRWRpdENvbW1lbnQiLCJzZXRUb2dnbGVFZGl0Q29tbWVudCIsInRvZ2dsZUNoaWxkQ29tbWVudHMiLCJzZXRUb2dnbGVDaGlsZENvbW1lbnRzIiwicmVmcmVzaENvbW1lbnRzUmVIYW5kbGVyIiwidG9nZ2xlRWRpdENvbW1lbnRIYW5kbGVyIiwicHJldiIsInRvZ2dsZUNoaWxkQ29tbWVudHNIYW5kbGVyIiwiZGVsZXRlQ29tbWVudEhhbmRsZXIiLCJjb21tZW50SWQiLCJ0aGVuIiwibGlrZUNvbW1lbnRIYW5kbGVyIiwicmVzIiwibGlrZUNvdW50IiwidW5kZWZpbmVkIiwiY29tbWVudEhlYWRlciIsImRpdiIsImNvbW1lbnRJbmZvV3JhcHBlckNTUyIsIndyaXRlckluZm9XcmFwcGVyQ1NTIiwicHJvZmlsZUltZ1dyYXBwZXJDU1MiLCJpbWciLCJzcmMiLCJ3cml0ZXJJbmZvIiwicHJvZmlsZUltZyIsInNwYW4iLCJuaWNrbmFtZSIsImRhdGVTdHJpbmdDU1MiLCJjcmVhdGVkRGF0ZSIsImNvbW1lbnRGb290ZXIiLCJjb21tZW50Rm9vdGVyQ1NTIiwiaXNEZWxldGUiLCJmb290ZXJFbGVtZW50Q1NTIiwib25DbGljayIsImZvb3Rlckljb25DU1MiLCJkZXB0aCIsInVzZXJJZCIsImVkaXRJbnB1dCIsImFjdGlvbiIsImRlZmF1bHRWYWx1ZSIsImNvbnRlbnQiLCJjb21tZW50Q29udGVudCIsImRlbGV0ZWRTdHJpbmdDU1MiLCJjaGlsZENvbW1lbnRzUmVuZGVyIiwiY2hpbGRDb21tZW50c1dyYXBwZXJDU1MiLCJwb3NpdGlvbiIsImNyaXRlcmlhIiwiY29tbWVudFdyYXBwZXJDU1MiLCJjb21tZW50Q29udGVudFdyYXBwZXJDU1MiLCJjaGlsZENvbW1lbnRJbnB1dFdyYXBwZXJDU1MiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/DetailComment/DetailCommentViewElement.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/Responsive/useIsClient.ts":
+/*!**************************************************!*\
+  !*** ./src/components/Responsive/useIsClient.ts ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6405);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);
-/** @jsxImportSource @emotion/react */ 
-
-
-
-// 모달창 자체
-const ModalOverlay = (props)=>{
-    const [showModal, setShowModal] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        setShowModal(()=>true);
-    }, []);
-    const modalHandler = ()=>{
-        setShowModal(()=>false);
-        setTimeout(()=>{
-            props.stateHandler(()=>false);
-        }, 300);
-    };
-    const content = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_2___default().cloneElement(props.content, {
-        ...props,
-        modalHandler: modalHandler
-    });
-    return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        css: backdrop({
-            showModal: showModal
-        }),
-        children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-            css: modalCSS({
-                width: props.width,
-                height: props.height,
-                overflow: props.overflow,
-                showModal: showModal
-            }),
-            children: content
-        })
-    });
-};
-const FixedModal = (props)=>{
-    const [modal, setModal] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)();
-    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{
-        setModal(()=>/*#__PURE__*/ react_dom__WEBPACK_IMPORTED_MODULE_3___default().createPortal(/*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(ModalOverlay, {
-                ...props
-            }), document.getElementById("overlay-root")));
-    }, []);
-    return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), {
-        children: props.modalState && modal
-    });
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FixedModal);
-const backdrop = ({ showModal  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: 10000;
-    background: rgba(0, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: ${showModal ? 255 : 0};
-    transition-property: opacity;
-    transition-duration: 0.3s;
-  `;
-};
-const modalCSS = ({ width , height , overflow , showModal  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    transition-property: transform;
-    transition-duration: 0.3s;
-    width: ${width};
-    height: ${height};
-    overflow: ${overflow};
-    transform: ${showModal ? "rotateX(0deg)" : "rotateX(90deg)"};
-  `;
-};
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"useIsClient\": () => (/* binding */ useIsClient)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n//useIsClient.ts\n\nconst useIsClient = ()=>{\n    const [isClient, setIsClient] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{\n        if (false) {}\n    }, []);\n    return isClient;\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzQ2xpZW50LnRzLmpzIiwibWFwcGluZ3MiOiI7Ozs7OztBQUFBLGdCQUFnQjtBQUM0QjtBQUVyQyxNQUFNRSxjQUFjLElBQU07SUFDL0IsTUFBTSxDQUFDQyxVQUFVQyxZQUFZLEdBQUdILCtDQUFRQSxDQUFDLEtBQUs7SUFFOUNELGdEQUFTQSxDQUFDLElBQU07UUFDZCxJQUFJLEtBQTZCLEVBQUUsRUFFbEM7SUFDSCxHQUFHLEVBQUU7SUFDTCxPQUFPRztBQUNULEVBQUUiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzQ2xpZW50LnRzPzcxYjEiXSwic291cmNlc0NvbnRlbnQiOlsiLy91c2VJc0NsaWVudC50c1xyXG5pbXBvcnQgeyB1c2VFZmZlY3QsIHVzZVN0YXRlIH0gZnJvbSBcInJlYWN0XCI7XHJcblxyXG5leHBvcnQgY29uc3QgdXNlSXNDbGllbnQgPSAoKSA9PiB7XHJcbiAgY29uc3QgW2lzQ2xpZW50LCBzZXRJc0NsaWVudF0gPSB1c2VTdGF0ZShmYWxzZSk7XHJcblxyXG4gIHVzZUVmZmVjdCgoKSA9PiB7XHJcbiAgICBpZiAodHlwZW9mIHdpbmRvdyAhPT0gXCJ1bmRlZmluZWRcIikge1xyXG4gICAgICBzZXRJc0NsaWVudCh0cnVlKTtcclxuICAgIH1cclxuICB9LCBbXSk7XHJcbiAgcmV0dXJuIGlzQ2xpZW50O1xyXG59O1xyXG4iXSwibmFtZXMiOlsidXNlRWZmZWN0IiwidXNlU3RhdGUiLCJ1c2VJc0NsaWVudCIsImlzQ2xpZW50Iiwic2V0SXNDbGllbnQiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/Responsive/useIsClient.ts\n");
 
 /***/ }),
 
-/***/ 5988:
+/***/ "./src/components/Responsive/useIsResponsive.ts":
+/*!******************************************************!*\
+  !*** ./src/components/Responsive/useIsResponsive.ts ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/** @jsxImportSource @emotion/react */ 
-
-
-const RedirButton = ({ width , height , platform , href  })=>{
-    const [hrefArr, setHrefArr] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(href.split(" "));
-    const platformBase = [
-        "https://comic.naver.com/",
-        "https://series.naver.com/",
-        "https://page.kakao.com/",
-        "https://ridibooks.com/"
-    ];
-    const btnRender = hrefArr.map((el, idx)=>{
-        const findPlatform = (element)=>{
-            if (el.includes(element)) {
-                return true;
-            }
-        };
-        const result = platformBase.findIndex(findPlatform);
-        return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("a", {
-            href: el,
-            children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-                src: result === 0 && "/assets/platform_naver_webtoon.webp" || result === 1 && "/assets/platform_naver_series.webp" || result === 2 && "/assets/platform_kakao_page.png" || result === 3 && "/assets/platform_ridi.png" || "",
-                css: platformBtnCSS
-            })
-        });
-    });
-    return /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: buttonCSS({
-            width,
-            height
-        }),
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: "unhovered",
-                css: unhoveredCSS,
-                children: "보러가기"
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                className: "hovered",
-                css: hoveredCSS,
-                children: btnRender
-            })
-        ]
-    });
-};
-const buttonCSS = ({ width , height  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    transition-property: background-color;
-    transition-duration: 0.3s;
-    /* cursor: pointer; */
-    width: ${width};
-    height: ${height};
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    padding: 0 20px;
-    background-color: var(--main-color);
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-
-    &:hover .unhovered {
-        opacity: 0;
-    }
-    &:hover .hovered {
-        opacity: 255;
-    }
-    &:hover {
-        background-color: var(--main-color-2);
-    }
-  `;
-};
-const hoveredCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    transition-property: opacity;
-    transition-duration: 0.3s;
-    position: absolute;
-    opacity: 0;
-`;
-const unhoveredCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    transition-property: opacity;
-    transition-duration: 0.3s;
-    position: absolute;
-    opacity: 255;
-`;
-const platformBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: 48px;
-    height: auto;
-    margin: 10px;
-`;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RedirButton);
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"useIsResponsive\": () => (/* binding */ useIsResponsive)\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react_responsive__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-responsive */ \"react-responsive\");\n/* harmony import */ var react_responsive__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_responsive__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_Responsive_useIsClient__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Responsive/useIsClient */ \"./src/components/Responsive/useIsClient.ts\");\n\n\n\nconst useIsResponsive = ()=>{\n    const isClient = (0,_components_Responsive_useIsClient__WEBPACK_IMPORTED_MODULE_2__.useIsClient)();\n    const isDeskTop = (0,react_responsive__WEBPACK_IMPORTED_MODULE_1__.useMediaQuery)({\n        query: \"(min-width: 1024px)\"\n    });\n    const isTablet = (0,react_responsive__WEBPACK_IMPORTED_MODULE_1__.useMediaQuery)({\n        query: \"(min-width: 768px)\"\n    });\n    const isMobile = true;\n    const [isClientDeskTop, setIsClientDeskTop] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n    const [isClientTablet, setIsClientTablet] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n    const [isClientMobile, setIsClientMobile] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);\n    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{\n        setIsClientDeskTop(isClient && isDeskTop);\n        setIsClientTablet(isClient && !isDeskTop && isTablet);\n        setIsClientMobile(isClient && !isDeskTop && !isTablet && isMobile);\n    }, [\n        isClient,\n        isDeskTop,\n        isTablet,\n        isMobile\n    ]);\n    return [\n        isClientDeskTop,\n        isClientTablet,\n        isClientMobile\n    ];\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzUmVzcG9uc2l2ZS50cy5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7QUFBNEM7QUFDSztBQUNpQjtBQUUzRCxNQUFNSSxrQkFBa0IsSUFBaUI7SUFDOUMsTUFBTUMsV0FBV0YsK0VBQVdBO0lBQzVCLE1BQU1HLFlBQVlKLCtEQUFhQSxDQUFDO1FBQzlCSyxPQUFPO0lBQ1Q7SUFDQSxNQUFNQyxXQUFXTiwrREFBYUEsQ0FBQztRQUM3QkssT0FBTztJQUNUO0lBQ0EsTUFBTUUsV0FBVyxJQUFJO0lBQ3JCLE1BQU0sQ0FBQ0MsaUJBQWlCQyxtQkFBbUIsR0FBR1gsK0NBQVFBLENBQUMsS0FBSztJQUM1RCxNQUFNLENBQUNZLGdCQUFnQkMsa0JBQWtCLEdBQUdiLCtDQUFRQSxDQUFDLEtBQUs7SUFDMUQsTUFBTSxDQUFDYyxnQkFBZ0JDLGtCQUFrQixHQUFHZiwrQ0FBUUEsQ0FBQyxLQUFLO0lBQzFEQyxnREFBU0EsQ0FBQyxJQUFNO1FBQ2RVLG1CQUFtQk4sWUFBWUM7UUFDL0JPLGtCQUFrQlIsWUFBWSxDQUFDQyxhQUFhRTtRQUM1Q08sa0JBQWtCVixZQUFZLENBQUNDLGFBQWEsQ0FBQ0UsWUFBWUM7SUFDM0QsR0FBRztRQUFDSjtRQUFVQztRQUFXRTtRQUFVQztLQUFTO0lBQzVDLE9BQU87UUFBQ0M7UUFBaUJFO1FBQWdCRTtLQUFlO0FBQzFELEVBQUUiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzUmVzcG9uc2l2ZS50cz8yMDlmIl0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IHVzZVN0YXRlLCB1c2VFZmZlY3QgfSBmcm9tIFwicmVhY3RcIjtcclxuaW1wb3J0IHsgdXNlTWVkaWFRdWVyeSB9IGZyb20gXCJyZWFjdC1yZXNwb25zaXZlXCI7XHJcbmltcG9ydCB7IHVzZUlzQ2xpZW50IH0gZnJvbSBcIkAvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzQ2xpZW50XCI7XHJcblxyXG5leHBvcnQgY29uc3QgdXNlSXNSZXNwb25zaXZlID0gKCk6IGJvb2xlYW5bXSA9PiB7XHJcbiAgY29uc3QgaXNDbGllbnQgPSB1c2VJc0NsaWVudCgpO1xyXG4gIGNvbnN0IGlzRGVza1RvcCA9IHVzZU1lZGlhUXVlcnkoe1xyXG4gICAgcXVlcnk6IFwiKG1pbi13aWR0aDogMTAyNHB4KVwiLFxyXG4gIH0pO1xyXG4gIGNvbnN0IGlzVGFibGV0ID0gdXNlTWVkaWFRdWVyeSh7XHJcbiAgICBxdWVyeTogXCIobWluLXdpZHRoOiA3NjhweClcIixcclxuICB9KTtcclxuICBjb25zdCBpc01vYmlsZSA9IHRydWU7XHJcbiAgY29uc3QgW2lzQ2xpZW50RGVza1RvcCwgc2V0SXNDbGllbnREZXNrVG9wXSA9IHVzZVN0YXRlKGZhbHNlKTtcclxuICBjb25zdCBbaXNDbGllbnRUYWJsZXQsIHNldElzQ2xpZW50VGFibGV0XSA9IHVzZVN0YXRlKGZhbHNlKTtcclxuICBjb25zdCBbaXNDbGllbnRNb2JpbGUsIHNldElzQ2xpZW50TW9iaWxlXSA9IHVzZVN0YXRlKGZhbHNlKTtcclxuICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgc2V0SXNDbGllbnREZXNrVG9wKGlzQ2xpZW50ICYmIGlzRGVza1RvcCk7XHJcbiAgICBzZXRJc0NsaWVudFRhYmxldChpc0NsaWVudCAmJiAhaXNEZXNrVG9wICYmIGlzVGFibGV0KTtcclxuICAgIHNldElzQ2xpZW50TW9iaWxlKGlzQ2xpZW50ICYmICFpc0Rlc2tUb3AgJiYgIWlzVGFibGV0ICYmIGlzTW9iaWxlKTtcclxuICB9LCBbaXNDbGllbnQsIGlzRGVza1RvcCwgaXNUYWJsZXQsIGlzTW9iaWxlXSk7XHJcbiAgcmV0dXJuIFtpc0NsaWVudERlc2tUb3AsIGlzQ2xpZW50VGFibGV0LCBpc0NsaWVudE1vYmlsZV07XHJcbn07XHJcbiJdLCJuYW1lcyI6WyJ1c2VTdGF0ZSIsInVzZUVmZmVjdCIsInVzZU1lZGlhUXVlcnkiLCJ1c2VJc0NsaWVudCIsInVzZUlzUmVzcG9uc2l2ZSIsImlzQ2xpZW50IiwiaXNEZXNrVG9wIiwicXVlcnkiLCJpc1RhYmxldCIsImlzTW9iaWxlIiwiaXNDbGllbnREZXNrVG9wIiwic2V0SXNDbGllbnREZXNrVG9wIiwiaXNDbGllbnRUYWJsZXQiLCJzZXRJc0NsaWVudFRhYmxldCIsImlzQ2xpZW50TW9iaWxlIiwic2V0SXNDbGllbnRNb2JpbGUiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/Responsive/useIsResponsive.ts\n");
 
 /***/ }),
 
-/***/ 6167:
+/***/ "./src/components/UI/FixedModal/FixedModal.tsx":
+/*!*****************************************************!*\
+  !*** ./src/components/UI/FixedModal/FixedModal.tsx ***!
+  \*****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Z": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/** @jsxImportSource @emotion/react */ 
-
-const TagList = ({ tag  })=>{
-    const renderTags = tag.split(" ").slice(0, 3).map((el, idx)=>{
-        if (el.trim() !== "") {
-            return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: tagWrapperCSS,
-                children: el
-            });
-        }
-    });
-    return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        css: outerWrapperCSS,
-        children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-            css: tagListWrapperCSS,
-            children: renderTags
-        })
-    });
-};
-const outerWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    position: relative;
-    height: 72px;
-`;
-const tagListWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  display: flex;
-position: absolute;
-  margin-top: 12px;
-    width: 100%;
-    overflow: scroll;
-    padding-left: 50px;
-    /* padding-right: -20px; */
-    margin-left: -50px;
-    -webkit-mask-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0) 0%,
-        var(--back-color) 5%,
-        var(--back-color) 90%,
-        rgba(0, 0, 0, 0) 100%
-    );
-    mask-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0) 0%,
-        var(--back-color) 5%,
-        var(--back-color) 90%,
-        rgba(0, 0, 0, 0) 100%
-    );
-
-    &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
-`;
-const tagWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  border-radius: 20px;
-  background-color: var(--main-color);
-  padding: 14px;
-  margin-right: 14px;
-  margin-bottom: 14px;
-  color: black;
-  white-space:pre;;
-`;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TagList);
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-dom */ \"react-dom\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_3__);\n/** @jsxImportSource @emotion/react */ \n\n\n\n// 모달창 자체\nconst ModalOverlay = (props)=>{\n    const [showModal, setShowModal] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        window.history.pushState(null, document.title, window.location.href);\n        const preventBack = async ()=>{\n            await modalHandler();\n            await window.history.pushState(null, document.title, window.location.href);\n        };\n        window.addEventListener(\"popstate\", preventBack);\n        return ()=>{\n            window.removeEventListener(\"popstate\", preventBack);\n        };\n    }, [\n        window.history\n    ]);\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        setShowModal(()=>true);\n        document.body.style.overflowY = \"hidden\";\n        return ()=>{\n            document.body.style.overflowY = \"auto\";\n        };\n    }, []);\n    const modalHandler = ()=>{\n        setShowModal(()=>false);\n        setTimeout(()=>{\n            props.stateHandler(()=>false);\n        }, 300);\n    };\n    const content = /*#__PURE__*/ react__WEBPACK_IMPORTED_MODULE_2___default().cloneElement(props.content, {\n        ...props,\n        modalHandler: modalHandler\n    });\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: backdrop({\n            showModal: showModal\n        }),\n        onClick: modalHandler,\n        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n            css: modalCSS({\n                width: props.width,\n                height: props.height,\n                overflow: props.overflow,\n                showModal: showModal\n            }),\n            onClick: (event)=>{\n                event.stopPropagation();\n            },\n            children: content\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\FixedModal\\\\FixedModal.tsx\",\n            lineNumber: 52,\n            columnNumber: 7\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\FixedModal\\\\FixedModal.tsx\",\n        lineNumber: 51,\n        columnNumber: 5\n    }, undefined);\n};\nconst FixedModal = (props)=>{\n    const [modal, setModal] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)();\n    (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(()=>{\n        setModal(()=>/*#__PURE__*/ react_dom__WEBPACK_IMPORTED_MODULE_3___default().createPortal(/*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(ModalOverlay, {\n                ...props\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\FixedModal\\\\FixedModal.tsx\",\n                lineNumber: 63,\n                columnNumber: 7\n            }, undefined), document.getElementById(\"overlay-root\")));\n    }, []);\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)((react__WEBPACK_IMPORTED_MODULE_2___default().Fragment), {\n        children: props.modalState && modal\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\UI\\\\FixedModal\\\\FixedModal.tsx\",\n        lineNumber: 67,\n        columnNumber: 10\n    }, undefined);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (FixedModal);\nconst backdrop = ({ showModal  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    height: 100vh;\r\n    z-index: 10000;\r\n    background: rgba(0, 0, 0, 0.2);\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    opacity: ${showModal ? 255 : 0};\r\n    transition-property: opacity;\r\n    transition-duration: 0.3s;\r\n  `;\n};\nconst modalCSS = ({ width , height , overflow , showModal  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    position: relative;\r\n    transition-property: top;\r\n    transition-duration: 0.3s;\r\n    width: ${width};\r\n    height: ${height};\r\n    overflow: ${overflow};\r\n    top: ${showModal ? \"0px\" : \"100%\"};\r\n\r\n  \r\n  `;\n};\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9VSS9GaXhlZE1vZGFsL0ZpeGVkTW9kYWwudHN4LmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7OztBQUFBLG9DQUFvQztBQUNNO0FBQ2lCO0FBRTFCO0FBRWpDLFNBQVM7QUFDVCxNQUFNSyxlQUFlLENBQUNDLFFBQW9IO0lBQ3hJLE1BQU0sQ0FBQ0MsV0FBV0MsYUFBYSxHQUFHTCwrQ0FBUUEsQ0FBVSxLQUFLO0lBRXpERCxnREFBU0EsQ0FBQyxJQUFNO1FBQ2RPLE9BQU9DLE9BQU8sQ0FBQ0MsU0FBUyxDQUFDLElBQUksRUFBRUMsU0FBU0MsS0FBSyxFQUFFSixPQUFPSyxRQUFRLENBQUNDLElBQUk7UUFFbkUsTUFBTUMsY0FBYyxVQUFZO1lBQzlCLE1BQU1DO1lBQ04sTUFBTVIsT0FBT0MsT0FBTyxDQUFDQyxTQUFTLENBQzVCLElBQUksRUFDSkMsU0FBU0MsS0FBSyxFQUNkSixPQUFPSyxRQUFRLENBQUNDLElBQUk7UUFFeEI7UUFDQU4sT0FBT1MsZ0JBQWdCLENBQUMsWUFBWUY7UUFDcEMsT0FBTyxJQUFNO1lBQ1hQLE9BQU9VLG1CQUFtQixDQUFDLFlBQVlIO1FBQ3pDO0lBQ0YsR0FBRztRQUFDUCxPQUFPQyxPQUFPO0tBQUM7SUFHbkJSLGdEQUFTQSxDQUFDLElBQU07UUFDZE0sYUFBYSxJQUFNLElBQUk7UUFFdkJJLFNBQVNRLElBQUksQ0FBQ0MsS0FBSyxDQUFDQyxTQUFTLEdBQUc7UUFDaEMsT0FBTyxJQUFNO1lBQ1hWLFNBQVNRLElBQUksQ0FBQ0MsS0FBSyxDQUFDQyxTQUFTLEdBQUc7UUFDbEM7SUFFRixHQUFHLEVBQUU7SUFFTCxNQUFNTCxlQUFlLElBQU07UUFDekJULGFBQWEsSUFBTSxLQUFLO1FBQ3hCZSxXQUFXLElBQU07WUFBQ2pCLE1BQU1rQixZQUFZLENBQUMsSUFBTSxLQUFLO1FBQUMsR0FBRztJQUN0RDtJQUVBLE1BQU1DLHdCQUFVeEIseURBQWtCLENBQUNLLE1BQU1tQixPQUFPLEVBQUU7UUFDaEQsR0FBR25CLEtBQUs7UUFDUlcsY0FBY0E7SUFFaEI7SUFFQSxxQkFDRSx1RUFBQ1U7UUFBSTNCLEtBQUs0QixTQUFTO1lBQUNyQixXQUFXQTtRQUFTO1FBQUlzQixTQUFTWjtrQkFDbkQscUZBQUNVO1lBQUkzQixLQUFLOEIsU0FBUztnQkFBQ0MsT0FBT3pCLE1BQU15QixLQUFLO2dCQUFFQyxRQUFRMUIsTUFBTTBCLE1BQU07Z0JBQUVDLFVBQVUzQixNQUFNMkIsUUFBUTtnQkFBRTFCLFdBQVdBO1lBQVM7WUFBSXNCLFNBQVMsQ0FBQ0ssUUFBVTtnQkFBQ0EsTUFBTUMsZUFBZTtZQUFFO3NCQUN2SlY7Ozs7Ozs7Ozs7O0FBSVg7QUFFQSxNQUFNVyxhQUFhLENBQUM5QixRQUFvSDtJQUN0SSxNQUFNLENBQUMrQixPQUFPQyxTQUFTLEdBQUduQywrQ0FBUUE7SUFDbENELGdEQUFTQSxDQUFDLElBQU07UUFDZG9DLFNBQVMsa0JBQU1sQyw2REFBcUIsZUFDbEMsdUVBQUNDO2dCQUFjLEdBQUdDLEtBQUs7Ozs7OzJCQUN2Qk0sU0FBUzRCLGNBQWMsQ0FBQztJQUU1QixHQUFHLEVBQUU7SUFDTCxxQkFBTyx1RUFBQ3ZDLHVEQUFjO2tCQUFFSyxNQUFNb0MsVUFBVSxJQUFJTDs7Ozs7O0FBQzlDO0FBRUEsaUVBQWVELFVBQVVBLEVBQUM7QUFHMUIsTUFBTVIsV0FBVyxDQUFDLEVBQUNyQixVQUFTLEVBQXVCLEdBQUs7SUFDdEQsT0FBT1AsK0NBQUcsQ0FBQzs7Ozs7Ozs7Ozs7YUFXQSxFQUFFTyxZQUFZLE1BQU0sQ0FBQyxDQUFDOzs7RUFHakMsQ0FBQztBQUNIO0FBRUEsTUFBTXVCLFdBQVcsQ0FBQyxFQUFDQyxNQUFLLEVBQUVDLE9BQU0sRUFBRUMsU0FBUSxFQUFFMUIsVUFBUyxFQUE0RyxHQUFLO0lBQ3BLLE9BQU9QLCtDQUFHLENBQUM7Ozs7V0FJRixFQUFFK0IsTUFBTTtZQUNQLEVBQUVDLE9BQU87Y0FDUCxFQUFFQyxTQUFTO1NBQ2hCLEVBQUUxQixZQUFZLFFBQVEsTUFBTSxDQUFDOzs7RUFHcEMsQ0FBQztBQUNIIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvVUkvRml4ZWRNb2RhbC9GaXhlZE1vZGFsLnRzeD9jNzliIl0sInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4SW1wb3J0U291cmNlIEBlbW90aW9uL3JlYWN0ICovXHJcbmltcG9ydCB7IGpzeCwgY3NzIH0gZnJvbSBcIkBlbW90aW9uL3JlYWN0XCI7XHJcbmltcG9ydCBSZWFjdCwgeyB1c2VFZmZlY3QsIHVzZVJlZiwgdXNlU3RhdGUgfSBmcm9tIFwicmVhY3RcIjtcclxuaW1wb3J0IHN0eWxlcyBmcm9tIFwiLi9GaXhlZE1vZGFsLm1vZHVsZS5jc3NcIjtcclxuaW1wb3J0IFJlYWN0RE9NIGZyb20gXCJyZWFjdC1kb21cIjtcclxuXHJcbi8vIOuqqOuLrOywvSDsnpDssrRcclxuY29uc3QgTW9kYWxPdmVybGF5ID0gKHByb3BzIDoge3dpZHRoPzogc3RyaW5nLCBoZWlnaHQ/OiBzdHJpbmcsIGNvbnRlbnQ6IGFueSwgbW9kYWxTdGF0ZTogYW55LCBzdGF0ZUhhbmRsZXI6IGFueSwgb3ZlcmZsb3c/OiBzdHJpbmcgfSkgPT4ge1xyXG4gIGNvbnN0IFtzaG93TW9kYWwsIHNldFNob3dNb2RhbF0gPSB1c2VTdGF0ZTxib29sZWFuPihmYWxzZSlcclxuXHJcbiAgdXNlRWZmZWN0KCgpID0+IHtcclxuICAgIHdpbmRvdy5oaXN0b3J5LnB1c2hTdGF0ZShudWxsLCBkb2N1bWVudC50aXRsZSwgd2luZG93LmxvY2F0aW9uLmhyZWYpO1xyXG5cclxuICAgIGNvbnN0IHByZXZlbnRCYWNrID0gYXN5bmMgKCkgPT4ge1xyXG4gICAgICBhd2FpdCBtb2RhbEhhbmRsZXIoKTtcclxuICAgICAgYXdhaXQgd2luZG93Lmhpc3RvcnkucHVzaFN0YXRlKFxyXG4gICAgICAgIG51bGwsXHJcbiAgICAgICAgZG9jdW1lbnQudGl0bGUsXHJcbiAgICAgICAgd2luZG93LmxvY2F0aW9uLmhyZWZcclxuICAgICAgKTtcclxuICAgIH07XHJcbiAgICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcihcInBvcHN0YXRlXCIsIHByZXZlbnRCYWNrKTtcclxuICAgIHJldHVybiAoKSA9PiB7XHJcbiAgICAgIHdpbmRvdy5yZW1vdmVFdmVudExpc3RlbmVyKFwicG9wc3RhdGVcIiwgcHJldmVudEJhY2spO1xyXG4gICAgfTtcclxuICB9LCBbd2luZG93Lmhpc3RvcnldKTtcclxuXHJcblxyXG4gIHVzZUVmZmVjdCgoKSA9PiB7XHJcbiAgICBzZXRTaG93TW9kYWwoKCkgPT4gdHJ1ZSlcclxuICAgIFxyXG4gICAgZG9jdW1lbnQuYm9keS5zdHlsZS5vdmVyZmxvd1kgPSBcImhpZGRlblwiO1xyXG4gICAgcmV0dXJuICgpID0+IHtcclxuICAgICAgZG9jdW1lbnQuYm9keS5zdHlsZS5vdmVyZmxvd1kgPSAnYXV0byc7XHJcbiAgICB9O1xyXG4gICAgXHJcbiAgfSwgW10pXHJcblxyXG4gIGNvbnN0IG1vZGFsSGFuZGxlciA9ICgpID0+IHtcclxuICAgIHNldFNob3dNb2RhbCgoKSA9PiBmYWxzZSlcclxuICAgIHNldFRpbWVvdXQoKCkgPT4ge3Byb3BzLnN0YXRlSGFuZGxlcigoKSA9PiBmYWxzZSl9LCAzMDApXHJcbiAgfVxyXG5cclxuICBjb25zdCBjb250ZW50ID0gUmVhY3QuY2xvbmVFbGVtZW50KHByb3BzLmNvbnRlbnQsIHtcclxuICAgIC4uLnByb3BzLFxyXG4gICAgbW9kYWxIYW5kbGVyOiBtb2RhbEhhbmRsZXIsXHJcbiAgICBcclxuICB9KTtcclxuXHJcbiAgcmV0dXJuIChcclxuICAgIDxkaXYgY3NzPXtiYWNrZHJvcCh7c2hvd01vZGFsOiBzaG93TW9kYWx9KX0gb25DbGljaz17bW9kYWxIYW5kbGVyfT5cclxuICAgICAgPGRpdiBjc3M9e21vZGFsQ1NTKHt3aWR0aDogcHJvcHMud2lkdGgsIGhlaWdodDogcHJvcHMuaGVpZ2h0LCBvdmVyZmxvdzogcHJvcHMub3ZlcmZsb3csIHNob3dNb2RhbDogc2hvd01vZGFsfSl9IG9uQ2xpY2s9eyhldmVudCkgPT4ge2V2ZW50LnN0b3BQcm9wYWdhdGlvbigpfX0+ICBcclxuICAgICAgICAgIHtjb250ZW50fVxyXG4gICAgICA8L2Rpdj5cclxuICAgIDwvZGl2PlxyXG4gICk7XHJcbn07XHJcblxyXG5jb25zdCBGaXhlZE1vZGFsID0gKHByb3BzIDoge3dpZHRoPzogc3RyaW5nLCBoZWlnaHQ/OiBzdHJpbmcsIGNvbnRlbnQ6IGFueSwgbW9kYWxTdGF0ZTogYW55LCBzdGF0ZUhhbmRsZXI6IGFueSwgb3ZlcmZsb3c/OiBzdHJpbmcsfSkgPT4ge1xyXG4gIGNvbnN0IFttb2RhbCwgc2V0TW9kYWxdID0gdXNlU3RhdGU8YW55PigpXHJcbiAgdXNlRWZmZWN0KCgpID0+IHtcclxuICAgIHNldE1vZGFsKCgpID0+IFJlYWN0RE9NLmNyZWF0ZVBvcnRhbChcclxuICAgICAgPE1vZGFsT3ZlcmxheSB7Li4ucHJvcHN9ICAvPixcclxuICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoXCJvdmVybGF5LXJvb3RcIikhIGFzIEhUTUxEaXZFbGVtZW50XHJcbiAgICApKVxyXG4gIH0sIFtdKVxyXG4gIHJldHVybiA8UmVhY3QuRnJhZ21lbnQ+e3Byb3BzLm1vZGFsU3RhdGUgJiYgbW9kYWx9PC9SZWFjdC5GcmFnbWVudD47XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBGaXhlZE1vZGFsO1xyXG5cclxuXHJcbmNvbnN0IGJhY2tkcm9wID0gKHtzaG93TW9kYWx9OiB7c2hvd01vZGFsOiBib29sZWFufSkgPT4ge1xyXG4gIHJldHVybiBjc3NgXHJcbiAgICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgICB0b3A6IDA7XHJcbiAgICBsZWZ0OiAwO1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG4gICAgei1pbmRleDogMTAwMDA7XHJcbiAgICBiYWNrZ3JvdW5kOiByZ2JhKDAsIDAsIDAsIDAuMik7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgb3BhY2l0eTogJHtzaG93TW9kYWwgPyAyNTUgOiAwfTtcclxuICAgIHRyYW5zaXRpb24tcHJvcGVydHk6IG9wYWNpdHk7XHJcbiAgICB0cmFuc2l0aW9uLWR1cmF0aW9uOiAwLjNzO1xyXG4gIGBcclxufSBcclxuXHJcbmNvbnN0IG1vZGFsQ1NTID0gKHt3aWR0aCwgaGVpZ2h0LCBvdmVyZmxvdywgc2hvd01vZGFsfToge3dpZHRoOiBzdHJpbmcgfCB1bmRlZmluZWQsIGhlaWdodDogc3RyaW5nIHwgdW5kZWZpbmVkLCBvdmVyZmxvdzogc3RyaW5nIHwgdW5kZWZpbmVkLCBzaG93TW9kYWw6IGJvb2xlYW59KSA9PiB7XHJcbiAgcmV0dXJuIGNzc2BcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIHRyYW5zaXRpb24tcHJvcGVydHk6IHRvcDtcclxuICAgIHRyYW5zaXRpb24tZHVyYXRpb246IDAuM3M7XHJcbiAgICB3aWR0aDogJHt3aWR0aH07XHJcbiAgICBoZWlnaHQ6ICR7aGVpZ2h0fTtcclxuICAgIG92ZXJmbG93OiAke292ZXJmbG93fTtcclxuICAgIHRvcDogJHtzaG93TW9kYWwgPyBcIjBweFwiIDogXCIxMDAlXCJ9O1xyXG5cclxuICBcclxuICBgXHJcbn1cclxuXHJcbiJdLCJuYW1lcyI6WyJjc3MiLCJSZWFjdCIsInVzZUVmZmVjdCIsInVzZVN0YXRlIiwiUmVhY3RET00iLCJNb2RhbE92ZXJsYXkiLCJwcm9wcyIsInNob3dNb2RhbCIsInNldFNob3dNb2RhbCIsIndpbmRvdyIsImhpc3RvcnkiLCJwdXNoU3RhdGUiLCJkb2N1bWVudCIsInRpdGxlIiwibG9jYXRpb24iLCJocmVmIiwicHJldmVudEJhY2siLCJtb2RhbEhhbmRsZXIiLCJhZGRFdmVudExpc3RlbmVyIiwicmVtb3ZlRXZlbnRMaXN0ZW5lciIsImJvZHkiLCJzdHlsZSIsIm92ZXJmbG93WSIsInNldFRpbWVvdXQiLCJzdGF0ZUhhbmRsZXIiLCJjb250ZW50IiwiY2xvbmVFbGVtZW50IiwiZGl2IiwiYmFja2Ryb3AiLCJvbkNsaWNrIiwibW9kYWxDU1MiLCJ3aWR0aCIsImhlaWdodCIsIm92ZXJmbG93IiwiZXZlbnQiLCJzdG9wUHJvcGFnYXRpb24iLCJGaXhlZE1vZGFsIiwibW9kYWwiLCJzZXRNb2RhbCIsImNyZWF0ZVBvcnRhbCIsImdldEVsZW1lbnRCeUlkIiwiRnJhZ21lbnQiLCJtb2RhbFN0YXRlIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/components/UI/FixedModal/FixedModal.tsx\n");
 
 /***/ }),
 
-/***/ 9502:
+/***/ "./src/components/bookDetail/PlatformRatingHover.tsx":
+/*!***********************************************************!*\
+  !*** ./src/components/bookDetail/PlatformRatingHover.tsx ***!
+  \***********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "VQ": () => (/* binding */ HasBeenReadToggle),
-/* harmony export */   "dU": () => (/* binding */ CommentBtn),
-/* harmony export */   "o9": () => (/* binding */ BookmarkToggle)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4932);
-/** @jsxImportSource @emotion/react */ 
-
-
-const BookmarkToggle = ({ isClicked , bookId  })=>{
-    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_2__/* .useIsResponsive */ .j)();
-    const bookmarkNotClicked = /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-        width: isMobile ? "32" : "42",
-        height: isMobile ? "32" : "42",
-        viewBox: "0 0 42 42",
-        fill: "none",
-        xmlns: "http://www.w3.org/2000/svg",
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M27.3 40.5H14.7C9.59794 40.5 6.41672 39.4704 4.47316 37.5268C2.5296 35.5833 1.5 32.4021 1.5 27.3V14.7C1.5 9.59794 2.5296 6.41672 4.47316 4.47316C6.41672 2.5296 9.59794 1.5 14.7 1.5H27.3C32.4021 1.5 35.5833 2.5296 37.5268 4.47316C39.4704 6.41672 40.5 9.59794 40.5 14.7V27.3C40.5 32.4021 39.4704 35.5833 37.5268 37.5268C35.5833 39.4704 32.4021 40.5 27.3 40.5Z",
-                stroke: "var(--text-color)",
-                "stroke-width": "3",
-                "stroke-linecap": "round",
-                "stroke-linejoin": "round"
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("mask", {
-                id: "path-2-inside-1_90_309",
-                fill: "white",
-                children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M31.5 0.923885V21.8818C31.5 26.0188 28.539 27.6358 24.906 25.4518L22.134 23.7928C21.504 23.4148 20.496 23.4148 19.866 23.7928L17.094 25.4518C13.461 27.6148 10.5 26.0188 10.5 21.8818V0.923885"
-                })
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M34.5 0.923885C34.5 -0.732969 33.1569 -2.07611 31.5 -2.07611C29.8431 -2.07611 28.5 -0.732969 28.5 0.923885H34.5ZM24.906 25.4518L26.4517 22.8806L26.4466 22.8776L24.906 25.4518ZM22.134 23.7928L20.5905 26.3653L20.5934 26.367L22.134 23.7928ZM19.866 23.7928L21.4066 26.367L21.4095 26.3653L19.866 23.7928ZM17.094 25.4518L18.6287 28.0295L18.6346 28.026L17.094 25.4518ZM13.5 0.923885C13.5 -0.732969 12.1569 -2.07611 10.5 -2.07611C8.84315 -2.07611 7.5 -0.732969 7.5 0.923885H13.5ZM28.5 0.923885V21.8818H34.5V0.923885H28.5ZM28.5 21.8818C28.5 22.5703 28.3755 22.9857 28.2741 23.1978C28.2249 23.3007 28.1827 23.3534 28.1623 23.3756C28.1432 23.3964 28.1342 23.4005 28.1341 23.4006C28.1337 23.4008 28.1187 23.4096 28.0765 23.4169C28.0324 23.4245 27.9471 23.4324 27.8125 23.4169C27.5361 23.385 27.076 23.256 26.4517 22.8806L23.3603 28.023C25.6919 29.4246 28.5236 30.0162 30.9967 28.6737C33.5 27.3148 34.5 24.5966 34.5 21.8818H28.5ZM26.4466 22.8776L23.6746 21.2186L20.5934 26.367L23.3654 28.026L26.4466 22.8776ZM23.6775 21.2203C22.7951 20.6909 21.8218 20.5093 21 20.5093C20.1782 20.5093 19.2049 20.6909 18.3225 21.2203L21.4095 26.3653C21.27 26.4489 21.1627 26.4815 21.1112 26.4941C21.0569 26.5074 21.0212 26.5093 21 26.5093C20.9788 26.5093 20.9431 26.5074 20.8888 26.4941C20.8373 26.4815 20.73 26.4489 20.5905 26.3653L23.6775 21.2203ZM18.3254 21.2186L15.5534 22.8776L18.6346 28.026L21.4066 26.367L18.3254 21.2186ZM15.5593 22.8741C14.9339 23.2464 14.4714 23.3756 14.1911 23.4076C14.0546 23.4231 13.9675 23.4153 13.9218 23.4074C13.878 23.3998 13.8621 23.3907 13.8614 23.3903C13.8611 23.3901 13.8526 23.3863 13.8343 23.3664C13.8147 23.3452 13.7733 23.2938 13.7247 23.1924C13.6245 22.9833 13.5 22.5704 13.5 21.8818H7.5C7.5 24.5986 8.50171 27.3133 11.0078 28.6683C13.4758 30.0026 16.3011 29.4153 18.6287 28.0295L15.5593 22.8741ZM13.5 21.8818V0.923885H7.5V21.8818H13.5Z",
-                fill: "var(--text-color)",
-                mask: "url(#path-2-inside-1_90_309)"
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M27.3 40.5H14.7C9.59794 40.5 6.41672 39.4704 4.47316 37.5268C2.5296 35.5833 1.5 32.4021 1.5 27.3V14.7C1.5 9.59794 2.5296 6.41672 4.47316 4.47316C6.41672 2.5296 9.59794 1.5 14.7 1.5H27.3C32.4021 1.5 35.5833 2.5296 37.5268 4.47316C39.4704 6.41672 40.5 9.59794 40.5 14.7V27.3C40.5 32.4021 39.4704 35.5833 37.5268 37.5268C35.5833 39.4704 32.4021 40.5 27.3 40.5Z",
-                stroke: "var(--text-color)",
-                "stroke-width": "3",
-                "stroke-linecap": "round",
-                "stroke-linejoin": "round"
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("mask", {
-                id: "path-5-inside-2_90_309",
-                fill: "white",
-                children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                    d: "M31.5 0.923885V21.8818C31.5 26.0188 28.539 27.6358 24.906 25.4518L22.134 23.7928C21.504 23.4148 20.496 23.4148 19.866 23.7928L17.094 25.4518C13.461 27.6148 10.5 26.0188 10.5 21.8818V0.923885"
-                })
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M34.5 0.923885C34.5 -0.732969 33.1569 -2.07611 31.5 -2.07611C29.8431 -2.07611 28.5 -0.732969 28.5 0.923885H34.5ZM24.906 25.4518L26.4517 22.8806L26.4466 22.8776L24.906 25.4518ZM22.134 23.7928L20.5905 26.3653L20.5934 26.367L22.134 23.7928ZM19.866 23.7928L21.4066 26.367L21.4095 26.3653L19.866 23.7928ZM17.094 25.4518L18.6287 28.0295L18.6346 28.026L17.094 25.4518ZM13.5 0.923885C13.5 -0.732969 12.1569 -2.07611 10.5 -2.07611C8.84315 -2.07611 7.5 -0.732969 7.5 0.923885H13.5ZM28.5 0.923885V21.8818H34.5V0.923885H28.5ZM28.5 21.8818C28.5 22.5703 28.3755 22.9857 28.2741 23.1978C28.2249 23.3007 28.1827 23.3534 28.1623 23.3756C28.1432 23.3964 28.1342 23.4005 28.1341 23.4006C28.1337 23.4008 28.1187 23.4096 28.0765 23.4169C28.0324 23.4245 27.9471 23.4324 27.8125 23.4169C27.5361 23.385 27.076 23.256 26.4517 22.8806L23.3603 28.023C25.6919 29.4246 28.5236 30.0162 30.9967 28.6737C33.5 27.3148 34.5 24.5966 34.5 21.8818H28.5ZM26.4466 22.8776L23.6746 21.2186L20.5934 26.367L23.3654 28.026L26.4466 22.8776ZM23.6775 21.2203C22.7951 20.6909 21.8218 20.5093 21 20.5093C20.1782 20.5093 19.2049 20.6909 18.3225 21.2203L21.4095 26.3653C21.27 26.4489 21.1627 26.4815 21.1112 26.4941C21.0569 26.5074 21.0212 26.5093 21 26.5093C20.9788 26.5093 20.9431 26.5074 20.8888 26.4941C20.8373 26.4815 20.73 26.4489 20.5905 26.3653L23.6775 21.2203ZM18.3254 21.2186L15.5534 22.8776L18.6346 28.026L21.4066 26.367L18.3254 21.2186ZM15.5593 22.8741C14.9339 23.2464 14.4714 23.3756 14.1911 23.4076C14.0546 23.4231 13.9675 23.4153 13.9218 23.4074C13.878 23.3998 13.8621 23.3907 13.8614 23.3903C13.8611 23.3901 13.8526 23.3863 13.8343 23.3664C13.8147 23.3452 13.7733 23.2938 13.7247 23.1924C13.6245 22.9833 13.5 22.5704 13.5 21.8818H7.5C7.5 24.5986 8.50171 27.3133 11.0078 28.6683C13.4758 30.0026 16.3011 29.4153 18.6287 28.0295L15.5593 22.8741ZM13.5 21.8818V0.923885H7.5V21.8818H13.5Z",
-                fill: "var(--text-color)",
-                mask: "url(#path-5-inside-2_90_309)"
-            })
-        ]
-    });
-    const bookmarkClicked = /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-        width: isMobile ? "32" : "42",
-        height: isMobile ? "32" : "42",
-        viewBox: "0 0 42 42",
-        fill: "none",
-        xmlns: "http://www.w3.org/2000/svg",
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M42.0004 12.2008V29.7989C42.0004 36.54 36.5404 42 29.7993 42H12.2011C5.46005 42 0 36.54 0 29.7989V12.2008C0 6.97172 2.14202 3.17068 5.94306 1.32266C7.32907 0.650654 8.92509 1.70066 8.92509 3.23368V21.8818C8.92509 24.3808 9.8911 26.3758 11.6341 27.3839C13.3981 28.3709 15.6242 28.1609 17.8922 26.7959L20.6222 25.1578C20.7902 25.0738 21.2102 25.0738 21.3362 25.1368L24.1082 26.7959C25.6203 27.6989 26.9223 27.9929 27.9723 27.9929C29.0643 27.9929 29.9043 27.6569 30.4083 27.3629C32.1093 26.3759 33.0753 24.3808 33.0753 21.8818V3.23368C33.0753 1.70066 34.6923 0.650654 36.0574 1.32266C39.8584 3.17068 42.0004 6.97172 42.0004 12.2008Z",
-                fill: "var(--text-color)"
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M27.8244 0C28.9794 0 29.9244 0.94501 29.9244 2.10002V21.8822C29.9244 23.2262 29.5254 24.2342 28.8324 24.6332C28.1184 25.0533 26.9844 24.8433 25.7244 24.0872L22.9523 22.4282C21.8813 21.7772 20.1173 21.7772 19.0463 22.4282L16.2743 24.0872C15.0142 24.8433 13.8802 25.0323 13.1662 24.6332C12.4732 24.2342 12.0742 23.2262 12.0742 21.8822V2.10002C12.0742 0.94501 13.0192 0 14.1742 0H27.8244Z",
-                fill: "var(--text-color)"
-            })
-        ]
-    });
-    return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        css: btnWrapperCSS({
-            isMobile
-        }),
-        children: isClicked ? bookmarkClicked : bookmarkNotClicked
-    });
-};
-const HasBeenReadToggle = ({ isClicked , bookId  })=>{
-    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_2__/* .useIsResponsive */ .j)();
-    const checkboxNotClicked = /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("svg", {
-        width: isMobile ? "32" : "42",
-        height: isMobile ? "32" : "42",
-        viewBox: "0 0 43 42",
-        fill: "none",
-        xmlns: "http://www.w3.org/2000/svg",
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M21.0215 42C9.4373 42 0.0214844 32.5842 0.0214844 21C0.0214844 9.41581 9.4373 0 21.0215 0C32.6057 0 42.0215 9.41581 42.0215 21C42.0215 32.5842 32.6057 42 21.0215 42ZM21.0215 2.93023C11.0587 2.93023 2.95172 11.0372 2.95172 21C2.95172 30.9628 11.0587 39.0698 21.0215 39.0698C30.9843 39.0698 39.0913 30.9628 39.0913 21C39.0913 11.0372 30.9843 2.93023 21.0215 2.93023Z",
-                fill: "var(--text-color)"
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                d: "M18.2465 27.9937C17.8558 27.9937 17.4847 27.8374 17.2112 27.5639L11.6827 22.0355C11.1162 21.469 11.1162 20.5314 11.6827 19.9648C12.2492 19.3983 13.1869 19.3983 13.7534 19.9648L18.2465 24.4579L28.2874 14.4169C28.854 13.8504 29.7916 13.8504 30.3581 14.4169C30.9247 14.9834 30.9247 15.9211 30.3581 16.4876L19.2819 27.5639C19.0084 27.8374 18.6372 27.9937 18.2465 27.9937Z",
-                fill: "var(--text-color)"
-            })
-        ]
-    });
-    const checkboxClicked = /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-        width: isMobile ? "32" : "42",
-        height: isMobile ? "32" : "42",
-        viewBox: "0 0 42 42",
-        fill: "none",
-        xmlns: "http://www.w3.org/2000/svg",
-        children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-            d: "M21 0C9.429 0 0 9.429 0 21C0 32.571 9.429 42 21 42C32.571 42 42 32.571 42 21C42 9.429 32.571 0 21 0ZM31.038 16.17L19.131 28.077C18.837 28.371 18.438 28.539 18.018 28.539C17.598 28.539 17.199 28.371 16.905 28.077L10.962 22.134C10.353 21.525 10.353 20.517 10.962 19.908C11.571 19.299 12.579 19.299 13.188 19.908L18.018 24.738L28.812 13.944C29.421 13.335 30.429 13.335 31.038 13.944C31.647 14.553 31.647 15.54 31.038 16.17Z",
-            fill: "var(--text-color)"
-        })
-    });
-    return /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: btnWrapperCSS({
-            isMobile
-        }),
-        children: [
-            isClicked ? checkboxClicked : checkboxNotClicked,
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("span", {
-                css: _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`margin-left: 14px;`,
-                children: isClicked ? "읽음" : "읽지 않음"
-            })
-        ]
-    });
-};
-const CommentBtn = ({ bookId , stateHandler  })=>{
-    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_2__/* .useIsResponsive */ .j)();
-    const comment = /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-        width: isMobile ? "32" : "42",
-        height: isMobile ? "32" : "42",
-        viewBox: "0 0 43 42",
-        fill: "none",
-        xmlns: "http://www.w3.org/2000/svg",
-        children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-            d: "M31.5158 0H10.5053C4.70635 0 0 4.68534 0 10.4632V23.0275V25.1286C0 30.9065 4.70635 35.5918 10.5053 35.5918H13.6568C14.2241 35.5918 14.9805 35.97 15.3377 36.4322L18.4892 40.6133C19.8759 42.4622 22.1451 42.4622 23.5318 40.6133L26.6833 36.4322C27.0825 35.907 27.7129 35.5918 28.3642 35.5918H31.5158C37.3147 35.5918 42.021 30.9065 42.021 25.1286V10.4632C42.021 4.68534 37.3147 0 31.5158 0ZM12.6063 21.0105C11.4297 21.0105 10.5053 20.065 10.5053 18.9095C10.5053 17.7539 11.4507 16.8084 12.6063 16.8084C13.7619 16.8084 14.7074 17.7539 14.7074 18.9095C14.7074 20.065 13.7829 21.0105 12.6063 21.0105ZM21.0105 21.0105C19.8339 21.0105 18.9095 20.065 18.9095 18.9095C18.9095 17.7539 19.8549 16.8084 21.0105 16.8084C22.1661 16.8084 23.1116 17.7539 23.1116 18.9095C23.1116 20.065 22.1871 21.0105 21.0105 21.0105ZM29.4147 21.0105C28.2381 21.0105 27.3137 20.065 27.3137 18.9095C27.3137 17.7539 28.2591 16.8084 29.4147 16.8084C30.5703 16.8084 31.5158 17.7539 31.5158 18.9095C31.5158 20.065 30.5913 21.0105 29.4147 21.0105Z",
-            fill: "var(--text-color)"
-        })
-    });
-    const onClickStateHandler = ()=>{
-        stateHandler(()=>true);
-    };
-    return /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        css: btnWrapperCSS({
-            isMobile
-        }),
-        onClick: onClickStateHandler,
-        children: comment
-    });
-};
-const btnWrapperCSS = ({ isMobile  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-        margin-right: ${isMobile ? "12px" : "24px"};
-        margin-bottom: 24px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-    `;
-};
-const iconColor = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    color: var(--text-color);
-`;
-
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _StarRating__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./StarRating */ \"./src/components/bookDetail/StarRating.tsx\");\n/** @jsxImportSource @emotion/react */ \n\n\n\nconst PlatformRatingHover = ({ avgGrade , grade , href  })=>{\n    const [rating, setRating] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(grade);\n    const [hrefArr, setHrefArr] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(href.split(\" \"));\n    const platformBase = [\n        \"https://comic.naver.com/\",\n        \"https://series.naver.com/\",\n        \"https://page.kakao.com/\",\n        \"https://ridibooks.com/\"\n    ];\n    const ratingRender = hrefArr.map((el, idx)=>{\n        const findPlatform = (element)=>{\n            if (el.includes(element)) {\n                return true;\n            }\n        };\n        const result = platformBase.findIndex(findPlatform);\n        return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n            css: ratingWrapperCSS,\n            children: [\n                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    css: ratingStringWrapperCSS,\n                    children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"img\", {\n                        src: result === 0 && \"/assets/platform_naver_webtoon.webp\" || result === 1 && \"/assets/platform_naver_series.webp\" || result === 2 && \"/assets/platform_kakao_page.png\" || result === 3 && \"/assets/platform_ridi.webp\" || \"\",\n                        css: platformIconCSS\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\PlatformRatingHover.tsx\",\n                        lineNumber: 31,\n                        columnNumber: 21\n                    }, undefined)\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\PlatformRatingHover.tsx\",\n                    lineNumber: 30,\n                    columnNumber: 17\n                }, undefined),\n                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_StarRating__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n                    initialValue: Number(el),\n                    readonly: true\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\PlatformRatingHover.tsx\",\n                    lineNumber: 33,\n                    columnNumber: 17\n                }, undefined)\n            ]\n        }, void 0, true, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\PlatformRatingHover.tsx\",\n            lineNumber: 29,\n            columnNumber: 13\n        }, undefined);\n    });\n    // const ratingRender = rating.map((el, idx) => {\n    //     return (\n    //         <div css={ratingWrapperCSS}>\n    //             <div css={ratingStringWrapperCSS}>플랫폼 : </div>\n    //             <StarRating initialValue={Number(el)} readonly={true}/>\n    //         </div>\n    //     )\n    // })\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        className: \"platform-rating-wrapper\",\n        css: platformRatingHoverWrapperCSS,\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: ratingWrapperCSS,\n                children: [\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        css: ratingStringWrapperCSS,\n                        children: \"평균 \"\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\PlatformRatingHover.tsx\",\n                        lineNumber: 55,\n                        columnNumber: 17\n                    }, undefined),\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_StarRating__WEBPACK_IMPORTED_MODULE_3__[\"default\"], {\n                        initialValue: Number(avgGrade),\n                        readonly: true\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\PlatformRatingHover.tsx\",\n                        lineNumber: 56,\n                        columnNumber: 17\n                    }, undefined)\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\PlatformRatingHover.tsx\",\n                lineNumber: 54,\n                columnNumber: 13\n            }, undefined),\n            ratingRender\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\PlatformRatingHover.tsx\",\n        lineNumber: 53,\n        columnNumber: 9\n    }, undefined);\n};\nconst platformRatingHoverWrapperCSS = ()=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n        transition-property: opacity;\r\n        transition-duration: 0.3s;\r\n        position: absolute;\r\n        pointer-events: none;\r\n        opacity: 0%;\r\n        background-color: var(--back-color);\r\n        padding: 16px;\r\n        border-radius: 10px;\r\n        box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.15);\r\n        top: 48px;\r\n        z-index: 100;\r\n\r\n    `;\n};\nconst ratingWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    display: flex;\r\n    align-items: center;\r\n`;\nconst ratingStringWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 64px;\r\n    font-size:18px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n`;\nconst platformIconCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 36px;\r\n    height: auto;\r\n    margin: 10px;\r\n`;\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PlatformRatingHover);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9ib29rRGV0YWlsL1BsYXRmb3JtUmF0aW5nSG92ZXIudHN4LmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEsb0NBQW9DO0FBQ0M7QUFDSjtBQUNLO0FBVXRDLE1BQU1HLHNCQUFzQixDQUFDLEVBQUNDLFNBQVEsRUFBRUMsTUFBSyxFQUFFQyxLQUFJLEVBQTJCLEdBQUs7SUFDL0UsTUFBTSxDQUFDQyxRQUFRQyxVQUFVLEdBQUdQLCtDQUFRQSxDQUFjSTtJQUVsRCxNQUFNLENBQUNJLFNBQVNDLFdBQVcsR0FBR1QsK0NBQVFBLENBQVdLLEtBQUtLLEtBQUssQ0FBQztJQUM1RCxNQUFNQyxlQUFlO1FBQUM7UUFBNEI7UUFBNkI7UUFBMkI7S0FBeUI7SUFHbkksTUFBTUMsZUFBZUosUUFBUUssR0FBRyxDQUFDLENBQUNDLElBQUlDLE1BQVE7UUFDMUMsTUFBTUMsZUFBZSxDQUFDQyxVQUFvQjtZQUN0QyxJQUFJSCxHQUFHSSxRQUFRLENBQUNELFVBQVU7Z0JBQ3RCLE9BQU8sSUFBSTtZQUNmLENBQUM7UUFDTDtRQUNBLE1BQU1FLFNBQVNSLGFBQWFTLFNBQVMsQ0FBQ0o7UUFDdEMscUJBQ0ksdUVBQUNLO1lBQUl0QixLQUFLdUI7OzhCQUNOLHVFQUFDRDtvQkFBSXRCLEtBQUt3Qjs4QkFDTixxRkFBQ0M7d0JBQUlDLEtBQUssV0FBWSxLQUFLLHlDQUEyQ04sV0FBVyxLQUFLLHdDQUEwQ0EsV0FBVyxLQUFLLHFDQUF1Q0EsV0FBVyxLQUFLLGdDQUFpQzt3QkFBSXBCLEtBQUsyQjs7Ozs7Ozs7Ozs7OEJBRXJQLHVFQUFDekIsbURBQVVBO29CQUFDMEIsY0FBY0MsT0FBT2Q7b0JBQUtlLFVBQVUsSUFBSTs7Ozs7Ozs7Ozs7O0lBT2hFO0lBR0EsaURBQWlEO0lBQ2pELGVBQWU7SUFDZix1Q0FBdUM7SUFDdkMsNkRBQTZEO0lBQzdELHNFQUFzRTtJQUN0RSxpQkFBaUI7SUFDakIsUUFBUTtJQUNSLEtBQUs7SUFFTCxxQkFDSSx1RUFBQ1I7UUFBSVMsV0FBVztRQUEyQi9CLEtBQUtnQzs7MEJBQzVDLHVFQUFDVjtnQkFBSXRCLEtBQUt1Qjs7a0NBQ04sdUVBQUNEO3dCQUFJdEIsS0FBS3dCO2tDQUF3Qjs7Ozs7O2tDQUNsQyx1RUFBQ3RCLG1EQUFVQTt3QkFBQzBCLGNBQWNDLE9BQU96Qjt3QkFBVzBCLFVBQVUsSUFBSTs7Ozs7Ozs7Ozs7O1lBRzdEakI7Ozs7Ozs7QUFHYjtBQUVBLE1BQU1tQixnQ0FBZ0MsSUFBTTtJQUN4QyxPQUFPaEMsK0NBQUcsQ0FBQzs7Ozs7Ozs7Ozs7OztJQWFYLENBQUM7QUFDTDtBQUVBLE1BQU11QixtQkFBbUJ2QiwrQ0FBRyxDQUFDOzs7QUFHN0IsQ0FBQztBQUVELE1BQU13Qix5QkFBeUJ4QiwrQ0FBRyxDQUFDOzs7Ozs7QUFNbkMsQ0FBQztBQUVELE1BQU0yQixrQkFBa0IzQiwrQ0FBRyxDQUFDOzs7O0FBSTVCLENBQUM7QUFFRCxpRUFBZUcsbUJBQW1CQSxFQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvYm9va0RldGFpbC9QbGF0Zm9ybVJhdGluZ0hvdmVyLnRzeD9hMTQ1Il0sInNvdXJjZXNDb250ZW50IjpbIi8qKiBAanN4SW1wb3J0U291cmNlIEBlbW90aW9uL3JlYWN0ICovXHJcbmltcG9ydCB7IGNzcyB9IGZyb20gXCJAZW1vdGlvbi9yZWFjdFwiO1xyXG5pbXBvcnQgeyB1c2VTdGF0ZSB9IGZyb20gXCJyZWFjdFwiO1xyXG5pbXBvcnQgU3RhclJhdGluZyBmcm9tIFwiLi9TdGFyUmF0aW5nXCI7XHJcblxyXG50eXBlIGdyYWRlVHlwZSA9IHN0cmluZyB8IG51bWJlclxyXG5cclxuaW50ZXJmYWNlIFBsYXRmb3JtUmF0aW5nSG92ZXJQcm9wcyB7XHJcbiAgICBhdmdHcmFkZTogZ3JhZGVUeXBlO1xyXG4gICAgZ3JhZGU6IGdyYWRlVHlwZVtdO1xyXG4gICAgaHJlZjogc3RyaW5nO1xyXG59XHJcblxyXG5jb25zdCBQbGF0Zm9ybVJhdGluZ0hvdmVyID0gKHthdmdHcmFkZSwgZ3JhZGUsIGhyZWZ9OiBQbGF0Zm9ybVJhdGluZ0hvdmVyUHJvcHMpID0+IHtcclxuICAgIGNvbnN0IFtyYXRpbmcsIHNldFJhdGluZ10gPSB1c2VTdGF0ZTxncmFkZVR5cGVbXT4oZ3JhZGUpXHJcblxyXG4gICAgY29uc3QgW2hyZWZBcnIsIHNldEhyZWZBcnJdID0gdXNlU3RhdGU8c3RyaW5nW10+KGhyZWYuc3BsaXQoXCIgXCIpKVxyXG4gICAgY29uc3QgcGxhdGZvcm1CYXNlID0gW1wiaHR0cHM6Ly9jb21pYy5uYXZlci5jb20vXCIsIFwiaHR0cHM6Ly9zZXJpZXMubmF2ZXIuY29tL1wiLCBcImh0dHBzOi8vcGFnZS5rYWthby5jb20vXCIsIFwiaHR0cHM6Ly9yaWRpYm9va3MuY29tL1wiXVxyXG5cclxuICAgIFxyXG4gICAgY29uc3QgcmF0aW5nUmVuZGVyID0gaHJlZkFyci5tYXAoKGVsLCBpZHgpID0+IHtcclxuICAgICAgICBjb25zdCBmaW5kUGxhdGZvcm0gPSAoZWxlbWVudDogc3RyaW5nKSA9PiB7XHJcbiAgICAgICAgICAgIGlmIChlbC5pbmNsdWRlcyhlbGVtZW50KSkge1xyXG4gICAgICAgICAgICAgICAgcmV0dXJuIHRydWVcclxuICAgICAgICAgICAgfVxyXG4gICAgICAgIH1cclxuICAgICAgICBjb25zdCByZXN1bHQgPSBwbGF0Zm9ybUJhc2UuZmluZEluZGV4KGZpbmRQbGF0Zm9ybSlcclxuICAgICAgICByZXR1cm4gKFxyXG4gICAgICAgICAgICA8ZGl2IGNzcz17cmF0aW5nV3JhcHBlckNTU30+XHJcbiAgICAgICAgICAgICAgICA8ZGl2IGNzcz17cmF0aW5nU3RyaW5nV3JhcHBlckNTU30+XHJcbiAgICAgICAgICAgICAgICAgICAgPGltZyBzcmM9eyhyZXN1bHQgPT09IDAgJiYgXCIvYXNzZXRzL3BsYXRmb3JtX25hdmVyX3dlYnRvb24ud2VicFwiKSB8fCAocmVzdWx0ID09PSAxICYmIFwiL2Fzc2V0cy9wbGF0Zm9ybV9uYXZlcl9zZXJpZXMud2VicFwiKSB8fCAocmVzdWx0ID09PSAyICYmIFwiL2Fzc2V0cy9wbGF0Zm9ybV9rYWthb19wYWdlLnBuZ1wiKSB8fCAocmVzdWx0ID09PSAzICYmIFwiL2Fzc2V0cy9wbGF0Zm9ybV9yaWRpLndlYnBcIikgfHwgJyd9IGNzcz17cGxhdGZvcm1JY29uQ1NTfSAvPlxyXG4gICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICA8U3RhclJhdGluZyBpbml0aWFsVmFsdWU9e051bWJlcihlbCl9IHJlYWRvbmx5PXt0cnVlfS8+XHJcbiAgICAgICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICAgICAgICAgIFxyXG5cclxuICAgICAgICAgICAgXHJcbiAgICAgICAgKVxyXG4gICAgfSlcclxuXHJcblxyXG4gICAgLy8gY29uc3QgcmF0aW5nUmVuZGVyID0gcmF0aW5nLm1hcCgoZWwsIGlkeCkgPT4ge1xyXG4gICAgLy8gICAgIHJldHVybiAoXHJcbiAgICAvLyAgICAgICAgIDxkaXYgY3NzPXtyYXRpbmdXcmFwcGVyQ1NTfT5cclxuICAgIC8vICAgICAgICAgICAgIDxkaXYgY3NzPXtyYXRpbmdTdHJpbmdXcmFwcGVyQ1NTfT7tlIzrnqvtj7wgOiA8L2Rpdj5cclxuICAgIC8vICAgICAgICAgICAgIDxTdGFyUmF0aW5nIGluaXRpYWxWYWx1ZT17TnVtYmVyKGVsKX0gcmVhZG9ubHk9e3RydWV9Lz5cclxuICAgIC8vICAgICAgICAgPC9kaXY+XHJcbiAgICAvLyAgICAgKVxyXG4gICAgLy8gfSlcclxuXHJcbiAgICByZXR1cm4gKFxyXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPXtcInBsYXRmb3JtLXJhdGluZy13cmFwcGVyXCJ9IGNzcz17cGxhdGZvcm1SYXRpbmdIb3ZlcldyYXBwZXJDU1N9PlxyXG4gICAgICAgICAgICA8ZGl2IGNzcz17cmF0aW5nV3JhcHBlckNTU30+XHJcbiAgICAgICAgICAgICAgICA8ZGl2IGNzcz17cmF0aW5nU3RyaW5nV3JhcHBlckNTU30+7Y+J6regIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgPFN0YXJSYXRpbmcgaW5pdGlhbFZhbHVlPXtOdW1iZXIoYXZnR3JhZGUpfSByZWFkb25seT17dHJ1ZX0vPlxyXG4gICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgIHtyYXRpbmdSZW5kZXJ9XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICApXHJcbn1cclxuXHJcbmNvbnN0IHBsYXRmb3JtUmF0aW5nSG92ZXJXcmFwcGVyQ1NTID0gKCkgPT4ge1xyXG4gICAgcmV0dXJuIGNzc2BcclxuICAgICAgICB0cmFuc2l0aW9uLXByb3BlcnR5OiBvcGFjaXR5O1xyXG4gICAgICAgIHRyYW5zaXRpb24tZHVyYXRpb246IDAuM3M7XHJcbiAgICAgICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgICAgIHBvaW50ZXItZXZlbnRzOiBub25lO1xyXG4gICAgICAgIG9wYWNpdHk6IDAlO1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWJhY2stY29sb3IpO1xyXG4gICAgICAgIHBhZGRpbmc6IDE2cHg7XHJcbiAgICAgICAgYm9yZGVyLXJhZGl1czogMTBweDtcclxuICAgICAgICBib3gtc2hhZG93OiAwcHggMHB4IDEwcHggMXB4IHJnYmEoMCwgMCwgMCwgMC4xNSk7XHJcbiAgICAgICAgdG9wOiA0OHB4O1xyXG4gICAgICAgIHotaW5kZXg6IDEwMDtcclxuXHJcbiAgICBgXHJcbn1cclxuXHJcbmNvbnN0IHJhdGluZ1dyYXBwZXJDU1MgPSBjc3NgXHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuYFxyXG5cclxuY29uc3QgcmF0aW5nU3RyaW5nV3JhcHBlckNTUyA9IGNzc2BcclxuICAgIHdpZHRoOiA2NHB4O1xyXG4gICAgZm9udC1zaXplOjE4cHg7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG5gXHJcblxyXG5jb25zdCBwbGF0Zm9ybUljb25DU1MgPSBjc3NgXHJcbiAgICB3aWR0aDogMzZweDtcclxuICAgIGhlaWdodDogYXV0bztcclxuICAgIG1hcmdpbjogMTBweDtcclxuYFxyXG5cclxuZXhwb3J0IGRlZmF1bHQgUGxhdGZvcm1SYXRpbmdIb3ZlciJdLCJuYW1lcyI6WyJjc3MiLCJ1c2VTdGF0ZSIsIlN0YXJSYXRpbmciLCJQbGF0Zm9ybVJhdGluZ0hvdmVyIiwiYXZnR3JhZGUiLCJncmFkZSIsImhyZWYiLCJyYXRpbmciLCJzZXRSYXRpbmciLCJocmVmQXJyIiwic2V0SHJlZkFyciIsInNwbGl0IiwicGxhdGZvcm1CYXNlIiwicmF0aW5nUmVuZGVyIiwibWFwIiwiZWwiLCJpZHgiLCJmaW5kUGxhdGZvcm0iLCJlbGVtZW50IiwiaW5jbHVkZXMiLCJyZXN1bHQiLCJmaW5kSW5kZXgiLCJkaXYiLCJyYXRpbmdXcmFwcGVyQ1NTIiwicmF0aW5nU3RyaW5nV3JhcHBlckNTUyIsImltZyIsInNyYyIsInBsYXRmb3JtSWNvbkNTUyIsImluaXRpYWxWYWx1ZSIsIk51bWJlciIsInJlYWRvbmx5IiwiY2xhc3NOYW1lIiwicGxhdGZvcm1SYXRpbmdIb3ZlcldyYXBwZXJDU1MiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/bookDetail/PlatformRatingHover.tsx\n");
 
 /***/ }),
 
-/***/ 7900:
+/***/ "./src/components/bookDetail/RedirButton.tsx":
+/*!***************************************************!*\
+  !*** ./src/components/bookDetail/RedirButton.tsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);\n/** @jsxImportSource @emotion/react */ \n\n\nconst RedirButton = ({ width , height , platform , href  })=>{\n    const [hrefArr, setHrefArr] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(href.split(\" \"));\n    const platformBase = [\n        \"https://comic.naver.com/\",\n        \"https://series.naver.com/\",\n        \"https://page.kakao.com/\",\n        \"https://ridibooks.com/\"\n    ];\n    const btnRender = hrefArr.map((el, idx)=>{\n        const findPlatform = (element)=>{\n            if (el.includes(element)) {\n                return true;\n            }\n        };\n        const result = platformBase.findIndex(findPlatform);\n        return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"a\", {\n            href: el,\n            children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"img\", {\n                src: result === 0 && \"/assets/platform_naver_webtoon.webp\" || result === 1 && \"/assets/platform_naver_series.webp\" || result === 2 && \"/assets/platform_kakao_page.png\" || result === 3 && \"/assets/platform_ridi.webp\" || \"\",\n                css: platformBtnCSS\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\RedirButton.tsx\",\n                lineNumber: 28,\n                columnNumber: 17\n            }, undefined)\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\RedirButton.tsx\",\n            lineNumber: 27,\n            columnNumber: 13\n        }, undefined);\n    });\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: buttonCSS({\n            width,\n            height\n        }),\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                className: \"unhovered\",\n                css: unhoveredCSS,\n                children: \"보러가기\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\RedirButton.tsx\",\n                lineNumber: 36,\n                columnNumber: 9\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                className: \"hovered\",\n                css: hoveredCSS,\n                children: btnRender\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\RedirButton.tsx\",\n                lineNumber: 39,\n                columnNumber: 9\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\RedirButton.tsx\",\n        lineNumber: 35,\n        columnNumber: 5\n    }, undefined);\n};\nconst buttonCSS = ({ width , height  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    transition-property: background-color;\r\n    transition-duration: 0.3s;\r\n    /* cursor: pointer; */\r\n    width: ${width};\r\n    height: ${height};\r\n    border: none;\r\n    border-radius: 5px;\r\n    font-size: 18px;\r\n    padding: 0 20px;\r\n    background-color: var(--main-color);\r\n    color: black;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    position: relative;\r\n\r\n    &:hover .unhovered {\r\n        opacity: 0;\r\n    }\r\n    &:hover .hovered {\r\n        opacity: 255;\r\n    }\r\n    &:hover {\r\n        background-color: var(--main-color-2);\r\n    }\r\n  `;\n};\nconst hoveredCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    transition-property: opacity;\r\n    transition-duration: 0.3s;\r\n    position: absolute;\r\n    opacity: 0;\r\n`;\nconst unhoveredCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    transition-property: opacity;\r\n    transition-duration: 0.3s;\r\n    position: absolute;\r\n    opacity: 255;\r\n`;\nconst platformBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 48px;\r\n    height: auto;\r\n    margin: 10px;\r\n`;\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RedirButton);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9ib29rRGV0YWlsL1JlZGlyQnV0dG9uLnRzeC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7O0FBQUEsb0NBQW9DO0FBQ0M7QUFDTDtBQVNoQyxNQUFNRSxjQUFjLENBQUMsRUFBRUMsTUFBSyxFQUFFQyxPQUFNLEVBQUVDLFNBQVEsRUFBRUMsS0FBSSxFQUFlLEdBQUs7SUFDcEUsTUFBTSxDQUFDQyxTQUFTQyxXQUFXLEdBQUdQLCtDQUFRQSxDQUFXSyxLQUFLRyxLQUFLLENBQUM7SUFDNUQsTUFBTUMsZUFBZTtRQUFDO1FBQTRCO1FBQTZCO1FBQTJCO0tBQXlCO0lBS25JLE1BQU1DLFlBQVlKLFFBQVFLLEdBQUcsQ0FBQyxDQUFDQyxJQUFJQyxNQUFRO1FBQ3ZDLE1BQU1DLGVBQWUsQ0FBQ0MsVUFBb0I7WUFDdEMsSUFBSUgsR0FBR0ksUUFBUSxDQUFDRCxVQUFVO2dCQUN0QixPQUFPLElBQUk7WUFDZixDQUFDO1FBQ0w7UUFDQSxNQUFNRSxTQUFTUixhQUFhUyxTQUFTLENBQUNKO1FBQ3RDLHFCQUNJLHVFQUFDSztZQUFFZCxNQUFNTztzQkFDTCxxRkFBQ1E7Z0JBQUlDLEtBQUssV0FBWSxLQUFLLHlDQUEyQ0osV0FBVyxLQUFLLHdDQUEwQ0EsV0FBVyxLQUFLLHFDQUF1Q0EsV0FBVyxLQUFLLGdDQUFpQztnQkFBSWxCLEtBQUt1Qjs7Ozs7Ozs7Ozs7SUFJN1A7SUFFRixxQkFDRSx1RUFBQ0M7UUFBSXhCLEtBQUt5QixVQUFVO1lBQUN0QjtZQUFPQztRQUFNOzswQkFDOUIsdUVBQUNvQjtnQkFBSUUsV0FBVztnQkFBYTFCLEtBQUsyQjswQkFBYzs7Ozs7OzBCQUdoRCx1RUFBQ0g7Z0JBQUlFLFdBQVc7Z0JBQVcxQixLQUFLNEI7MEJBQzNCakI7Ozs7Ozs7Ozs7OztBQUliO0FBT0EsTUFBTWMsWUFBWSxDQUFDLEVBQUN0QixNQUFLLEVBQUVDLE9BQU0sRUFBaUIsR0FBSztJQUNyRCxPQUFPSiwrQ0FBRyxDQUFDOzs7O1dBSUYsRUFBRUcsTUFBTTtZQUNQLEVBQUVDLE9BQU87Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztFQXFCbkIsQ0FBQztBQUNIO0FBRUEsTUFBTXdCLGFBQWE1QiwrQ0FBRyxDQUFDOzs7OztBQUt2QixDQUFDO0FBRUQsTUFBTTJCLGVBQWUzQiwrQ0FBRyxDQUFDOzs7OztBQUt6QixDQUFDO0FBRUQsTUFBTXVCLGlCQUFpQnZCLCtDQUFHLENBQUM7Ozs7QUFJM0IsQ0FBQztBQUVELGlFQUFlRSxXQUFXQSxFQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvYm9va0RldGFpbC9SZWRpckJ1dHRvbi50c3g/MjMwYSJdLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeEltcG9ydFNvdXJjZSBAZW1vdGlvbi9yZWFjdCAqL1xyXG5pbXBvcnQgeyBjc3MgfSBmcm9tIFwiQGVtb3Rpb24vcmVhY3RcIjtcclxuaW1wb3J0IHsgdXNlU3RhdGUgfSBmcm9tIFwicmVhY3RcIlxyXG5cclxuaW50ZXJmYWNlIEJ1dHRvblByb3BzIHtcclxuICB3aWR0aDogc3RyaW5nO1xyXG4gIGhlaWdodDogc3RyaW5nO1xyXG4gIHBsYXRmb3JtOiBudW1iZXI7XHJcbiAgaHJlZjogc3RyaW5nO1xyXG59XHJcblxyXG5jb25zdCBSZWRpckJ1dHRvbiA9ICh7IHdpZHRoLCBoZWlnaHQsIHBsYXRmb3JtLCBocmVmIH06IEJ1dHRvblByb3BzKSA9PiB7XHJcbiAgICBjb25zdCBbaHJlZkFyciwgc2V0SHJlZkFycl0gPSB1c2VTdGF0ZTxzdHJpbmdbXT4oaHJlZi5zcGxpdChcIiBcIikpXHJcbiAgICBjb25zdCBwbGF0Zm9ybUJhc2UgPSBbXCJodHRwczovL2NvbWljLm5hdmVyLmNvbS9cIiwgXCJodHRwczovL3Nlcmllcy5uYXZlci5jb20vXCIsIFwiaHR0cHM6Ly9wYWdlLmtha2FvLmNvbS9cIiwgXCJodHRwczovL3JpZGlib29rcy5jb20vXCJdXHJcblxyXG4gICAgXHJcbiAgICBcclxuXHJcbiAgICBjb25zdCBidG5SZW5kZXIgPSBocmVmQXJyLm1hcCgoZWwsIGlkeCkgPT4ge1xyXG4gICAgICAgIGNvbnN0IGZpbmRQbGF0Zm9ybSA9IChlbGVtZW50OiBzdHJpbmcpID0+IHtcclxuICAgICAgICAgICAgaWYgKGVsLmluY2x1ZGVzKGVsZW1lbnQpKSB7XHJcbiAgICAgICAgICAgICAgICByZXR1cm4gdHJ1ZVxyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfVxyXG4gICAgICAgIGNvbnN0IHJlc3VsdCA9IHBsYXRmb3JtQmFzZS5maW5kSW5kZXgoZmluZFBsYXRmb3JtKVxyXG4gICAgICAgIHJldHVybiAoXHJcbiAgICAgICAgICAgIDxhIGhyZWY9e2VsfT5cclxuICAgICAgICAgICAgICAgIDxpbWcgc3JjPXsocmVzdWx0ID09PSAwICYmIFwiL2Fzc2V0cy9wbGF0Zm9ybV9uYXZlcl93ZWJ0b29uLndlYnBcIikgfHwgKHJlc3VsdCA9PT0gMSAmJiBcIi9hc3NldHMvcGxhdGZvcm1fbmF2ZXJfc2VyaWVzLndlYnBcIikgfHwgKHJlc3VsdCA9PT0gMiAmJiBcIi9hc3NldHMvcGxhdGZvcm1fa2FrYW9fcGFnZS5wbmdcIikgfHwgKHJlc3VsdCA9PT0gMyAmJiBcIi9hc3NldHMvcGxhdGZvcm1fcmlkaS53ZWJwXCIpIHx8ICcnfSBjc3M9e3BsYXRmb3JtQnRuQ1NTfSAvPlxyXG4gICAgICAgICAgICA8L2E+XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgIClcclxuICAgIH0pXHJcblxyXG4gIHJldHVybiAoXHJcbiAgICA8ZGl2IGNzcz17YnV0dG9uQ1NTKHt3aWR0aCwgaGVpZ2h0fSl9PlxyXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPXsndW5ob3ZlcmVkJ30gY3NzPXt1bmhvdmVyZWRDU1N9PlxyXG4gICAgICAgICAgICDrs7Trn6zqsIDquLBcclxuICAgICAgICA8L2Rpdj5cclxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17J2hvdmVyZWQnfSBjc3M9e2hvdmVyZWRDU1N9PlxyXG4gICAgICAgICAgICB7YnRuUmVuZGVyfVxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgPC9kaXY+XHJcbiAgKTtcclxufVxyXG5cclxuaW50ZXJmYWNlIGJ1dHRvbkNTU1Byb3BzIHtcclxuICB3aWR0aDogc3RyaW5nO1xyXG4gIGhlaWdodDogc3RyaW5nO1xyXG59XHJcblxyXG5jb25zdCBidXR0b25DU1MgPSAoe3dpZHRoLCBoZWlnaHR9OiBidXR0b25DU1NQcm9wcykgPT4ge1xyXG4gIHJldHVybiBjc3NgXHJcbiAgICB0cmFuc2l0aW9uLXByb3BlcnR5OiBiYWNrZ3JvdW5kLWNvbG9yO1xyXG4gICAgdHJhbnNpdGlvbi1kdXJhdGlvbjogMC4zcztcclxuICAgIC8qIGN1cnNvcjogcG9pbnRlcjsgKi9cclxuICAgIHdpZHRoOiAke3dpZHRofTtcclxuICAgIGhlaWdodDogJHtoZWlnaHR9O1xyXG4gICAgYm9yZGVyOiBub25lO1xyXG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xyXG4gICAgZm9udC1zaXplOiAxOHB4O1xyXG4gICAgcGFkZGluZzogMCAyMHB4O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbWFpbi1jb2xvcik7XHJcbiAgICBjb2xvcjogYmxhY2s7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG5cclxuICAgICY6aG92ZXIgLnVuaG92ZXJlZCB7XHJcbiAgICAgICAgb3BhY2l0eTogMDtcclxuICAgIH1cclxuICAgICY6aG92ZXIgLmhvdmVyZWQge1xyXG4gICAgICAgIG9wYWNpdHk6IDI1NTtcclxuICAgIH1cclxuICAgICY6aG92ZXIge1xyXG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLW1haW4tY29sb3ItMik7XHJcbiAgICB9XHJcbiAgYDtcclxufVxyXG5cclxuY29uc3QgaG92ZXJlZENTUyA9IGNzc2BcclxuICAgIHRyYW5zaXRpb24tcHJvcGVydHk6IG9wYWNpdHk7XHJcbiAgICB0cmFuc2l0aW9uLWR1cmF0aW9uOiAwLjNzO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgb3BhY2l0eTogMDtcclxuYFxyXG5cclxuY29uc3QgdW5ob3ZlcmVkQ1NTID0gY3NzYFxyXG4gICAgdHJhbnNpdGlvbi1wcm9wZXJ0eTogb3BhY2l0eTtcclxuICAgIHRyYW5zaXRpb24tZHVyYXRpb246IDAuM3M7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBvcGFjaXR5OiAyNTU7XHJcbmBcclxuXHJcbmNvbnN0IHBsYXRmb3JtQnRuQ1NTID0gY3NzYFxyXG4gICAgd2lkdGg6IDQ4cHg7XHJcbiAgICBoZWlnaHQ6IGF1dG87XHJcbiAgICBtYXJnaW46IDEwcHg7XHJcbmBcclxuXHJcbmV4cG9ydCBkZWZhdWx0IFJlZGlyQnV0dG9uIl0sIm5hbWVzIjpbImNzcyIsInVzZVN0YXRlIiwiUmVkaXJCdXR0b24iLCJ3aWR0aCIsImhlaWdodCIsInBsYXRmb3JtIiwiaHJlZiIsImhyZWZBcnIiLCJzZXRIcmVmQXJyIiwic3BsaXQiLCJwbGF0Zm9ybUJhc2UiLCJidG5SZW5kZXIiLCJtYXAiLCJlbCIsImlkeCIsImZpbmRQbGF0Zm9ybSIsImVsZW1lbnQiLCJpbmNsdWRlcyIsInJlc3VsdCIsImZpbmRJbmRleCIsImEiLCJpbWciLCJzcmMiLCJwbGF0Zm9ybUJ0bkNTUyIsImRpdiIsImJ1dHRvbkNTUyIsImNsYXNzTmFtZSIsInVuaG92ZXJlZENTUyIsImhvdmVyZWRDU1MiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./src/components/bookDetail/RedirButton.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/bookDetail/StarRating.tsx":
+/*!**************************************************!*\
+  !*** ./src/components/bookDetail/StarRating.tsx ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var react_simple_star_rating__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-simple-star-rating */ \"react-simple-star-rating\");\n/* harmony import */ var react_simple_star_rating__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_simple_star_rating__WEBPACK_IMPORTED_MODULE_2__);\n\n\n\nconst StarRating = ({ onClick , readonly , initialValue =0  })=>{\n    const [rating, setRating] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(initialValue);\n    // Catch Rating value\n    const handleRating = (rate)=>{\n        setRating(rate * 2);\n        onClick(rate * 2);\n    // other logic\n    };\n    // Optinal callback functions\n    // const onPointerEnter = () => console.log('Enter')\n    // const onPointerLeave = () => console.log('Leave')\n    // const onPointerMove = (value: number, index: number) => console.log(value, index)\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        className: \"App\",\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_simple_star_rating__WEBPACK_IMPORTED_MODULE_2__.Rating, {\n            onClick: handleRating,\n            // onPointerEnter={onPointerEnter}\n            // onPointerLeave={onPointerLeave}\n            // onPointerMove={onPointerMove}\n            /* Available Props */ transition: true,\n            allowFraction: true,\n            initialValue: rating / 2,\n            allowHover: true,\n            readonly: readonly\n        }, rating, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\StarRating.tsx\",\n            lineNumber: 26,\n            columnNumber: 7\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\StarRating.tsx\",\n        lineNumber: 25,\n        columnNumber: 5\n    }, undefined);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (StarRating);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9ib29rRGV0YWlsL1N0YXJSYXRpbmcudHN4LmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQXVDO0FBQ1U7QUFRakQsTUFBTUcsYUFBYSxDQUFDLEVBQUNDLFFBQU8sRUFBRUMsU0FBUSxFQUFFQyxjQUFlLEVBQUMsRUFBa0IsR0FBSztJQUM3RSxNQUFNLENBQUNDLFFBQVFDLFVBQVUsR0FBR1AsK0NBQVFBLENBQUNLO0lBRXJDLHFCQUFxQjtJQUNyQixNQUFNRyxlQUFlLENBQUNDLE9BQWlCO1FBQ3JDRixVQUFVRSxPQUFPO1FBQ2pCTixRQUFRTSxPQUFPO0lBQ2YsY0FBYztJQUNoQjtJQUNBLDZCQUE2QjtJQUM3QixvREFBb0Q7SUFDcEQsb0RBQW9EO0lBQ3BELG9GQUFvRjtJQUVwRixxQkFDRSw4REFBQ0M7UUFBSUMsV0FBVTtrQkFDYiw0RUFBQ1YsNERBQU1BO1lBRUxFLFNBQVNLO1lBQ1Qsa0NBQWtDO1lBQ2xDLGtDQUFrQztZQUNsQyxnQ0FBZ0M7WUFDaEMsbUJBQW1CLEdBQ25CSSxZQUFZLElBQUk7WUFDaEJDLGVBQWUsSUFBSTtZQUNuQlIsY0FBY0MsU0FBUztZQUN2QlEsWUFBWSxJQUFJO1lBQ2hCVixVQUFVQTtXQVZMRTs7Ozs7Ozs7OztBQWNiO0FBRUEsaUVBQWVKLFVBQVVBLEVBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvY29tcG9uZW50cy9ib29rRGV0YWlsL1N0YXJSYXRpbmcudHN4P2M0NGEiXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IHVzZVN0YXRlIH0gZnJvbSAncmVhY3QnXHJcbmltcG9ydCB7IFJhdGluZyB9IGZyb20gJ3JlYWN0LXNpbXBsZS1zdGFyLXJhdGluZydcclxuXHJcbmludGVyZmFjZSBTdGFyUmF0aW5nUHJvcHMge1xyXG4gIG9uQ2xpY2s/OiBhbnk7XHJcbiAgaW5pdGlhbFZhbHVlOiBudW1iZXI7XHJcbiAgcmVhZG9ubHk6IGJvb2xlYW47XHJcbn1cclxuXHJcbmNvbnN0IFN0YXJSYXRpbmcgPSAoe29uQ2xpY2ssIHJlYWRvbmx5LCBpbml0aWFsVmFsdWUgPSAwfTogU3RhclJhdGluZ1Byb3BzKSA9PiB7XHJcbiAgY29uc3QgW3JhdGluZywgc2V0UmF0aW5nXSA9IHVzZVN0YXRlKGluaXRpYWxWYWx1ZSlcclxuXHJcbiAgLy8gQ2F0Y2ggUmF0aW5nIHZhbHVlXHJcbiAgY29uc3QgaGFuZGxlUmF0aW5nID0gKHJhdGU6IG51bWJlcikgPT4ge1xyXG4gICAgc2V0UmF0aW5nKHJhdGUgKiAyKVxyXG4gICAgb25DbGljayhyYXRlICogMilcclxuICAgIC8vIG90aGVyIGxvZ2ljXHJcbiAgfVxyXG4gIC8vIE9wdGluYWwgY2FsbGJhY2sgZnVuY3Rpb25zXHJcbiAgLy8gY29uc3Qgb25Qb2ludGVyRW50ZXIgPSAoKSA9PiBjb25zb2xlLmxvZygnRW50ZXInKVxyXG4gIC8vIGNvbnN0IG9uUG9pbnRlckxlYXZlID0gKCkgPT4gY29uc29sZS5sb2coJ0xlYXZlJylcclxuICAvLyBjb25zdCBvblBvaW50ZXJNb3ZlID0gKHZhbHVlOiBudW1iZXIsIGluZGV4OiBudW1iZXIpID0+IGNvbnNvbGUubG9nKHZhbHVlLCBpbmRleClcclxuXHJcbiAgcmV0dXJuIChcclxuICAgIDxkaXYgY2xhc3NOYW1lPSdBcHAnPlxyXG4gICAgICA8UmF0aW5nXHJcbiAgICAgICAga2V5PXtyYXRpbmd9XHJcbiAgICAgICAgb25DbGljaz17aGFuZGxlUmF0aW5nfVxyXG4gICAgICAgIC8vIG9uUG9pbnRlckVudGVyPXtvblBvaW50ZXJFbnRlcn1cclxuICAgICAgICAvLyBvblBvaW50ZXJMZWF2ZT17b25Qb2ludGVyTGVhdmV9XHJcbiAgICAgICAgLy8gb25Qb2ludGVyTW92ZT17b25Qb2ludGVyTW92ZX1cclxuICAgICAgICAvKiBBdmFpbGFibGUgUHJvcHMgKi9cclxuICAgICAgICB0cmFuc2l0aW9uPXt0cnVlfVxyXG4gICAgICAgIGFsbG93RnJhY3Rpb249e3RydWV9XHJcbiAgICAgICAgaW5pdGlhbFZhbHVlPXtyYXRpbmcgLyAyfVxyXG4gICAgICAgIGFsbG93SG92ZXI9e3RydWV9XHJcbiAgICAgICAgcmVhZG9ubHk9e3JlYWRvbmx5fVxyXG4gICAgICAvPlxyXG4gICAgPC9kaXY+XHJcbiAgKVxyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBTdGFyUmF0aW5nIl0sIm5hbWVzIjpbIlJlYWN0IiwidXNlU3RhdGUiLCJSYXRpbmciLCJTdGFyUmF0aW5nIiwib25DbGljayIsInJlYWRvbmx5IiwiaW5pdGlhbFZhbHVlIiwicmF0aW5nIiwic2V0UmF0aW5nIiwiaGFuZGxlUmF0aW5nIiwicmF0ZSIsImRpdiIsImNsYXNzTmFtZSIsInRyYW5zaXRpb24iLCJhbGxvd0ZyYWN0aW9uIiwiYWxsb3dIb3ZlciJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/components/bookDetail/StarRating.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/bookDetail/TagList.tsx":
+/*!***********************************************!*\
+  !*** ./src/components/bookDetail/TagList.tsx ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/** @jsxImportSource @emotion/react */ \n\nconst TagList = ({ tag  })=>{\n    const renderTags = tag.split(\" \").map((el, idx)=>{\n        if (el.trim() !== \"\") {\n            return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: tagWrapperCSS,\n                children: [\n                    \"#\",\n                    el,\n                    \",\"\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\TagList.tsx\",\n                lineNumber: 12,\n                columnNumber: 16\n            }, undefined);\n        }\n    });\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: outerWrapperCSS,\n        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n            css: tagListWrapperCSS,\n            children: renderTags\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\TagList.tsx\",\n            lineNumber: 18,\n            columnNumber: 9\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\TagList.tsx\",\n        lineNumber: 17,\n        columnNumber: 5\n    }, undefined);\n};\nconst outerWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    position: relative;\r\n    height: 16px;\r\n`;\nconst tagListWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  display: flex;\r\nposition: absolute;\r\n  /* margin-top: 12px; */\r\n    width: 110%;\r\n    overflow: scroll;\r\n    padding-left: 50px;\r\n    /* padding-right: -20px; */\r\n    margin-left: -50px;\r\n    -webkit-mask-image: linear-gradient(\r\n        to right,\r\n        rgba(0, 0, 0, 0) 0%,\r\n        var(--back-color) 5%,\r\n        var(--back-color) 90%,\r\n        rgba(0, 0, 0, 0) 100%\r\n    );\r\n    mask-image: linear-gradient(\r\n        to right,\r\n        rgba(0, 0, 0, 0) 0%,\r\n        var(--back-color) 5%,\r\n        var(--back-color) 90%,\r\n        rgba(0, 0, 0, 0) 100%\r\n    );\r\n\r\n    &::-webkit-scrollbar {\r\n    display: none; /* Chrome, Safari, Opera*/\r\n  }\r\n`;\nconst tagWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  /* border-radius: 20px; */\r\n  /* background-color: var(--main-color); */\r\n  /* padding: 14px; */\r\n  margin-right: 14px;\r\n  /* margin-bottom: 14px; */\r\n  color: black;\r\n  white-space:pre;;\r\n  color: var(--text-color-4);\r\n`;\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TagList);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9ib29rRGV0YWlsL1RhZ0xpc3QudHN4LmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUEsb0NBQW9DO0FBQ007QUFNMUMsTUFBTUMsVUFBVSxDQUFDLEVBQUVDLElBQUcsRUFBZ0IsR0FBSztJQUV6QyxNQUFNQyxhQUFhRCxJQUFJRSxLQUFLLENBQUMsS0FBS0MsR0FBRyxDQUFDLENBQUNDLElBQUlDLE1BQVE7UUFDakQsSUFBSUQsR0FBR0UsSUFBSSxPQUFPLElBQUk7WUFDbEIscUJBQU8sdUVBQUNDO2dCQUFJVCxLQUFLVTs7b0JBQWU7b0JBQUVKO29CQUFHOzs7Ozs7O1FBQ3pDLENBQUM7SUFFSDtJQUNBLHFCQUNFLHVFQUFDRztRQUFJVCxLQUFLVztrQkFDTixxRkFBQ0Y7WUFBSVQsS0FBS1k7c0JBQW9CVDs7Ozs7Ozs7Ozs7QUFJdEM7QUFFQSxNQUFNUSxrQkFBa0JYLCtDQUFHLENBQUM7OztBQUc1QixDQUFDO0FBRUQsTUFBTVksb0JBQW9CWiwrQ0FBRyxDQUFDOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUEyQjlCLENBQUM7QUFFRCxNQUFNVSxnQkFBZ0JWLCtDQUFHLENBQUM7Ozs7Ozs7OztBQVMxQixDQUFDO0FBRUQsaUVBQWVDLE9BQU9BLEVBQUMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9jbGllbnQvLi9zcmMvY29tcG9uZW50cy9ib29rRGV0YWlsL1RhZ0xpc3QudHN4PzljYzkiXSwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBqc3hJbXBvcnRTb3VyY2UgQGVtb3Rpb24vcmVhY3QgKi9cclxuaW1wb3J0IHsganN4LCBjc3MgfSBmcm9tIFwiQGVtb3Rpb24vcmVhY3RcIjtcclxuXHJcbmludGVyZmFjZSBUYWdMaXN0UHJvcHMge1xyXG4gIHRhZzogc3RyaW5nO1xyXG59XHJcblxyXG5jb25zdCBUYWdMaXN0ID0gKHsgdGFnIH06IFRhZ0xpc3RQcm9wcykgPT4ge1xyXG5cclxuICBjb25zdCByZW5kZXJUYWdzID0gdGFnLnNwbGl0KFwiIFwiKS5tYXAoKGVsLCBpZHgpID0+IHtcclxuICAgIGlmIChlbC50cmltKCkgIT09ICcnKSB7XHJcbiAgICAgICAgcmV0dXJuIDxkaXYgY3NzPXt0YWdXcmFwcGVyQ1NTfT4je2VsfSw8L2Rpdj47XHJcbiAgICB9XHJcbiAgICBcclxuICB9KTtcclxuICByZXR1cm4gKFxyXG4gICAgPGRpdiBjc3M9e291dGVyV3JhcHBlckNTU30+XHJcbiAgICAgICAgPGRpdiBjc3M9e3RhZ0xpc3RXcmFwcGVyQ1NTfT57cmVuZGVyVGFnc308L2Rpdj5cclxuICAgIDwvZGl2PlxyXG4gICAgXHJcbiAgKTtcclxufTtcclxuXHJcbmNvbnN0IG91dGVyV3JhcHBlckNTUyA9IGNzc2BcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIGhlaWdodDogMTZweDtcclxuYFxyXG5cclxuY29uc3QgdGFnTGlzdFdyYXBwZXJDU1MgPSBjc3NgXHJcbiAgZGlzcGxheTogZmxleDtcclxucG9zaXRpb246IGFic29sdXRlO1xyXG4gIC8qIG1hcmdpbi10b3A6IDEycHg7ICovXHJcbiAgICB3aWR0aDogMTEwJTtcclxuICAgIG92ZXJmbG93OiBzY3JvbGw7XHJcbiAgICBwYWRkaW5nLWxlZnQ6IDUwcHg7XHJcbiAgICAvKiBwYWRkaW5nLXJpZ2h0OiAtMjBweDsgKi9cclxuICAgIG1hcmdpbi1sZWZ0OiAtNTBweDtcclxuICAgIC13ZWJraXQtbWFzay1pbWFnZTogbGluZWFyLWdyYWRpZW50KFxyXG4gICAgICAgIHRvIHJpZ2h0LFxyXG4gICAgICAgIHJnYmEoMCwgMCwgMCwgMCkgMCUsXHJcbiAgICAgICAgdmFyKC0tYmFjay1jb2xvcikgNSUsXHJcbiAgICAgICAgdmFyKC0tYmFjay1jb2xvcikgOTAlLFxyXG4gICAgICAgIHJnYmEoMCwgMCwgMCwgMCkgMTAwJVxyXG4gICAgKTtcclxuICAgIG1hc2staW1hZ2U6IGxpbmVhci1ncmFkaWVudChcclxuICAgICAgICB0byByaWdodCxcclxuICAgICAgICByZ2JhKDAsIDAsIDAsIDApIDAlLFxyXG4gICAgICAgIHZhcigtLWJhY2stY29sb3IpIDUlLFxyXG4gICAgICAgIHZhcigtLWJhY2stY29sb3IpIDkwJSxcclxuICAgICAgICByZ2JhKDAsIDAsIDAsIDApIDEwMCVcclxuICAgICk7XHJcblxyXG4gICAgJjo6LXdlYmtpdC1zY3JvbGxiYXIge1xyXG4gICAgZGlzcGxheTogbm9uZTsgLyogQ2hyb21lLCBTYWZhcmksIE9wZXJhKi9cclxuICB9XHJcbmA7XHJcblxyXG5jb25zdCB0YWdXcmFwcGVyQ1NTID0gY3NzYFxyXG4gIC8qIGJvcmRlci1yYWRpdXM6IDIwcHg7ICovXHJcbiAgLyogYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbWFpbi1jb2xvcik7ICovXHJcbiAgLyogcGFkZGluZzogMTRweDsgKi9cclxuICBtYXJnaW4tcmlnaHQ6IDE0cHg7XHJcbiAgLyogbWFyZ2luLWJvdHRvbTogMTRweDsgKi9cclxuICBjb2xvcjogYmxhY2s7XHJcbiAgd2hpdGUtc3BhY2U6cHJlOztcclxuICBjb2xvcjogdmFyKC0tdGV4dC1jb2xvci00KTtcclxuYDtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IFRhZ0xpc3Q7XHJcbiJdLCJuYW1lcyI6WyJjc3MiLCJUYWdMaXN0IiwidGFnIiwicmVuZGVyVGFncyIsInNwbGl0IiwibWFwIiwiZWwiLCJpZHgiLCJ0cmltIiwiZGl2IiwidGFnV3JhcHBlckNTUyIsIm91dGVyV3JhcHBlckNTUyIsInRhZ0xpc3RXcmFwcGVyQ1NTIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./src/components/bookDetail/TagList.tsx\n");
+
+/***/ }),
+
+/***/ "./src/components/bookDetail/icons.tsx":
+/*!*********************************************!*\
+  !*** ./src/components/bookDetail/icons.tsx ***!
+  \*********************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   "getServerSideProps": () => (/* binding */ getServerSideProps)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5193);
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2805);
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _api_book_getBookDetail__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7546);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_icons_bi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6652);
-/* harmony import */ var react_icons_bi__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_icons_bi__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _components_bookDetail_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9502);
-/* harmony import */ var _components_bookDetail_TagList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6167);
-/* harmony import */ var _components_bookDetail_RedirButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(5988);
-/* harmony import */ var _components_UI_FixedModal_FixedModal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(6826);
-/* harmony import */ var _components_DetailComment_DetailComment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(6490);
-/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(4932);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_api_book_getBookDetail__WEBPACK_IMPORTED_MODULE_2__, _components_DetailComment_DetailComment__WEBPACK_IMPORTED_MODULE_9__]);
-([_api_book_getBookDetail__WEBPACK_IMPORTED_MODULE_2__, _components_DetailComment_DetailComment__WEBPACK_IMPORTED_MODULE_9__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
-/** @jsxImportSource @emotion/react */ 
-
-
-
-
-
-
-
-
-
-
-const BookDetail = ({ bookData  })=>{
-    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_10__/* .useIsResponsive */ .j)();
-    const [commentModalState, setCommentModalState] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
-    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(()=>{
-        console.log(bookData);
-    }, []);
-    const desktopDecoration = /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: backgroundWrapperCSS,
-        className: "third-level-el-background",
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: blurredImgCSS({
-                    thumbnail: bookData.thumbnail,
-                    isDeskTop: isDeskTop
-                })
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: verticalGradientCSS({
-                    isDeskTop
-                }),
-                className: "vertical-gradient"
-            }),
-            isDeskTop && /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                css: horizontalGradientCSS
-            })
-        ]
-    });
-    const iconBtn = /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: iconFunctionCSS,
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_bookDetail_icons__WEBPACK_IMPORTED_MODULE_5__/* .CommentBtn */ .dU, {
-                bookId: bookData.bookId,
-                stateHandler: setCommentModalState
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_bookDetail_icons__WEBPACK_IMPORTED_MODULE_5__/* .BookmarkToggle */ .o9, {
-                bookId: bookData.bookId,
-                isClicked: bookData.bookmark
-            }),
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_bookDetail_icons__WEBPACK_IMPORTED_MODULE_5__/* .HasBeenReadToggle */ .VQ, {
-                bookId: bookData.bookId,
-                isClicked: bookData.read
-            })
-        ]
-    });
-    const content = /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        className: "content",
-        css: contentCSS({
-            isDeskTop
-        }),
-        children: /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-            className: "rowGrid",
-            css: rowGridCSS({
-                isDeskTop
-            }),
-            children: [
-                /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                    children: [
-                        isDeskTop === false && iconBtn,
-                        isDeskTop === true && /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_bookDetail_TagList__WEBPACK_IMPORTED_MODULE_6__/* ["default"] */ .Z, {
-                            tag: bookData.tag
-                        }),
-                        /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            css: titleCSS({
-                                isDeskTop
-                            }),
-                            children: bookData.title
-                        }),
-                        /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            css: scoreDivCSS,
-                            children: [
-                                "평균 평점 : ",
-                                bookData.avgScore,
-                                /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_icons_bi__WEBPACK_IMPORTED_MODULE_4__.BiChevronRightCircle, {
-                                    css: scoreBtnCSS
-                                })
-                            ]
-                        }),
-                        isDeskTop === false && /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            css: lineCSS
-                        })
-                    ]
-                }),
-                /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                    css: bottomContentCSS,
-                    children: [
-                        /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                            children: [
-                                isDeskTop && iconBtn,
-                                /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                    css: bookInfoWrapperCSS({
-                                        isDeskTop
-                                    }),
-                                    children: [
-                                        /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                                            css: boldTextCSS,
-                                            children: [
-                                                bookData.genre,
-                                                " \xb7",
-                                                " ",
-                                                new Date(bookData.regist).getFullYear(),
-                                                " \xa0 \xa0"
-                                            ]
-                                        }),
-                                        /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                            children: bookData.author
-                                        })
-                                    ]
-                                }),
-                                /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                                    css: storyWrapperCSS,
-                                    children: bookData.story
-                                })
-                            ]
-                        }),
-                        /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            css: buttonWrapperCSS({
-                                isDeskTop
-                            }),
-                            children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_bookDetail_RedirButton__WEBPACK_IMPORTED_MODULE_7__/* ["default"] */ .Z, {
-                                width: isMobile ? "100%" : "50%",
-                                height: "64px",
-                                platform: bookData.platform,
-                                href: bookData.href
-                            })
-                        })
-                    ]
-                })
-            ]
-        })
-    });
-    const thumbnail = /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-        css: thumbnailGridCSS,
-        children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("img", {
-            css: thumbnailCSS({
-                isDeskTop
-            }),
-            src: bookData.thumbnail
-        })
-    });
-    return /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-        css: mainContentCSS,
-        className: "top-level-el",
-        children: [
-            /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_UI_FixedModal_FixedModal__WEBPACK_IMPORTED_MODULE_8__/* ["default"] */ .Z, {
-                modalState: commentModalState,
-                stateHandler: setCommentModalState,
-                content: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_DetailComment_DetailComment__WEBPACK_IMPORTED_MODULE_9__/* ["default"] */ .Z, {
-                    bookId: bookData.bookId
-                })
-            }),
-            /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", {
-                css: mainContentInnerWrapperCSS,
-                className: "second-level-el",
-                children: [
-                    desktopDecoration,
-                    /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                        css: contentOuterWrapperCSS({
-                            isDeskTop
-                        }),
-                        className: "third-level-el",
-                        children: /*#__PURE__*/ _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("div", {
-                            css: columnGridCSS({
-                                isDeskTop
-                            }),
-                            className: "column-grid",
-                            children: isDeskTop ? /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-                                children: [
-                                    content,
-                                    thumbnail
-                                ]
-                            }) : /*#__PURE__*/ (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-                                children: [
-                                    thumbnail,
-                                    content
-                                ]
-                            })
-                        })
-                    })
-                ]
-            })
-        ]
-    });
-};
-// getServerSideProps는 async/await를 사용하여 API를 모두 받아올 때까지 대기하였다가 컴포넌트로 props를 넘겨주고, 이후 컴포넌트는 사전 생성 됩니다.
-const getServerSideProps = async (context)=>{
-    const params = await context.params;
-    const data = await (0,_api_book_getBookDetail__WEBPACK_IMPORTED_MODULE_2__/* .getBookDetail */ .G)(params.bookId).then((res)=>{
-        return res;
-    }).catch((err)=>{
-        console.log("pages/books/[bookId].tsx => ", err);
-    });
-    return await {
-        props: {
-            bookData: data
-        }
-    };
-};
-const mainContentCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  /* height: 100vh; */
-  
-  /* overflow-x: hidden; */
-`;
-const backgroundWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-    height: 100%;
-
-  
-  position: absolute;
-`;
-const blurredImgCSS = ({ thumbnail , isDeskTop  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    background: no-repeat url("${thumbnail}") 0 / cover;
-    filter: blur(10px);
-    -webkit-filter: blur(20px);
-    pointer-events: none;
-    position: absolute;
-    ${isDeskTop && "right: 0"};
-
-    ${isDeskTop ? "width: 70vw" : "width: 100vw"};
-    ${isDeskTop ? "height: 120vh" : "height: calc(90% - 72px)"};
-    ${isDeskTop ? "opacity: 100%;" : "opacity: 50%;"};
-    
-
-    
-  `;
-};
-const verticalGradientCSS = ({ isDeskTop  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: 100vw;
-    height: ${isDeskTop ? "125vh" : "calc(100% - 72px)"};
-    background: linear-gradient(rgba(0, 0, 0, 0) 0%, var(--back-color) 90%);
-    position: absolute;
-  `;
-};
-const horizontalGradientCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100vw;
-  height: 125vh;
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0) 0%,
-    var(--back-color) 60%
-  );
-  position: absolute;
-`;
-const contentOuterWrapperCSS = ({ isDeskTop  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: 100vw;
-    height: ${isDeskTop ? "calc(100vh - 72px)" : "100%"};
-    /* height: calc(100vh - 72px); */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* padding */
-  `;
-};
-const columnGridCSS = ({ isDeskTop  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    position: relative;
-    display: grid;
-    ${isDeskTop ? "grid-template-columns: 50% 50%" : "grid-template-rows: 100vw auto"};
-    
-    /* background-color: red; */
-    height: ${isDeskTop ? "80vh" : "auto"};
-    width: 100vw;
-
-
-  `;
-};
-const thumbnailGridCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  /* height: calc(100vh - 72px); */
-  display: flex;
-  justify-content: center;
-
-  align-items: center;
-`;
-const thumbnailCSS = ({ isDeskTop  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  ${isDeskTop ? "height: 80vh; width: auto;" : "height: auto; width: 70vw;"}
-    
-    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
-  `;
-};
-const contentCSS = ({ isDeskTop  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    width: 100%;
-    ${isDeskTop ? "padding-left: 10vw" : "padding: 24px;"};
-  `;
-};
-const rowGridCSS = ({ isDeskTop  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    display: grid;
-    grid-template-rows: ${isDeskTop ? "50%" : "auto"} 50%;
-    ${isDeskTop && "height: 100%"};
-    /* background-color: red; */
-  `;
-};
-const titleCSS = ({ isDeskTop  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    font-size: 6vw;
-    font-weight: 700;
-    margin-bottom: ${isDeskTop ? "24px" : "12px"};
-  `;
-};
-const scoreDivCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  font-size: 18px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-`;
-const scoreBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  margin-left: 12px;
-  width: 24px;
-  height: 24px;
-`;
-const bottomContentCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  
-  /* justify-content: space-between; */
-`;
-const iconFunctionCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  display: flex;
-`;
-const bookInfoWrapperCSS = ({ isDeskTop  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-    display: flex;
-    margin-bottom: ${isDeskTop ? "24px" : "12px"};
-    margin-top: 12px;
-  `;
-};
-const boldTextCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  font-weight: 700;
-`;
-const storyWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  /* width: 70%; */
-  /* height: 70px; */
-
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
-  margin-bottom: 24px;
-`;
-const buttonWrapperCSS = ({ isDeskTop  })=>{
-    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  width: 100%;
-  ${isDeskTop === false && "display: flex; justify-content: center;"}
- `;
-};
-const lineCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  border-bottom: 1px var(--text-color-4) solid;
-`;
-const mainContentInnerWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-  height: 100%;
-  width: 100%;
-`;
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BookDetail);
-
-__webpack_async_result__();
-} catch(e) { __webpack_async_result__(e); } });
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"BookmarkToggle\": () => (/* binding */ BookmarkToggle),\n/* harmony export */   \"CommentBtn\": () => (/* binding */ CommentBtn),\n/* harmony export */   \"HasBeenReadToggle\": () => (/* binding */ HasBeenReadToggle)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/Responsive/useIsResponsive */ \"./src/components/Responsive/useIsResponsive.ts\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _api_book_putBookmark__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/api/book/putBookmark */ \"./src/api/book/putBookmark.ts\");\n/* harmony import */ var _api_book_putHasBeenRead__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/api/book/putHasBeenRead */ \"./src/api/book/putHasBeenRead.ts\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_api_book_putBookmark__WEBPACK_IMPORTED_MODULE_4__, _api_book_putHasBeenRead__WEBPACK_IMPORTED_MODULE_5__]);\n([_api_book_putBookmark__WEBPACK_IMPORTED_MODULE_4__, _api_book_putHasBeenRead__WEBPACK_IMPORTED_MODULE_5__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);\n/** @jsxImportSource @emotion/react */ \n\n\n\n\n\nconst BookmarkToggle = ({ isClicked , bookId  })=>{\n    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_2__.useIsResponsive)();\n    const [bookmarkValue, setBookmarkValue] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(isClicked);\n    const bookmarkHandler = ()=>{\n        (0,_api_book_putBookmark__WEBPACK_IMPORTED_MODULE_4__.putBookmark)({\n            bookId\n        }).then((res)=>{\n            if (res !== null) {\n                setBookmarkValue(()=>res);\n            }\n        });\n    };\n    const bookmarkNotClicked = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"svg\", {\n        width: isMobile ? \"32\" : \"42\",\n        height: isMobile ? \"32\" : \"42\",\n        viewBox: \"0 0 42 42\",\n        fill: \"none\",\n        xmlns: \"http://www.w3.org/2000/svg\",\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                d: \"M27.3 40.5H14.7C9.59794 40.5 6.41672 39.4704 4.47316 37.5268C2.5296 35.5833 1.5 32.4021 1.5 27.3V14.7C1.5 9.59794 2.5296 6.41672 4.47316 4.47316C6.41672 2.5296 9.59794 1.5 14.7 1.5H27.3C32.4021 1.5 35.5833 2.5296 37.5268 4.47316C39.4704 6.41672 40.5 9.59794 40.5 14.7V27.3C40.5 32.4021 39.4704 35.5833 37.5268 37.5268C35.5833 39.4704 32.4021 40.5 27.3 40.5Z\",\n                stroke: \"var(--text-color)\",\n                \"stroke-width\": \"3\",\n                \"stroke-linecap\": \"round\",\n                \"stroke-linejoin\": \"round\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                lineNumber: 39,\n                columnNumber: 9\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"mask\", {\n                id: \"path-2-inside-1_90_309\",\n                fill: \"white\",\n                children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                    d: \"M31.5 0.923885V21.8818C31.5 26.0188 28.539 27.6358 24.906 25.4518L22.134 23.7928C21.504 23.4148 20.496 23.4148 19.866 23.7928L17.094 25.4518C13.461 27.6148 10.5 26.0188 10.5 21.8818V0.923885\"\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                    lineNumber: 41,\n                    columnNumber: 9\n                }, undefined)\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                lineNumber: 40,\n                columnNumber: 9\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                d: \"M34.5 0.923885C34.5 -0.732969 33.1569 -2.07611 31.5 -2.07611C29.8431 -2.07611 28.5 -0.732969 28.5 0.923885H34.5ZM24.906 25.4518L26.4517 22.8806L26.4466 22.8776L24.906 25.4518ZM22.134 23.7928L20.5905 26.3653L20.5934 26.367L22.134 23.7928ZM19.866 23.7928L21.4066 26.367L21.4095 26.3653L19.866 23.7928ZM17.094 25.4518L18.6287 28.0295L18.6346 28.026L17.094 25.4518ZM13.5 0.923885C13.5 -0.732969 12.1569 -2.07611 10.5 -2.07611C8.84315 -2.07611 7.5 -0.732969 7.5 0.923885H13.5ZM28.5 0.923885V21.8818H34.5V0.923885H28.5ZM28.5 21.8818C28.5 22.5703 28.3755 22.9857 28.2741 23.1978C28.2249 23.3007 28.1827 23.3534 28.1623 23.3756C28.1432 23.3964 28.1342 23.4005 28.1341 23.4006C28.1337 23.4008 28.1187 23.4096 28.0765 23.4169C28.0324 23.4245 27.9471 23.4324 27.8125 23.4169C27.5361 23.385 27.076 23.256 26.4517 22.8806L23.3603 28.023C25.6919 29.4246 28.5236 30.0162 30.9967 28.6737C33.5 27.3148 34.5 24.5966 34.5 21.8818H28.5ZM26.4466 22.8776L23.6746 21.2186L20.5934 26.367L23.3654 28.026L26.4466 22.8776ZM23.6775 21.2203C22.7951 20.6909 21.8218 20.5093 21 20.5093C20.1782 20.5093 19.2049 20.6909 18.3225 21.2203L21.4095 26.3653C21.27 26.4489 21.1627 26.4815 21.1112 26.4941C21.0569 26.5074 21.0212 26.5093 21 26.5093C20.9788 26.5093 20.9431 26.5074 20.8888 26.4941C20.8373 26.4815 20.73 26.4489 20.5905 26.3653L23.6775 21.2203ZM18.3254 21.2186L15.5534 22.8776L18.6346 28.026L21.4066 26.367L18.3254 21.2186ZM15.5593 22.8741C14.9339 23.2464 14.4714 23.3756 14.1911 23.4076C14.0546 23.4231 13.9675 23.4153 13.9218 23.4074C13.878 23.3998 13.8621 23.3907 13.8614 23.3903C13.8611 23.3901 13.8526 23.3863 13.8343 23.3664C13.8147 23.3452 13.7733 23.2938 13.7247 23.1924C13.6245 22.9833 13.5 22.5704 13.5 21.8818H7.5C7.5 24.5986 8.50171 27.3133 11.0078 28.6683C13.4758 30.0026 16.3011 29.4153 18.6287 28.0295L15.5593 22.8741ZM13.5 21.8818V0.923885H7.5V21.8818H13.5Z\",\n                fill: \"var(--text-color)\",\n                mask: \"url(#path-2-inside-1_90_309)\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                lineNumber: 43,\n                columnNumber: 9\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                d: \"M27.3 40.5H14.7C9.59794 40.5 6.41672 39.4704 4.47316 37.5268C2.5296 35.5833 1.5 32.4021 1.5 27.3V14.7C1.5 9.59794 2.5296 6.41672 4.47316 4.47316C6.41672 2.5296 9.59794 1.5 14.7 1.5H27.3C32.4021 1.5 35.5833 2.5296 37.5268 4.47316C39.4704 6.41672 40.5 9.59794 40.5 14.7V27.3C40.5 32.4021 39.4704 35.5833 37.5268 37.5268C35.5833 39.4704 32.4021 40.5 27.3 40.5Z\",\n                stroke: \"var(--text-color)\",\n                \"stroke-width\": \"3\",\n                \"stroke-linecap\": \"round\",\n                \"stroke-linejoin\": \"round\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                lineNumber: 44,\n                columnNumber: 9\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"mask\", {\n                id: \"path-5-inside-2_90_309\",\n                fill: \"white\",\n                children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                    d: \"M31.5 0.923885V21.8818C31.5 26.0188 28.539 27.6358 24.906 25.4518L22.134 23.7928C21.504 23.4148 20.496 23.4148 19.866 23.7928L17.094 25.4518C13.461 27.6148 10.5 26.0188 10.5 21.8818V0.923885\"\n                }, void 0, false, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                    lineNumber: 46,\n                    columnNumber: 9\n                }, undefined)\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                lineNumber: 45,\n                columnNumber: 9\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                d: \"M34.5 0.923885C34.5 -0.732969 33.1569 -2.07611 31.5 -2.07611C29.8431 -2.07611 28.5 -0.732969 28.5 0.923885H34.5ZM24.906 25.4518L26.4517 22.8806L26.4466 22.8776L24.906 25.4518ZM22.134 23.7928L20.5905 26.3653L20.5934 26.367L22.134 23.7928ZM19.866 23.7928L21.4066 26.367L21.4095 26.3653L19.866 23.7928ZM17.094 25.4518L18.6287 28.0295L18.6346 28.026L17.094 25.4518ZM13.5 0.923885C13.5 -0.732969 12.1569 -2.07611 10.5 -2.07611C8.84315 -2.07611 7.5 -0.732969 7.5 0.923885H13.5ZM28.5 0.923885V21.8818H34.5V0.923885H28.5ZM28.5 21.8818C28.5 22.5703 28.3755 22.9857 28.2741 23.1978C28.2249 23.3007 28.1827 23.3534 28.1623 23.3756C28.1432 23.3964 28.1342 23.4005 28.1341 23.4006C28.1337 23.4008 28.1187 23.4096 28.0765 23.4169C28.0324 23.4245 27.9471 23.4324 27.8125 23.4169C27.5361 23.385 27.076 23.256 26.4517 22.8806L23.3603 28.023C25.6919 29.4246 28.5236 30.0162 30.9967 28.6737C33.5 27.3148 34.5 24.5966 34.5 21.8818H28.5ZM26.4466 22.8776L23.6746 21.2186L20.5934 26.367L23.3654 28.026L26.4466 22.8776ZM23.6775 21.2203C22.7951 20.6909 21.8218 20.5093 21 20.5093C20.1782 20.5093 19.2049 20.6909 18.3225 21.2203L21.4095 26.3653C21.27 26.4489 21.1627 26.4815 21.1112 26.4941C21.0569 26.5074 21.0212 26.5093 21 26.5093C20.9788 26.5093 20.9431 26.5074 20.8888 26.4941C20.8373 26.4815 20.73 26.4489 20.5905 26.3653L23.6775 21.2203ZM18.3254 21.2186L15.5534 22.8776L18.6346 28.026L21.4066 26.367L18.3254 21.2186ZM15.5593 22.8741C14.9339 23.2464 14.4714 23.3756 14.1911 23.4076C14.0546 23.4231 13.9675 23.4153 13.9218 23.4074C13.878 23.3998 13.8621 23.3907 13.8614 23.3903C13.8611 23.3901 13.8526 23.3863 13.8343 23.3664C13.8147 23.3452 13.7733 23.2938 13.7247 23.1924C13.6245 22.9833 13.5 22.5704 13.5 21.8818H7.5C7.5 24.5986 8.50171 27.3133 11.0078 28.6683C13.4758 30.0026 16.3011 29.4153 18.6287 28.0295L15.5593 22.8741ZM13.5 21.8818V0.923885H7.5V21.8818H13.5Z\",\n                fill: \"var(--text-color)\",\n                mask: \"url(#path-5-inside-2_90_309)\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                lineNumber: 48,\n                columnNumber: 9\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n        lineNumber: 38,\n        columnNumber: 9\n    }, undefined);\n    const bookmarkClicked = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"svg\", {\n        width: isMobile ? \"32\" : \"42\",\n        height: isMobile ? \"32\" : \"42\",\n        viewBox: \"0 0 42 42\",\n        fill: \"none\",\n        xmlns: \"http://www.w3.org/2000/svg\",\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                d: \"M42.0004 12.2008V29.7989C42.0004 36.54 36.5404 42 29.7993 42H12.2011C5.46005 42 0 36.54 0 29.7989V12.2008C0 6.97172 2.14202 3.17068 5.94306 1.32266C7.32907 0.650654 8.92509 1.70066 8.92509 3.23368V21.8818C8.92509 24.3808 9.8911 26.3758 11.6341 27.3839C13.3981 28.3709 15.6242 28.1609 17.8922 26.7959L20.6222 25.1578C20.7902 25.0738 21.2102 25.0738 21.3362 25.1368L24.1082 26.7959C25.6203 27.6989 26.9223 27.9929 27.9723 27.9929C29.0643 27.9929 29.9043 27.6569 30.4083 27.3629C32.1093 26.3759 33.0753 24.3808 33.0753 21.8818V3.23368C33.0753 1.70066 34.6923 0.650654 36.0574 1.32266C39.8584 3.17068 42.0004 6.97172 42.0004 12.2008Z\",\n                fill: \"var(--text-color)\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                lineNumber: 54,\n                columnNumber: 9\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                d: \"M27.8244 0C28.9794 0 29.9244 0.94501 29.9244 2.10002V21.8822C29.9244 23.2262 29.5254 24.2342 28.8324 24.6332C28.1184 25.0533 26.9844 24.8433 25.7244 24.0872L22.9523 22.4282C21.8813 21.7772 20.1173 21.7772 19.0463 22.4282L16.2743 24.0872C15.0142 24.8433 13.8802 25.0323 13.1662 24.6332C12.4732 24.2342 12.0742 23.2262 12.0742 21.8822V2.10002C12.0742 0.94501 13.0192 0 14.1742 0H27.8244Z\",\n                fill: \"var(--text-color)\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                lineNumber: 55,\n                columnNumber: 9\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n        lineNumber: 53,\n        columnNumber: 9\n    }, undefined);\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        onClick: bookmarkHandler,\n        css: btnWrapperCSS({\n            isMobile\n        }),\n        children: bookmarkValue ? bookmarkClicked : bookmarkNotClicked\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n        lineNumber: 60,\n        columnNumber: 9\n    }, undefined);\n};\nconst HasBeenReadToggle = ({ isClicked , bookId  })=>{\n    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_2__.useIsResponsive)();\n    const [hasBeenReadValue, setHasBeenReadValue] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(isClicked);\n    const hasBeenReadHandler = ()=>{\n        (0,_api_book_putHasBeenRead__WEBPACK_IMPORTED_MODULE_5__.putHasBeenRead)({\n            bookId\n        }).then((res)=>{\n            if (res !== null) {\n                setHasBeenReadValue(()=>res);\n            }\n        });\n    };\n    const checkboxNotClicked = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"svg\", {\n        width: isMobile ? \"32\" : \"42\",\n        height: isMobile ? \"32\" : \"42\",\n        viewBox: \"0 0 43 42\",\n        fill: \"none\",\n        xmlns: \"http://www.w3.org/2000/svg\",\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                d: \"M21.0215 42C9.4373 42 0.0214844 32.5842 0.0214844 21C0.0214844 9.41581 9.4373 0 21.0215 0C32.6057 0 42.0215 9.41581 42.0215 21C42.0215 32.5842 32.6057 42 21.0215 42ZM21.0215 2.93023C11.0587 2.93023 2.95172 11.0372 2.95172 21C2.95172 30.9628 11.0587 39.0698 21.0215 39.0698C30.9843 39.0698 39.0913 30.9628 39.0913 21C39.0913 11.0372 30.9843 2.93023 21.0215 2.93023Z\",\n                fill: \"var(--text-color)\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                lineNumber: 81,\n                columnNumber: 9\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n                d: \"M18.2465 27.9937C17.8558 27.9937 17.4847 27.8374 17.2112 27.5639L11.6827 22.0355C11.1162 21.469 11.1162 20.5314 11.6827 19.9648C12.2492 19.3983 13.1869 19.3983 13.7534 19.9648L18.2465 24.4579L28.2874 14.4169C28.854 13.8504 29.7916 13.8504 30.3581 14.4169C30.9247 14.9834 30.9247 15.9211 30.3581 16.4876L19.2819 27.5639C19.0084 27.8374 18.6372 27.9937 18.2465 27.9937Z\",\n                fill: \"var(--text-color)\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                lineNumber: 82,\n                columnNumber: 9\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n        lineNumber: 80,\n        columnNumber: 9\n    }, undefined);\n    const checkboxClicked = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"svg\", {\n        width: isMobile ? \"32\" : \"42\",\n        height: isMobile ? \"32\" : \"42\",\n        viewBox: \"0 0 42 42\",\n        fill: \"none\",\n        xmlns: \"http://www.w3.org/2000/svg\",\n        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n            d: \"M21 0C9.429 0 0 9.429 0 21C0 32.571 9.429 42 21 42C32.571 42 42 32.571 42 21C42 9.429 32.571 0 21 0ZM31.038 16.17L19.131 28.077C18.837 28.371 18.438 28.539 18.018 28.539C17.598 28.539 17.199 28.371 16.905 28.077L10.962 22.134C10.353 21.525 10.353 20.517 10.962 19.908C11.571 19.299 12.579 19.299 13.188 19.908L18.018 24.738L28.812 13.944C29.421 13.335 30.429 13.335 31.038 13.944C31.647 14.553 31.647 15.54 31.038 16.17Z\",\n            fill: \"var(--text-color)\"\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n            lineNumber: 88,\n            columnNumber: 9\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n        lineNumber: 87,\n        columnNumber: 9\n    }, undefined);\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        onClick: hasBeenReadHandler,\n        css: btnWrapperCSS({\n            isMobile\n        }),\n        children: [\n            hasBeenReadValue ? checkboxClicked : checkboxNotClicked,\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                css: _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`margin-left: 14px;`,\n                children: hasBeenReadValue ? \"읽음\" : \"읽지 않음\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n                lineNumber: 95,\n                columnNumber: 13\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n        lineNumber: 93,\n        columnNumber: 9\n    }, undefined);\n};\nconst CommentBtn = ({ bookId , stateHandler  })=>{\n    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_2__.useIsResponsive)();\n    const comment = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"svg\", {\n        width: isMobile ? \"32\" : \"42\",\n        height: isMobile ? \"32\" : \"42\",\n        viewBox: \"0 0 43 42\",\n        fill: \"none\",\n        xmlns: \"http://www.w3.org/2000/svg\",\n        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"path\", {\n            d: \"M31.5158 0H10.5053C4.70635 0 0 4.68534 0 10.4632V23.0275V25.1286C0 30.9065 4.70635 35.5918 10.5053 35.5918H13.6568C14.2241 35.5918 14.9805 35.97 15.3377 36.4322L18.4892 40.6133C19.8759 42.4622 22.1451 42.4622 23.5318 40.6133L26.6833 36.4322C27.0825 35.907 27.7129 35.5918 28.3642 35.5918H31.5158C37.3147 35.5918 42.021 30.9065 42.021 25.1286V10.4632C42.021 4.68534 37.3147 0 31.5158 0ZM12.6063 21.0105C11.4297 21.0105 10.5053 20.065 10.5053 18.9095C10.5053 17.7539 11.4507 16.8084 12.6063 16.8084C13.7619 16.8084 14.7074 17.7539 14.7074 18.9095C14.7074 20.065 13.7829 21.0105 12.6063 21.0105ZM21.0105 21.0105C19.8339 21.0105 18.9095 20.065 18.9095 18.9095C18.9095 17.7539 19.8549 16.8084 21.0105 16.8084C22.1661 16.8084 23.1116 17.7539 23.1116 18.9095C23.1116 20.065 22.1871 21.0105 21.0105 21.0105ZM29.4147 21.0105C28.2381 21.0105 27.3137 20.065 27.3137 18.9095C27.3137 17.7539 28.2591 16.8084 29.4147 16.8084C30.5703 16.8084 31.5158 17.7539 31.5158 18.9095C31.5158 20.065 30.5913 21.0105 29.4147 21.0105Z\",\n            fill: \"var(--text-color)\"\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n            lineNumber: 107,\n            columnNumber: 9\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n        lineNumber: 106,\n        columnNumber: 9\n    }, undefined);\n    const onClickStateHandler = ()=>{\n        stateHandler(()=>true);\n    };\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: btnWrapperCSS({\n            isMobile\n        }),\n        onClick: onClickStateHandler,\n        children: comment\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\components\\\\bookDetail\\\\icons.tsx\",\n        lineNumber: 115,\n        columnNumber: 9\n    }, undefined);\n};\nconst btnWrapperCSS = ({ isMobile  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n        margin-right: ${isMobile ? \"12px\" : \"24px\"};\r\n        margin-bottom: 24px;\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        cursor: pointer;\r\n    `;\n};\nconst iconColor = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    color: var(--text-color);\r\n`;\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvY29tcG9uZW50cy9ib29rRGV0YWlsL2ljb25zLnRzeC5qcyIsIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxvQ0FBb0M7QUFDTTtBQUNnQztBQUM1QztBQUN1QjtBQUNNO0FBa0JuRCxNQUFNSyxpQkFBaUIsQ0FBQyxFQUFDQyxVQUFTLEVBQUVDLE9BQU0sRUFBaUIsR0FBSztJQUNwRSxNQUFNLENBQUNDLFdBQVdDLFVBQVVDLFNBQVMsR0FBR1QsdUZBQWVBO0lBQ3ZELE1BQU0sQ0FBQ1UsZUFBZUMsaUJBQWlCLEdBQUdWLCtDQUFRQSxDQUFVSTtJQUU1RCxNQUFNTyxrQkFBa0IsSUFBTTtRQUMxQlYsa0VBQVdBLENBQUM7WUFBQ0k7UUFBTSxHQUNsQk8sSUFBSSxDQUFDLENBQUNDLE1BQVE7WUFDWCxJQUFJQSxRQUFRLElBQUksRUFBRTtnQkFDZEgsaUJBQWlCLElBQU1HO1lBQzNCLENBQUM7UUFDTDtJQUNKO0lBRUEsTUFBTUMsbUNBQ0YsdUVBQUNDO1FBQUlDLE9BQU9SLFdBQVcsT0FBTyxJQUFJO1FBQUVTLFFBQVFULFdBQVcsT0FBTyxJQUFJO1FBQUVVLFNBQVE7UUFBWUMsTUFBSztRQUFPQyxPQUFNOzswQkFDMUcsdUVBQUNDO2dCQUFLQyxHQUFFO2dCQUF3V0MsUUFBTztnQkFBb0JDLGdCQUFhO2dCQUFJQyxrQkFBZTtnQkFBUUMsbUJBQWdCOzs7Ozs7MEJBQ25jLHVFQUFDQztnQkFBS0MsSUFBRztnQkFBeUJULE1BQUs7MEJBQ3ZDLHFGQUFDRTtvQkFBS0MsR0FBRTs7Ozs7Ozs7Ozs7MEJBRVIsdUVBQUNEO2dCQUFLQyxHQUFFO2dCQUEwekRILE1BQUs7Z0JBQW9CUSxNQUFLOzs7Ozs7MEJBQ2gyRCx1RUFBQ047Z0JBQUtDLEdBQUU7Z0JBQXdXQyxRQUFPO2dCQUFvQkMsZ0JBQWE7Z0JBQUlDLGtCQUFlO2dCQUFRQyxtQkFBZ0I7Ozs7OzswQkFDbmMsdUVBQUNDO2dCQUFLQyxJQUFHO2dCQUF5QlQsTUFBSzswQkFDdkMscUZBQUNFO29CQUFLQyxHQUFFOzs7Ozs7Ozs7OzswQkFFUix1RUFBQ0Q7Z0JBQUtDLEdBQUU7Z0JBQTB6REgsTUFBSztnQkFBb0JRLE1BQUs7Ozs7Ozs7Ozs7OztJQUlwMkQsTUFBTUUsZ0NBQ0YsdUVBQUNkO1FBQUlDLE9BQU9SLFdBQVcsT0FBTyxJQUFJO1FBQUVTLFFBQVFULFdBQVcsT0FBTyxJQUFJO1FBQUVVLFNBQVE7UUFBWUMsTUFBSztRQUFPQyxPQUFNOzswQkFDMUcsdUVBQUNDO2dCQUFLQyxHQUFFO2dCQUF3bkJILE1BQUs7Ozs7OzswQkFDcm9CLHVFQUFDRTtnQkFBS0MsR0FBRTtnQkFBb1lILE1BQUs7Ozs7Ozs7Ozs7OztJQUlyWixxQkFDSSx1RUFBQ1c7UUFBSUMsU0FBU3BCO1FBQWlCYixLQUFLa0MsY0FBYztZQUFDeEI7UUFBUTtrQkFDdERDLGdCQUFnQm9CLGtCQUFrQmYsa0JBQWtCOzs7Ozs7QUFHakUsRUFBQztBQUVNLE1BQU1tQixvQkFBb0IsQ0FBQyxFQUFDN0IsVUFBUyxFQUFFQyxPQUFNLEVBQWlCLEdBQUs7SUFDdEUsTUFBTSxDQUFDQyxXQUFXQyxVQUFVQyxTQUFTLEdBQUdULHVGQUFlQTtJQUN2RCxNQUFNLENBQUNtQyxrQkFBa0JDLG9CQUFvQixHQUFHbkMsK0NBQVFBLENBQVVJO0lBRWxFLE1BQU1nQyxxQkFBcUIsSUFBTTtRQUM3QmxDLHdFQUFjQSxDQUFDO1lBQUNHO1FBQU0sR0FDckJPLElBQUksQ0FBQyxDQUFDQyxNQUFRO1lBQ1gsSUFBSUEsUUFBUSxJQUFJLEVBQUU7Z0JBQ2RzQixvQkFBb0IsSUFBTXRCO1lBQzlCLENBQUM7UUFDTDtJQUNKO0lBRUEsTUFBTXdCLG1DQUNGLHVFQUFDdEI7UUFBSUMsT0FBT1IsV0FBVyxPQUFPLElBQUk7UUFBRVMsUUFBUVQsV0FBVyxPQUFPLElBQUk7UUFBRVUsU0FBUTtRQUFZQyxNQUFLO1FBQU9DLE9BQU07OzBCQUMxRyx1RUFBQ0M7Z0JBQUtDLEdBQUU7Z0JBQStXSCxNQUFLOzs7Ozs7MEJBQzVYLHVFQUFDRTtnQkFBS0MsR0FBRTtnQkFBa1hILE1BQUs7Ozs7Ozs7Ozs7OztJQUluWSxNQUFNbUIsZ0NBQ0YsdUVBQUN2QjtRQUFJQyxPQUFPUixXQUFXLE9BQU8sSUFBSTtRQUFFUyxRQUFRVCxXQUFXLE9BQU8sSUFBSTtRQUFFVSxTQUFRO1FBQVlDLE1BQUs7UUFBT0MsT0FBTTtrQkFDMUcscUZBQUNDO1lBQUtDLEdBQUU7WUFBdWFILE1BQUs7Ozs7Ozs7Ozs7O0lBSXhiLHFCQUNJLHVFQUFDVztRQUFJQyxTQUFTSztRQUFvQnRDLEtBQUtrQyxjQUFjO1lBQUN4QjtRQUFROztZQUN6RDBCLG1CQUFtQkksa0JBQWtCRCxrQkFBa0I7MEJBQ3hELHVFQUFDRTtnQkFBS3pDLEtBQUtBLCtDQUFHLENBQUMsa0JBQWtCLENBQUM7MEJBQUdvQyxtQkFBbUIsT0FBTyxPQUFPOzs7Ozs7Ozs7Ozs7QUFJbEYsRUFBQztBQUdNLE1BQU1NLGFBQWEsQ0FBQyxFQUFDbkMsT0FBTSxFQUFFb0MsYUFBWSxFQUFzQyxHQUFLO0lBQ3ZGLE1BQU0sQ0FBQ25DLFdBQVdDLFVBQVVDLFNBQVMsR0FBR1QsdUZBQWVBO0lBRXZELE1BQU0yQyx3QkFDRix1RUFBQzNCO1FBQUlDLE9BQU9SLFdBQVcsT0FBTyxJQUFJO1FBQUVTLFFBQVFULFdBQVcsT0FBTyxJQUFJO1FBQUVVLFNBQVE7UUFBWUMsTUFBSztRQUFPQyxPQUFNO2tCQUMxRyxxRkFBQ0M7WUFBS0MsR0FBRTtZQUFpL0JILE1BQUs7Ozs7Ozs7Ozs7O0lBSWxnQyxNQUFNd0Isc0JBQXNCLElBQU07UUFDOUJGLGFBQWEsSUFBTSxJQUFJO0lBQzNCO0lBQ0EscUJBQ0ksdUVBQUNYO1FBQUloQyxLQUFLa0MsY0FBYztZQUFDeEI7UUFBUTtRQUFJdUIsU0FBU1k7a0JBQ3pDRDs7Ozs7O0FBR2IsRUFBQztBQUVELE1BQU1WLGdCQUFnQixDQUFDLEVBQUN4QixTQUFRLEVBQXVCLEdBQUs7SUFDeEQsT0FBT1YsK0NBQUcsQ0FBQztzQkFDTyxFQUFFVSxXQUFXLFNBQVMsTUFBTSxDQUFDOzs7Ozs7SUFNL0MsQ0FBQztBQUNMO0FBSUEsTUFBTW9DLFlBQVk5QywrQ0FBRyxDQUFDOztBQUV0QixDQUFDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vY2xpZW50Ly4vc3JjL2NvbXBvbmVudHMvYm9va0RldGFpbC9pY29ucy50c3g/Y2FhZSJdLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeEltcG9ydFNvdXJjZSBAZW1vdGlvbi9yZWFjdCAqL1xyXG5pbXBvcnQgeyBqc3gsIGNzcyB9IGZyb20gXCJAZW1vdGlvbi9yZWFjdFwiO1xyXG5pbXBvcnQgeyB1c2VJc1Jlc3BvbnNpdmUgfSBmcm9tIFwiQC9jb21wb25lbnRzL1Jlc3BvbnNpdmUvdXNlSXNSZXNwb25zaXZlXCI7XHJcbmltcG9ydCB7dXNlU3RhdGV9IGZyb20gJ3JlYWN0J1xyXG5pbXBvcnQgeyBwdXRCb29rbWFyayB9IGZyb20gXCJAL2FwaS9ib29rL3B1dEJvb2ttYXJrXCI7XHJcbmltcG9ydCB7IHB1dEhhc0JlZW5SZWFkIH0gZnJvbSBcIkAvYXBpL2Jvb2svcHV0SGFzQmVlblJlYWRcIjtcclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuXHJcblxyXG5cclxuaW50ZXJmYWNlIFRvZ2dsZUJ0blByb3BzIHtcclxuICAgIGlzQ2xpY2tlZDogYm9vbGVhbjtcclxuICAgIGJvb2tJZDogbnVtYmVyO1xyXG59XHJcblxyXG4gZXhwb3J0IGNvbnN0IEJvb2ttYXJrVG9nZ2xlID0gKHtpc0NsaWNrZWQsIGJvb2tJZH06IFRvZ2dsZUJ0blByb3BzKSA9PiB7XHJcbiAgICBjb25zdCBbaXNEZXNrVG9wLCBpc1RhYmxldCwgaXNNb2JpbGVdID0gdXNlSXNSZXNwb25zaXZlKCk7XHJcbiAgICBjb25zdCBbYm9va21hcmtWYWx1ZSwgc2V0Qm9va21hcmtWYWx1ZV0gPSB1c2VTdGF0ZTxib29sZWFuPihpc0NsaWNrZWQpXHJcblxyXG4gICAgY29uc3QgYm9va21hcmtIYW5kbGVyID0gKCkgPT4ge1xyXG4gICAgICAgIHB1dEJvb2ttYXJrKHtib29rSWR9KVxyXG4gICAgICAgIC50aGVuKChyZXMpID0+IHtcclxuICAgICAgICAgICAgaWYgKHJlcyAhPT0gbnVsbCkge1xyXG4gICAgICAgICAgICAgICAgc2V0Qm9va21hcmtWYWx1ZSgoKSA9PiByZXMpXHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICB9KVxyXG4gICAgfVxyXG5cclxuICAgIGNvbnN0IGJvb2ttYXJrTm90Q2xpY2tlZCA9IChcclxuICAgICAgICA8c3ZnIHdpZHRoPXtpc01vYmlsZSA/ICczMicgOiAnNDInfSBoZWlnaHQ9e2lzTW9iaWxlID8gJzMyJyA6ICc0Mid9IHZpZXdCb3g9XCIwIDAgNDIgNDJcIiBmaWxsPVwibm9uZVwiIHhtbG5zPVwiaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmdcIj5cclxuICAgICAgICA8cGF0aCBkPVwiTTI3LjMgNDAuNUgxNC43QzkuNTk3OTQgNDAuNSA2LjQxNjcyIDM5LjQ3MDQgNC40NzMxNiAzNy41MjY4QzIuNTI5NiAzNS41ODMzIDEuNSAzMi40MDIxIDEuNSAyNy4zVjE0LjdDMS41IDkuNTk3OTQgMi41Mjk2IDYuNDE2NzIgNC40NzMxNiA0LjQ3MzE2QzYuNDE2NzIgMi41Mjk2IDkuNTk3OTQgMS41IDE0LjcgMS41SDI3LjNDMzIuNDAyMSAxLjUgMzUuNTgzMyAyLjUyOTYgMzcuNTI2OCA0LjQ3MzE2QzM5LjQ3MDQgNi40MTY3MiA0MC41IDkuNTk3OTQgNDAuNSAxNC43VjI3LjNDNDAuNSAzMi40MDIxIDM5LjQ3MDQgMzUuNTgzMyAzNy41MjY4IDM3LjUyNjhDMzUuNTgzMyAzOS40NzA0IDMyLjQwMjEgNDAuNSAyNy4zIDQwLjVaXCIgc3Ryb2tlPVwidmFyKC0tdGV4dC1jb2xvcilcIiBzdHJva2Utd2lkdGg9XCIzXCIgc3Ryb2tlLWxpbmVjYXA9XCJyb3VuZFwiIHN0cm9rZS1saW5lam9pbj1cInJvdW5kXCIvPlxyXG4gICAgICAgIDxtYXNrIGlkPVwicGF0aC0yLWluc2lkZS0xXzkwXzMwOVwiIGZpbGw9XCJ3aGl0ZVwiPlxyXG4gICAgICAgIDxwYXRoIGQ9XCJNMzEuNSAwLjkyMzg4NVYyMS44ODE4QzMxLjUgMjYuMDE4OCAyOC41MzkgMjcuNjM1OCAyNC45MDYgMjUuNDUxOEwyMi4xMzQgMjMuNzkyOEMyMS41MDQgMjMuNDE0OCAyMC40OTYgMjMuNDE0OCAxOS44NjYgMjMuNzkyOEwxNy4wOTQgMjUuNDUxOEMxMy40NjEgMjcuNjE0OCAxMC41IDI2LjAxODggMTAuNSAyMS44ODE4VjAuOTIzODg1XCIvPlxyXG4gICAgICAgIDwvbWFzaz5cclxuICAgICAgICA8cGF0aCBkPVwiTTM0LjUgMC45MjM4ODVDMzQuNSAtMC43MzI5NjkgMzMuMTU2OSAtMi4wNzYxMSAzMS41IC0yLjA3NjExQzI5Ljg0MzEgLTIuMDc2MTEgMjguNSAtMC43MzI5NjkgMjguNSAwLjkyMzg4NUgzNC41Wk0yNC45MDYgMjUuNDUxOEwyNi40NTE3IDIyLjg4MDZMMjYuNDQ2NiAyMi44Nzc2TDI0LjkwNiAyNS40NTE4Wk0yMi4xMzQgMjMuNzkyOEwyMC41OTA1IDI2LjM2NTNMMjAuNTkzNCAyNi4zNjdMMjIuMTM0IDIzLjc5MjhaTTE5Ljg2NiAyMy43OTI4TDIxLjQwNjYgMjYuMzY3TDIxLjQwOTUgMjYuMzY1M0wxOS44NjYgMjMuNzkyOFpNMTcuMDk0IDI1LjQ1MThMMTguNjI4NyAyOC4wMjk1TDE4LjYzNDYgMjguMDI2TDE3LjA5NCAyNS40NTE4Wk0xMy41IDAuOTIzODg1QzEzLjUgLTAuNzMyOTY5IDEyLjE1NjkgLTIuMDc2MTEgMTAuNSAtMi4wNzYxMUM4Ljg0MzE1IC0yLjA3NjExIDcuNSAtMC43MzI5NjkgNy41IDAuOTIzODg1SDEzLjVaTTI4LjUgMC45MjM4ODVWMjEuODgxOEgzNC41VjAuOTIzODg1SDI4LjVaTTI4LjUgMjEuODgxOEMyOC41IDIyLjU3MDMgMjguMzc1NSAyMi45ODU3IDI4LjI3NDEgMjMuMTk3OEMyOC4yMjQ5IDIzLjMwMDcgMjguMTgyNyAyMy4zNTM0IDI4LjE2MjMgMjMuMzc1NkMyOC4xNDMyIDIzLjM5NjQgMjguMTM0MiAyMy40MDA1IDI4LjEzNDEgMjMuNDAwNkMyOC4xMzM3IDIzLjQwMDggMjguMTE4NyAyMy40MDk2IDI4LjA3NjUgMjMuNDE2OUMyOC4wMzI0IDIzLjQyNDUgMjcuOTQ3MSAyMy40MzI0IDI3LjgxMjUgMjMuNDE2OUMyNy41MzYxIDIzLjM4NSAyNy4wNzYgMjMuMjU2IDI2LjQ1MTcgMjIuODgwNkwyMy4zNjAzIDI4LjAyM0MyNS42OTE5IDI5LjQyNDYgMjguNTIzNiAzMC4wMTYyIDMwLjk5NjcgMjguNjczN0MzMy41IDI3LjMxNDggMzQuNSAyNC41OTY2IDM0LjUgMjEuODgxOEgyOC41Wk0yNi40NDY2IDIyLjg3NzZMMjMuNjc0NiAyMS4yMTg2TDIwLjU5MzQgMjYuMzY3TDIzLjM2NTQgMjguMDI2TDI2LjQ0NjYgMjIuODc3NlpNMjMuNjc3NSAyMS4yMjAzQzIyLjc5NTEgMjAuNjkwOSAyMS44MjE4IDIwLjUwOTMgMjEgMjAuNTA5M0MyMC4xNzgyIDIwLjUwOTMgMTkuMjA0OSAyMC42OTA5IDE4LjMyMjUgMjEuMjIwM0wyMS40MDk1IDI2LjM2NTNDMjEuMjcgMjYuNDQ4OSAyMS4xNjI3IDI2LjQ4MTUgMjEuMTExMiAyNi40OTQxQzIxLjA1NjkgMjYuNTA3NCAyMS4wMjEyIDI2LjUwOTMgMjEgMjYuNTA5M0MyMC45Nzg4IDI2LjUwOTMgMjAuOTQzMSAyNi41MDc0IDIwLjg4ODggMjYuNDk0MUMyMC44MzczIDI2LjQ4MTUgMjAuNzMgMjYuNDQ4OSAyMC41OTA1IDI2LjM2NTNMMjMuNjc3NSAyMS4yMjAzWk0xOC4zMjU0IDIxLjIxODZMMTUuNTUzNCAyMi44Nzc2TDE4LjYzNDYgMjguMDI2TDIxLjQwNjYgMjYuMzY3TDE4LjMyNTQgMjEuMjE4NlpNMTUuNTU5MyAyMi44NzQxQzE0LjkzMzkgMjMuMjQ2NCAxNC40NzE0IDIzLjM3NTYgMTQuMTkxMSAyMy40MDc2QzE0LjA1NDYgMjMuNDIzMSAxMy45Njc1IDIzLjQxNTMgMTMuOTIxOCAyMy40MDc0QzEzLjg3OCAyMy4zOTk4IDEzLjg2MjEgMjMuMzkwNyAxMy44NjE0IDIzLjM5MDNDMTMuODYxMSAyMy4zOTAxIDEzLjg1MjYgMjMuMzg2MyAxMy44MzQzIDIzLjM2NjRDMTMuODE0NyAyMy4zNDUyIDEzLjc3MzMgMjMuMjkzOCAxMy43MjQ3IDIzLjE5MjRDMTMuNjI0NSAyMi45ODMzIDEzLjUgMjIuNTcwNCAxMy41IDIxLjg4MThINy41QzcuNSAyNC41OTg2IDguNTAxNzEgMjcuMzEzMyAxMS4wMDc4IDI4LjY2ODNDMTMuNDc1OCAzMC4wMDI2IDE2LjMwMTEgMjkuNDE1MyAxOC42Mjg3IDI4LjAyOTVMMTUuNTU5MyAyMi44NzQxWk0xMy41IDIxLjg4MThWMC45MjM4ODVINy41VjIxLjg4MThIMTMuNVpcIiBmaWxsPVwidmFyKC0tdGV4dC1jb2xvcilcIiBtYXNrPVwidXJsKCNwYXRoLTItaW5zaWRlLTFfOTBfMzA5KVwiLz5cclxuICAgICAgICA8cGF0aCBkPVwiTTI3LjMgNDAuNUgxNC43QzkuNTk3OTQgNDAuNSA2LjQxNjcyIDM5LjQ3MDQgNC40NzMxNiAzNy41MjY4QzIuNTI5NiAzNS41ODMzIDEuNSAzMi40MDIxIDEuNSAyNy4zVjE0LjdDMS41IDkuNTk3OTQgMi41Mjk2IDYuNDE2NzIgNC40NzMxNiA0LjQ3MzE2QzYuNDE2NzIgMi41Mjk2IDkuNTk3OTQgMS41IDE0LjcgMS41SDI3LjNDMzIuNDAyMSAxLjUgMzUuNTgzMyAyLjUyOTYgMzcuNTI2OCA0LjQ3MzE2QzM5LjQ3MDQgNi40MTY3MiA0MC41IDkuNTk3OTQgNDAuNSAxNC43VjI3LjNDNDAuNSAzMi40MDIxIDM5LjQ3MDQgMzUuNTgzMyAzNy41MjY4IDM3LjUyNjhDMzUuNTgzMyAzOS40NzA0IDMyLjQwMjEgNDAuNSAyNy4zIDQwLjVaXCIgc3Ryb2tlPVwidmFyKC0tdGV4dC1jb2xvcilcIiBzdHJva2Utd2lkdGg9XCIzXCIgc3Ryb2tlLWxpbmVjYXA9XCJyb3VuZFwiIHN0cm9rZS1saW5lam9pbj1cInJvdW5kXCIvPlxyXG4gICAgICAgIDxtYXNrIGlkPVwicGF0aC01LWluc2lkZS0yXzkwXzMwOVwiIGZpbGw9XCJ3aGl0ZVwiPlxyXG4gICAgICAgIDxwYXRoIGQ9XCJNMzEuNSAwLjkyMzg4NVYyMS44ODE4QzMxLjUgMjYuMDE4OCAyOC41MzkgMjcuNjM1OCAyNC45MDYgMjUuNDUxOEwyMi4xMzQgMjMuNzkyOEMyMS41MDQgMjMuNDE0OCAyMC40OTYgMjMuNDE0OCAxOS44NjYgMjMuNzkyOEwxNy4wOTQgMjUuNDUxOEMxMy40NjEgMjcuNjE0OCAxMC41IDI2LjAxODggMTAuNSAyMS44ODE4VjAuOTIzODg1XCIvPlxyXG4gICAgICAgIDwvbWFzaz5cclxuICAgICAgICA8cGF0aCBkPVwiTTM0LjUgMC45MjM4ODVDMzQuNSAtMC43MzI5NjkgMzMuMTU2OSAtMi4wNzYxMSAzMS41IC0yLjA3NjExQzI5Ljg0MzEgLTIuMDc2MTEgMjguNSAtMC43MzI5NjkgMjguNSAwLjkyMzg4NUgzNC41Wk0yNC45MDYgMjUuNDUxOEwyNi40NTE3IDIyLjg4MDZMMjYuNDQ2NiAyMi44Nzc2TDI0LjkwNiAyNS40NTE4Wk0yMi4xMzQgMjMuNzkyOEwyMC41OTA1IDI2LjM2NTNMMjAuNTkzNCAyNi4zNjdMMjIuMTM0IDIzLjc5MjhaTTE5Ljg2NiAyMy43OTI4TDIxLjQwNjYgMjYuMzY3TDIxLjQwOTUgMjYuMzY1M0wxOS44NjYgMjMuNzkyOFpNMTcuMDk0IDI1LjQ1MThMMTguNjI4NyAyOC4wMjk1TDE4LjYzNDYgMjguMDI2TDE3LjA5NCAyNS40NTE4Wk0xMy41IDAuOTIzODg1QzEzLjUgLTAuNzMyOTY5IDEyLjE1NjkgLTIuMDc2MTEgMTAuNSAtMi4wNzYxMUM4Ljg0MzE1IC0yLjA3NjExIDcuNSAtMC43MzI5NjkgNy41IDAuOTIzODg1SDEzLjVaTTI4LjUgMC45MjM4ODVWMjEuODgxOEgzNC41VjAuOTIzODg1SDI4LjVaTTI4LjUgMjEuODgxOEMyOC41IDIyLjU3MDMgMjguMzc1NSAyMi45ODU3IDI4LjI3NDEgMjMuMTk3OEMyOC4yMjQ5IDIzLjMwMDcgMjguMTgyNyAyMy4zNTM0IDI4LjE2MjMgMjMuMzc1NkMyOC4xNDMyIDIzLjM5NjQgMjguMTM0MiAyMy40MDA1IDI4LjEzNDEgMjMuNDAwNkMyOC4xMzM3IDIzLjQwMDggMjguMTE4NyAyMy40MDk2IDI4LjA3NjUgMjMuNDE2OUMyOC4wMzI0IDIzLjQyNDUgMjcuOTQ3MSAyMy40MzI0IDI3LjgxMjUgMjMuNDE2OUMyNy41MzYxIDIzLjM4NSAyNy4wNzYgMjMuMjU2IDI2LjQ1MTcgMjIuODgwNkwyMy4zNjAzIDI4LjAyM0MyNS42OTE5IDI5LjQyNDYgMjguNTIzNiAzMC4wMTYyIDMwLjk5NjcgMjguNjczN0MzMy41IDI3LjMxNDggMzQuNSAyNC41OTY2IDM0LjUgMjEuODgxOEgyOC41Wk0yNi40NDY2IDIyLjg3NzZMMjMuNjc0NiAyMS4yMTg2TDIwLjU5MzQgMjYuMzY3TDIzLjM2NTQgMjguMDI2TDI2LjQ0NjYgMjIuODc3NlpNMjMuNjc3NSAyMS4yMjAzQzIyLjc5NTEgMjAuNjkwOSAyMS44MjE4IDIwLjUwOTMgMjEgMjAuNTA5M0MyMC4xNzgyIDIwLjUwOTMgMTkuMjA0OSAyMC42OTA5IDE4LjMyMjUgMjEuMjIwM0wyMS40MDk1IDI2LjM2NTNDMjEuMjcgMjYuNDQ4OSAyMS4xNjI3IDI2LjQ4MTUgMjEuMTExMiAyNi40OTQxQzIxLjA1NjkgMjYuNTA3NCAyMS4wMjEyIDI2LjUwOTMgMjEgMjYuNTA5M0MyMC45Nzg4IDI2LjUwOTMgMjAuOTQzMSAyNi41MDc0IDIwLjg4ODggMjYuNDk0MUMyMC44MzczIDI2LjQ4MTUgMjAuNzMgMjYuNDQ4OSAyMC41OTA1IDI2LjM2NTNMMjMuNjc3NSAyMS4yMjAzWk0xOC4zMjU0IDIxLjIxODZMMTUuNTUzNCAyMi44Nzc2TDE4LjYzNDYgMjguMDI2TDIxLjQwNjYgMjYuMzY3TDE4LjMyNTQgMjEuMjE4NlpNMTUuNTU5MyAyMi44NzQxQzE0LjkzMzkgMjMuMjQ2NCAxNC40NzE0IDIzLjM3NTYgMTQuMTkxMSAyMy40MDc2QzE0LjA1NDYgMjMuNDIzMSAxMy45Njc1IDIzLjQxNTMgMTMuOTIxOCAyMy40MDc0QzEzLjg3OCAyMy4zOTk4IDEzLjg2MjEgMjMuMzkwNyAxMy44NjE0IDIzLjM5MDNDMTMuODYxMSAyMy4zOTAxIDEzLjg1MjYgMjMuMzg2MyAxMy44MzQzIDIzLjM2NjRDMTMuODE0NyAyMy4zNDUyIDEzLjc3MzMgMjMuMjkzOCAxMy43MjQ3IDIzLjE5MjRDMTMuNjI0NSAyMi45ODMzIDEzLjUgMjIuNTcwNCAxMy41IDIxLjg4MThINy41QzcuNSAyNC41OTg2IDguNTAxNzEgMjcuMzEzMyAxMS4wMDc4IDI4LjY2ODNDMTMuNDc1OCAzMC4wMDI2IDE2LjMwMTEgMjkuNDE1MyAxOC42Mjg3IDI4LjAyOTVMMTUuNTU5MyAyMi44NzQxWk0xMy41IDIxLjg4MThWMC45MjM4ODVINy41VjIxLjg4MThIMTMuNVpcIiBmaWxsPVwidmFyKC0tdGV4dC1jb2xvcilcIiBtYXNrPVwidXJsKCNwYXRoLTUtaW5zaWRlLTJfOTBfMzA5KVwiLz5cclxuICAgICAgICA8L3N2Zz5cclxuICAgIClcclxuXHJcbiAgICBjb25zdCBib29rbWFya0NsaWNrZWQgPSAoXHJcbiAgICAgICAgPHN2ZyB3aWR0aD17aXNNb2JpbGUgPyAnMzInIDogJzQyJ30gaGVpZ2h0PXtpc01vYmlsZSA/ICczMicgOiAnNDInfSB2aWV3Qm94PVwiMCAwIDQyIDQyXCIgZmlsbD1cIm5vbmVcIiB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnXCI+XHJcbiAgICAgICAgPHBhdGggZD1cIk00Mi4wMDA0IDEyLjIwMDhWMjkuNzk4OUM0Mi4wMDA0IDM2LjU0IDM2LjU0MDQgNDIgMjkuNzk5MyA0MkgxMi4yMDExQzUuNDYwMDUgNDIgMCAzNi41NCAwIDI5Ljc5ODlWMTIuMjAwOEMwIDYuOTcxNzIgMi4xNDIwMiAzLjE3MDY4IDUuOTQzMDYgMS4zMjI2NkM3LjMyOTA3IDAuNjUwNjU0IDguOTI1MDkgMS43MDA2NiA4LjkyNTA5IDMuMjMzNjhWMjEuODgxOEM4LjkyNTA5IDI0LjM4MDggOS44OTExIDI2LjM3NTggMTEuNjM0MSAyNy4zODM5QzEzLjM5ODEgMjguMzcwOSAxNS42MjQyIDI4LjE2MDkgMTcuODkyMiAyNi43OTU5TDIwLjYyMjIgMjUuMTU3OEMyMC43OTAyIDI1LjA3MzggMjEuMjEwMiAyNS4wNzM4IDIxLjMzNjIgMjUuMTM2OEwyNC4xMDgyIDI2Ljc5NTlDMjUuNjIwMyAyNy42OTg5IDI2LjkyMjMgMjcuOTkyOSAyNy45NzIzIDI3Ljk5MjlDMjkuMDY0MyAyNy45OTI5IDI5LjkwNDMgMjcuNjU2OSAzMC40MDgzIDI3LjM2MjlDMzIuMTA5MyAyNi4zNzU5IDMzLjA3NTMgMjQuMzgwOCAzMy4wNzUzIDIxLjg4MThWMy4yMzM2OEMzMy4wNzUzIDEuNzAwNjYgMzQuNjkyMyAwLjY1MDY1NCAzNi4wNTc0IDEuMzIyNjZDMzkuODU4NCAzLjE3MDY4IDQyLjAwMDQgNi45NzE3MiA0Mi4wMDA0IDEyLjIwMDhaXCIgZmlsbD1cInZhcigtLXRleHQtY29sb3IpXCIvPlxyXG4gICAgICAgIDxwYXRoIGQ9XCJNMjcuODI0NCAwQzI4Ljk3OTQgMCAyOS45MjQ0IDAuOTQ1MDEgMjkuOTI0NCAyLjEwMDAyVjIxLjg4MjJDMjkuOTI0NCAyMy4yMjYyIDI5LjUyNTQgMjQuMjM0MiAyOC44MzI0IDI0LjYzMzJDMjguMTE4NCAyNS4wNTMzIDI2Ljk4NDQgMjQuODQzMyAyNS43MjQ0IDI0LjA4NzJMMjIuOTUyMyAyMi40MjgyQzIxLjg4MTMgMjEuNzc3MiAyMC4xMTczIDIxLjc3NzIgMTkuMDQ2MyAyMi40MjgyTDE2LjI3NDMgMjQuMDg3MkMxNS4wMTQyIDI0Ljg0MzMgMTMuODgwMiAyNS4wMzIzIDEzLjE2NjIgMjQuNjMzMkMxMi40NzMyIDI0LjIzNDIgMTIuMDc0MiAyMy4yMjYyIDEyLjA3NDIgMjEuODgyMlYyLjEwMDAyQzEyLjA3NDIgMC45NDUwMSAxMy4wMTkyIDAgMTQuMTc0MiAwSDI3LjgyNDRaXCIgZmlsbD1cInZhcigtLXRleHQtY29sb3IpXCIvPlxyXG4gICAgICAgIDwvc3ZnPlxyXG4gICAgKVxyXG5cclxuICAgIHJldHVybiAoXHJcbiAgICAgICAgPGRpdiBvbkNsaWNrPXtib29rbWFya0hhbmRsZXJ9IGNzcz17YnRuV3JhcHBlckNTUyh7aXNNb2JpbGV9KX0+XHJcbiAgICAgICAgICAgIHtib29rbWFya1ZhbHVlID8gYm9va21hcmtDbGlja2VkIDogYm9va21hcmtOb3RDbGlja2VkfVxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgKVxyXG59XHJcblxyXG5leHBvcnQgY29uc3QgSGFzQmVlblJlYWRUb2dnbGUgPSAoe2lzQ2xpY2tlZCwgYm9va0lkfTogVG9nZ2xlQnRuUHJvcHMpID0+IHtcclxuICAgIGNvbnN0IFtpc0Rlc2tUb3AsIGlzVGFibGV0LCBpc01vYmlsZV0gPSB1c2VJc1Jlc3BvbnNpdmUoKTtcclxuICAgIGNvbnN0IFtoYXNCZWVuUmVhZFZhbHVlLCBzZXRIYXNCZWVuUmVhZFZhbHVlXSA9IHVzZVN0YXRlPGJvb2xlYW4+KGlzQ2xpY2tlZClcclxuXHJcbiAgICBjb25zdCBoYXNCZWVuUmVhZEhhbmRsZXIgPSAoKSA9PiB7XHJcbiAgICAgICAgcHV0SGFzQmVlblJlYWQoe2Jvb2tJZH0pXHJcbiAgICAgICAgLnRoZW4oKHJlcykgPT4ge1xyXG4gICAgICAgICAgICBpZiAocmVzICE9PSBudWxsKSB7XHJcbiAgICAgICAgICAgICAgICBzZXRIYXNCZWVuUmVhZFZhbHVlKCgpID0+IHJlcylcclxuICAgICAgICAgICAgfVxyXG4gICAgICAgIH0pXHJcbiAgICB9XHJcblxyXG4gICAgY29uc3QgY2hlY2tib3hOb3RDbGlja2VkID0gKFxyXG4gICAgICAgIDxzdmcgd2lkdGg9e2lzTW9iaWxlID8gJzMyJyA6ICc0Mid9IGhlaWdodD17aXNNb2JpbGUgPyAnMzInIDogJzQyJ30gdmlld0JveD1cIjAgMCA0MyA0MlwiIGZpbGw9XCJub25lXCIgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1wiPlxyXG4gICAgICAgIDxwYXRoIGQ9XCJNMjEuMDIxNSA0MkM5LjQzNzMgNDIgMC4wMjE0ODQ0IDMyLjU4NDIgMC4wMjE0ODQ0IDIxQzAuMDIxNDg0NCA5LjQxNTgxIDkuNDM3MyAwIDIxLjAyMTUgMEMzMi42MDU3IDAgNDIuMDIxNSA5LjQxNTgxIDQyLjAyMTUgMjFDNDIuMDIxNSAzMi41ODQyIDMyLjYwNTcgNDIgMjEuMDIxNSA0MlpNMjEuMDIxNSAyLjkzMDIzQzExLjA1ODcgMi45MzAyMyAyLjk1MTcyIDExLjAzNzIgMi45NTE3MiAyMUMyLjk1MTcyIDMwLjk2MjggMTEuMDU4NyAzOS4wNjk4IDIxLjAyMTUgMzkuMDY5OEMzMC45ODQzIDM5LjA2OTggMzkuMDkxMyAzMC45NjI4IDM5LjA5MTMgMjFDMzkuMDkxMyAxMS4wMzcyIDMwLjk4NDMgMi45MzAyMyAyMS4wMjE1IDIuOTMwMjNaXCIgZmlsbD1cInZhcigtLXRleHQtY29sb3IpXCIvPlxyXG4gICAgICAgIDxwYXRoIGQ9XCJNMTguMjQ2NSAyNy45OTM3QzE3Ljg1NTggMjcuOTkzNyAxNy40ODQ3IDI3LjgzNzQgMTcuMjExMiAyNy41NjM5TDExLjY4MjcgMjIuMDM1NUMxMS4xMTYyIDIxLjQ2OSAxMS4xMTYyIDIwLjUzMTQgMTEuNjgyNyAxOS45NjQ4QzEyLjI0OTIgMTkuMzk4MyAxMy4xODY5IDE5LjM5ODMgMTMuNzUzNCAxOS45NjQ4TDE4LjI0NjUgMjQuNDU3OUwyOC4yODc0IDE0LjQxNjlDMjguODU0IDEzLjg1MDQgMjkuNzkxNiAxMy44NTA0IDMwLjM1ODEgMTQuNDE2OUMzMC45MjQ3IDE0Ljk4MzQgMzAuOTI0NyAxNS45MjExIDMwLjM1ODEgMTYuNDg3NkwxOS4yODE5IDI3LjU2MzlDMTkuMDA4NCAyNy44Mzc0IDE4LjYzNzIgMjcuOTkzNyAxOC4yNDY1IDI3Ljk5MzdaXCIgZmlsbD1cInZhcigtLXRleHQtY29sb3IpXCIvPlxyXG4gICAgICAgIDwvc3ZnPlxyXG4gICAgKVxyXG4gICAgXHJcbiAgICBjb25zdCBjaGVja2JveENsaWNrZWQgPSAoXHJcbiAgICAgICAgPHN2ZyB3aWR0aD17aXNNb2JpbGUgPyAnMzInIDogJzQyJ30gaGVpZ2h0PXtpc01vYmlsZSA/ICczMicgOiAnNDInfSB2aWV3Qm94PVwiMCAwIDQyIDQyXCIgZmlsbD1cIm5vbmVcIiB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnXCI+XHJcbiAgICAgICAgPHBhdGggZD1cIk0yMSAwQzkuNDI5IDAgMCA5LjQyOSAwIDIxQzAgMzIuNTcxIDkuNDI5IDQyIDIxIDQyQzMyLjU3MSA0MiA0MiAzMi41NzEgNDIgMjFDNDIgOS40MjkgMzIuNTcxIDAgMjEgMFpNMzEuMDM4IDE2LjE3TDE5LjEzMSAyOC4wNzdDMTguODM3IDI4LjM3MSAxOC40MzggMjguNTM5IDE4LjAxOCAyOC41MzlDMTcuNTk4IDI4LjUzOSAxNy4xOTkgMjguMzcxIDE2LjkwNSAyOC4wNzdMMTAuOTYyIDIyLjEzNEMxMC4zNTMgMjEuNTI1IDEwLjM1MyAyMC41MTcgMTAuOTYyIDE5LjkwOEMxMS41NzEgMTkuMjk5IDEyLjU3OSAxOS4yOTkgMTMuMTg4IDE5LjkwOEwxOC4wMTggMjQuNzM4TDI4LjgxMiAxMy45NDRDMjkuNDIxIDEzLjMzNSAzMC40MjkgMTMuMzM1IDMxLjAzOCAxMy45NDRDMzEuNjQ3IDE0LjU1MyAzMS42NDcgMTUuNTQgMzEuMDM4IDE2LjE3WlwiIGZpbGw9XCJ2YXIoLS10ZXh0LWNvbG9yKVwiLz5cclxuICAgICAgICA8L3N2Zz5cclxuICAgIClcclxuXHJcbiAgICByZXR1cm4gKFxyXG4gICAgICAgIDxkaXYgb25DbGljaz17aGFzQmVlblJlYWRIYW5kbGVyfSBjc3M9e2J0bldyYXBwZXJDU1Moe2lzTW9iaWxlfSl9PlxyXG4gICAgICAgICAgICB7aGFzQmVlblJlYWRWYWx1ZSA/IGNoZWNrYm94Q2xpY2tlZCA6IGNoZWNrYm94Tm90Q2xpY2tlZH1cclxuICAgICAgICAgICAgPHNwYW4gY3NzPXtjc3NgbWFyZ2luLWxlZnQ6IDE0cHg7YH0+e2hhc0JlZW5SZWFkVmFsdWUgPyAn7J297J2MJyA6ICfsnb3sp4Ag7JWK7J2MJ308L3NwYW4+XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgKVxyXG59XHJcblxyXG5cclxuZXhwb3J0IGNvbnN0IENvbW1lbnRCdG4gPSAoe2Jvb2tJZCwgc3RhdGVIYW5kbGVyfToge2Jvb2tJZDogbnVtYmVyLCBzdGF0ZUhhbmRsZXI6IGFueX0pID0+IHtcclxuICAgIGNvbnN0IFtpc0Rlc2tUb3AsIGlzVGFibGV0LCBpc01vYmlsZV0gPSB1c2VJc1Jlc3BvbnNpdmUoKTtcclxuXHJcbiAgICBjb25zdCBjb21tZW50ID0gKFxyXG4gICAgICAgIDxzdmcgd2lkdGg9e2lzTW9iaWxlID8gJzMyJyA6ICc0Mid9IGhlaWdodD17aXNNb2JpbGUgPyAnMzInIDogJzQyJ30gdmlld0JveD1cIjAgMCA0MyA0MlwiIGZpbGw9XCJub25lXCIgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1wiPlxyXG4gICAgICAgIDxwYXRoIGQ9XCJNMzEuNTE1OCAwSDEwLjUwNTNDNC43MDYzNSAwIDAgNC42ODUzNCAwIDEwLjQ2MzJWMjMuMDI3NVYyNS4xMjg2QzAgMzAuOTA2NSA0LjcwNjM1IDM1LjU5MTggMTAuNTA1MyAzNS41OTE4SDEzLjY1NjhDMTQuMjI0MSAzNS41OTE4IDE0Ljk4MDUgMzUuOTcgMTUuMzM3NyAzNi40MzIyTDE4LjQ4OTIgNDAuNjEzM0MxOS44NzU5IDQyLjQ2MjIgMjIuMTQ1MSA0Mi40NjIyIDIzLjUzMTggNDAuNjEzM0wyNi42ODMzIDM2LjQzMjJDMjcuMDgyNSAzNS45MDcgMjcuNzEyOSAzNS41OTE4IDI4LjM2NDIgMzUuNTkxOEgzMS41MTU4QzM3LjMxNDcgMzUuNTkxOCA0Mi4wMjEgMzAuOTA2NSA0Mi4wMjEgMjUuMTI4NlYxMC40NjMyQzQyLjAyMSA0LjY4NTM0IDM3LjMxNDcgMCAzMS41MTU4IDBaTTEyLjYwNjMgMjEuMDEwNUMxMS40Mjk3IDIxLjAxMDUgMTAuNTA1MyAyMC4wNjUgMTAuNTA1MyAxOC45MDk1QzEwLjUwNTMgMTcuNzUzOSAxMS40NTA3IDE2LjgwODQgMTIuNjA2MyAxNi44MDg0QzEzLjc2MTkgMTYuODA4NCAxNC43MDc0IDE3Ljc1MzkgMTQuNzA3NCAxOC45MDk1QzE0LjcwNzQgMjAuMDY1IDEzLjc4MjkgMjEuMDEwNSAxMi42MDYzIDIxLjAxMDVaTTIxLjAxMDUgMjEuMDEwNUMxOS44MzM5IDIxLjAxMDUgMTguOTA5NSAyMC4wNjUgMTguOTA5NSAxOC45MDk1QzE4LjkwOTUgMTcuNzUzOSAxOS44NTQ5IDE2LjgwODQgMjEuMDEwNSAxNi44MDg0QzIyLjE2NjEgMTYuODA4NCAyMy4xMTE2IDE3Ljc1MzkgMjMuMTExNiAxOC45MDk1QzIzLjExMTYgMjAuMDY1IDIyLjE4NzEgMjEuMDEwNSAyMS4wMTA1IDIxLjAxMDVaTTI5LjQxNDcgMjEuMDEwNUMyOC4yMzgxIDIxLjAxMDUgMjcuMzEzNyAyMC4wNjUgMjcuMzEzNyAxOC45MDk1QzI3LjMxMzcgMTcuNzUzOSAyOC4yNTkxIDE2LjgwODQgMjkuNDE0NyAxNi44MDg0QzMwLjU3MDMgMTYuODA4NCAzMS41MTU4IDE3Ljc1MzkgMzEuNTE1OCAxOC45MDk1QzMxLjUxNTggMjAuMDY1IDMwLjU5MTMgMjEuMDEwNSAyOS40MTQ3IDIxLjAxMDVaXCIgZmlsbD1cInZhcigtLXRleHQtY29sb3IpXCIvPlxyXG4gICAgICAgIDwvc3ZnPlxyXG4gICAgKVxyXG5cclxuICAgIGNvbnN0IG9uQ2xpY2tTdGF0ZUhhbmRsZXIgPSAoKSA9PiB7XHJcbiAgICAgICAgc3RhdGVIYW5kbGVyKCgpID0+IHRydWUpXHJcbiAgICB9XHJcbiAgICByZXR1cm4gKFxyXG4gICAgICAgIDxkaXYgY3NzPXtidG5XcmFwcGVyQ1NTKHtpc01vYmlsZX0pfSBvbkNsaWNrPXtvbkNsaWNrU3RhdGVIYW5kbGVyfT5cclxuICAgICAgICAgICAge2NvbW1lbnR9XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICApXHJcbn1cclxuXHJcbmNvbnN0IGJ0bldyYXBwZXJDU1MgPSAoe2lzTW9iaWxlfSA6IHtpc01vYmlsZTogYm9vbGVhbn0pID0+IHtcclxuICAgIHJldHVybiBjc3NgXHJcbiAgICAgICAgbWFyZ2luLXJpZ2h0OiAke2lzTW9iaWxlID8gJzEycHgnIDogJzI0cHgnfTtcclxuICAgICAgICBtYXJnaW4tYm90dG9tOiAyNHB4O1xyXG4gICAgICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgICAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICBgXHJcbn1cclxuXHJcblxyXG5cclxuY29uc3QgaWNvbkNvbG9yID0gY3NzYFxyXG4gICAgY29sb3I6IHZhcigtLXRleHQtY29sb3IpO1xyXG5gXHJcbiJdLCJuYW1lcyI6WyJjc3MiLCJ1c2VJc1Jlc3BvbnNpdmUiLCJ1c2VTdGF0ZSIsInB1dEJvb2ttYXJrIiwicHV0SGFzQmVlblJlYWQiLCJCb29rbWFya1RvZ2dsZSIsImlzQ2xpY2tlZCIsImJvb2tJZCIsImlzRGVza1RvcCIsImlzVGFibGV0IiwiaXNNb2JpbGUiLCJib29rbWFya1ZhbHVlIiwic2V0Qm9va21hcmtWYWx1ZSIsImJvb2ttYXJrSGFuZGxlciIsInRoZW4iLCJyZXMiLCJib29rbWFya05vdENsaWNrZWQiLCJzdmciLCJ3aWR0aCIsImhlaWdodCIsInZpZXdCb3giLCJmaWxsIiwieG1sbnMiLCJwYXRoIiwiZCIsInN0cm9rZSIsInN0cm9rZS13aWR0aCIsInN0cm9rZS1saW5lY2FwIiwic3Ryb2tlLWxpbmVqb2luIiwibWFzayIsImlkIiwiYm9va21hcmtDbGlja2VkIiwiZGl2Iiwib25DbGljayIsImJ0bldyYXBwZXJDU1MiLCJIYXNCZWVuUmVhZFRvZ2dsZSIsImhhc0JlZW5SZWFkVmFsdWUiLCJzZXRIYXNCZWVuUmVhZFZhbHVlIiwiaGFzQmVlblJlYWRIYW5kbGVyIiwiY2hlY2tib3hOb3RDbGlja2VkIiwiY2hlY2tib3hDbGlja2VkIiwic3BhbiIsIkNvbW1lbnRCdG4iLCJzdGF0ZUhhbmRsZXIiLCJjb21tZW50Iiwib25DbGlja1N0YXRlSGFuZGxlciIsImljb25Db2xvciJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/components/bookDetail/icons.tsx\n");
 
 /***/ }),
 
-/***/ 2805:
+/***/ "./src/pages/books/[bookId].tsx":
+/*!**************************************!*\
+  !*** ./src/pages/books/[bookId].tsx ***!
+  \**************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   \"getServerSideProps\": () => (/* binding */ getServerSideProps)\n/* harmony export */ });\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-dev-runtime */ \"@emotion/react/jsx-dev-runtime\");\n/* harmony import */ var _emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ \"@emotion/react\");\n/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_emotion_react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _api_book_getBookDetail__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/api/book/getBookDetail */ \"./src/api/book/getBookDetail.ts\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var react_icons_bi__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-icons/bi */ \"react-icons/bi\");\n/* harmony import */ var react_icons_bi__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_icons_bi__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _components_bookDetail_icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/bookDetail/icons */ \"./src/components/bookDetail/icons.tsx\");\n/* harmony import */ var _components_bookDetail_TagList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/components/bookDetail/TagList */ \"./src/components/bookDetail/TagList.tsx\");\n/* harmony import */ var _components_bookDetail_RedirButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/bookDetail/RedirButton */ \"./src/components/bookDetail/RedirButton.tsx\");\n/* harmony import */ var _components_bookDetail_StarRating__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/components/bookDetail/StarRating */ \"./src/components/bookDetail/StarRating.tsx\");\n/* harmony import */ var _components_UI_FixedModal_FixedModal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @/components/UI/FixedModal/FixedModal */ \"./src/components/UI/FixedModal/FixedModal.tsx\");\n/* harmony import */ var _components_DetailComment_DetailComment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @/components/DetailComment/DetailComment */ \"./src/components/DetailComment/DetailComment.tsx\");\n/* harmony import */ var _components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @/components/Responsive/useIsResponsive */ \"./src/components/Responsive/useIsResponsive.ts\");\n/* harmony import */ var _api_book_putBookRating__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @/api/book/putBookRating */ \"./src/api/book/putBookRating.ts\");\n/* harmony import */ var _components_bookDetail_PlatformRatingHover__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @/components/bookDetail/PlatformRatingHover */ \"./src/components/bookDetail/PlatformRatingHover.tsx\");\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_api_book_getBookDetail__WEBPACK_IMPORTED_MODULE_2__, _components_bookDetail_icons__WEBPACK_IMPORTED_MODULE_5__, _components_DetailComment_DetailComment__WEBPACK_IMPORTED_MODULE_10__, _api_book_putBookRating__WEBPACK_IMPORTED_MODULE_12__]);\n([_api_book_getBookDetail__WEBPACK_IMPORTED_MODULE_2__, _components_bookDetail_icons__WEBPACK_IMPORTED_MODULE_5__, _components_DetailComment_DetailComment__WEBPACK_IMPORTED_MODULE_10__, _api_book_putBookRating__WEBPACK_IMPORTED_MODULE_12__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);\n/** @jsxImportSource @emotion/react */ \n\n\n\n\n\n\n\n\n\n\n\n\n\nconst BookDetail = ({ bookData  })=>{\n    const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_11__.useIsResponsive)();\n    const [commentModalState, setCommentModalState] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);\n    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(()=>{\n        console.log(bookData);\n    }, []);\n    const desktopDecoration = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: backgroundWrapperCSS,\n        className: \"third-level-el-background\",\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: blurredImgCSS({\n                    thumbnail: bookData.thumbnail,\n                    isDeskTop: isDeskTop\n                })\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                lineNumber: 42,\n                columnNumber: 11\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: verticalGradientCSS({\n                    isDeskTop\n                }),\n                className: \"vertical-gradient\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                lineNumber: 43,\n                columnNumber: 11\n            }, undefined),\n            isDeskTop && /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: horizontalGradientCSS\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                lineNumber: 44,\n                columnNumber: 25\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n        lineNumber: 41,\n        columnNumber: 3\n    }, undefined);\n    const iconBtn = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: iconFunctionCSS,\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_bookDetail_icons__WEBPACK_IMPORTED_MODULE_5__.CommentBtn, {\n                bookId: bookData.bookId,\n                stateHandler: setCommentModalState\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                lineNumber: 50,\n                columnNumber: 7\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_bookDetail_icons__WEBPACK_IMPORTED_MODULE_5__.BookmarkToggle, {\n                bookId: bookData.bookId,\n                isClicked: bookData.bookmark\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                lineNumber: 51,\n                columnNumber: 7\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_bookDetail_icons__WEBPACK_IMPORTED_MODULE_5__.HasBeenReadToggle, {\n                bookId: bookData.bookId,\n                isClicked: bookData.read\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                lineNumber: 55,\n                columnNumber: 7\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n        lineNumber: 49,\n        columnNumber: 5\n    }, undefined);\n    const putBookRatingHandler = (score)=>{\n        (0,_api_book_putBookRating__WEBPACK_IMPORTED_MODULE_12__.putBookRating)({\n            bookId: bookData.bookId,\n            score: score\n        });\n    };\n    const content = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        className: \"content\",\n        css: contentCSS({\n            isDeskTop\n        }),\n        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n            className: \"rowGrid\",\n            css: rowGridCSS({\n                isDeskTop\n            }),\n            children: [\n                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    children: [\n                        isDeskTop === false && iconBtn,\n                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            css: titleCSS({\n                                isDeskTop\n                            }),\n                            children: bookData.title\n                        }, void 0, false, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                            lineNumber: 75,\n                            columnNumber: 19\n                        }, undefined),\n                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            css: scoreDivCSS,\n                            children: [\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"span\", {\n                                    css: myScoreStringCSS,\n                                    children: \"내 평점 :\"\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                                    lineNumber: 78,\n                                    columnNumber: 21\n                                }, undefined),\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                    css: platformRatingWrapperCSS,\n                                    children: [\n                                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_bookDetail_PlatformRatingHover__WEBPACK_IMPORTED_MODULE_13__[\"default\"], {\n                                            href: bookData.href,\n                                            avgGrade: bookData.avgScore,\n                                            grade: bookData.grade.split(\"_\")\n                                        }, void 0, false, {\n                                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                                            lineNumber: 82,\n                                            columnNumber: 23\n                                        }, undefined),\n                                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_icons_bi__WEBPACK_IMPORTED_MODULE_4__.BiChevronRightCircle, {\n                                            css: scoreBtnCSS\n                                        }, void 0, false, {\n                                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                                            lineNumber: 83,\n                                            columnNumber: 23\n                                        }, undefined)\n                                    ]\n                                }, void 0, true, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                                    lineNumber: 81,\n                                    columnNumber: 21\n                                }, undefined),\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_bookDetail_StarRating__WEBPACK_IMPORTED_MODULE_8__[\"default\"], {\n                                    onClick: putBookRatingHandler,\n                                    readonly: false,\n                                    initialValue: bookData.myScore\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                                    lineNumber: 85,\n                                    columnNumber: 21\n                                }, undefined)\n                            ]\n                        }, void 0, true, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                            lineNumber: 77,\n                            columnNumber: 19\n                        }, undefined),\n                        isDeskTop === false && /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            css: lineCSS\n                        }, void 0, false, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                            lineNumber: 88,\n                            columnNumber: 43\n                        }, undefined)\n                    ]\n                }, void 0, true, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                    lineNumber: 71,\n                    columnNumber: 17\n                }, undefined),\n                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                    css: bottomContentCSS,\n                    children: [\n                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            css: bookInfoOuterWrapperCSS,\n                            children: [\n                                isDeskTop && iconBtn,\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                    css: bookInfoWrapperCSS({\n                                        isDeskTop\n                                    }),\n                                    children: [\n                                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                            css: boldTextCSS,\n                                            children: [\n                                                bookData.genre,\n                                                \" \\xb7\",\n                                                \" \",\n                                                new Date(bookData.regist).getFullYear(),\n                                                \" \\xa0 \\xa0\"\n                                            ]\n                                        }, void 0, true, {\n                                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                                            lineNumber: 95,\n                                            columnNumber: 23\n                                        }, undefined),\n                                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                            children: bookData.author\n                                        }, void 0, false, {\n                                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                                            lineNumber: 99,\n                                            columnNumber: 23\n                                        }, undefined)\n                                    ]\n                                }, void 0, true, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                                    lineNumber: 94,\n                                    columnNumber: 21\n                                }, undefined),\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                                    css: storyWrapperCSS,\n                                    children: bookData.story\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                                    lineNumber: 102,\n                                    columnNumber: 21\n                                }, undefined),\n                                /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_bookDetail_TagList__WEBPACK_IMPORTED_MODULE_6__[\"default\"], {\n                                    tag: bookData.tag\n                                }, void 0, false, {\n                                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                                    lineNumber: 103,\n                                    columnNumber: 21\n                                }, undefined)\n                            ]\n                        }, void 0, true, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                            lineNumber: 92,\n                            columnNumber: 19\n                        }, undefined),\n                        /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            css: buttonWrapperCSS({\n                                isDeskTop\n                            }),\n                            children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_bookDetail_RedirButton__WEBPACK_IMPORTED_MODULE_7__[\"default\"], {\n                                width: isMobile ? \"100%\" : \"50%\",\n                                height: \"64px\",\n                                platform: bookData.platform,\n                                href: bookData.href\n                            }, void 0, false, {\n                                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                                lineNumber: 106,\n                                columnNumber: 21\n                            }, undefined)\n                        }, void 0, false, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                            lineNumber: 105,\n                            columnNumber: 19\n                        }, undefined)\n                    ]\n                }, void 0, true, {\n                    fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                    lineNumber: 91,\n                    columnNumber: 17\n                }, undefined)\n            ]\n        }, void 0, true, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n            lineNumber: 70,\n            columnNumber: 15\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n        lineNumber: 69,\n        columnNumber: 5\n    }, undefined);\n    const thumbnail = /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: thumbnailGridCSS,\n        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"img\", {\n            css: thumbnailCSS({\n                isDeskTop\n            }),\n            src: bookData.thumbnail\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n            lineNumber: 123,\n            columnNumber: 9\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n        lineNumber: 121,\n        columnNumber: 7\n    }, undefined);\n    return /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        css: mainContentCSS,\n        className: \"top-level-el\",\n        children: [\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_UI_FixedModal_FixedModal__WEBPACK_IMPORTED_MODULE_9__[\"default\"], {\n                modalState: commentModalState,\n                stateHandler: setCommentModalState,\n                content: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_components_DetailComment_DetailComment__WEBPACK_IMPORTED_MODULE_10__[\"default\"], {\n                    bookTitle: bookData.title,\n                    bookId: bookData.bookId\n                }, void 0, false, void 0, void 0)\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                lineNumber: 131,\n                columnNumber: 7\n            }, undefined),\n            /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                css: mainContentInnerWrapperCSS,\n                className: \"second-level-el\",\n                children: [\n                    desktopDecoration,\n                    /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                        css: contentOuterWrapperCSS({\n                            isDeskTop\n                        }),\n                        className: \"third-level-el\",\n                        children: /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n                            css: columnGridCSS({\n                                isDeskTop\n                            }),\n                            className: \"column-grid\",\n                            children: isDeskTop ? /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {\n                                children: [\n                                    content,\n                                    thumbnail\n                                ]\n                            }, void 0, true) : /*#__PURE__*/ (0,_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(_emotion_react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {\n                                children: [\n                                    thumbnail,\n                                    content\n                                ]\n                            }, void 0, true)\n                        }, void 0, false, {\n                            fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                            lineNumber: 141,\n                            columnNumber: 11\n                        }, undefined)\n                    }, void 0, false, {\n                        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                        lineNumber: 140,\n                        columnNumber: 9\n                    }, undefined)\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n                lineNumber: 137,\n                columnNumber: 7\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\DongJu\\\\Desktop\\\\S08P22D203\\\\client\\\\src\\\\pages\\\\books\\\\[bookId].tsx\",\n        lineNumber: 130,\n        columnNumber: 5\n    }, undefined);\n};\n// getServerSideProps는 async/await를 사용하여 API를 모두 받아올 때까지 대기하였다가 컴포넌트로 props를 넘겨주고, 이후 컴포넌트는 사전 생성 됩니다.\nconst getServerSideProps = async (context)=>{\n    const params = await context.params;\n    const data = await (0,_api_book_getBookDetail__WEBPACK_IMPORTED_MODULE_2__.getBookDetail)({\n        bookId: params.bookId\n    }).then((res)=>{\n        return res;\n    }).catch((err)=>{\n        console.log(\"pages/books/[bookId].tsx => \", err);\n    });\n    return await {\n        props: {\n            bookData: data\n        }\n    };\n};\nconst mainContentCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  /* height: 100vh; */\r\n  \r\n  /* overflow-x: hidden; */\r\n`;\nconst backgroundWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n    height: 100%;\r\n\r\n  \r\n  position: absolute;\r\n`;\nconst blurredImgCSS = ({ thumbnail , isDeskTop  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    background: no-repeat url(\"${thumbnail}\") 0 / cover;\r\n    filter: blur(10px);\r\n    -webkit-filter: blur(20px);\r\n    pointer-events: none;\r\n    position: absolute;\r\n    ${isDeskTop && \"right: 0\"};\r\n\r\n    ${isDeskTop ? \"width: 70vw\" : \"width: 100vw\"};\r\n    ${isDeskTop ? \"height: 120vh\" : \"height: calc(90% - 72px)\"};\r\n    ${isDeskTop ? \"opacity: 100%;\" : \"opacity: 50%;\"};\r\n    \r\n\r\n    \r\n  `;\n};\nconst verticalGradientCSS = ({ isDeskTop  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 100vw;\r\n    height: ${isDeskTop ? \"125vh\" : \"calc(100% - 72px)\"};\r\n    background: linear-gradient(rgba(0, 0, 0, 0) 0%, var(--back-color) 90%);\r\n    position: absolute;\r\n  `;\n};\nconst horizontalGradientCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100vw;\r\n  height: 125vh;\r\n  background: linear-gradient(\r\n    to left,\r\n    rgba(0, 0, 0, 0) 0%,\r\n    var(--back-color) 60%\r\n  );\r\n  position: absolute;\r\n`;\nconst contentOuterWrapperCSS = ({ isDeskTop  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 100vw;\r\n    height: ${isDeskTop ? \"calc(100vh - 72px)\" : \"100%\"};\r\n    /* height: calc(100vh - 72px); */\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    /* padding */\r\n  `;\n};\nconst columnGridCSS = ({ isDeskTop  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    position: relative;\r\n    display: grid;\r\n    ${isDeskTop ? \"grid-template-columns: 50% 50%\" : \"grid-template-rows: 100vw auto\"};\r\n    \r\n    /* background-color: red; */\r\n    height: ${isDeskTop ? \"80vh\" : \"auto\"};\r\n    width: 100vw;\r\n\r\n\r\n  `;\n};\nconst thumbnailGridCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  /* height: calc(100vh - 72px); */\r\n  display: flex;\r\n  justify-content: center;\r\n\r\n  align-items: center;\r\n`;\nconst thumbnailCSS = ({ isDeskTop  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  ${isDeskTop ? \"height: 80vh; width: auto;\" : \"height: auto; width: 70vw;\"}\r\n    \r\n    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);\r\n  `;\n};\nconst contentCSS = ({ isDeskTop  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    width: 100%;\r\n    ${isDeskTop ? \"padding-left: 10vw\" : \"padding: 24px;\"};\r\n  `;\n};\nconst rowGridCSS = ({ isDeskTop  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    display: grid;\r\n    grid-template-rows: ${isDeskTop ? \"50%\" : \"auto\"} 50%;\r\n    ${isDeskTop && \"height: 100%\"};\r\n    /* background-color: red; */\r\n  `;\n};\nconst titleCSS = ({ isDeskTop  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    font-size: ${isDeskTop ? \"4vw\" : \"7vw\"};\r\n    font-weight: 700;\r\n    margin-bottom: ${isDeskTop ? \"24px\" : \"12px\"};\r\n    word-break:keep-all;\r\n  `;\n};\nconst scoreDivCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  font-size: 24px;\r\n  font-weight: 500;\r\n  display: flex;\r\n  align-items: center;\r\n  margin-bottom: 12px;\r\n`;\nconst scoreBtnCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  margin-left: 12px;\r\n  width: 24px;\r\n  height: 24px;\r\n`;\nconst bottomContentCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: end;\r\n  \r\n  /* justify-content: space-between; */\r\n`;\nconst iconFunctionCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  display: flex;\r\n`;\nconst bookInfoWrapperCSS = ({ isDeskTop  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n    display: flex;\r\n    margin-bottom: ${isDeskTop ? \"24px\" : \"12px\"};\r\n    margin-top: 12px;\r\n  `;\n};\nconst boldTextCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  font-weight: 700;\r\n`;\nconst storyWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  /* width: 70%; */\r\n  /* height: 70px; */\r\n\r\n  display: -webkit-box;\r\n  -webkit-box-orient: vertical;\r\n  -webkit-line-clamp: 4;\r\n  overflow: hidden;\r\n  margin-bottom: 8px;\r\n  line-height: 130%;\r\n`;\nconst buttonWrapperCSS = ({ isDeskTop  })=>{\n    return _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  width: 100%;\r\n  ${isDeskTop === false && \"display: flex; justify-content: center;\"}\r\n `;\n};\nconst lineCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  border-bottom: 1px var(--border-color-2) solid;\r\n  margin-bottom: 8px;\r\n`;\nconst mainContentInnerWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  height: 100%;\r\n  width: 100%;\r\n`;\nconst myScoreStringCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  /* margin-right: 8px; */\r\n`;\nconst platformRatingWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  position: relative;\r\n  margin-right: 8px;\r\n\r\n  &:hover .platform-rating-wrapper {\r\n    opacity: 100%;\r\n  }\r\n`;\nconst bookInfoOuterWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`\r\n  margin-bottom: 24px;\r\n`;\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BookDetail);\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zcmMvcGFnZXMvYm9va3MvW2Jvb2tJZF0udHN4LmpzIiwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsb0NBQW9DO0FBQ007QUFDZTtBQUNiO0FBRVU7QUFNWDtBQUNXO0FBQ1E7QUFDRjtBQUNHO0FBQ007QUFDSztBQUNqQjtBQUVxQjtBQVM5RSxNQUFNZ0IsYUFBYSxDQUFDLEVBQUVDLFNBQVEsRUFBbUIsR0FBSztJQUVwRCxNQUFNLENBQUNDLFdBQVdDLFVBQVVDLFNBQVMsR0FBR1Asd0ZBQWVBO0lBQ3ZELE1BQU0sQ0FBQ1EsbUJBQW1CQyxxQkFBcUIsR0FBR25CLCtDQUFRQSxDQUFVLEtBQUs7SUFHekVELGdEQUFTQSxDQUFDLElBQU07UUFDZHFCLFFBQVFDLEdBQUcsQ0FBQ1A7SUFDZCxHQUFHLEVBQUU7SUFFTCxNQUFNUSxrQ0FDTix1RUFBQ0M7UUFBSTFCLEtBQUsyQjtRQUFzQkMsV0FBVzs7MEJBQ25DLHVFQUFDRjtnQkFBSTFCLEtBQUs2QixjQUFjO29CQUFFQyxXQUFXYixTQUFTYSxTQUFTO29CQUFFWixXQUFXQTtnQkFBVTs7Ozs7OzBCQUM5RSx1RUFBQ1E7Z0JBQUkxQixLQUFLK0Isb0JBQW9CO29CQUFDYjtnQkFBVTtnQkFBSVUsV0FBVzs7Ozs7O1lBQ3ZEViwyQkFBYSx1RUFBQ1E7Z0JBQUkxQixLQUFLZ0M7Ozs7Ozs7Ozs7OztJQUloQyxNQUFNQyx3QkFDSix1RUFBQ1A7UUFBSTFCLEtBQUtrQzs7MEJBQ1IsdUVBQUMzQixvRUFBVUE7Z0JBQUM0QixRQUFRbEIsU0FBU2tCLE1BQU07Z0JBQUVDLGNBQWNkOzs7Ozs7MEJBQ25ELHVFQUFDakIsd0VBQWNBO2dCQUNiOEIsUUFBUWxCLFNBQVNrQixNQUFNO2dCQUN2QkUsV0FBV3BCLFNBQVNxQixRQUFROzs7Ozs7MEJBRTlCLHVFQUFDaEMsMkVBQWlCQTtnQkFDaEI2QixRQUFRbEIsU0FBU2tCLE1BQU07Z0JBQ3ZCRSxXQUFXcEIsU0FBU3NCLElBQUk7Ozs7Ozs7Ozs7OztJQU05QixNQUFNQyx1QkFBdUIsQ0FBQ0MsUUFBa0I7UUFDOUMzQix1RUFBYUEsQ0FBQztZQUFDcUIsUUFBUWxCLFNBQVNrQixNQUFNO1lBQUVNLE9BQU9BO1FBQUs7SUFDdEQ7SUFHQSxNQUFNQyx3QkFDSix1RUFBQ2hCO1FBQUlFLFdBQVc7UUFBVzVCLEtBQUsyQyxXQUFXO1lBQUN6QjtRQUFTO2tCQUMzQyxxRkFBQ1E7WUFBSUUsV0FBVztZQUFXNUIsS0FBSzRDLFdBQVc7Z0JBQUMxQjtZQUFTOzs4QkFDbkQsdUVBQUNROzt3QkFDRVIsY0FBYyxLQUFLLElBQUllO3NDQUd4Qix1RUFBQ1A7NEJBQUkxQixLQUFLNkMsU0FBUztnQ0FBQzNCOzRCQUFTO3NDQUFLRCxTQUFTNkIsS0FBSzs7Ozs7O3NDQUVoRCx1RUFBQ3BCOzRCQUFJMUIsS0FBSytDOzs4Q0FDUix1RUFBQ0M7b0NBQUtoRCxLQUFLaUQ7OENBQWtCOzs7Ozs7OENBRzdCLHVFQUFDdkI7b0NBQUkxQixLQUFLa0Q7O3NEQUNSLHVFQUFDbkMsbUZBQW1CQTs0Q0FBQ29DLE1BQU1sQyxTQUFTa0MsSUFBSTs0Q0FBRUMsVUFBVW5DLFNBQVNvQyxRQUFROzRDQUFFQyxPQUFPckMsU0FBU3FDLEtBQUssQ0FBQ0MsS0FBSyxDQUFDOzs7Ozs7c0RBQ25HLHVFQUFDbkQsZ0VBQW9CQTs0Q0FBQ0osS0FBS3dEOzs7Ozs7Ozs7Ozs7OENBRTdCLHVFQUFDOUMseUVBQVVBO29DQUFDK0MsU0FBU2pCO29DQUFzQmtCLFVBQVUsS0FBSztvQ0FBRUMsY0FBYzFDLFNBQVMyQyxPQUFPOzs7Ozs7Ozs7Ozs7d0JBRzNGMUMsY0FBYyxLQUFLLGtCQUFJLHVFQUFDUTs0QkFBSTFCLEtBQUs2RDs7Ozs7Ozs7Ozs7OzhCQUdwQyx1RUFBQ25DO29CQUFJMUIsS0FBSzhEOztzQ0FDUix1RUFBQ3BDOzRCQUFJMUIsS0FBSytEOztnQ0FDUDdDLGFBQWFlOzhDQUNkLHVFQUFDUDtvQ0FBSTFCLEtBQUtnRSxtQkFBbUI7d0NBQUM5QztvQ0FBUzs7c0RBQ3JDLHVFQUFDUTs0Q0FBSTFCLEtBQUtpRTs7Z0RBQ1BoRCxTQUFTaUQsS0FBSztnREFBQztnREFBRztnREFDbEIsSUFBSUMsS0FBS2xELFNBQVNtRCxNQUFNLEVBQUVDLFdBQVc7Z0RBQUc7Ozs7Ozs7c0RBRTNDLHVFQUFDM0M7c0RBQUtULFNBQVNxRCxNQUFNOzs7Ozs7Ozs7Ozs7OENBR3ZCLHVFQUFDNUM7b0NBQUkxQixLQUFLdUU7OENBQWtCdEQsU0FBU3VELEtBQUs7Ozs7Ozs4Q0FDMUMsdUVBQUNoRSxzRUFBT0E7b0NBQUNpRSxLQUFLeEQsU0FBU3dELEdBQUc7Ozs7Ozs7Ozs7OztzQ0FFNUIsdUVBQUMvQzs0QkFBSTFCLEtBQUswRSxpQkFBaUI7Z0NBQUN4RDs0QkFBUztzQ0FDbkMscUZBQUNULDBFQUFXQTtnQ0FDVmtFLE9BQU92RCxXQUFXLFNBQVMsS0FBSztnQ0FDaEN3RCxRQUFRO2dDQUNSQyxVQUFVNUQsU0FBUzRELFFBQVE7Z0NBQzNCMUIsTUFBTWxDLFNBQVNrQyxJQUFJOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0lBU3ZDLE1BQU1yQiwwQkFFRix1RUFBQ0o7UUFBSTFCLEtBQUs4RTtrQkFFUixxRkFBQ0M7WUFBSS9FLEtBQUtnRixhQUFhO2dCQUFDOUQ7WUFBUztZQUFJK0QsS0FBS2hFLFNBQVNhLFNBQVM7Ozs7Ozs7Ozs7O0lBTWxFLHFCQUNFLHVFQUFDSjtRQUFJMUIsS0FBS2tGO1FBQWdCdEQsV0FBVzs7MEJBQ25DLHVFQUFDakIsNEVBQVVBO2dCQUNSd0UsWUFBWTlEO2dCQUNaZSxjQUFjZDtnQkFDZG9CLHVCQUFTLHVFQUFDOUIsZ0ZBQWFBO29CQUFDd0UsV0FBV25FLFNBQVM2QixLQUFLO29CQUFFWCxRQUFRbEIsU0FBU2tCLE1BQU07Ozs7Ozs7MEJBRzdFLHVFQUFDVDtnQkFBSTFCLEtBQUtxRjtnQkFBNEJ6RCxXQUFXOztvQkFFOUNIO2tDQUNELHVFQUFDQzt3QkFBSTFCLEtBQUtzRix1QkFBdUI7NEJBQUNwRTt3QkFBUzt3QkFBSVUsV0FBVztrQ0FDeEQscUZBQUNGOzRCQUFJMUIsS0FBS3VGLGNBQWM7Z0NBQUNyRTs0QkFBUzs0QkFBSVUsV0FBVztzQ0FFOUNWLDBCQUFZOztvQ0FBR3dCO29DQUFTWjs7NkRBQWdCOztvQ0FBR0E7b0NBQVdZOzs0Q0FBVzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFTOUU7QUFFQSxzR0FBc0c7QUFDL0YsTUFBTThDLHFCQUFxQixPQUFPQyxVQUFpQjtJQUN4RCxNQUFNQyxTQUFTLE1BQU1ELFFBQVFDLE1BQU07SUFDbkMsTUFBTUMsT0FBTyxNQUFNMUYsc0VBQWFBLENBQUM7UUFBQ2tDLFFBQVF1RCxPQUFPdkQsTUFBTTtJQUFBLEdBQ3BEeUQsSUFBSSxDQUFDLENBQUNDLE1BQVE7UUFDYixPQUFPQTtJQUNULEdBQ0NDLEtBQUssQ0FBQyxDQUFDQyxNQUFRO1FBQ2R4RSxRQUFRQyxHQUFHLENBQUMsZ0NBQWdDdUU7SUFDOUM7SUFFRixPQUFPLE1BQU07UUFDWEMsT0FBTztZQUNML0UsVUFBVTBFO1FBQ1o7SUFDRjtBQUNGLEVBQUU7QUFFRixNQUFNVCxpQkFBaUJsRiwrQ0FBRyxDQUFDOzs7OztBQUszQixDQUFDO0FBRUQsTUFBTTJCLHVCQUF1QjNCLCtDQUFHLENBQUM7Ozs7OztBQU1qQyxDQUFDO0FBTUQsTUFBTTZCLGdCQUFnQixDQUFDLEVBQUVDLFVBQVMsRUFBRVosVUFBUyxFQUFtQixHQUFLO0lBQ25FLE9BQU9sQiwrQ0FBRyxDQUFDOytCQUNrQixFQUFFOEIsVUFBVTs7Ozs7SUFLdkMsRUFBRVosYUFBYSxXQUFXOztJQUUxQixFQUFFQSxZQUFZLGdCQUFnQixjQUFjLENBQUM7SUFDN0MsRUFBRUEsWUFBWSxrQkFBa0IsMEJBQTBCLENBQUM7SUFDM0QsRUFBRUEsWUFBWSxtQkFBbUIsZUFBZSxDQUFDOzs7O0VBSW5ELENBQUM7QUFDSDtBQUVBLE1BQU1hLHNCQUFzQixDQUFDLEVBQUNiLFVBQVMsRUFBdUIsR0FBSztJQUNqRSxPQUFPbEIsK0NBQUcsQ0FBQzs7WUFFRCxFQUFFa0IsWUFBWSxVQUFVLG1CQUFtQixDQUFDOzs7RUFHdEQsQ0FBQztBQUNIO0FBRUEsTUFBTWMsd0JBQXdCaEMsK0NBQUcsQ0FBQzs7Ozs7Ozs7O0FBU2xDLENBQUM7QUFFRCxNQUFNc0YseUJBQXlCLENBQUMsRUFBQ3BFLFVBQVMsRUFBdUIsR0FBSztJQUNwRSxPQUFPbEIsK0NBQUcsQ0FBQzs7WUFFRCxFQUFFa0IsWUFBWSx1QkFBdUIsTUFBTSxDQUFDOzs7Ozs7RUFNdEQsQ0FBQztBQUNIO0FBRUEsTUFBTXFFLGdCQUFnQixDQUFDLEVBQUNyRSxVQUFTLEVBQXVCLEdBQUs7SUFDM0QsT0FBT2xCLCtDQUFHLENBQUM7OztJQUdULEVBQUVrQixZQUFZLG1DQUFtQyxnQ0FBZ0MsQ0FBQzs7O1lBRzFFLEVBQUVBLFlBQVksU0FBUyxNQUFNLENBQUM7Ozs7RUFJeEMsQ0FBQztBQUNIO0FBRUEsTUFBTTRELG1CQUFtQjlFLCtDQUFHLENBQUM7Ozs7Ozs7QUFPN0IsQ0FBQztBQUVELE1BQU1nRixlQUFlLENBQUMsRUFBQzlELFVBQVMsRUFBdUIsR0FBSztJQUMxRCxPQUFPbEIsK0NBQUcsQ0FBQztFQUNYLEVBQUVrQixZQUFZLCtCQUErQiw0QkFBNEIsQ0FBQzs7O0VBRzFFLENBQUM7QUFDSDtBQUVBLE1BQU15QixhQUFhLENBQUMsRUFBQ3pCLFVBQVMsRUFBdUIsR0FBSztJQUN4RCxPQUFPbEIsK0NBQUcsQ0FBQzs7SUFFVCxFQUFFa0IsWUFBWSx1QkFBdUIsZ0JBQWdCLENBQUM7RUFDeEQsQ0FBQztBQUNIO0FBRUEsTUFBTTBCLGFBQWEsQ0FBQyxFQUFDMUIsVUFBUyxFQUF1QixHQUFLO0lBQ3hELE9BQU9sQiwrQ0FBRyxDQUFDOzt3QkFFVyxFQUFFa0IsWUFBWSxRQUFRLE1BQU0sQ0FBQztJQUNqRCxFQUFFQSxhQUFhLGVBQWU7O0VBRWhDLENBQUM7QUFDSDtBQUVBLE1BQU0yQixXQUFXLENBQUMsRUFBQzNCLFVBQVMsRUFBdUIsR0FBSztJQUN0RCxPQUFPbEIsK0NBQUcsQ0FBQztlQUNFLEVBQUVrQixZQUFZLFFBQVEsS0FBSyxDQUFDOzttQkFFeEIsRUFBRUEsWUFBWSxTQUFTLE1BQU0sQ0FBQzs7RUFFL0MsQ0FBQztBQUNIO0FBRUEsTUFBTTZCLGNBQWMvQywrQ0FBRyxDQUFDOzs7Ozs7QUFNeEIsQ0FBQztBQUVELE1BQU13RCxjQUFjeEQsK0NBQUcsQ0FBQzs7OztBQUl4QixDQUFDO0FBRUQsTUFBTThELG1CQUFtQjlELCtDQUFHLENBQUM7Ozs7OztBQU03QixDQUFDO0FBRUQsTUFBTWtDLGtCQUFrQmxDLCtDQUFHLENBQUM7O0FBRTVCLENBQUM7QUFFRCxNQUFNZ0UscUJBQXFCLENBQUMsRUFBQzlDLFVBQVMsRUFBdUIsR0FBSztJQUNoRSxPQUFPbEIsK0NBQUcsQ0FBQzs7bUJBRU0sRUFBRWtCLFlBQVksU0FBUyxNQUFNLENBQUM7O0VBRS9DLENBQUM7QUFDSDtBQUVBLE1BQU0rQyxjQUFjakUsK0NBQUcsQ0FBQzs7QUFFeEIsQ0FBQztBQUVELE1BQU11RSxrQkFBa0J2RSwrQ0FBRyxDQUFDOzs7Ozs7Ozs7O0FBVTVCLENBQUM7QUFFRCxNQUFNMEUsbUJBQW1CLENBQUMsRUFBQ3hELFVBQVMsRUFBdUIsR0FBSztJQUMvRCxPQUFPbEIsK0NBQUcsQ0FBQzs7RUFFVixFQUFFa0IsY0FBYyxLQUFLLElBQUksMENBQTBDO0NBQ3BFLENBQUM7QUFDRjtBQUVBLE1BQU0yQyxVQUFVN0QsK0NBQUcsQ0FBQzs7O0FBR3BCLENBQUM7QUFFRCxNQUFNcUYsNkJBQTZCckYsK0NBQUcsQ0FBQzs7O0FBR3ZDLENBQUM7QUFFRCxNQUFNaUQsbUJBQW1CakQsK0NBQUcsQ0FBQzs7QUFFN0IsQ0FBQztBQUVELE1BQU1rRCwyQkFBMkJsRCwrQ0FBRyxDQUFDOzs7Ozs7O0FBT3JDLENBQUM7QUFFRCxNQUFNK0QsMEJBQTBCL0QsK0NBQUcsQ0FBQzs7QUFFcEMsQ0FBQztBQUNELGlFQUFlZ0IsVUFBVUEsRUFBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2NsaWVudC8uL3NyYy9wYWdlcy9ib29rcy9bYm9va0lkXS50c3g/MWUxZSJdLCJzb3VyY2VzQ29udGVudCI6WyIvKiogQGpzeEltcG9ydFNvdXJjZSBAZW1vdGlvbi9yZWFjdCAqL1xyXG5pbXBvcnQgeyBqc3gsIGNzcyB9IGZyb20gXCJAZW1vdGlvbi9yZWFjdFwiO1xyXG5pbXBvcnQgeyBnZXRCb29rRGV0YWlsIH0gZnJvbSBcIkAvYXBpL2Jvb2svZ2V0Qm9va0RldGFpbFwiO1xyXG5pbXBvcnQgeyB1c2VFZmZlY3QsIHVzZVN0YXRlIH0gZnJvbSBcInJlYWN0XCI7XHJcbmltcG9ydCB7IHJlc29sdmUgfSBmcm9tIFwibm9kZTpwYXRoL3dpbjMyXCI7XHJcbmltcG9ydCB7IEJpQ2hldnJvblJpZ2h0Q2lyY2xlIH0gZnJvbSBcInJlYWN0LWljb25zL2JpXCI7XHJcbmltcG9ydCBCdXR0b24gZnJvbSBcIkAvY29tcG9uZW50cy9VSS9CdXR0b24vQnV0dG9uXCI7XHJcbmltcG9ydCB7XHJcbiAgQm9va21hcmtUb2dnbGUsXHJcbiAgSGFzQmVlblJlYWRUb2dnbGUsXHJcbiAgQ29tbWVudEJ0bixcclxufSBmcm9tIFwiLi4vLi4vY29tcG9uZW50cy9ib29rRGV0YWlsL2ljb25zXCI7XHJcbmltcG9ydCBUYWdMaXN0IGZyb20gXCJAL2NvbXBvbmVudHMvYm9va0RldGFpbC9UYWdMaXN0XCI7XHJcbmltcG9ydCBSZWRpckJ1dHRvbiBmcm9tIFwiQC9jb21wb25lbnRzL2Jvb2tEZXRhaWwvUmVkaXJCdXR0b25cIjtcclxuaW1wb3J0IFN0YXJSYXRpbmcgZnJvbSBcIkAvY29tcG9uZW50cy9ib29rRGV0YWlsL1N0YXJSYXRpbmdcIjtcclxuaW1wb3J0IEZpeGVkTW9kYWwgZnJvbSBcIkAvY29tcG9uZW50cy9VSS9GaXhlZE1vZGFsL0ZpeGVkTW9kYWxcIjtcclxuaW1wb3J0IERldGFpbENvbW1lbnQgZnJvbSBcIkAvY29tcG9uZW50cy9EZXRhaWxDb21tZW50L0RldGFpbENvbW1lbnRcIjtcclxuaW1wb3J0IHsgdXNlSXNSZXNwb25zaXZlIH0gZnJvbSBcIkAvY29tcG9uZW50cy9SZXNwb25zaXZlL3VzZUlzUmVzcG9uc2l2ZVwiO1xyXG5pbXBvcnQgeyBwdXRCb29rUmF0aW5nIH0gZnJvbSBcIkAvYXBpL2Jvb2svcHV0Qm9va1JhdGluZ1wiO1xyXG5pbXBvcnQgeyBib29rRGV0YWlsVHlwZSB9IGZyb20gXCJAL3R5cGVzL2Jvb2tzXCI7XHJcbmltcG9ydCBQbGF0Zm9ybVJhdGluZ0hvdmVyIGZyb20gXCJAL2NvbXBvbmVudHMvYm9va0RldGFpbC9QbGF0Zm9ybVJhdGluZ0hvdmVyXCI7XHJcblxyXG5cclxuaW50ZXJmYWNlIEJvb2tEZXRhaWxQcm9wcyB7XHJcbiAgYm9va0RhdGE6IGJvb2tEZXRhaWxUeXBlO1xyXG59XHJcblxyXG5cclxuXHJcbmNvbnN0IEJvb2tEZXRhaWwgPSAoeyBib29rRGF0YSB9OiBCb29rRGV0YWlsUHJvcHMpID0+IHtcclxuXHJcbiAgY29uc3QgW2lzRGVza1RvcCwgaXNUYWJsZXQsIGlzTW9iaWxlXSA9IHVzZUlzUmVzcG9uc2l2ZSgpO1xyXG4gIGNvbnN0IFtjb21tZW50TW9kYWxTdGF0ZSwgc2V0Q29tbWVudE1vZGFsU3RhdGVdID0gdXNlU3RhdGU8Ym9vbGVhbj4oZmFsc2UpXHJcblxyXG5cclxuICB1c2VFZmZlY3QoKCkgPT4ge1xyXG4gICAgY29uc29sZS5sb2coYm9va0RhdGEpO1xyXG4gIH0sIFtdKTtcclxuXHJcbiAgY29uc3QgZGVza3RvcERlY29yYXRpb24gPSAoXHJcbiAgPGRpdiBjc3M9e2JhY2tncm91bmRXcmFwcGVyQ1NTfSBjbGFzc05hbWU9e1widGhpcmQtbGV2ZWwtZWwtYmFja2dyb3VuZFwifT5cclxuICAgICAgICAgIDxkaXYgY3NzPXtibHVycmVkSW1nQ1NTKHsgdGh1bWJuYWlsOiBib29rRGF0YS50aHVtYm5haWwsIGlzRGVza1RvcDogaXNEZXNrVG9wIH0pfSAvPlxyXG4gICAgICAgICAgPGRpdiBjc3M9e3ZlcnRpY2FsR3JhZGllbnRDU1Moe2lzRGVza1RvcCB9KX0gY2xhc3NOYW1lPXtcInZlcnRpY2FsLWdyYWRpZW50XCJ9Lz5cclxuICAgICAgICAgIHtpc0Rlc2tUb3AgJiYgPGRpdiBjc3M9e2hvcml6b250YWxHcmFkaWVudENTU30gLz59XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgKVxyXG5cclxuICBjb25zdCBpY29uQnRuID0gKFxyXG4gICAgPGRpdiBjc3M9e2ljb25GdW5jdGlvbkNTU30+XHJcbiAgICAgIDxDb21tZW50QnRuIGJvb2tJZD17Ym9va0RhdGEuYm9va0lkfSBzdGF0ZUhhbmRsZXI9e3NldENvbW1lbnRNb2RhbFN0YXRlfSAvPlxyXG4gICAgICA8Qm9va21hcmtUb2dnbGVcclxuICAgICAgICBib29rSWQ9e2Jvb2tEYXRhLmJvb2tJZH1cclxuICAgICAgICBpc0NsaWNrZWQ9e2Jvb2tEYXRhLmJvb2ttYXJrfVxyXG4gICAgICAvPlxyXG4gICAgICA8SGFzQmVlblJlYWRUb2dnbGVcclxuICAgICAgICBib29rSWQ9e2Jvb2tEYXRhLmJvb2tJZH1cclxuICAgICAgICBpc0NsaWNrZWQ9e2Jvb2tEYXRhLnJlYWR9XHJcbiAgICAgIC8+XHJcbiAgICAgIHsvKiA8YnV0dG9uIG9uQ2xpY2s9eygpID0+IHtzZXRDb21tZW50TW9kYWxTdGF0ZSh0cnVlKTsgY29uc29sZS5sb2coY29tbWVudE1vZGFsU3RhdGUpfX0+dGVzdDwvYnV0dG9uPiAqL31cclxuICAgIDwvZGl2PlxyXG4gIClcclxuXHJcbiAgY29uc3QgcHV0Qm9va1JhdGluZ0hhbmRsZXIgPSAoc2NvcmU6IG51bWJlcikgPT4ge1xyXG4gICAgcHV0Qm9va1JhdGluZyh7Ym9va0lkOiBib29rRGF0YS5ib29rSWQsIHNjb3JlOiBzY29yZX0pXHJcbiAgfVxyXG5cclxuXHJcbiAgY29uc3QgY29udGVudCA9IChcclxuICAgIDxkaXYgY2xhc3NOYW1lPXsnY29udGVudCd9IGNzcz17Y29udGVudENTUyh7aXNEZXNrVG9wfSl9PlxyXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPXsncm93R3JpZCd9IGNzcz17cm93R3JpZENTUyh7aXNEZXNrVG9wfSl9PlxyXG4gICAgICAgICAgICAgICAgPGRpdj5cclxuICAgICAgICAgICAgICAgICAge2lzRGVza1RvcCA9PT0gZmFsc2UgJiYgaWNvbkJ0bn1cclxuICAgICAgICAgICAgICAgICAgXHJcbiAgICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgICA8ZGl2IGNzcz17dGl0bGVDU1Moe2lzRGVza1RvcH0pfT57Ym9va0RhdGEudGl0bGV9PC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgICA8ZGl2IGNzcz17c2NvcmVEaXZDU1N9PlxyXG4gICAgICAgICAgICAgICAgICAgIDxzcGFuIGNzcz17bXlTY29yZVN0cmluZ0NTU30+XHJcbiAgICAgICAgICAgICAgICAgICAgICDrgrQg7Y+J7KCQIDogXHJcbiAgICAgICAgICAgICAgICAgICAgPC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgICAgIDxkaXYgY3NzPXtwbGF0Zm9ybVJhdGluZ1dyYXBwZXJDU1N9PlxyXG4gICAgICAgICAgICAgICAgICAgICAgPFBsYXRmb3JtUmF0aW5nSG92ZXIgaHJlZj17Ym9va0RhdGEuaHJlZn0gYXZnR3JhZGU9e2Jvb2tEYXRhLmF2Z1Njb3JlfSBncmFkZT17Ym9va0RhdGEuZ3JhZGUuc3BsaXQoJ18nKX0gIC8+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8QmlDaGV2cm9uUmlnaHRDaXJjbGUgY3NzPXtzY29yZUJ0bkNTU30gLz5cclxuICAgICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICA8U3RhclJhdGluZyBvbkNsaWNrPXtwdXRCb29rUmF0aW5nSGFuZGxlcn0gcmVhZG9ubHk9e2ZhbHNlfSBpbml0aWFsVmFsdWU9e2Jvb2tEYXRhLm15U2NvcmV9IC8+XHJcbiAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICBcclxuICAgICAgICAgICAgICAgICAge2lzRGVza1RvcCA9PT0gZmFsc2UgJiYgPGRpdiBjc3M9e2xpbmVDU1N9Lz59XHJcbiAgICAgICAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICAgICAgICA8ZGl2IGNzcz17Ym90dG9tQ29udGVudENTU30+XHJcbiAgICAgICAgICAgICAgICAgIDxkaXYgY3NzPXtib29rSW5mb091dGVyV3JhcHBlckNTU30+XHJcbiAgICAgICAgICAgICAgICAgICAge2lzRGVza1RvcCAmJiBpY29uQnRufVxyXG4gICAgICAgICAgICAgICAgICAgIDxkaXYgY3NzPXtib29rSW5mb1dyYXBwZXJDU1Moe2lzRGVza1RvcH0pfT5cclxuICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY3NzPXtib2xkVGV4dENTU30+XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIHtib29rRGF0YS5nZW5yZX0gwrd7XCIgXCJ9XHJcbiAgICAgICAgICAgICAgICAgICAgICAgIHtuZXcgRGF0ZShib29rRGF0YS5yZWdpc3QpLmdldEZ1bGxZZWFyKCl9ICZuYnNwOyAmbmJzcDtcclxuICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgICAgPGRpdj57Ym9va0RhdGEuYXV0aG9yfTwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAgICAgICAgIDxkaXYgY3NzPXtzdG9yeVdyYXBwZXJDU1N9Pntib29rRGF0YS5zdG9yeX08L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgICA8VGFnTGlzdCB0YWc9e2Jvb2tEYXRhLnRhZ30gLz5cclxuICAgICAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgICAgIDxkaXYgY3NzPXtidXR0b25XcmFwcGVyQ1NTKHtpc0Rlc2tUb3B9KX0+XHJcbiAgICAgICAgICAgICAgICAgICAgPFJlZGlyQnV0dG9uXHJcbiAgICAgICAgICAgICAgICAgICAgICB3aWR0aD17aXNNb2JpbGUgPyBcIjEwMCVcIiA6IFwiNTAlXCJ9XHJcbiAgICAgICAgICAgICAgICAgICAgICBoZWlnaHQ9e1wiNjRweFwifVxyXG4gICAgICAgICAgICAgICAgICAgICAgcGxhdGZvcm09e2Jvb2tEYXRhLnBsYXRmb3JtfVxyXG4gICAgICAgICAgICAgICAgICAgICAgaHJlZj17Ym9va0RhdGEuaHJlZn1cclxuICAgICAgICAgICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICAgICAgXHJcbiAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgPC9kaXY+XHJcbiAgKVxyXG5cclxuICBjb25zdCB0aHVtYm5haWwgPSAoXHJcblxyXG4gICAgICA8ZGl2IGNzcz17dGh1bWJuYWlsR3JpZENTU30+XHJcbiAgXHJcbiAgICAgICAgPGltZyBjc3M9e3RodW1ibmFpbENTUyh7aXNEZXNrVG9wfSl9IHNyYz17Ym9va0RhdGEudGh1bWJuYWlsfSAvPlxyXG4gICAgICA8L2Rpdj5cclxuXHJcbiAgICBcclxuICApXHJcblxyXG4gIHJldHVybiAoXHJcbiAgICA8ZGl2IGNzcz17bWFpbkNvbnRlbnRDU1N9IGNsYXNzTmFtZT17XCJ0b3AtbGV2ZWwtZWxcIn0+XHJcbiAgICAgIDxGaXhlZE1vZGFsXHJcbiAgICAgICAgIG1vZGFsU3RhdGU9e2NvbW1lbnRNb2RhbFN0YXRlfVxyXG4gICAgICAgICBzdGF0ZUhhbmRsZXI9e3NldENvbW1lbnRNb2RhbFN0YXRlfVxyXG4gICAgICAgICBjb250ZW50PXs8RGV0YWlsQ29tbWVudCBib29rVGl0bGU9e2Jvb2tEYXRhLnRpdGxlfSBib29rSWQ9e2Jvb2tEYXRhLmJvb2tJZH0gLz59XHJcbiAgICAgIC8+XHJcblxyXG4gICAgICA8ZGl2IGNzcz17bWFpbkNvbnRlbnRJbm5lcldyYXBwZXJDU1N9IGNsYXNzTmFtZT17XCJzZWNvbmQtbGV2ZWwtZWxcIn0gPlxyXG4gICAgICAgIHsvKiB7aXNEZXNrVG9wICYmIGRlc2t0b3BEZWNvcmF0aW9ufSAqL31cclxuICAgICAgICB7ZGVza3RvcERlY29yYXRpb259XHJcbiAgICAgICAgPGRpdiBjc3M9e2NvbnRlbnRPdXRlcldyYXBwZXJDU1Moe2lzRGVza1RvcH0pfSBjbGFzc05hbWU9e1widGhpcmQtbGV2ZWwtZWxcIn0+XHJcbiAgICAgICAgICA8ZGl2IGNzcz17Y29sdW1uR3JpZENTUyh7aXNEZXNrVG9wfSl9IGNsYXNzTmFtZT17XCJjb2x1bW4tZ3JpZFwifT5cclxuICAgICAgICAgICAgXHJcbiAgICAgICAgICAgIHtpc0Rlc2tUb3AgPyA8Pntjb250ZW50fXt0aHVtYm5haWx9PC8+IDogPD57dGh1bWJuYWlsfXtjb250ZW50fTwvPn1cclxuXHJcbiAgICAgICAgICAgIFxyXG5cclxuICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgICA8L2Rpdj5cclxuICAgIDwvZGl2PlxyXG4gICk7XHJcbn07XHJcblxyXG4vLyBnZXRTZXJ2ZXJTaWRlUHJvcHPripQgYXN5bmMvYXdhaXTrpbwg7IKs7Jqp7ZWY7JesIEFQSeulvCDrqqjrkZAg67Cb7JWE7JisIOuVjOq5jOyngCDrjIDquLDtlZjsmIDri6TqsIAg7Lu07Y+s64SM7Yq466GcIHByb3Bz66W8IOuEmOqyqOyjvOqzoCwg7J207ZuEIOy7tO2PrOuEjO2KuOuKlCDsgqzsoIQg7IOd7ISxIOuQqeuLiOuLpC5cclxuZXhwb3J0IGNvbnN0IGdldFNlcnZlclNpZGVQcm9wcyA9IGFzeW5jIChjb250ZXh0OiBhbnkpID0+IHtcclxuICBjb25zdCBwYXJhbXMgPSBhd2FpdCBjb250ZXh0LnBhcmFtcztcclxuICBjb25zdCBkYXRhID0gYXdhaXQgZ2V0Qm9va0RldGFpbCh7Ym9va0lkOiBwYXJhbXMuYm9va0lkfSlcclxuICAgIC50aGVuKChyZXMpID0+IHtcclxuICAgICAgcmV0dXJuIHJlcztcclxuICAgIH0pXHJcbiAgICAuY2F0Y2goKGVycikgPT4ge1xyXG4gICAgICBjb25zb2xlLmxvZyhcInBhZ2VzL2Jvb2tzL1tib29rSWRdLnRzeCA9PiBcIiwgZXJyKTtcclxuICAgIH0pO1xyXG5cclxuICByZXR1cm4gYXdhaXQge1xyXG4gICAgcHJvcHM6IHtcclxuICAgICAgYm9va0RhdGE6IGRhdGEsXHJcbiAgICB9LFxyXG4gIH07XHJcbn07XHJcblxyXG5jb25zdCBtYWluQ29udGVudENTUyA9IGNzc2BcclxuICB3aWR0aDogMTAwJTtcclxuICAvKiBoZWlnaHQ6IDEwMHZoOyAqL1xyXG4gIFxyXG4gIC8qIG92ZXJmbG93LXg6IGhpZGRlbjsgKi9cclxuYDtcclxuXHJcbmNvbnN0IGJhY2tncm91bmRXcmFwcGVyQ1NTID0gY3NzYFxyXG4gIHdpZHRoOiAxMDAlO1xyXG4gICAgaGVpZ2h0OiAxMDAlO1xyXG5cclxuICBcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbmA7XHJcblxyXG5pbnRlcmZhY2UgYmx1cnJlZEltZ1Byb3BzIHtcclxuICB0aHVtYm5haWw6IHN0cmluZztcclxuICBpc0Rlc2tUb3A6IGJvb2xlYW47XHJcbn1cclxuY29uc3QgYmx1cnJlZEltZ0NTUyA9ICh7IHRodW1ibmFpbCwgaXNEZXNrVG9wIH06IGJsdXJyZWRJbWdQcm9wcykgPT4ge1xyXG4gIHJldHVybiBjc3NgXHJcbiAgICBiYWNrZ3JvdW5kOiBuby1yZXBlYXQgdXJsKFwiJHt0aHVtYm5haWx9XCIpIDAgLyBjb3ZlcjtcclxuICAgIGZpbHRlcjogYmx1cigxMHB4KTtcclxuICAgIC13ZWJraXQtZmlsdGVyOiBibHVyKDIwcHgpO1xyXG4gICAgcG9pbnRlci1ldmVudHM6IG5vbmU7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICAke2lzRGVza1RvcCAmJiAncmlnaHQ6IDAnfTtcclxuXHJcbiAgICAke2lzRGVza1RvcCA/ICd3aWR0aDogNzB2dycgOiAnd2lkdGg6IDEwMHZ3J307XHJcbiAgICAke2lzRGVza1RvcCA/ICdoZWlnaHQ6IDEyMHZoJyA6ICdoZWlnaHQ6IGNhbGMoOTAlIC0gNzJweCknfTtcclxuICAgICR7aXNEZXNrVG9wID8gJ29wYWNpdHk6IDEwMCU7JyA6ICdvcGFjaXR5OiA1MCU7J307XHJcbiAgICBcclxuXHJcbiAgICBcclxuICBgO1xyXG59O1xyXG5cclxuY29uc3QgdmVydGljYWxHcmFkaWVudENTUyA9ICh7aXNEZXNrVG9wfToge2lzRGVza1RvcDogYm9vbGVhbn0pID0+IHtcclxuICByZXR1cm4gY3NzYFxyXG4gICAgd2lkdGg6IDEwMHZ3O1xyXG4gICAgaGVpZ2h0OiAke2lzRGVza1RvcCA/ICcxMjV2aCcgOiAnY2FsYygxMDAlIC0gNzJweCknfTtcclxuICAgIGJhY2tncm91bmQ6IGxpbmVhci1ncmFkaWVudChyZ2JhKDAsIDAsIDAsIDApIDAlLCB2YXIoLS1iYWNrLWNvbG9yKSA5MCUpO1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIGA7XHJcbn1cclxuXHJcbmNvbnN0IGhvcml6b250YWxHcmFkaWVudENTUyA9IGNzc2BcclxuICB3aWR0aDogMTAwdnc7XHJcbiAgaGVpZ2h0OiAxMjV2aDtcclxuICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoXHJcbiAgICB0byBsZWZ0LFxyXG4gICAgcmdiYSgwLCAwLCAwLCAwKSAwJSxcclxuICAgIHZhcigtLWJhY2stY29sb3IpIDYwJVxyXG4gICk7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG5gO1xyXG5cclxuY29uc3QgY29udGVudE91dGVyV3JhcHBlckNTUyA9ICh7aXNEZXNrVG9wfToge2lzRGVza1RvcDogYm9vbGVhbn0pID0+IHsgXHJcbiAgcmV0dXJuIGNzc2BcclxuICAgIHdpZHRoOiAxMDB2dztcclxuICAgIGhlaWdodDogJHtpc0Rlc2tUb3AgPyAnY2FsYygxMDB2aCAtIDcycHgpJyA6ICcxMDAlJ307XHJcbiAgICAvKiBoZWlnaHQ6IGNhbGMoMTAwdmggLSA3MnB4KTsgKi9cclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICAvKiBwYWRkaW5nICovXHJcbiAgYDtcclxufVxyXG5cclxuY29uc3QgY29sdW1uR3JpZENTUyA9ICh7aXNEZXNrVG9wfToge2lzRGVza1RvcDogYm9vbGVhbn0pID0+IHtcclxuICByZXR1cm4gY3NzYFxyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgZGlzcGxheTogZ3JpZDtcclxuICAgICR7aXNEZXNrVG9wID8gJ2dyaWQtdGVtcGxhdGUtY29sdW1uczogNTAlIDUwJScgOiAnZ3JpZC10ZW1wbGF0ZS1yb3dzOiAxMDB2dyBhdXRvJ307XHJcbiAgICBcclxuICAgIC8qIGJhY2tncm91bmQtY29sb3I6IHJlZDsgKi9cclxuICAgIGhlaWdodDogJHtpc0Rlc2tUb3AgPyAnODB2aCcgOiAnYXV0byd9O1xyXG4gICAgd2lkdGg6IDEwMHZ3O1xyXG5cclxuXHJcbiAgYDtcclxufVxyXG5cclxuY29uc3QgdGh1bWJuYWlsR3JpZENTUyA9IGNzc2BcclxuICB3aWR0aDogMTAwJTtcclxuICAvKiBoZWlnaHQ6IGNhbGMoMTAwdmggLSA3MnB4KTsgKi9cclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG5cclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG5gO1xyXG5cclxuY29uc3QgdGh1bWJuYWlsQ1NTID0gKHtpc0Rlc2tUb3B9OiB7aXNEZXNrVG9wOiBib29sZWFufSkgPT4ge1xyXG4gIHJldHVybiBjc3NgXHJcbiAgJHtpc0Rlc2tUb3AgPyAnaGVpZ2h0OiA4MHZoOyB3aWR0aDogYXV0bzsnIDogJ2hlaWdodDogYXV0bzsgd2lkdGg6IDcwdnc7J31cclxuICAgIFxyXG4gICAgYm94LXNoYWRvdzogMHB4IDBweCAxMHB4IDFweCByZ2JhKDAsIDAsIDAsIDAuMik7XHJcbiAgYDtcclxufVxyXG5cclxuY29uc3QgY29udGVudENTUyA9ICh7aXNEZXNrVG9wfToge2lzRGVza1RvcDogYm9vbGVhbn0pID0+IHtcclxuICByZXR1cm4gY3NzYFxyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICAke2lzRGVza1RvcCA/ICdwYWRkaW5nLWxlZnQ6IDEwdncnIDogJ3BhZGRpbmc6IDI0cHg7J307XHJcbiAgYDtcclxufVxyXG5cclxuY29uc3Qgcm93R3JpZENTUyA9ICh7aXNEZXNrVG9wfToge2lzRGVza1RvcDogYm9vbGVhbn0pID0+IHtcclxuICByZXR1cm4gY3NzYFxyXG4gICAgZGlzcGxheTogZ3JpZDtcclxuICAgIGdyaWQtdGVtcGxhdGUtcm93czogJHtpc0Rlc2tUb3AgPyAnNTAlJyA6ICdhdXRvJ30gNTAlO1xyXG4gICAgJHtpc0Rlc2tUb3AgJiYgJ2hlaWdodDogMTAwJSd9O1xyXG4gICAgLyogYmFja2dyb3VuZC1jb2xvcjogcmVkOyAqL1xyXG4gIGA7XHJcbn1cclxuXHJcbmNvbnN0IHRpdGxlQ1NTID0gKHtpc0Rlc2tUb3B9OiB7aXNEZXNrVG9wOiBib29sZWFufSkgPT4ge1xyXG4gIHJldHVybiBjc3NgXHJcbiAgICBmb250LXNpemU6ICR7aXNEZXNrVG9wID8gJzR2dycgOiAnN3Z3J307XHJcbiAgICBmb250LXdlaWdodDogNzAwO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogJHtpc0Rlc2tUb3AgPyAnMjRweCcgOiAnMTJweCd9O1xyXG4gICAgd29yZC1icmVhazprZWVwLWFsbDtcclxuICBgO1xyXG59XHJcblxyXG5jb25zdCBzY29yZURpdkNTUyA9IGNzc2BcclxuICBmb250LXNpemU6IDI0cHg7XHJcbiAgZm9udC13ZWlnaHQ6IDUwMDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgbWFyZ2luLWJvdHRvbTogMTJweDtcclxuYDtcclxuXHJcbmNvbnN0IHNjb3JlQnRuQ1NTID0gY3NzYFxyXG4gIG1hcmdpbi1sZWZ0OiAxMnB4O1xyXG4gIHdpZHRoOiAyNHB4O1xyXG4gIGhlaWdodDogMjRweDtcclxuYDtcclxuXHJcbmNvbnN0IGJvdHRvbUNvbnRlbnRDU1MgPSBjc3NgXHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGp1c3RpZnktY29udGVudDogZW5kO1xyXG4gIFxyXG4gIC8qIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjsgKi9cclxuYDtcclxuXHJcbmNvbnN0IGljb25GdW5jdGlvbkNTUyA9IGNzc2BcclxuICBkaXNwbGF5OiBmbGV4O1xyXG5gO1xyXG5cclxuY29uc3QgYm9va0luZm9XcmFwcGVyQ1NTID0gKHtpc0Rlc2tUb3B9OiB7aXNEZXNrVG9wOiBib29sZWFufSkgPT4ge1xyXG4gIHJldHVybiBjc3NgXHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgbWFyZ2luLWJvdHRvbTogJHtpc0Rlc2tUb3AgPyAnMjRweCcgOiAnMTJweCd9O1xyXG4gICAgbWFyZ2luLXRvcDogMTJweDtcclxuICBgO1xyXG59XHJcblxyXG5jb25zdCBib2xkVGV4dENTUyA9IGNzc2BcclxuICBmb250LXdlaWdodDogNzAwO1xyXG5gO1xyXG5cclxuY29uc3Qgc3RvcnlXcmFwcGVyQ1NTID0gY3NzYFxyXG4gIC8qIHdpZHRoOiA3MCU7ICovXHJcbiAgLyogaGVpZ2h0OiA3MHB4OyAqL1xyXG5cclxuICBkaXNwbGF5OiAtd2Via2l0LWJveDtcclxuICAtd2Via2l0LWJveC1vcmllbnQ6IHZlcnRpY2FsO1xyXG4gIC13ZWJraXQtbGluZS1jbGFtcDogNDtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gIG1hcmdpbi1ib3R0b206IDhweDtcclxuICBsaW5lLWhlaWdodDogMTMwJTtcclxuYDtcclxuXHJcbmNvbnN0IGJ1dHRvbldyYXBwZXJDU1MgPSAoe2lzRGVza1RvcH06IHtpc0Rlc2tUb3A6IGJvb2xlYW59KSA9PiB7XHJcbiByZXR1cm4gY3NzYFxyXG4gIHdpZHRoOiAxMDAlO1xyXG4gICR7aXNEZXNrVG9wID09PSBmYWxzZSAmJiAnZGlzcGxheTogZmxleDsganVzdGlmeS1jb250ZW50OiBjZW50ZXI7J31cclxuIGBcclxufVxyXG5cclxuY29uc3QgbGluZUNTUyA9IGNzc2BcclxuICBib3JkZXItYm90dG9tOiAxcHggdmFyKC0tYm9yZGVyLWNvbG9yLTIpIHNvbGlkO1xyXG4gIG1hcmdpbi1ib3R0b206IDhweDtcclxuYFxyXG5cclxuY29uc3QgbWFpbkNvbnRlbnRJbm5lcldyYXBwZXJDU1MgPSBjc3NgXHJcbiAgaGVpZ2h0OiAxMDAlO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG5gXHJcblxyXG5jb25zdCBteVNjb3JlU3RyaW5nQ1NTID0gY3NzYFxyXG4gIC8qIG1hcmdpbi1yaWdodDogOHB4OyAqL1xyXG5gXHJcblxyXG5jb25zdCBwbGF0Zm9ybVJhdGluZ1dyYXBwZXJDU1MgPSBjc3NgXHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIG1hcmdpbi1yaWdodDogOHB4O1xyXG5cclxuICAmOmhvdmVyIC5wbGF0Zm9ybS1yYXRpbmctd3JhcHBlciB7XHJcbiAgICBvcGFjaXR5OiAxMDAlO1xyXG4gIH1cclxuYFxyXG5cclxuY29uc3QgYm9va0luZm9PdXRlcldyYXBwZXJDU1MgPSBjc3NgXHJcbiAgbWFyZ2luLWJvdHRvbTogMjRweDtcclxuYFxyXG5leHBvcnQgZGVmYXVsdCBCb29rRGV0YWlsO1xyXG4iXSwibmFtZXMiOlsiY3NzIiwiZ2V0Qm9va0RldGFpbCIsInVzZUVmZmVjdCIsInVzZVN0YXRlIiwiQmlDaGV2cm9uUmlnaHRDaXJjbGUiLCJCb29rbWFya1RvZ2dsZSIsIkhhc0JlZW5SZWFkVG9nZ2xlIiwiQ29tbWVudEJ0biIsIlRhZ0xpc3QiLCJSZWRpckJ1dHRvbiIsIlN0YXJSYXRpbmciLCJGaXhlZE1vZGFsIiwiRGV0YWlsQ29tbWVudCIsInVzZUlzUmVzcG9uc2l2ZSIsInB1dEJvb2tSYXRpbmciLCJQbGF0Zm9ybVJhdGluZ0hvdmVyIiwiQm9va0RldGFpbCIsImJvb2tEYXRhIiwiaXNEZXNrVG9wIiwiaXNUYWJsZXQiLCJpc01vYmlsZSIsImNvbW1lbnRNb2RhbFN0YXRlIiwic2V0Q29tbWVudE1vZGFsU3RhdGUiLCJjb25zb2xlIiwibG9nIiwiZGVza3RvcERlY29yYXRpb24iLCJkaXYiLCJiYWNrZ3JvdW5kV3JhcHBlckNTUyIsImNsYXNzTmFtZSIsImJsdXJyZWRJbWdDU1MiLCJ0aHVtYm5haWwiLCJ2ZXJ0aWNhbEdyYWRpZW50Q1NTIiwiaG9yaXpvbnRhbEdyYWRpZW50Q1NTIiwiaWNvbkJ0biIsImljb25GdW5jdGlvbkNTUyIsImJvb2tJZCIsInN0YXRlSGFuZGxlciIsImlzQ2xpY2tlZCIsImJvb2ttYXJrIiwicmVhZCIsInB1dEJvb2tSYXRpbmdIYW5kbGVyIiwic2NvcmUiLCJjb250ZW50IiwiY29udGVudENTUyIsInJvd0dyaWRDU1MiLCJ0aXRsZUNTUyIsInRpdGxlIiwic2NvcmVEaXZDU1MiLCJzcGFuIiwibXlTY29yZVN0cmluZ0NTUyIsInBsYXRmb3JtUmF0aW5nV3JhcHBlckNTUyIsImhyZWYiLCJhdmdHcmFkZSIsImF2Z1Njb3JlIiwiZ3JhZGUiLCJzcGxpdCIsInNjb3JlQnRuQ1NTIiwib25DbGljayIsInJlYWRvbmx5IiwiaW5pdGlhbFZhbHVlIiwibXlTY29yZSIsImxpbmVDU1MiLCJib3R0b21Db250ZW50Q1NTIiwiYm9va0luZm9PdXRlcldyYXBwZXJDU1MiLCJib29rSW5mb1dyYXBwZXJDU1MiLCJib2xkVGV4dENTUyIsImdlbnJlIiwiRGF0ZSIsInJlZ2lzdCIsImdldEZ1bGxZZWFyIiwiYXV0aG9yIiwic3RvcnlXcmFwcGVyQ1NTIiwic3RvcnkiLCJ0YWciLCJidXR0b25XcmFwcGVyQ1NTIiwid2lkdGgiLCJoZWlnaHQiLCJwbGF0Zm9ybSIsInRodW1ibmFpbEdyaWRDU1MiLCJpbWciLCJ0aHVtYm5haWxDU1MiLCJzcmMiLCJtYWluQ29udGVudENTUyIsIm1vZGFsU3RhdGUiLCJib29rVGl0bGUiLCJtYWluQ29udGVudElubmVyV3JhcHBlckNTUyIsImNvbnRlbnRPdXRlcldyYXBwZXJDU1MiLCJjb2x1bW5HcmlkQ1NTIiwiZ2V0U2VydmVyU2lkZVByb3BzIiwiY29udGV4dCIsInBhcmFtcyIsImRhdGEiLCJ0aGVuIiwicmVzIiwiY2F0Y2giLCJlcnIiLCJwcm9wcyJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./src/pages/books/[bookId].tsx\n");
+
+/***/ }),
+
+/***/ "@emotion/react":
+/*!*********************************!*\
+  !*** external "@emotion/react" ***!
+  \*********************************/
 /***/ ((module) => {
 
 module.exports = require("@emotion/react");
 
 /***/ }),
 
-/***/ 5193:
+/***/ "@emotion/react/jsx-dev-runtime":
+/*!*************************************************!*\
+  !*** external "@emotion/react/jsx-dev-runtime" ***!
+  \*************************************************/
 /***/ ((module) => {
 
-module.exports = require("@emotion/react/jsx-runtime");
+module.exports = require("@emotion/react/jsx-dev-runtime");
 
 /***/ }),
 
-/***/ 6517:
+/***/ "lodash":
+/*!*************************!*\
+  !*** external "lodash" ***!
+  \*************************/
 /***/ ((module) => {
 
 module.exports = require("lodash");
 
 /***/ }),
 
-/***/ 6689:
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
 /***/ ((module) => {
 
 module.exports = require("react");
 
 /***/ }),
 
-/***/ 6405:
+/***/ "react-dom":
+/*!****************************!*\
+  !*** external "react-dom" ***!
+  \****************************/
 /***/ ((module) => {
 
 module.exports = require("react-dom");
 
 /***/ }),
 
-/***/ 6652:
+/***/ "react-icons/bi":
+/*!*********************************!*\
+  !*** external "react-icons/bi" ***!
+  \*********************************/
 /***/ ((module) => {
 
 module.exports = require("react-icons/bi");
 
 /***/ }),
 
-/***/ 6290:
+/***/ "react-icons/fa":
+/*!*********************************!*\
+  !*** external "react-icons/fa" ***!
+  \*********************************/
 /***/ ((module) => {
 
 module.exports = require("react-icons/fa");
 
 /***/ }),
 
-/***/ 178:
+/***/ "react-icons/fc":
+/*!*********************************!*\
+  !*** external "react-icons/fc" ***!
+  \*********************************/
 /***/ ((module) => {
 
 module.exports = require("react-icons/fc");
 
 /***/ }),
 
-/***/ 6666:
+/***/ "react-responsive":
+/*!***********************************!*\
+  !*** external "react-responsive" ***!
+  \***********************************/
 /***/ ((module) => {
 
 module.exports = require("react-responsive");
 
 /***/ }),
 
-/***/ 9648:
+/***/ "react-simple-star-rating":
+/*!*******************************************!*\
+  !*** external "react-simple-star-rating" ***!
+  \*******************************************/
+/***/ ((module) => {
+
+module.exports = require("react-simple-star-rating");
+
+/***/ }),
+
+/***/ "react/jsx-dev-runtime":
+/*!****************************************!*\
+  !*** external "react/jsx-dev-runtime" ***!
+  \****************************************/
+/***/ ((module) => {
+
+module.exports = require("react/jsx-dev-runtime");
+
+/***/ }),
+
+/***/ "axios":
+/*!************************!*\
+  !*** external "axios" ***!
+  \************************/
 /***/ ((module) => {
 
 module.exports = import("axios");;
@@ -1724,7 +380,7 @@ module.exports = import("axios");;
 var __webpack_require__ = require("../../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [932,394], () => (__webpack_exec__(7900)));
+var __webpack_exports__ = (__webpack_exec__("./src/pages/books/[bookId].tsx"));
 module.exports = __webpack_exports__;
 
 })();

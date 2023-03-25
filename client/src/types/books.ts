@@ -21,3 +21,23 @@ export type returnBookContentType = {
     page: number;
     size: number;
 }
+
+export type bookDetailType = {
+    "bookId": number;
+    "platform": number;
+    "thumbnail": string;
+    "title": string;
+    "author": string;
+    "href": string;
+    "story": string;
+    "tag": string;
+    "genre": string;
+    "regist": string;
+    "grade": string;
+    "avgScore": number;
+    "hit": number;
+    "day": string;
+    "bookmark": boolean;
+    "read": boolean;
+    "myScore": number;
+}

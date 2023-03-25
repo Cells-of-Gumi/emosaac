@@ -16,29 +16,13 @@ import StarRating from "@/components/bookDetail/StarRating";
 import FixedModal from "@/components/UI/FixedModal/FixedModal";
 import DetailComment from "@/components/DetailComment/DetailComment";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
+import { putBookRating } from "@/api/book/putBookRating";
+import { bookDetailType } from "@/types/books";
+import PlatformRatingHover from "@/components/bookDetail/PlatformRatingHover";
 
-type bookDataType = {
-  bookId: number;
-  platform: number;
-  thumbnail: string;
-  title: string;
-  author: string;
-  href: string;
-  story: string;
-  tag: string;
-  genre: string;
-  regist: string;
-  grade: string;
-  avgScore: number;
-  hit: number;
-  day: string;
-  bookmark: boolean;
-  read: boolean;
-  myScore: number;
-};
 
 interface BookDetailProps {
-  bookData: any;
+  bookData: bookDetailType;
 }
 
 
@@ -47,6 +31,7 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
 
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [commentModalState, setCommentModalState] = useState<boolean>(false)
+
 
   useEffect(() => {
     console.log(bookData);
@@ -75,24 +60,36 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
     </div>
   )
 
+  const putBookRatingHandler = (score: number) => {
+    putBookRating({bookId: bookData.bookId, score: score})
+  }
+
+
   const content = (
     <div className={'content'} css={contentCSS({isDeskTop})}>
               <div className={'rowGrid'} css={rowGridCSS({isDeskTop})}>
                 <div>
                   {isDeskTop === false && iconBtn}
-                  {isDeskTop === true && <TagList tag={bookData.tag} />}
+                  
                   
                   <div css={titleCSS({isDeskTop})}>{bookData.title}</div>
+                  
                   <div css={scoreDivCSS}>
-                    평균 평점 : {bookData.avgScore}
-                    <BiChevronRightCircle css={scoreBtnCSS} />
-                    {/* <StarRating /> */}
+                    <span css={myScoreStringCSS}>
+                      내 평점 : 
+                    </span>
+                    <div css={platformRatingWrapperCSS}>
+                      <PlatformRatingHover href={bookData.href} avgGrade={bookData.avgScore} grade={bookData.grade.split('_')}  />
+                      <BiChevronRightCircle css={scoreBtnCSS} />
+                    </div>
+                    <StarRating onClick={putBookRatingHandler} readonly={false} initialValue={bookData.myScore} />
                   </div>
+                  
                   {isDeskTop === false && <div css={lineCSS}/>}
                 </div>
 
                 <div css={bottomContentCSS}>
-                  <div>
+                  <div css={bookInfoOuterWrapperCSS}>
                     {isDeskTop && iconBtn}
                     <div css={bookInfoWrapperCSS({isDeskTop})}>
                       <div css={boldTextCSS}>
@@ -101,8 +98,9 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
                       </div>
                       <div>{bookData.author}</div>
                     </div>
-
+                    
                     <div css={storyWrapperCSS}>{bookData.story}</div>
+                    <TagList tag={bookData.tag} />
                   </div>
                   <div css={buttonWrapperCSS({isDeskTop})}>
                     <RedirButton
@@ -133,7 +131,7 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
       <FixedModal
          modalState={commentModalState}
          stateHandler={setCommentModalState}
-         content={<DetailComment bookId={bookData.bookId} />}
+         content={<DetailComment bookTitle={bookData.title} bookId={bookData.bookId} />}
       />
 
       <div css={mainContentInnerWrapperCSS} className={"second-level-el"} >
@@ -156,7 +154,7 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
 // getServerSideProps는 async/await를 사용하여 API를 모두 받아올 때까지 대기하였다가 컴포넌트로 props를 넘겨주고, 이후 컴포넌트는 사전 생성 됩니다.
 export const getServerSideProps = async (context: any) => {
   const params = await context.params;
-  const data = await getBookDetail(params.bookId)
+  const data = await getBookDetail({bookId: params.bookId})
     .then((res) => {
       return res;
     })
@@ -289,14 +287,15 @@ const rowGridCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
 
 const titleCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
   return css`
-    font-size: 6vw;
+    font-size: ${isDeskTop ? '4vw' : '7vw'};
     font-weight: 700;
     margin-bottom: ${isDeskTop ? '24px' : '12px'};
+    word-break:keep-all;
   `;
 }
 
 const scoreDivCSS = css`
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 500;
   display: flex;
   align-items: center;
@@ -341,7 +340,8 @@ const storyWrapperCSS = css`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
   overflow: hidden;
-  margin-bottom: 24px;
+  margin-bottom: 8px;
+  line-height: 130%;
 `;
 
 const buttonWrapperCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
@@ -352,7 +352,8 @@ const buttonWrapperCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
 }
 
 const lineCSS = css`
-  border-bottom: 1px var(--text-color-4) solid;
+  border-bottom: 1px var(--border-color-2) solid;
+  margin-bottom: 8px;
 `
 
 const mainContentInnerWrapperCSS = css`
@@ -360,4 +361,20 @@ const mainContentInnerWrapperCSS = css`
   width: 100%;
 `
 
+const myScoreStringCSS = css`
+  /* margin-right: 8px; */
+`
+
+const platformRatingWrapperCSS = css`
+  position: relative;
+  margin-right: 8px;
+
+  &:hover .platform-rating-wrapper {
+    opacity: 100%;
+  }
+`
+
+const bookInfoOuterWrapperCSS = css`
+  margin-bottom: 24px;
+`
 export default BookDetail;
