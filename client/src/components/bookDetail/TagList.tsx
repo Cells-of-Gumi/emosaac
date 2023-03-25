@@ -7,9 +7,9 @@ interface TagListProps {
 
 const TagList = ({ tag }: TagListProps) => {
 
-  const renderTags = tag.split(" ").slice(0, 3).map((el, idx) => {
+  const renderTags = tag.split(" ").map((el, idx) => {
     if (el.trim() !== '') {
-        return <div css={tagWrapperCSS}>{el}</div>;
+        return <div css={tagWrapperCSS}>#{el},</div>;
     }
     
   });
@@ -23,14 +23,14 @@ const TagList = ({ tag }: TagListProps) => {
 
 const outerWrapperCSS = css`
     position: relative;
-    height: 72px;
+    height: 16px;
 `
 
 const tagListWrapperCSS = css`
   display: flex;
 position: absolute;
-  margin-top: 12px;
-    width: 100%;
+  /* margin-top: 12px; */
+    width: 110%;
     overflow: scroll;
     padding-left: 50px;
     /* padding-right: -20px; */
@@ -56,13 +56,14 @@ position: absolute;
 `;
 
 const tagWrapperCSS = css`
-  border-radius: 20px;
-  background-color: var(--main-color);
-  padding: 14px;
+  /* border-radius: 20px; */
+  /* background-color: var(--main-color); */
+  /* padding: 14px; */
   margin-right: 14px;
-  margin-bottom: 14px;
+  /* margin-bottom: 14px; */
   color: black;
   white-space:pre;;
+  color: var(--text-color-4);
 `;
 
 export default TagList;

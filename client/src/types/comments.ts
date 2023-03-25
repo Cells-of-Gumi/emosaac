@@ -14,6 +14,7 @@ export type CommentType = {
   "isChild": boolean;
   "likeStatusSize": number;
   "likeState": boolean;
+  "totalCount": number;
   }
 
 export type returnCommentArrayType = CommentType[]

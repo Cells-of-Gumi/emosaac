@@ -25,7 +25,7 @@ const RedirButton = ({ width, height, platform, href }: ButtonProps) => {
         const result = platformBase.findIndex(findPlatform)
         return (
             <a href={el}>
-                <img src={(result === 0 && "/assets/platform_naver_webtoon.webp") || (result === 1 && "/assets/platform_naver_series.webp") || (result === 2 && "/assets/platform_kakao_page.png") || (result === 3 && "/assets/platform_ridi.png") || ''} css={platformBtnCSS} />
+                <img src={(result === 0 && "/assets/platform_naver_webtoon.webp") || (result === 1 && "/assets/platform_naver_series.webp") || (result === 2 && "/assets/platform_kakao_page.png") || (result === 3 && "/assets/platform_ridi.webp") || ''} css={platformBtnCSS} />
             </a>
             
         )

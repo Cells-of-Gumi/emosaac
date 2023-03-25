@@ -47,7 +47,7 @@ const DetailCommentInput = ({ action, bookId, parentId, defaultValue, commentId,
 
     return (
         <div css={inputWrapperCSS}>
-            <input css={inputCSS} ref={inputRef} placeholder={`댓글을 입력해 주세요. ${parentId}`} defaultValue={defaultValue ? defaultValue : ``} />
+            <input css={inputCSS} ref={inputRef} placeholder={`댓글을 입력해 주세요.`} defaultValue={defaultValue ? defaultValue : ``} />
             <div onClick={commentHandler} css={confirmBtnCSS} >작성</div>
         </div>
         

@@ -142,11 +142,12 @@ section {
 }
 html {
   background-color: var(--back-color);
-  overflow-x: hidden;
+  
 }
 body {
   font-family: "SUIT";
   line-height: 1;
+  overflow-x: hidden;
 }
 ol,
 ul {

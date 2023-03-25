@@ -81,6 +81,7 @@ const DetailCommentViewElement = ({
       <div css={writerInfoWrapperCSS}>
         <div css={profileImgWrapperCSS}>
           <img src={comment.writerInfo.profileImg} />
+          
         </div>
         <span>{comment.writerInfo.nickname}</span>
       </div>
@@ -195,7 +196,7 @@ const footerElementCSS = css`
 
 const childCommentsWrapperCSS = ({depth}: {depth: number}) => {
   return css`
-    margin-left: ${depth === 0 ? '48px' : '0px'};
+    margin-left: ${depth === 0 ? '24px' : '0px'};
   `;
 }
 
