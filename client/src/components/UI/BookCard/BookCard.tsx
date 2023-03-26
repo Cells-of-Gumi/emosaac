@@ -60,8 +60,9 @@ const BookCard = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [modalToggler, setModalToggler] = useState<boolean>(false);
   const [isMouseOn, setIsMouseOn] = useState<boolean>(false);
+  const platformBase = ["https://comic.naver.com/", "https://series.naver.com/", "https://page.kakao.com/", "https://ridibooks.com/"]
 
-  const platformBar = <div css={platformBarCSS}></div>;
+ 
 
   const showModal = () => {
     setTimeout(function () {
@@ -84,6 +85,25 @@ const BookCard = ({
     }
   };
 
+
+
+  
+
+    
+  const platformRender = bookData?.href?.split(" ").map((el:any, idx:number) => {
+      const findPlatform = (element: string) => {
+          if (el.includes(element)) {
+              return true
+          }
+      }
+      const result = platformBase.findIndex(findPlatform)
+      return (
+
+          <img src={(result === 0 && "/assets/platform_naver_webtoon.webp") || (result === 1 && "/assets/platform_naver_series.webp") || (result === 2 && "/assets/platform_kakao_page.png") || (result === 3 && "/assets/platform_ridi.webp") || ''} css={platformIconCSS} />
+    
+      )
+  })
+
   const modal = (
     <Portal selector=".overlay-root">
       <BookCardModal
@@ -97,6 +117,8 @@ const BookCard = ({
       />
     </Portal>
   );
+
+  const platformBar = <div css={platformBarCSS}>{bookData.href && platformRender}</div>;
 
   return (
     <div
@@ -190,6 +212,9 @@ const platformBarCSS = css`
   position: absolute;
   bottom: 0;
   pointer-events: none;
+
+  display: flex;
+  align-items: center;
 `;
 
 const imageCSS = css`
@@ -218,5 +243,13 @@ const skeletonLoadingTagCSS = ({ state }: skeletonLoadingTagCSSProps) => {
     pointer-events: none;
   `;
 };
+
+
+const platformIconCSS = css`
+    width: 2vw;
+    min-width: 24px;
+    height: auto;
+    margin: 10px;
+`
 
 export default BookCard;

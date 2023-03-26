@@ -1,6 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
+import {useState} from 'react'
+import { putBookmark } from "@/api/book/putBookmark";
+import { putHasBeenRead } from "@/api/book/putHasBeenRead";
+
 
 
 
@@ -19,6 +23,16 @@ interface ToggleBtnProps {
 
  export const BookmarkToggle = ({isClicked, bookId}: ToggleBtnProps) => {
     const [isDeskTop, isTablet, isMobile] = useIsResponsive();
+    const [bookmarkValue, setBookmarkValue] = useState<boolean>(isClicked)
+
+    const bookmarkHandler = () => {
+        putBookmark({bookId})
+        .then((res) => {
+            if (res !== null) {
+                setBookmarkValue(() => res)
+            }
+        })
+    }
 
     const bookmarkNotClicked = (
         <svg width={isMobile ? '32' : '42'} height={isMobile ? '32' : '42'} viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,14 +57,24 @@ interface ToggleBtnProps {
     )
 
     return (
-        <div css={btnWrapperCSS({isMobile})}>
-            {isClicked ? bookmarkClicked : bookmarkNotClicked}
+        <div onClick={bookmarkHandler} css={btnWrapperCSS({isMobile})}>
+            {bookmarkValue ? bookmarkClicked : bookmarkNotClicked}
         </div>
     )
 }
 
 export const HasBeenReadToggle = ({isClicked, bookId}: ToggleBtnProps) => {
     const [isDeskTop, isTablet, isMobile] = useIsResponsive();
+    const [hasBeenReadValue, setHasBeenReadValue] = useState<boolean>(isClicked)
+
+    const hasBeenReadHandler = () => {
+        putHasBeenRead({bookId})
+        .then((res) => {
+            if (res !== null) {
+                setHasBeenReadValue(() => res)
+            }
+        })
+    }
 
     const checkboxNotClicked = (
         <svg width={isMobile ? '32' : '42'} height={isMobile ? '32' : '42'} viewBox="0 0 43 42" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,9 +90,9 @@ export const HasBeenReadToggle = ({isClicked, bookId}: ToggleBtnProps) => {
     )
 
     return (
-        <div css={btnWrapperCSS({isMobile})}>
-            {isClicked ? checkboxClicked : checkboxNotClicked}
-            <span css={css`margin-left: 14px;`}>{isClicked ? '읽음' : '읽지 않음'}</span>
+        <div onClick={hasBeenReadHandler} css={btnWrapperCSS({isMobile})}>
+            {hasBeenReadValue ? checkboxClicked : checkboxNotClicked}
+            <span css={css`margin-left: 14px;`}>{hasBeenReadValue ? '읽음' : '읽지 않음'}</span>
             
         </div>
     )

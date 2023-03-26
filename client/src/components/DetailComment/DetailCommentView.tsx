@@ -110,9 +110,9 @@ const DetailCommentView = ({bookId, parentId, position, criteria, commentsWrappe
 
     const commentsRender = comments.map((el, idx) => {
         return (
-            <div>
-                <DetailCommentViewElement bookId={bookId} comment={el} parentId={el.commentId} refreshCommentsHandler={refreshCommentsHandler} />
-            </div>
+
+                <DetailCommentViewElement key={`${idx}${el.commentId}${el.likeStatusSize}`} bookId={bookId} comment={el} parentId={el.commentId} refreshCommentsHandler={refreshCommentsHandler} />
+
         )
     })
 
@@ -135,7 +135,7 @@ const DetailCommentView = ({bookId, parentId, position, criteria, commentsWrappe
             {position === 0 && inputRender}
             {comments.length !== 0 ? commentsRender : noCommentsRender}
             {position === 1 && <div css={childCommentsInputWrapperCSS}>{inputRender}</div>}
-            {(position === 1 && comments.length !== 0) && showMoreChildComments}
+            {(position === 1 && comments.length !== 0 && comments.length < comments[0]?.totalCount) && showMoreChildComments}
         </div>
     )
 

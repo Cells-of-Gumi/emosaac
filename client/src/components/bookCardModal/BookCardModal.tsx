@@ -5,6 +5,10 @@ import ReactDOM from "react-dom";
 import { throttle } from "lodash";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import { useRouter } from "next/router"
+import { bookDetailType } from "@/types/books";
+import { getBookDetail } from "@/api/book/getBookDetail";
+import StarRating from "../bookDetail/StarRating";
+import TagList from "../bookDetail/TagList";
 
 interface BookCardModalProps {
   modalToggler: boolean;
@@ -30,6 +34,19 @@ const BookCardModal = ({
   const [isOpened, setisOpened] = useState<boolean>(false);
   const [isClosing, setIsClosing] = useState<boolean>(false);
   const router = useRouter()
+  const [bookDetailData, setBookDetailData] = useState<bookDetailType>()
+
+  useEffect(() => {
+    const data = getBookDetail({bookId: bookData.bookId})
+    .then((res) => {
+      if (res !== null) {
+        setBookDetailData(() => res)
+      }
+    })
+    .catch((err) => {
+      console.log("pages/books/[bookId].tsx => ", err);
+    });
+  }, [])
 
   const modalLayout = {
     widthValue: 450,
@@ -130,13 +147,23 @@ const BookCardModal = ({
 
         <div css={spaceDivCSS}></div>
         <div css={contentDivCSS}>
-          <div>
-            <div css={titleCSS}>{bookData.title}</div>
-            <div css={dateCSS}>{bookData.regist}</div>
+          <div className={"book-info"} css={bookInfoWrapperCSS}>
+            <div css={titleCSS}>
+              {bookData.title}
+              
+            </div>
+            <div css={additionalInfoWrapperCSS}>
+              
+              <div css={starRatingWrapperCSS}>
+                {bookDetailData && <StarRating readonly={true} initialValue={bookDetailData.avgScore} />}
+              </div>
+              {bookDetailData && <TagList tag={bookDetailData.tag} />}
+            </div>
+            
           </div>
           
-          <div css={css`display:flex; justify-content:space-between;`}>
-            <div></div>
+          <div css={css`display:flex; flex-direction: column; align-items:end; justify-content:space-between;`}>
+            <div css={dateCSS}>{bookData.regist}</div>
             <BsFillArrowUpCircleFill css={icons} onClick={onClickNavigateHandler} />
           </div>
           
@@ -292,11 +319,12 @@ const contentDivCSS = css`
   padding: 24px;
   display: flex;
   justify-content: space-between;
-  flex-direction: column;
+  /* flex-direction: column; */
 `;
 
 const titleCSS = css`
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: 700;
   color: var(--text-color);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -305,7 +333,7 @@ const titleCSS = css`
 
 const dateCSS = css`
   font-size: 13px;
-  margin-top: 8px;
+  /* margin-top: 8px; */
   color: var(--text-color-4);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -317,7 +345,33 @@ const icons = css`
   color: var(--text-color-4);
   width: 52px;
   height: 52px;
+  cursor: pointer;
+
+  transition-property: color;
+  transition-duration: 0.3s;
+
+  &:hover {
+    color: var(--text-color-3);
+  }
 `
+
+const starRatingWrapperCSS = css`
+  margin-top: 6px;
+  margin-bottom: 6px;
+`
+
+const bookInfoWrapperCSS = css`
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
+const additionalInfoWrapperCSS = css`
+
+`
+
 
 
 export default BookCardModal;

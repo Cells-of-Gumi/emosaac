@@ -120,15 +120,16 @@ const content = ({ type, content, data }: any) => {
 
       <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
         <div css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}>
-          {data.map((book: Book) => (
-            <BookCardSearch
-              key={book.bookId}
-              bookData={book}
-              showPlatform={false}
-              width={"100%"}
-              height={"100%"}
-            />
-          ))}
+          {data &&
+            data.map((book: Book) => (
+              <BookCardSearch
+                key={book.bookId}
+                bookData={book}
+                showPlatform={false}
+                width={"100%"}
+                height={"100%"}
+              />
+            ))}
         </div>
         <SearchListView
           books={books}
