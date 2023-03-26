@@ -1,12 +1,11 @@
 import axios from "axios";
 
 function getToken() {
-  
   if (typeof window !== "undefined") {
     const information = localStorage.getItem("access_token");
-    return `Bearer ${information}`; 
+    return `Bearer ${information}`;
   }
-  
+
   return "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjc5NzQ3MDk1LCJleHAiOjE2ODA2MTEwOTV9.DsJ7WzqbL5_8TqoU9ESeWVFoUBGWVY2YpR61HVLMkMoJAYuiaC2okKqgTD97FAQBowGTM3WdAAHyIKbeFUSwDw";
 }
 
@@ -19,6 +18,15 @@ function defaultInstace() {
       Authorization: token,
     },
   });
+
+  instance.interceptors.request.use((config) => {
+    const token = getToken();
+    if (token) {
+      config.headers.Authorization = token;
+    }
+    return config;
+  });
+
   return instance;
 }
 
@@ -28,6 +36,15 @@ function defaultFormDataInstance() {
     baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
     headers: { "Content-Type": "multipart/form-data", Authorization: token },
   });
+
+  instance.interceptors.request.use((config) => {
+    const token = getToken();
+    if (token) {
+      config.headers.Authorization = token;
+    }
+    return config;
+  });
+
   return instance;
 }
 
