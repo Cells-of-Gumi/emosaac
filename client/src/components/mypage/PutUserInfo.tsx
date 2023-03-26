@@ -1,9 +1,32 @@
 /** @jsxImportSource @emotion/react */
+import getIsNickname from "@/api/user/getIsNickname";
 import { css } from "@emotion/react";
 
 import Image from "next/image";
 // import profileimage from "../../assets/profileexample.jpg";
-export default function PutUserInfo() {
+import { useState } from "react";
+import { useCallback } from "react";
+
+const PutUserInfo = () => {
+  const [nickname, setNickname] = useState("");
+  const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
+  const [nicknameValidityMessage, setNicknameValidityMessage] = useState("");
+
+  const handleNicknameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNickname(event.target.value);
+    console.log(nickname);
+  };
+  const onClickCheckDuplicateNickname = () => {
+    getIsNickname(nickname).then((res) => {
+      console.log(res);
+      if (res === false) {
+        setNicknameValidityMessage("사용 가능한 닉네님이에요");
+      } else {
+        setNicknameValidityMessage("사용이 불가능한 닉네임이에요");
+        setNicknameValidityMessage("");
+      }
+    });
+  };
   return (
     <>
       <section>
@@ -14,7 +37,11 @@ export default function PutUserInfo() {
           <div>
             <div css={imagewrapCSS}>
               <label htmlFor="profileImage">
-                <img css={imageCSS} src={"/assets/profileexample.jpg"} alt="프로필 이미지" />
+                <img
+                  css={imageCSS}
+                  src={"/assets/profileexample.jpg"}
+                  alt="프로필 이미지"
+                />
               </label>
             </div>
             <input
@@ -32,8 +59,17 @@ export default function PutUserInfo() {
               css={inputwrapCSS}
               type="text"
               placeholder="닉네임을 입력해주세요"
+              value={nickname}
+              onChange={handleNicknameInput}
             />
-            <button css={nicknameconfirmCSS}>중복확인</button>
+            <button
+              css={nicknameconfirmCSS}
+              onClick={onClickCheckDuplicateNickname}
+              type="button"
+            >
+              중복확인
+            </button>
+            {isNicknameDuplicate && <div>{nicknameValidityMessage}</div>}
           </div>
           <div css={genderwrapCSS}>
             <h3 css={genderCSS}>성별</h3>
@@ -59,7 +95,7 @@ export default function PutUserInfo() {
       </section>
     </>
   );
-}
+};
 
 const formCSS = css`
   color: var(--text-color);
@@ -156,3 +192,4 @@ const explainCSS = css`
   margin-top: 5px;
   font-size: 10px;
 `;
+export default PutUserInfo;
