@@ -117,7 +117,6 @@ const Survey = () => {
                 ? selectedWebtoons
                 : selectedNovels
               ).has(webtoon.bookId)}
-              css={thumbnailCSS}
               onClick={() =>
                 toggleSelectedItem(
                   webtoon.bookId,

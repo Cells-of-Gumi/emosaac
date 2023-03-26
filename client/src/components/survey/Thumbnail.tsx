@@ -13,7 +13,7 @@ const Thumbnail = ({ src, alt, isSelected, onClick }: ThumbnailProps) => {
     <img
       src={src}
       alt={alt}
-      css={[imgStyle, isSelected ? dimmedStyle : undefined]}
+      css={[imgStyle, thumbnailCSS, isSelected ? dimmedStyle : undefined]}
       onClick={onClick}
     />
   );
@@ -28,4 +28,8 @@ const dimmedStyle = css`
   border: 5px solid var(--main-color);
 `;
 
+const thumbnailCSS = css`
+  width: 100%;
+  height: 100%;
+`;
 export default Thumbnail;
