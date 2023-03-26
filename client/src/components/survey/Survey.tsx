@@ -9,9 +9,11 @@ import { useState } from "react";
 import Thumbnail from "./Thumbnail";
 import postSurvey from "./../../api/survey/postSurveyList";
 import { useRouter } from "next/router";
+import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 
 const Survey = () => {
   const router = useRouter();
+  const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [typeCode, setTypeCode] = useState(0);
   const [webtoonList, setWebtoonList] = useState<returnSurveyArrayType[]>([]);
   const [selectedWebtoons, setSelectedWebtoons] = useState<Set<number>>(
@@ -73,20 +75,24 @@ const Survey = () => {
 
   return (
     <>
-      <section css={infoCSS}>
+      <section css={infoCSS(isDeskTop, isTablet, isMobile)}>
         <div>
-          {typeCode === 0 && <h1>선호하는 웹툰을 5개 선택해주세요</h1>}
-          {typeCode === 1 && <h1>선호하는 웹소설을 5개 선택해주세요</h1>}
+          {typeCode === 0 && (
+            <h1 css={titleCSS}>선호하는 웹툰을 5개 선택해주세요</h1>
+          )}
+          {typeCode === 1 && (
+            <h1 css={titleCSS}>선호하는 웹소설을 5개 선택해주세요</h1>
+          )}
           <div style={{ marginTop: "10px" }}>
             이모작의 추천방식에 깜짝 놀라실걸요?
           </div>
         </div>
         <div>
-          <div>
+          <div css={buttongridCSS(isTablet)}>
             {typeCode === 0 ? (
               <SmallWideButton text={"다음"} onClick={onClickNextButton} />
             ) : (
-              <div css={buttongridCSS}>
+              <div css={buttongridCSS(isTablet)}>
                 <div>
                   <SmallWideButton text={"이전"} onClick={onClickPrevButton} />
                 </div>
@@ -101,7 +107,7 @@ const Survey = () => {
           </div>
         </div>
       </section>
-      <section css={surveygridCSS}>
+      <section css={surveygridCSS(isTablet, isMobile)}>
         {webtoonList.map((webtoon) => (
           <div key={webtoon.bookId}>
             <Thumbnail
@@ -111,6 +117,7 @@ const Survey = () => {
                 ? selectedWebtoons
                 : selectedNovels
               ).has(webtoon.bookId)}
+              css={thumbnailCSS}
               onClick={() =>
                 toggleSelectedItem(
                   webtoon.bookId,
@@ -124,14 +131,42 @@ const Survey = () => {
     </>
   );
 };
-const infoCSS = css`
+const infoCSS = (
+  isDesktop: boolean,
+  isTablet: boolean,
+  isMobile: boolean
+) => css`
   margin-top: 50px;
   display: flex;
+  flex-direction: ${isDesktop ? "row" : "column"};
   justify-content: space-around;
-  align-items: flex-start; /* 이미지와 맞추기 위해 추가 */
+  align-items: flex-start;
+  @media only screen and (max-width: 1024px) {
+    align-items: flex-start;
+  }
+  @media only screen and (max-width: 768px) {
+    justify-content: ${isTablet ? "space-between" : "space-around"};
+    align-items: flex-start;
+  }
 `;
 
-const surveygridCSS = css`
+const titleCSS = css`
+  white-space: nowrap;
+  @media only screen and (max-width: 1024px) {
+    text-align: left;
+    white-space: normal;
+    font-size: 33px;
+    width: 100%;
+  }
+  @media only screen and (max-width: 768px) {
+    text-align: left;
+    white-space: normal;
+    font-size: 33px;
+    width: 100%;
+  }
+`;
+
+const surveygridCSS = (isTablet: boolean, isMobile: boolean) => css`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   margin: 30px 105px;
@@ -145,13 +180,37 @@ const surveygridCSS = css`
     width: 100%;
     height: 100%;
   }
+  @media only screen and (max-width: 1024px) {
+    grid-template-columns: ${isTablet ? "repeat(5, 1fr)" : "repeat(3, 1fr)"};
+  }
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
-const buttongridCSS = css`
+const buttongridCSS = (isTablet: boolean) => css`
   display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  margin-top: ${isTablet ? "20px" : "20px"};
+
+  @media only screen and (max-width: 768px) {
+    justify-content: flex-end;
+  }
+  white-space: nowrap;
+`;
+
+const thumbnailCSS = css`
+  width: 100%;
+  height: 100%;
 `;
 
 const submitbuttonCSS = css`
   margin-left: 20px;
+  @media only screen and (max-width: 768px) {
+    width: 80%;
+    height: auto;
+  }
+  white-space: nowrap;
 `;
 export default Survey;
