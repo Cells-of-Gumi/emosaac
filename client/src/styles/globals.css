@@ -16,6 +16,7 @@
   --alert-color: #ff1e1e;
   --hover-color: contrast(30%);
   --shadow-color: 0px 0px 20px #00000030;
+  --soft-grey: #f0f3ff;
 }
 
 [data-theme="dark"] {
@@ -36,6 +37,7 @@
   --alert-color: #ff1e1e;
   --hover-color: contrast(50%);
   --shadow-color: 0px 0px 20px #ffffff30;
+  --soft-grey: #101013;
 }
 
 html,

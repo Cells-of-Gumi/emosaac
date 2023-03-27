@@ -41,3 +41,8 @@ export type bookDetailType = {
   read: boolean;
   myScore: number;
 };
+
+export type returnGenresType = {
+  genreId: number;
+  name: string;
+}[];
