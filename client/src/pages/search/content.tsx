@@ -77,7 +77,7 @@ const content = ({ type, content, data }: any) => {
       default:
         setTypeList([false, false, true]);
     }
-  }, []);
+  }, [type]);
 
   useEffect(() => {
     if (data) {

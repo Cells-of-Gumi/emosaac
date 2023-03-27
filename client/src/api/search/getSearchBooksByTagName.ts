@@ -1,4 +1,4 @@
-import { defaultAxiosInstance } from "../instance";
+import { defaultAxiosInstanceForTest } from "../instance";
 import { searchBookType, returnSearchBooksType } from "@/types/search";
 
 type searchBooksParamsType = {
@@ -17,9 +17,10 @@ export async function getListByTagName({
   size,
 }: searchBooksParamsType): Promise<returnSearchBooksType[] | null> {
   try {
-    const { data }: { data: searchBookType } = await defaultAxiosInstance.get(
-      `/search/tag/${type}/${tagName}?prevId=${prevId}&prevScore=${prevScore}&size=${size}`
-    );
+    const { data }: { data: searchBookType } =
+      await defaultAxiosInstanceForTest.get(
+        `/search/tag/${type}/${tagName}?prevId=${prevId}&prevScore=${prevScore}&size=${size}`
+      );
     if (data.status === 200) {
       return data.data;
     } else {

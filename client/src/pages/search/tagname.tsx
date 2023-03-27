@@ -77,7 +77,7 @@ const tagName = ({ type, tagName, data }: any) => {
       default:
         setTypeList([false, false, true]);
     }
-  }, []);
+  }, [type]);
 
   useEffect(() => {
     if (data) {
