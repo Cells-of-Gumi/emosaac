@@ -8,6 +8,7 @@ type paramsType = {
   prevId?: number;
   prevScore?: number;
   size?: number;
+  token?: string | null;
 }
 
 type returnType = returnBookContentType
@@ -26,11 +27,19 @@ type responseType = {
   data: returnType;
 }
 
-export async function getBooksByGenre({genreCode, typeCode, prevId, prevScore, size}: paramsType
+export async function getBooksByGenre({genreCode, typeCode, prevId, prevScore, size, token}: paramsType
 ): Promise<returnType | null> {
   try {
+    const headers: any = {};
+    if (token) {
+      headers.Authorization = token;
+    }
+
     const { data }: { data: responseType } = await defaultAxiosInstance.get(
-      `/books/genre/${genreCode}?typeCode=${typeCode}${prevId !== undefined ? `&prevId=${prevId}` : ''}${prevScore !== undefined ? `&prevScore=${prevScore}` : ''}${size !== undefined ? `&size=${size}` : ''}`
+      `/books/genre/${genreCode}?typeCode=${typeCode}${prevId !== undefined ? `&prevId=${prevId}` : ''}${prevScore !== undefined ? `&prevScore=${prevScore}` : ''}${size !== undefined ? `&size=${size}` : ''}`,
+      {
+        headers,
+      }
     );
     return data.data
   } catch (error) {

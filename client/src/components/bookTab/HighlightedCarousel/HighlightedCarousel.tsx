@@ -60,6 +60,8 @@ const HighlightedCarousel = ({ bookData, windowWrapperRef }: HighlightedCarousel
   //   }
   // }
 
+  const [windowWidth, setWindowWidth] = useState<any>(0)
+  
   const handleResize = useMemo(
     () =>
         throttle((event) => {
@@ -71,13 +73,14 @@ const HighlightedCarousel = ({ bookData, windowWrapperRef }: HighlightedCarousel
                 ) / 2 + "px" : "0px";
             carouselWrapperRef.current.style.left = calcLeft
           }
-        }, 300),
+          setWindowWidth(() => window.innerWidth)
+        }, 1000),
     []
 );
 
 
   useEffect(() => {
-
+    
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -107,7 +110,7 @@ const HighlightedCarousel = ({ bookData, windowWrapperRef }: HighlightedCarousel
       return (
         <div
           // ref={(ele) => (wrapperRef.current[idx] = ele)}
-          key={el.title}
+          key={`${el.title}-${windowWidth}`}
           css={imgWrapperCSS({
             idx,
             widthValue: cardLayout.widthValue,
