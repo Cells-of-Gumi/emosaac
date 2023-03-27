@@ -8,13 +8,13 @@ export default function test() {
     // const webnovel: number = 1;
     getGenreByTypeCode(webtoon).then((res) => {
       const data = res;
-      console.log(data);
+      // console.log(data);
     });
   }, []);
   useEffect(() => {
     getMyInfo().then((res) => {
       const data = res;
-      console.log(data);
+      // console.log(data);
     });
   }, []);
   return <></>;
