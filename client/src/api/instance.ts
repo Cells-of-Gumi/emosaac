@@ -3,6 +3,7 @@ import cookie from "cookie";
 export function getToken(req?: any) {
   if (typeof window !== "undefined") {
     const information = localStorage.getItem("access_token");
+    console.log(information)
     return `Bearer ${information}`;
   }
 

@@ -14,14 +14,21 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 // import contentBannerMobile from "/assets/content_banner_mobile.png"
 import { getBooksByGenre } from "@/api/book/getBooksByGenre";
 import { bookContentType } from "@/types/books";
+import { useRouter } from 'next/router'
+import { getGenres } from "@/api/book/getGenres";
+import { returnGenresType } from "@/types/books";
+import GenreList from "@/components/bookTab/GenreList";
 
 interface HomeProps {
-  highlightedBookData: bookContentType[]
+  highlightedBookData: bookContentType[];
+  genres: returnGenresType;
+  params: any
 }
 
-export default function Home({highlightedBookData}: HomeProps) {
+export default function Home({highlightedBookData, genres, params}: HomeProps) {
   const parentRef = useRef<HTMLDivElement>(null);
   const indexWrapperRef = useRef<HTMLDivElement>(null);
+  const [selectedGenre, setSelectedGenre] = useState<number>(-2)
 
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
 
@@ -40,9 +47,13 @@ export default function Home({highlightedBookData}: HomeProps) {
   const [bookData, setBookData] = useState<object[]>([]);
 
 
+
+
   // ________________________________________________________________________________________________
 
-
+  const selectGenreHandler = (selected: number) => {
+    setSelectedGenre(() => selected)
+  }
   
 
   const getBooksByGenreAPI = ({bookList, size}: {bookList: bookContentType[]; size: number}) => {
@@ -57,7 +68,9 @@ export default function Home({highlightedBookData}: HomeProps) {
         <SwipeableGallery parentRef={parentRef} content={postData} />
       </div>
 
-      <div css={whiteSpace1CSS} />
+      <GenreList genres={genres} selected={selectedGenre} selectHandler={selectGenreHandler} />
+
+      {/* <div css={whiteSpace1CSS} /> */}
       <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
         <RowTitle
           beforeLabel="희MD"
@@ -115,9 +128,84 @@ export default function Home({highlightedBookData}: HomeProps) {
 }
 
 
-export const getServerSideProps = async (context: any) => {
-  // 임시 API
-  const data = await getBooksByGenre({genreCode: 10, typeCode: 0, prevId: 0, prevScore: 10, size: 20 })
+// export const getServerSideProps = async (context: any) => {
+//   // const params = await context.params;
+
+
+//   // 임시 API
+//   const data = await getBooksByGenre({genreCode: 10, typeCode: 0, prevId: 0, prevScore: 10, size: 20 })
+//     .then((res) => {
+//       if (res !== null) {
+//         return res.content;
+//       }
+//     })
+//     .catch((err) => {
+//       console.log("pages/books/index.tsx => getBooksByGenre", err);
+//     });
+
+//   return await {
+//     props: {
+//       highlightedBookData: data,
+//       // params: params.books,
+//     },
+//   };
+// };
+
+
+
+export async function getStaticPaths(context: any) {
+  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+    return {
+      paths: [],
+      fallback: 'blocking',
+    }
+  }
+
+
+  const paths =  [{ params: { books: 'webtoon' } }, { params: { books: 'novel' } }]
+
+  // { fallback: false } means other routes should 404
+  return { paths, fallback: false }
+
+
+
+  // const params = context.params;
+  // console.log(params);
+
+
+  // return {
+  //   // 아래의 코드는 동적 라우팅 주소를 하드코딩 한 것입니다.
+  //   // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
+
+  //   // 아래의 코드는 동적 라우팅 주소 배열을 받아오는 함수를 이용하여 paths에 유효한 주소값을 모두 받아옵니다.
+  //   // 자세한 코드는 getAllPostIds.tsx 파일을 참조하도록 합니다.
+  //   paths: [{ params: { books: 'webtoon' } }, { params: { books: 'novel' } }],
+  //   fallback: false, // true, false 외에도 'blocking'으로 설정할 수 있습니다.
+  // };
+}
+
+
+// getStaticPaths는 getStaticProps와 함께 사용하여야 합니다.
+export const getStaticProps = async (context: any) => {
+  type paramsType = 'webtoon' | 'novel'
+  const params: paramsType = context.params.books;
+  const genreTypeCode: {'webtoon': number; 'novel': number;} = {
+    'webtoon': 0,
+    'novel': 1
+  }
+
+  let genres = null
+  if (params === 'webtoon' || params === 'novel') {
+    genres = await getGenres({typeCode: genreTypeCode[params]})
+    .then((res) => {
+      if (res !== null) {
+        return res
+      }
+    })
+  }
+  
+
+  const highlightedBookData = await getBooksByGenre({genreCode: 10, typeCode: 0, prevId: 0, prevScore: 10, size: 20 })
     .then((res) => {
       if (res !== null) {
         return res.content;
@@ -127,12 +215,20 @@ export const getServerSideProps = async (context: any) => {
       console.log("pages/books/index.tsx => getBooksByGenre", err);
     });
 
-  return await {
+  return {
     props: {
-      highlightedBookData: data,
+      highlightedBookData: highlightedBookData,
+      genres: genres,
+      params: params,
     },
+    revalidate: 86400,
   };
 };
+
+
+
+
+
 
 const indexWrapperCSS = css`
   overflow: hidden;
