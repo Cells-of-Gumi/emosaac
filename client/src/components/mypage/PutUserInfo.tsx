@@ -1,4 +1,5 @@
 /** @jsxImportSource @emotion/react */
+import { getToken } from "@/api/instance";
 import getIsNickname from "@/api/user/getIsNickname";
 import { css } from "@emotion/react";
 
@@ -8,6 +9,7 @@ import { useState } from "react";
 import { useCallback } from "react";
 
 const PutUserInfo = () => {
+  const token = getToken();
   const [nickname, setNickname] = useState("");
   const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
   const [nicknameValidityMessage, setNicknameValidityMessage] = useState("");
@@ -17,7 +19,7 @@ const PutUserInfo = () => {
     console.log(nickname);
   };
   const onClickCheckDuplicateNickname = () => {
-    getIsNickname(nickname).then((res) => {
+    getIsNickname(nickname, token).then((res) => {
       console.log(res);
       if (res === false) {
         setNicknameValidityMessage("사용 가능한 닉네님이에요");
