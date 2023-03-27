@@ -24,7 +24,7 @@ const Survey = () => {
   // const checkwebtoon;
   const onClickNextButton = () => {
     setTypeCode(1);
-    console.log("선택됨");
+    // console.log("선택됨");
   };
   const onClickPrevButton = () => {
     setTypeCode(0);
@@ -32,7 +32,7 @@ const Survey = () => {
   const onClickSubmitButton = () => {
     // console.log("하하하하하");
     // alert("제출됨");
-    console.log(Array.from(selectedWebtoons), Array.from(selectedNovels));
+    // console.log(Array.from(selectedWebtoons), Array.from(selectedNovels));
     postSurvey({
       webtoonIds: Array.from(selectedWebtoons),
       novelIds: Array.from(selectedNovels),
