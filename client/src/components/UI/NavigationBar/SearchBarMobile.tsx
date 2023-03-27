@@ -3,8 +3,6 @@ import { jsx, css } from "@emotion/react";
 import { useState, useEffect, SetStateAction, Dispatch } from "react";
 import { useRouter } from "next/router";
 import { FiSearch } from "react-icons/fi";
-import { getListByContent, getListByTagName } from "../../../api/search";
-import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 
 interface Props {
   isSearchClicked: boolean;

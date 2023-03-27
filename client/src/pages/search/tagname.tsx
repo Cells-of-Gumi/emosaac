@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { GetServerSideProps } from "next";
-import { getListByTagName } from "../../api/search";
+import { useState, useEffect, useRef } from "react";
+import { getListByTagName } from "@/api/search/getSearchBooksByTagName";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import BookCardSearch from "@/components/UI/BookCard/BookCardSearch";
+import { SearchListView } from "@/components/search/SearchListView";
 import ToggleButton from "@/components/UI/Button/ToggleButton";
 import batchim from "@/components/search/batchim";
+import { createDefaultInstance, getToken } from "@/api/instance";
 
 interface Book {
   bookId: number;
@@ -23,7 +24,13 @@ const tagName = ({ type, tagName, data }: any) => {
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [typeList, setTypeList] = useState([false, false, false]);
+  const [books, setBooks] = useState<any>([]);
+  const [prevId, setPrevId] = useState(0);
+  const [prevScore, setPrevScore] = useState(10);
+  const [isPageEnd, setIsPageEnd] = useState(data === null);
+  const booksWrapRef = useRef<HTMLDivElement>(null);
   const josa = batchim(tagName);
+
   function onClickType(type: string) {
     switch (type) {
       case "total":
@@ -35,6 +42,7 @@ const tagName = ({ type, tagName, data }: any) => {
       default:
         setTypeList([false, false, true]);
     }
+    setIsPageEnd(false);
     router.push({
       pathname: `/search/tagname`,
       query: {
@@ -43,6 +51,21 @@ const tagName = ({ type, tagName, data }: any) => {
       },
     });
   }
+
+  function getSearchBooks(prevId: number, prevScore: number) {
+    const size = 14;
+    getListByTagName({ type, tagName, prevId, prevScore, size }).then((res) => {
+      if (res !== null && res?.length !== 0) {
+        setBooks((prev: any) => [...prev, ...res]);
+        const prevData = res.slice(-1)[0];
+        setPrevId(prevData.bookId);
+        setPrevScore(prevData.score);
+      } else {
+        setIsPageEnd(true);
+      }
+    });
+  }
+
   useEffect(() => {
     switch (type) {
       case "total":
@@ -54,7 +77,27 @@ const tagName = ({ type, tagName, data }: any) => {
       default:
         setTypeList([false, false, true]);
     }
-  }, []);
+  }, [type]);
+
+  useEffect(() => {
+    if (data) {
+      setBooks(data);
+      const prevData = data.slice(-1)[0];
+      setPrevId(prevData?.bookId);
+      setPrevScore(prevData?.score);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (books !== null && books.length !== 0) {
+      const prevData = books.slice(-1)[0];
+      if (prevData !== null) {
+        setPrevId(prevData?.bookId);
+        setPrevScore(prevData?.score);
+      }
+    }
+  }, [books]);
+
   return (
     <>
       <h2
@@ -68,7 +111,7 @@ const tagName = ({ type, tagName, data }: any) => {
           searchResCSS({ isDeskTop, isTablet, isMobile }),
         ]}
       >
-        <div css={searchContentCSS}>
+        <div css={searchTagNameCSS}>
           "#{tagName}"<span css={josaCSS}>{josa} 포함된 컨텐츠</span>
         </div>
         <div css={toggleWrapCSS}>
@@ -90,18 +133,16 @@ const tagName = ({ type, tagName, data }: any) => {
         </div>
       </div>
 
-      <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
-        <div css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}>
-          {data.map((book: Book) => (
-            <BookCardSearch
-              key={book.bookId}
-              bookData={book}
-              showPlatform={false}
-              width={"100%"}
-              height={"100%"}
-            />
-          ))}
-        </div>
+      <div css={innerCSS({ isDeskTop, isTablet, isMobile })} ref={booksWrapRef}>
+        <SearchListView
+          books={books}
+          type={type}
+          getSearchBooks={getSearchBooks}
+          booksWrapRef={booksWrapRef}
+          prevId={prevId}
+          prevScore={prevScore}
+          isPageEnd={isPageEnd}
+        />
       </div>
     </>
   );
@@ -146,7 +187,7 @@ const searchResCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   `;
 };
 
-const searchContentCSS = css`
+const searchTagNameCSS = css`
   height: 70px;
   display: flex;
   align-items: center;
@@ -179,15 +220,17 @@ const booksWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
 export const getServerSideProps = async (context: any) => {
   const type = context.query.type;
   const tagName = context.query.query;
-  const [prevId, prevScore, size] = [20493, 10, 14];
+  const [prevId, prevScore, size] = [0, 10, 14];
   if (typeof type == "string" && typeof tagName == "string") {
-    const data = await getListByTagName(
+    const token = getToken(context.req);
+    const data = await getListByTagName({
       type,
       tagName,
       prevId,
       prevScore,
-      size
-    ).then((res) => {
+      size,
+      token,
+    }).then((res) => {
       return res;
     });
     return await {
