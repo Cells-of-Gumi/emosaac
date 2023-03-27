@@ -46,7 +46,6 @@
 // //   }
 // // }
 
-
 // import axios from "axios";
 
 // export const getBookDetail = async (bookId: number): Promise<bookDataType> => {
@@ -62,14 +61,13 @@
 // };
 
 import { defaultAxiosInstance } from "../instance";
-import { bookDetailType  } from "@/types/books";
-
+import { bookDetailType } from "@/types/books";
 
 type paramsType = {
   bookId: number;
-}
+};
 
-type returnType = bookDetailType
+type returnType = bookDetailType;
 // type returnType = {
 //     "content": bookContentType[];
 //     "page": number;
@@ -83,17 +81,31 @@ type responseType = {
   status: number;
   message: string;
   data: returnType;
-}
+};
 
-export async function getBookDetail({bookId}: paramsType
-): Promise<returnType | null> {
+export async function getBookDetail({
+  bookId,
+  token,
+}: {
+  bookId: string;
+  token?: string | null;
+}): Promise<returnType | null> {
   try {
+    const headers: any = {};
+    if (token) {
+      headers.Authorization = token;
+    }
+
     const { data }: { data: responseType } = await defaultAxiosInstance.get(
-      `/books/${bookId}`
+      `/books/${bookId}`,
+      {
+        headers,
+      }
     );
-    return data.data
+
+    return data.data;
   } catch (error) {
-    console.log(error)
-    throw error
+    console.log(error);
+    return null;
   }
 }

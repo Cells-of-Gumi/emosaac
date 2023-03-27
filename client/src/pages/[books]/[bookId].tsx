@@ -19,131 +19,142 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { putBookRating } from "@/api/book/putBookRating";
 import { bookDetailType } from "@/types/books";
 import PlatformRatingHover from "@/components/bookDetail/PlatformRatingHover";
-
+import { getToken } from "@/api/instance";
 
 interface BookDetailProps {
   bookData: bookDetailType;
 }
 
-
-
 const BookDetail = ({ bookData }: BookDetailProps) => {
-
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const [commentModalState, setCommentModalState] = useState<boolean>(false)
-
+  const [commentModalState, setCommentModalState] = useState<boolean>(false);
 
   useEffect(() => {
     console.log(bookData);
   }, []);
 
   const desktopDecoration = (
-  <div css={backgroundWrapperCSS} className={"third-level-el-background"}>
-          <div css={blurredImgCSS({ thumbnail: bookData.thumbnail, isDeskTop: isDeskTop })} />
-          <div css={verticalGradientCSS({isDeskTop })} className={"vertical-gradient"}/>
-          {isDeskTop && <div css={horizontalGradientCSS} />}
-        </div>
-  )
+    <div css={backgroundWrapperCSS} className={"third-level-el-background"}>
+      <div
+        css={blurredImgCSS({
+          thumbnail: bookData.thumbnail,
+          isDeskTop: isDeskTop,
+        })}
+      />
+      <div
+        css={verticalGradientCSS({ isDeskTop })}
+        className={"vertical-gradient"}
+      />
+      {isDeskTop && <div css={horizontalGradientCSS} />}
+    </div>
+  );
 
   const iconBtn = (
     <div css={iconFunctionCSS}>
-      <CommentBtn bookId={bookData.bookId} stateHandler={setCommentModalState} />
-      <BookmarkToggle
+      <CommentBtn
         bookId={bookData.bookId}
-        isClicked={bookData.bookmark}
+        stateHandler={setCommentModalState}
       />
-      <HasBeenReadToggle
-        bookId={bookData.bookId}
-        isClicked={bookData.read}
-      />
+      <BookmarkToggle bookId={bookData.bookId} isClicked={bookData.bookmark} />
+      <HasBeenReadToggle bookId={bookData.bookId} isClicked={bookData.read} />
       {/* <button onClick={() => {setCommentModalState(true); console.log(commentModalState)}}>test</button> */}
     </div>
-  )
+  );
 
   const putBookRatingHandler = (score: number) => {
-    putBookRating({bookId: bookData.bookId, score: score})
-  }
-
+    putBookRating({ bookId: bookData.bookId, score: score });
+  };
 
   const content = (
-    <div className={'content'} css={contentCSS({isDeskTop})}>
-              <div className={'rowGrid'} css={rowGridCSS({isDeskTop})}>
-                <div>
-                  {isDeskTop === false && iconBtn}
-                  
-                  
-                  <div css={titleCSS({isDeskTop})}>{bookData.title}</div>
-                  
-                  <div css={scoreDivCSS}>
-                    <span css={myScoreStringCSS}>
-                      내 평점 : 
-                    </span>
-                    <div css={platformRatingWrapperCSS}>
-                      <PlatformRatingHover href={bookData.href} avgGrade={bookData.avgScore} grade={bookData.grade.split('_')}  />
-                      <BiChevronRightCircle css={scoreBtnCSS} />
-                    </div>
-                    <StarRating onClick={putBookRatingHandler} readonly={false} initialValue={bookData.myScore} />
-                  </div>
-                  
-                  {isDeskTop === false && <div css={lineCSS}/>}
-                </div>
+    <div className={"content"} css={contentCSS({ isDeskTop })}>
+      <div className={"rowGrid"} css={rowGridCSS({ isDeskTop })}>
+        <div>
+          {isDeskTop === false && iconBtn}
 
-                <div css={bottomContentCSS}>
-                  <div css={bookInfoOuterWrapperCSS}>
-                    {isDeskTop && iconBtn}
-                    <div css={bookInfoWrapperCSS({isDeskTop})}>
-                      <div css={boldTextCSS}>
-                        {bookData.genre} ·{" "}
-                        {new Date(bookData.regist).getFullYear()} &nbsp; &nbsp;
-                      </div>
-                      <div>{bookData.author}</div>
-                    </div>
-                    
-                    <div css={storyWrapperCSS}>{bookData.story}</div>
-                    <TagList tag={bookData.tag} />
-                  </div>
-                  <div css={buttonWrapperCSS({isDeskTop})}>
-                    <RedirButton
-                      width={isMobile ? "100%" : "50%"}
-                      height={"64px"}
-                      platform={bookData.platform}
-                      href={bookData.href}
-                    />
-                  </div>
-                  
-                </div>
-              </div>
+          <div css={titleCSS({ isDeskTop })}>{bookData.title}</div>
+
+          <div css={scoreDivCSS}>
+            <span css={myScoreStringCSS}>내 평점 :</span>
+            <div css={platformRatingWrapperCSS}>
+              <PlatformRatingHover
+                href={bookData.href}
+                avgGrade={bookData.avgScore}
+                grade={bookData.grade.split("_")}
+              />
+              <BiChevronRightCircle css={scoreBtnCSS} />
             </div>
-  )
+            <StarRating
+              onClick={putBookRatingHandler}
+              readonly={false}
+              initialValue={bookData.myScore}
+            />
+          </div>
+
+          {isDeskTop === false && <div css={lineCSS} />}
+        </div>
+
+        <div css={bottomContentCSS}>
+          <div css={bookInfoOuterWrapperCSS}>
+            {isDeskTop && iconBtn}
+            <div css={bookInfoWrapperCSS({ isDeskTop })}>
+              <div css={boldTextCSS}>
+                {bookData.genre} · {new Date(bookData.regist).getFullYear()}{" "}
+                &nbsp; &nbsp;
+              </div>
+              <div>{bookData.author}</div>
+            </div>
+
+            <div css={storyWrapperCSS}>{bookData.story}</div>
+            <TagList tag={bookData.tag} />
+          </div>
+          <div css={buttonWrapperCSS({ isDeskTop })}>
+            <RedirButton
+              width={isMobile ? "100%" : "50%"}
+              height={"64px"}
+              platform={bookData.platform}
+              href={bookData.href}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   const thumbnail = (
-
-      <div css={thumbnailGridCSS}>
-  
-        <img css={thumbnailCSS({isDeskTop})} src={bookData.thumbnail} />
-      </div>
-
-    
-  )
+    <div css={thumbnailGridCSS}>
+      <img css={thumbnailCSS({ isDeskTop })} src={bookData.thumbnail} />
+    </div>
+  );
 
   return (
     <div css={mainContentCSS} className={"top-level-el"}>
       <FixedModal
-         modalState={commentModalState}
-         stateHandler={setCommentModalState}
-         content={<DetailComment bookTitle={bookData.title} bookId={bookData.bookId} />}
+        modalState={commentModalState}
+        stateHandler={setCommentModalState}
+        content={
+          <DetailComment bookTitle={bookData.title} bookId={bookData.bookId} />
+        }
       />
 
-      <div css={mainContentInnerWrapperCSS} className={"second-level-el"} >
+      <div css={mainContentInnerWrapperCSS} className={"second-level-el"}>
         {/* {isDeskTop && desktopDecoration} */}
         {desktopDecoration}
-        <div css={contentOuterWrapperCSS({isDeskTop})} className={"third-level-el"}>
-          <div css={columnGridCSS({isDeskTop})} className={"column-grid"}>
-            
-            {isDeskTop ? <>{content}{thumbnail}</> : <>{thumbnail}{content}</>}
-
-            
-
+        <div
+          css={contentOuterWrapperCSS({ isDeskTop })}
+          className={"third-level-el"}
+        >
+          <div css={columnGridCSS({ isDeskTop })} className={"column-grid"}>
+            {isDeskTop ? (
+              <>
+                {content}
+                {thumbnail}
+              </>
+            ) : (
+              <>
+                {thumbnail}
+                {content}
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -151,10 +162,15 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
   );
 };
 
-// getServerSideProps는 async/await를 사용하여 API를 모두 받아올 때까지 대기하였다가 컴포넌트로 props를 넘겨주고, 이후 컴포넌트는 사전 생성 됩니다.
 export const getServerSideProps = async (context: any) => {
   const params = await context.params;
-  const data = await getBookDetail({bookId: params.bookId})
+  console.log(params);
+  // 토큰 가져오기
+  const token = getToken(context.req);
+  console.log(token);
+
+  // 토큰을 getBookDetail 함수에 전달
+  const data = await getBookDetail({ bookId: params.bookId, token })
     .then((res) => {
       return res;
     })
@@ -169,18 +185,51 @@ export const getServerSideProps = async (context: any) => {
   };
 };
 
+// getServerSideProps는 async/await를 사용하여 API를 모두 받아올 때까지 대기하였다가 컴포넌트로 props를 넘겨주고, 이후 컴포넌트는 사전 생성 됩니다.
+// export const getServerSideProps = async (context: any) => {
+//   const params = await context.params;
+//   const data = await getBookDetail({ bookId: params.bookId })
+//     .then((res) => {
+//       return res;
+//     })
+//     .catch((err) => {
+//       console.log("pages/books/[bookId].tsx => ", err);
+//     });
+
+//   return await {
+//     props: {
+//       bookData: data,
+//     },
+//   };
+// };
+// export const getServerSideProps = async (context: any) => {
+//   // 쿠키 확인
+//   const cookiesInHeader = context.req.headers.cookie;
+//   console.log("Cookies in Header:", cookiesInHeader);
+
+//   const token = getToken(context.req);
+//   console.log("Token:", token);
+
+//   // 이후 작업들...
+
+//   return {
+//     props: {
+//       // 여기에 props 설정
+//     },
+//   };
+// };
+
 const mainContentCSS = css`
   width: 100%;
   /* height: 100vh; */
-  
+
   /* overflow-x: hidden; */
 `;
 
 const backgroundWrapperCSS = css`
   width: 100%;
-    height: 100%;
+  height: 100%;
 
-  
   position: absolute;
 `;
 
@@ -195,25 +244,22 @@ const blurredImgCSS = ({ thumbnail, isDeskTop }: blurredImgProps) => {
     -webkit-filter: blur(20px);
     pointer-events: none;
     position: absolute;
-    ${isDeskTop && 'right: 0'};
+    ${isDeskTop && "right: 0"};
 
-    ${isDeskTop ? 'width: 70vw' : 'width: 100vw'};
-    ${isDeskTop ? 'height: 120vh' : 'height: calc(90% - 72px)'};
-    ${isDeskTop ? 'opacity: 100%;' : 'opacity: 50%;'};
-    
-
-    
+    ${isDeskTop ? "width: 70vw" : "width: 100vw"};
+    ${isDeskTop ? "height: 120vh" : "height: calc(90% - 72px)"};
+    ${isDeskTop ? "opacity: 100%;" : "opacity: 50%;"};
   `;
 };
 
-const verticalGradientCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
+const verticalGradientCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   return css`
     width: 100vw;
-    height: ${isDeskTop ? '125vh' : 'calc(100% - 72px)'};
+    height: ${isDeskTop ? "125vh" : "calc(100% - 72px)"};
     background: linear-gradient(rgba(0, 0, 0, 0) 0%, var(--back-color) 90%);
     position: absolute;
   `;
-}
+};
 
 const horizontalGradientCSS = css`
   width: 100vw;
@@ -226,31 +272,31 @@ const horizontalGradientCSS = css`
   position: absolute;
 `;
 
-const contentOuterWrapperCSS = ({isDeskTop}: {isDeskTop: boolean}) => { 
+const contentOuterWrapperCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   return css`
     width: 100vw;
-    height: ${isDeskTop ? 'calc(100vh - 72px)' : '100%'};
+    height: ${isDeskTop ? "calc(100vh - 72px)" : "100%"};
     /* height: calc(100vh - 72px); */
     display: flex;
     justify-content: center;
     align-items: center;
     /* padding */
   `;
-}
+};
 
-const columnGridCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
+const columnGridCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   return css`
     position: relative;
     display: grid;
-    ${isDeskTop ? 'grid-template-columns: 50% 50%' : 'grid-template-rows: 100vw auto'};
-    
+    ${isDeskTop
+      ? "grid-template-columns: 50% 50%"
+      : "grid-template-rows: 100vw auto"};
+
     /* background-color: red; */
-    height: ${isDeskTop ? '80vh' : 'auto'};
+    height: ${isDeskTop ? "80vh" : "auto"};
     width: 100vw;
-
-
   `;
-}
+};
 
 const thumbnailGridCSS = css`
   width: 100%;
@@ -261,38 +307,38 @@ const thumbnailGridCSS = css`
   align-items: center;
 `;
 
-const thumbnailCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
+const thumbnailCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   return css`
-  ${isDeskTop ? 'height: 80vh; width: auto;' : 'height: auto; width: 70vw;'}
-    
+    ${isDeskTop ? "height: 80vh; width: auto;" : "height: auto; width: 70vw;"}
+
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
   `;
-}
+};
 
-const contentCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
+const contentCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   return css`
     width: 100%;
-    ${isDeskTop ? 'padding-left: 10vw' : 'padding: 24px;'};
+    ${isDeskTop ? "padding-left: 10vw" : "padding: 24px;"};
   `;
-}
+};
 
-const rowGridCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
+const rowGridCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   return css`
     display: grid;
-    grid-template-rows: ${isDeskTop ? '50%' : 'auto'} 50%;
-    ${isDeskTop && 'height: 100%'};
+    grid-template-rows: ${isDeskTop ? "50%" : "auto"} 50%;
+    ${isDeskTop && "height: 100%"};
     /* background-color: red; */
   `;
-}
+};
 
-const titleCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
+const titleCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   return css`
-    font-size: ${isDeskTop ? '4vw' : '7vw'};
+    font-size: ${isDeskTop ? "4vw" : "7vw"};
     font-weight: 700;
-    margin-bottom: ${isDeskTop ? '24px' : '12px'};
-    word-break:keep-all;
+    margin-bottom: ${isDeskTop ? "24px" : "12px"};
+    word-break: keep-all;
   `;
-}
+};
 
 const scoreDivCSS = css`
   font-size: 24px;
@@ -312,7 +358,7 @@ const bottomContentCSS = css`
   display: flex;
   flex-direction: column;
   justify-content: end;
-  
+
   /* justify-content: space-between; */
 `;
 
@@ -320,13 +366,13 @@ const iconFunctionCSS = css`
   display: flex;
 `;
 
-const bookInfoWrapperCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
+const bookInfoWrapperCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   return css`
     display: flex;
-    margin-bottom: ${isDeskTop ? '24px' : '12px'};
+    margin-bottom: ${isDeskTop ? "24px" : "12px"};
     margin-top: 12px;
   `;
-}
+};
 
 const boldTextCSS = css`
   font-weight: 700;
@@ -344,26 +390,26 @@ const storyWrapperCSS = css`
   line-height: 130%;
 `;
 
-const buttonWrapperCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
- return css`
-  width: 100%;
-  ${isDeskTop === false && 'display: flex; justify-content: center;'}
- `
-}
+const buttonWrapperCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
+  return css`
+    width: 100%;
+    ${isDeskTop === false && "display: flex; justify-content: center;"}
+  `;
+};
 
 const lineCSS = css`
   border-bottom: 1px var(--border-color-2) solid;
   margin-bottom: 8px;
-`
+`;
 
 const mainContentInnerWrapperCSS = css`
   height: 100%;
   width: 100%;
-`
+`;
 
 const myScoreStringCSS = css`
   /* margin-right: 8px; */
-`
+`;
 
 const platformRatingWrapperCSS = css`
   position: relative;
@@ -372,9 +418,9 @@ const platformRatingWrapperCSS = css`
   &:hover .platform-rating-wrapper {
     opacity: 100%;
   }
-`
+`;
 
 const bookInfoOuterWrapperCSS = css`
   margin-bottom: 24px;
-`
+`;
 export default BookDetail;

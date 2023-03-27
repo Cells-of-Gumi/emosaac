@@ -1,17 +1,22 @@
 import axios from "axios";
-
-function getToken() {
-  console.log('시작')
+import cookie from "cookie";
+export function getToken(req?: any) {
   if (typeof window !== "undefined") {
     const information = localStorage.getItem("access_token");
     console.log(information)
     return `Bearer ${information}`;
   }
-  return (`Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI4IiwiaWF0IjoxNjc5ODc4NTQ0LCJleHAiOjE2ODA3NDI1NDR9.guf8L3C566oaMfkYekaPKk3OBLvHxIU6_lxQxSbdK-1LdA-KbirXdTFh8svt04BWRnYQ1tojv5zM1Pvbkt8QQQ`)
+
+  if (req) {
+    const cookies = cookie.parse(req.headers.cookie || "");
+    return cookies.access_token ? `Bearer ${cookies.access_token}` : null;
+  }
+
+  return null;
 }
 
-function defaultInstace() {
-  const token = getToken();
+export function createDefaultInstance(req?: any) {
+  const token = getToken(req);
   const instance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
     headers: {
@@ -21,7 +26,7 @@ function defaultInstace() {
   });
 
   instance.interceptors.request.use((config) => {
-    const token = getToken();
+    const token = getToken(req);
     if (token) {
       config.headers.Authorization = token;
     }
@@ -30,6 +35,26 @@ function defaultInstace() {
 
   return instance;
 }
+// function defaultInstace(req?: any) {
+//   const token = getToken(req);
+//   const instance = axios.create({
+//     baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+//     headers: {
+//       "Content-Type": "application/JSON;charset=utf-8",
+//       Authorization: token,
+//     },
+//   });
+
+//   instance.interceptors.request.use((config) => {
+//     const token = getToken(req);
+//     if (token) {
+//       config.headers.Authorization = token;
+//     }
+//     return config;
+//   });
+
+//   return instance;
+// }
 
 function defaultFormDataInstance() {
   const token = getToken();
@@ -49,7 +74,7 @@ function defaultFormDataInstance() {
   return instance;
 }
 
-export const defaultAxiosInstance = defaultInstace();
+export const defaultAxiosInstance = createDefaultInstance();
 export const defaultAxiosFormDataInstance = defaultFormDataInstance();
 
 // getToken() 함수:
