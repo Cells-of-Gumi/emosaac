@@ -88,7 +88,7 @@ export async function getBookDetail({
   token,
 }: {
   bookId: string;
-  token: string | null;
+  token?: string | null;
 }): Promise<returnType | null> {
   try {
     const headers: any = {};
