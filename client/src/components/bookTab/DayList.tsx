@@ -4,13 +4,13 @@ import { returnGenresType } from "@/types/books";
 import { useIsResponsive } from "../Responsive/useIsResponsive";
 
 
-const GenreList = ({ genres, selected, selectHandler }: { genres: returnGenresType, selected: number, selectHandler: Function }) => {
+const DayList = ({ selected, selectHandler }: { selected: number, selectHandler: Function }) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-
-  const renderGenres = genres.map((el, idx) => {
+  const days = ['월', '화', '수', '목', '금', '토', '일']
+  const renderGenres = days.map((el, idx) => {
       return (
         <>
-         <div css={tagWrapperCSS({selected: selected, curIdx: el.genreId, isMobile: isMobile})} onClick={() => {selectHandler(el.genreId)}}>{el.name}</div>
+         <div css={tagWrapperCSS({selected: selected, curIdx: idx, isMobile: isMobile})} onClick={() => {selectHandler(idx)}}>{el}</div>
 
          
         </>
@@ -21,8 +21,6 @@ const GenreList = ({ genres, selected, selectHandler }: { genres: returnGenresTy
   return (
     <div css={outerWrapperCSS({isMobile})}>
         <div css={tagListWrapperCSS({isMobile})}>
-          <div css={tagWrapperCSS({selected: selected, curIdx: -2, isMobile: isMobile})} onClick={() => {selectHandler(-2)}}>홈</div>
-          <div css={tagWrapperCSS({selected: selected, curIdx: -1, isMobile: isMobile})} onClick={() => {selectHandler(-1)}}>요일별</div>
           {renderGenres}
         </div>
     </div>
@@ -108,4 +106,4 @@ const tagWrapperCSS = ({selected, curIdx, isMobile}: {selected: number, curIdx: 
 
 
 
-export default GenreList;
+export default DayList;

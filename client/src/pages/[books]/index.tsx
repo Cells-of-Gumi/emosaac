@@ -18,6 +18,7 @@ import { useRouter } from "next/router";
 import { getGenres } from "@/api/book/getGenres";
 import { returnGenresType } from "@/types/books";
 import GenreList from "@/components/bookTab/GenreList";
+import DayList from "@/components/bookTab/DayList";
 
 interface HomeProps {
   highlightedBookData: bookContentType[];
@@ -33,8 +34,9 @@ export default function Home({
   const parentRef = useRef<HTMLDivElement>(null);
   const indexWrapperRef = useRef<HTMLDivElement>(null);
   const [selectedGenre, setSelectedGenre] = useState<number>(-2);
-
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
+
+  const [selectedDay, setSelectedDay] = useState<number>(0);
 
   // ________________________________________________________________________________________________
   // 임시 데이터
@@ -54,6 +56,10 @@ export default function Home({
 
   const selectGenreHandler = (selected: number) => {
     setSelectedGenre(() => selected);
+  };
+
+  const selectDayHandler = (selected: number) => {
+    setSelectedDay(() => selected);
   };
 
   const getBooksByGenreAPI = ({
@@ -87,8 +93,9 @@ export default function Home({
         selected={selectedGenre}
         selectHandler={selectGenreHandler}
       />
+      {selectedGenre === -1 && <DayList selected={selectedDay} selectHandler={selectDayHandler}/>}
 
-      {/* <div css={whiteSpace1CSS} /> */}
+      <div css={whiteSpace1CSS} />
       <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
         <RowTitle
           beforeLabel="희MD"
@@ -199,6 +206,9 @@ export async function getStaticPaths(context: any) {
 }
 
 // getStaticPaths는 getStaticProps와 함께 사용하여야 합니다.
+
+
+
 export const getStaticProps = async (context: any) => {
   type paramsType = "webtoon" | "novel";
   const params: paramsType = context.params.books;
@@ -243,6 +253,10 @@ export const getStaticProps = async (context: any) => {
     revalidate: 86400,
   };
 };
+
+
+
+
 
 const indexWrapperCSS = css`
   overflow: hidden;
