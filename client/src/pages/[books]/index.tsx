@@ -154,19 +154,34 @@ export default function Home({highlightedBookData, genres, params}: HomeProps) {
 
 
 export async function getStaticPaths(context: any) {
-  const params = context.params;
-  console.log(params);
+  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
+    return {
+      paths: [],
+      fallback: 'blocking',
+    }
+  }
 
 
-  return {
-    // 아래의 코드는 동적 라우팅 주소를 하드코딩 한 것입니다.
-    // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
+  const paths =  [{ params: { books: 'webtoon' } }, { params: { books: 'novel' } }]
 
-    // 아래의 코드는 동적 라우팅 주소 배열을 받아오는 함수를 이용하여 paths에 유효한 주소값을 모두 받아옵니다.
-    // 자세한 코드는 getAllPostIds.tsx 파일을 참조하도록 합니다.
-    paths: [{ params: { books: 'webtoon' } }, { params: { books: 'novel' } }],
-    fallback: false, // true, false 외에도 'blocking'으로 설정할 수 있습니다.
-  };
+  // { fallback: false } means other routes should 404
+  return { paths, fallback: false }
+
+
+
+  // const params = context.params;
+  // console.log(params);
+
+
+  // return {
+  //   // 아래의 코드는 동적 라우팅 주소를 하드코딩 한 것입니다.
+  //   // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
+
+  //   // 아래의 코드는 동적 라우팅 주소 배열을 받아오는 함수를 이용하여 paths에 유효한 주소값을 모두 받아옵니다.
+  //   // 자세한 코드는 getAllPostIds.tsx 파일을 참조하도록 합니다.
+  //   paths: [{ params: { books: 'webtoon' } }, { params: { books: 'novel' } }],
+  //   fallback: false, // true, false 외에도 'blocking'으로 설정할 수 있습니다.
+  // };
 }
 
 
