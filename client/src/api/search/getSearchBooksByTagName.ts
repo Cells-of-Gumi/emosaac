@@ -1,4 +1,4 @@
-import { defaultAxiosInstanceForTest } from "../instance";
+import { defaultAxiosInstance } from "../instance";
 import { searchBookType, returnSearchBooksType } from "@/types/search";
 
 type searchBooksParamsType = {
@@ -7,6 +7,7 @@ type searchBooksParamsType = {
   prevId: number;
   prevScore: number;
   size: number;
+  token?: string | null;
 };
 
 export async function getListByTagName({
@@ -15,12 +16,17 @@ export async function getListByTagName({
   prevId,
   prevScore,
   size,
+  token,
 }: searchBooksParamsType): Promise<returnSearchBooksType[] | null> {
   try {
-    const { data }: { data: searchBookType } =
-      await defaultAxiosInstanceForTest.get(
-        `/search/tag/${type}/${tagName}?prevId=${prevId}&prevScore=${prevScore}&size=${size}`
-      );
+    const headers: any = {};
+    if (token) {
+      headers.Authorization = token;
+    }
+    const { data }: { data: searchBookType } = await defaultAxiosInstance.get(
+      `/search/tag/${type}/${tagName}?prevId=${prevId}&prevScore=${prevScore}&size=${size}`,
+      { headers }
+    );
     if (data.status === 200) {
       return data.data;
     } else {

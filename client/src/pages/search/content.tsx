@@ -8,6 +8,7 @@ import BookCardSearch from "@/components/UI/BookCard/BookCardSearch";
 import { SearchListView } from "@/components/search/SearchListView";
 import ToggleButton from "@/components/UI/Button/ToggleButton";
 import batchim from "@/components/search/batchim";
+import { createDefaultInstance, getToken } from "@/api/instance";
 
 interface Book {
   bookId: number;
@@ -53,7 +54,6 @@ const content = ({ type, content, data }: any) => {
 
   function getSearchBooks(prevId: number, prevScore: number) {
     const size = 14;
-
     getListByContent({ type, content, prevId, prevScore, size }).then((res) => {
       if (res !== null && res?.length !== 0) {
         setBooks((prev: any) => [...prev, ...res]);
@@ -222,12 +222,14 @@ export const getServerSideProps = async (context: any) => {
   const content = context.query.query;
   const [prevId, prevScore, size] = [0, 10, 14];
   if (typeof type == "string" && typeof content == "string") {
+    const token = getToken(context.req);
     const data = await getListByContent({
       type,
       content,
       prevId,
       prevScore,
       size,
+      token,
     }).then((res) => {
       return res;
     });

@@ -1,12 +1,20 @@
-import { defaultAxiosInstanceForTest } from "../instance";
+import { defaultAxiosInstance } from "../instance";
 import { returnSearchHistoryType, searchHistoryType } from "@/types/search";
 
-export async function getSearchHistory(): Promise<
-  returnSearchHistoryType[] | null
-> {
+type historyParamsType = {
+  token?: string | null;
+};
+
+export async function getSearchHistory({
+  token,
+}: historyParamsType): Promise<returnSearchHistoryType[] | null> {
   try {
+    const headers: any = {};
+    if (token) {
+      headers.Authorization = token;
+    }
     const { data }: { data: searchHistoryType } =
-      await defaultAxiosInstanceForTest.get(`/search/latest-book`);
+      await defaultAxiosInstance.get(`/search/latest-book`, { headers });
     if (data.status === 200) {
       return data.data;
     } else {

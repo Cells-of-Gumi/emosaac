@@ -28,7 +28,8 @@ const SearchBox = (props: Props) => {
     props.setIsSearchBoxOpen(false);
   }
   useEffect(() => {
-    getSearchHistory().then((res: any) => setBookData(res));
+    const token = localStorage.getItem("access_token");
+    getSearchHistory({ token }).then((res: any) => setBookData(res));
     // recvBooks(0, 3).then((res: any) => setBookData(() => res));
   }, []);
   return (
@@ -164,6 +165,7 @@ const booksWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     ${!isMobile && "column-gap: 20px;"}
     ${isMobile && "column-gap: 10px;"}
+    overflow-x: scroll;
   `;
 };
 
@@ -194,6 +196,7 @@ const titleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     display: flex;
     line-height: 40px;
     align-items: center;
+    width: 102px;
     ${isDeskTop ? "font-size: 14px;" : "font-size: 14px;"}
     & > span {
       display: block;
