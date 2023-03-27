@@ -14,8 +14,8 @@ export function getToken(req?: any) {
   return null;
 }
 
-function defaultInstace() {
-  const token = getToken();
+export function createDefaultInstance(req?: any) {
+  const token = getToken(req);
   const instance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
     headers: {
@@ -25,7 +25,7 @@ function defaultInstace() {
   });
 
   instance.interceptors.request.use((config) => {
-    const token = getToken();
+    const token = getToken(req);
     if (token) {
       config.headers.Authorization = token;
     }
@@ -34,6 +34,26 @@ function defaultInstace() {
 
   return instance;
 }
+// function defaultInstace(req?: any) {
+//   const token = getToken(req);
+//   const instance = axios.create({
+//     baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+//     headers: {
+//       "Content-Type": "application/JSON;charset=utf-8",
+//       Authorization: token,
+//     },
+//   });
+
+//   instance.interceptors.request.use((config) => {
+//     const token = getToken(req);
+//     if (token) {
+//       config.headers.Authorization = token;
+//     }
+//     return config;
+//   });
+
+//   return instance;
+// }
 
 function defaultFormDataInstance() {
   const token = getToken();
@@ -53,7 +73,7 @@ function defaultFormDataInstance() {
   return instance;
 }
 
-export const defaultAxiosInstance = defaultInstace();
+export const defaultAxiosInstance = createDefaultInstance();
 export const defaultAxiosFormDataInstance = defaultFormDataInstance();
 
 // getToken() 함수:
