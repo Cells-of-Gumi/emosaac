@@ -7,6 +7,7 @@ type paramsType = {
   criteria?: 'date' | 'like';
   offset?: number;
   size?: number;
+  token?: string | null;
 }
 
 type returnType = returnCommentArrayType
@@ -32,11 +33,19 @@ type responseType = {
   data: returnType;
 }
 
-export async function getChildComments({parentId, criteria, offset, size }: paramsType
+export async function getChildComments({parentId, criteria, offset, size, token }: paramsType
 ): Promise<returnType | null> {
   try {
+    const headers: any = {};
+    if (token) {
+      headers.Authorization = token;
+    }
+
     const { data }: { data: responseType } = await defaultAxiosInstance.get(
-      `/book/comments/child/${parentId}${criteria !== undefined ? `?criteria=${criteria}` : ''}${offset !== undefined ? `&offset=${offset}` : ''}${size !== undefined ? `&size=${size}` : ''}`
+      `/book/comments/child/${parentId}${criteria !== undefined ? `?criteria=${criteria}` : ''}${offset !== undefined ? `&offset=${offset}` : ''}${size !== undefined ? `&size=${size}` : ''}`,
+      {
+        headers,
+      }
     );
     return data.data
   } catch (error) {
