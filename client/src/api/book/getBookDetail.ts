@@ -109,16 +109,3 @@ export async function getBookDetail({
     return null;
   }
 }
-
-// export async function getBookDetail({bookId}: paramsType
-// ): Promise<returnType | null> {
-//   try {
-//     const { data }: { data: responseType } = await defaultAxiosInstance.get(
-//       `/books/${bookId}`
-//     );
-//     return data.data
-//   } catch (error) {
-//     console.log(error)
-//     throw error
-//   }
-// }
