@@ -1,10 +1,17 @@
 import axios from "axios";
-
-function getToken() {
+import cookie from "cookie";
+export function getToken(req?: any) {
   if (typeof window !== "undefined") {
     const information = localStorage.getItem("access_token");
     return `Bearer ${information}`;
   }
+
+  if (req) {
+    const cookies = cookie.parse(req.headers.cookie || "");
+    return cookies.access_token ? `Bearer ${cookies.access_token}` : null;
+  }
+
+  return null;
 }
 
 function defaultInstace() {

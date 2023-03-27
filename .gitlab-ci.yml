@@ -8,10 +8,6 @@ test-job: # 임의로 지정한 JOB 이름
     - echo "Hello World" # 실행할 스크립트 
     # /home/gitlab-runner/builds/sZ_Zkzi3/0/s08-bigdata-recom-sub2/S08P22D203
     - git pull origin fe/develop
-    # - echo 'shine7065@naver.com' echo 'dZT2Cnrxmzy3ExthKsNG' |sudo git clone --recurse-submodules https://lab.ssafy.com/gms9424/emosaac_front.git
-    # - cp emosaac_front/.env client/.env
-    # - git submodule foreach git pull origin emosaac_front
-    # - cp emosaac_front/.env client/.env
 
     - pm2 stop emosaac
     - pm2 kill
@@ -23,6 +19,8 @@ test-job: # 임의로 지정한 JOB 이름
     # - rm .env.local
 
     - npm i
+    - npm install universal-cookie
+    - npm install cookie
     - sudo npm run build
 
     - sudo chown -R  gitlab-runner:gitlab-runner .next
@@ -33,7 +31,7 @@ test-job: # 임의로 지정한 JOB 이름
     - pm2 start npm --name "emosaac" -w -i max -- start
     - sudo npm run start
 
-    # reload
+    # reload 
     # - pm2 reload emosaac
     
 
