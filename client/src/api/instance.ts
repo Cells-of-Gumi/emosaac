@@ -3,7 +3,7 @@ import cookie from "cookie";
 export function getToken(req?: any) {
   if (typeof window !== "undefined") {
     const information = localStorage.getItem("access_token");
-    console.log(information)
+    // console.log(information)
     return `Bearer ${information}`;
   }
 
@@ -60,7 +60,11 @@ function defaultFormDataInstance() {
   const token = getToken();
   const instance = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-    headers: { "Content-Type": "multipart/form-data", Authorization: token },
+    headers: {
+      "Content-Type":
+        "multipart/form-data;boundary=----WebKitFormBoundarylTMBUUyXqgLqmAdj",
+      Authorization: token,
+    },
   });
 
   instance.interceptors.request.use((config) => {
