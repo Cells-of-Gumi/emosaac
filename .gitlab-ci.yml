@@ -29,7 +29,7 @@ test-job: # 임의로 지정한 JOB 이름
     - pm2 start npm --name "emosaac" -w -i max -- start
     - sudo npm run start
 
-    # reload
+    # reload 
     # - pm2 reload emosaac
     
 
