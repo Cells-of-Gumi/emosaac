@@ -18,7 +18,8 @@ test-job: # 임의로 지정한 JOB 이름
     - cp .env.production .env
     # - rm .env.local
 
-    - npm install --force
+    - npm i
+    - npm install universal-cookie
     - sudo npm run build
 
     - sudo chown -R  gitlab-runner:gitlab-runner .next
