@@ -7,7 +7,7 @@ const ACCESS_TOKEN = "access_token";
 function getUrlParameter(name: string, search: string): string {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
   const regex = new RegExp("[\\?&]" + name + "=([^&#]*)");
-  
+
   const results = regex.exec(search);
   return results === null
     ? ""
@@ -19,7 +19,7 @@ const OAuth2RedirectHandler = (props: any) => {
   useEffect(() => {
     // console.log(props);
     // console.log(props.token);
-  
+
     const token = getUrlParameter("token", window.location.search);
     const error = getUrlParameter("error", window.location.search);
     const code = getUrlParameter("code", window.location.search);

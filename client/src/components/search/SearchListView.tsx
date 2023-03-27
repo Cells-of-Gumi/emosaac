@@ -8,6 +8,7 @@ import { useIsResponsive } from "../Responsive/useIsResponsive";
 
 export const SearchListView = ({
   books,
+  type,
   getSearchBooks,
   booksWrapRef,
   prevId,
@@ -15,6 +16,7 @@ export const SearchListView = ({
   isPageEnd,
 }: {
   books: returnSearchBooksType[];
+  type: string;
   getSearchBooks: Function;
   booksWrapRef: any;
   prevId: number;
@@ -25,28 +27,22 @@ export const SearchListView = ({
   const [getBooks, setGetBooks] = useState<boolean>(false);
 
   useEffect(() => {
-    if (getBooks === true && !isPageEnd) {
-      getSearchBooks(prevId, prevScore);
+    if (getBooks === true) {
       setGetBooks(() => false);
+      getSearchBooks(prevId, prevScore);
     }
   }, [getBooks]);
 
   const onWheelHandler = useMemo(
     () =>
       throttle((event) => {
-        console.log(booksWrapRef);
-        if (event.deltaY > 0) {
+        const htmlEl = document.getElementsByTagName("html")[0];
+        if (event.deltaY > 0 && isPageEnd === false) {
           if (
-            booksWrapRef.current &&
-            (booksWrapRef.current.scrollHeight - 10 <
-              booksWrapRef.current.clientHeight ||
-              booksWrapRef.current.scrollTop >
-                booksWrapRef.current.scrollHeight -
-                  booksWrapRef.current.clientHeight -
-                  100)
+            htmlEl &&
+            htmlEl.clientHeight + htmlEl.scrollTop + 200 > htmlEl.scrollHeight
           ) {
             setGetBooks(() => true);
-            console.log("업데이트한드아아앙");
           }
         }
       }, 300),

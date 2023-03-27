@@ -18,7 +18,7 @@ export async function getListByTagName({
 }: searchBooksParamsType): Promise<returnSearchBooksType[] | null> {
   try {
     const { data }: { data: searchBookType } = await defaultAxiosInstance.get(
-      `/search/title/${type}/${tagName}?prevId=${prevId}&prevScore=${prevScore}&size=${size}`
+      `/search/tag/${type}/${tagName}?prevId=${prevId}&prevScore=${prevScore}&size=${size}`
     );
     if (data.status === 200) {
       return data.data;

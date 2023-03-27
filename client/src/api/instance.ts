@@ -13,17 +13,18 @@ function defaultInstace() {
     baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
     headers: {
       "Content-Type": "application/JSON;charset=utf-8",
-      Authorization: token,
+      Authorization:
+        "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxNiIsImlhdCI6MTY3OTg3ODk2NywiZXhwIjoxNjgwNzQyOTY3fQ.wKIefacbi59LetZjqj8ZV1nej9Z8lO5399G6tzfATG9I8Kw40xEsILxoJVRxtg-vqb98SpfHPSEcc8oDewcDtQ",
     },
   });
 
-  instance.interceptors.request.use((config) => {
-    const token = getToken();
-    if (token) {
-      config.headers.Authorization = token;
-    }
-    return config;
-  });
+  // instance.interceptors.request.use((config) => {
+  //   const token = getToken();
+  //   if (token) {
+  //     config.headers.Authorization = token;
+  //   }
+  //   return config;
+  // });
 
   return instance;
 }

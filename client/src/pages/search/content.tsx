@@ -23,7 +23,7 @@ const content = ({ type, content, data }: any) => {
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [typeList, setTypeList] = useState([false, false, false]);
-  const [books, setBooks] = useState(data);
+  const [books, setBooks] = useState<any>([]);
   const [prevId, setPrevId] = useState(0);
   const [prevScore, setPrevScore] = useState(10);
   const [isPageEnd, setIsPageEnd] = useState(data === null);
@@ -41,6 +41,7 @@ const content = ({ type, content, data }: any) => {
       default:
         setTypeList([false, false, true]);
     }
+    setIsPageEnd(false);
     router.push({
       pathname: `/search/content`,
       query: {
@@ -54,8 +55,11 @@ const content = ({ type, content, data }: any) => {
     const size = 14;
 
     getListByContent({ type, content, prevId, prevScore, size }).then((res) => {
-      if (res !== null) {
+      if (res !== null && res?.length !== 0) {
         setBooks((prev: any) => [...prev, ...res]);
+        const prevData = res.slice(-1)[0];
+        setPrevId(prevData.bookId);
+        setPrevScore(prevData.score);
       } else {
         setIsPageEnd(true);
       }
@@ -73,14 +77,26 @@ const content = ({ type, content, data }: any) => {
       default:
         setTypeList([false, false, true]);
     }
-    if (books !== null) {
-      const prevData = books.slice(-1)[0];
-      console.log(prevData);
-      setPrevId(prevData.bookId);
-      setPrevScore(prevData.score);
-      // setPrevScore(10);
-    }
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      setBooks(data);
+      const prevData = data.slice(-1)[0];
+      setPrevId(prevData?.bookId);
+      setPrevScore(prevData?.score);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (books !== null && books.length !== 0) {
+      const prevData = books.slice(-1)[0];
+      if (prevData !== null) {
+        setPrevId(prevData?.bookId);
+        setPrevScore(prevData?.score);
+      }
+    }
+  }, [books]);
 
   return (
     <>
@@ -90,7 +106,6 @@ const content = ({ type, content, data }: any) => {
         검색 결과
       </h2>
       <div
-        ref={booksWrapRef}
         css={[
           innerPaddingCSS({ isDeskTop, isTablet, isMobile }),
           searchResCSS({ isDeskTop, isTablet, isMobile }),
@@ -118,21 +133,10 @@ const content = ({ type, content, data }: any) => {
         </div>
       </div>
 
-      <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
-        <div css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}>
-          {data &&
-            data.map((book: Book) => (
-              <BookCardSearch
-                key={book.bookId}
-                bookData={book}
-                showPlatform={false}
-                width={"100%"}
-                height={"100%"}
-              />
-            ))}
-        </div>
+      <div css={innerCSS({ isDeskTop, isTablet, isMobile })} ref={booksWrapRef}>
         <SearchListView
           books={books}
+          type={type}
           getSearchBooks={getSearchBooks}
           booksWrapRef={booksWrapRef}
           prevId={prevId}

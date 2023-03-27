@@ -1,12 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
-import { GetServerSideProps } from "next";
-// import { getListByTagName } from "../../api/search/search";
+import { useState, useEffect, useRef } from "react";
 import { getListByTagName } from "@/api/search/getSearchBooksByTagName";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import BookCardSearch from "@/components/UI/BookCard/BookCardSearch";
+import { SearchListView } from "@/components/search/SearchListView";
 import ToggleButton from "@/components/UI/Button/ToggleButton";
 import batchim from "@/components/search/batchim";
 
@@ -24,7 +23,13 @@ const tagName = ({ type, tagName, data }: any) => {
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [typeList, setTypeList] = useState([false, false, false]);
+  const [books, setBooks] = useState<any>([]);
+  const [prevId, setPrevId] = useState(0);
+  const [prevScore, setPrevScore] = useState(10);
+  const [isPageEnd, setIsPageEnd] = useState(data === null);
+  const booksWrapRef = useRef<HTMLDivElement>(null);
   const josa = batchim(tagName);
+
   function onClickType(type: string) {
     switch (type) {
       case "total":
@@ -36,12 +41,28 @@ const tagName = ({ type, tagName, data }: any) => {
       default:
         setTypeList([false, false, true]);
     }
+    setIsPageEnd(false);
     router.push({
       pathname: `/search/tagname`,
       query: {
         type: type,
         query: tagName,
       },
+    });
+  }
+
+  function getSearchBooks(prevId: number, prevScore: number) {
+    const size = 14;
+
+    getListByTagName({ type, tagName, prevId, prevScore, size }).then((res) => {
+      if (res !== null && res?.length !== 0) {
+        setBooks((prev: any) => [...prev, ...res]);
+        const prevData = res.slice(-1)[0];
+        setPrevId(prevData.bookId);
+        setPrevScore(prevData.score);
+      } else {
+        setIsPageEnd(true);
+      }
     });
   }
 
@@ -58,12 +79,31 @@ const tagName = ({ type, tagName, data }: any) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (data) {
+      setBooks(data);
+      const prevData = data.slice(-1)[0];
+      setPrevId(prevData?.bookId);
+      setPrevScore(prevData?.score);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (books !== null && books.length !== 0) {
+      const prevData = books.slice(-1)[0];
+      if (prevData !== null) {
+        setPrevId(prevData?.bookId);
+        setPrevScore(prevData?.score);
+      }
+    }
+  }, [books]);
+
   return (
     <>
       <h2
         css={[innerPaddingCSS({ isDeskTop, isTablet, isMobile }), headline2CSS]}
       >
-        검색 결과
+        태그 검색 결과
       </h2>
       <div
         css={[
@@ -93,19 +133,16 @@ const tagName = ({ type, tagName, data }: any) => {
         </div>
       </div>
 
-      <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
-        <div css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}>
-          {data &&
-            data.map((book: Book) => (
-              <BookCardSearch
-                key={book.bookId}
-                bookData={book}
-                showPlatform={false}
-                width={"100%"}
-                height={"100%"}
-              />
-            ))}
-        </div>
+      <div css={innerCSS({ isDeskTop, isTablet, isMobile })} ref={booksWrapRef}>
+        <SearchListView
+          books={books}
+          type={type}
+          getSearchBooks={getSearchBooks}
+          booksWrapRef={booksWrapRef}
+          prevId={prevId}
+          prevScore={prevScore}
+          isPageEnd={isPageEnd}
+        />
       </div>
     </>
   );
@@ -183,7 +220,7 @@ const booksWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
 export const getServerSideProps = async (context: any) => {
   const type = context.query.type;
   const tagName = context.query.query;
-  const [prevId, prevScore, size] = [20493, 10, 14];
+  const [prevId, prevScore, size] = [0, 10, 14];
   if (typeof type == "string" && typeof tagName == "string") {
     const data = await getListByTagName({
       type,
