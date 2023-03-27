@@ -17,12 +17,13 @@ interface DetailCommentViewProps {
     bookId: number;
     parentId: number | null;
     position: Position;
-    criteria: "date" | "like";
+    criteria: "like" | "date";
     commentsWrapperRef?: any;
+    getCommentsCount?: Function;
 }
 
 
-const DetailCommentView = ({bookId, parentId, position, criteria, commentsWrapperRef}: DetailCommentViewProps) => {
+const DetailCommentView = ({bookId, parentId, position, criteria, commentsWrapperRef, getCommentsCount}: DetailCommentViewProps) => {
 
 
     const [comments, setComments] = useState<returnCommentArrayType>([])
@@ -42,6 +43,10 @@ const DetailCommentView = ({bookId, parentId, position, criteria, commentsWrappe
                 if (res !== null) {
                     setComments(() => res)
                     setOffset(() => 2)
+                    if (getCommentsCount !== undefined) {
+                        getCommentsCount(res[0]?.totalCount)
+                    }   
+                    
                 }
             })
         } else if (position === 1 && parentId !== null) {

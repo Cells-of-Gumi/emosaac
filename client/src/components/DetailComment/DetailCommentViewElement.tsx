@@ -39,8 +39,8 @@ const DetailCommentViewElement = ({
   refreshCommentsHandler: Function;
 }) => {
 
-  const [likeState, setLikeState] = useState<boolean>(false)
-  const [likeStatusSize, setLikeStatusSize] = useState<number>(0)
+  const [likeState, setLikeState] = useState<boolean>(comment.likeState)
+  const [likeStatusSize, setLikeStatusSize] = useState<number>(comment.likeStatusSize)
   const [toggleEditComment, setToggleEditComment] = useState<boolean>(false)
   const [toggleChildComments, setToggleChildComments] = useState<boolean>(false)
 
