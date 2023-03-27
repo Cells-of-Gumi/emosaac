@@ -58,9 +58,10 @@ export const SearchListView = ({
       css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}
       onWheel={onWheelHandler}
     >
-      {books.map((book, idx) => (
-        <BookCardSearch key={idx} bookData={book} showPlatform={false} />
-      ))}
+      {books &&
+        books.map((book, idx) => (
+          <BookCardSearch key={idx} bookData={book} showPlatform={false} />
+        ))}
     </div>
   );
 };

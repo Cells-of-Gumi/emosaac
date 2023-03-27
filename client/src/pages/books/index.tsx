@@ -16,10 +16,10 @@ import { getBooksByGenre } from "@/api/book/getBooksByGenre";
 import { bookContentType } from "@/types/books";
 
 interface HomeProps {
-  highlightedBookData: bookContentType[]
+  highlightedBookData: bookContentType[];
 }
 
-export default function Home({highlightedBookData}: HomeProps) {
+export default function Home({ highlightedBookData }: HomeProps) {
   const parentRef = useRef<HTMLDivElement>(null);
   const indexWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -39,17 +39,27 @@ export default function Home({highlightedBookData}: HomeProps) {
   // );
   const [bookData, setBookData] = useState<object[]>([]);
 
-
   // ________________________________________________________________________________________________
 
-
-  
-
-  const getBooksByGenreAPI = ({bookList, size}: {bookList: bookContentType[]; size: number}) => {
-    const prevId = bookList.length ? bookList[bookList.length - 1].bookId : 0
-    const prevScore = bookList.length ? bookList[bookList.length - 1].score : 10
-    return getBooksByGenre({genreCode: 10, typeCode: 0, prevId: prevId, prevScore: prevScore, size: size })
-  }
+  const getBooksByGenreAPI = ({
+    bookList,
+    size,
+  }: {
+    bookList: bookContentType[];
+    size: number;
+  }) => {
+    const prevId = bookList.length ? bookList[bookList.length - 1].bookId : 0;
+    const prevScore = bookList.length
+      ? bookList[bookList.length - 1].score
+      : 10;
+    return getBooksByGenre({
+      genreCode: 10,
+      typeCode: 0,
+      prevId: prevId,
+      prevScore: prevScore,
+      size: size,
+    });
+  };
 
   return (
     <div ref={indexWrapperRef} css={indexWrapperCSS}>
@@ -68,7 +78,10 @@ export default function Home({highlightedBookData}: HomeProps) {
       </div>
 
       <div css={highlightedCarouselWrapper}>
-        <HighlightedCarousel bookData={highlightedBookData} windowWrapperRef={indexWrapperRef} />
+        <HighlightedCarousel
+          bookData={highlightedBookData}
+          windowWrapperRef={indexWrapperRef}
+        />
       </div>
       <div css={whiteSpace2CSS} />
 
@@ -108,16 +121,19 @@ export default function Home({highlightedBookData}: HomeProps) {
         </div>
         <div css={whiteSpace1CSS} />
       </div> */}
-
-
     </div>
   );
 }
 
-
 export const getServerSideProps = async (context: any) => {
   // 임시 API
-  const data = await getBooksByGenre({genreCode: 10, typeCode: 0, prevId: 0, prevScore: 10, size: 20 })
+  const data = await getBooksByGenre({
+    genreCode: 10,
+    typeCode: 0,
+    prevId: 0,
+    prevScore: 10,
+    size: 20,
+  })
     .then((res) => {
       if (res !== null) {
         return res.content;
