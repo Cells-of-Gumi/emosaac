@@ -3,15 +3,19 @@ import { jsx, css, keyframes } from "@emotion/react";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { recvBooks } from "@/api/DummyData";
+import { returnSearchHistoryType } from "@/types/search";
 import SearchBookCard from "./SearchBookCard";
 import ToggleButton from "../Button/ToggleButton";
+import { getSearchHistory } from "@/api/search/getSearchHistory";
 
 interface Props {
   setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const SearchBox = (props: Props) => {
-  const [bookData, setBookData] = useState([]);
+  const [bookData, setBookData] = useState<returnSearchHistoryType[] | null>(
+    []
+  );
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [tagList, setTagList] = useState([
     "먼치킨",
@@ -24,7 +28,8 @@ const SearchBox = (props: Props) => {
     props.setIsSearchBoxOpen(false);
   }
   useEffect(() => {
-    recvBooks(0, 3).then((res: any) => setBookData(() => res));
+    getSearchHistory().then((res: any) => setBookData(res));
+    // recvBooks(0, 3).then((res: any) => setBookData(() => res));
   }, []);
   return (
     <div css={searchWrapCSS}>
@@ -41,17 +46,16 @@ const SearchBox = (props: Props) => {
             {bookData && (
               <div css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}>
                 {bookData.map((book, idx) => (
-                  <div css={bookWrapCSS} onClick={onClickBack}>
+                  <div css={bookWrapCSS} onClick={onClickBack} key={idx}>
                     <span>웹소설</span>
                     <SearchBookCard
                       bookData={book}
                       showPlatform={false}
                       width={"100%"}
                       // height={isMobile ? "150px" : "200px"}
-                      key={idx}
                     />
                     <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
-                      <div>상수리 나무 아래</div>
+                      <div>{book.title}</div>
                     </div>
                   </div>
                 ))}
