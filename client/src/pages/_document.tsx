@@ -16,7 +16,7 @@ export default function Document() {
             __html: `
               const theme = localStorage.getItem("data-theme");
               document.documentElement.setAttribute("data-theme", theme);
-              console.log(theme);
+              // console.log(theme);
             `,
           }}
         ></script>

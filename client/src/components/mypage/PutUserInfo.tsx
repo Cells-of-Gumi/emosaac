@@ -1,12 +1,9 @@
 /** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import { getToken } from "@/api/instance";
 import getIsNickname from "@/api/user/getIsNickname";
-import { css } from "@emotion/react";
-
-import Image from "next/image";
-// import profileimage from "../../assets/profileexample.jpg";
+import { putMyInfo } from "@/api/user/putMyInfo";
 import { useState } from "react";
-import { useCallback } from "react";
 
 const PutUserInfo = () => {
   const token = getToken();
@@ -14,10 +11,46 @@ const PutUserInfo = () => {
   const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
   const [nicknameValidityMessage, setNicknameValidityMessage] = useState("");
 
+  const [gender, setGender] = useState<number | null>(null);
+  const [age, setAge] = useState<number | null>(null);
+  const [profileImage, setProfileImage] = useState<File | null>(null);
+  const onClickProfileImageChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (event.target.files) {
+      setProfileImage(event.target.files[0]);
+    }
+  };
+  const onClickGender = (newGender: number) => {
+    setGender(newGender);
+  };
+  const onclickAge = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setAge(Number(event.target.value));
+  };
+  const onClickSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (nickname && gender !== null && age !== null) {
+      const myInfo = {
+        file: profileImage,
+        gender,
+        age,
+        nickName: nickname,
+      };
+      try {
+        const response = await putMyInfo(myInfo);
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      alert("모든 필수 입력 항목을 입력해주세요.");
+    }
+  };
   const handleNicknameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(event.target.value);
     console.log(nickname);
   };
+
   const onClickCheckDuplicateNickname = () => {
     getIsNickname(nickname, token).then((res) => {
       console.log(res);
@@ -32,7 +65,7 @@ const PutUserInfo = () => {
   return (
     <>
       <section>
-        <form action="" css={formCSS}>
+        <form action="" css={formCSS} onSubmit={onClickSubmit}>
           <article css={textwrapCSS}>
             <h2>회원정보수정</h2>
           </article>
@@ -51,6 +84,7 @@ const PutUserInfo = () => {
               type="file"
               accept="image/*"
               style={{ display: "none" }}
+              onChange={onClickProfileImageChange}
             />
           </div>
           <div css={nicknamewrapCSS}>
@@ -75,24 +109,31 @@ const PutUserInfo = () => {
           </div>
           <div css={genderwrapCSS}>
             <h3 css={genderCSS}>성별</h3>
-            <button css={genderbuttonCSS}>남성</button>
-            <button css={genderbuttonCSS}>여성</button>
+            <button onClick={() => onClickGender(1)} css={genderbuttonCSS}>
+              남성
+            </button>
+            <button onClick={() => onClickGender(2)} css={genderbuttonCSS}>
+              여성
+            </button>
           </div>
           <div>
             <div css={agewrapCSS}>
               <h3 css={ageCSS}>연령대</h3>
               <div css={explainCSS}>연령대에 맞게 추천을 해드려요!</div>
             </div>
-            <select css={selectCSS}>
+            <select css={selectCSS} onChange={onclickAge}>
               <option value="">연령대를 선택해주세요</option>
-              <option value="">10대</option>
-              <option value="">20대</option>
-              <option value="">30대</option>
-              <option value="">40대</option>
-              <option value="">50대</option>
-              <option value="">60대 이상</option>
+              <option value="10">10대</option>
+              <option value="20">20대</option>
+              <option value="30">30대</option>
+              <option value="40">40대</option>
+              <option value="50">50대</option>
+              <option value="60">60대 이상</option>
             </select>
           </div>
+          <button type="submit" css={submitCSS}>
+            정보 수정
+          </button>
         </form>
       </section>
     </>
@@ -193,5 +234,9 @@ const explainCSS = css`
   margin-left: 2px;
   margin-top: 5px;
   font-size: 10px;
+`;
+
+const submitCSS = css`
+  cursor: pointer;
 `;
 export default PutUserInfo;
