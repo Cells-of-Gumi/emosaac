@@ -19,7 +19,8 @@ async function getListByContent(
   content: string,
   prevId: number,
   prevScore: number,
-  size: number
+  size: number,
+  token: string | null
 ): Promise<
   | {
       bookId: number;
@@ -33,8 +34,14 @@ async function getListByContent(
   | null
 > {
   try {
+    const headers: any = {};
+    if (token) {
+      headers.Authorization = token;
+    }
+
     const { data }: { data: Search } = await defaultAxiosInstance.get(
-      `/search/title/${type}/${content}?prevId=${prevId}&prevScore=${prevScore}&size=${size}`
+      `/search/title/${type}/${content}?prevId=${prevId}&prevScore=${prevScore}&size=${size}`,
+      { headers }
     );
     if (data.status === 200) {
       return data.data;

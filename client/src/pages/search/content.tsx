@@ -8,6 +8,7 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import BookCardSearch from "@/components/UI/BookCard/BookCardSearch";
 import ToggleButton from "@/components/UI/Button/ToggleButton";
 import batchim from "@/components/search/batchim";
+import { createDefaultInstance, getToken } from "@/api/instance";
 
 interface Book {
   bookId: number;
@@ -181,12 +182,16 @@ export const getServerSideProps = async (context: any) => {
   const content = context.query.query;
   const [prevId, prevScore, size] = [20493, 10, 14];
   if (typeof type == "string" && typeof content == "string") {
+    // const serverSideAxiosInstance = createDefaultInstance(context.req);
+    const token = getToken(context.req);
     const data = await getListByContent(
       type,
       content,
       prevId,
       prevScore,
-      size
+      size,
+      token
+      // serverSideAxiosInstance
     ).then((res) => {
       return res;
     });

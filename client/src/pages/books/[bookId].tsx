@@ -164,9 +164,10 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
 
 export const getServerSideProps = async (context: any) => {
   const params = await context.params;
-
+  console.log(params);
   // 토큰 가져오기
   const token = getToken(context.req);
+  console.log(token);
 
   // 토큰을 getBookDetail 함수에 전달
   const data = await getBookDetail({ bookId: params.bookId, token })
