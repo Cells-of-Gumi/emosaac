@@ -4,7 +4,6 @@ import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/router";
 import { SearchBarDropDown } from "./SearchBarDropDown";
 import { FiSearch } from "react-icons/fi";
-import { getListByContent, getListByTagName } from "../../../api/search";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 
 interface Props {

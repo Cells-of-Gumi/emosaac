@@ -71,7 +71,7 @@ const SearchBookCard = ({
         />
         <img
           className={"img"}
-          src={bookData && bookData.img}
+          src={bookData && bookData.thumbnail}
           alt={bookData && bookData.title}
           css={imageCSS}
         />

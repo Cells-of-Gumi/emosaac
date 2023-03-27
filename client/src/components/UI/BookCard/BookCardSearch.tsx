@@ -25,7 +25,7 @@ interface Props {
   minHeight?: string;
 }
 
-const BookCard = ({
+const BookCardSearch = ({
   bookData,
   showPlatform,
   width,
@@ -223,4 +223,4 @@ const skeletonLoadingTagCSS = ({ state }: skeletonLoadingTagCSSProps) => {
   `;
 };
 
-export default BookCard;
+export default BookCardSearch;

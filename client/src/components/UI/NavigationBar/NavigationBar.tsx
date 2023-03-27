@@ -78,10 +78,19 @@ export const NavigationBar = () => {
           mypage: false,
         });
         break;
-      case "books":
+      case "webtoon":
         setCurrentRoute({
           home: false,
           webtoon: true,
+          novel: false,
+          emopick: false,
+          mypage: false,
+        });
+        break;
+      case "novel":
+        setCurrentRoute({
+          home: false,
+          webtoon: false,
           novel: true,
           emopick: false,
           mypage: false,
@@ -157,10 +166,10 @@ export const NavigationBar = () => {
                   setIsSearchBoxOpen(false);
                 }}
               >
-                <Link href="/books" replace>
+                <Link href="/webtoon" replace>
                   <div css={routerCSS(currentRoute.webtoon)}>웹툰</div>
                 </Link>
-                <Link href="/books" replace>
+                <Link href="/novel" replace>
                   <div css={routerCSS(currentRoute.webtoon)}>웹소설</div>
                 </Link>
                 <Link href="/emopick" replace>
@@ -218,10 +227,10 @@ export const NavigationBar = () => {
             <Link href="/" replace>
               <div css={routerCSS(currentRoute.home)}>홈</div>
             </Link>
-            <Link href="/books" replace>
+            <Link href="/webtoon" replace>
               <div css={routerCSS(currentRoute.webtoon)}>웹툰</div>
             </Link>
-            <Link href="/books" replace>
+            <Link href="/novel" replace>
               <div css={routerCSS(currentRoute.webtoon)}>웹소설</div>
             </Link>
             <Link href="/emopick" replace>
@@ -251,7 +260,7 @@ export const NavigationBar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/books" replace>
+            <Link href="/webtoon" replace>
               {currentRoute.webtoon ? (
                 <MdCookie size={24} />
               ) : (
@@ -261,7 +270,7 @@ export const NavigationBar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/books" replace>
+            <Link href="/novel" replace>
               {currentRoute.novel ? (
                 <RiBookReadFill size={24} />
               ) : (

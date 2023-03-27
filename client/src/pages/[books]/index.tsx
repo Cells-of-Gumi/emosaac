@@ -14,7 +14,7 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 // import contentBannerMobile from "/assets/content_banner_mobile.png"
 import { getBooksByGenre } from "@/api/book/getBooksByGenre";
 import { bookContentType } from "@/types/books";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 import { getGenres } from "@/api/book/getGenres";
 import { returnGenresType } from "@/types/books";
 import GenreList from "@/components/bookTab/GenreList";
@@ -22,13 +22,17 @@ import GenreList from "@/components/bookTab/GenreList";
 interface HomeProps {
   highlightedBookData: bookContentType[];
   genres: returnGenresType;
-  params: any
+  params: any;
 }
 
-export default function Home({highlightedBookData, genres, params}: HomeProps) {
+export default function Home({
+  highlightedBookData,
+  genres,
+  params,
+}: HomeProps) {
   const parentRef = useRef<HTMLDivElement>(null);
   const indexWrapperRef = useRef<HTMLDivElement>(null);
-  const [selectedGenre, setSelectedGenre] = useState<number>(-2)
+  const [selectedGenre, setSelectedGenre] = useState<number>(-2);
 
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
 
@@ -46,21 +50,31 @@ export default function Home({highlightedBookData, genres, params}: HomeProps) {
   // );
   const [bookData, setBookData] = useState<object[]>([]);
 
-
-
-
   // ________________________________________________________________________________________________
 
   const selectGenreHandler = (selected: number) => {
-    setSelectedGenre(() => selected)
-  }
-  
+    setSelectedGenre(() => selected);
+  };
 
-  const getBooksByGenreAPI = ({bookList, size}: {bookList: bookContentType[]; size: number}) => {
-    const prevId = bookList.length ? bookList[bookList.length - 1].bookId : 0
-    const prevScore = bookList.length ? bookList[bookList.length - 1].score : 10
-    return getBooksByGenre({genreCode: 10, typeCode: 0, prevId: prevId, prevScore: prevScore, size: size })
-  }
+  const getBooksByGenreAPI = ({
+    bookList,
+    size,
+  }: {
+    bookList: bookContentType[];
+    size: number;
+  }) => {
+    const prevId = bookList.length ? bookList[bookList.length - 1].bookId : 0;
+    const prevScore = bookList.length
+      ? bookList[bookList.length - 1].score
+      : 10;
+    return getBooksByGenre({
+      genreCode: 10,
+      typeCode: 0,
+      prevId: prevId,
+      prevScore: prevScore,
+      size: size,
+    });
+  };
 
   return (
     <div ref={indexWrapperRef} css={indexWrapperCSS}>
@@ -68,7 +82,11 @@ export default function Home({highlightedBookData, genres, params}: HomeProps) {
         <SwipeableGallery parentRef={parentRef} content={postData} />
       </div>
 
-      <GenreList genres={genres} selected={selectedGenre} selectHandler={selectGenreHandler} />
+      <GenreList
+        genres={genres}
+        selected={selectedGenre}
+        selectHandler={selectGenreHandler}
+      />
 
       {/* <div css={whiteSpace1CSS} /> */}
       <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
@@ -81,7 +99,10 @@ export default function Home({highlightedBookData, genres, params}: HomeProps) {
       </div>
 
       <div css={highlightedCarouselWrapper}>
-        <HighlightedCarousel bookData={highlightedBookData} windowWrapperRef={indexWrapperRef} />
+        <HighlightedCarousel
+          bookData={highlightedBookData}
+          windowWrapperRef={indexWrapperRef}
+        />
       </div>
       <div css={whiteSpace2CSS} />
 
@@ -121,16 +142,12 @@ export default function Home({highlightedBookData, genres, params}: HomeProps) {
         </div>
         <div css={whiteSpace1CSS} />
       </div> */}
-
-
     </div>
   );
 }
 
-
 // export const getServerSideProps = async (context: any) => {
 //   // const params = await context.params;
-
 
 //   // 임시 API
 //   const data = await getBooksByGenre({genreCode: 10, typeCode: 0, prevId: 0, prevScore: 10, size: 20 })
@@ -151,27 +168,24 @@ export default function Home({highlightedBookData, genres, params}: HomeProps) {
 //   };
 // };
 
-
-
 export async function getStaticPaths(context: any) {
   if (process.env.SKIP_BUILD_STATIC_GENERATION) {
     return {
       paths: [],
-      fallback: 'blocking',
-    }
+      fallback: "blocking",
+    };
   }
 
-
-  const paths =  [{ params: { books: 'webtoon' } }, { params: { books: 'novel' } }]
+  const paths = [
+    { params: { books: "webtoon" } },
+    { params: { books: "novel" } },
+  ];
 
   // { fallback: false } means other routes should 404
-  return { paths, fallback: false }
-
-
+  return { paths, fallback: false };
 
   // const params = context.params;
   // console.log(params);
-
 
   // return {
   //   // 아래의 코드는 동적 라우팅 주소를 하드코딩 한 것입니다.
@@ -184,28 +198,33 @@ export async function getStaticPaths(context: any) {
   // };
 }
 
-
 // getStaticPaths는 getStaticProps와 함께 사용하여야 합니다.
 export const getStaticProps = async (context: any) => {
-  type paramsType = 'webtoon' | 'novel'
+  type paramsType = "webtoon" | "novel";
   const params: paramsType = context.params.books;
-  const genreTypeCode: {'webtoon': number; 'novel': number;} = {
-    'webtoon': 0,
-    'novel': 1
-  }
+  const genreTypeCode: { webtoon: number; novel: number } = {
+    webtoon: 0,
+    novel: 1,
+  };
 
-  let genres = null
-  if (params === 'webtoon' || params === 'novel') {
-    genres = await getGenres({typeCode: genreTypeCode[params]})
-    .then((res) => {
-      if (res !== null) {
-        return res
+  let genres = null;
+  if (params === "webtoon" || params === "novel") {
+    genres = await getGenres({ typeCode: genreTypeCode[params] }).then(
+      (res) => {
+        if (res !== null) {
+          return res;
+        }
       }
-    })
+    );
   }
-  
 
-  const highlightedBookData = await getBooksByGenre({genreCode: 10, typeCode: 0, prevId: 0, prevScore: 10, size: 20 })
+  const highlightedBookData = await getBooksByGenre({
+    genreCode: 10,
+    typeCode: 0,
+    prevId: 0,
+    prevScore: 10,
+    size: 20,
+  })
     .then((res) => {
       if (res !== null) {
         return res.content;
@@ -224,11 +243,6 @@ export const getStaticProps = async (context: any) => {
     revalidate: 86400,
   };
 };
-
-
-
-
-
 
 const indexWrapperCSS = css`
   overflow: hidden;

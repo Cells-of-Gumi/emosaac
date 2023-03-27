@@ -6,7 +6,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>emosaac</title>
+        {/* <title>emosaac</title> */}
         <meta
           name="description"
           content="다양한 플랫폼의 웹툰과 웹소설을 한 눈에 보고 추천 받아보세요"
