@@ -91,7 +91,7 @@ const OAuth2RedirectHandler = (props: any) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const token = context.query.token as string | undefined;
-  console.log(token);
+  // console.log(token);
   // 쿠키에 토큰 저장
   if (token) {
     context.res.setHeader(

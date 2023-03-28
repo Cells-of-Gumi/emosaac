@@ -4,6 +4,7 @@ import { returnCommentArrayType, likeCommentType } from "@/types/comments";
 
 type paramsType = {
   commentId: number;
+  token?: string | null;
 }
 
 type returnType = likeCommentType
@@ -29,11 +30,19 @@ type responseType = {
   data: returnType;
 }
 
-export async function putLikeComment({commentId}: paramsType
+export async function putLikeComment({commentId, token}: paramsType
 ): Promise<returnType | null> {
   try {
+    const headers: any = {};
+    if (token) {
+      headers.Authorization = token;
+    }
+
     const { data }: { data: responseType } = await defaultAxiosInstance.put(
-      `/book/comments/like/${commentId}`
+      `/book/comments/like/${commentId}`,
+      {
+        headers,
+      }
     );
     return data.data
   } catch (error) {

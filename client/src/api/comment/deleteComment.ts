@@ -4,6 +4,7 @@ import { returnCommentArrayType } from "@/types/comments";
 
 type paramsType = {
   commentId: number;
+  token?: string | null;
 }
 
 type returnType = number
@@ -29,11 +30,19 @@ type responseType = {
   data: returnType;
 }
 
-export async function deleteComment({commentId}: paramsType
+export async function deleteComment({commentId, token}: paramsType
 ): Promise<returnType | null> {
   try {
+    const headers: any = {};
+    if (token) {
+      headers.Authorization = token;
+    }
+
     const { data }: { data: responseType } = await defaultAxiosInstance.delete(
-      `/book/comments/${commentId}`
+      `/book/comments/${commentId}`,
+      {
+        headers,
+      }
     );
     return data.data
   } catch (error) {

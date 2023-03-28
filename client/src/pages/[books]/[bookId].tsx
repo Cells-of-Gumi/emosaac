@@ -167,7 +167,7 @@ export const getServerSideProps = async (context: any) => {
   console.log(params);
   // 토큰 가져오기
   const token = getToken(context.req);
-  console.log(token);
+  // console.log(token);
 
   // 토큰을 getBookDetail 함수에 전달
   const data = await getBookDetail({ bookId: params.bookId, token })
