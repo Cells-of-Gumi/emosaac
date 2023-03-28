@@ -5,6 +5,7 @@ import getIsNickname from "@/api/user/getIsNickname";
 import { putMyInfo } from "@/api/user/putMyInfo";
 import { useState } from "react";
 import { useEffect } from "react";
+import getMyInfo from "@/api/user/getMyInfo";
 const PutUserInfo = () => {
   const defaultProfileImage = "/assets/default_image.png";
   const token = getToken();
@@ -47,9 +48,6 @@ const PutUserInfo = () => {
   const onClickGender = (newGender: number) => {
     setGender(newGender);
   };
-  const onclickAge = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setAge(Number(event.target.value));
-  };
   const onClickSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (nickname && gender !== null && age !== null) {
@@ -90,9 +88,13 @@ const PutUserInfo = () => {
     setAge(selectedAge);
     setDropdownVisible(false);
   };
-  // const onClickIsButton = () => {
-  //   setIsClicked(!isClicked);
-  // };
+  // useEffect(() => {
+  //   getMyInfo().then((res) => {
+  //     const data = res;
+  //     console.log(data);
+  //     setNickname(data?.nickname);
+  //   });
+  // }, []);
   return (
     <>
       <section>
@@ -132,7 +134,7 @@ const PutUserInfo = () => {
             <input
               css={inputwrapCSS}
               type="text"
-              placeholder="닉네임을 입력해주세요"
+              placeholder={nickname ? nickname : "닉네임을 입력해주세요"}
               value={nickname}
               onChange={handleNicknameInput}
             />
