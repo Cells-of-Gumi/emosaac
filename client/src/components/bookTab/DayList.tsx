@@ -32,7 +32,8 @@ const outerWrapperCSS = ({isMobile}: {isMobile: boolean}) => {
   return css`
     /* position: relative; */
     /* height: 16px; */
-    height: ${isMobile ? '48px' : '84px'};;
+    border-top: 1px solid var(--border-color-2);
+    height: ${isMobile ? '48px' : '64px'};;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -92,8 +93,8 @@ const tagWrapperCSS = ({selected, curIdx, isMobile}: {selected: number, curIdx: 
     /* color: black; */
     white-space:pre;;
     color: ${selected === curIdx ? 'var(--main-color)' : 'var(--text-color-2)'};
-    font-size: ${isMobile ? '16px' : '24px'};
-    font-weight: 700;
+    font-size: ${isMobile ? '16px' : '20px'};
+    font-weight: 500;
     cursor: pointer;
     transition-property: color;
     transition-duration: 0.1s;

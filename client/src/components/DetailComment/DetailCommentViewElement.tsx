@@ -10,6 +10,7 @@ import { putLikeComment } from "@/api/comment/putLikeComment";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
 import { FaRegComment } from "react-icons/fa";
 import DetailCommentView from "./DetailCommentView";
+import { useEffect } from "react";
 
 // export type CommentType = {
 //     "commentId": number;
@@ -32,11 +33,13 @@ const DetailCommentViewElement = ({
   comment,
   parentId,
   refreshCommentsHandler,
+  myInfo
 }: {
   bookId: number;
   comment: CommentType;
   parentId: number | null;
   refreshCommentsHandler: Function;
+  myInfo: any;
 }) => {
 
   const [likeState, setLikeState] = useState<boolean>(comment.likeState)
@@ -44,6 +47,9 @@ const DetailCommentViewElement = ({
   const [toggleEditComment, setToggleEditComment] = useState<boolean>(false)
   const [toggleChildComments, setToggleChildComments] = useState<boolean>(false)
 
+  useEffect(() => {
+    console.log(myInfo)
+  }, [])
   
 
   const refreshCommentsReHandler = () => {
@@ -107,13 +113,13 @@ const DetailCommentViewElement = ({
           답글 보기
         </div>
       }
-      {comment.writerInfo.userId !== "=== example" &&
+      {comment.writerInfo.userId === myInfo &&
         comment.isDelete === false && (
           <div css={footerElementCSS} onClick={deleteCommentHandler}>
             삭제
           </div>
         )}
-      {comment.writerInfo.userId !== "=== example" &&
+      {comment.writerInfo.userId === myInfo &&
         comment.isDelete === false && (
           <div css={footerElementCSS} onClick={toggleEditCommentHandler}>
             {toggleEditComment ? "취소" : "수정"}
@@ -130,7 +136,7 @@ const DetailCommentViewElement = ({
   
   const childCommentsRender = (
     <div css={childCommentsWrapperCSS({depth: comment.depth})}>
-      <DetailCommentView bookId={bookId} position={1} parentId={comment.commentId} criteria={'date'}/>
+      <DetailCommentView bookId={bookId} position={1} parentId={comment.commentId} criteria={'date'} myInfo={myInfo}/>
     </div>
     
   )
@@ -176,6 +182,7 @@ const profileImgWrapperCSS = css`
 
 const commentContentWrapperCSS = css`
   margin-bottom: 16px;
+  color: var(--text-color);
 `;
 
 const commentFooterCSS = css`
