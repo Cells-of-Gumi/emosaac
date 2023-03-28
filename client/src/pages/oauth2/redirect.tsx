@@ -24,6 +24,7 @@ const OAuth2RedirectHandler = (props: any) => {
     const token = getUrlParameter("token", window.location.search);
     const error = getUrlParameter("error", window.location.search);
     const code = getUrlParameter("code", window.location.search);
+    console.log(code);
 
     if (token) {
       localStorage.setItem(ACCESS_TOKEN, token);
@@ -48,7 +49,7 @@ const OAuth2RedirectHandler = (props: any) => {
             query: { from: router.asPath },
           })
           .then(() => {
-            window.history.replaceState({}, document.title, "/login");
+            window.history.replaceState({}, document.title, "/");
           });
       } else if (code === "201") {
         router
@@ -60,7 +61,7 @@ const OAuth2RedirectHandler = (props: any) => {
             },
           })
           .then(() => {
-            window.history.replaceState({}, document.title, "/survey");
+            window.history.replaceState({}, document.title, "/mypage/edit");
           });
       } else {
         router
