@@ -61,7 +61,9 @@ const inputCSS = css`
     border: none;
     padding: 16px;
     background-color: var(--back-color-2);
+    color: var(--text-color);
     &:focus {outline: none;};
+
 `
 
 const confirmBtnCSS = css`
@@ -76,6 +78,7 @@ const confirmBtnCSS = css`
     user-select: none;
     transition-property: background-color;
     transition-duration: 0.3s;
+    color: var(--text-color);
 
     &:hover {
         background-color: var(--back-color-3);

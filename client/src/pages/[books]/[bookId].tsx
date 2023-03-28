@@ -21,17 +21,28 @@ import { bookDetailType } from "@/types/books";
 import PlatformRatingHover from "@/components/bookDetail/PlatformRatingHover";
 import { getToken } from "@/api/instance";
 
+
+
 interface BookDetailProps {
   bookData: bookDetailType;
+  myInfo: any;
+  loginHandler: Function;
 }
 
-const BookDetail = ({ bookData }: BookDetailProps) => {
+const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [commentModalState, setCommentModalState] = useState<boolean>(false);
 
+
+
+
   useEffect(() => {
-    console.log(bookData);
-  }, []);
+    console.log(myInfo)
+    if (myInfo === false) {
+      loginHandler(() => true)
+    }
+    
+  }, [myInfo]);
 
   const desktopDecoration = (
     <div css={backgroundWrapperCSS} className={"third-level-el-background"}>
@@ -73,7 +84,8 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
 
           <div css={titleCSS({ isDeskTop })}>{bookData.title}</div>
 
-          <div css={scoreDivCSS}>
+          <div css={scoreDivCSS({isMobile})}>
+            
             <span css={myScoreStringCSS}>내 평점 :</span>
             <div css={platformRatingWrapperCSS}>
               <PlatformRatingHover
@@ -81,12 +93,13 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
                 avgGrade={bookData.avgScore}
                 grade={bookData.grade.split("_")}
               />
-              <BiChevronRightCircle css={scoreBtnCSS} />
+              <BiChevronRightCircle css={scoreBtnCSS({isMobile})} />
             </div>
             <StarRating
               onClick={putBookRatingHandler}
               readonly={false}
               initialValue={bookData.myScore}
+              size={isMobile ? 25 : 32}
             />
           </div>
 
@@ -132,7 +145,7 @@ const BookDetail = ({ bookData }: BookDetailProps) => {
         modalState={commentModalState}
         stateHandler={setCommentModalState}
         content={
-          <DetailComment bookTitle={bookData.title} bookId={bookData.bookId} />
+          <DetailComment bookTitle={bookData.title} bookId={bookData.bookId} myInfo={myInfo} />
         }
       />
 
@@ -220,10 +233,10 @@ export const getServerSideProps = async (context: any) => {
 // };
 
 const mainContentCSS = css`
-  width: 100%;
+  width: 100vw;
   /* height: 100vh; */
 
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
 `;
 
 const backgroundWrapperCSS = css`
@@ -340,19 +353,23 @@ const titleCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   `;
 };
 
-const scoreDivCSS = css`
-  font-size: 24px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  margin-bottom: 12px;
-`;
+const scoreDivCSS = ({isMobile}: {isMobile: boolean}) => {
+  return css`
+    font-size: ${isMobile ? '18px' : '24px'};
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  `;
+}
 
-const scoreBtnCSS = css`
-  margin-left: 12px;
-  width: 24px;
-  height: 24px;
-`;
+const scoreBtnCSS = ({isMobile}: {isMobile: boolean}) => {
+  return css`
+    margin-left: 12px;
+    width: ${isMobile ? '20px' : '24px'};
+    height: ${isMobile ? '20px' : '24px'};
+  `;
+}
 
 const bottomContentCSS = css`
   display: flex;
@@ -408,10 +425,13 @@ const mainContentInnerWrapperCSS = css`
 `;
 
 const myScoreStringCSS = css`
-  /* margin-right: 8px; */
+  /* margin-right: 4px; */
 `;
 
 const platformRatingWrapperCSS = css`
+height: 100%;
+display: flex;
+align-items: center;
   position: relative;
   margin-right: 8px;
 
