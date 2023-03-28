@@ -1,21 +1,27 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import { useEffect } from "react";
 
-export const BasicButton = () => {
+interface Props {
+  setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export const BasicButton = ({ setIsSearchBoxOpen }: Props) => {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const token = localStorage.getItem("access_token");
   function onClickLogin() {
+    setIsSearchBoxOpen(false);
     router.push({
       pathname: `/login`,
     });
   }
   function onClickLogout() {
     localStorage.clear();
+    setIsSearchBoxOpen(false);
     router.push({
       pathname: "/",
     });
@@ -35,6 +41,7 @@ export const BasicButton = () => {
     setIsOpen(false);
   };
   const onClickMoveMypage = () => {
+    setIsSearchBoxOpen(false);
     router.push("/mypage");
   };
   // 비 로그인시 로그인, 로그인 이면 프로필 사진 보이게. 호버하면 마이페이지랑 로그아웃 버튼
