@@ -37,7 +37,7 @@ export const SearchListView = ({
     () =>
       throttle((event) => {
         const htmlEl = document.getElementsByTagName("html")[0];
-        if (event.deltaY > 0 && isPageEnd === false) {
+        if (isPageEnd === false) {
           if (
             htmlEl &&
             htmlEl.clientHeight + htmlEl.scrollTop + 200 > htmlEl.scrollHeight
@@ -53,6 +53,7 @@ export const SearchListView = ({
     <div
       css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}
       onWheel={onWheelHandler}
+      onTouchMove={onWheelHandler}
     >
       {books &&
         books.map((book, idx) => (
