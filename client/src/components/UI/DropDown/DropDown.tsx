@@ -4,15 +4,16 @@ import { useState, Dispatch, SetStateAction } from "react";
 import { HiOutlineChevronUp, HiOutlineChevronDown } from "react-icons/hi";
 
 interface Props {
+  cateList: string[];
   selectedCate: string;
-  setSelectedCate: Dispatch<SetStateAction<string>>;
   isDropDownOpen: boolean;
+  setSelectedCate: Dispatch<SetStateAction<string>>;
   setIsDropDownOpen: Dispatch<SetStateAction<boolean>>;
   setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-export const SearchBarDropDown = (props: Props) => {
-  const [selectArr, setSelectArr] = useState(["전체", "웹툰", "웹소설"]);
+export const DropDown = (props: Props) => {
+  const [selectArr, setSelectArr] = useState(props.cateList);
   // const [selectedCate, setSelectedCate] = useState("전체");
   // const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   function onClickDropDown() {

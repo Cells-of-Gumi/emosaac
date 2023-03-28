@@ -2,7 +2,7 @@
 import { jsx, css } from "@emotion/react";
 import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/router";
-import { SearchBarDropDown } from "./SearchBarDropDown";
+import { DropDown } from "../DropDown/DropDown";
 import { FiSearch } from "react-icons/fi";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 
@@ -18,6 +18,7 @@ export const SearchBar = (props: Props) => {
     ["웹툰"]: "webtoon",
     ["웹소설"]: "novel",
   };
+  const [cateList, setCateList] = useState(["전체", "웹툰", "웹소설"]);
   const [searchInput, setSearchInput] = useState("");
   const [selectedCate, setSelectedCate] = useState("전체");
   const [type, setType] = useState("total");
@@ -90,12 +91,13 @@ export const SearchBar = (props: Props) => {
       {!isMobile && (
         <>
           <div>in</div>
-          <SearchBarDropDown
+          <DropDown
             selectedCate={selectedCate}
             setSelectedCate={setSelectedCate}
             isDropDownOpen={isDropDownOpen}
             setIsDropDownOpen={setIsDropDownOpen}
             setIsSearchBoxOpen={props.setIsSearchBoxOpen}
+            cateList={cateList}
           />
         </>
       )}
