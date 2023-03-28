@@ -160,7 +160,7 @@ const titleCSS = css`
   @media only screen and (max-width: 768px) {
     text-align: left;
     white-space: normal;
-    font-size: 33px;
+    font-size: 28px;
     width: 100%;
   }
 `;
@@ -184,6 +184,7 @@ const surveygridCSS = (isTablet: boolean, isMobile: boolean) => css`
   }
   @media only screen and (max-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
+    margin: 30px 20px;
   }
 `;
 
