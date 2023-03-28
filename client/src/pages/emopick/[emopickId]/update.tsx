@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
 
-const index = () => {
+const update = () => {
   return (
     <div>
       <div>
@@ -12,4 +12,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default update;
