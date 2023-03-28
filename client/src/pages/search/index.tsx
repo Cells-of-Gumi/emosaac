@@ -4,11 +4,11 @@ import { useRouter } from "next/router";
 
 const search = () => {
   return (
-    <>
+    <div>
       <div>
         <div></div>
       </div>
-    </>
+    </div>
   );
 };
 

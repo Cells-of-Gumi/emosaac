@@ -43,6 +43,7 @@ export const NavigationBar = () => {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
   const [isSearchClicked, setIsSearchClicked] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const [currentRoute, setCurrentRoute] = useState({
     home: false,
     webtoon: false,
@@ -61,13 +62,24 @@ export const NavigationBar = () => {
   function onClickSearchMobile() {
     setIsSearchClicked(true);
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, []);
+
   useEffect(() => {
     if (!isSearchBoxOpen) {
       setIsSearchClicked(true);
     }
   }, [isSearchBoxOpen]);
+
   useEffect(() => {
-    const pathName = router.pathname.split("/")[1];
+    const pathName = router.asPath.split("/")[1];
     switch (pathName) {
       case "":
         setCurrentRoute({
@@ -115,7 +127,7 @@ export const NavigationBar = () => {
         });
         break;
     }
-  }, [router.pathname]);
+  }, [router.asPath]);
 
   return (
     <nav>
@@ -170,7 +182,7 @@ export const NavigationBar = () => {
                   <div css={routerCSS(currentRoute.webtoon)}>웹툰</div>
                 </Link>
                 <Link href="/novel" replace>
-                  <div css={routerCSS(currentRoute.webtoon)}>웹소설</div>
+                  <div css={routerCSS(currentRoute.novel)}>웹소설</div>
                 </Link>
                 <Link href="/emopick" replace>
                   <div css={routerCSS(currentRoute.emopick)}>EMOPICK</div>
@@ -192,7 +204,7 @@ export const NavigationBar = () => {
             />
 
             {isDeskTop ? (
-              <BasicButton />
+              <BasicButton setIsSearchBoxOpen={setIsSearchBoxOpen} />
             ) : isTablet ? (
               <Link href={{ pathname: "/login" }}>
                 <MdPerson
@@ -231,7 +243,7 @@ export const NavigationBar = () => {
               <div css={routerCSS(currentRoute.webtoon)}>웹툰</div>
             </Link>
             <Link href="/novel" replace>
-              <div css={routerCSS(currentRoute.webtoon)}>웹소설</div>
+              <div css={routerCSS(currentRoute.novel)}>웹소설</div>
             </Link>
             <Link href="/emopick" replace>
               <div css={routerCSS(currentRoute.emopick)}>EMOPICK</div>
@@ -290,7 +302,7 @@ export const NavigationBar = () => {
             </Link>
           </li>
           <li>
-            <Link href="/">
+            <Link href="/mypage">
               {currentRoute.mypage ? (
                 <MdPerson size={24} />
               ) : (

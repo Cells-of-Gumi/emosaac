@@ -54,16 +54,19 @@ const tagName = ({ type, tagName, data }: any) => {
 
   function getSearchBooks(prevId: number, prevScore: number) {
     const size = 14;
-    getListByTagName({ type, tagName, prevId, prevScore, size }).then((res) => {
-      if (res !== null && res?.length !== 0) {
-        setBooks((prev: any) => [...prev, ...res]);
-        const prevData = res.slice(-1)[0];
-        setPrevId(prevData.bookId);
-        setPrevScore(prevData.score);
-      } else {
-        setIsPageEnd(true);
+    const token = localStorage.getItem("access_token");
+    getListByTagName({ type, tagName, prevId, prevScore, size, token }).then(
+      (res) => {
+        if (res !== null && res?.length !== 0) {
+          setBooks((prev: any) => [...prev, ...res]);
+          const prevData = res.slice(-1)[0];
+          setPrevId(prevData.bookId);
+          setPrevScore(prevData.score);
+        } else {
+          setIsPageEnd(true);
+        }
       }
-    });
+    );
   }
 
   useEffect(() => {
@@ -99,7 +102,7 @@ const tagName = ({ type, tagName, data }: any) => {
   }, [books]);
 
   return (
-    <>
+    <div>
       <h2
         css={[innerPaddingCSS({ isDeskTop, isTablet, isMobile }), headline2CSS]}
       >
@@ -144,7 +147,7 @@ const tagName = ({ type, tagName, data }: any) => {
           isPageEnd={isPageEnd}
         />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -28,7 +28,7 @@ const buttonCSS = (isClicked: boolean) => {
     ${!isClicked &&
     "border: 1px solid var(--back-color); background-color: var(--back-color); color: var(--text-color);"}
     border-radius: 20px;
-    padding: 0 14px;
+    padding: 0 10px;
     :hover {
       transition: all 0.2s;
       ${!isClicked &&
