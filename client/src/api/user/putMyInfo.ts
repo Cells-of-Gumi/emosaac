@@ -22,8 +22,15 @@ function createFormData(myInfo: PutMyInfoProps): FormData {
   return formdata;
 }
 
-export async function putMyInfo(myInfo: PutMyInfoProps): Promise<any> {
+export async function putMyInfo(
+  myInfo: PutMyInfoProps
+  // token: string | null
+): Promise<any> {
   try {
+    // const headers: any = {};
+    // if (token) {
+    //   headers.Authorization = token;
+    // }
     const formdata = createFormData(myInfo);
     const response = await defaultAxiosFormDataInstance.put(`/users`, formdata);
     return response.data;
