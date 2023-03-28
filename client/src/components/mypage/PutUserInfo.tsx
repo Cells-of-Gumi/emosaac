@@ -4,8 +4,9 @@ import { getToken } from "@/api/instance";
 import getIsNickname from "@/api/user/getIsNickname";
 import { putMyInfo } from "@/api/user/putMyInfo";
 import { useState } from "react";
-
+import { useEffect } from "react";
 const PutUserInfo = () => {
+  const defaultProfileImage = "/assets/default_image.png";
   const token = getToken();
   const [nickname, setNickname] = useState("");
   const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
@@ -14,6 +15,7 @@ const PutUserInfo = () => {
   const [gender, setGender] = useState<number | null>(null);
   const [age, setAge] = useState<number | null>(null);
   const [profileImage, setProfileImage] = useState<File | null>(null);
+  const [image, setImage] = useState<string | undefined>("");
   const onClickProfileImageChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -21,6 +23,26 @@ const PutUserInfo = () => {
       setProfileImage(event.target.files[0]);
     }
   };
+  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setProfileImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+  useEffect(() => {
+    if (profileImage) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result as string);
+      };
+      reader.readAsDataURL(profileImage);
+    }
+  }, [profileImage]);
   const onClickGender = (newGender: number) => {
     setGender(newGender);
   };
@@ -55,10 +77,9 @@ const PutUserInfo = () => {
     getIsNickname(nickname, token).then((res) => {
       console.log(res);
       if (res === false) {
-        setNicknameValidityMessage("사용 가능한 닉네님이에요");
+        setNicknameValidityMessage("사용 가능한 닉네임이에요");
       } else {
         setNicknameValidityMessage("사용이 불가능한 닉네임이에요");
-        setNicknameValidityMessage("");
       }
     });
   };
@@ -74,8 +95,15 @@ const PutUserInfo = () => {
               <label htmlFor="profileImage">
                 <img
                   css={imageCSS}
-                  src={"/assets/profileexample.jpg"}
+                  src={image || defaultProfileImage}
                   alt="프로필 이미지"
+                />
+                <input
+                  type="file"
+                  id="profileImage"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  style={{ display: "none" }}
                 />
               </label>
             </div>
@@ -105,8 +133,12 @@ const PutUserInfo = () => {
             >
               중복확인
             </button>
-            {isNicknameDuplicate && <div>{nicknameValidityMessage}</div>}
           </div>
+          {!isNicknameDuplicate ? (
+            <div>{nicknameValidityMessage}</div>
+          ) : (
+            <div>{nicknameValidityMessage}</div>
+          )}
           <div css={genderwrapCSS}>
             <h3 css={genderCSS}>성별</h3>
             <button onClick={() => onClickGender(1)} css={genderbuttonCSS}>
@@ -143,10 +175,10 @@ const PutUserInfo = () => {
 const formCSS = css`
   color: var(--text-color);
   display: flex;
-  height: 80vh;
+  height: 580px;
   flex-direction: column;
   justify-content: center;
-  width: 70vh;
+  width: 400px;
   padding: 10px;
   border-radius: 5px;
   margin: 50px auto;

@@ -36,6 +36,7 @@ const OAuth2RedirectHandler = (props: any) => {
             localStorage.setItem("gender", JSON.stringify(userInfo.gender));
             localStorage.setItem("age", JSON.stringify(userInfo.age));
           }
+          console.log(userInfo);
         })
         .catch((error) => {
           console.error("Error fetching user info:", error);
@@ -52,7 +53,7 @@ const OAuth2RedirectHandler = (props: any) => {
       } else if (code === "201") {
         router
           .push({
-            pathname: "/survey",
+            pathname: "/mypage/edit",
             query: {
               from: router.asPath,
               error: error,
