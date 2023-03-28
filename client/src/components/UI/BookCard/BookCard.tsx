@@ -26,6 +26,7 @@ interface Props {
   height?: string;
   minWidth?: string;
   minHeight?: string;
+  margin?: string;
 }
 
 const BookCard = ({
@@ -35,6 +36,7 @@ const BookCard = ({
   height,
   minWidth,
   minHeight,
+  margin
 }: Props) => {
 
   const [user, setUser] = useState<any>(null);
@@ -123,7 +125,7 @@ const BookCard = ({
   return (
     <div
       className={"bookcard-outer-wrapper"}
-      css={cardOuterWrapper({ width, height, minWidth, minHeight })}
+      css={cardOuterWrapper({ width, height, minWidth, minHeight, margin })}
       ref={wrapperRef}
       onClick={instantlyRedirect}
       onMouseOver={(event) => {
@@ -160,6 +162,7 @@ interface cardOuterWrapperProps {
   height: string | undefined;
   minWidth: string | undefined;
   minHeight: string | undefined;
+  margin: string | undefined;
 }
 
 const cardOuterWrapper = ({
@@ -167,8 +170,10 @@ const cardOuterWrapper = ({
   height,
   minWidth,
   minHeight,
+  margin
 }: cardOuterWrapperProps) => {
   return css`
+    ${margin && `margin: ${margin}`};
     position: relative;
     width: ${width !== undefined ? width : "auto"};
     height: ${height !== undefined ? height : "100%"};

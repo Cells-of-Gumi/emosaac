@@ -25,6 +25,8 @@ interface IsResponsive {
 
 const backCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
+    width: 100vw;
+    height: 100vh;
     background-color: var(--back-color);
     color: var(--text-color);
     ${isDeskTop && "padding-top: 70px;"}

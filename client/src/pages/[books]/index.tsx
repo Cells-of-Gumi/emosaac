@@ -17,8 +17,8 @@ import { bookContentType } from "@/types/books";
 import { useRouter } from "next/router";
 import { getGenres } from "@/api/book/getGenres";
 import { returnGenresType } from "@/types/books";
-import GenreList from "@/components/bookTab/GenreList";
-import DayList from "@/components/bookTab/DayList";
+import GenreList from "@/components/bookTab/MenuTab/GenreList";
+import DayList from "@/components/bookTab/MenuTab/DayList";
 
 interface HomeProps {
   highlightedBookData: bookContentType[];
