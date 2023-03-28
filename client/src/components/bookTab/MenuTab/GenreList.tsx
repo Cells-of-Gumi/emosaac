@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import { returnGenresType } from "@/types/books";
-import { useIsResponsive } from "../Responsive/useIsResponsive";
+import { useIsResponsive } from "../../Responsive/useIsResponsive";
 
 
 const GenreList = ({ genres, selected, selectHandler }: { genres: returnGenresType, selected: number, selectHandler: Function }) => {
