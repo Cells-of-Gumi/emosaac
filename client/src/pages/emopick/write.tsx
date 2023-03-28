@@ -2,14 +2,12 @@
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
 
-const index = () => {
+const write = () => {
   return (
     <div>
-      <div>
-        <div></div>
-      </div>
+      <div></div>
     </div>
   );
 };
 
-export default index;
+export default write;
