@@ -51,7 +51,7 @@ const SearchBox = (props: Props) => {
     if (bookData && bookData.length !== 0) {
       setTagList([]);
       bookData.slice(0, 3).forEach((book) => {
-        getBookDetail({ bookId: String(book.bookId) }).then((res) => {
+        getBookDetail({ bookId: book.bookId }).then((res) => {
           if (res !== null) {
             setTagList((prev) => [...prev, ...res.tag.split(" ")]);
           }
