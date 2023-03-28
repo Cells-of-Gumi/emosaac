@@ -206,8 +206,8 @@ const cardInnerWrapperCSS = ({
 
 const platformBarCSS = css`
   width: 100%;
-  height: 3vw;
-  min-height: 36px;
+  height: 2vw;
+  min-height: 32px;
   background-color: rgba(0, 0, 0, 0.2);
   position: absolute;
   bottom: 0;
@@ -246,8 +246,8 @@ const skeletonLoadingTagCSS = ({ state }: skeletonLoadingTagCSSProps) => {
 
 
 const platformIconCSS = css`
-    width: 2vw;
-    min-width: 24px;
+    width: 1.3vw;
+    min-width: 20px;
     height: auto;
     margin: 10px;
 `

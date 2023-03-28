@@ -5,9 +5,10 @@ interface StarRatingProps {
   onClick?: any;
   initialValue: number;
   readonly: boolean;
+  size?: number;
 }
 
-const StarRating = ({onClick, readonly, initialValue = 0}: StarRatingProps) => {
+const StarRating = ({onClick, readonly, size, initialValue = 0}: StarRatingProps) => {
   const [rating, setRating] = useState(initialValue)
 
   // Catch Rating value
@@ -35,6 +36,7 @@ const StarRating = ({onClick, readonly, initialValue = 0}: StarRatingProps) => {
         initialValue={rating / 2}
         allowHover={true}
         readonly={readonly}
+        size={size}
       />
     </div>
   )

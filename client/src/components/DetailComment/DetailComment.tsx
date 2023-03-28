@@ -12,6 +12,7 @@ interface DetailCommentProps {
   bookTitle: string;
   bookId: number;
   modalHandler?: any;
+  myInfo: any;
 }
 
 type criteriaType = "date" | "like";
@@ -20,6 +21,7 @@ const DetailComment = ({
   bookTitle,
   bookId,
   modalHandler,
+  myInfo
 }: DetailCommentProps) => {
   const commentsWrapperRef = useRef<HTMLDivElement>(null);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -68,6 +70,7 @@ const DetailComment = ({
         criteria={criteria}
         commentsWrapperRef={commentsWrapperRef}
         getCommentsCount={getCommentsCount}
+        myInfo={myInfo.userId}
       />
     </div>
   );

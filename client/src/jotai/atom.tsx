@@ -2,9 +2,9 @@ import { atom, createStore } from "jotai";
 
 const mainStore = createStore()
 
-const darkMode = atom(false);
+const myInfo = atom<any>(null);
 
 export default mainStore
 export {
-    darkMode,
+    myInfo,
 }

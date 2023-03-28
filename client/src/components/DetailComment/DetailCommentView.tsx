@@ -20,10 +20,11 @@ interface DetailCommentViewProps {
     criteria: "like" | "date";
     commentsWrapperRef?: any;
     getCommentsCount?: Function;
+    myInfo: any;
 }
 
 
-const DetailCommentView = ({bookId, parentId, position, criteria, commentsWrapperRef, getCommentsCount}: DetailCommentViewProps) => {
+const DetailCommentView = ({bookId, parentId, position, criteria, commentsWrapperRef, getCommentsCount, myInfo}: DetailCommentViewProps) => {
 
 
     const [comments, setComments] = useState<returnCommentArrayType>([])
@@ -99,7 +100,7 @@ const DetailCommentView = ({bookId, parentId, position, criteria, commentsWrappe
     const onWheelGetParentCommentsHandler = useMemo(
         () =>
             throttle((event) => {
-                if (position === 0 && event.deltaY > 0) {
+                if (position === 0) {
                     if (commentsWrapperRef?.current && (((commentsWrapperRef.current.scrollHeight - 10) < commentsWrapperRef.current.clientHeight) || commentsWrapperRef.current.scrollTop > commentsWrapperRef.current.scrollHeight - commentsWrapperRef.current.clientHeight - 100)) {
                         setGetCommentsHandler()
                     }
@@ -116,7 +117,7 @@ const DetailCommentView = ({bookId, parentId, position, criteria, commentsWrappe
     const commentsRender = comments.map((el, idx) => {
         return (
 
-                <DetailCommentViewElement key={`${idx}${el.commentId}${el.likeStatusSize}`} bookId={bookId} comment={el} parentId={el.commentId} refreshCommentsHandler={refreshCommentsHandler} />
+                <DetailCommentViewElement key={`${idx}${el.commentId}${el.likeStatusSize}`} bookId={bookId} comment={el} parentId={el.commentId} refreshCommentsHandler={refreshCommentsHandler} myInfo={myInfo} />
 
         )
     })
@@ -136,7 +137,7 @@ const DetailCommentView = ({bookId, parentId, position, criteria, commentsWrappe
     )
 
     return (
-        <div ref={commentsWrapperRef} onWheel={onWheelGetParentCommentsHandler}>
+        <div ref={commentsWrapperRef} onWheel={onWheelGetParentCommentsHandler} onTouchMove={onWheelGetParentCommentsHandler}>
             {position === 0 && inputRender}
             {comments.length !== 0 ? commentsRender : noCommentsRender}
             {position === 1 && <div css={childCommentsInputWrapperCSS}>{inputRender}</div>}
