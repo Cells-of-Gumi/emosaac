@@ -2,18 +2,18 @@ import { defaultAxiosFormDataInstance } from "../instance";
 
 interface PutMyInfoProps {
   file: File | null;
-  gender?: number | undefined;
-  age?: number | undefined;
+  gender?: number | null | undefined;
+  age?: number | null | undefined;
   nickName: string;
 }
 
 function createFormData(myInfo: PutMyInfoProps): FormData {
   const formdata = new FormData();
   formdata.append("nickName", myInfo.nickName);
-  if (myInfo.gender !== undefined) {
+  if (myInfo.gender !== null && myInfo.gender !== undefined) {
     formdata.append("gender", myInfo.gender.toString());
   }
-  if (myInfo.age !== undefined) {
+  if (myInfo.age !== null && myInfo.age !== undefined) {
     formdata.append("age", myInfo.age.toString());
   }
   if (myInfo.file !== null) {
@@ -27,10 +27,6 @@ export async function putMyInfo(
   // token: string | null
 ): Promise<any> {
   try {
-    // const headers: any = {};
-    // if (token) {
-    //   headers.Authorization = token;
-    // }
     const formdata = createFormData(myInfo);
     const response = await defaultAxiosFormDataInstance.put(`/users`, formdata);
     return response.data;

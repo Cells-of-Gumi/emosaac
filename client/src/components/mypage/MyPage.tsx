@@ -1,32 +1,46 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-// import profile from "../../assets/profileexample.jpg";
-// import thumbnail from "../../assets/thumbnail.png";
-import Image from "next/image";
 import MiddleWideButton from "../UI/Button/MiddleWideButton";
 import { useState } from "react";
 import Chart from "./Chart";
-// import Image from "next/image";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import getMyStatic from "./../../api/mypage/getMyStatic";
 
-export default function MyPage() {
-  const [isOpen, setIsOpen] = useState(false);
-  function onClickOpenModal() {
-    setIsOpen(!isOpen);
+const MyPage = ({ myinfo }: any) => {
+  const typecode = 0;
+  const [genreName, setGenreName] = useState<string | null>("");
+  const router = useRouter();
+  function onClickMoveEditPage() {
+    router.push("/mypage/edit");
   }
+  useEffect(() => {
+    getMyStatic(typecode).then((res) => {
+      const data = res;
+      if (data !== null) {
+        console.log(data);
+        setGenreName(data.genreName);
+      }
+    });
+  }, []);
   return (
     <>
       <section css={userinfoCSS}>
         <div css={profileimagewrapperCSS}>
-          <img src={"/assets/profileexample.jpg"} alt="프로필 이미지" css={profileimageCSS} />
+          <img
+            src={myinfo.imageUrl}
+            alt="프로필 이미지"
+            css={profileimageCSS}
+          />
         </div>
         <div>
-          <h2 css={nicknameCSS}>밥먹고올게</h2>
+          <h2 css={nicknameCSS}>{myinfo.nickname}</h2>
           <h3>notify9637@naver.com</h3>
           <div css={buttonCSS}>
             <MiddleWideButton
               text={"회원 정보 수정"}
-              onClick={onClickOpenModal}
+              onClick={onClickMoveEditPage}
             />
           </div>
         </div>
@@ -74,7 +88,7 @@ export default function MyPage() {
       </section>
     </>
   );
-}
+};
 const userinfoCSS = css`
   display: flex;
   margin-left: 105px;
@@ -144,3 +158,4 @@ const imageCSS = css`
   object-fit: contain;
 `;
 // line-height
+export default MyPage;

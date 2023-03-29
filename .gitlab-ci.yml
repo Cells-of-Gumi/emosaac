@@ -32,7 +32,7 @@ test-job: # 임의로 지정한 JOB 이름
     - sudo npm run start
 
     # reload 
-    # - pm2 reload emosaac
+    # - pm2 reload emosaac 
     
 
   tags: 
