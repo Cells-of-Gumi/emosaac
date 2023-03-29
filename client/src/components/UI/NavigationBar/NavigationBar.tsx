@@ -44,6 +44,7 @@ export const NavigationBar = () => {
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
+  const [isHome, setIsHome] = useState(false);
   const [currentRoute, setCurrentRoute] = useState({
     home: false,
     webtoon: false,
@@ -79,6 +80,12 @@ export const NavigationBar = () => {
   }, [isSearchBoxOpen]);
 
   useEffect(() => {
+    if (router.asPath === "/") {
+      setIsHome(true);
+    } else {
+      setIsHome(false);
+    }
+
     const pathName = router.asPath.split("/")[1];
     switch (pathName) {
       case "":
@@ -131,7 +138,7 @@ export const NavigationBar = () => {
 
   return (
     <nav>
-      <div css={navTopCSS}>
+      <div css={navTopCSS(isHome)}>
         {isSearchBoxOpen && isMobile && (
           <div css={searchBarMobileCSS}>
             <RiArrowLeftSLine size={30} onClick={onClickSearchIcon} />
@@ -342,12 +349,13 @@ const routerCSS = (isCurrentRoute: boolean) => {
   `;
 };
 
-const navTopCSS = css`
+const navTopCSS = (isHome: boolean) => css`
   position: fixed;
   z-index: 30;
   top: 0;
   left: 0;
   width: 100%;
+  display: ${isHome ? "none" : "block"};
 `;
 
 const searchBarMobileCSS = css`
