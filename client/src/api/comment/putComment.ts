@@ -40,7 +40,7 @@ export async function putComment({commentId, content, token}: paramsType
     }
     
     const { data }: { data: responseType } = await defaultAxiosInstance.put(
-      `/book/comments/${commentId}`, { content, headers }
+      `/comments/${commentId}`, { content, headers }
     );
     return data.data
   } catch (error) {

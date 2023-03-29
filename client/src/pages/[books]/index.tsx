@@ -19,6 +19,8 @@ import { getGenres } from "@/api/book/getGenres";
 import { returnGenresType } from "@/types/books";
 import GenreList from "@/components/bookTab/MenuTab/GenreList";
 import DayList from "@/components/bookTab/MenuTab/DayList";
+import SortByGenre from "@/components/bookTab/SortByGenre";
+import SortByDay from "@/components/bookTab/SortByDay";
 
 interface HomeProps {
   highlightedBookData: bookContentType[];
@@ -33,10 +35,10 @@ export default function Home({
 }: HomeProps) {
   const parentRef = useRef<HTMLDivElement>(null);
   const indexWrapperRef = useRef<HTMLDivElement>(null);
-  const [selectedGenre, setSelectedGenre] = useState<number>(-2);
+  const [selectedGenre, setSelectedGenre] = useState<number>(window.localStorage.getItem('selected_genre') ? Number(window.localStorage.getItem('selected_genre')) : -2);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
 
-  const [selectedDay, setSelectedDay] = useState<number>(0);
+  const [selectedDay, setSelectedDay] = useState<number>(window.localStorage.getItem('selected_day') ? Number(window.localStorage.getItem('selected_day')) : 0);
 
   // ________________________________________________________________________________________________
   // 임시 데이터
@@ -55,11 +57,24 @@ export default function Home({
   // ________________________________________________________________________________________________
 
   const selectGenreHandler = (selected: number) => {
+    window.localStorage.setItem('selected_genre', String(selected))
+
+    if (selected === -1) {
+      window.localStorage.removeItem('inf_fetched_data')
+      window.localStorage.removeItem('recent_scroll')
+      window.localStorage.removeItem('recent_page')
+    }
+    
     setSelectedGenre(() => selected);
   };
 
   const selectDayHandler = (selected: number) => {
+    window.localStorage.removeItem('inf_fetched_data')
+    window.localStorage.removeItem('recent_scroll')
+    window.localStorage.removeItem('recent_page')
+    window.localStorage.setItem('selected_day', String(selected))
     setSelectedDay(() => selected);
+
   };
 
   const getBooksByGenreAPI = ({
@@ -82,6 +97,40 @@ export default function Home({
     });
   };
 
+
+  const highlightedCarouselRender = (
+    <>
+      <div css={whiteSpace1CSS} />
+        <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
+          <RowTitle
+            beforeLabel="희MD"
+            highlightedLabel=" EMOSAAC!"
+            noLine={true}
+            marginBottom={"45px"}
+          />
+        </div>
+
+        <div css={highlightedCarouselWrapper}>
+          <HighlightedCarousel
+            bookData={highlightedBookData}
+            windowWrapperRef={indexWrapperRef}
+          />
+        </div>
+      <div css={whiteSpace2CSS} />
+    </>
+  )
+
+
+  const bookHomeFetchList = [
+    {
+      API: getBooksByGenreAPI,
+      identifier: 'test1',
+      beforeLabel: '너만의',
+      highlightedLabel: 'EMOSAAC!',
+
+    }
+  ]
+
   return (
     <div ref={indexWrapperRef} css={indexWrapperCSS}>
       <div css={bannerWrapperCSS} ref={parentRef}>
@@ -95,35 +144,20 @@ export default function Home({
       />
       {selectedGenre === -1 && <DayList selected={selectedDay} selectHandler={selectDayHandler}/>}
 
-      <div css={whiteSpace1CSS} />
-      <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
-        <RowTitle
-          beforeLabel="희MD"
-          highlightedLabel=" EMOSAAC!"
-          noLine={true}
-          marginBottom={"45px"}
-        />
-      </div>
+      {selectedGenre === -2 && highlightedCarouselRender}
 
-      <div css={highlightedCarouselWrapper}>
-        <HighlightedCarousel
-          bookData={highlightedBookData}
-          windowWrapperRef={indexWrapperRef}
-        />
-      </div>
-      <div css={whiteSpace2CSS} />
+      {selectedGenre === -2 && <SortByGenre fetchList={bookHomeFetchList}/>}
 
-      <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
+      {selectedGenre === -1 && <SortByDay />}
+      
+
+      {/* <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
         <RowTitle beforeLabel="너만의" highlightedLabel=" EMOSAAC!" />
         <div css={bookCarouselWrapperCSS}>
           <ScrollableCarousel API={getBooksByGenreAPI} identifier={"test1"} />
         </div>
         <div css={whiteSpace1CSS} />
-        {/* <RowTitle beforeLabel="너만의" highlightedLabel=" EMOSAAC!" />
-        <div css={bookCarouselWrapperCSS}>
-          <ScrollableCarousel API={recvBooks} identifier={"test1"} />
-        </div>
-        <div css={whiteSpace1CSS} /> */}
+
       </div>
 
       <img
@@ -134,7 +168,10 @@ export default function Home({
         }
         alt={""}
         css={bannerImage}
-      />
+      /> */}
+
+
+
 
       {/* <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
         <div css={whiteSpace1CSS} />

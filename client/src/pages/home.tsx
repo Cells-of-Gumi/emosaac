@@ -1,13 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
-// import labtop from "../../public/assets/laptop.png";
 
-// import { getToken } from "@/api/instance";
-
-export default function Home() {
+const Home = () => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const labtop = "/assets/labtop.png";
+
   return (
     <div>
       <div css={fullPageCSS({ isDeskTop, isTablet, isMobile })}>
@@ -32,8 +29,8 @@ export default function Home() {
               <div>12</div>
               <div>13</div>
               <div>14</div>
-              <img src={labtop} />
             </div>
+            <img src={"/assets/mockup_labtop_fin.png"} alt="랩탑 폰" />
           </div>
         </div>
         <div css={secondPageCSS({ isDeskTop, isTablet, isMobile })}>
@@ -54,7 +51,7 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
 
 interface IsResponsive {
   isDeskTop: boolean;
@@ -158,4 +155,4 @@ const firstTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   `;
 };
 
-// 이후 작업들...
+export default Home;

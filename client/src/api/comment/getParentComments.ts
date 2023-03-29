@@ -42,7 +42,7 @@ export async function getParentComments({bookId, criteria, offset, size, token }
     }
 
     const { data }: { data: responseType } = await defaultAxiosInstance.get(
-      `/book/comments/parent/${bookId}${criteria !== undefined ? `?criteria=${criteria}` : ''}${offset !== undefined ? `&offset=${offset}` : ''}${size !== undefined ? `&size=${size}` : ''}`,
+      `/comments/parent/${bookId}${criteria !== undefined ? `?criteria=${criteria}` : ''}${offset !== undefined ? `&offset=${offset}` : ''}${size !== undefined ? `&size=${size}` : ''}`,
       {
         headers,
       }
