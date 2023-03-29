@@ -2,22 +2,24 @@
 import { jsx, css } from "@emotion/react";
 import React, { useEffect, useMemo, useState, useRef } from "react"
 import { throttle } from "lodash";
-import BookCard from "../../UI/BookCard/BookCard";
+import BookCard from "@/components/UI/BookCard/BookCard";
 import { bookContentType, returnBookContentType } from "@/types/books";
+import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 
-interface VerticalScrollMobileProps {
+interface VerticalScrollProps {
     API: ({fetchedData, prevId, prevScore, size}: {fetchedData: any; prevId?: number; prevScore?: number; size: number}) => Promise<any>;
 
 }
 
-const VerticalScrollMobile = ({API}: VerticalScrollMobileProps) => {
+const VerticalScroll = ({API}: VerticalScrollProps) => {
+    const [isDeskTop, isTablet, isMobile] = useIsResponsive();
     const cardLayout = {
-        width: "45vw",
-        height: "30vh",
-        minWidth: "45vw",
-        minHeight: "30vh",
+        width: isMobile ? "45vw" : "200px",
+        height: isMobile ? "30vh" : "300px",
+        minWidth: isMobile ? "45vw" : "200px",
+        minHeight: isMobile ? "30vh" : "300px",
         padding: "0.5vw",
-        margin: "6px"
+        margin: isMobile ? "6px" : "24px"
     };
 
     const [fetchedData, setFetchedData] = useState<any>([])
@@ -121,7 +123,7 @@ const VerticalScrollMobile = ({API}: VerticalScrollMobileProps) => {
             return (
                 <div key={`infinity-${pageIdx}`} id={`${pageIdx}`} ref={(el) => {pageClassRef.current[pageIdx] = el;}}>
                     {onScreenContentIdx === pageIdx || onScreenContentIdx === pageIdx - 1 || onScreenContentIdx === pageIdx + 1 ? 
-                    <div ref={actualPageRef} css={contentPageWrapperCSS}>{contentRender}</div> : <div id={`${pageIdx}`} css={dummyWrapperCSS({standardWidth: dummyWidth, standardHeight: dummyHeight})} />
+                    <div ref={actualPageRef} css={contentPageWrapperCSS({isMobile, isTablet})}>{contentRender}</div> : <div id={`${pageIdx}`} css={dummyWrapperCSS({standardWidth: dummyWidth, standardHeight: dummyHeight})} />
                 }
                     
                     
@@ -171,18 +173,16 @@ const VerticalScrollMobile = ({API}: VerticalScrollMobileProps) => {
 
     return (
         <div  css={scrollWrapperCSS} ref={scrollWrapperRef} onWheel={onScrollHandler} onTouchMove={onScrollHandler}>
-            <button onClick={() => {console.log(pageClassRef)}}>Console Ref</button>
-
             {pageRender}
- 
         </div>
     )
 }
 
 const scrollWrapperCSS = css`
-    height: 100%;
+    /* width: 100%;
+    height: 100vh;
     overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-x: hidden; */
 
 `
 
@@ -197,13 +197,16 @@ const dummyWrapperCSS = ({standardWidth, standardHeight}: {standardWidth: any; s
     `
 }
 
-const contentPageWrapperCSS = css`
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-    display: grid;
-    grid-template-columns: 50% 50%;
-    place-items: center;
-`
+const contentPageWrapperCSS = ({isMobile, isTablet}: {isMobile: boolean; isTablet: boolean}) => {
+    return css`
+        /* display: flex;
+        flex-direction: column;
+        align-items: center; */
+        display: grid;
+        grid-template-columns: ${isMobile ? "repeat(2,1fr)" : "repeat(5,1fr)"};
+        /* grid-template-columns: 50% 50%; */
+        place-items: center;
+    `
+}
 
-export default VerticalScrollMobile
+export default VerticalScroll

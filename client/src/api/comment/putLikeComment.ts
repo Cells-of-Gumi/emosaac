@@ -39,7 +39,7 @@ export async function putLikeComment({commentId, token}: paramsType
     }
 
     const { data }: { data: responseType } = await defaultAxiosInstance.put(
-      `/book/comments/like/${commentId}`,
+      `/comments/like/${commentId}`,
       {
         headers,
       }

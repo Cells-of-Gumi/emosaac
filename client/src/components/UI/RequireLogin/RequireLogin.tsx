@@ -70,6 +70,7 @@ const formWrapperCSS = ({isMobile}: {isMobile: boolean}) => {
     return css`
         width: ${isMobile ? '80vw' : '400px'};
         height: ${isMobile ? '60vh' : '500px'};
+        min-width: 340px;
         background-color: var(--back-color);
         border-radius: 20px;
         color: var(--text-color);

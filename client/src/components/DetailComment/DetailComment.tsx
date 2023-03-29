@@ -94,7 +94,7 @@ const modalWrapperCSS = ({ isMobile }: { isMobile: boolean }) => {
     background-color: var(--back-color);
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
     /* border-radius: 20px; */
-    padding: 36px;
+    padding: ${isMobile ? "18px" : "36px"};
     display: flex;
     flex-direction: column;
     overflow: scroll;
