@@ -17,7 +17,8 @@ const PutUserInfo = () => {
   const [profileImage, setProfileImage] = useState<File | null>(null);
   const [image, setImage] = useState<string | undefined>("");
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
-
+  const [selectedAge, setSelectedAge] = useState<number | null>(null);
+  // 프로필 변경 함수
   const onClickProfileImageChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -25,6 +26,7 @@ const PutUserInfo = () => {
       setProfileImage(event.target.files[0]);
     }
   };
+
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -36,6 +38,7 @@ const PutUserInfo = () => {
       reader.readAsDataURL(file);
     }
   };
+  // 넣으면 바로 프로필 사진이 바뀌게 하는 useEffect
   useEffect(() => {
     if (profileImage) {
       const reader = new FileReader();
@@ -48,53 +51,82 @@ const PutUserInfo = () => {
   const onClickGender = (newGender: number) => {
     setGender(newGender);
   };
+  // 정보 수정 제출 함수
   const onClickSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (nickname && gender !== null && age !== null) {
-      const myInfo = {
-        file: profileImage,
-        gender,
-        age,
-        nickName: nickname,
-      };
-      try {
-        const response = await putMyInfo(myInfo);
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
+
+    const isFirstTime = localStorage.getItem("nickName") === null;
+    // 닉네임 최소 2자 ~ 10자
+    if (
+      isFirstTime &&
+      (!nickname ||
+        localStorage.getItem("gender") === null ||
+        localStorage.getItem("age") === null)
+    ) {
       alert("모든 필수 입력 항목을 입력해주세요.");
+      return;
+    }
+    if (!isNicknameDuplicate) {
+      alert("닉네임 중복확인을 해주세요");
+    }
+    const myInfo = {
+      file: profileImage,
+      gender,
+      age,
+      nickName: nickname,
+    };
+
+    try {
+      const response = await putMyInfo(myInfo);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
     }
   };
+  // 닉네임 input 함수
   const handleNicknameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(event.target.value);
     console.log(nickname);
   };
-
+  // 중복 검사 함수
   const onClickCheckDuplicateNickname = () => {
-    if (!nickname) {
-    }
     getIsNickname(nickname, token).then((res) => {
       console.log(res);
       if (res === false) {
         setNicknameValidityMessage("사용 가능한 닉네임이에요");
+        // 중복확인을 했다는 flag
+        setIsNicknameDuplicate(true);
       } else {
         setNicknameValidityMessage("사용이 불가능한 닉네임이에요");
+        setIsNicknameDuplicate(false);
       }
     });
   };
+  // 연령대 클릭 함수
   const handleClickAge = (selectedAge: number) => {
     setAge(selectedAge);
+    setSelectedAge(age);
     setDropdownVisible(false);
   };
-  // useEffect(() => {
-  //   getMyInfo().then((res) => {
-  //     const data = res;
-  //     console.log(data);
-  //     setNickname(data?.nickname);
-  //   });
-  // }, []);
+
+  // 초기 렌더링에 nickname이 있으면 기본값으로 넣어두는 함수
+  useEffect(() => {
+    getMyInfo().then((res) => {
+      const data = res;
+      console.log(data);
+      if (data !== null) {
+        setNickname(data.nickname);
+        if (data.gender === 0) {
+          setGender(0);
+        } else {
+          setGender(1);
+        }
+        if (data.age) {
+          setSelectedAge(data.age);
+        }
+      }
+    });
+  }, []);
   return (
     <>
       <section>
@@ -128,8 +160,11 @@ const PutUserInfo = () => {
             />
           </div>
           <div css={nicknamewrapCSS}>
-            <label htmlFor="">
+            <label htmlFor="" css={nicknameCSS}>
               <h3>닉네임</h3>
+              <div css={nicknameexplainCSS}>
+                2글자 ~ 10글자 사이로 입력해주세요
+              </div>
             </label>
             <input
               css={inputwrapCSS}
@@ -183,7 +218,9 @@ const PutUserInfo = () => {
                 setDropdownVisible(!dropdownVisible), event.preventDefault();
               }}
             >
-              <div>연령대를 선택해주세요</div>
+              <div>
+                {selectedAge ? `${selectedAge}대` : "연령대를 선택해주세요"}
+              </div>
             </button>
             <div css={dropdownContentCSS(dropdownVisible)}>
               <div onClick={() => handleClickAge(10)} css={dropdownItemCSS}>
@@ -238,6 +275,15 @@ const textwrapCSS = css`
 const nicknamewrapCSS = css`
   position: relative;
   margin-top: 30px;
+`;
+
+const nicknameCSS = css`
+  display: flex;
+`;
+const nicknameexplainCSS = css`
+  margin-left: 2px;
+  margin-top: 10px;
+  font-size: 10px;
 `;
 const nicknameconfirmCSS = css`
   position: absolute;
@@ -352,7 +398,7 @@ const ageCSS = css`
 
 const explainCSS = css`
   margin-left: 2px;
-  margin-top: 5px;
+  margin-top: 6px;
   font-size: 10px;
 `;
 

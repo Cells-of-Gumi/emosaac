@@ -18,7 +18,7 @@ type getUserType = {
   data: returnUserArrayType;
 };
 
-async function getMyInfo(): Promise<returnUserArrayType | null | undefined> {
+async function getMyInfo(): Promise<returnUserArrayType | null> {
   try {
     const { data, status }: { data: getUserType; status: number } =
       await defaultAxiosInstance.get(`/users/me`);
