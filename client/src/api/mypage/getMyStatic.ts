@@ -1,10 +1,11 @@
 import { defaultAxiosInstance } from "../instance";
-type returnMyLikeProps = {
+
+export type returnMyLikeProps = {
   genreId: number;
   genreName: string;
   amount: number;
   description: string;
-};
+}[];
 
 type getMyLikeType = {
   status: number;
