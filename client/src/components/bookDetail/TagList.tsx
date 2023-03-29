@@ -31,7 +31,8 @@ const tagListWrapperCSS = css`
 position: absolute;
   /* margin-top: 12px; */
     width: 110%;
-    overflow: scroll;
+    overflow-x: scroll;
+    overflow-y: hidden;
     padding-left: 50px;
     /* padding-right: -20px; */
     margin-left: -50px;
