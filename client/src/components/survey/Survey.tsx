@@ -78,21 +78,25 @@ const Survey = () => {
       <section css={infoCSS(isDeskTop, isTablet, isMobile)}>
         <div>
           {typeCode === 0 && (
-            <h1 css={titleCSS}>선호하는 웹툰을 5개 선택해주세요</h1>
+            <h1 css={titleCSS(isTablet, isMobile)}>
+              선호하는 웹툰을 5개 선택해주세요
+            </h1>
           )}
           {typeCode === 1 && (
-            <h1 css={titleCSS}>선호하는 웹소설을 5개 선택해주세요</h1>
+            <h1 css={titleCSS(isTablet, isMobile)}>
+              선호하는 웹소설을 5개 선택해주세요
+            </h1>
           )}
           <div style={{ marginTop: "10px" }}>
             이모작의 추천방식에 깜짝 놀라실걸요?
           </div>
         </div>
         <div>
-          <div css={buttongridCSS(isTablet)}>
+          <div css={buttongridCSS(isDeskTop, isTablet, isMobile, typeCode)}>
             {typeCode === 0 ? (
               <SmallWideButton text={"다음"} onClick={onClickNextButton} />
             ) : (
-              <div css={buttongridCSS(isTablet)}>
+              <div css={buttongridCSS(isDeskTop, isTablet, isMobile, typeCode)}>
                 <div>
                   <SmallWideButton text={"이전"} onClick={onClickPrevButton} />
                 </div>
@@ -139,35 +143,38 @@ const infoCSS = (
   display: flex;
   flex-direction: ${isDesktop ? "row" : "column"};
   justify-content: space-around;
-  align-items: flex-start;
-  @media only screen and (max-width: 1024px) {
-    align-items: flex-start;
-  }
-  @media only screen and (max-width: 768px) {
-    justify-content: ${isTablet ? "space-between" : "space-around"};
-    align-items: flex-start;
-  }
+  padding: ${isMobile ? "10px 20px 50px" : null};
+  ${isDesktop
+    ? "space-around"
+    : isTablet
+    ? "space-between"
+    : isMobile
+    ? "space-around"
+    : "space-around"}
+  align-items : ${isDesktop
+    ? "flex-start"
+    : isTablet
+    ? "flex-start"
+    : isMobile
+    ? "flex-start"
+    : "flex-start"}
 `;
 
-const titleCSS = css`
+const titleCSS = (isTablet: boolean, isMobile: boolean) => css`
   white-space: nowrap;
-  @media only screen and (max-width: 1024px) {
-    text-align: left;
-    white-space: normal;
-    font-size: 33px;
-    width: 100%;
-  }
-  @media only screen and (max-width: 768px) {
-    text-align: left;
-    white-space: normal;
-    font-size: 28px;
-    width: 100%;
-  }
+  text-align: ${isTablet ? "left" : isMobile ? "left" : "null"};
+  font-size: ${isTablet ? "33px" : isMobile ? "27px" : "null"};
+  width: ${isTablet ? "100%" : isMobile ? "100%" : null};
 `;
 
 const surveygridCSS = (isTablet: boolean, isMobile: boolean) => css`
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+
+  grid-template-columns: ${isTablet
+    ? "repeat(5,1fr)"
+    : isMobile
+    ? "repeat(3,1fr)"
+    : "repeat(7,1fr)"};
   margin: 30px 105px;
   grid-gap: 10px;
   justify-content: center;
@@ -179,38 +186,35 @@ const surveygridCSS = (isTablet: boolean, isMobile: boolean) => css`
     width: 100%;
     height: 100%;
   }
-  @media only screen and (max-width: 1024px) {
-    grid-template-columns: ${isTablet ? "repeat(5, 1fr)" : "repeat(3, 1fr)"};
-  }
-  @media only screen and (max-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
-    margin: 30px 20px;
-  }
+  padding: ${isMobile ? "10px 20px 100px" : "null"};
+  margin: ${isMobile ? "0px" : "default"};
 `;
 
-const buttongridCSS = (isTablet: boolean) => css`
+const buttongridCSS = (
+  isDeskTop: boolean,
+  isTablet: boolean,
+  isMobile: boolean,
+  typeCode: number
+) => css`
   display: flex;
-  justify-content: flex-end;
-  align-self: flex-end;
-  margin-top: ${isTablet ? "20px" : "20px"};
-
-  @media only screen and (max-width: 768px) {
-    justify-content: flex-end;
-  }
+  justify-content: ${isDeskTop
+    ? "flex-end"
+    : isMobile
+    ? "flex-end"
+    : "flex-end"};
+  align-items: ${isDeskTop ? "flex-end" : isTablet ? "flex-end" : "flex-end"};
+  width: ${typeCode === 0 ? "30%" : "100%"};
+  height: ${isDeskTop ? "auto" : isTablet ? "auto" : "35px;"};
+  margin-top: ${isDeskTop ? "20px" : isTablet ? "20px" : "20px"};
   white-space: nowrap;
 `;
 
-const thumbnailCSS = css`
-  width: 100%;
-  height: 100%;
-`;
-
 const submitbuttonCSS = css`
-  margin-left: 20px;
-  @media only screen and (max-width: 768px) {
+  margin-left: 10px;
+  /* @media only screen and (max-width: 768px) {
     width: 80%;
     height: auto;
-  }
+  } */
   white-space: nowrap;
 `;
 export default Survey;
