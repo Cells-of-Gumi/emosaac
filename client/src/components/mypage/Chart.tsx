@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-
-import React from "react";
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
 
@@ -11,7 +9,7 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 
 type ChartProps = {};
 
-const Chart: React.FC<ChartProps> = () => {
+const Chart = (props: ChartProps) => {
   // 각자의 양
   const series: number[] = [10, 10, 10, 10];
 
@@ -21,6 +19,12 @@ const Chart: React.FC<ChartProps> = () => {
       type: "pie",
     },
     labels: ["무협", "현판", "로맨스", "미스테리"],
+    legend: {
+      position: "right",
+      labels: {
+        colors: "var(--text-color)",
+      },
+    },
     responsive: [
       {
         // 반응형 기준되는 viewport 너비
@@ -29,10 +33,6 @@ const Chart: React.FC<ChartProps> = () => {
           // breakpoint에서 차트 크기
           chart: {
             width: 400,
-          },
-          //   범례
-          legend: {
-            position: "bottom",
           },
         },
       },
