@@ -235,7 +235,7 @@ export const getServerSideProps = async (context: any) => {
 const mainContentCSS = css`
   width: 100vw;
   /* height: 100vh; */
-
+  padding-bottom: 52px;
   overflow-x: hidden;
 `;
 
