@@ -16,7 +16,7 @@ type emopickType = {
   data: number;
 };
 
-export async function postEmopick({
+export async function postEmopickList({
   request,
   token,
 }: postEmopickParamsType): Promise<number | null> {
