@@ -3,27 +3,53 @@ import { jsx, css } from "@emotion/react";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./FixedModal.module.css";
 import ReactDOM from "react-dom";
+import { useRouter } from 'next/router'
 
 // 모달창 자체
-const ModalOverlay = (props : {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string }) => {
+const ModalOverlay = (props : {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string, forced?: boolean, blur?: boolean }) => {
   const [showModal, setShowModal] = useState<boolean>(false)
 
-  useEffect(() => {
-    window.history.pushState(null, document.title, window.location.href);
+  // useEffect(() => {
+  //   window.history.pushState(null, document.title, window.location.href);
 
-    const preventBack = async () => {
-      await modalHandler();
-      await window.history.pushState(
-        null,
-        document.title,
-        window.location.href
-      );
-    };
-    window.addEventListener("popstate", preventBack);
+  //   const preventBack = async () => {
+  //     await modalHandler();
+  //     await window.history.pushState(
+  //       null,
+  //       document.title,
+  //       window.location.href
+  //     );
+  //   };
+  //   window.addEventListener("popstate", preventBack);
+  //   return () => {
+  //     window.removeEventListener("popstate", preventBack);
+  //   };
+  // }, [window.history]);
+
+
+  const router = useRouter()
+
+  useEffect(() => {
+    router.beforePopState(({ url, as, options }) => {
+      if (as !== router.asPath && props.forced !== true) {
+        window.history.pushState('', '');
+        router.push(router.asPath);
+        modalHandler();
+        return false
+      }
+      if (props.forced === true) {
+        setShowModal(() => false)
+        setTimeout(() => {props.stateHandler(() => false)}, 300)
+      }
+
+      return true
+    })
     return () => {
-      window.removeEventListener("popstate", preventBack);
+    router.beforePopState(() => true);
     };
-  }, [window.history]);
+  }, [])
+
+
 
 
   useEffect(() => {
@@ -37,8 +63,11 @@ const ModalOverlay = (props : {width?: string, height?: string, content: any, mo
   }, [])
 
   const modalHandler = () => {
-    setShowModal(() => false)
-    setTimeout(() => {props.stateHandler(() => false)}, 300)
+    if (props.forced !== true) {
+      setShowModal(() => false)
+      setTimeout(() => {props.stateHandler(() => false)}, 300)
+    } 
+    
   }
 
   const content = React.cloneElement(props.content, {
@@ -48,7 +77,7 @@ const ModalOverlay = (props : {width?: string, height?: string, content: any, mo
   });
 
   return (
-    <div css={backdrop({showModal: showModal})} onClick={modalHandler}>
+    <div css={backdrop({showModal: showModal, blur: props.blur})} onClick={modalHandler}>
       <div css={modalCSS({width: props.width, height: props.height, overflow: props.overflow, showModal: showModal})} onClick={(event) => {event.stopPropagation()}}>  
           {content}
       </div>
@@ -56,7 +85,7 @@ const ModalOverlay = (props : {width?: string, height?: string, content: any, mo
   );
 };
 
-const FixedModal = (props : {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string,}) => {
+const FixedModal = (props : {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string, forced?: boolean, blur?: boolean}) => {
   const [modal, setModal] = useState<any>()
   useEffect(() => {
     setModal(() => ReactDOM.createPortal(
@@ -70,7 +99,7 @@ const FixedModal = (props : {width?: string, height?: string, content: any, moda
 export default FixedModal;
 
 
-const backdrop = ({showModal}: {showModal: boolean}) => {
+const backdrop = ({showModal, blur}: {showModal: boolean; blur: boolean | undefined}) => {
   return css`
     position: fixed;
     top: 0;
@@ -85,6 +114,7 @@ const backdrop = ({showModal}: {showModal: boolean}) => {
     opacity: ${showModal ? 255 : 0};
     transition-property: opacity;
     transition-duration: 0.3s;
+    ${blur && 'backdrop-filter: blur(5px);'}
   `
 } 
 

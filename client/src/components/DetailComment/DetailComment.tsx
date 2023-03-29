@@ -12,6 +12,7 @@ interface DetailCommentProps {
   bookTitle: string;
   bookId: number;
   modalHandler?: any;
+  myInfo: any;
 }
 
 type criteriaType = "date" | "like";
@@ -20,6 +21,7 @@ const DetailComment = ({
   bookTitle,
   bookId,
   modalHandler,
+  myInfo
 }: DetailCommentProps) => {
   const commentsWrapperRef = useRef<HTMLDivElement>(null);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -68,6 +70,7 @@ const DetailComment = ({
         criteria={criteria}
         commentsWrapperRef={commentsWrapperRef}
         getCommentsCount={getCommentsCount}
+        myInfo={myInfo.userId}
       />
     </div>
   );
@@ -91,7 +94,7 @@ const modalWrapperCSS = ({ isMobile }: { isMobile: boolean }) => {
     background-color: var(--back-color);
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
     /* border-radius: 20px; */
-    padding: 36px;
+    padding: ${isMobile ? "18px" : "36px"};
     display: flex;
     flex-direction: column;
     overflow: scroll;
