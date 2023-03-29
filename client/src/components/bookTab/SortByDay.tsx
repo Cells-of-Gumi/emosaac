@@ -3,29 +3,29 @@ import { jsx, css } from "@emotion/react";
 import { getBooksByGenre } from "@/api/book/getBooksByGenre";
 import { getBookDetail } from "@/api/book/getBookDetail";
 // import { getToken } from "@/api/instance";
-import VerticalScrollMobile from "@/components/bookTab/VerticalScrollMobile/VerticalScrollMobile";
+import VerticalScroll from "@/components/bookTab/VerticalScroll/VerticalScroll";
 import BookCard from "@/components/UI/BookCard/BookCard";
 
-export default function Home() {
+export default function SortByDay() {
 
   const infinityScrollAPI = ({fetchedData, prevId, prevScore, size}: {fetchedData: any; prevId?: number; prevScore?: number; size: number}) => {
     return getBooksByGenre({genreCode: 11, typeCode: 0, prevId, prevScore, size})
   }
 
   return (
-    <div css={infinityWrapperCSS}>
 
-        <VerticalScrollMobile API={infinityScrollAPI}/>
+
+        <VerticalScroll API={infinityScrollAPI}/>
 
       
-    </div>
+
   );
 }
 
 const infinityWrapperCSS = css`
   width: 100%;
   height: 100%;
-  /* background-color: red; */
+  background-color: red;
 
 `
 

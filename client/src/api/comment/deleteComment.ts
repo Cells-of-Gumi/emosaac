@@ -39,7 +39,7 @@ export async function deleteComment({commentId, token}: paramsType
     }
 
     const { data }: { data: responseType } = await defaultAxiosInstance.delete(
-      `/book/comments/${commentId}`,
+      `/comments/${commentId}`,
       {
         headers,
       }

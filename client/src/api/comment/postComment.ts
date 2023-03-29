@@ -25,7 +25,7 @@ export async function postComment({bookId, content, parentId, token}: paramsType
     }
 
     const { data }: { data: responseType } = await defaultAxiosInstance.post(
-      `/book/comments/${bookId}`, { content, parentId, headers }
+      `/comments/${bookId}`, { content, parentId, headers }
     );
     return data.data
   } catch (error) {
