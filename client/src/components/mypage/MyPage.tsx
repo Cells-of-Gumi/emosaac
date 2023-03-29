@@ -9,21 +9,11 @@ import { useEffect } from "react";
 import getMyStatic from "./../../api/mypage/getMyStatic";
 
 const MyPage = ({ myinfo }: any) => {
-  const typecode = 0;
-  const [genreName, setGenreName] = useState<string | null>("");
   const router = useRouter();
   function onClickMoveEditPage() {
     router.push("/mypage/edit");
   }
-  useEffect(() => {
-    getMyStatic(typecode).then((res) => {
-      const data = res;
-      if (data !== null) {
-        console.log(data);
-        setGenreName(data.genreName);
-      }
-    });
-  }, []);
+
   return (
     <>
       <section css={userinfoCSS}>
@@ -34,9 +24,8 @@ const MyPage = ({ myinfo }: any) => {
             css={profileimageCSS}
           />
         </div>
-        <div>
+        <div css={infowrapCSS}>
           <h2 css={nicknameCSS}>{myinfo.nickname}</h2>
-          <h3>notify9637@naver.com</h3>
           <div css={buttonCSS}>
             <MiddleWideButton
               text={"회원 정보 수정"}
@@ -108,12 +97,16 @@ const profileimageCSS = css`
   object-fit: cover;
 `;
 
+const infowrapCSS = css`
+  display: grid;
+`;
+
 const nicknameCSS = css`
   margin-bottom: 10px;
 `;
 
 const buttonCSS = css`
-  margin-top: 40px;
+  margin-top: 20px;
 `;
 
 const chartwrapperCSS = css`
