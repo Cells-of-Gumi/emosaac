@@ -24,23 +24,24 @@ const Survey = () => {
   // const checkwebtoon;
   const onClickNextButton = () => {
     setTypeCode(1);
-    // console.log("선택됨");
   };
   const onClickPrevButton = () => {
     setTypeCode(0);
   };
   const onClickSubmitButton = () => {
-    // console.log("하하하하하");
-    // alert("제출됨");
-    // console.log(Array.from(selectedWebtoons), Array.from(selectedNovels));
-    postSurvey({
-      webtoonIds: Array.from(selectedWebtoons),
-      novelIds: Array.from(selectedNovels),
-    }).catch((error) => {
-      console.log(error);
-    });
-    alert("제출되었습니다!");
-    router.push("/");
+    // 5개씩 선택되었을 때만 post
+    if (selectedWebtoons.size === 5 && selectedNovels.size === 5) {
+      postSurvey({
+        webtoonIds: Array.from(selectedWebtoons),
+        novelIds: Array.from(selectedNovels),
+      }).catch((error) => {
+        console.log(error);
+      });
+      alert("제출되었습니다!");
+      router.push("/");
+    } else {
+      alert("웹툰과 소설을 각각 5개씩 선택해주세요.");
+    }
   };
   useEffect(() => {
     getSurveyListByTypeCode(typeCode).then(
@@ -92,12 +93,14 @@ const Survey = () => {
           </div>
         </div>
         <div>
-          <div css={buttongridCSS(isDeskTop, isTablet, isMobile, typeCode)}>
+          <div css={buttongridCSS(isDeskTop, isTablet, isMobile)}>
             {typeCode === 0 ? (
-              <SmallWideButton text={"다음"} onClick={onClickNextButton} />
+              <div css={nextButtonContainerCSS}>
+                <SmallWideButton text={"다음"} onClick={onClickNextButton} />
+              </div>
             ) : (
-              <div css={buttongridCSS(isDeskTop, isTablet, isMobile, typeCode)}>
-                <div>
+              <div css={buttongridCSS(isDeskTop, isTablet, isMobile)}>
+                <div css={prevSubmitButtonContainerCSS}>
                   <SmallWideButton text={"이전"} onClick={onClickPrevButton} />
                 </div>
                 <div css={submitbuttonCSS}>
@@ -193,20 +196,24 @@ const surveygridCSS = (isTablet: boolean, isMobile: boolean) => css`
 const buttongridCSS = (
   isDeskTop: boolean,
   isTablet: boolean,
-  isMobile: boolean,
-  typeCode: number
+  isMobile: boolean
 ) => css`
   display: flex;
-  justify-content: ${isDeskTop
-    ? "flex-end"
-    : isMobile
-    ? "flex-end"
-    : "flex-end"};
-  align-items: ${isDeskTop ? "flex-end" : isTablet ? "flex-end" : "flex-end"};
-  width: ${typeCode === 0 ? "30%" : "100%"};
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
   height: ${isDeskTop ? "auto" : isTablet ? "auto" : "35px;"};
   margin-top: ${isDeskTop ? "20px" : isTablet ? "20px" : "20px"};
   white-space: nowrap;
+`;
+
+const nextButtonContainerCSS = css`
+  margin-left: auto;
+`;
+
+const prevSubmitButtonContainerCSS = css`
+  margin-left: auto;
+  margin-right: 0;
 `;
 
 const submitbuttonCSS = css`
