@@ -12,6 +12,7 @@
   --back-color-3: #d0d2dc;
   --back-color-4: #bcc0cf;
   --back-color-op: #d8dbe7ee;
+  --back-color-op-2: #d8dbe7bb;
   --back-color-op-opp: #17171b55;
   --alert-color: #ff1e1e;
   --hover-color: contrast(30%);
@@ -33,6 +34,7 @@
   --back-color-3: #242529;
   --back-color-4: #43454f;
   --back-color-op: #17171bee;
+  --back-color-op-2: #17171bbb;
   --back-color-op-opp: #d8dbe755;
   --alert-color: #ff1e1e;
   --hover-color: contrast(50%);
