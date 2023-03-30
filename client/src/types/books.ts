@@ -5,12 +5,13 @@ export type bookContentType = {
   title: string;
   author: string;
   href: string;
-  score: number;
+  avgScore: number;
   hit: number;
   regist: string;
   genreId: number;
   genreName: string;
   typeCd: number;
+  tag: string;
 };
 
 export type returnBookContentType = {
