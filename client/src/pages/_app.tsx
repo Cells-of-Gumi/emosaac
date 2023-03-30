@@ -15,28 +15,39 @@ import RequireLogin from "@/components/UI/RequireLogin/RequireLogin";
 export default function App({ Component, pageProps }: AppProps) {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const isClient = useIsClient();
-  
-  const [ myInfo, setMyInfo ] = useState<any>(null)
-  const [ loginModalState, setLoginModalState ] = useState<boolean>(false)
 
+  const [myInfo, setMyInfo] = useState<any>(null);
+  const [loginModalState, setLoginModalState] = useState<boolean>(false);
 
   useEffect(() => {
     getMyInfo()
-    .then((res) => {
-      setMyInfo(() => res)
-    })
-    .catch((err) => {
-      setMyInfo(() => false)
-    })
-  }, [pageProps])
+      .then((res) => {
+        setMyInfo(() => res);
+      })
+      .catch((err) => {
+        setMyInfo(() => false);
+      });
+  }, [pageProps]);
 
   return (
     <Provider store={mainStore}>
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-      <Layout>
-        <FixedModal content={<RequireLogin />} modalState={loginModalState} stateHandler={setLoginModalState} forced={true} blur={true} />
-        {myInfo !== null && <Component {...pageProps} myInfo={myInfo} loginHandler={setLoginModalState} />}
+      <Layout myInfo={myInfo}>
+        <FixedModal
+          content={<RequireLogin />}
+          modalState={loginModalState}
+          stateHandler={setLoginModalState}
+          forced={true}
+          blur={true}
+        />
+        {myInfo !== null && (
+          <Component
+            {...pageProps}
+            myInfo={myInfo}
+            loginHandler={setLoginModalState}
+          />
+        )}
       </Layout>
     </Provider>
   );
