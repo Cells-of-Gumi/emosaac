@@ -21,6 +21,7 @@ import GenreList from "@/components/bookTab/MenuTab/GenreList";
 import DayList from "@/components/bookTab/MenuTab/DayList";
 import SortByGenre from "@/components/bookTab/SortByGenre";
 import SortByDay from "@/components/bookTab/SortByDay";
+import Waterfall from "@/components/scan/Waterfall/Waterfall";
 
 interface HomeProps {
   highlightedBookData: bookContentType[];
@@ -86,7 +87,7 @@ export default function Home({
   }) => {
     const prevId = bookList.length ? bookList[bookList.length - 1].bookId : 0;
     const prevScore = bookList.length
-      ? bookList[bookList.length - 1].score
+      ? bookList[bookList.length - 1].avgScore
       : 10;
     return getBooksByGenre({
       genreCode: 10,
@@ -109,6 +110,16 @@ export default function Home({
             marginBottom={"45px"}
           />
         </div>
+
+
+        {/* <div css={highlightedCarouselWrapper}>
+          <Waterfall
+            bookData={highlightedBookData}
+            windowWrapperRef={indexWrapperRef}
+          />
+        </div>
+      <div css={whiteSpace2CSS} /> */}
+
 
         <div css={highlightedCarouselWrapper}>
           <HighlightedCarousel
@@ -326,6 +337,7 @@ const bannerWrapperCSS = css`
 
 const highlightedCarouselWrapper = css`
   width: 100%;
+  max-width: 100vw;
   display: flex;
   justify-content: center;
 `;

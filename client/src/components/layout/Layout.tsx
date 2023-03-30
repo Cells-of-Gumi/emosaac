@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 
 interface Props {
   children: any;
+  myInfo: any;
 }
 
 const Layout = (props: Props) => {
@@ -24,7 +25,7 @@ const Layout = (props: Props) => {
 
   return (
     <div css={backCSS({ isDeskTop, isTablet, isMobile, isHome })}>
-      <NavigationBar />
+      <NavigationBar myInfo={props.myInfo} />
       {props.children}
     </div>
   );

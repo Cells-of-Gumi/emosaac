@@ -33,7 +33,7 @@ import {
 } from "react-icons/ri";
 import Link from "next/link";
 
-export const NavigationBar = () => {
+export const NavigationBar = ({ myInfo }: any) => {
   const router = useRouter();
   // DeskTop Nav content의 최소 너비
   const isNavLimit = !useMediaQuery({
@@ -213,7 +213,10 @@ export const NavigationBar = () => {
                 />
 
                 {isDeskTop ? (
-                  <BasicButton setIsSearchBoxOpen={setIsSearchBoxOpen} />
+                  <BasicButton
+                    setIsSearchBoxOpen={setIsSearchBoxOpen}
+                    myInfo={myInfo}
+                  />
                 ) : isTablet ? (
                   <Link href={{ pathname: "/login" }}>
                     <MdPerson

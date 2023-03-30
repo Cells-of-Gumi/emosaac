@@ -6,9 +6,10 @@ import { useEffect } from "react";
 
 interface Props {
   setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
+  myInfo?: any;
 }
 
-export const BasicButton = ({ setIsSearchBoxOpen }: Props) => {
+export const BasicButton = ({ setIsSearchBoxOpen, myInfo }: Props) => {
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -55,14 +56,16 @@ export const BasicButton = ({ setIsSearchBoxOpen }: Props) => {
         >
           <div css={profileimgCSS}>
             <img
-              src={"/assets/bazzi.jpg"}
+              src={myInfo && myInfo.imageUrl}
               alt="프로필 사진"
               css={imgCSS}
               onClick={onClickMoveMypage}
             />
           </div>
           <div css={hoverwrapCSS(isOpen)}>
-            <button css={ButtonWrapCSS}>마이페이지</button>
+            <button css={ButtonWrapCSS} onClick={onClickMoveMypage}>
+              마이페이지
+            </button>
             <button css={ButtonWrapCSS} onClick={onClickLogout}>
               로그아웃
             </button>

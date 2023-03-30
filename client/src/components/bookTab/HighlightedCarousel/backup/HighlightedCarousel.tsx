@@ -12,7 +12,7 @@ interface HighlightedCarousel {
   windowWrapperRef: any;
 }
 
-const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
+const HighlightedCarousel = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
   const [bookDataList, setBookDataList] = useState<bookContentType[]>([...bookData]);
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const dummyNormalRef = useRef<HTMLInputElement>(null);
@@ -21,7 +21,6 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
 
   const dummyHighlightedRef = useRef<HTMLInputElement>(null);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const [showCount, setShowCount] = useState<number>(9)
 
   const cardLayout = {
     widthValue: 13,
@@ -40,8 +39,8 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
   };
 
   useEffect(() => {
-    if (bookDataList[0].title !== bookDataList[bookDataList.length - showCount].title) {
-      const temp = bookDataList.concat(bookDataList.slice(0, showCount));
+    if (bookDataList[0].title !== bookDataList[bookDataList.length - 5].title) {
+      const temp = bookDataList.concat(bookDataList.slice(0, 5));
       setBookDataList(() => temp);
     }
 
@@ -66,26 +65,13 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
   const handleResize = useMemo(
     () =>
         throttle((event) => {
-          if (carouselWrapperRef.current !== null && dummyNormalRef.current !== null) {
-
-            const calcWidth =
-            dummyNormalRef.current.clientWidth < cardLayout.minWidthValue
-              ? (cardLayout.minWidthValue + cardLayout.minSpaceValue) * (showCount - 1) + cardLayout.minHighlightedWidthValue + "px"
-              : (cardLayout.widthValue + cardLayout.spaceValue) * (showCount - 1) + cardLayout.highlightedWidthValue + cardLayout.unit;
-
-            carouselWrapperRef.current.style.width = calcWidth
-
-            
+          if (carouselWrapperRef.current !== null) {
             const calcLeft =
             carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth
               ? -(
                   carouselWrapperRef.current.clientWidth - windowWrapperRef?.current?.offsetWidth
                 ) / 2 + "px" : "0px";
             carouselWrapperRef.current.style.left = calcLeft
-
-
-            
-
           }
           setWindowWidth(() => window.innerWidth)
         }, 1000),
@@ -106,12 +92,12 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
     if (currentIdx > 0) {
       setCurrentIdx((prev) => prev - 1);
     } else {
-      setCurrentIdx(() => bookDataList.length - showCount - 1);
+      setCurrentIdx(() => bookDataList.length - 6);
     }
   };
 
   const nextBtnHandler = () => {
-    if (currentIdx < bookDataList.length - showCount - 1) {
+    if (currentIdx < bookDataList.length - 6) {
       setCurrentIdx((prev) => prev + 1);
     } else {
       setCurrentIdx(() => 0);
@@ -119,7 +105,7 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
   };
 
   const renderBooks = bookDataList
-    .slice(currentIdx, currentIdx + showCount)
+    .slice(currentIdx, currentIdx + 5)
     .map((el, idx) => {
       return (
         <div
@@ -139,7 +125,6 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
             minHighlightedWidthValue: cardLayout.minHighlightedWidthValue,
             minHighlightedHeightValue: cardLayout.minHighlightedHeightValue,
             minSpaceValue: cardLayout.minSpaceValue,
-            showCount: showCount
           })}
         >
           {/* <img src={el.img} css={imgCSS} /> */}
@@ -230,7 +215,6 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
               normalRef: dummyNormalRef,
               carouselWrapperRef: carouselWrapperRef,
               windowWrapperRef: windowWrapperRef,
-              showCount: showCount
               
             })}
           >
@@ -269,7 +253,7 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
   );
 };
 
-export default Waterfall;
+export default HighlightedCarousel;
 
 // interface carouselOuterWrapperCSSProps {
 //     highlightedHeightValue: number;
@@ -314,7 +298,6 @@ interface imgWrapperCSSProps {
   minHighlightedWidthValue: number;
   minHighlightedHeightValue: number;
   minSpaceValue: number;
-  showCount: number;
 }
 
 const imgWrapperCSS = ({
@@ -331,31 +314,30 @@ const imgWrapperCSS = ({
   minHighlightedWidthValue,
   minHighlightedHeightValue,
   minSpaceValue,
-  showCount
 }: imgWrapperCSSProps) => {
   const calcWidth =
     normalRef?.current?.clientWidth < minWidthValue
-      ? (idx === Math.floor(showCount / 2) ? minHighlightedWidthValue : minWidthValue) + "px"
-      : (idx === Math.floor(showCount / 2) ? highlightedWidthValue : widthValue) + unit;
+      ? (idx === 2 ? minHighlightedWidthValue : minWidthValue) + "px"
+      : (idx === 2 ? highlightedWidthValue : widthValue) + unit;
   const calcHeight =
     normalRef?.current?.clientHeight < minHeightValue
-      ? (idx === Math.floor(showCount / 2) ? minHighlightedHeightValue : minHeightValue) + "px"
-      : (idx === Math.floor(showCount / 2) ? highlightedHeightValue : heightValue) + unit;
+      ? (idx === 2 ? minHighlightedHeightValue : minHeightValue) + "px"
+      : (idx === 2 ? highlightedHeightValue : heightValue) + unit;
   const calcLeft =
     normalRef?.current?.clientWidth < minWidthValue
-      ? (idx > Math.floor(showCount / 2)
+      ? (idx > 2
           ? idx * (minWidthValue + minSpaceValue) +
             (minHighlightedWidthValue - minWidthValue)
           : idx * (minWidthValue + minSpaceValue)) + "px"
-      : (idx > Math.floor(showCount / 2)
+      : (idx > 2
           ? idx * (widthValue + spaceValue) +
             (highlightedWidthValue - widthValue)
           : idx * (widthValue + spaceValue)) + unit;
   const calcTop =
     normalRef?.current?.clientWidth < minWidthValue
-      ? (idx !== Math.floor(showCount / 2) ? (minHighlightedHeightValue - minHeightValue) / 2 : 0) +
+      ? (idx !== 2 ? (minHighlightedHeightValue - minHeightValue) / 2 : 0) +
         "px"
-      : (idx !== Math.floor(showCount / 2) ? (highlightedHeightValue - heightValue) / 2 : 0) + unit;
+      : (idx !== 2 ? (highlightedHeightValue - heightValue) / 2 : 0) + unit;
   return css`
     transition-property: left top width height;
     transition-duration: 0.3s;
@@ -369,7 +351,7 @@ const imgWrapperCSS = ({
     unit}; */
     width: ${calcWidth};
     height: ${calcHeight};
-    visibility: ${idx < showCount ? "visible" : "hidden"};
+    visibility: ${idx < 5 ? "visible" : "hidden"};
     overflow: hidden;
   `;
 };
@@ -433,7 +415,6 @@ interface carouselInnerWrapperCSSProps {
   normalRef: any;
   carouselWrapperRef: any;
   windowWrapperRef: any;
-  showCount: number;
 }
 
 const carouselInnerWrapperCSS = ({
@@ -447,12 +428,11 @@ const carouselInnerWrapperCSS = ({
   normalRef,
   carouselWrapperRef,
   windowWrapperRef,
-  showCount,
 }: carouselInnerWrapperCSSProps) => {
   const calcWidth =
     normalRef?.current?.clientWidth < minWidthValue
-      ? (minWidthValue + minSpaceValue) * (showCount - 1) + minHighlightedWidthValue + "px"
-      : (widthValue + spaceValue) * (showCount - 1) + highlightedWidthValue + unit;
+      ? (minWidthValue + minSpaceValue) * 4 + minHighlightedWidthValue + "px"
+      : (widthValue + spaceValue) * 4 + highlightedWidthValue + unit;
   
   const calcLeft =
     carouselWrapperRef?.current?.clientWidth > windowWrapperRef?.current?.offsetWidth

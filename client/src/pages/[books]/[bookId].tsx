@@ -23,6 +23,11 @@ import { getToken } from "@/api/instance";
 
 
 
+
+
+
+
+
 interface BookDetailProps {
   bookData: bookDetailType;
   myInfo: any;
@@ -85,7 +90,7 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
           <div css={titleCSS({ isDeskTop })}>{bookData.title}</div>
 
           <div css={scoreDivCSS({isMobile})}>
-            
+          
             <span css={myScoreStringCSS}>내 평점 :</span>
             <div css={platformRatingWrapperCSS}>
               <PlatformRatingHover
