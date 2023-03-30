@@ -34,19 +34,9 @@ const BookCardModal = ({
   const [isOpened, setisOpened] = useState<boolean>(false);
   const [isClosing, setIsClosing] = useState<boolean>(false);
   const router = useRouter()
-  const [bookDetailData, setBookDetailData] = useState<bookDetailType>()
 
-  useEffect(() => {
-    const data = getBookDetail({bookId: bookData.bookId})
-    .then((res) => {
-      if (res !== null) {
-        setBookDetailData(() => res)
-      }
-    })
-    .catch((err) => {
-      console.log("pages/books/[bookId].tsx => ", err);
-    });
-  }, [])
+
+
 
   const modalLayout = {
     widthValue: 450,
@@ -155,9 +145,9 @@ const BookCardModal = ({
             <div css={additionalInfoWrapperCSS}>
               
               <div css={starRatingWrapperCSS}>
-                {bookDetailData && <StarRating readonly={true} initialValue={bookDetailData.avgScore} />}
+                {bookData && <StarRating readonly={true} initialValue={bookData.avgScore} />}
               </div>
-              {bookDetailData && <TagList tag={bookDetailData.tag} />}
+              {bookData && <TagList tag={bookData.tag} />}
             </div>
             
           </div>
