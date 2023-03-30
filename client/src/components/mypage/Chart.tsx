@@ -10,24 +10,26 @@ const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-type ChartProps = {};
+type ChartProps = {
+  typeCode: number;
+};
 
 const Chart = (props: ChartProps) => {
-  const typecode = 0;
-  const [genreData, setGnereData] = useState<returnMyLikeProps>([]);
+  const [genreData, setGenreData] = useState<returnMyLikeProps>([]);
   const router = useRouter();
   useEffect(() => {
-    getMyStatic(typecode).then((res) => {
+    getMyStatic(props.typeCode).then((res) => {
       const data = res;
       if (data !== null) {
         console.log(data);
+        setGenreData(data); // 데이터를 상태에 저장
       }
     });
-  }, []);
+  }, [props.typeCode]);
   // 각자의 양
   const series: number[] = genreData.map((item) => item.amount);
+  console.log(series);
   const label: string[] = genreData.map((item) => item.genreName);
-
   const options: ApexOptions = {
     chart: {
       width: 500,
