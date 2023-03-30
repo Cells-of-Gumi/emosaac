@@ -235,6 +235,7 @@ const firstImgWrapCSS = (rotateXY: number[], isMobile: boolean) => css`
   left: calc(50% - ${!isMobile ? "250px" : "170px"});
   width: ${!isMobile ? "500px" : "340px"};
   height: ${!isMobile ? "500px" : "340px"};
+  transition: all 0.3s;
   transform: rotateX(${rotateXY[1] * 20}deg) rotateY(${rotateXY[0] * -20}deg)
     translate3d(
       ${rotateXY[0] * 10}px,
@@ -263,6 +264,9 @@ const secondTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
     width: 500px;
     margin: 0 auto;
+    & > h2 {
+      font-size: 40px;
+    }
   `;
 };
 

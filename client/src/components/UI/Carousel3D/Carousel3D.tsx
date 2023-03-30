@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
-import { useEffect, useState, Dispatch, SetStateAction } from "react";
+import { useEffect, useState, Dispatch, SetStateAction, useRef } from "react";
 import { useRouter } from "next/router";
 
 interface Props {
@@ -26,6 +26,7 @@ const Carousel3D = ({
   const [mouseMoveClientY, setMouseMoveClientY] = useState(0);
   const [isMouseLeave, setIsMouseLeave] = useState(true);
   const cellCount = 9;
+  const coverRef = useRef<HTMLDivElement>(null);
 
   const onMouseDown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setMouseDownClientX(e.clientX);
@@ -34,6 +35,18 @@ const Carousel3D = ({
     // console.log(e.clientX);
   };
   const onMouseUp = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    setIsMouseLeave(true);
+    setMouseDownClientX(0);
+    setMouseDownClientY(0);
+    setCarouselStartAngle(carouselAngle);
+  };
+  const onTouchStart = (e: React.TouchEventHandler<HTMLDivElement>) => {
+    // setMouseDownClientX(e.clientX);
+    // setMouseDownClientY(e.clientY);
+    // setIsMouseLeave(false);
+    // console.log(e.clientX);
+  };
+  const onTouchEnd = (e: React.TouchEventHandler<HTMLDivElement>) => {
     setIsMouseLeave(true);
     setMouseDownClientX(0);
     setMouseDownClientY(0);
@@ -84,6 +97,9 @@ const Carousel3D = ({
         onMouseLeave={onMouseLeave}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
+        // onTouchStart={onTouchStart}
+        // onTouchEnd={onTouchEnd}
+        ref={coverRef}
       ></div>
     </div>
   );
@@ -193,8 +209,53 @@ const coverCSS = (cursorImg: string) => css`
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
+  ::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+    opacity: 0;
+    clear: both;
+    height: 0px;
+    width: 0px;
+    border-radius: 50%;
+    background-color: antiquewhite;
+    transition: all 0.5s;
+  }
   :hover {
     cursor: pointer;
+    ::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      visibility: visible;
+      opacity: 1;
+      clear: both;
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      background-color: antiquewhite;
+      transition: all 0.5s;
+    }
+  }
+  :active {
+    cursor: pointer;
+    ::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      visibility: visible;
+      opacity: 1;
+      clear: both;
+      height: 100px;
+      width: 100px;
+      border-radius: 50%;
+      background-color: red;
+      transition: all 0.5s;
+    }
   }
 `;
 
