@@ -218,7 +218,7 @@ const chartwrapperCSS = css`
 
 const chartCSS = css`
   height: 350px;
-  width: 400px;
+  /* width: 400px; */
   margin-top: 90px;
   margin-left: 60px;
   left: 0px;
@@ -227,9 +227,11 @@ const recommendCSS = css`
   margin-top: 45px;
   /* width: 100%; */
   height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20px;
   & > div {
-    margin-right: 200px;
+    /* margin-right: 200px; */
     /* line-height: 200px; */
   }
 `;
@@ -262,7 +264,7 @@ const imagewrapperCSS = css`
   height: 250px;
   margin-top: 20px;
   overflow: hidden;
-  min-width: 150px;
+  /* min-width: 150px; */
 `;
 const imageCSS = css`
   width: 100%;
