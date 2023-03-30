@@ -1,65 +1,65 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
-import { useEffect, useState } from "react";
-import { getToken } from "@/api/instance";
-import { getRecommendTest } from "@/api/search/getRecommendTest";
+import {
+  useEffect,
+  useState,
+  useRef,
+  MutableRefObject,
+  RefObject,
+} from "react";
 import { useRouter } from "next/router";
 
-export default function Home() {
+export default function index() {
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const labtop = "/assets/labtop.png";
+  const labtop_phone = "/assets/laptop_phone.png";
   const phone = "/assets/phone.png";
   const logo_black = "assets/emosaac_logo.png";
   const logo_white = "assets/emosaac_logo_white.png";
+  const bazzi = "assets/bazzi.jpg";
+  const papers = "assets/papers.gif";
   const [books1, setBooks1] = useState<any>([]);
   const [books2, setBooks2] = useState<any>([]);
+  const [rotateXY, setRotateXY] = useState<number[]>([0, 0]);
 
-  function getRecommendBooks() {
-    const typeCode = 1;
-    const token = localStorage.getItem("access_token");
-    getRecommendTest({ typeCode, token }).then((res) => {
-      if (res !== null && res?.length !== 0) {
-        setBooks1(res.slice(0, 5));
-        setBooks2(res.slice(5, 10));
-      }
-    });
-  }
+  const laptopRef = useRef<HTMLImageElement>(null);
+
   function onClickWebtoon() {
     router.push("/webtoon");
   }
+
+  function onMouseMove(event: any) {
+    const [centerX, centerY] = [
+      laptopRef.current &&
+        laptopRef.current.x + laptopRef.current.clientWidth / 2,
+      laptopRef.current &&
+        laptopRef.current.y + laptopRef.current.clientHeight / 2,
+    ];
+    const clientX = centerX && centerX - event.clientX;
+    const clientY = centerY && centerY - event.clientY;
+    console.log(laptopRef);
+    clientX && clientY && setRotateXY([clientX / centerX, clientY / centerY]);
+  }
   useEffect(() => {
-    getRecommendBooks();
+    console.log(laptopRef);
+    //clientHeight, offsetTop, offsetWidth
   }, []);
   return (
     <div>
       <div css={fullPageCSS({ isDeskTop, isTablet, isMobile })}>
-        <div css={firstPageTestCSS({ isDeskTop, isTablet, isMobile })}>
+        <div
+          css={firstPageTestCSS({ isDeskTop, isTablet, isMobile })}
+          onMouseMove={onMouseMove}
+        >
+          <div css={firstImgWrapCSS(rotateXY)}>
+            <img src={papers} alt="gif" ref={laptopRef} />
+          </div>
           <div>이곳에서 모든 작품을,</div>
           <div>
-            <img src={logo_black} />
+            {/* <img src={logo_white} /> */}
             <button onClick={onClickWebtoon}>웹툰 홈으로 (임시)</button>
-          </div>
-          <div css={blocksWrapCSS({ isDeskTop, isTablet, isMobile })}>
-            <div></div>
-            <div css={blocksCSS({ isDeskTop, isTablet, isMobile })}>
-              {books1 &&
-                books1.map((book: any, idx: number) => (
-                  <div key={idx}>
-                    <img src={book.thumbnail} alt={book.title} />
-                  </div>
-                ))}
-            </div>
-            <div css={blocksCSS({ isDeskTop, isTablet, isMobile })}>
-              {books2 &&
-                books2.map((book: any, idx: number) => (
-                  <div key={idx}>
-                    <img src={book.thumbnail} alt={book.title} />
-                  </div>
-                ))}
-            </div>
-            <img src={labtop} />
           </div>
         </div>
         <div css={secondPageCSS({ isDeskTop, isTablet, isMobile })}>
@@ -102,16 +102,6 @@ const fullPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   `;
 };
 
-const secondPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
-  return css`
-    height: 100vh;
-    /* background-color: #0787f6; */
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 20px;
-  `;
-};
-
 const firstPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
     height: calc(100vh - 70px);
@@ -124,103 +114,78 @@ const firstPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
 
 const firstPageTestCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
+    position: relative;
     height: 100vh;
     padding-top: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     /* background-color: var(--main-color-2);
      */
     background: linear-gradient(
       0deg,
-      var(--main-color-2) 0%,
-      var(--main-color-2) 14%,
-      var(--main-color) 100%
+      var(--back-color-2) 0%,
+      var(--back-color-2) 14%,
+      var(--back-color) 100%
     );
-    & > div:nth-of-type(1) {
+    & > div:nth-of-type(2) {
       // 이곳에서 모든 작품을
-      font-size: 24px;
-      font-weight: bold;
+      position: relative;
+      z-index: 12;
+      font-size: 60px;
+      font-weight: 900;
       /* text-align: left; */
       text-align: center;
       margin: 30px 0 30px;
     }
-    & > div:nth-of-type(2) {
+    & > div:nth-of-type(3) {
       // 이모작 로고
       display: flex;
-      /* justify-content: flex-start; */
+      position: relative;
+      z-index: 12;
       justify-content: center;
       margin-bottom: 30px;
       & > img {
-        width: 250px;
+        width: 700px;
       }
-    }
-    & > div:nth-of-type(3) {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      & > img {
-        // 랩탑
-        position: absolute;
-        top: -0px;
-        width: 500px;
-      }
-      /* & > div:nth-of-type(1) {
-        // 랩탑 배경
-        position: absolute;
-        top: -0px;
-        width: 100%;
-        height: 100%;
-        background-color: #000;
-      } */
     }
   `;
 };
+
+const firstImgWrapCSS = (rotateXY: number[]) => css`
+  position: absolute;
+  z-index: 10;
+  top: calc(50% - 250px);
+  left: calc(50% - 250px);
+  width: 500px;
+  height: 500px;
+  transform: rotateX(${rotateXY[1] * 20}deg) rotateY(${rotateXY[0] * -20}deg)
+    translate3d(
+      ${rotateXY[0] * 10}px,
+      ${rotateXY[1] * 10}px,
+      ${((rotateXY[0] + 20) / (rotateXY[1] + 20)) * 10}px
+    );
+  border-radius: 30px;
+  /* background-image: url("/assets/bazzi.png"); */
+  background-color: black;
+  overflow: hidden;
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
 
 const blocksWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css``;
 };
 
-const blocksCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
+const secondPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
-    display: flex;
-    margin-top: 70px;
-    & > div {
-      height: 180px;
-      width: 180px;
-      border-radius: 20px;
-      /* background-color: var(--text-color-2); */
-      margin-left: 20px;
-      overflow: hidden;
-      & > img {
-        width: 100%;
-        object-fit: cover;
-      }
-    }
+    height: 100vh;
+    /* background-color: #0787f6; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 20px;
   `;
 };
-
-const firstImgCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
-  return css`
-    height: calc(100vh - 70px);
-  `;
-};
-
-const firstTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
-  return css`
-    height: calc(100vh - 70px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    & > div:nth-of-type(1) {
-      font-size: 30px;
-      line-height: 40px;
-      font-weight: bold;
-    }
-    & > div:nth-of-type(2) {
-      margin-top: 30px;
-    }
-  `;
-};
-
-// 이후 작업들...
