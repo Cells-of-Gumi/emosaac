@@ -39,13 +39,9 @@ export default function index() {
     ];
     const clientX = centerX && centerX - event.clientX;
     const clientY = centerY && centerY - event.clientY;
-    console.log(laptopRef);
     clientX && clientY && setRotateXY([clientX / centerX, clientY / centerY]);
   }
-  useEffect(() => {
-    console.log(laptopRef);
-    //clientHeight, offsetTop, offsetWidth
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div>
       <div css={fullPageCSS({ isDeskTop, isTablet, isMobile })}>
@@ -63,7 +59,7 @@ export default function index() {
           </div>
         </div>
         <div css={secondPageCSS({ isDeskTop, isTablet, isMobile })}>
-          <div>
+          <div css={secondTitleCSS({ isDeskTop, isTablet, isMobile })}>
             <h2>emosaac의 첫 번째 추천,</h2>
             <div>당신의 취향을 반영한 어쩌구</div>
           </div>
@@ -120,13 +116,13 @@ const firstPageTestCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* background-color: var(--main-color-2);
-     */
+    background-color: var(--back-color);
+
     background: linear-gradient(
       0deg,
-      var(--back-color-2) 0%,
-      var(--back-color-2) 14%,
-      var(--back-color) 100%
+      var(--back-color) 0%,
+      var(--back-color) 14%,
+      var(--back-color-2) 100%
     );
     & > div:nth-of-type(2) {
       // 이곳에서 모든 작품을
@@ -188,4 +184,8 @@ const secondPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     grid-template-columns: 1fr 1fr;
     padding-top: 20px;
   `;
+};
+
+const secondTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
+  return css``;
 };
