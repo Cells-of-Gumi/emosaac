@@ -32,7 +32,8 @@ const Chart = (props: ChartProps) => {
   const label: string[] = genreData.map((item) => item.genreName);
   const options: ApexOptions = {
     chart: {
-      width: 500,
+      // chart.width는 차트의 전체적인 가로 크기를 지정하는 것이고,
+      width: "100%",
       type: "pie",
     },
     labels: label,
@@ -44,12 +45,24 @@ const Chart = (props: ChartProps) => {
     },
     responsive: [
       {
-        // 반응형 기준되는 viewport 너비
-        breakpoint: 600,
+        breakpoint: 1024,
         options: {
-          // breakpoint에서 차트 크기
           chart: {
-            width: 400,
+            width: 300,
+          },
+          legend: {
+            position: "bottom",
+          },
+        },
+      },
+      {
+        breakpoint: 768,
+        options: {
+          chart: {
+            width: 300,
+          },
+          legend: {
+            position: "bottom",
           },
         },
       },
@@ -58,11 +71,13 @@ const Chart = (props: ChartProps) => {
 
   return (
     <div id="chart" css={chartCSS}>
+      {/* <ReactApexChart>에 있는 width는 그려진 차트를 포함하는 부모 요소의 가로 크기에 맞게 조정할 때 사용됩니다. */}
       <ReactApexChart
         options={options}
         series={series}
         type="pie"
         width={"100%"}
+        // height={"100%"}
       />
     </div>
   );
@@ -74,6 +89,8 @@ const chartCSS = css`
     justify-content: center !important;
     /* background-color: yellow !important; */
   }
+  width: 100%;
+  height: auto;
 `;
 
 export default Chart;

@@ -93,12 +93,12 @@ const MyPage = ({ myinfo }: any) => {
         <article onClick={onClickWebNovel}>웹소설</article>
       </section>
 
-      <section css={chartwrapperCSS}>
+      <section css={chartwrapperCSS(isDeskTop, isTablet, isMobile)}>
         <article css={chartCSS}>
           <Chart typeCode={typeCode} />
         </article>
-        <article css={recommendCSS}>
-          <div css={recommendborderCSS}>
+        <article css={recommendCSS(isDeskTop, isTablet, isMobile)}>
+          <div css={recommendborderCSS(isDeskTop, isTablet, isMobile)}>
             <h3 css={recommendexplainCSS}>가장 많이 본 장르의</h3>
             <h3 css={recommendexplainCSS}>
               {typeCode === 0 ? "웹툰" : "웹소설"}을 추천해줄게요
@@ -121,14 +121,9 @@ const MyPage = ({ myinfo }: any) => {
                   />
                 )}
               </div>
-              {/* <div css={contentwrapperCSS}>
-                <h3>제목</h3>
-                <div>줄거리 ...으로 줄이기</div>
-                <div>자체평점</div>
-              </div> */}
             </div>
           </div>
-          <div css={recommendborderCSS}>
+          <div css={recommendborderCSS(isDeskTop, isTablet, isMobile)}>
             <h3 css={recommendexplainCSS}>가장 적게 본 장르의 </h3>
             <h3 css={recommendexplainCSS}>
               {typeCode === 0 ? "웹툰" : "웹소설"}을 추천해줄게요
@@ -152,11 +147,6 @@ const MyPage = ({ myinfo }: any) => {
                   />
                 )}
               </div>
-              {/* <div css={contentwrapperCSS}>
-                <h3>제목</h3>
-                <div>줄거리 ...으로 줄이기</div>
-                <div>자체평점</div>
-              </div> */}
             </div>
           </div>
         </article>
@@ -207,9 +197,14 @@ const routewrapCSS = css`
     cursor: pointer;
   }
 `;
-
-const chartwrapperCSS = css`
-  display: grid;
+// 라우터 아래 최상위
+const chartwrapperCSS = (
+  isDeskTop: boolean,
+  isTablet: boolean,
+  isMobile: boolean
+) => css`
+  display: ${isDeskTop ? "grid" : isTablet ? "flex" : "flex"};
+  flex-direction: column;
   grid-template-columns: 1fr 1.5fr;
   column-gap: 50px;
   width: 100%;
@@ -218,16 +213,24 @@ const chartwrapperCSS = css`
 
 const chartCSS = css`
   height: 350px;
-  /* width: 400px; */
-  margin-top: 90px;
+  width: 200px;
+  margin-top: 50px;
   margin-left: 60px;
   left: 0px;
 `;
-const recommendCSS = css`
+
+// 추천 최상위
+const recommendCSS = (
+  isDeskTop: boolean,
+  isTablet: boolean,
+  isMobile: boolean
+) => css`
   margin-top: 45px;
-  /* width: 100%; */
+  width: 100%;
   height: 100%;
-  display: grid;
+  display: ${isDeskTop ? "grid" : isTablet ? "flex" : "flex"};
+  align-content: center;
+  justify-content: center;
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;
   & > div {
@@ -235,12 +238,17 @@ const recommendCSS = css`
     /* line-height: 200px; */
   }
 `;
-const recommendborderCSS = css`
+
+const recommendborderCSS = (
+  isDeskTop: boolean,
+  isTablet: boolean,
+  isMobile: boolean
+) => css`
   /* border: 1px solid white; */
   border-radius: 5px;
   padding: 10px;
   /* background-color: #fff; */
-  /* width: 250px; */
+  width: 210px;
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -273,11 +281,4 @@ const imageCSS = css`
   border-radius: 5px;
   cursor: pointer;
 `;
-const contentwrapperCSS = css`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-`;
-
-// line-height
 export default MyPage;
