@@ -13,7 +13,13 @@ const MyPage = ({ myinfo }: any) => {
   function onClickMoveEditPage() {
     router.push("/mypage/edit");
   }
-
+  const [typeCode, setTypeCode] = useState<number>(0);
+  const onClickWebToon = () => {
+    setTypeCode(0);
+  };
+  const onClickWebNovel = () => {
+    setTypeCode(1);
+  };
   return (
     <>
       <section css={userinfoCSS}>
@@ -34,9 +40,14 @@ const MyPage = ({ myinfo }: any) => {
           </div>
         </div>
       </section>
+      <section css={routewrapCSS}>
+        <article onClick={onClickWebToon}>웹툰</article>
+        <article onClick={onClickWebNovel}>웹소설</article>
+      </section>
+
       <section css={chartwrapperCSS}>
         <article css={chartCSS}>
-          <Chart />
+          <Chart typeCode={typeCode} />
         </article>
         <article css={recommendCSS}>
           <div>
@@ -49,11 +60,11 @@ const MyPage = ({ myinfo }: any) => {
                   alt="많이 본 장르 썸네일"
                 />
               </div>
-              <div css={contentwrapperCSS}>
+              {/* <div css={contentwrapperCSS}>
                 <h3>제목</h3>
                 <div>줄거리 ...으로 줄이기</div>
                 <div>자체평점</div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div>
@@ -66,11 +77,11 @@ const MyPage = ({ myinfo }: any) => {
                   alt="적게 본 장르 썸네일"
                 />
               </div>
-              <div css={contentwrapperCSS}>
+              {/* <div css={contentwrapperCSS}>
                 <h3>제목</h3>
                 <div>줄거리 ...으로 줄이기</div>
                 <div>자체평점</div>
-              </div>
+              </div> */}
             </div>
           </div>
         </article>
@@ -80,6 +91,7 @@ const MyPage = ({ myinfo }: any) => {
 };
 const userinfoCSS = css`
   display: flex;
+  align-items: center;
   margin-left: 105px;
   margin-top: 50px;
 `;
@@ -107,6 +119,18 @@ const nicknameCSS = css`
 
 const buttonCSS = css`
   margin-top: 20px;
+`;
+
+const routewrapCSS = css`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  padding: 5px;
+  border-top: 0.5px solid var(--main-color);
+  & > article {
+    cursor: pointer;
+  }
 `;
 
 const chartwrapperCSS = css`
