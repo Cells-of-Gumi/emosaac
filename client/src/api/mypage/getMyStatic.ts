@@ -3,7 +3,7 @@ import { defaultAxiosInstance } from "../instance";
 export type returnMyLikeProps = {
   genreId: number;
   genreName: string;
-  amount: number;
+  count: number;
   description: string;
 }[];
 

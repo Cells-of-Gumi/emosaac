@@ -21,14 +21,14 @@ const Chart = (props: ChartProps) => {
     getMyStatic(props.typeCode).then((res) => {
       const data = res;
       if (data !== null) {
-        console.log(data);
+        // console.log(data);
         setGenreData(data); // 데이터를 상태에 저장
       }
     });
   }, [props.typeCode]);
   // 각자의 양
-  const series: number[] = genreData.map((item) => item.amount);
-  console.log(series);
+  const series: number[] = genreData.map((item) => item.count);
+  // console.log(series);
   const label: string[] = genreData.map((item) => item.genreName);
   const options: ApexOptions = {
     chart: {
