@@ -62,7 +62,7 @@ const Chart = (props: ChartProps) => {
         options={options}
         series={series}
         type="pie"
-        width={400}
+        width={"100%"}
       />
     </div>
   );
