@@ -112,14 +112,26 @@ export default function Home({
         </div>
 
 
-        {/* <div css={highlightedCarouselWrapper}>
+
+        <div css={highlightedCarouselWrapper}>
           <Waterfall
             bookData={highlightedBookData}
             windowWrapperRef={indexWrapperRef}
+            angleBottom={1000}
+            identifier={'row-2'}
+            rotate={1}
+            duration={2000}
           />
         </div>
-      <div css={whiteSpace2CSS} /> */}
 
+      <div css={whiteSpace2CSS} />
+      <div css={whiteSpace2CSS} />
+      <div css={whiteSpace2CSS} />
+      <div css={whiteSpace2CSS} />
+      <div css={whiteSpace2CSS} />
+      <div css={whiteSpace2CSS} />
+      <div css={whiteSpace2CSS} />
+      <div css={whiteSpace2CSS} />
 
         <div css={highlightedCarouselWrapper}>
           <HighlightedCarousel
@@ -281,7 +293,7 @@ export const getStaticProps = async (context: any) => {
     typeCode: 0,
     prevId: 0,
     prevScore: 10,
-    size: 20,
+    size: 30,
   })
     .then((res) => {
       if (res !== null) {
