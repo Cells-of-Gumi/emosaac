@@ -223,7 +223,6 @@ const chartwrapperCSS = (
   column-gap: 50px;
   width: 100%;
   height: 400px;
-  margin-top: 50px;
 `;
 
 const chartCSS = (
@@ -232,8 +231,8 @@ const chartCSS = (
   isMobile: boolean
 ) => css`
   height: 400px;
-  width: ${isDeskTop ? "30px" : "100%"};
-  /* margin-top: ${isDeskTop ? "100px" : isTablet ? "50px" : "50px"}; */
+  width: ${isDeskTop ? "380px" : "100%"};
+  margin-top: ${isDeskTop ? "100px" : isTablet ? "50px" : "50px"};
   margin-left: ${isDeskTop ? "60px" : "null"};
   left: 0px;
 `;
@@ -244,7 +243,7 @@ const recommendCSS = (
   isTablet: boolean,
   isMobile: boolean
 ) => css`
-  /* margin-top: 45px; */
+  margin-top: 45px;
   width: 100%;
   height: 100%;
   display: ${isDeskTop ? "grid" : isTablet ? "flex" : "flex"};
