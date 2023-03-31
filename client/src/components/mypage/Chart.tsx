@@ -92,7 +92,7 @@ const chartCSS = (
   isMobile: boolean
 ) => css`
   /* 높이가 문제여서 차트가 제대로 나오지 않았다. */
-  height: ${isDeskTop ? "456px" : "300px"};
+  height: ${isDeskTop ? "256px" : "300px"};
   width: ${isDeskTop ? "100%" : isTablet ? "100%" : "100%"};
 `;
 
