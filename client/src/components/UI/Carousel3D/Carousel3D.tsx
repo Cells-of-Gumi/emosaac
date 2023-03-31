@@ -9,6 +9,7 @@ interface Props {
   carouselAngle: number;
   setCarouselStartAngle: Dispatch<SetStateAction<number>>;
   carouselStartAngle: number;
+  bookData: any;
 }
 
 const Carousel3D = ({
@@ -41,7 +42,7 @@ const Carousel3D = ({
     setCarouselStartAngle(carouselAngle);
   };
   const onTouchStart = (e: React.TouchEventHandler<HTMLDivElement>) => {
-    // setMouseDownClientX(e.clientX);
+    // setMouseDownClientX(e.changedTouches[0].pageX);
     // setMouseDownClientY(e.clientY);
     // setIsMouseLeave(false);
     // console.log(e.clientX);
@@ -107,7 +108,6 @@ const Carousel3D = ({
 
 const containerCSS = css`
   position: relative;
-  background-color: aqua;
   /* height: 100vh; */
   height: 168px;
 `;
@@ -212,7 +212,8 @@ const coverCSS = (
   background-color: rgba(0, 0, 0, 0);
   /* border: 10px solid #fff; */
   height: ${isDeskTop ? "360px" : isTablet ? "300px" : "150px"};
-  width: 100%;
+  width: 300%;
+  left: -100%;
   -webkit-user-drag: none;
   -khtml-user-drag: none;
   -moz-user-drag: none;

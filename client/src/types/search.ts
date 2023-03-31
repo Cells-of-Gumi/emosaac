@@ -5,7 +5,7 @@ export type returnSearchHistoryType = {
   title: string;
   author: string;
   href: string;
-  score: number;
+  avgScore: number;
   hit: number;
   regist: string;
   genreId: number;
@@ -29,7 +29,7 @@ export type searchBookType = {
     title: string;
     author: string;
     href: string;
-    score: number;
+    avgScore: number;
   }[];
 };
 
@@ -40,5 +40,5 @@ export type returnSearchBooksType = {
   title: string;
   author: string;
   href: string;
-  score: number;
+  avgScore: number;
 };
