@@ -92,7 +92,7 @@ const Carousel3D = ({
         </div>
       </div>
       <div
-        css={coverCSS(cursorImg)}
+        css={coverCSS(isDeskTop, isTablet, isMobile, cursorImg)}
         onMouseUp={onMouseUp}
         onMouseLeave={onMouseLeave}
         onMouseDown={onMouseDown}
@@ -107,7 +107,9 @@ const Carousel3D = ({
 
 const containerCSS = css`
   position: relative;
-  height: 100vh;
+  background-color: aqua;
+  /* height: 100vh; */
+  height: 168px;
 `;
 
 const sceneCSS = (
@@ -115,6 +117,7 @@ const sceneCSS = (
   isTablet: boolean,
   isMobile: boolean
 ) => css`
+  /* background-color: aqua; */
   width: ${isDeskTop ? "504px" : isTablet ? "420px" : "210px"};
   height: ${isDeskTop ? "168px" : isTablet ? "140px" : "70px"};
   position: absolute;
@@ -194,16 +197,21 @@ const carouselCSS = (
 const carouselCellCSS = css`
   position: absolute;
   width: 190px;
-  height: 300px;
+  /* height: 300px; */
   left: 10px;
   top: 10px;
 `;
 
-const coverCSS = (cursorImg: string) => css`
+const coverCSS = (
+  isDeskTop: boolean,
+  isTablet: boolean,
+  isMobile: boolean,
+  cursorImg: string
+) => css`
   position: absolute;
   background-color: rgba(0, 0, 0, 0);
   /* border: 10px solid #fff; */
-  height: 300px;
+  height: ${isDeskTop ? "360px" : isTablet ? "300px" : "150px"};
   width: 100%;
   -webkit-user-drag: none;
   -khtml-user-drag: none;

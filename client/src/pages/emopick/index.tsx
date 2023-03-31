@@ -44,7 +44,7 @@ const index = (data: Props) => {
   // }, []);
   return (
     <div>
-      <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
+      {/* <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
         <div>
           <h2>EMOPICK</h2>
           <div>이모작 유저들의 추천 리스트를 만나보세요</div>
@@ -68,7 +68,8 @@ const index = (data: Props) => {
               </div>
             ))}
         </div>
-      </div>
+      </div> */}
+      <div css={serviceCSS}>서비스 준비중입니다.</div>
     </div>
   );
 };
@@ -86,6 +87,12 @@ const innerCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     ${isMobile && "margin: 20px 20px"}
   `;
 };
+
+const serviceCSS = css`
+  height: 500px;
+  line-height: 500px;
+  text-align: center;
+`;
 
 export const getServerSideProps = async (context: any) => {
   const [prevId, size] = [0, 14];
