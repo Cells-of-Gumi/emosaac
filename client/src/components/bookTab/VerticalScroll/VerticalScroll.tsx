@@ -83,7 +83,7 @@ const VerticalScroll = ({API}: VerticalScrollProps) => {
             const lastContent = fetchedData[fetchedData.length - 1][fetchedData[fetchedData.length - 1].length - 1]
             if (lastContent) {
                 console.log(lastContent)
-                API({fetchedData: fetchedData, prevId: lastContent.bookId, prevScore: lastContent.score, size: quantityPerPage})
+                API({fetchedData: fetchedData, prevId: lastContent.bookId, prevScore: lastContent.avgScore, size: quantityPerPage})
                 .then((res: returnBookContentType) => {
                     // setFetchedData(() => [...fetchedData, [...res.content]])
                     if (res.content.length !== 0 || res.content !== null) {
