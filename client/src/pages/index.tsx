@@ -20,6 +20,16 @@ export default function index() {
   const [carouselAngle, setCarouselAngle] = useState<number>(0);
   const [carouselStartAngle, setCarouselStartAngle] = useState<number>(0);
   const [currentScroll, setCurrentScroll] = useState<number>(0);
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, []);
 
   const laptopRef = useRef<HTMLImageElement>(null);
 
@@ -76,10 +86,14 @@ export default function index() {
           </div>
           <div>
             {/* <img src={logo_white} /> */}
-            <div css={buttonWrapCSS({ isDeskTop, isTablet, isMobile })}>
-              <button onClick={() => onClickRouterButton("login")}>
-                로그인
-              </button>
+            <div
+              css={buttonWrapCSS({ isDeskTop, isTablet, isMobile }, isLogin)}
+            >
+              {!isLogin && (
+                <button onClick={() => onClickRouterButton("login")}>
+                  로그인
+                </button>
+              )}
               <button onClick={() => onClickRouterButton("webtoon")}>
                 웹툰 홈으로
               </button>
@@ -90,25 +104,30 @@ export default function index() {
           </div>
         </div>
         <div css={secondPageCSS({ isDeskTop, isTablet, isMobile })}>
-          <div css={secondTitleCSS({ isDeskTop, isTablet, isMobile })}>
+          <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
             <h2>
-              <div>emosaac에서</div>
+              <div>
+                emosaac <span>에서</span>
+              </div>
               <div>대표 플랫폼 작품들을 만나보세요</div>
             </h2>
-            <div>당신의 취향을 반영한 어쩌구</div>
+            <div>
+              여기저기 흩어져있는 컨텐츠, 찾아다니느라 불편하셨죠? <br />
+              이모작에서는 약 2만 여건의 컨텐츠를 한 번에 만나보실 수 있습니다.
+            </div>
           </div>
           <div css={secondContentCSS({ isDeskTop, isTablet, isMobile })}>
             <div>
-              <img src="/assets/platform_kakao_page.png" alt="kakao" />
+              <div>
+                <img src="/assets/platform_kakao_page.png" alt="kakao" />
+              </div>
+              <div>
+                <img src="/assets/platform_naver_series.webp" alt="naver" />
+              </div>
+              <div>
+                <img src="/assets/platform_ridi.webp" alt="ridi" />
+              </div>
             </div>
-            <div>
-              <img src="/assets/platform_naver_series.webp" alt="naver" />
-            </div>
-            <div>
-              <img src="/assets/platform_ridi.webp" alt="ridi" />
-            </div>
-          </div>
-          <div>
             <Carousel3D
               setCarouselAngle={setCarouselAngle}
               carouselAngle={carouselAngle}
@@ -200,7 +219,10 @@ const firstPageTestCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   `;
 };
 
-const buttonWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
+const buttonWrapCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  isLogin: boolean
+) => {
   return css`
     display: grid;
     margin-top: 30px;
@@ -209,8 +231,7 @@ const buttonWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     row-gap: ${!isMobile ? "14px" : "10px"};
     width: ${!isMobile ? "300px" : "260px"};
     & > button:nth-of-type(1) {
-      grid-column: 1 / 3;
-      grid-row: 1 / 2;
+      ${!isLogin && " grid-column: 1 / 3; grid-row: 1 / 2;"}
     }
     & > button {
       cursor: pointer;
@@ -252,40 +273,57 @@ const firstImgWrapCSS = (rotateXY: number[], isMobile: boolean) => css`
   }
 `;
 
-const blocksWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
-  return css``;
-};
-
 const secondPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
-  return css``;
+  return css`
+    position: relative;
+    height: calc(100vh + 200px);
+    background-color: orange;
+  `;
 };
 
-const secondTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
+const titleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
-    width: 500px;
+    width: ${isDeskTop ? "800px" : isTablet ? "600px" : "100%"};
     margin: 0 auto;
     & > h2 {
-      font-size: 40px;
+      font-size: 36px;
+      font-weight: bold;
+      & > div:nth-of-type(1) {
+        line-height: 40px;
+        & span {
+          font-size: 20px;
+        }
+      }
+      & > div:nth-of-type(2) {
+        font-size: 24px;
+      }
+    }
+    & > div:nth-of-type(1) {
+      margin-top: 20px;
+      line-height: 25px;
     }
   `;
 };
 
 const secondContentCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
+    position: absolute;
+    top: calc(50vh -${isDeskTop ? "360px" : isTablet ? "300px" : "150px"});
+    left: calc(50vw - ${isDeskTop ? "250px" : isTablet ? "250px" : "150px"});
     width: ${isDeskTop ? "500px" : isTablet ? "500px" : "300px"};
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: ${!isMobile ? "50px" : "10px"};
-    /* padding: ${isDeskTop ? "0 105px" : isTablet ? "0 50px" : "0 20px"}; */
-    & > div {
-      padding-bottom: 85%;
-      border-radius: 10%;
-      /* background-color: var(--back-color-3); */
-      & > img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
+    background-color: antiquewhite;
+    & > div:nth-of-type(1) {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: ${!isMobile ? "50px" : "20px"};
+      /* padding: ${isDeskTop ? "0 105px" : isTablet ? "0 50px" : "0 20px"}; */
+      & > div {
+        border-radius: 10%;
+        & > img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
       }
     }
   `;
