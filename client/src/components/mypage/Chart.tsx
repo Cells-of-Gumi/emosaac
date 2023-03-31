@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import getMyStatic from "@/api/mypage/getMyStatic";
 import { returnMyLikeProps } from "@/api/mypage/getMyStatic";
+import { useIsResponsive } from "../Responsive/useIsResponsive";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
@@ -17,6 +18,7 @@ type ChartProps = {
 const Chart = (props: ChartProps) => {
   const [genreData, setGenreData] = useState<returnMyLikeProps>([]);
   const router = useRouter();
+  const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   useEffect(() => {
     getMyStatic(props.typeCode).then((res) => {
       const data = res;
@@ -34,6 +36,7 @@ const Chart = (props: ChartProps) => {
     chart: {
       // chart.width는 차트의 전체적인 가로 크기를 지정하는 것이고,
       width: "100%",
+      height: "100%",
       type: "pie",
     },
     labels: label,
@@ -48,7 +51,8 @@ const Chart = (props: ChartProps) => {
         breakpoint: 1024,
         options: {
           chart: {
-            width: 300,
+            width: "100%",
+            // height: "100%",
           },
           legend: {
             position: "bottom",
@@ -59,7 +63,7 @@ const Chart = (props: ChartProps) => {
         breakpoint: 768,
         options: {
           chart: {
-            width: 300,
+            width: "100%",
           },
           legend: {
             position: "bottom",
@@ -70,27 +74,26 @@ const Chart = (props: ChartProps) => {
   };
 
   return (
-    <div id="chart" css={chartCSS}>
+    <div id="chart" css={chartCSS(isDeskTop, isTablet, isMobile)}>
       {/* <ReactApexChart>에 있는 width는 그려진 차트를 포함하는 부모 요소의 가로 크기에 맞게 조정할 때 사용됩니다. */}
       <ReactApexChart
         options={options}
         series={series}
         type="pie"
         width={"100%"}
-        // height={"100%"}
+        height={"100%"}
       />
     </div>
   );
 };
-const chartCSS = css`
-  & > div > div > div {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    /* background-color: yellow !important; */
-  }
-  width: 100%;
-  height: auto;
+const chartCSS = (
+  isDeskTop: boolean,
+  isTablet: boolean,
+  isMobile: boolean
+) => css`
+  /* 높이가 문제여서 차트가 제대로 나오지 않았다. */
+  height: ${isDeskTop ? "456px" : "300px"};
+  width: ${isDeskTop ? "100%" : isTablet ? "100%" : "100%"};
 `;
 
 export default Chart;
