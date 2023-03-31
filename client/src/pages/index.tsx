@@ -4,7 +4,8 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { useEffect, useState, useRef, useMemo } from "react";
 import { useRouter } from "next/router";
 import Carousel3D from "@/components/UI/Carousel3D/Carousel3D";
-import { throttle } from "lodash";
+import { before, throttle } from "lodash";
+import { getNewBooksForPlatform } from "@/api/home/getNewBooksForPlatform";
 
 export default function index() {
   const router = useRouter();
@@ -21,6 +22,16 @@ export default function index() {
   const [carouselStartAngle, setCarouselStartAngle] = useState<number>(0);
   const [currentScroll, setCurrentScroll] = useState<number>(0);
   const [isLogin, setIsLogin] = useState(false);
+  const [clickedPlatform, setClickedPlatform] = useState("kakao");
+  const [booksByPlatform, setBooksByPlatform] = useState<{
+    kakao: any[] | null;
+    naver: any[] | null;
+    ridi: any[] | null;
+  }>({
+    kakao: null,
+    naver: null,
+    ridi: null,
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -29,9 +40,30 @@ export default function index() {
     } else {
       setIsLogin(false);
     }
+
+    const [prevId, prevRegist, size, typeCd] = [20000, "2023.03.20", 50, 0];
+    getNewBooksForPlatform({ prevId, prevRegist, size, typeCd, token }).then(
+      (res) => {
+        if (res !== null) {
+          const content = res?.content;
+          const kakao_content = content.filter((c) => c.platform === 1);
+          const naver_content = content.filter((c) => c.platform === 2);
+          const ridi_content = content.filter((c) => c.platform === 3);
+          setBooksByPlatform({
+            kakao: kakao_content,
+            naver: naver_content,
+            ridi: ridi_content,
+          });
+        }
+      }
+    );
   }, []);
 
   const laptopRef = useRef<HTMLImageElement>(null);
+
+  function onClickPlatform(platform: string) {
+    setClickedPlatform(platform);
+  }
 
   function onClickRouterButton(pathName: string) {
     router.push(`/${pathName}`);
@@ -103,43 +135,78 @@ export default function index() {
             </div>
           </div>
         </div>
-        <div css={secondPageCSS({ isDeskTop, isTablet, isMobile })}>
+        <div
+          css={secondPageCSS(
+            { isDeskTop, isTablet, isMobile },
+            clickedPlatform
+          )}
+        >
+          <div>
+            <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
+              <h2>
+                <div>
+                  emosaac <span>에서</span>
+                </div>
+                <div>대표 플랫폼 작품들을 만나보세요</div>
+              </h2>
+              <div>
+                여기저기 흩어져있는 컨텐츠, 찾아다니느라 불편하셨죠? <br />
+                이모작에서는 약 2만 여건의 컨텐츠를 한 번에 만나보실 수
+                있습니다.
+              </div>
+            </div>
+            <div css={secondContentCSS({ isDeskTop, isTablet, isMobile })}>
+              <div>
+                <div onClick={() => onClickPlatform("kakao")}>
+                  {clickedPlatform === "kakao" ? (
+                    <img
+                      src="/assets/platform_kakao_page_clicked.png"
+                      alt="kakao"
+                    />
+                  ) : (
+                    <img src="/assets/platform_kakao_page.png" alt="kakao" />
+                  )}
+                </div>
+                <div onClick={() => onClickPlatform("naver")}>
+                  {clickedPlatform === "naver" ? (
+                    <img
+                      src="/assets/platform_naver_series_clicked.png"
+                      alt="naver"
+                    />
+                  ) : (
+                    <img src="/assets/platform_naver_series.webp" alt="naver" />
+                  )}
+                </div>
+                <div onClick={() => onClickPlatform("ridi")}>
+                  {clickedPlatform === "ridi" ? (
+                    <img src="/assets/platform_ridi_clicked.png" alt="ridi" />
+                  ) : (
+                    <img src="/assets/platform_ridi.webp" alt="ridi" />
+                  )}
+                </div>
+              </div>
+              <Carousel3D
+                setCarouselAngle={setCarouselAngle}
+                carouselAngle={carouselAngle}
+                setCarouselStartAngle={setCarouselAngle}
+                carouselStartAngle={carouselAngle}
+                bookData={booksByPlatform}
+              />
+            </div>
+          </div>
+        </div>
+        <div css={thirdPageCSS({ isDeskTop, isTablet, isMobile })}>
           <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
             <h2>
               <div>
                 emosaac <span>에서</span>
               </div>
-              <div>대표 플랫폼 작품들을 만나보세요</div>
+              <div>당신의 취향에 맞는 컨텐츠를 추천받아보세요.</div>
             </h2>
             <div>
               여기저기 흩어져있는 컨텐츠, 찾아다니느라 불편하셨죠? <br />
               이모작에서는 약 2만 여건의 컨텐츠를 한 번에 만나보실 수 있습니다.
             </div>
-          </div>
-          <div css={secondContentCSS({ isDeskTop, isTablet, isMobile })}>
-            <div>
-              <div>
-                <img src="/assets/platform_kakao_page.png" alt="kakao" />
-              </div>
-              <div>
-                <img src="/assets/platform_naver_series.webp" alt="naver" />
-              </div>
-              <div>
-                <img src="/assets/platform_ridi.webp" alt="ridi" />
-              </div>
-            </div>
-            <Carousel3D
-              setCarouselAngle={setCarouselAngle}
-              carouselAngle={carouselAngle}
-              setCarouselStartAngle={setCarouselAngle}
-              carouselStartAngle={carouselAngle}
-            />
-          </div>
-        </div>
-        <div>
-          <div>
-            <h2>emosaac의 두 번째 추천,</h2>
-            <div>당신의 취향을 반영한 어쩌구</div>
           </div>
           <div></div>
         </div>
@@ -160,13 +227,13 @@ const fullPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     background-color: #090a0d;
     color: #fff;
     & > div {
-      ${isDeskTop &&
-      "padding-left: 105px; padding-right: 105px; padding-top: 70px;"}
+      /* ${isDeskTop &&
+      "padding-left: 105px; padding-right: 105px; padding-top: 50px;"}
       ${isTablet &&
-      "padding-left: 50px; padding-right: 50px;  padding-top: 110px;"}
+      "padding-left: 50px; padding-right: 50px;  padding-top: 50px;"}
       ${isMobile &&
-      "padding-left: 20px; padding-right: 20px;  padding-top: 60px;"}
-      overflow: hidden;
+      "padding-left: 20px; padding-right: 20px;  padding-top: 50px;"} */
+      /* overflow: hidden; */
     }
   `;
 };
@@ -183,6 +250,12 @@ const firstPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
 
 const firstPageTestCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
+    ${isDeskTop &&
+    "padding-left: 105px; padding-right: 105px; padding-top: 50px;"}
+    ${isTablet &&
+    "padding-left: 50px; padding-right: 50px;  padding-top: 50px;"}
+      ${isMobile &&
+    "padding-left: 20px; padding-right: 20px;  padding-top: 50px;"}
     position: relative;
     height: 100vh;
     padding-top: 0px;
@@ -273,16 +346,10 @@ const firstImgWrapCSS = (rotateXY: number[], isMobile: boolean) => css`
   }
 `;
 
-const secondPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
-  return css`
-    position: relative;
-    height: calc(100vh + 200px);
-    background-color: orange;
-  `;
-};
-
 const titleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
+    position: relative;
+    z-index: 20;
     width: ${isDeskTop ? "800px" : isTablet ? "600px" : "100%"};
     margin: 0 auto;
     & > h2 {
@@ -305,19 +372,90 @@ const titleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   `;
 };
 
+const secondPageCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  clickedPlatform: string
+) => {
+  return css`
+    position: relative;
+    height: ${isDeskTop
+      ? "calc(100vh + 160px)"
+      : isTablet
+      ? "calc(100vh + 100px)"
+      : "100vh"};
+    /* background: ${clickedPlatform === "kakao"
+      ? "linear-gradient(-30deg, #ffe608, #ffb005, #ffa200)"
+      : clickedPlatform === "naver"
+      ? "linear-gradient(-30deg, #00b8a1, #00db96, #00db64)"
+      : "linear-gradient(-30deg, #1e9eff, #2b67f3, #1c5cf3)"}; */
+    transition: all 0.3s;
+    & > div {
+      ${isDeskTop &&
+      "padding-left: 105px; padding-right: 105px; padding-top: 50px;"}
+      ${isTablet &&
+      "padding-left: 50px; padding-right: 50px;  padding-top: 50px;"}
+      ${isMobile &&
+      "padding-left: 20px; padding-right: 20px;  padding-top: 50px;"}
+      position: absolute;
+      z-index: 10;
+      transition: all 0.3s;
+      background: linear-gradient(-30deg, #ffe608, #ffb005, #ffa200);
+      height: 100%;
+      width: 100%;
+      transition: all 0.3s;
+    }
+    & > div::after {
+      content: "";
+      position: absolute;
+      z-index: 10;
+      clear: both;
+      height: 100%;
+      width: 100%;
+      left: 0%;
+      top: 0;
+      background: linear-gradient(-30deg, #00b8a1, #00db96, #00db64);
+      transition: all 0.3s;
+      opacity: ${clickedPlatform === "naver" ? "1" : "0"};
+      visibility: ${clickedPlatform === "naver" ? "visible" : "hidden"};
+    }
+    & > div::before {
+      content: "";
+      z-index: 10;
+      position: absolute;
+      clear: both;
+      height: 100%;
+      width: 100%;
+      left: 0%;
+      top: 0;
+      background: linear-gradient(-30deg, #1e9eff, #2b67f3, #1c5cf3);
+      background-color: #fff;
+      transition: all 0.3s;
+      opacity: ${clickedPlatform === "ridi" ? "1" : "0"};
+      visibility: ${clickedPlatform === "ridi" ? "visible" : "hidden"};
+    }
+  `;
+};
+
 const secondContentCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
     position: absolute;
-    top: calc(50vh -${isDeskTop ? "360px" : isTablet ? "300px" : "150px"});
-    left: calc(50vw - ${isDeskTop ? "250px" : isTablet ? "250px" : "150px"});
-    width: ${isDeskTop ? "500px" : isTablet ? "500px" : "300px"};
-    background-color: antiquewhite;
+    z-index: 20;
+    /* top: calc(50vh +${isDeskTop
+      ? "100px"
+      : isTablet
+      ? "100px"
+      : "200px"}); */
+    left: calc(50vw - ${isDeskTop ? "150px" : isTablet ? "150px" : "150px"});
+    width: ${isDeskTop ? "300px" : isTablet ? "300px" : "300px"};
     & > div:nth-of-type(1) {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      column-gap: ${!isMobile ? "50px" : "20px"};
+      margin-top: 20%;
+      margin-bottom: 30px;
+      column-gap: ${!isMobile ? "20px" : "20px"};
       /* padding: ${isDeskTop ? "0 105px" : isTablet ? "0 50px" : "0 20px"}; */
       & > div {
+        cursor: pointer;
         border-radius: 10%;
         & > img {
           width: 100%;
@@ -326,5 +464,16 @@ const secondContentCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
         }
       }
     }
+  `;
+};
+
+const thirdPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
+  return css`
+    ${isDeskTop &&
+    "padding-left: 105px; padding-right: 105px; padding-top: 50px;"}
+    ${isTablet &&
+    "padding-left: 50px; padding-right: 50px;  padding-top: 50px;"}
+      ${isMobile &&
+    "padding-left: 20px; padding-right: 20px;  padding-top: 50px;"}
   `;
 };

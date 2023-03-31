@@ -17,7 +17,7 @@ interface Book {
   title: string;
   author: string;
   href: string;
-  score: number;
+  avgScore: number;
 }
 
 const content = ({ type, content, data }: any) => {
@@ -61,7 +61,7 @@ const content = ({ type, content, data }: any) => {
           setBooks((prev: any) => [...prev, ...res]);
           const prevData = res.slice(-1)[0];
           setPrevId(prevData.bookId);
-          setPrevScore(prevData.score);
+          setPrevScore(prevData.avgScore);
         } else {
           setIsPageEnd(true);
         }
@@ -87,7 +87,7 @@ const content = ({ type, content, data }: any) => {
       setBooks(data);
       const prevData = data.slice(-1)[0];
       setPrevId(prevData?.bookId);
-      setPrevScore(prevData?.score);
+      setPrevScore(prevData?.avgScore);
     }
   }, [data]);
 
@@ -96,7 +96,7 @@ const content = ({ type, content, data }: any) => {
       const prevData = books.slice(-1)[0];
       if (prevData !== null) {
         setPrevId(prevData?.bookId);
-        setPrevScore(prevData?.score);
+        setPrevScore(prevData?.avgScore);
       }
     }
   }, [books]);
