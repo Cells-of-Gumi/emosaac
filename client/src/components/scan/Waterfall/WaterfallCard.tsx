@@ -7,7 +7,7 @@ import naverSeries from "../../../assets/platform_naver_series.webp";
 import naverWebtoon from "../../../assets/platform_naver_webtoon.webp";
 import kakaoPage from "../../../assets/platform_kakao_page.png";
 
-import BookCardModal from "@/components/bookCardModal/BookCardModal";
+import WaterfallCardModal from "./WaterfallCardModal";
 
 import Portal from "@/components/function/Portal";
 import { useRouter } from "next/router"
@@ -28,35 +28,25 @@ interface Props {
   minWidth?: string;
   minHeight?: string;
   margin?: string;
+  isModalOnHandler: Function;
+  rotateY: number;
+  waterfallWrapperRef: any;
 }
 
-const BookCard = ({
+const WaterfallCard = ({
   bookData,
   showPlatform,
   width,
   height,
   minWidth,
   minHeight,
-  margin
+  margin,
+  isModalOnHandler,
+  rotateY,
+  waterfallWrapperRef
 }: Props) => {
 
   const [user, setUser] = useState<any>(null);
-  useEffect(() => {
-    setUser(() => navigator.userAgent);
-  }, []);
-
-  const isMobile = () => {
-    let is_mobile = false;
-    if (
-      (user !== undefined && user.length > 0 && user.indexOf("iPhone") > -1) ||
-      user.indexOf("Android") > -1 ||
-      user.indexOf("iPad") > -1 ||
-      user.indexOf("iPod") > -1
-    ) {
-      is_mobile = true;
-    }
-    return is_mobile;
-  };
 
 
   const router = useRouter()
@@ -68,10 +58,9 @@ const BookCard = ({
  
 
   const showModal = () => {
-    setTimeout(function () {
-      setModalToggler(() => true);
-    }, 400);
+    setModalToggler(() => true);
     setIsMouseOn(() => true);
+    isModalOnHandler(true)
   };
 
   const hideModal = () => {
@@ -81,12 +70,6 @@ const BookCard = ({
     }, 500);
   };
 
-  const instantlyRedirect = () => {
-    if (isMobile() === true) {
-      // 모바일에서 Detail 페이지로 바로 이동
-      router.push(`/books/${bookData.bookId}`)
-    }
-  };
 
 
 
@@ -109,7 +92,7 @@ const BookCard = ({
 
   const modal = (
     <Portal selector=".overlay-root">
-      <BookCardModal
+      <WaterfallCardModal
         modalToggler={modalToggler}
         isMouseOn={isMouseOn}
         setModalToggler={setModalToggler}
@@ -117,6 +100,9 @@ const BookCard = ({
         parentRef={wrapperRef}
         imgHeight={height}
         imgMinHeight={minHeight}
+        isModalOnHandler={isModalOnHandler}
+        rotateY={rotateY}
+        waterfallWrapperRef={waterfallWrapperRef}
       />
     </Portal>
   );
@@ -128,14 +114,11 @@ const BookCard = ({
       className={"bookcard-outer-wrapper"}
       css={cardOuterWrapper({ width, height, minWidth, minHeight, margin })}
       ref={wrapperRef}
-      onClick={instantlyRedirect}
-      onMouseOver={(event) => {
-        event.stopPropagation();
-        showModal();
-      }}
-      onMouseLeave={hideModal}
+      onClick={showModal}
+
+
     >
-      {user !== null && isMobile() === false && modalToggler && modal}
+      {modalToggler && modal}
 
       <div
         className={"bookcard-inner-wrapper"}
@@ -258,4 +241,4 @@ const platformIconCSS = css`
     margin: 10px;
 `
 
-export default BookCard;
+export default WaterfallCard;
