@@ -21,7 +21,10 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [isModalOn, setModalOn] = useState<boolean>(false)
+  const [isIntervalOn, setIntervalOn] = useState<boolean>(false)
   const wrapperRef = useRef<HTMLDivElement>(null)
+
+
 
   const responsiveLayout = {
     showCount: 9,
@@ -47,7 +50,7 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
       }
     }
     
-  }, duration !== undefined ? duration : 1000);
+  }, isIntervalOn ? 0 : (duration !== undefined ? duration : 1000));
 
   const prevBtnHandler = () => {
     if (currentIdx > 0) {
@@ -69,6 +72,7 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
 
     setModalOn(() => boolean)
     
+    setTimeout(() => {setIntervalOn(() => boolean)}, 1)
   }
 
   const renderBooks = bookDataList
