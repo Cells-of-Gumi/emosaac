@@ -70,8 +70,8 @@ const MyPage = ({ myinfo }: any) => {
   }, [typeCode]);
   return (
     <>
-      <section css={userinfoCSS}>
-        <div css={profileimagewrapperCSS}>
+      <section css={userinfoCSS(isDeskTop, isTablet, isMobile)}>
+        <div css={profileimagewrapperCSS(isDeskTop, isTablet, isMobile)}>
           <img
             src={myinfo.imageUrl}
             alt="프로필 이미지"
@@ -94,7 +94,7 @@ const MyPage = ({ myinfo }: any) => {
       </section>
 
       <section css={chartwrapperCSS(isDeskTop, isTablet, isMobile)}>
-        <article css={chartCSS}>
+        <article css={chartCSS(isDeskTop, isTablet, isMobile)}>
           <Chart typeCode={typeCode} />
         </article>
         <article css={recommendCSS(isDeskTop, isTablet, isMobile)}>
@@ -151,19 +151,33 @@ const MyPage = ({ myinfo }: any) => {
           </div>
         </article>
       </section>
+      <section>
+        <h3>북마크 한 목록</h3>
+      </section>
     </>
   );
 };
-const userinfoCSS = css`
+const userinfoCSS = (
+  isDeskTop: boolean,
+  isTablet: boolean,
+  isMobile: boolean
+) => css`
   display: flex;
-  align-items: center;
-  margin-left: 105px;
-  margin-top: 50px;
+  align-items: ${isDeskTop ? "center" : isTablet ? "center" : "center"};
+  margin-left: ${isDeskTop ? "105px" : isTablet ? "50px" : "20px"};
+  width: 100%;
+  height: ${isDeskTop ? "200px" : isTablet ? "200px" : "150px"};
+  /* align-items: center; */
 `;
-const profileimagewrapperCSS = css`
+const profileimagewrapperCSS = (
+  isDeskTop: boolean,
+  isTablet: boolean,
+  isMobile: boolean
+) => css`
   border-radius: 100%;
-  width: 150px;
-  height: 150px;
+  width: ${isDeskTop ? "150px" : isTablet ? "120px" : "100px"};
+  height: ${isDeskTop ? "150px" : isTablet ? "120px" : "100px"};
+
   overflow: hidden;
   margin-right: 40px;
 `;
@@ -208,14 +222,18 @@ const chartwrapperCSS = (
   grid-template-columns: 1fr 1.5fr;
   column-gap: 50px;
   width: 100%;
-  height: 100%;
+  height: 400px;
 `;
 
-const chartCSS = css`
-  height: 350px;
-  width: 200px;
-  margin-top: 50px;
-  margin-left: 60px;
+const chartCSS = (
+  isDeskTop: boolean,
+  isTablet: boolean,
+  isMobile: boolean
+) => css`
+  height: 400px;
+  width: ${isDeskTop ? "380px" : "100%"};
+  margin-top: ${isDeskTop ? "100px" : isTablet ? "50px" : "50px"};
+  margin-left: ${isDeskTop ? "60px" : "null"};
   left: 0px;
 `;
 
@@ -229,7 +247,7 @@ const recommendCSS = (
   width: 100%;
   height: 100%;
   display: ${isDeskTop ? "grid" : isTablet ? "flex" : "flex"};
-  align-content: center;
+  align-content: start;
   justify-content: center;
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;

@@ -23,6 +23,8 @@ import SortByGenre from "@/components/bookTab/SortByGenre";
 import SortByDay from "@/components/bookTab/SortByDay";
 import Waterfall from "@/components/scan/Waterfall/Waterfall";
 
+
+
 interface HomeProps {
   highlightedBookData: bookContentType[];
   genres: returnGenresType;
@@ -111,9 +113,15 @@ export default function Home({
           />
         </div>
 
+        {/* <Test/> */}
+        <Waterfall
+            bookData={highlightedBookData}
+            identifier={'row-2'}
+            rotate={1}
+            duration={2000}
+          />
 
-
-        <div css={highlightedCarouselWrapper}>
+        {/* <div css={highlightedCarouselWrapper}>
           <Waterfall
             bookData={highlightedBookData}
             windowWrapperRef={indexWrapperRef}
@@ -122,7 +130,7 @@ export default function Home({
             rotate={1}
             duration={2000}
           />
-        </div>
+        </div> */}
 
       <div css={whiteSpace2CSS} />
       <div css={whiteSpace2CSS} />
