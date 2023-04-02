@@ -9,7 +9,6 @@
 // import {useInterval} from "./useInterval";
 // import WaterfallCard from "../WaterfallCard/WaterfallCard";
 
-
 // interface HighlightedCarousel {
 //   bookData: bookContentType[];
 //   windowWrapperRef: any;
@@ -30,7 +29,6 @@
 //   const dummyHighlightedRef = useRef<HTMLInputElement>(null);
 //   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
 //   const [showCount, setShowCount] = useState<number>(10)
-
 
 //   const cardLayout = {
 //     widthValue: 40,
@@ -53,7 +51,6 @@
 //   }, []);
 
 //   // useEffect(()=>{
-    
 
 //   // }, []);
 
@@ -76,7 +73,7 @@
 //   // }
 
 //   const [windowWidth, setWindowWidth] = useState<any>(0)
-  
+
 //   const handleResize = useMemo(
 //     () =>
 //         throttle((event) => {
@@ -89,7 +86,6 @@
 
 //             // carouselWrapperRef.current.style.width = calcWidth
 
-            
 //             // const calcLeft =
 //             // carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth
 //             //   ? -(
@@ -97,24 +93,19 @@
 //             //     ) / 2 + "px" : "0px";
 //             // carouselWrapperRef.current.style.left = calcLeft
 
-
-            
-
 //           }
 //           setWindowWidth(() => window.innerWidth)
 //         }, 1000),
 //     []
 // );
 
-
 //   useEffect(() => {
-    
+
 //     window.addEventListener("resize", handleResize);
 //     return () => {
 //       window.removeEventListener("resize", handleResize);
 //     }
 //   }, [])
-
 
 //   const prevBtnHandler = () => {
 //     if (currentIdx > 0) {
@@ -216,12 +207,7 @@
 //             unit: cardLayout.unit,
 //           })}
 //         />
-        
 
-      
-
-        
-        
 //       </Swipe>
 //     </div>
 //   );
@@ -273,7 +259,6 @@
 //   }
 // `;
 
-
 // interface imgWrapperCSSProps {
 //   showCount: number;
 //   idx: number;
@@ -315,8 +300,7 @@
 //     width: ${widthCalc};
 //     height: ${heightCalc};
 
-
-//     transform: rotateY(${(Math.floor(showCount / 2) - idx) * calcRotate}deg) translateZ(calc(${widthCalc} * ${calcTranslate})) scaleX(-1); 
+//     transform: rotateY(${(Math.floor(showCount / 2) - idx) * calcRotate}deg) translateZ(calc(${widthCalc} * ${calcTranslate})) scaleX(-1);
 
 //   `
 // }
@@ -335,7 +319,7 @@
 //     position: relative;
 //     width: 100vw;
 //     height: calc(${heightCalc} + 10px);
-    
+
 //   `
 // }
 
@@ -366,7 +350,6 @@
 //   `
 // }
 
-
 // interface carouselInnerWrapperCSSProps {
 //   showCount: number;
 //   widthValue: number;
@@ -385,13 +368,8 @@
 //   transition: transform 0.3s;
 //   transform: rotateY(180deg);
 
-  
 //   `
 // }
-
-
-
-
 
 // interface dummyNormalCSSProps {
 //   widthValue: number;
