@@ -26,21 +26,25 @@ const BookMark = ({ typeCode }: BookMarkProps) => {
         setBookmarks(data);
       }
     });
-  }, []);
+  }, [typeCode]);
 
   return (
     <section css={bookmarkwrapCSS}>
       <h3>북마크 한 목록</h3>
-      <div css={bookmarkimageCSS(isDeskTop, isTablet, isMobile)}>
-        {bookmarks.map((bookmark) => (
-          <img
-            key={bookmark.bookId}
-            src={bookmark.thumbnail}
-            alt="북마크 썸네일"
-            css={imageCSS(isDeskTop, isTablet, isMobile)}
-          />
-        ))}
-      </div>
+      {bookmarks && bookmarks.length > 0 ? (
+        <div css={bookmarkimageCSS(isDeskTop, isTablet, isMobile)}>
+          {bookmarks.map((bookmark) => (
+            <img
+              key={bookmark.bookId}
+              src={bookmark.thumbnail}
+              alt="북마크 썸네일"
+              css={imageCSS(isDeskTop, isTablet, isMobile)}
+            />
+          ))}
+        </div>
+      ) : (
+        <div>북마크 한 {typeCode === 0 ? "웹툰" : "웹소설"}이 없어요.</div>
+      )}
     </section>
   );
 };
