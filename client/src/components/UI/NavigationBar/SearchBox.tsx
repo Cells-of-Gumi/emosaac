@@ -77,8 +77,12 @@ const SearchBox = (props: Props) => {
             {bookData && (
               <div css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}>
                 {bookData.map((book, idx) => (
-                  <div css={bookWrapCSS} onClick={onClickBack} key={idx}>
-                    <span>{book.typeCd === 0 ? "웹툰" : "웹소설"}</span>
+                  <div
+                    css={bookWrapCSS(book.typeCd === 0)}
+                    onClick={onClickBack}
+                    key={idx}
+                  >
+                    <span>{book && book.typeCd === 0 ? "웹툰" : "웹소설"}</span>
                     <SearchBookCard
                       bookData={book}
                       showPlatform={false}
@@ -106,7 +110,10 @@ const SearchBox = (props: Props) => {
             ) : null}
           </div>
           <div css={tagSearchCSS({ isDeskTop, isTablet, isMobile })}>
-            <h3>태그로 검색하기</h3>
+            <h3>
+              태그로 검색하기{" "}
+              <span>검색어 앞에 #을 붙이고 태그를 검색해보세요.</span>
+            </h3>
             <div>
               {[...new Set(tagList)].map((tag, idx) => {
                 if (tag !== "") {
@@ -241,7 +248,7 @@ const booksWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   `;
 };
 
-const bookWrapCSS = css`
+const bookWrapCSS = (isWebtoon: boolean) => css`
   position: relative;
   display: grid;
   grid-template-rows: 1fr 40px;
@@ -258,7 +265,8 @@ const bookWrapCSS = css`
     height: 25px;
     line-height: 25px;
     border-radius: 5px 0px 5px 0px;
-    background-color: var(--main-color);
+    background-color: ${isWebtoon ? "var(--main-color)" : "#fff"};
+    color: ${!isWebtoon ? "var(--main-color)" : "#fff"};
     margin-right: 6px;
     font-size: 12px;
   }
@@ -322,6 +330,12 @@ const tagSearchCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
       font-size: 16px;
       font-weight: bold;
       margin-bottom: 20px;
+      & > span {
+        font-weight: normal;
+        font-size: 12px;
+        color: var(--text-color-2);
+        padding-left: 10px;
+      }
     }
     & button {
       margin-right: 6px;

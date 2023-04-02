@@ -10,6 +10,14 @@ interface Props {
   setCarouselStartAngle: Dispatch<SetStateAction<number>>;
   carouselStartAngle: number;
   bookData: any;
+  mouseCursorClientX: number;
+  setMouseCursorClientX: Dispatch<SetStateAction<number>>;
+  mouseCursorClientY: number;
+  setMouseCursorClientY: Dispatch<SetStateAction<number>>;
+  isMouseOver: boolean;
+  setIsMouseOver: Dispatch<SetStateAction<boolean>>;
+  isMouseActive: boolean;
+  setIsMouseActive: Dispatch<SetStateAction<boolean>>;
 }
 
 const Carousel3D = ({
@@ -18,10 +26,17 @@ const Carousel3D = ({
   setCarouselStartAngle,
   carouselStartAngle,
   bookData,
+  mouseCursorClientX,
+  setMouseCursorClientX,
+  mouseCursorClientY,
+  setMouseCursorClientY,
+  isMouseOver,
+  setIsMouseOver,
+  isMouseActive,
+  setIsMouseActive,
 }: Props) => {
   const cursorImg = "/assets/bazzi.jpg";
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const [mouseDownClientX, setMouseDownClientX] = useState(0);
   const [mouseDownClientY, setMouseDownClientY] = useState(0);
   const [mouseMoveClientX, setMouseMoveClientX] = useState(0);
@@ -34,12 +49,14 @@ const Carousel3D = ({
     setMouseDownClientX(e.clientX);
     setMouseDownClientY(e.clientY);
     setIsMouseLeave(false);
+    setIsMouseActive(true);
   };
   const onMouseUp = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setIsMouseLeave(true);
     setMouseDownClientX(0);
     setMouseDownClientY(0);
     setCarouselStartAngle(carouselAngle);
+    setIsMouseActive(false);
   };
   const onTouchStart = (e: any) => {
     setMouseDownClientX(e.changedTouches[0].clientX);
@@ -52,7 +69,6 @@ const Carousel3D = ({
     setMouseDownClientY(e.changedTouches[0].clientX);
     setCarouselStartAngle(carouselAngle);
   };
-
   const onTouchMove = (e: any) => {
     // console.log(e.clientX);
     if (!isMouseLeave) {
@@ -62,16 +78,24 @@ const Carousel3D = ({
   };
   const onMouseMove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     // console.log(e.clientX);
+    setIsMouseOver(true);
     if (!isMouseLeave) {
       setMouseMoveClientX(e.clientX);
       setMouseMoveClientY(e.clientY);
     }
+    setMouseCursorClientX(e.clientX);
+    setMouseCursorClientY(e.clientY);
   };
   const onMouseLeave = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setIsMouseLeave(true);
+    setIsMouseOver(false);
     setMouseDownClientX(0);
     setMouseDownClientY(0);
     setCarouselStartAngle(carouselAngle);
+    setIsMouseActive(false);
+  };
+  const onMouseEnter = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    setIsMouseOver(true);
   };
 
   useEffect(() => {
@@ -81,7 +105,6 @@ const Carousel3D = ({
     if (!isMouseLeave) {
       setCarouselAngle(carouselStartAngle + dragSpaceX);
     }
-    console.log(bookData.kakao);
   }, [mouseMoveClientX]);
 
   return (
@@ -100,7 +123,13 @@ const Carousel3D = ({
         </div>
       </div>
       <div
-        css={coverCSS(isDeskTop, isTablet, isMobile, cursorImg)}
+        css={coverCSS(
+          isDeskTop,
+          isTablet,
+          isMobile,
+          mouseCursorClientX,
+          mouseCursorClientY
+        )}
         onMouseUp={onMouseUp}
         onMouseLeave={onMouseLeave}
         onMouseDown={onMouseDown}
@@ -108,6 +137,7 @@ const Carousel3D = ({
         onTouchMove={onTouchMove}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
+        onMouseEnter={onMouseEnter}
         ref={coverRef}
       ></div>
     </div>
@@ -214,8 +244,10 @@ const coverCSS = (
   isDeskTop: boolean,
   isTablet: boolean,
   isMobile: boolean,
-  cursorImg: string
+  cursorClientX: number,
+  cursorClientY: number
 ) => css`
+  cursor: pointer;
   position: absolute;
   background-color: rgba(0, 0, 0, 0);
   /* border: 10px solid #fff; */
@@ -226,54 +258,6 @@ const coverCSS = (
   -khtml-user-drag: none;
   -moz-user-drag: none;
   -o-user-drag: none;
-  ::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    visibility: hidden;
-    opacity: 0;
-    clear: both;
-    height: 0px;
-    width: 0px;
-    border-radius: 50%;
-    background-color: antiquewhite;
-    transition: all 0.5s;
-  }
-  :hover {
-    cursor: pointer;
-    ::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      visibility: visible;
-      opacity: 1;
-      clear: both;
-      height: 100px;
-      width: 100px;
-      border-radius: 50%;
-      background-color: antiquewhite;
-      transition: all 0.5s;
-    }
-  }
-  :active {
-    cursor: pointer;
-    ::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      visibility: visible;
-      opacity: 1;
-      clear: both;
-      height: 100px;
-      width: 100px;
-      border-radius: 50%;
-      background-color: red;
-      transition: all 0.5s;
-    }
-  }
 `;
 
 export default Carousel3D;
