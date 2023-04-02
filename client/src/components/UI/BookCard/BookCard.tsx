@@ -200,7 +200,7 @@ const typeCdWrapCSS = (isWebtoon: boolean, isD: boolean) => css`
   font-size: ${isD ? "14px" : "12px"};
   border-radius: 9px 0px 9px 0px;
   background-color: ${!isWebtoon ? "#fff" : "var(--main-color)"};
-  color: #000;
+  color: ${isWebtoon ? "#fff" : "var(--main-color)"};
 `;
 
 interface CardInnerWrapperProps {
@@ -246,6 +246,7 @@ const platformBarCSS = css`
 const imageCSS = css`
   width: 100%;
   height: 100%;
+  object-fit: cover;
   transition: transform 0.3s;
   &:hover {
     transform: scale(1.1);
