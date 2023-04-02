@@ -45,19 +45,36 @@ export default function index() {
       setIsLogin(false);
     }
 
-    const [prevId, prevRegist, size, typeCd] = [20000, "2023.03.20", 100, 1];
+    let [prevId, prevRegist, size, typeCd] = [20000, "2023.03.20", 30, 0];
     getNewBooksForPlatform({ prevId, prevRegist, size, typeCd, token }).then(
       (res) => {
         if (res !== null) {
           const content = res?.content;
-          console.log(content);
           const kakao_content = content.filter((c) => c.platform === 1);
           const naver_content = content.filter((c) => c.platform === 2);
-          const ridi_content = content.filter((c) => c.platform === 3);
+          const ridi_content = content.filter((c) => c.platform === 4);
           setBooksByPlatform({
             kakao: kakao_content,
             naver: naver_content,
             ridi: ridi_content,
+          });
+        }
+      }
+    );
+    [prevId, prevRegist, size, typeCd] = [20000, "2023.03.20", 30, 1];
+    getNewBooksForPlatform({ prevId, prevRegist, size, typeCd, token }).then(
+      (res) => {
+        if (res !== null) {
+          const content = res?.content;
+          const kakao_content = content.filter((c) => c.platform === 1);
+          const naver_content = content.filter((c) => c.platform === 2);
+          const ridi_content = content.filter((c) => c.platform === 4);
+          setBooksByPlatform((prev: any) => {
+            return {
+              kakao: [...prev?.kakao, ...kakao_content],
+              naver: [...prev?.naver, ...naver_content],
+              ridi: [...prev?.ridi, ...ridi_content],
+            };
           });
         }
       }
@@ -98,15 +115,14 @@ export default function index() {
     () =>
       throttle(() => {
         const htmlEl = document.getElementsByTagName("html")[0];
-        // console.log(htmlEl.scrollTop);
         if (htmlEl && htmlEl.scrollTop < 2000) {
           if (currentScroll < htmlEl.scrollTop) {
-            setCarouselAngle((prev) => prev + htmlEl.scrollTop / 20);
-            setCarouselStartAngle((prev) => prev + htmlEl.scrollTop / 20);
+            setCarouselAngle((prev) => prev + htmlEl.scrollTop / 30);
+            setCarouselStartAngle((prev) => prev + htmlEl.scrollTop / 30);
             setCurrentScroll(Number(htmlEl.scrollTop));
           } else {
-            setCarouselAngle((prev) => prev - htmlEl.scrollTop / 20);
-            setCarouselStartAngle((prev) => prev - htmlEl.scrollTop / 20);
+            setCarouselAngle((prev) => prev - htmlEl.scrollTop / 30);
+            setCarouselStartAngle((prev) => prev - htmlEl.scrollTop / 30);
             setCurrentScroll(Number(htmlEl.scrollTop));
           }
         }
@@ -234,6 +250,7 @@ export default function index() {
                 setIsMouseOver={setIsMouseOver}
                 isMouseActive={isMouseActive}
                 setIsMouseActive={setIsMouseActive}
+                clickedPlatform={clickedPlatform}
               />
             </div>
           </div>
@@ -432,6 +449,9 @@ const titleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
       line-height: 25px;
       font-size: ${isMobile ? "14px" : "18px"};
       word-break: keep-all;
+      & > b {
+        font-weight: bold;
+      }
     }
   `;
 };
@@ -459,7 +479,7 @@ const secondPageCSS = (
       position: absolute;
       z-index: 10;
       transition: all 0.3s;
-      background: linear-gradient(-30deg, #ffe608, #ffb005, #ffa200);
+      background: linear-gradient(-210deg, #ffe608, #f0a503, #f18900);
       height: 100%;
       width: 100%;
       transition: all 0.3s;
@@ -474,7 +494,7 @@ const secondPageCSS = (
       width: 100%;
       left: 0%;
       top: 0;
-      background: linear-gradient(-30deg, #00b8a1, #00db96, #00db64);
+      background: linear-gradient(-210deg, #00db64, #00db96, #1ea696);
       transition: all 0.3s;
       opacity: ${clickedPlatform === "naver" ? "1" : "0"};
       visibility: ${clickedPlatform === "naver" ? "visible" : "hidden"};
@@ -489,7 +509,7 @@ const secondPageCSS = (
       width: 100%;
       left: 0%;
       top: 0;
-      background: linear-gradient(-30deg, #1e9eff, #2b67f3, #1c5cf3);
+      background: linear-gradient(-210deg, #1e9eff, #215be0, #164ac3);
       background-color: #fff;
       transition: all 0.3s;
       opacity: ${clickedPlatform === "ridi" ? "1" : "0"};
