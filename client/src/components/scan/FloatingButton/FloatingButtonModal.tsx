@@ -15,6 +15,12 @@ import radioButton from 'react-useanimations/lib/radioButton'
 import Button from "@/components/UI/Button/Button";
 import { postOcr } from "@/api/ocr/postOcr";
 
+import FloatingButtonModalSubmitForm from "./FloatingButtonModalSubmitForm";
+import FloatingButtonModalLoading from "./FloatingButtonModalLoading";
+import ScanMain from "../ScanMain";
+
+import { bookContentType } from "@/types/books";
+
 
 interface FloatingButtonModalProps {
   modalToggler: boolean;
@@ -35,15 +41,24 @@ const FloatingButtonModal = ({
   const [isOpened, setisOpened] = useState<boolean>(false);
   const [isClosing, setIsClosing] = useState<boolean>(false);
   const router = useRouter()
-  const inputRef = useRef<HTMLInputElement>(null);
-  
 
+  const [beforePhase, setBeforePhase] = useState<number>(0)
+  const [afterPhase, setAfterPhase] = useState<number>(0)
+
+  const [bookData, setBookData] = useState<bookContentType[] | null>(null)
+
+  const phaseHandler = (phase: number) => {
+    setBeforePhase(() => phase)
+    setTimeout(() => {
+      setAfterPhase(() => phase)
+    }, 500)
+  }
 
 
 
   const modalLayout = {
-    widthValue: 350,
-    heightValue: 410,
+    widthValue: beforePhase === 0 ? 350 : (beforePhase === 1 ? 280 : (beforePhase === 2 ? 1920 : 350)),
+    heightValue: beforePhase === 0 ? 410 : (beforePhase === 1 ? 280 : (beforePhase === 2 ? 1080 : 410)),
   };
 
   useEffect(() => {
@@ -65,13 +80,13 @@ const FloatingButtonModal = ({
           wrapperRef.current.style.opacity = '0'
         }
         
-      }, 300);
+      }, 500);
       
       setTimeout(function () {
         setModalToggler(() => false);
         
         
-      }, 300);
+      }, 500);
     } else {
       setModalToggler(() => false);
     }
@@ -80,27 +95,20 @@ const FloatingButtonModal = ({
   };
 
 
-  const [image, setImage] = useState<File | null>(null);
-  const [contentType, setContentType] = useState<0 | 1 | null>(null)
-
-  const onClickImageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (event.target.files) {
-      setImage(event.target.files[0]);
-      console.log(inputRef)
-    }
-  };
-
-  const onClickSubmitHandler = () => {
+  const onClickSubmitHandler = ({image, contentType}: {image: File | null, contentType: 0 | 1}) => {
+    
     if( image !== null && contentType !== null) {
+      phaseHandler(1)
       postOcr({file: image, typeCode: contentType})
       .then((res) => {
+        setBookData(() => res)
+        phaseHandler(2)
+
         console.log(res)
       })
     }
-    
   }
+
 
   return (
     <div
@@ -119,61 +127,37 @@ const FloatingButtonModal = ({
       })}
     >
       <div
+        className={'inner-wrapper'}
         css={innerWrapperCSS({
           modalToggler: modalToggler,
           contentToggler: contentToggler,
           isOpened: isOpened,
         })}
       >
-        <div>
-          <div css={headerCSS}>
-            <img css={headerIconCSS} src={"/assets/scan_icon.png"}/>
-            <div css={headerTitleCSS}>  
-              작품 스캔
-            </div>
-          
-            
-          </div>
-          <div css={bodyCSS}>
 
-            <form method="post" encType="multipart/form-data">
-              <div css={altInputCSS}>
-                <div css={altInputPathCSS}>{inputRef?.current?.files ? inputRef?.current?.files[0]?.name : '이미지를 첨부해 주세요.'}</div>
-            
-                      <label css={altInputButtonCSS} className="button" htmlFor="chooseFile">
-                          파일 선택
-                      </label>
-      
-              </div>
-                
-              <input ref={inputRef} css={css`display: none;`} type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={onClickImageChange} />
-            </form>
-            
-            
-            <div css={radioButtonSectorCSS}>
-              스캔하려는 작품의 종류를 선택해 주세요!
-
-              <div css={radioButtonInnerSectorCSS}>
-                <div css={radioButtonWrapperCSS} onClick={() => {setContentType(() => 0)}}>
-                  
-                  <UseAnimations key={`webtoon-${contentType}`} animation={radioButton} reverse={contentType === 0 ? true : false} size={28} />
-                  웹툰
-                </div>
-                <div css={radioButtonWrapperCSS} onClick={() => {setContentType(() => 1)}}>
-                  
-                  <UseAnimations key={`novel-${contentType}`} animation={radioButton} reverse={contentType === 1 ? true : false}  size={28} />
-                  웹소설
-                </div>
-              </div>
-              
-            </div>
-            
+        {afterPhase === 0 &&
+          <div css={phaseCSS({targetPhase: 0, beforePhase: beforePhase, afterPhase: afterPhase})}>
+            <FloatingButtonModalSubmitForm modalHandler={modalHandler} phaseHandler={phaseHandler} onClickSubmitHandler={onClickSubmitHandler} />
           </div>
-        </div>
-        <div css={footerCSS}>
-          <Button width={'47.5%'} height={'48px'} onClick={modalHandler} cancelTheme={true}>취소</Button>
-          <Button width={'47.5%'} height={'48px'} onClick={onClickSubmitHandler}>제출</Button>
-        </div>
+        }
+
+        {afterPhase === 1 &&
+          <div css={phaseCSS({targetPhase: 1, beforePhase: beforePhase, afterPhase: afterPhase})}>
+            <FloatingButtonModalLoading/>
+          </div>
+        }
+
+        {afterPhase === 2 && bookData !== null &&
+          <div css={phaseCSS({targetPhase: 2, beforePhase: beforePhase, afterPhase: afterPhase})}>
+            <ScanMain bookData={bookData} modalHandler={modalHandler} />
+          </div>
+        }
+        
+        
+
+
+
+
         
       </div>
     </div>
@@ -199,46 +183,27 @@ const wrapperCSS = ({
   isClosing,
   isOpened
 }: wrapperCSSProps) => {
-  // const isLeftEdge =
-  //   (widthValue - parentRef?.current?.clientWidth) / 2 >=
-  //   parentRef?.current?.getBoundingClientRect().left;
-  // const isRightEdge =
-  //   parentRef?.current?.getBoundingClientRect().left +
-  //     (widthValue - (widthValue - parentRef?.current?.clientWidth) / 2) >=
-  //   document.body.offsetWidth;
 
-  // const leftStandard = `left: ${
-  //   modalToggler && isLeftEdge === true
-  //     ? "42"
-  //     : parentRef?.current?.getBoundingClientRect().left -
-  //       (widthValue - parentRef?.current?.clientWidth) / 2
-  // }px;`; // parentRef?.current?.getBoundingClientRect().left
-  // const rightStandard = `left: ${
-  //   modalToggler && isRightEdge === true
-  //     ? document.body.offsetWidth - widthValue - 42
-  //     : parentRef?.current?.getBoundingClientRect().left
-  // }px`;
-
-  // const activated = isRightEdge === true ? rightStandard : leftStandard;
 
   return css`
     position: absolute;
-    z-index: 999999;
+    /* z-index: 9; */
     transition-property: width height;
     will-change: width height left top transform;
-    transition-duration: 0.3s;
+    transition-duration: 0.5s;
     /* transition-timing-function: ease-in; */
     overflow: hidden;
 
     width: ${modalToggler
-      ? `${widthValue}px`
+      ? `${widthValue === 1920 ? '100vw' : widthValue + 'px'}`
       : `${parentRef?.current?.clientWidth}px`};
     height: ${modalToggler
-      ? `${heightValue}px`
+      ? `${heightValue === 1080 ? '100vh' : heightValue + 'px'}`
       : `${parentRef?.current?.clientHeight}px`};
-    left: ${modalToggler ? `calc(50vw - ${(widthValue / 2)}px)` : `${parentRef?.current?.getBoundingClientRect().left}px`};
-    top: ${modalToggler ? `calc(50vh - ${(heightValue / 2)}px)` : `${parentRef?.current?.getBoundingClientRect().top}px`};
-    
+    left: ${modalToggler ? (widthValue === 1920 ? '0px' : `calc(50vw - ${(widthValue / 2)}px)`) : `${parentRef?.current?.getBoundingClientRect().left}px`};
+    top: ${modalToggler ?  (heightValue === 1080 ? '0px' : `calc(50vh - ${(heightValue / 2)}px)`) : `${parentRef?.current?.getBoundingClientRect().top}px`};
+
+
     ${modalToggler ? `pointer-events: auto` : `pointer-events: none`};
     /* background-color: white; */
 
@@ -271,102 +236,20 @@ const innerWrapperCSS = ({
   `;
 };
 
+const phaseCSS = ({targetPhase, beforePhase, afterPhase}: {targetPhase: number; beforePhase: number; afterPhase: number;}) => {
 
-const footerCSS = css`
-  display: flex;
-  justify-content: space-between;;
-  padding: 0px 16px 16px 16px;
+  return css`
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    opacity: ${beforePhase === targetPhase ? '100%' : '0%'};
+    width: 100%;
+    height: 100%;
+  `
 
-`
+}
 
-const radioButtonSectorCSS = css`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100px;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-  padding: 24px 0px 16px 0px;
-  overflow: hidden;
-  background-color: var(--back-color);
-`
 
-const radioButtonInnerSectorCSS = css`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  overflow: hidden;
-`
 
-const radioButtonWrapperCSS = css`
-  display: flex;
-  align-items: center;
-`
-
-const headerCSS = css`
-  width: 100%;
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--back-color);
-  border-bottom: 1px solid var(--border-color-2);
-`
-
-const headerTitleCSS = css`
-  font-size: 24px;
-  font-weight: 500;
-`
-
-const headerIconCSS = css`
-  width: 36px;
-  height: 36px;
-  margin-bottom: 16px;
-`
-
-const bodyCSS = css`
-  padding: 16px;
-`
-
-const altInputCSS = css`
-  width: 100%;
-  height: 48px;
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding-left: 8px;
-  overflow: hidden;
-  margin-bottom: 16px;
-  background-color: var(--back-color);
-`
-
-const altInputPathCSS = css`
-  flex: 1;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  padding-right: 8px;
-`
-
-const altInputButtonCSS = css`
-  transition-property: background-color;
-  transition-duration: 0.3s;
-  height: 100%;
-  width: 96px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--border-color-2);
-  cursor: pointer;
-  &:hover {
-    background-color: var(--border-color);
-  }
-`
 
 
 

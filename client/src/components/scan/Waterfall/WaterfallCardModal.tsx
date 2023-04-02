@@ -220,7 +220,7 @@ const wrapperCSS = ({
   return css`
     transform: ${isOpened ? (isClosing ? `rotateY(${rotateY * 1.6}deg)` : null) : `rotateY(${rotateY * 1.6}deg)`} ;
     position: absolute;
-    z-index: 999999;
+    z-index: 999999999;
     transition-property: width height;
     will-change: width height left top  transform;
     transition-duration: 0.3s;

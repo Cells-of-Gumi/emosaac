@@ -1,5 +1,5 @@
 import { defaultAxiosFormDataInstance } from "../instance";
-
+import { bookContentType } from "@/types/books";
 
 type paramsType = {
     file: File;
@@ -7,7 +7,7 @@ type paramsType = {
     token?: string | null;
 }
 
-type returnType = boolean
+type returnType = bookContentType[]
 
 type responseType = {
   status: number;
@@ -31,7 +31,7 @@ export async function postOcr({file, typeCode}: paramsType
     try {
       const formData = createFormData(file);
       const response = await defaultAxiosFormDataInstance.post(`/ocr?typeCode=${typeCode}`, formData);
-      return response.data;
+      return response.data.data;
     } catch (error) {
       console.log(error)
       throw error

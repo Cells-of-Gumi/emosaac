@@ -27,7 +27,7 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
 
 
   const responsiveLayout = {
-    showCount: 9,
+    showCount: bookData.length > 9 ? 9 : (bookData.length > 5 ? (bookData.length % 2 === 0 ? bookData.length - 1 : bookData.length) : bookData.length),
     width: (isDeskTop ? 20 : (isTablet ? 30 : (isMobile ? 40 : 0))),
     height: (isDeskTop ? 30 : (isTablet ? 45 : (isMobile ? 60 : 0))),
     heightCorrection: (isDeskTop ? 2 : (isTablet ? 4.2 : (isMobile ? 9 : 0))),
@@ -35,10 +35,11 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
   }
 
   useEffect(() => {
-    if (bookDataList[0].title !== bookDataList[bookDataList.length - responsiveLayout.showCount].title) {
+
+    // if (bookDataList[0].title !== bookDataList[bookDataList.length - responsiveLayout.showCount].title) {
       const temp = bookDataList.concat(bookDataList.slice(0, responsiveLayout.showCount));
       setBookDataList(() => temp);
-    }
+    // }
   }, []);
 
   const interval = useInterval(()=>{
@@ -91,6 +92,8 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
               isModalOnHandler={isModalOnHandler}
               rotateY={result}
               waterfallWrapperRef={wrapperRef}
+              width={'95%'}
+              height={'95%'}
           />
           {/* <img css={imgCSS} src={el.thumbnail}/> */}
         </div>
@@ -98,7 +101,7 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
     });
 
   return (
-    <div className={"carousel-outer-wrapper"} css={waterfallOuterWrapperCSS} ref={wrapperRef}>
+    <div className={"carousel-outer-wrapper"} css={waterfallOuterWrapperCSS({responsiveLayout})} ref={wrapperRef}>
       <div css={waterfallInnerWrapperCSS}>
         {renderBooks}
       </div>
@@ -107,7 +110,7 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
 };
 
 const cardCSS = ({duration, responsiveLayout, rotateY, idx, showCount, center, isDeskTop, isTablet, isMobile, isModalOn}: {duration: number | undefined; responsiveLayout: any; rotateY: number; idx: number; showCount:number; center: number; isDeskTop: boolean; isTablet: boolean; isMobile: boolean; isModalOn: boolean;}) => {
-  const widthCalc = (idx === 0 || idx === showCount - 1) ? '0px' : responsiveLayout.width + responsiveLayout.unit
+  const widthCalc = (idx === 0 || idx === showCount - 1) && showCount > 3 ? '0px' : responsiveLayout.width + responsiveLayout.unit
   const heightCalc = responsiveLayout.height + (Math.abs(center - idx) * (Math.abs(center - idx) * responsiveLayout.heightCorrection)) + responsiveLayout.unit
   return css`
     transition-property: width height;
@@ -116,7 +119,7 @@ const cardCSS = ({duration, responsiveLayout, rotateY, idx, showCount, center, i
     position: relative;
     width: ${widthCalc};
     height:${heightCalc};
-    background-color: white;
+    /* background-color: white; */
     transform: rotateY(${rotateY}deg) translateZ(20px);
     overflow: hidden;
     display: flex;
@@ -130,15 +133,17 @@ const imgCSS = css`
   width: auto;
 `
 
-const waterfallOuterWrapperCSS = css`
-  width: auto;
-  height: 300px;
-  /* margin: 0 auto; */
-  transform-style: preserve-3d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
+const waterfallOuterWrapperCSS = ({responsiveLayout}: {responsiveLayout: any}) => {
+  return css`
+    width: auto;;
+    height: ${responsiveLayout.height * 1.1 + responsiveLayout.unit};
+    /* margin: 0 auto; */
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `
+} 
 
 const waterfallInnerWrapperCSS = css`
   width: auto;

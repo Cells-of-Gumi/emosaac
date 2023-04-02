@@ -36,6 +36,6 @@ const buttonCSS = ({width, height, cancelTheme}: buttonCSSProps) => {
     padding: 0 20px;
     background-color: ${cancelTheme ? 'var(--back-color)' : 'var(--main-color)'};
     border: ${cancelTheme && '1px solid var(--border-color-2)'};
-    color: black;
+    /* color: black; */
   `;
 }
