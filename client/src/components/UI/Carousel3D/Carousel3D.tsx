@@ -60,13 +60,13 @@ const Carousel3D = ({
   };
   const onTouchStart = (e: any) => {
     setMouseDownClientX(e.changedTouches[0].clientX);
-    setMouseDownClientY(e.changedTouches[0].clientX);
+    setMouseDownClientY(e.changedTouches[0].clientY);
     setIsMouseLeave(false);
   };
   const onTouchEnd = (e: any) => {
     setIsMouseLeave(true);
-    setMouseDownClientX(e.changedTouches[0].clientX);
-    setMouseDownClientY(e.changedTouches[0].clientX);
+    setMouseDownClientX(0);
+    setMouseDownClientY(0);
     setCarouselStartAngle(carouselAngle);
   };
   const onTouchMove = (e: any) => {
