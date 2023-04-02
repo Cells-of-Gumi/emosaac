@@ -111,8 +111,7 @@ const SearchBox = (props: Props) => {
           </div>
           <div css={tagSearchCSS({ isDeskTop, isTablet, isMobile })}>
             <h3>
-              태그로 검색하기{" "}
-              <span>검색어 앞에 #을 붙이고 태그를 검색해보세요.</span>
+              태그로 검색하기 <span>#을 붙이고 태그를 검색해보세요.</span>
             </h3>
             <div>
               {[...new Set(tagList)].map((tag, idx) => {
