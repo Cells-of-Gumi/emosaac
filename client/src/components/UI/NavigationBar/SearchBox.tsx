@@ -50,7 +50,7 @@ const SearchBox = (props: Props) => {
   useEffect(() => {
     if (bookData && bookData.length !== 0) {
       setTagList([]);
-      bookData.slice(0, 3).forEach((book) => {
+      bookData.slice(0, 4).forEach((book) => {
         getBookDetail({ bookId: book.bookId }).then((res) => {
           if (res !== null) {
             setTagList((prev) => [...prev, ...res.tag.split(" ")]);
@@ -78,7 +78,7 @@ const SearchBox = (props: Props) => {
               <div css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}>
                 {bookData.map((book, idx) => (
                   <div css={bookWrapCSS} onClick={onClickBack} key={idx}>
-                    <span>웹소설</span>
+                    <span>{book.typeCd === 0 ? "웹툰" : "웹소설"}</span>
                     <SearchBookCard
                       bookData={book}
                       showPlatform={false}
@@ -251,7 +251,8 @@ const bookWrapCSS = css`
     z-index: 10;
     top: 0;
     display: block;
-    width: 40px;
+    /* width: 40px; */
+    padding: 0 6px;
     text-align: center;
     font-weight: bold;
     height: 25px;

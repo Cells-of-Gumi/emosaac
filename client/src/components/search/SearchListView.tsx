@@ -2,9 +2,10 @@
 import { jsx, css } from "@emotion/react";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { returnSearchBooksType } from "@/types/search";
-import BookCardSearch from "../UI/BookCard/BookCardSearch";
+import BookCard from "../UI/BookCard/BookCard";
 import { throttle } from "lodash";
 import { useIsResponsive } from "../Responsive/useIsResponsive";
+import { useRouter } from "next/router";
 
 export const SearchListView = ({
   books,
@@ -23,6 +24,7 @@ export const SearchListView = ({
   prevScore: number;
   isPageEnd: boolean;
 }) => {
+  const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [getBooks, setGetBooks] = useState<boolean>(false);
 
@@ -57,7 +59,12 @@ export const SearchListView = ({
     >
       {books &&
         books.map((book, idx) => (
-          <BookCardSearch key={idx} bookData={book} showPlatform={false} />
+          <BookCard
+            key={idx}
+            bookData={book}
+            showPlatform={true}
+            width={"100%"}
+          />
         ))}
     </div>
   );
@@ -75,7 +82,7 @@ const booksWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     display: grid;
     ${isMobile && "grid-template-columns: repeat(3, 1fr);"}
     ${!isMobile && "grid-template-columns: repeat(5, 1fr);"}
-      column-gap: 20px;
+    column-gap: 20px;
     row-gap: 30px;
   `;
 };

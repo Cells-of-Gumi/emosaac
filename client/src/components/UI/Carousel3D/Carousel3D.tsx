@@ -17,6 +17,7 @@ const Carousel3D = ({
   carouselAngle,
   setCarouselStartAngle,
   carouselStartAngle,
+  bookData,
 }: Props) => {
   const cursorImg = "/assets/bazzi.jpg";
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -33,7 +34,6 @@ const Carousel3D = ({
     setMouseDownClientX(e.clientX);
     setMouseDownClientY(e.clientY);
     setIsMouseLeave(false);
-    // console.log(e.clientX);
   };
   const onMouseUp = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setIsMouseLeave(true);
@@ -41,17 +41,24 @@ const Carousel3D = ({
     setMouseDownClientY(0);
     setCarouselStartAngle(carouselAngle);
   };
-  const onTouchStart = (e: React.TouchEventHandler<HTMLDivElement>) => {
-    // setMouseDownClientX(e.changedTouches[0].pageX);
-    // setMouseDownClientY(e.clientY);
-    // setIsMouseLeave(false);
-    // console.log(e.clientX);
+  const onTouchStart = (e: any) => {
+    setMouseDownClientX(e.changedTouches[0].clientX);
+    setMouseDownClientY(e.changedTouches[0].clientX);
+    setIsMouseLeave(false);
   };
-  const onTouchEnd = (e: React.TouchEventHandler<HTMLDivElement>) => {
+  const onTouchEnd = (e: any) => {
     setIsMouseLeave(true);
-    setMouseDownClientX(0);
-    setMouseDownClientY(0);
+    setMouseDownClientX(e.changedTouches[0].clientX);
+    setMouseDownClientY(e.changedTouches[0].clientX);
     setCarouselStartAngle(carouselAngle);
+  };
+
+  const onTouchMove = (e: any) => {
+    // console.log(e.clientX);
+    if (!isMouseLeave) {
+      setMouseMoveClientX(e.changedTouches[0].clientX);
+      setMouseMoveClientY(e.changedTouches[0].clientY);
+    }
   };
   const onMouseMove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     // console.log(e.clientX);
@@ -68,13 +75,13 @@ const Carousel3D = ({
   };
 
   useEffect(() => {
-    const dragSpaceX = -(mouseDownClientX - mouseMoveClientX) / 10;
-    const dragSpaceY = -(mouseDownClientY - mouseMoveClientY) / 10;
-    console.log(dragSpaceX);
+    const dragSpaceX = -(mouseDownClientX - mouseMoveClientX) / 30;
+    const dragSpaceY = -(mouseDownClientY - mouseMoveClientY) / 30;
 
     if (!isMouseLeave) {
       setCarouselAngle(carouselStartAngle + dragSpaceX);
     }
+    console.log(bookData.kakao);
   }, [mouseMoveClientX]);
 
   return (
@@ -98,8 +105,9 @@ const Carousel3D = ({
         onMouseLeave={onMouseLeave}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
-        // onTouchStart={onTouchStart}
-        // onTouchEnd={onTouchEnd}
+        onTouchMove={onTouchMove}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
         ref={coverRef}
       ></div>
     </div>

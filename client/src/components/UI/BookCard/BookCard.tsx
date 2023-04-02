@@ -1,17 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import { useState, useRef, useEffect } from "react";
-
-import ridi from "../../../assets/platform_ridi.webp";
-import naverSeries from "../../../assets/platform_naver_series.webp";
-import naverWebtoon from "../../../assets/platform_naver_webtoon.webp";
-import kakaoPage from "../../../assets/platform_kakao_page.png";
-
 import BookCardModal from "@/components/bookCardModal/BookCardModal";
-
 import Portal from "@/components/function/Portal";
-import { useRouter } from "next/router"
-
+import { useRouter } from "next/router";
+import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { bookContentType } from "@/types/books";
 
 interface BookData {
@@ -37,13 +30,13 @@ const BookCard = ({
   height,
   minWidth,
   minHeight,
-  margin
+  margin,
 }: Props) => {
-
   const [user, setUser] = useState<any>(null);
   useEffect(() => {
     setUser(() => navigator.userAgent);
   }, []);
+  const [isD, isT, isM] = useIsResponsive();
 
   const isMobile = () => {
     let is_mobile = false;
@@ -58,14 +51,16 @@ const BookCard = ({
     return is_mobile;
   };
 
-
-  const router = useRouter()
+  const router = useRouter();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [modalToggler, setModalToggler] = useState<boolean>(false);
   const [isMouseOn, setIsMouseOn] = useState<boolean>(false);
-  const platformBase = ["https://comic.naver.com/", "https://series.naver.com/", "https://page.kakao.com/", "https://ridibooks.com/"]
-
- 
+  const platformBase = [
+    "https://comic.naver.com/",
+    "https://series.naver.com/",
+    "https://page.kakao.com/",
+    "https://ridibooks.com/",
+  ];
 
   const showModal = () => {
     setTimeout(function () {
@@ -84,28 +79,32 @@ const BookCard = ({
   const instantlyRedirect = () => {
     if (isMobile() === true) {
       // 모바일에서 Detail 페이지로 바로 이동
-      router.push(`/books/${bookData.bookId}`)
+      router.push(`/books/${bookData.bookId}`);
     }
   };
 
-
-
-  
-
-    
-  const platformRender = bookData?.href?.split(" ").map((el:any, idx:number) => {
+  const platformRender = bookData?.href
+    ?.split(" ")
+    .map((el: any, idx: number) => {
       const findPlatform = (element: string) => {
-          if (el.includes(element)) {
-              return true
-          }
-      }
-      const result = platformBase.findIndex(findPlatform)
+        if (el.includes(element)) {
+          return true;
+        }
+      };
+      const result = platformBase.findIndex(findPlatform);
       return (
-
-          <img src={(result === 0 && "/assets/platform_naver_webtoon.webp") || (result === 1 && "/assets/platform_naver_series.webp") || (result === 2 && "/assets/platform_kakao_page.png") || (result === 3 && "/assets/platform_ridi.webp") || ''} css={platformIconCSS} />
-    
-      )
-  })
+        <img
+          src={
+            (result === 0 && "/assets/platform_naver_webtoon.webp") ||
+            (result === 1 && "/assets/platform_naver_series.webp") ||
+            (result === 2 && "/assets/platform_kakao_page.png") ||
+            (result === 3 && "/assets/platform_ridi.webp") ||
+            ""
+          }
+          css={platformIconCSS}
+        />
+      );
+    });
 
   const modal = (
     <Portal selector=".overlay-root">
@@ -121,7 +120,9 @@ const BookCard = ({
     </Portal>
   );
 
-  const platformBar = <div css={platformBarCSS}>{bookData.href && platformRender}</div>;
+  const platformBar = (
+    <div css={platformBarCSS}>{bookData.href && platformRender}</div>
+  );
 
   return (
     <div
@@ -136,7 +137,9 @@ const BookCard = ({
       onMouseLeave={hideModal}
     >
       {user !== null && isMobile() === false && modalToggler && modal}
-
+      <div css={typeCdWrapCSS(bookData.typeCd === 0, isD)}>
+        {bookData && bookData.typeCd === 0 ? "웹툰" : "웹소설"}
+      </div>
       <div
         className={"bookcard-inner-wrapper"}
         css={cardInnerWrapperCSS({ width, height, minWidth, minHeight })}
@@ -171,7 +174,7 @@ const cardOuterWrapper = ({
   height,
   minWidth,
   minHeight,
-  margin
+  margin,
 }: cardOuterWrapperProps) => {
   return css`
     ${margin && `margin: ${margin}`};
@@ -182,6 +185,23 @@ const cardOuterWrapper = ({
     ${minHeight && `min-height: ${minHeight}`};
   `;
 };
+
+const typeCdWrapCSS = (isWebtoon: boolean, isD: boolean) => css`
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  display: block;
+  margin-right: 6px;
+  text-align: center;
+  font-weight: bold;
+  padding: ${isD ? "0 10px" : "0 6px"};
+  height: ${isD ? "32px" : "25px"};
+  line-height: ${isD ? "32px" : "25px"};
+  font-size: ${isD ? "14px" : "12px"};
+  border-radius: 9px 0px 9px 0px;
+  background-color: ${!isWebtoon ? "#fff" : "var(--main-color)"};
+  color: #000;
+`;
 
 interface CardInnerWrapperProps {
   width: string | undefined;
@@ -224,7 +244,7 @@ const platformBarCSS = css`
 `;
 
 const imageCSS = css`
-  width: auto;
+  width: 100%;
   height: 100%;
   transition: transform 0.3s;
   &:hover {
@@ -250,12 +270,11 @@ const skeletonLoadingTagCSS = ({ state }: skeletonLoadingTagCSSProps) => {
   `;
 };
 
-
 const platformIconCSS = css`
-    width: 1.3vw;
-    min-width: 20px;
-    height: auto;
-    margin: 10px;
-`
+  width: 1.3vw;
+  min-width: 20px;
+  height: auto;
+  margin: 10px;
+`;
 
 export default BookCard;

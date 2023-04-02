@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useState, useEffect, useRef } from "react";
 import { getListByTagName } from "@/api/search/getSearchBooksByTagName";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
-import BookCardSearch from "@/components/UI/BookCard/BookCardSearch";
 import { SearchListView } from "@/components/search/SearchListView";
 import ToggleButton from "@/components/UI/Button/ToggleButton";
 import batchim from "@/components/search/batchim";
