@@ -22,7 +22,7 @@ import DayList from "@/components/bookTab/MenuTab/DayList";
 import SortByGenre from "@/components/bookTab/SortByGenre";
 import SortByDay from "@/components/bookTab/SortByDay";
 import Waterfall from "@/components/scan/Waterfall/Waterfall";
-
+import FloatingButton from "@/components/scan/FloatingButton/FloatingButton";
 
 
 interface HomeProps {
@@ -164,6 +164,7 @@ export default function Home({
 
   return (
     <div ref={indexWrapperRef} css={indexWrapperCSS}>
+      <FloatingButton />
       <div css={bannerWrapperCSS} ref={parentRef}>
         <SwipeableGallery parentRef={parentRef} content={postData} />
       </div>

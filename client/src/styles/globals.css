@@ -203,3 +203,13 @@ h3 {
   background-color: var(--back-color-2);
   border-radius: 10px;
 }
+div {
+  color: var(--text-color);
+}
+button {
+  color: var(--text-color);
+}
+g, path, svg {
+  stroke: var(--text-color);
+
+}
