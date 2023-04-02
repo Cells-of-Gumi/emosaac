@@ -447,11 +447,6 @@ const secondPageCSS = (
       : isTablet
       ? "calc(100vh + 100px)"
       : "100vh"};
-    /* background: ${clickedPlatform === "kakao"
-      ? "linear-gradient(-30deg, #ffe608, #ffb005, #ffa200)"
-      : clickedPlatform === "naver"
-      ? "linear-gradient(-30deg, #00b8a1, #00db96, #00db64)"
-      : "linear-gradient(-30deg, #1e9eff, #2b67f3, #1c5cf3)"}; */
     transition: all 0.3s;
     overflow: hidden;
     & > div {
@@ -470,6 +465,7 @@ const secondPageCSS = (
       transition: all 0.3s;
     }
     & > div::after {
+      overflow: hidden;
       content: "";
       position: absolute;
       z-index: 10;
@@ -484,6 +480,7 @@ const secondPageCSS = (
       visibility: ${clickedPlatform === "naver" ? "visible" : "hidden"};
     }
     & > div::before {
+      overflow: hidden;
       content: "";
       z-index: 10;
       position: absolute;
@@ -506,6 +503,7 @@ const secondContentCSS = (
   clickedPlatform: string
 ) => {
   return css`
+    overflow: hidden;
     position: absolute;
     z-index: 20;
     /* top: calc(50vh +${isDeskTop
