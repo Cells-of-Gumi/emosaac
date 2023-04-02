@@ -10,6 +10,8 @@ import getMyStatic from "./../../api/mypage/getMyStatic";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import getRecommendGenre from "./../../api/mypage/ReommendTopGenre";
 import { getToken } from "@/api/instance";
+import getBookMark from "@/api/user/getBookMark";
+import BookMark from "./BookMark";
 
 const MyPage = ({ myinfo }: any) => {
   const router = useRouter();
@@ -34,6 +36,7 @@ const MyPage = ({ myinfo }: any) => {
     useState<string>("");
   const [topGenreNovelImage, setTopGenreNovelImage] = useState<string>("");
   const [worstGenreNovelImage, setWrostGenreNovelImage] = useState<string>("");
+
   useEffect(() => {
     if (typeCode === 0) {
       getRecommendGenre(0, typeCode, token).then((res) => {
@@ -68,95 +71,103 @@ const MyPage = ({ myinfo }: any) => {
       });
     }
   }, [typeCode]);
+
   return (
     <>
-      <section css={userinfoCSS(isDeskTop, isTablet, isMobile)}>
-        <div css={profileimagewrapperCSS(isDeskTop, isTablet, isMobile)}>
-          <img
-            src={myinfo.imageUrl}
-            alt="프로필 이미지"
-            css={profileimageCSS}
-          />
-        </div>
-        <div css={infowrapCSS}>
-          <h2 css={nicknameCSS}>{myinfo.nickname}</h2>
-          <div css={buttonCSS}>
-            <MiddleWideButton
-              text={"회원 정보 수정"}
-              onClick={onClickMoveEditPage}
+      <div css={allwrapCSS}>
+        <section css={userinfoCSS(isDeskTop, isTablet, isMobile)}>
+          <div css={profileimagewrapperCSS(isDeskTop, isTablet, isMobile)}>
+            <img
+              src={myinfo.imageUrl}
+              alt="프로필 이미지"
+              css={profileimageCSS}
             />
           </div>
-        </div>
-      </section>
-      <section css={routewrapCSS}>
-        <article onClick={onClickWebToon}>웹툰</article>
-        <article onClick={onClickWebNovel}>웹소설</article>
-      </section>
-
-      <section css={chartwrapperCSS(isDeskTop, isTablet, isMobile)}>
-        <article css={chartCSS(isDeskTop, isTablet, isMobile)}>
-          <Chart typeCode={typeCode} />
-        </article>
-        <article css={recommendCSS(isDeskTop, isTablet, isMobile)}>
-          <div css={recommendborderCSS(isDeskTop, isTablet, isMobile)}>
-            <h3 css={recommendexplainCSS}>가장 많이 본 장르의</h3>
-            <h3 css={recommendexplainCSS}>
-              {typeCode === 0 ? "웹툰" : "웹소설"}을 추천해줄게요
-            </h3>
-            <div css={contentCSS}>
-              <div css={imagewrapperCSS}>
-                {typeCode === 0 ? (
-                  <img
-                    css={imageCSS}
-                    src={topGenreWebtoonImage}
-                    alt="많이 본 웹툰 썸네일"
-                    onClick={onClickMoveDetail}
-                  />
-                ) : (
-                  <img
-                    css={imageCSS}
-                    src={topGenreNovelImage}
-                    alt="많이 본 웹소설 썸네일"
-                    onClick={onClickMoveDetail}
-                  />
-                )}
-              </div>
+          <div css={infowrapCSS}>
+            <h2 css={nicknameCSS}>{myinfo.nickname}</h2>
+            <div css={buttonCSS}>
+              <MiddleWideButton
+                text={"회원 정보 수정"}
+                onClick={onClickMoveEditPage}
+              />
             </div>
           </div>
-          <div css={recommendborderCSS(isDeskTop, isTablet, isMobile)}>
-            <h3 css={recommendexplainCSS}>가장 적게 본 장르의 </h3>
-            <h3 css={recommendexplainCSS}>
-              {typeCode === 0 ? "웹툰" : "웹소설"}을 추천해줄게요
-            </h3>
+        </section>
+        <section css={routewrapCSS}>
+          <article onClick={onClickWebToon}>웹툰</article>
+          <article onClick={onClickWebNovel}>웹소설</article>
+        </section>
 
-            <div css={contentCSS}>
-              <div css={imagewrapperCSS}>
-                {typeCode === 0 ? (
-                  <img
-                    css={imageCSS}
-                    src={worstGenreWebtoonImage}
-                    alt="적게 본 웹툰 썸네일"
-                    onClick={onClickMoveDetail}
-                  />
-                ) : (
-                  <img
-                    css={imageCSS}
-                    src={worstGenreNovelImage}
-                    alt="적게 본 웹소설 썸네일"
-                    onClick={onClickMoveDetail}
-                  />
-                )}
+        <section css={chartwrapperCSS(isDeskTop, isTablet, isMobile)}>
+          <article css={chartCSS(isDeskTop, isTablet, isMobile)}>
+            <Chart typeCode={typeCode} />
+          </article>
+          <article css={recommendCSS(isDeskTop, isTablet, isMobile)}>
+            <div css={recommendborderCSS(isDeskTop, isTablet, isMobile)}>
+              <h3 css={recommendexplainCSS}>가장 많이 본 장르의</h3>
+              <h3 css={recommendexplainCSS}>
+                {typeCode === 0 ? "웹툰" : "웹소설"}을 추천해줄게요
+              </h3>
+              <div css={contentCSS}>
+                <div css={imagewrapperCSS}>
+                  {typeCode === 0 ? (
+                    <img
+                      css={imageCSS}
+                      src={topGenreWebtoonImage}
+                      alt="많이 본 웹툰 썸네일"
+                      onClick={onClickMoveDetail}
+                    />
+                  ) : (
+                    <img
+                      css={imageCSS}
+                      src={topGenreNovelImage}
+                      alt="많이 본 웹소설 썸네일"
+                      onClick={onClickMoveDetail}
+                    />
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        </article>
-      </section>
-      <section>
-        <h3>북마크 한 목록</h3>
-      </section>
+            <div css={recommendborderCSS(isDeskTop, isTablet, isMobile)}>
+              <h3 css={recommendexplainCSS}>가장 적게 본 장르의 </h3>
+              <h3 css={recommendexplainCSS}>
+                {typeCode === 0 ? "웹툰" : "웹소설"}을 추천해줄게요
+              </h3>
+
+              <div css={contentCSS}>
+                <div css={imagewrapperCSS}>
+                  {typeCode === 0 ? (
+                    <img
+                      css={imageCSS}
+                      src={worstGenreWebtoonImage}
+                      alt="적게 본 웹툰 썸네일"
+                      onClick={onClickMoveDetail}
+                    />
+                  ) : (
+                    <img
+                      css={imageCSS}
+                      src={worstGenreNovelImage}
+                      alt="적게 본 웹소설 썸네일"
+                      onClick={onClickMoveDetail}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+        <section>
+          <BookMark typeCode={typeCode} />
+        </section>
+      </div>
     </>
   );
 };
+
+const allwrapCSS = css`
+  display: flex;
+  flex-direction: column;
+`;
 const userinfoCSS = (
   isDeskTop: boolean,
   isTablet: boolean,
@@ -220,9 +231,12 @@ const chartwrapperCSS = (
   display: ${isDeskTop ? "grid" : isTablet ? "flex" : "flex"};
   flex-direction: column;
   grid-template-columns: 1fr 1.5fr;
+  justify-content: ${isTablet ? "center" : "center"};
+  align-items:  ${isTablet ? "center" : "center"};
   column-gap: 50px;
   width: 100%;
-  height: 400px;
+  /* height: 400px; */
+  min-height: 400px; // 변경된 부분입니다.
 `;
 
 const chartCSS = (
@@ -230,7 +244,7 @@ const chartCSS = (
   isTablet: boolean,
   isMobile: boolean
 ) => css`
-  height: 400px;
+  height: ${isDeskTop ? "400px" : "300px"};
   width: ${isDeskTop ? "380px" : "100%"};
   margin-top: ${isDeskTop ? "100px" : isTablet ? "50px" : "50px"};
   margin-left: ${isDeskTop ? "60px" : "null"};
@@ -243,14 +257,16 @@ const recommendCSS = (
   isTablet: boolean,
   isMobile: boolean
 ) => css`
-  margin-top: 45px;
+  margin-top: ${isDeskTop ? "45px" : isTablet ? "20px" : "20px"};
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
+  min-height: 100%;
   display: ${isDeskTop ? "grid" : isTablet ? "flex" : "flex"};
-  align-content: start;
-  justify-content: center;
+  align-content: ${isDeskTop ? "start" : "center"};
+  justify-content: ${isDeskTop ? "start" : "center"};
   grid-template-columns: 1fr 1fr;
   column-gap: 20px;
+  margin-left: ${isTablet ? "20px" : isMobile ? "20px" : "null"};
   & > div {
     /* margin-right: 200px; */
     /* line-height: 200px; */
@@ -271,6 +287,7 @@ const recommendborderCSS = (
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 const recommendexplainCSS = css`
@@ -299,4 +316,5 @@ const imageCSS = css`
   border-radius: 5px;
   cursor: pointer;
 `;
+
 export default MyPage;
