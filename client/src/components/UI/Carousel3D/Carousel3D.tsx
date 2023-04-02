@@ -45,6 +45,8 @@ const Carousel3D = ({
   const cellCount = 9;
   const coverRef = useRef<HTMLDivElement>(null);
 
+  console.log(bookData);
+
   const onMouseDown = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setMouseDownClientX(e.clientX);
     setMouseDownClientY(e.clientY);
@@ -59,8 +61,8 @@ const Carousel3D = ({
     setIsMouseActive(false);
   };
   const onTouchStart = (e: any) => {
-    setMouseDownClientX(e.changedTouches[0].clientX);
-    setMouseDownClientY(e.changedTouches[0].clientY);
+    setMouseDownClientX(e.changedTouches[0].clientX * 10);
+    setMouseDownClientY(e.changedTouches[0].clientY * 10);
     setIsMouseLeave(false);
   };
   const onTouchEnd = (e: any) => {

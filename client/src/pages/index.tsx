@@ -45,7 +45,7 @@ export default function index() {
       setIsLogin(false);
     }
 
-    const [prevId, prevRegist, size, typeCd] = [20000, "2023.03.20", 50, 0];
+    const [prevId, prevRegist, size, typeCd] = [20000, "2023.03.20", 100, 1];
     getNewBooksForPlatform({ prevId, prevRegist, size, typeCd, token }).then(
       (res) => {
         if (res !== null) {
@@ -503,7 +503,6 @@ const secondContentCSS = (
   clickedPlatform: string
 ) => {
   return css`
-    overflow: hidden;
     position: absolute;
     z-index: 20;
     /* top: calc(50vh +${isDeskTop
@@ -513,6 +512,7 @@ const secondContentCSS = (
       : "200px"}); */
     left: calc(50vw - ${isDeskTop ? "150px" : isTablet ? "150px" : "150px"});
     width: 300px;
+    padding-top: ${isMobile ? "50px" : "0"};
     & > div:nth-of-type(1) {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
