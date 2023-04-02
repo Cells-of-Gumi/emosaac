@@ -47,7 +47,7 @@ const SearchBookCard = ({
   const platformBar = <div css={platformBarCSS}></div>;
 
   const instantlyRedirect = () => {
-    router.replace("/books/2");
+    router.replace(`/books/${bookData.bookId}`);
   };
 
   return (

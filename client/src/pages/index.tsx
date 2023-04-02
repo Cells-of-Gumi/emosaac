@@ -46,6 +46,7 @@ export default function index() {
       (res) => {
         if (res !== null) {
           const content = res?.content;
+          console.log(content);
           const kakao_content = content.filter((c) => c.platform === 1);
           const naver_content = content.filter((c) => c.platform === 2);
           const ridi_content = content.filter((c) => c.platform === 3);
@@ -85,7 +86,6 @@ export default function index() {
     () =>
       throttle(() => {
         const htmlEl = document.getElementsByTagName("html")[0];
-        console.log(currentScroll);
         // console.log(htmlEl.scrollTop);
         if (htmlEl && htmlEl.scrollTop < 2000) {
           if (currentScroll < htmlEl.scrollTop) {
@@ -151,11 +151,16 @@ export default function index() {
               </h2>
               <div>
                 여기저기 흩어져있는 컨텐츠, 찾아다니느라 불편하셨죠? <br />
-                이모작에서는 약 2만 여건의 컨텐츠를 한 번에 만나보실 수
-                있습니다.
+                이모작에서는 <b>약 2만 여건의</b> 웹툰 / 웹소설 컨텐츠를
+                {isMobile ? <br /> : " "}한 번에 만나보실 수 있습니다.
               </div>
             </div>
-            <div css={secondContentCSS({ isDeskTop, isTablet, isMobile })}>
+            <div
+              css={secondContentCSS(
+                { isDeskTop, isTablet, isMobile },
+                clickedPlatform
+              )}
+            >
               <div>
                 <div onClick={() => onClickPlatform("kakao")}>
                   {clickedPlatform === "kakao" ? (
@@ -204,7 +209,7 @@ export default function index() {
               <div>당신의 취향에 맞는 컨텐츠를 추천받아보세요.</div>
             </h2>
             <div>
-              여기저기 흩어져있는 컨텐츠, 찾아다니느라 불편하셨죠? <br />
+              여기저기 흩어져있는 컨텐츠, <br /> 찾아다니느라 불편하셨죠? <br />
               이모작에서는 약 2만 여건의 컨텐츠를 한 번에 만나보실 수 있습니다.
             </div>
           </div>
@@ -368,6 +373,8 @@ const titleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     & > div:nth-of-type(1) {
       margin-top: 20px;
       line-height: 25px;
+      font-size: ${isMobile ? "14px" : "18px"};
+      word-break: keep-all;
     }
   `;
 };
@@ -389,6 +396,7 @@ const secondPageCSS = (
       ? "linear-gradient(-30deg, #00b8a1, #00db96, #00db64)"
       : "linear-gradient(-30deg, #1e9eff, #2b67f3, #1c5cf3)"}; */
     transition: all 0.3s;
+    overflow: hidden;
     & > div {
       ${isDeskTop &&
       "padding-left: 105px; padding-right: 105px; padding-top: 50px;"}
@@ -436,7 +444,10 @@ const secondPageCSS = (
   `;
 };
 
-const secondContentCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
+const secondContentCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  clickedPlatform: string
+) => {
   return css`
     position: absolute;
     z-index: 20;
@@ -446,21 +457,49 @@ const secondContentCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
       ? "100px"
       : "200px"}); */
     left: calc(50vw - ${isDeskTop ? "150px" : isTablet ? "150px" : "150px"});
-    width: ${isDeskTop ? "300px" : isTablet ? "300px" : "300px"};
+    width: 300px;
     & > div:nth-of-type(1) {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       margin-top: 20%;
       margin-bottom: 30px;
-      column-gap: ${!isMobile ? "20px" : "20px"};
-      /* padding: ${isDeskTop ? "0 105px" : isTablet ? "0 50px" : "0 20px"}; */
+      column-gap: 20px;
       & > div {
         cursor: pointer;
         border-radius: 10%;
+        height: calc(260px / 3);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+        transition: all 0.3s;
         & > img {
           width: 100%;
           height: auto;
           object-fit: cover;
+        }
+      }
+      & > div:nth-of-type(1) {
+        ${clickedPlatform === "kakao" &&
+        "box-shadow: 0 10px 0 #965001; transform: translateY(-10px);"}
+        :hover {
+          ${clickedPlatform !== "kakao" &&
+          "box-shadow: 0 10px 0 #965001; transform: translateY(-10px);"}
+        }
+      }
+      & > div:nth-of-type(2) {
+        ${clickedPlatform === "naver" &&
+        "box-shadow: 0 10px 0 #007c4a; transform: translateY(-10px);"}
+        :hover {
+          ${clickedPlatform !== "naver" &&
+          "box-shadow: 0 10px 0 #007c4a; transform: translateY(-10px);"}
+        }
+      }
+      & > div:nth-of-type(3) {
+        ${clickedPlatform === "ridi" &&
+        "box-shadow: 0 10px 0 #0f1187; transform: translateY(-10px);"}
+        :hover {
+          ${clickedPlatform !== "ridi" &&
+          "box-shadow: 0 10px 0 #0f1187; transform: translateY(-10px);"}
         }
       }
     }
