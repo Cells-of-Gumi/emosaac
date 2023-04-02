@@ -11,6 +11,8 @@ import StarRating from "@/components/bookDetail/StarRating";
 import TagList from "@/components/bookDetail/TagList";
 import { putBookRating } from "@/api/book/putBookRating";
 
+
+
 interface WaterfallCardModalProps {
   modalToggler: boolean;
   isMouseOn: boolean;
@@ -60,13 +62,7 @@ const WaterfallCardModal = ({
     
   }, []);
 
-  useEffect(() => {
-    window.addEventListener("wheel", onWheelHandler);
 
-    return () => {
-      window.removeEventListener("wheel", onWheelHandler);
-    }
-  }, [])
 
   const modalHandler = () => {
     
@@ -92,23 +88,8 @@ const WaterfallCardModal = ({
     
   };
 
-  const onWheelHandler = () => {
-    if (wrapperRef.current !== null) {
-      wrapperRef.current.style.width = parentRef.current.clientWidth + 'px'
-      wrapperRef.current.style.height = parentRef.current.clientHeight + 'px'
-      wrapperRef.current.style.left = parentRef.current.getBoundingClientRect().left + 'px'
-      setTimeout(function() { 
-        if (wrapperRef.current !== null) {
-          wrapperRef.current.style.top = parentRef.current.getBoundingClientRect().top + 'px' 
-          wrapperRef.current.style.opacity = '0'
-        }
-      }, 200);
-    }
-  }
 
-  const onClickNavigateHandler = () => {
-    router.push(`/books/${bookData.bookId}`)
-  }
+
 
   const putBookRatingHandler = (score: number) => {
     putBookRating({ bookId: bookData.bookId, score: score });
@@ -214,32 +195,32 @@ const wrapperCSS = ({
   isOpened,
   isClosing
 }: wrapperCSSProps) => {
-  const isLeftEdge =
-    (widthValue - parentRef?.current?.clientWidth) / 2 >=
-    parentRef?.current?.getBoundingClientRect().left;
-  const isRightEdge =
-    parentRef?.current?.getBoundingClientRect().left +
-      (widthValue - (widthValue - parentRef?.current?.clientWidth) / 2) >=
-    document.body.offsetWidth;
+  // const isLeftEdge =
+  //   (widthValue - parentRef?.current?.clientWidth) / 2 >=
+  //   parentRef?.current?.getBoundingClientRect().left;
+  // const isRightEdge =
+  //   parentRef?.current?.getBoundingClientRect().left +
+  //     (widthValue - (widthValue - parentRef?.current?.clientWidth) / 2) >=
+  //   document.body.offsetWidth;
 
-  const leftStandard = `left: ${
-    modalToggler && isLeftEdge === true
-      ? "42"
-      : parentRef?.current?.getBoundingClientRect().left -
-        (widthValue - parentRef?.current?.clientWidth) / 2
-  }px;`; // parentRef?.current?.getBoundingClientRect().left
-  const rightStandard = `left: ${
-    modalToggler && isRightEdge === true
-      ? document.body.offsetWidth - widthValue - 42
-      : parentRef?.current?.getBoundingClientRect().left
-  }px`;
+  // const leftStandard = `left: ${
+  //   modalToggler && isLeftEdge === true
+  //     ? "42"
+  //     : parentRef?.current?.getBoundingClientRect().left -
+  //       (widthValue - parentRef?.current?.clientWidth) / 2
+  // }px;`; // parentRef?.current?.getBoundingClientRect().left
+  // const rightStandard = `left: ${
+  //   modalToggler && isRightEdge === true
+  //     ? document.body.offsetWidth - widthValue - 42
+  //     : parentRef?.current?.getBoundingClientRect().left
+  // }px`;
 
-  const activated = isRightEdge === true ? rightStandard : leftStandard;
+  // const activated = isRightEdge === true ? rightStandard : leftStandard;
 
   return css`
     transform: ${isOpened ? (isClosing ? `rotateY(${rotateY * 1.6}deg)` : null) : `rotateY(${rotateY * 1.6}deg)`} ;
     position: absolute;
-    z-index: 999999;
+    z-index: 999999999;
     transition-property: width height;
     will-change: width height left top  transform;
     transition-duration: 0.3s;

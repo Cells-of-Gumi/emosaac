@@ -23,6 +23,10 @@ export default function index() {
   const [currentScroll, setCurrentScroll] = useState<number>(0);
   const [isLogin, setIsLogin] = useState(false);
   const [clickedPlatform, setClickedPlatform] = useState("kakao");
+  const [mouseCursorClientX, setMouseCursorClientX] = useState(0);
+  const [mouseCursorClientY, setMouseCursorClientY] = useState(0);
+  const [isMouseOver, setIsMouseOver] = useState(false);
+  const [isMouseActive, setIsMouseActive] = useState(false);
   const [booksByPlatform, setBooksByPlatform] = useState<{
     kakao: any[] | null;
     naver: any[] | null;
@@ -61,6 +65,7 @@ export default function index() {
   }, []);
 
   const laptopRef = useRef<HTMLImageElement>(null);
+  const pageRef = useRef<HTMLDivElement>(null);
 
   function onClickPlatform(platform: string) {
     setClickedPlatform(platform);
@@ -80,6 +85,13 @@ export default function index() {
     const clientX = centerX && centerX - event.clientX;
     const clientY = centerY && centerY - event.clientY;
     clientX && clientY && setRotateXY([clientX / centerX, clientY / centerY]);
+  }
+
+  function onCursorMove(event: any) {
+    const htmlEl = document.getElementsByTagName("html")[0];
+    const scrollTop = htmlEl.scrollTop;
+    setMouseCursorClientX(event.clientX);
+    scrollTop !== undefined && setMouseCursorClientY(event.clientY + scrollTop);
   }
 
   const onWheel = useMemo(
@@ -105,7 +117,25 @@ export default function index() {
   useEffect(() => {}, []);
   return (
     <div onWheel={onWheel}>
-      <div css={fullPageCSS({ isDeskTop, isTablet, isMobile })}>
+      <div
+        css={fullPageCSS(
+          { isDeskTop, isTablet, isMobile },
+          mouseCursorClientX,
+          mouseCursorClientY,
+          isMouseOver,
+          isMouseActive
+        )}
+        onMouseMove={onCursorMove}
+        ref={pageRef}
+      >
+        <div onMouseEnter={() => setIsMouseOver(true)}>
+          {!isMouseActive && (
+            <>
+              <p>Click &</p>
+              <p>Drag</p>
+            </>
+          )}
+        </div>
         <div
           css={firstPageTestCSS({ isDeskTop, isTablet, isMobile })}
           onMouseMove={onMouseMove}
@@ -196,6 +226,14 @@ export default function index() {
                 setCarouselStartAngle={setCarouselAngle}
                 carouselStartAngle={carouselAngle}
                 bookData={booksByPlatform}
+                mouseCursorClientX={mouseCursorClientX}
+                setMouseCursorClientX={setMouseCursorClientX}
+                mouseCursorClientY={mouseCursorClientY}
+                setMouseCursorClientY={setMouseCursorClientY}
+                isMouseOver={isMouseOver}
+                setIsMouseOver={setIsMouseOver}
+                isMouseActive={isMouseActive}
+                setIsMouseActive={setIsMouseActive}
               />
             </div>
           </div>
@@ -227,18 +265,37 @@ interface IsResponsive {
   isMobile: boolean;
 }
 
-const fullPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
+const fullPageCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  mouseCursorClientX: number,
+  mouseCursorClientY: number,
+  isMouseOver: boolean,
+  isMouseActive: boolean
+) => {
   return css`
     background-color: #090a0d;
     color: #fff;
-    & > div {
-      /* ${isDeskTop &&
-      "padding-left: 105px; padding-right: 105px; padding-top: 50px;"}
-      ${isTablet &&
-      "padding-left: 50px; padding-right: 50px;  padding-top: 50px;"}
-      ${isMobile &&
-      "padding-left: 20px; padding-right: 20px;  padding-top: 50px;"} */
-      /* overflow: hidden; */
+    & > div:nth-of-type(1) {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      cursor: pointer;
+      position: absolute;
+      z-index: 30;
+      left: ${mouseCursorClientX}px;
+      top: ${mouseCursorClientY}px;
+      visibility: ${isMouseOver ? "visible" : "hidden"};
+      opacity: ${isMouseOver ? "1" : "0"};
+      clear: both;
+      height: ${isMouseActive ? "50px" : "100px"};
+      width: ${isMouseActive ? "50px" : "100px"};
+      border-radius: 50%;
+      background-color: ${isMouseActive
+        ? "var(--main-color-2)"
+        : "var(--main-color)"};
+      transition: all 0.3s;
+      text-align: center;
     }
   `;
 };
@@ -390,11 +447,6 @@ const secondPageCSS = (
       : isTablet
       ? "calc(100vh + 100px)"
       : "100vh"};
-    /* background: ${clickedPlatform === "kakao"
-      ? "linear-gradient(-30deg, #ffe608, #ffb005, #ffa200)"
-      : clickedPlatform === "naver"
-      ? "linear-gradient(-30deg, #00b8a1, #00db96, #00db64)"
-      : "linear-gradient(-30deg, #1e9eff, #2b67f3, #1c5cf3)"}; */
     transition: all 0.3s;
     overflow: hidden;
     & > div {
@@ -413,6 +465,7 @@ const secondPageCSS = (
       transition: all 0.3s;
     }
     & > div::after {
+      overflow: hidden;
       content: "";
       position: absolute;
       z-index: 10;
@@ -427,6 +480,7 @@ const secondPageCSS = (
       visibility: ${clickedPlatform === "naver" ? "visible" : "hidden"};
     }
     & > div::before {
+      overflow: hidden;
       content: "";
       z-index: 10;
       position: absolute;
@@ -449,6 +503,7 @@ const secondContentCSS = (
   clickedPlatform: string
 ) => {
   return css`
+    overflow: hidden;
     position: absolute;
     z-index: 20;
     /* top: calc(50vh +${isDeskTop
