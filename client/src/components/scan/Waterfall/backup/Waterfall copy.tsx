@@ -6,9 +6,8 @@ import Swipe from "react-easy-swipe";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { bookContentType } from "@/types/books";
 import { throttle } from "lodash";
-import {useInterval} from "./useInterval";
+import { useInterval } from "@/components/useInterval";
 import WaterfallCard from "../WaterfallCard/WaterfallCard";
-
 
 interface HighlightedCarousel {
   bookData: bookContentType[];
@@ -20,8 +19,18 @@ interface HighlightedCarousel {
   duration?: number;
 }
 
-const Waterfall = ({ bookData, windowWrapperRef, angleTop, angleBottom, identifier, rotate, duration }: HighlightedCarousel) => {
-  const [bookDataList, setBookDataList] = useState<bookContentType[]>([...bookData]);
+const Waterfall = ({
+  bookData,
+  windowWrapperRef,
+  angleTop,
+  angleBottom,
+  identifier,
+  rotate,
+  duration,
+}: HighlightedCarousel) => {
+  const [bookDataList, setBookDataList] = useState<bookContentType[]>([
+    ...bookData,
+  ]);
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const dummyNormalRef = useRef<HTMLInputElement>(null);
   // const wrapperRef = useRef<any>([]);
@@ -29,8 +38,7 @@ const Waterfall = ({ bookData, windowWrapperRef, angleTop, angleBottom, identifi
 
   const dummyHighlightedRef = useRef<HTMLInputElement>(null);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const [showCount, setShowCount] = useState<number>(10)
-
+  const [showCount, setShowCount] = useState<number>(10);
 
   const cardLayout = {
     widthValue: 40,
@@ -43,7 +51,10 @@ const Waterfall = ({ bookData, windowWrapperRef, angleTop, angleBottom, identifi
   };
 
   useEffect(() => {
-    if (bookDataList[0].title !== bookDataList[bookDataList.length - showCount].title) {
+    if (
+      bookDataList[0].title !==
+      bookDataList[bookDataList.length - showCount].title
+    ) {
       const temp = bookDataList.concat(bookDataList.slice(0, showCount));
       setBookDataList(() => temp);
     }
@@ -53,17 +64,19 @@ const Waterfall = ({ bookData, windowWrapperRef, angleTop, angleBottom, identifi
   }, []);
 
   // useEffect(()=>{
-    
 
   // }, []);
 
-  const interval = useInterval(()=>{
-    if (rotate === 1) {
-      nextBtnHandler()
-    } else if (rotate === -1) {
-      prevBtnHandler()
-    }
-  }, duration !== undefined ? duration : 1000);
+  const interval = useInterval(
+    () => {
+      if (rotate === 1) {
+        nextBtnHandler();
+      } else if (rotate === -1) {
+        prevBtnHandler();
+      }
+    },
+    duration !== undefined ? duration : 1000
+  );
   // const handleResize = () => {
   //   if (carouselWrapperRef.current !== null) {
   //     const calcLeft =
@@ -75,46 +88,38 @@ const Waterfall = ({ bookData, windowWrapperRef, angleTop, angleBottom, identifi
   //   }
   // }
 
-  const [windowWidth, setWindowWidth] = useState<any>(0)
-  
+  const [windowWidth, setWindowWidth] = useState<any>(0);
+
   const handleResize = useMemo(
     () =>
-        throttle((event) => {
-          if (carouselWrapperRef.current !== null && dummyNormalRef.current !== null) {
-
-            // const calcWidth =
-            // dummyNormalRef.current.clientWidth < cardLayout.minWidthValue
-            //   ? (cardLayout.minWidthValue + cardLayout.minSpaceValue) * (showCount - 1) + cardLayout.minHighlightedWidthValue + "px"
-            //   : (cardLayout.widthValue + cardLayout.spaceValue) * (showCount - 1) + cardLayout.highlightedWidthValue + cardLayout.unit;
-
-            // carouselWrapperRef.current.style.width = calcWidth
-
-            
-            // const calcLeft =
-            // carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth
-            //   ? -(
-            //       carouselWrapperRef.current.clientWidth - windowWrapperRef?.current?.offsetWidth
-            //     ) / 2 + "px" : "0px";
-            // carouselWrapperRef.current.style.left = calcLeft
-
-
-            
-
-          }
-          setWindowWidth(() => window.innerWidth)
-        }, 1000),
+      throttle((event) => {
+        if (
+          carouselWrapperRef.current !== null &&
+          dummyNormalRef.current !== null
+        ) {
+          // const calcWidth =
+          // dummyNormalRef.current.clientWidth < cardLayout.minWidthValue
+          //   ? (cardLayout.minWidthValue + cardLayout.minSpaceValue) * (showCount - 1) + cardLayout.minHighlightedWidthValue + "px"
+          //   : (cardLayout.widthValue + cardLayout.spaceValue) * (showCount - 1) + cardLayout.highlightedWidthValue + cardLayout.unit;
+          // carouselWrapperRef.current.style.width = calcWidth
+          // const calcLeft =
+          // carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth
+          //   ? -(
+          //       carouselWrapperRef.current.clientWidth - windowWrapperRef?.current?.offsetWidth
+          //     ) / 2 + "px" : "0px";
+          // carouselWrapperRef.current.style.left = calcLeft
+        }
+        setWindowWidth(() => window.innerWidth);
+      }, 1000),
     []
-);
-
+  );
 
   useEffect(() => {
-    
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
-    }
-  }, [])
-
+    };
+  }, []);
 
   const prevBtnHandler = () => {
     if (currentIdx > 0) {
@@ -135,27 +140,40 @@ const Waterfall = ({ bookData, windowWrapperRef, angleTop, angleBottom, identifi
   const renderBooks = bookDataList
     .slice(currentIdx, currentIdx + showCount)
     .map((el, idx) => {
-      const calcRotate: number = isDeskTop ? 30 : 45
-      const result = -(Math.floor(showCount / 2) - idx) * calcRotate
+      const calcRotate: number = isDeskTop ? 30 : 45;
+      const result = -(Math.floor(showCount / 2) - idx) * calcRotate;
       return (
         // <div key={`${el.title}-${windowWidth}`} css={css`perspective: 600px;`}>
-          <div
-            // ref={(ele) => (wrapperRef.current[idx] = ele)}
-            key={`${identifier}-${el.title}-${windowWidth}`}
-            css={imgWrapperCSS({showCount, idx, widthValue: cardLayout.widthValue, heightValue: cardLayout.heightValue, unit: cardLayout.unit, minWidthValue: cardLayout.minWidthValue, minHeightValue: cardLayout.minHeightValue, dummyRef: dummyNormalRef, duration, isDeskTop, isTablet, isMobile})}
-          >
-            {/* <img src={el.img} css={imgCSS} /> */}
-            <WaterfallCard rotateY={result}/>
-            <BookCard
-              bookData={el}
-              showPlatform={true}
-              width={`${cardLayout.widthValue}${cardLayout.unit}`}
-              height={`${cardLayout.heightValue}${cardLayout.unit}`}
-              minWidth={`${cardLayout.minWidthValue}px`}
-              minHeight={`${cardLayout.minHeightValue}px`}
-            />
-            {/* <img src={el.img} css={imgCSS({idx, widthValue: cardLayout.widthValue, heightValue: cardLayout.heightValue, unit: cardLayout.unit, highlightedWidthValue: cardLayout.highlightedWidthValue, highlightedHeightValue: cardLayout.highlightedHeightValue, spaceValue: cardLayout.spaceValue, normalRef: dummyNormalRef, highlightedRef: dummyHighlightedRef, minWidthValue: cardLayout.minWidthValue, minHeightValue: cardLayout.minHeightValue, minHighlightedWidthValue: cardLayout.minHighlightedWidthValue, minHighlightedHeightValue: cardLayout.minHighlightedHeightValue, minSpaceValue: cardLayout.minSpaceValue })} /> */}
-          </div>
+        <div
+          // ref={(ele) => (wrapperRef.current[idx] = ele)}
+          key={`${identifier}-${el.title}-${windowWidth}`}
+          css={imgWrapperCSS({
+            showCount,
+            idx,
+            widthValue: cardLayout.widthValue,
+            heightValue: cardLayout.heightValue,
+            unit: cardLayout.unit,
+            minWidthValue: cardLayout.minWidthValue,
+            minHeightValue: cardLayout.minHeightValue,
+            dummyRef: dummyNormalRef,
+            duration,
+            isDeskTop,
+            isTablet,
+            isMobile,
+          })}
+        >
+          {/* <img src={el.img} css={imgCSS} /> */}
+          <WaterfallCard rotateY={result} />
+          <BookCard
+            bookData={el}
+            showPlatform={true}
+            width={`${cardLayout.widthValue}${cardLayout.unit}`}
+            height={`${cardLayout.heightValue}${cardLayout.unit}`}
+            minWidth={`${cardLayout.minWidthValue}px`}
+            minHeight={`${cardLayout.minHeightValue}px`}
+          />
+          {/* <img src={el.img} css={imgCSS({idx, widthValue: cardLayout.widthValue, heightValue: cardLayout.heightValue, unit: cardLayout.unit, highlightedWidthValue: cardLayout.highlightedWidthValue, highlightedHeightValue: cardLayout.highlightedHeightValue, spaceValue: cardLayout.spaceValue, normalRef: dummyNormalRef, highlightedRef: dummyHighlightedRef, minWidthValue: cardLayout.minWidthValue, minHeightValue: cardLayout.minHeightValue, minHighlightedWidthValue: cardLayout.minHighlightedWidthValue, minHighlightedHeightValue: cardLayout.minHighlightedHeightValue, minSpaceValue: cardLayout.minSpaceValue })} /> */}
+        </div>
         // </div>
       );
     });
@@ -190,7 +208,15 @@ const Waterfall = ({ bookData, windowWrapperRef, angleTop, angleBottom, identifi
   return (
     // <div css={carouselOuterWrapperCSS({highlightedHeightValue: cardLayout.highlightedHeightValue, unit: cardLayout.unit, minHighlightedHeightValue: cardLayout.minHighlightedHeightValue, highlightedRef: dummyHighlightedRef})}></div>
 
-    <div className={"carousel-outer-wrapper"} css={carouselParentCSS({heightValue: cardLayout.heightValue, unit: cardLayout.unit, minHeightValue: cardLayout.minHeightValue, dummyRef: dummyNormalRef })} >
+    <div
+      className={"carousel-outer-wrapper"}
+      css={carouselParentCSS({
+        heightValue: cardLayout.heightValue,
+        unit: cardLayout.unit,
+        minHeightValue: cardLayout.minHeightValue,
+        dummyRef: dummyNormalRef,
+      })}
+    >
       <Swipe
         onSwipeStart={(event: any) => {
           event.stopPropagation();
@@ -201,9 +227,24 @@ const Waterfall = ({ bookData, windowWrapperRef, angleTop, angleBottom, identifi
       >
         {isMobile === false && indicatorBtn}
 
-        <div css={carouselOuterWrapperCSS({angleTop, angleBottom, isDeskTop, isTablet, isMobile})}>
-          <div css={carouselInnerWrapperCSS({showCount, widthValue: cardLayout.widthValue, heightValue: cardLayout.heightValue, unit: cardLayout.unit})}>
-          {renderBooks}
+        <div
+          css={carouselOuterWrapperCSS({
+            angleTop,
+            angleBottom,
+            isDeskTop,
+            isTablet,
+            isMobile,
+          })}
+        >
+          <div
+            css={carouselInnerWrapperCSS({
+              showCount,
+              widthValue: cardLayout.widthValue,
+              heightValue: cardLayout.heightValue,
+              unit: cardLayout.unit,
+            })}
+          >
+            {renderBooks}
           </div>
         </div>
 
@@ -216,12 +257,6 @@ const Waterfall = ({ bookData, windowWrapperRef, angleTop, angleBottom, identifi
             unit: cardLayout.unit,
           })}
         />
-        
-
-      
-
-        
-        
       </Swipe>
     </div>
   );
@@ -273,7 +308,6 @@ const nextBtnCSS = css`
   }
 `;
 
-
 interface imgWrapperCSSProps {
   showCount: number;
   idx: number;
@@ -287,15 +321,32 @@ interface imgWrapperCSSProps {
   isDeskTop: boolean;
   isTablet: boolean;
   isMobile: boolean;
-
 }
-const imgWrapperCSS = ({showCount, idx, widthValue, heightValue, unit, minWidthValue, minHeightValue, dummyRef, duration, isDeskTop, isTablet, isMobile }: imgWrapperCSSProps) => {
-  const widthCalc = dummyRef?.current?.clientWidth > minWidthValue ? widthValue + unit : minWidthValue + 'px'
-  const heightCalc = dummyRef?.current?.clientHeight > minHeightValue ? heightValue + unit : minHeightValue + 'px'
-  const calcRotate: number = isDeskTop ? 30 : 45
-  const calcTranslate: number = isDeskTop ? 2 : 1.3
+const imgWrapperCSS = ({
+  showCount,
+  idx,
+  widthValue,
+  heightValue,
+  unit,
+  minWidthValue,
+  minHeightValue,
+  dummyRef,
+  duration,
+  isDeskTop,
+  isTablet,
+  isMobile,
+}: imgWrapperCSSProps) => {
+  const widthCalc =
+    dummyRef?.current?.clientWidth > minWidthValue
+      ? widthValue + unit
+      : minWidthValue + "px";
+  const heightCalc =
+    dummyRef?.current?.clientHeight > minHeightValue
+      ? heightValue + unit
+      : minHeightValue + "px";
+  const calcRotate: number = isDeskTop ? 30 : 45;
+  const calcTranslate: number = isDeskTop ? 2 : 1.3;
   return css`
-
     position: absolute;
     /* width: 190px;
     height: 120px; */
@@ -315,29 +366,35 @@ const imgWrapperCSS = ({showCount, idx, widthValue, heightValue, unit, minWidthV
     width: ${widthCalc};
     height: ${heightCalc};
 
-
-    transform: rotateY(${(Math.floor(showCount / 2) - idx) * calcRotate}deg) translateZ(calc(${widthCalc} * ${calcTranslate})) scaleX(-1); 
-
-  `
-}
+    transform: rotateY(${(Math.floor(showCount / 2) - idx) * calcRotate}deg)
+      translateZ(calc(${widthCalc} * ${calcTranslate})) scaleX(-1);
+  `;
+};
 
 interface carouselParentCSSProps {
   heightValue: number;
   unit: string;
   minHeightValue: number;
-  dummyRef: any
+  dummyRef: any;
 }
 
-const carouselParentCSS = ({heightValue, unit, minHeightValue, dummyRef }: carouselParentCSSProps) => {
-  const heightCalc = dummyRef?.current?.clientHeight > minHeightValue ? heightValue + unit : minHeightValue + 'px'
+const carouselParentCSS = ({
+  heightValue,
+  unit,
+  minHeightValue,
+  dummyRef,
+}: carouselParentCSSProps) => {
+  const heightCalc =
+    dummyRef?.current?.clientHeight > minHeightValue
+      ? heightValue + unit
+      : minHeightValue + "px";
 
   return css`
     position: relative;
     width: 100vw;
     height: calc(${heightCalc} + 10px);
-    
-  `
-}
+  `;
+};
 
 interface carouselOuterWrapperCSSProps {
   angleTop: number | undefined;
@@ -346,26 +403,30 @@ interface carouselOuterWrapperCSSProps {
   isTablet: boolean;
   isMobile: boolean;
 }
-const carouselOuterWrapperCSS = ({angleTop, angleBottom, isDeskTop, isTablet, isMobile}: carouselOuterWrapperCSSProps) => {
-
+const carouselOuterWrapperCSS = ({
+  angleTop,
+  angleBottom,
+  isDeskTop,
+  isTablet,
+  isMobile,
+}: carouselOuterWrapperCSSProps) => {
   return css`
     /* border: 1px solid #CCC; */
-  /* margin: 40px 0; */
-  position: relative;
-  width: 1px;
-  height: 500px;
-  /* margin: 40px auto; */
-  margin: auto;
-  perspective: 50vw;
+    /* margin: 40px 0; */
+    position: relative;
+    width: 1px;
+    height: 500px;
+    /* margin: 40px auto; */
+    margin: auto;
+    perspective: 50vw;
 
-  left: ${isDeskTop ? '13%' : '18%'};
-  padding-top: ${angleTop}px;
-  margin-top: -${angleBottom ? '7' : angleTop}px;
-  padding-bottom: ${angleBottom}px;
-  margin-bottom: -${angleBottom}px;
-  `
-}
-
+    left: ${isDeskTop ? "13%" : "18%"};
+    padding-top: ${angleTop}px;
+    margin-top: -${angleBottom ? "7" : angleTop}px;
+    padding-bottom: ${angleBottom}px;
+    margin-bottom: -${angleBottom}px;
+  `;
+};
 
 interface carouselInnerWrapperCSSProps {
   showCount: number;
@@ -373,25 +434,24 @@ interface carouselInnerWrapperCSSProps {
   heightValue: number;
   unit: string;
 }
-const carouselInnerWrapperCSS = ({showCount, widthValue, heightValue, unit}: carouselInnerWrapperCSSProps) => {
+const carouselInnerWrapperCSS = ({
+  showCount,
+  widthValue,
+  heightValue,
+  unit,
+}: carouselInnerWrapperCSSProps) => {
   // const angle = idx / showCount * -360;
 
   return css`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  /* transform: translateZ(-288px); */
-  transform-style: preserve-3d;
-  transition: transform 0.3s;
-  transform: rotateY(180deg);
-
-  
-  `
-}
-
-
-
-
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /* transform: translateZ(-288px); */
+    transform-style: preserve-3d;
+    transition: transform 0.3s;
+    transform: rotateY(180deg);
+  `;
+};
 
 interface dummyNormalCSSProps {
   widthValue: number;
