@@ -251,7 +251,6 @@ const phaseCSS = ({targetPhase, beforePhase, afterPhase}: {targetPhase: number; 
   return css`
     transition-property: opacity;
     transition-duration: 0.5s;
-    transition-delay: 0.2s;
     opacity: ${beforePhase === targetPhase ? '100%' : '0%'};
     width: 100%;
     height: 100%;
