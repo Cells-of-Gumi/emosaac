@@ -31,7 +31,7 @@ export async function getNewBooksForPlatform({
     }
 
     const { data }: { data: responseType } = await defaultAxiosInstance.get(
-      `/recommand/newbook?${
+      `/recommend/newbook?${
         prevId !== undefined ? `prevId=${prevId}` : "prevId=20000"
       }${prevRegist !== undefined ? `&prevRegist=${prevRegist}` : ""}${
         size !== undefined ? `&size=${size}` : ""
