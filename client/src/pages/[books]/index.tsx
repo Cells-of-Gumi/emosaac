@@ -244,58 +244,58 @@ export default function Home({
   const bookHomeFetchList = [
     {
       API: getHighPredictionAPI,
-      identifier: 'HighPrediction',
+      identifier: `HighPrediction-${params}`,
       beforeLabel: '예측 점수 ',
       highlightedLabel: 'EMOSAAC!',
     },
     {
       API: getReleasedAPI,
-      identifier: 'Released',
+      identifier: `Released-${params}`,
       beforeLabel: '올해의 신작 ',
       highlightedLabel: 'EMOSAAC!',
     },
     // {
     //   API: getTop3GenreBooksAPI.bind({order: 1}),
-    //   identifier: 'Top3GenreBooks',
+    //   identifier: `Top3GenreBooks-${params}`,
     //   beforeLabel: '가장 선호하는 장르 TOP 1 ',
     //   highlightedLabel: 'EMOSAAC!',
     // },
     // {
     //   API: getTop3GenreBooksAPI.bind({order: 2}),
-    //   identifier: 'Top3GenreBooks',
+    //   identifier: `Top3GenreBooks-${params}`,
     //   beforeLabel: '가장 선호하는 장르 TOP 2 ',
     //   highlightedLabel: 'EMOSAAC!',
     // },
     {
       API: getTop30API,
-      identifier: 'Top30',
+      identifier: `Top30-${params}`,
       beforeLabel: 'TOP 30 ',
       highlightedLabel: 'EMOSAAC!',
     },
-    // {
-    //   API: getMdRecommendationAPI,
-    //   identifier: 'MdRecommendation',
-    //   beforeLabel: 'MD 추천 ',
-    //   highlightedLabel: 'EMOSAAC!',
-    // },
-    // {
-    //   API: getPersonalRecommendationAPI,
-    //   identifier: 'PersonalRecommendation',
-    //   beforeLabel: '나와 비슷한 취향을 가진 사람이 읽은 작품 추천 ',
-    //   highlightedLabel: 'EMOSAAC!',
-    // },
-    // {
-    //   API: getRelativeAPI,
-    //   identifier: 'Relative',
-    //   beforeLabel: '최근 읽은 작품과 비슷한 작품 추천 ',
-    //   highlightedLabel: 'EMOSAAC!',
-    // },
-    // {
-    //   API: getUserCharacteristicRecommendationAPI,
-    //   identifier: 'UserCharacteristicRecommendation',
-    //   beforeLabel: '개인 맞춤형 추천 ',
-    //   highlightedLabel: 'EMOSAAC!',
-    // },
+    {
+      API: getMdRecommendationAPI,
+      identifier: `MdRecommendation-${params}`,
+      beforeLabel: 'MD 추천 ',
+      highlightedLabel: 'EMOSAAC!',
+    },
+    {
+      API: getPersonalRecommendationAPI,
+      identifier: `PersonalRecommendation-${params}`,
+      beforeLabel: '나와 비슷한 취향을 가진 사람이 읽은 작품 추천 ',
+      highlightedLabel: 'EMOSAAC!',
+    },
+    {
+      API: getRelativeAPI,
+      identifier: `Relative-${params}`,
+      beforeLabel: '최근 읽은 작품과 비슷한 작품 추천 ',
+      highlightedLabel: 'EMOSAAC!',
+    },
+    {
+      API: getUserCharacteristicRecommendationAPI,
+      identifier: `UserCharacteristicRecommendation-${params}`,
+      beforeLabel: '개인 맞춤형 추천 ',
+      highlightedLabel: 'EMOSAAC!',
+    },
 
 
     
@@ -305,19 +305,16 @@ export default function Home({
 
 
 
-// useEffect(() => {
-//   getMdRecommendation({
-//     typeCode: (params === 'webtoon' ? 0 : 1),
-//   }).then((res) => console.log(res))
-
-//   getTop30({
-//     typeCode: (params === 'webtoon' ? 0 : 1),
-//     prevId: 20000,
-//     prevScore: 10,
-//     size: 10,
-//     hit: 1000
-//   }).then((res) => console.log(res))
-// }, [])
+useEffect(() => {
+  getTop3GenreBooks({
+    order: 1,
+    typeCode: (params === 'webtoon' ? 0 : 1),
+    prevId: 0,
+    prevScore: 10,
+    size: 10,
+  }).then((res) => console.log(res))
+  .catch((err) => console.log(err))
+}, [])
 
 
   const highlightedCarouselRender = (
