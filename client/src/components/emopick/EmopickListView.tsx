@@ -18,6 +18,8 @@ type emopickInfoType = {
   thumbnails: string;
   createdDate: string;
   modifiedDate: string;
+  likeCnt: number;
+  bookCnt: number;
 };
 
 type Props = {
