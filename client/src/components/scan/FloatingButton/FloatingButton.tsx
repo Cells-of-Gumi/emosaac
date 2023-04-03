@@ -7,7 +7,7 @@ import Portal from "@/components/function/Portal";
 import FloatingButtonModal from "./FloatingButtonModal";
 import { useState, useRef } from "react";
 
-const FloatingButton = () => {
+const FloatingButton = ({isDarkMode}: {isDarkMode: boolean}) => {
     const wrapperRef = useRef<HTMLDivElement>(null);
     const [modalToggler, setModalToggler] = useState<boolean>(false);
     const [isMouseOn, setIsMouseOn] = useState<boolean>(false);
@@ -32,6 +32,7 @@ const FloatingButton = () => {
             isMouseOn={isMouseOn}
             setModalToggler={setModalToggler}
             parentRef={wrapperRef}
+            isDarkMode={isDarkMode}
             />
         </Portal>
     );
@@ -39,7 +40,7 @@ const FloatingButton = () => {
     return (
         <div css={floatingButtonWrapperCSS({modalToggler})} ref={wrapperRef} onClick={showModal}>
             {modalToggler && modal}
-            <UseAnimations animation={archive} size={50} />
+            <UseAnimations strokeColor={'var(--text-color)'} animation={archive} size={50} />
         </div>
     )
 }

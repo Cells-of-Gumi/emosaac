@@ -29,12 +29,14 @@ interface HomeProps {
   highlightedBookData: bookContentType[];
   genres: returnGenresType;
   params: any;
+  isDarkMode: boolean;
 }
 
 export default function Home({
   highlightedBookData,
   genres,
   params,
+  isDarkMode
 }: HomeProps) {
   const parentRef = useRef<HTMLDivElement>(null);
   const indexWrapperRef = useRef<HTMLDivElement>(null);
@@ -59,6 +61,7 @@ export default function Home({
 
   // ________________________________________________________________________________________________
 
+  
   const selectGenreHandler = (selected: number) => {
     window.localStorage.setItem('selected_genre', String(selected))
 
@@ -164,7 +167,8 @@ export default function Home({
 
   return (
     <div ref={indexWrapperRef} css={indexWrapperCSS}>
-      <FloatingButton />
+      
+      <FloatingButton isDarkMode={isDarkMode} />
       <div css={bannerWrapperCSS} ref={parentRef}>
         <SwipeableGallery parentRef={parentRef} content={postData} />
       </div>

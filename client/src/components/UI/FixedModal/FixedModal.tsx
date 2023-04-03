@@ -6,7 +6,7 @@ import ReactDOM from "react-dom";
 import { useRouter } from 'next/router'
 
 // 모달창 자체
-const ModalOverlay = (props : {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string, forced?: boolean, blur?: boolean }) => {
+const ModalOverlay = (props : {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string, forced?: boolean, blur?: boolean, isDarkMode?: boolean; }) => {
   const [showModal, setShowModal] = useState<boolean>(false)
 
   // useEffect(() => {
@@ -85,7 +85,7 @@ const ModalOverlay = (props : {width?: string, height?: string, content: any, mo
   );
 };
 
-const FixedModal = (props : {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string, forced?: boolean, blur?: boolean}) => {
+const FixedModal = (props : {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string, forced?: boolean, blur?: boolean, isDarkMode?: boolean}) => {
   const [modal, setModal] = useState<any>()
   useEffect(() => {
     setModal(() => ReactDOM.createPortal(
