@@ -30,6 +30,8 @@ import {
   RiPlayCircleFill,
   RiPlayCircleLine,
   RiArrowLeftSLine,
+  RiLogoutBoxRLine,
+  RiLoginBoxLine,
 } from "react-icons/ri";
 import { IoCloseOutline } from "react-icons/io5";
 import Link from "next/link";
@@ -66,6 +68,13 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
   }
   function onClickSearchMobile() {
     setIsSearchClicked(true);
+  }
+  function onClickLogout() {
+    // localStorage.clear();
+    setIsSearchBoxOpen(false);
+    router.push({
+      pathname: "/",
+    });
   }
 
   useEffect(() => {
@@ -291,26 +300,34 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
                 />
                 <div>
                   {isLogin ? (
-                    <>{nickname}님, 안녕하세요</>
+                    <>
+                      {/* <img src={profileImg} alt="프로필" /> */}
+                      <img src={"/assets/bazzi.jpg"} alt="프로필" />
+                      {nickname}님, 안녕하세요
+                    </>
                   ) : (
                     "로그인이 필요합니다."
                   )}
                 </div>
                 <div onClick={() => setIsPopUpOpen(false)}>
                   <div>
-                    <Link href={"/mypage"} replace>
-                      MY PAGE
-                    </Link>
+                    {isLogin ? (
+                      <Link href={"/mypage"} replace>
+                        <MdPerson size={24} />
+                        MY PAGE
+                      </Link>
+                    ) : (
+                      <Link href={"/login"} replace>
+                        <RiLoginBoxLine size={24} />
+                        로그인 페이지로 이동
+                      </Link>
+                    )}
                   </div>
-                  <div>
-                    <Link href={"/login"} replace>
-                      로그인
-                    </Link>
-                  </div>
-                  <div>
-                    <Link href={"/login"} replace>
-                      로그아웃(임시)
-                    </Link>
+                  <div onClick={() => onClickLogout()}>
+                    <a>
+                      <RiLogoutBoxRLine size={24} />
+                      로그아웃
+                    </a>
                   </div>
                 </div>
               </div>
@@ -530,6 +547,7 @@ const popUpCSS = (isPopUpOpen: boolean) => css`
   background-color: var(--back-color);
   border-radius: 10px 10px 0px 0px;
   padding-top: 10px;
+  display: ${isPopUpOpen ? "block" : "none"};
   transform: ${isPopUpOpen ? "translateY(0px)" : "translateY(100vh)"};
   & > svg {
     cursor: pointer;
@@ -540,15 +558,35 @@ const popUpCSS = (isPopUpOpen: boolean) => css`
   }
   & > div:nth-of-type(1) {
     // 안녕하세요
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
     padding: 10px 20px;
     font-size: 24px;
-    line-height: 100px;
     height: 100px;
+    & > img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 14px;
+    }
   }
   & > div:nth-of-type(2) {
+    cursor: pointer;
     & > div {
+      & > a {
+        height: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        & > svg {
+          margin-right: 10px;
+        }
+      }
       padding: 10px 20px;
-      line-height: 40px;
+      height: 60px;
     }
   }
 `;
