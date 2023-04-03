@@ -6,16 +6,23 @@ import { putMyInfo } from "@/api/user/putMyInfo";
 import { useState } from "react";
 import { useEffect } from "react";
 import getMyInfo from "@/api/user/getMyInfo";
-const PutUserInfo = () => {
+import Router from "next/router";
+import { useRouter } from "next/router";
+const PutUserInfo = ({ myInfo }: any) => {
+  const router = useRouter();
   const defaultProfileImage = "/assets/default_image.png";
   const token = getToken();
   const [nickname, setNickname] = useState("");
   const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
   const [nicknameValidityMessage, setNicknameValidityMessage] = useState("");
   const [gender, setGender] = useState<number | null>(null);
-  const [age, setAge] = useState<number | null>(null);
+  const [age, setAge] = useState<number | null>(
+    localStorage.getItem("age")
+      ? parseInt(localStorage.getItem("age") as string)
+      : null
+  );
   const [profileImage, setProfileImage] = useState<File | null>(null);
-  const [image, setImage] = useState<string | undefined>("");
+  const [image, setImage] = useState<string | undefined>(myInfo?.imageUrl);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [selectedAge, setSelectedAge] = useState<number | null>(null);
   // 프로필 변경 함수
@@ -51,10 +58,15 @@ const PutUserInfo = () => {
   const onClickGender = (newGender: number) => {
     setGender(newGender);
   };
+  useEffect(() => {
+    localStorage.setItem("age", age?.toString() || "");
+  }, [age]);
   // 정보 수정 제출 함수
   const onClickSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    const ageFromLocalStorage = localStorage.getItem("age")
+      ? parseInt(localStorage.getItem("age") as string)
+      : null;
     const isFirstTime = localStorage.getItem("nickName") === null;
     // 닉네임 최소 2자 ~ 10자
     if (
@@ -63,22 +75,26 @@ const PutUserInfo = () => {
         localStorage.getItem("gender") === null ||
         localStorage.getItem("age") === null)
     ) {
-      alert("모든 필수 입력 항목을 입력해주세요.");
+      alert("모든 항목을 입력해주세요.");
       return;
     }
     if (!isNicknameDuplicate) {
-      alert("닉네임 중복확인을 해주세요");
+      alert("!!!!닉네임 중복확인을 해주세요");
+      return;
     }
+
     const myInfo = {
       file: profileImage,
       gender,
-      age,
+      age: ageFromLocalStorage,
       nickName: nickname,
     };
-
     try {
       const response = await putMyInfo(myInfo);
-      console.log(response);
+      // console.log(response);
+
+      alert("수정되었어요");
+      router.push("/mypage");
     } catch (error) {
       console.log(error);
     }
@@ -86,12 +102,12 @@ const PutUserInfo = () => {
   // 닉네임 input 함수
   const handleNicknameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(event.target.value);
-    console.log(nickname);
+    // console.log(nickname);
   };
   // 중복 검사 함수
   const onClickCheckDuplicateNickname = () => {
     getIsNickname(nickname, token).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res === false) {
         setNicknameValidityMessage("사용 가능한 닉네임이에요");
         // 중복확인을 했다는 flag
@@ -105,7 +121,7 @@ const PutUserInfo = () => {
   // 연령대 클릭 함수
   const handleClickAge = (selectedAge: number) => {
     setAge(selectedAge);
-    setSelectedAge(age);
+    setSelectedAge(selectedAge);
     setDropdownVisible(false);
   };
 
@@ -113,7 +129,7 @@ const PutUserInfo = () => {
   useEffect(() => {
     getMyInfo().then((res) => {
       const data = res;
-      console.log(data);
+      // console.log(data);
       if (data !== null) {
         setNickname(data.nickname);
         if (data.gender === 0) {
@@ -125,6 +141,7 @@ const PutUserInfo = () => {
           setSelectedAge(data.age);
         }
       }
+      // console.log(myInfo);
     });
   }, []);
   return (

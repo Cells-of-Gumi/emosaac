@@ -52,7 +52,7 @@ const bookmarkwrapCSS = css`
   display: flex;
   flex-direction: column;
   margin-left: 30px;
-  margin-right: 30px;
+  margin-right: 50px;
   width: 100%;
 `;
 

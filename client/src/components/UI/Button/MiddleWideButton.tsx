@@ -4,9 +4,14 @@ import { css } from "@emotion/react";
 interface ButtonProps {
   text: string;
   onClick: any;
+  myInfo?: any;
 }
 
-export default function MiddleWideButton({ text, onClick }: ButtonProps) {
+export default function MiddleWideButton({
+  text,
+  onClick,
+  myInfo,
+}: ButtonProps) {
   return (
     <>
       <button css={buttonCSS} onClick={onClick}>
