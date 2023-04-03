@@ -405,7 +405,7 @@ const imageCSS = css`
   border-radius: 5px;
   cursor: pointer;
   border-radius: 10px;
-  animation: ${fadeIn} 0.5s ease-out forwards;
+  animation: ${fadeIn} 0.8s ease-out forwards;
 `;
 
 export default MyPage;
