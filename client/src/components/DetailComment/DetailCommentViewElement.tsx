@@ -86,7 +86,7 @@ const DetailCommentViewElement = ({
     <div css={commentInfoWrapperCSS}>
       <div css={writerInfoWrapperCSS}>
         <div css={profileImgWrapperCSS}>
-          <img src={comment.writerInfo.profileImg} />
+          <img src={comment.writerInfo.profileImg} css={css`width: 100%; height: auto;`} />
           
         </div>
         <span>{comment.writerInfo.nickname}</span>
@@ -178,6 +178,7 @@ const profileImgWrapperCSS = css`
   border-radius: 100px;
   background-color: var(--back-color-op);
   overflow: hidden;
+  margin-right: 12px;
 `;
 
 const commentContentWrapperCSS = css`
