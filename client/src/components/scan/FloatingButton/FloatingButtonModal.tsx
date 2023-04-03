@@ -200,6 +200,7 @@ const wrapperCSS = ({
     transition-property: width height;
     will-change: width height left top transform;
     transition-duration: 0.5s;
+    
     /* transition-timing-function: ease-in; */
     overflow: hidden;
 

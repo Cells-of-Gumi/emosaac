@@ -7,63 +7,50 @@ interface TagListProps {
 }
 
 const TagList = ({ tag }: TagListProps) => {
-  const [tagList, setTagList] = useState(tag.split(" ").filter(i => i.length !== 0))
-  const tagListWrapperRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-
-  }, [])
-
-  const renderTags = tagList.map((el, idx) => {
-    if (el.trim() !== '') {
-      return <div css={tagWrapperCSS}>#{el}{idx !== tagList.length - 1 && ','}</div>;
+  const renderTags = tag?.split(" ").map((el, idx) => {
+    if (el.trim() !== "") {
+      return <div css={tagWrapperCSS}>#{el},</div>;
     }
   });
 
-
-
-  
-
-
   return (
     <div css={outerWrapperCSS}>
-        <div ref={tagListWrapperRef} css={tagListWrapperCSS} >{renderTags}</div>
+      <div css={tagListWrapperCSS}>{renderTags}</div>
     </div>
   );
 };
 
 const outerWrapperCSS = css`
-    position: relative;
-    height: 16px;
-`
+  position: relative;
+  height: 16px;
+`;
 
 const tagListWrapperCSS = css`
   display: flex;
-position: absolute;
+  position: absolute;
   /* margin-top: 12px; */
-    width: 110%;
-    overflow-x: scroll;
-    overflow-y: hidden;
+  width: 110%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-left: 50px;
+  /* padding-right: -20px; */
+  margin-left: -50px;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    var(--back-color) 5%,
+    var(--back-color) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    var(--back-color) 5%,
+    var(--back-color) 90%,
+    rgba(0, 0, 0, 0) 100%
+  );
 
-    padding-left: 50px;
-    /* padding-right: -20px; */
-    margin-left: -50px;
-    -webkit-mask-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0) 0%,
-        var(--back-color) 5%,
-        var(--back-color) 90%,
-        rgba(0, 0, 0, 0) 100%
-    );
-    mask-image: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0) 0%,
-        var(--back-color) 5%,
-        var(--back-color) 90%,
-        rgba(0, 0, 0, 0) 100%
-    );
-
-    &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
   }
 `;
@@ -75,7 +62,7 @@ const tagWrapperCSS = css`
   margin-right: 14px;
   /* margin-bottom: 14px; */
   color: black;
-  white-space:pre;;
+  white-space: pre;
   color: var(--text-color-4);
 `;
 

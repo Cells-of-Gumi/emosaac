@@ -3,6 +3,7 @@ type returnGetBookMarkProps = {
   bookId: number;
   thumbnail: string;
   modifiedDate: string;
+  prevTime: string;
 };
 
 type getBookMarkType = {
@@ -23,13 +24,13 @@ async function getBookMark(
   prevTime: string,
   size: number,
   typeCode: number
-): Promise<returnGetBookMarkProps[] | null> {
+): Promise<getBookMarkType["data"] | null> {
   try {
     const { data }: { data: getBookMarkType } = await defaultAxiosInstance.get(
       `/books/bookmark?prevId=${prevId}&prevtime=${prevTime}&size=${size}&typeCode=${typeCode}`
     );
     if (data.status === 200) {
-      return data.data.content;
+      return data.data;
     } else {
       return null;
     }
