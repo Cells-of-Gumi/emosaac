@@ -6,7 +6,8 @@ import { getToken } from "@/api/instance";
 import { getEmopickList } from "@/api/emopick/getEmopickList";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { useMediaQuery } from "react-responsive";
-import { isReadable } from "stream";
+import EmopickListView from "@/components/emopick/EmopickListView";
+import { RiPlayCircleFill, RiPlayCircleLine } from "react-icons/ri";
 
 type emopickInfoType = {
   writerInfo: {
@@ -61,52 +62,7 @@ const index = (data: Props) => {
         <div></div>
       </div>
       <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
-        <div css={listWrapCSS({ isDeskTop, isTablet, isMobile }, isEmoLimit)}>
-          {emopickList &&
-            emopickList?.data?.content.map((emo, idx) => (
-              <div
-                key={idx}
-                onClick={() => onClickBox(emo.emopickId)}
-                css={pickWrapCSS({ isDeskTop, isTablet, isMobile })}
-              >
-                {/* 썸네일 */}
-                <div
-                  css={pickThumbnailWrapCSS({ isDeskTop, isTablet, isMobile })}
-                >
-                  <div>
-                    {emo.thumbnails
-                      .split(" ")
-                      .slice(0, 4)
-                      .map((thumb, idx) => (
-                        <div key={idx}>
-                          <img src={thumb} alt={emo.title} />
-                        </div>
-                      ))}
-                    <div></div>
-                  </div>
-                </div>
-                <div
-                  css={pickContentWrapCSS({ isDeskTop, isTablet, isMobile })}
-                >
-                  {/* 글 정보 */}
-                  <div>
-                    <div>{emo.title}</div>
-                    {/* <div>{emo.createdDate}</div> */}
-                    <div>1시간 전</div>
-                  </div>
-                  {/* 사용자 정보 */}
-                  <div>
-                    <div>writer.</div>
-                    <div>{emo.writerInfo.nickname}</div>
-                    <div>
-                      <img src={emo.writerInfo.profileImg} alt="profile" />
-                      {/* <img src="/assets/bazzi.jpg" alt="profile" /> */}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-        </div>
+        <EmopickListView {...data} />
       </div>
       {/* <div css={serviceCSS}>서비스 준비중입니다.</div> */}
     </div>
@@ -170,7 +126,7 @@ const pickWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   width: 100%;
   display: grid;
   grid-template-columns: ${!isMobile ? "230px 1fr" : "180px 1fr"};
-  column-gap: 20px;
+  column-gap: ${!isMobile ? "20px" : "20px"};
   transition: all 0.3s;
 `;
 
@@ -221,42 +177,48 @@ const pickThumbnailWrapCSS = ({
 
 const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css`
+    /* padding: ${!isMobile ? "10px 0" : "10px 0"}; */
     /* display: flex;
     flex-direction: column;
     justify-content: space-between; */
     // 글 정보
     & > div:nth-of-type(1) {
       & > div:nth-of-type(1) {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         font-size: 20px;
         line-height: 50px;
         font-weight: bold;
+        & > div {
+          margin-left: 4px;
+        }
       }
       & > div:nth-of-type(2) {
         color: var(--text-color-3);
+        font-size: 14px;
       }
     }
     // 작성자 정보
     & > div:nth-of-type(2) {
       display: flex;
       justify-content: flex-start;
-      align-items: flex-end;
+      align-items: center;
+      margin: 10px 0;
       & > div:nth-of-type(1) {
-        font-weight: bold;
-      }
-      & > div:nth-of-type(2) {
-      }
-      & > div:nth-of-type(3) {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         border-radius: 50px;
         overflow: hidden;
         background-color: var(--back-color-3);
-        margin-left: 10px;
         & > img {
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
+      }
+      & > div:nth-of-type(2) {
+        margin-left: 10px;
       }
     }
   `;

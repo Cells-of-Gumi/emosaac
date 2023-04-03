@@ -31,6 +31,7 @@ import {
   RiPlayCircleLine,
   RiArrowLeftSLine,
 } from "react-icons/ri";
+import { GrClose } from "react-icons/gr";
 import Link from "next/link";
 
 export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
@@ -45,6 +46,7 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [isHome, setIsHome] = useState(false);
+  const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [currentRoute, setCurrentRoute] = useState({
     home: false,
     webtoon: false,
@@ -267,63 +269,86 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
             )}
           </div>
           {isMobile && (
-            <ul
-              css={dockBarCSS}
-              onClick={() => {
-                setIsSearchBoxOpen(false);
-              }}
-            >
-              <li>
-                <Link href="/" replace>
-                  {currentRoute.home ? (
-                    <AiFillHome size={24} />
-                  ) : (
-                    <AiOutlineHome size={24} />
-                  )}
-                  <div>홈</div>
-                </Link>
-              </li>
-              <li>
-                <Link href="/webtoon" replace>
-                  {currentRoute.webtoon ? (
-                    <MdCookie size={24} />
-                  ) : (
-                    <MdOutlineCookie size={24} />
-                  )}
-                  <div>웹툰</div>
-                </Link>
-              </li>
-              <li>
-                <Link href="/novel" replace>
-                  {currentRoute.novel ? (
-                    <RiBookReadFill size={24} />
-                  ) : (
-                    <RiBookReadLine size={24} />
-                  )}
-                  <div>웹소설</div>
-                </Link>
-              </li>
-              <li>
-                <Link href="/emopick" replace>
-                  {currentRoute.emopick ? (
-                    <RiPlayCircleFill size={24} />
-                  ) : (
-                    <RiPlayCircleLine size={24} />
-                  )}
-                  <div>이모픽</div>
-                </Link>
-              </li>
-              <li>
-                <Link href="/mypage">
-                  {currentRoute.mypage ? (
-                    <MdPerson size={24} />
-                  ) : (
-                    <MdOutlinePersonOutline size={24} />
-                  )}
-                  <div>MY</div>
-                </Link>
-              </li>
-            </ul>
+            <div css={mobileBottomCSS}>
+              <div css={popUpCSS(isPopUpOpen)}>
+                <GrClose onClick={() => setIsPopUpOpen(false)} />
+                <div>김현영님, 안녕하세요</div>
+                <div>
+                  <div>
+                    <Link href={"/mypage"} replace>
+                      MY PAGE
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href={"/login"} replace>
+                      로그인
+                    </Link>
+                  </div>
+                  <div>
+                    <Link href={"/login"} replace>
+                      로그아웃(임시)
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <ul
+                css={dockBarCSS}
+                onClick={() => {
+                  setIsSearchBoxOpen(false);
+                }}
+              >
+                <li>
+                  <Link href="/" replace>
+                    {currentRoute.home ? (
+                      <AiFillHome size={24} />
+                    ) : (
+                      <AiOutlineHome size={24} />
+                    )}
+                    <div>홈</div>
+                  </Link>
+                </li>
+                <li>
+                  <a>
+                    {currentRoute.webtoon ? (
+                      <MdCookie size={24} />
+                    ) : (
+                      <MdOutlineCookie size={24} />
+                    )}
+                    <div>웹툰</div>
+                  </a>
+                </li>
+                <li>
+                  <Link href="/novel" replace>
+                    {currentRoute.novel ? (
+                      <RiBookReadFill size={24} />
+                    ) : (
+                      <RiBookReadLine size={24} />
+                    )}
+                    <div>웹소설</div>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/emopick" replace>
+                    {currentRoute.emopick ? (
+                      <RiPlayCircleFill size={24} />
+                    ) : (
+                      <RiPlayCircleLine size={24} />
+                    )}
+                    <div>이모픽</div>
+                  </Link>
+                </li>
+                <li onClick={() => setIsPopUpOpen(true)}>
+                  <Link href="/mypage">
+                    {currentRoute.mypage ? (
+                      <MdPerson size={24} />
+                    ) : (
+                      <MdOutlinePersonOutline size={24} />
+                    )}
+                    <div>MY</div>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           )}
         </nav>
       )}
@@ -466,9 +491,46 @@ const menuWrapCSS = (isDeskTop: boolean, isTablet: boolean) => {
   `;
 };
 
-const dockBarCSS = css`
+const mobileBottomCSS = css`
   position: fixed;
   z-index: 20;
+  bottom: 0;
+  left: 0;
+`;
+
+const popUpCSS = (isPopUpOpen: boolean) => css`
+  transition: all 0.3s ease;
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - 60px);
+  background-color: var(--back-color);
+  border-radius: 20px 20px 0px 0px;
+  padding-top: 10px;
+  transform: ${isPopUpOpen ? "translateY(0px)" : "translateY(100vh)"};
+  & > svg {
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  & > div:nth-of-type(1) {
+    // 안녕하세요
+    padding: 10px 20px;
+    font-size: 24px;
+    line-height: 100px;
+    height: 100px;
+  }
+  & > div:nth-of-type(2) {
+    & > div {
+      padding: 10px 20px;
+      line-height: 40px;
+    }
+  }
+`;
+
+const dockBarCSS = css`
+  position: fixed;
+  z-index: 22;
   display: grid;
   background-color: var(--back-color-op);
   box-shadow: var(--shadow-color);
