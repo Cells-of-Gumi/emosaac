@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-
+import { keyframes } from "@emotion/react";
 import MiddleWideButton from "../UI/Button/MiddleWideButton";
 import { useState } from "react";
 import Chart from "./Chart";
@@ -19,15 +19,23 @@ const MyPage = ({ myinfo }: any) => {
   const token = getToken();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [bookId, setBookId] = useState<number | null>(null);
+  const [isSelect, setIsSelect] = useState<boolean>(false);
+  const [selectedRoute, setSelectedRoute] = useState<string>("웹툰");
   function onClickMoveEditPage() {
     router.push("/mypage/edit");
   }
   const [typeCode, setTypeCode] = useState<number>(0);
   const onClickWebToon = () => {
     setTypeCode(0);
+    setSelectedRoute("웹툰");
   };
   const onClickWebNovel = () => {
     setTypeCode(1);
+    setSelectedRoute("웹소설");
+  };
+  const onClickEmosaac = () => {
+    setTypeCode(2);
+    setSelectedRoute("이모작");
   };
   const onClickMoveDetail = () => {
     router.push(`books/${bookId}`);
@@ -75,92 +83,155 @@ const MyPage = ({ myinfo }: any) => {
 
   return (
     <>
-      <div css={allwrapCSS}>
-        <section css={userinfoCSS(isDeskTop, isTablet, isMobile)}>
-          <div css={profileimagewrapperCSS(isDeskTop, isTablet, isMobile)}>
-            <img
-              src={myinfo.imageUrl}
-              alt="프로필 이미지"
-              css={profileimageCSS}
-            />
-          </div>
-          <div css={infowrapCSS}>
-            <h2 css={nicknameCSS}>{myinfo.nickname}</h2>
-            <div css={buttonCSS}>
-              <MiddleWideButton
-                text={"회원 정보 수정"}
-                onClick={onClickMoveEditPage}
+      {typeCode === 2 ? (
+        <div css={allwrapCSS}>
+          <section css={userinfoCSS(isDeskTop, isTablet, isMobile)}>
+            <div css={profileimagewrapperCSS(isDeskTop, isTablet, isMobile)}>
+              <img
+                src={myinfo.imageUrl}
+                alt="프로필 이미지"
+                css={profileimageCSS}
               />
             </div>
-          </div>
-        </section>
-        <section css={routewrapCSS}>
-          <article onClick={onClickWebToon}>웹툰</article>
-          <article onClick={onClickWebNovel}>웹소설</article>
-        </section>
-
-        <section css={chartwrapperCSS(isDeskTop, isTablet, isMobile)}>
-          <article css={chartCSS(isDeskTop, isTablet, isMobile)}>
-            <Chart typeCode={typeCode} />
-          </article>
-          <article css={recommendCSS(isDeskTop, isTablet, isMobile)}>
-            <div css={recommendborderCSS(isDeskTop, isTablet, isMobile)}>
-              <h3 css={recommendexplainCSS}>가장 많이 본 장르의</h3>
-              <h3 css={recommendexplainCSS}>
-                {typeCode === 0 ? "웹툰" : "웹소설"}을 추천해줄게요
-              </h3>
-              <div css={contentCSS}>
-                <div css={imagewrapperCSS}>
-                  {typeCode === 0 ? (
-                    <img
-                      css={imageCSS}
-                      src={topGenreWebtoonImage}
-                      alt="많이 본 웹툰 썸네일"
-                      onClick={onClickMoveDetail}
-                    />
-                  ) : (
-                    <img
-                      css={imageCSS}
-                      src={topGenreNovelImage}
-                      alt="많이 본 웹소설 썸네일"
-                      onClick={onClickMoveDetail}
-                    />
-                  )}
-                </div>
+            <div css={infowrapCSS}>
+              <h2 css={nicknameCSS}>{myinfo.nickname}</h2>
+              <div css={buttonCSS}>
+                <MiddleWideButton
+                  text={"회원 정보 수정"}
+                  onClick={onClickMoveEditPage}
+                />
               </div>
             </div>
-            <div css={recommendborderCSS(isDeskTop, isTablet, isMobile)}>
-              <h3 css={recommendexplainCSS}>가장 적게 본 장르의 </h3>
-              <h3 css={recommendexplainCSS}>
-                {typeCode === 0 ? "웹툰" : "웹소설"}을 추천해줄게요
-              </h3>
-
-              <div css={contentCSS}>
-                <div css={imagewrapperCSS}>
-                  {typeCode === 0 ? (
-                    <img
-                      css={imageCSS}
-                      src={worstGenreWebtoonImage}
-                      alt="적게 본 웹툰 썸네일"
-                      onClick={onClickMoveDetail}
-                    />
-                  ) : (
-                    <img
-                      css={imageCSS}
-                      src={worstGenreNovelImage}
-                      alt="적게 본 웹소설 썸네일"
-                      onClick={onClickMoveDetail}
-                    />
-                  )}
-                </div>
+          </section>
+          <section css={routewrapCSS}>
+            <article
+              onClick={onClickWebToon}
+              css={selectRouteCSS("웹툰", selectedRoute)}
+            >
+              웹툰
+            </article>
+            <article
+              onClick={onClickWebNovel}
+              css={selectRouteCSS("웹소설", selectedRoute)}
+            >
+              웹소설
+            </article>
+            <article
+              onClick={onClickEmosaac}
+              css={selectRouteCSS("이모작", selectedRoute)}
+            >
+              이모작
+            </article>
+          </section>
+          <div>EmoSaac</div>
+        </div>
+      ) : (
+        <div css={allwrapCSS}>
+          <section css={userinfoCSS(isDeskTop, isTablet, isMobile)}>
+            <div css={profileimagewrapperCSS(isDeskTop, isTablet, isMobile)}>
+              <img
+                src={myinfo.imageUrl}
+                alt="프로필 이미지"
+                css={profileimageCSS}
+              />
+            </div>
+            <div css={infowrapCSS}>
+              <h2 css={nicknameCSS}>{myinfo.nickname}</h2>
+              <div css={buttonCSS}>
+                <MiddleWideButton
+                  text={"회원 정보 수정"}
+                  onClick={onClickMoveEditPage}
+                />
               </div>
             </div>
-          </article>
-        </section>
-        <section>
-          <BookMark typeCode={typeCode} />
-        </section>
-      </div>
+          </section>
+          <section css={routewrapCSS}>
+            <article
+              onClick={onClickWebToon}
+              css={selectRouteCSS("웹툰", selectedRoute)}
+            >
+              웹툰
+            </article>
+            <article
+              onClick={onClickWebNovel}
+              css={selectRouteCSS("웹소설", selectedRoute)}
+            >
+              웹소설
+            </article>
+            <article
+              onClick={onClickEmosaac}
+              css={selectRouteCSS("이모작", selectedRoute)}
+            >
+              이모작
+            </article>
+          </section>
+
+          <section css={chartwrapperCSS(isDeskTop, isTablet, isMobile)}>
+            <article css={chartCSS(isDeskTop, isTablet, isMobile)}>
+              <div>
+                {localStorage.getItem("nickname")}님의 선호를 알려드려요
+              </div>
+              <Chart typeCode={typeCode} />
+            </article>
+            <article css={recommendCSS(isDeskTop, isTablet, isMobile)}>
+              <div css={recommendborderCSS(isDeskTop, isTablet, isMobile)}>
+                <h3 css={recommendexplainCSS}>가장 많이 본 장르의</h3>
+                <h3 css={recommendexplainCSS}>
+                  {typeCode === 0 ? "웹툰" : "웹소설"}을 추천해줄게요
+                </h3>
+                <div css={contentCSS}>
+                  <div css={imagewrapperCSS}>
+                    {typeCode === 0 ? (
+                      <img
+                        css={imageCSS}
+                        src={topGenreWebtoonImage}
+                        alt="많이 본 웹툰 썸네일"
+                        onClick={onClickMoveDetail}
+                      />
+                    ) : (
+                      <img
+                        css={imageCSS}
+                        src={topGenreNovelImage}
+                        alt="많이 본 웹소설 썸네일"
+                        onClick={onClickMoveDetail}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div css={recommendborderCSS(isDeskTop, isTablet, isMobile)}>
+                <h3 css={recommendexplainCSS}>가장 적게 본 장르의 </h3>
+                <h3 css={recommendexplainCSS}>
+                  {typeCode === 0 ? "웹툰" : "웹소설"}을 추천해줄게요
+                </h3>
+
+                <div css={contentCSS}>
+                  <div css={imagewrapperCSS}>
+                    {typeCode === 0 ? (
+                      <img
+                        css={imageCSS}
+                        src={worstGenreWebtoonImage}
+                        alt="적게 본 웹툰 썸네일"
+                        onClick={onClickMoveDetail}
+                      />
+                    ) : (
+                      <img
+                        css={imageCSS}
+                        src={worstGenreNovelImage}
+                        alt="적게 본 웹소설 썸네일"
+                        onClick={onClickMoveDetail}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+            </article>
+          </section>
+          <section>
+            <BookMark typeCode={typeCode} />
+          </section>
+        </div>
+      )}
     </>
   );
 };
@@ -168,6 +239,10 @@ const MyPage = ({ myinfo }: any) => {
 const allwrapCSS = css`
   display: flex;
   flex-direction: column;
+`;
+const selectRouteCSS = (route: string, selectedRoute: string) => css`
+  color: ${route === selectedRoute ? "var(--main-color)" : "var(--text-color)"};
+  font-weight: bold;
 `;
 const userinfoCSS = (
   isDeskTop: boolean,
@@ -247,9 +322,15 @@ const chartCSS = (
 ) => css`
   height: ${isDeskTop ? "400px" : "300px"};
   width: ${isDeskTop ? "380px" : "100%"};
-  margin-top: ${isDeskTop ? "100px" : isTablet ? "50px" : "50px"};
+  margin-top: ${isDeskTop ? "80px" : isTablet ? "50px" : "50px"};
   margin-left: ${isDeskTop ? "60px" : "null"};
   left: 0px;
+  & > div {
+    font-size: 23px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: bold;
+  }
 `;
 
 // 추천 최상위
@@ -302,7 +383,14 @@ const contentCSS = css`
   /* width: 300px; */
   height: auto;
 `;
-
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 const imagewrapperCSS = css`
   width: 100%;
   height: 250px;
@@ -316,6 +404,8 @@ const imageCSS = css`
   object-fit: contain;
   border-radius: 5px;
   cursor: pointer;
+  border-radius: 10px;
+  animation: ${fadeIn} 0.5s ease-out forwards;
 `;
 
 export default MyPage;
