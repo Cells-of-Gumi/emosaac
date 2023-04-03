@@ -1,9 +1,12 @@
 import OauthLogin from "@/components/login/OauthLogin";
 
-export default function login() {
+interface LoginProps {
+  isDarkMode: boolean;
+}
+export default function login({ isDarkMode }: LoginProps) {
   return (
     <>
-      <OauthLogin />
+      <OauthLogin isDarkMode={isDarkMode} />
     </>
   );
 }
