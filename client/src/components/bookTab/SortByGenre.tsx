@@ -21,6 +21,7 @@ const SortByGenre = ({fetchList}: SortByGenreProps) => {
     const rowsRender = fetchList.map((el: any, idx: number) => {
         return (
             <React.Fragment key={`sortByGenre-${el.identifier}`}>
+              <div css={whiteSpace1CSS} />
                 <RowTitle beforeLabel={el.beforeLabel} highlightedLabel={el.highlightedLabel} afterLabel={el?.afterLabel} />
                 <div css={bookCarouselWrapperCSS}>
                 {/* <ScrollableCarousel API={el.API} identifier={el.identifier} /> */}
@@ -75,8 +76,8 @@ const bannerImage = css`
 
 const whiteSpace1CSS = css`
   width: 100%;
-  height: 5vw;
-  min-height: 48px;
+  height: 3vw;
+  min-height: 24px;
 `;
 
 const whiteSpace2CSS = css`
