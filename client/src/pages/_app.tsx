@@ -15,7 +15,7 @@ import RequireLogin from "@/components/UI/RequireLogin/RequireLogin";
 export default function App({ Component, pageProps }: AppProps) {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const isClient = useIsClient();
-
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
   const [myInfo, setMyInfo] = useState<any>(null);
   const [loginModalState, setLoginModalState] = useState<boolean>(false);
 
@@ -33,19 +33,21 @@ export default function App({ Component, pageProps }: AppProps) {
     <Provider store={mainStore}>
       <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-      <Layout myInfo={myInfo}>
+      <Layout myInfo={myInfo} isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}>
         <FixedModal
           content={<RequireLogin />}
           modalState={loginModalState}
           stateHandler={setLoginModalState}
           forced={true}
           blur={true}
+          isDarkMode={isDarkMode}
         />
         {myInfo !== null && (
           <Component
             {...pageProps}
             myInfo={myInfo}
             loginHandler={setLoginModalState}
+            isDarkMode={isDarkMode}
           />
         )}
       </Layout>

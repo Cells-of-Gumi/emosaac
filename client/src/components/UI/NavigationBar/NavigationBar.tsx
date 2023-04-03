@@ -33,14 +33,14 @@ import {
 } from "react-icons/ri";
 import Link from "next/link";
 
-export const NavigationBar = ({ myInfo }: any) => {
+export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
   const router = useRouter();
   // DeskTop Nav content의 최소 너비
   const isNavLimit = !useMediaQuery({
     query: "(min-width: 1185px) or (max-width: 1023px)",
   });
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
+  // const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [isLogin, setIsLogin] = useState(false);

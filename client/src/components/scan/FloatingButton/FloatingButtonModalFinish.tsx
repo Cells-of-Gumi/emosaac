@@ -2,14 +2,20 @@
 import { jsx, css } from "@emotion/react";
 import { useEffect, useRef, useState } from "react";
 import UseAnimations from 'react-useanimations';
-import loading2 from 'react-useanimations/lib/loading2'
+import alertCircle from 'react-useanimations/lib/alertCircle'
 
-const FloatingButtonModalLoading = () => {
+const FloatingButtonModalFinish = ({modalHandler}: {modalHandler: Function}) => {
+
+    useEffect(() => {
+        setTimeout(() => {
+            modalHandler()
+        }, 2000)
+    }, [])
 
     return (
         <div css={loadingWrapperCSS}>
-            <UseAnimations strokeColor={'var(--text-color)'} animation={loading2} size={96} />
-            <div css={descWrapperCSS}>이미지를 분석중입니다.</div>
+            <UseAnimations strokeColor={'var(--text-color)'} animation={alertCircle} size={96} />
+            <div css={descWrapperCSS}>저장 완료!</div>
         </div>
     )
 }
@@ -25,7 +31,7 @@ const loadingWrapperCSS = css`
 
 const descWrapperCSS = css`
     margin-top: 16px;
-    font-size: 24px;
+    font-size: 32px;
 `
 
-export default FloatingButtonModalLoading
+export default FloatingButtonModalFinish

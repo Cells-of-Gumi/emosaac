@@ -8,10 +8,10 @@ import Button from "../UI/Button/Button";
 
 interface ScanMainProps {
     bookData: bookContentType[];
-    modalHandler: Function;
+    phaseHandler: Function;
 }
 
-const ScanMain = ({bookData, modalHandler}: ScanMainProps) => {
+const ScanMain = ({bookData, phaseHandler}: ScanMainProps) => {
     const [isDeskTop, isTablet, isMobile] = useIsResponsive();
 
     return (
@@ -21,7 +21,7 @@ const ScanMain = ({bookData, modalHandler}: ScanMainProps) => {
                 <Waterfall bookData={bookData} identifier="scanned" rotate={1} duration={2000}/>
             </div>
             <div css={css`width: 100vw; display: flex; justify-content: center;`}>
-                <Button width={'20%'} height={'64px'} onClick={modalHandler}>닫기</Button>
+                <Button width={'20%'} height={'64px'} onClick={() => {phaseHandler(3)}}>닫기</Button>
             </div>
             
             
