@@ -7,6 +7,7 @@ import { getEmopickList } from "@/api/emopick/getEmopickList";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { useMediaQuery } from "react-responsive";
 import EmopickListView from "@/components/emopick/EmopickListView";
+import EmopickFloatingButton from "@/components/emopick/EmopickFloatingButton";
 import { RiPlayCircleFill, RiPlayCircleLine } from "react-icons/ri";
 
 type emopickInfoType = {
@@ -52,6 +53,7 @@ const index = (data: Props) => {
   console.log(emopickList);
   return (
     <div>
+      <EmopickFloatingButton />
       <div css={pageTitleCSS({ isDeskTop, isTablet, isMobile })}>
         <div>
           <h2>
