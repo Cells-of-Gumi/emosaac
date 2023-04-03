@@ -398,7 +398,7 @@ const carouselOuterWrapperCSS = css`
   position: relative;
   display: flex;
   justify-content: center;
-  margin-bottom: 100px;
+  /* margin-bottom: 100px; */
 `;
 
 const scrollWrapperCSS = css`
