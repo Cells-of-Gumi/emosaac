@@ -54,7 +54,7 @@ const OAuth2RedirectHandler = (props: any) => {
       } else if (code === "201") {
         router
           .push({
-            pathname: "/mypage/edit",
+            pathname: "/survey",
             query: {
               from: router.asPath,
               error: error,
