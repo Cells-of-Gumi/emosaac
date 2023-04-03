@@ -20,12 +20,7 @@ const Layout = (props: Props) => {
     } else {
       setIsHome(false);
     }
-    console.log(router.asPath);
   }, [router.asPath]);
-
-  useEffect(() => {
-    console.log(isHome);
-  }, [isHome]);
 
   return (
     <div
