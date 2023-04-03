@@ -142,7 +142,9 @@ const BookCardModal = ({
                   />
                 )}
               </div>
-              {bookData && <TagList tag={bookData.tag} identifier={`${bookData.bookId}`} />}
+              {bookData && (
+                <TagList tag={bookData.tag} identifier={`${bookData.bookId}`} />
+              )}
             </div>
           </div>
 

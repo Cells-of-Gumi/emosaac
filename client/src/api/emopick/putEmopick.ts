@@ -4,9 +4,9 @@ type putEmopickParamsType = {
   emopickId: number;
   request: {
     content: string;
-    novelList: object;
+    novelList: object[];
     title: string;
-    webtoonList: object;
+    webtoonList: object[];
   };
   token?: string | null;
 };
