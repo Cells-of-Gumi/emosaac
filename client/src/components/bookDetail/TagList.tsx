@@ -3,13 +3,14 @@ import { jsx, css } from "@emotion/react";
 import { useEffect, useState, useRef } from "react";
 
 interface TagListProps {
+  identifier: string;
   tag: string;
 }
 
-const TagList = ({ tag }: TagListProps) => {
+const TagList = ({identifier, tag }: TagListProps) => {
   const renderTags = tag?.split(" ").map((el, idx) => {
     if (el.trim() !== "") {
-      return <div css={tagWrapperCSS}>#{el},</div>;
+      return <div key={`${identifier}-${el}`} css={tagWrapperCSS}>#{el},</div>;
     }
   });
 

@@ -2,6 +2,7 @@
 import { jsx, css } from "@emotion/react";
 import { returnGenresType } from "@/types/books";
 import { useIsResponsive } from "../../Responsive/useIsResponsive";
+import React from 'react'
 
 
 const GenreList = ({ genres, selected, selectHandler }: { genres: returnGenresType, selected: number, selectHandler: Function }) => {
@@ -9,11 +10,11 @@ const GenreList = ({ genres, selected, selectHandler }: { genres: returnGenresTy
 
   const renderGenres = genres.map((el, idx) => {
       return (
-        <>
+        <React.Fragment key={`genreList-${el.name}`}> 
          <div css={tagWrapperCSS({selected: selected, curIdx: el.genreId, isMobile: isMobile})} onClick={() => {selectHandler(el.genreId)}}>{el.name}</div>
 
          
-        </>
+        </React.Fragment>
         
       );
   });

@@ -130,7 +130,7 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
             </div>
             {storyWrapperRef.current && storyWrapperRef?.current?.innerText.length < bookData.story.length && unfoldStory === false && <div onClick={() => {setUnfoldStory(() => true)}} css={unfoldStringCSS}>...더보기</div>}
 
-            <TagList tag={bookData.tag} />
+            <TagList identifier={`${bookData.bookId}`} tag={bookData.tag} />
           </div>
           <div css={buttonWrapperCSS({ isDeskTop })}>
             <RedirButton

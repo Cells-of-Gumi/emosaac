@@ -5,7 +5,7 @@ import { getBookDetail } from "@/api/book/getBookDetail";
 // import { getToken } from "@/api/instance";
 import VerticalScroll from "@/components/bookTab/VerticalScroll/VerticalScroll";
 import BookCard from "@/components/UI/BookCard/BookCard";
-
+import HorizontalCarousel from "../UI/ScrollableCarousel/HorizontalCarousel";
 export default function SortByDay() {
 
   const infinityScrollAPI = ({fetchedData, prevId, prevScore, size}: {fetchedData: any; prevId?: number; prevScore?: number; size: number}) => {
@@ -14,8 +14,11 @@ export default function SortByDay() {
 
   return (
 
-
-        <VerticalScroll API={infinityScrollAPI}/>
+    <>
+      <VerticalScroll API={infinityScrollAPI}/>
+      {/* <HorizontalCarousel API={infinityScrollAPI}/> */}
+    </>
+        
 
       
 
