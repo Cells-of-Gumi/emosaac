@@ -10,7 +10,7 @@ import { getBookDetail } from "@/api/book/getBookDetail";
 import StarRating from "@/components/bookDetail/StarRating";
 import TagList from "@/components/bookDetail/TagList";
 import { putBookRating } from "@/api/book/putBookRating";
-
+import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 
 
 interface WaterfallCardModalProps {
@@ -42,14 +42,15 @@ const WaterfallCardModal = ({
   const [contentToggler, setContentToggler] = useState<boolean>(false);
   const [isOpened, setisOpened] = useState<boolean>(false);
   const [isClosing, setIsClosing] = useState<boolean>(false);
+  const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const router = useRouter()
 
 
 
 
   const modalLayout = {
-    widthValue: 380,
-    heightValue: 700,
+    widthValue: isMobile ? 360 : 460,
+    heightValue: isMobile ? 680 : 750,
   };
 
   useEffect(() => {
@@ -133,11 +134,12 @@ const WaterfallCardModal = ({
                 isClosing: isClosing,
                 imgHeight: imgHeight,
                 imgMinHeight: imgMinHeight,
+                isMobile
               })}
             />
           </div>
 
-          <div css={spaceDivCSS}></div>
+          <div css={spaceDivCSS({isMobile})}></div>
           <div css={contentDivCSS}>
             <div className={"book-info"} css={bookInfoWrapperCSS}>
               <div css={titleCSS}>
@@ -303,9 +305,10 @@ interface imageCSSProps {
   isClosing: boolean;
   imgHeight: string | undefined;
   imgMinHeight: string | undefined;
+  isMobile: boolean
 }
 
-const imageCSS = ({ modalToggler, parentRef, isClosing, imgHeight, imgMinHeight }: imageCSSProps) => {
+const imageCSS = ({ modalToggler, parentRef, isClosing, imgHeight, imgMinHeight, isMobile }: imageCSSProps) => {
   return css`
     will-change: width height transform;
     transition-property: width height transform;
@@ -313,15 +316,17 @@ const imageCSS = ({ modalToggler, parentRef, isClosing, imgHeight, imgMinHeight 
     ${modalToggler ? `transform: scale(1.0)` : (isClosing ? `transform: scale(1.0)` : `transform: scale(1.1)`)};
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
     width: auto;
-    height: ${modalToggler ? "550px" : `${parentRef?.current?.clientHeight}px`};
+    height: ${modalToggler ? (isMobile ? "550px" : "600px") : `${parentRef?.current?.clientHeight}px`};
     min-height: ${imgMinHeight};
   `;
 };
 
-const spaceDivCSS = css`
-  width: 100%;
-  height: 550px;
-`;
+const spaceDivCSS = ({isMobile}: {isMobile: boolean}) => {
+  return css`
+    width: 100%;
+    height: ${isMobile ? "550px" : "600px"};
+  `;
+}
 
 const contentDivCSS = css`
   flex: 1 0 auto;
