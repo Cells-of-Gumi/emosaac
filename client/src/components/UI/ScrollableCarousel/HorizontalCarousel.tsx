@@ -12,18 +12,20 @@ import loading2 from 'react-useanimations/lib/loading2'
 
 
 interface HorizontalCarouselProps {
-    API: ({fetchedData, prevId, prevScore, size}: {fetchedData: any; prevId?: number; prevScore?: number; size: number}) => Promise<any>;
+    // API: ({fetchedData, prevId, prevScore, size}: {fetchedData: any; prevId?: number; prevScore?: number; size: number}) => Promise<any>;
+    API: ({lastContent, size}: {lastContent?: bookContentType; size: number}) => Promise<any>;
+    identifier: string;
 }
 
-const HorizontalCarousel = ({API}: HorizontalCarouselProps) => {
+const HorizontalCarousel = ({API, identifier}: HorizontalCarouselProps) => {
     const [isDeskTop, isTablet, isMobile] = useIsResponsive();
     const cardLayout = {
-        width: "200px",
-        height: "300px",
-        minWidth: "200px",
-        minHeight: "300px",
+        width: "10vw",
+        height: "15vw",
+        minWidth: "150px",
+        minHeight: "225px",
         padding: "0.5vw",
-        margin: 16,
+        margin: 8,
     };
 
     const [fetchedData, setFetchedData] = useState<any>([])
@@ -42,20 +44,31 @@ const HorizontalCarousel = ({API}: HorizontalCarouselProps) => {
     const [dummyHeight, setDummyHeight] = useState<number>(0)
     const dummy = [Array(quantityPerPage).fill("LOADING")]
 
-    useEffect(() => {
-        const loadData = window.localStorage.getItem('inf_fetched_data')
-        const loadPage = window.localStorage.getItem('recent_page')
 
-        console.log('로드', loadData && JSON.parse(loadData))
+    useEffect(() => {
+        const loadData = window.localStorage.getItem(`${identifier}-inf_fetched_data`)
+        const loadPage = window.localStorage.getItem(`${identifier}-recent_page`)
+
+
         if (loadData) {
             setFetchedData(() => JSON.parse(loadData))
         } else {
-            API({fetchedData: fetchedData, size: quantityPerPage})
-            .then((res: returnBookContentType) => {
-                if (res.content.length !== 0 || res.content !== null) {
-                    setFetchedData(() => [[...res.content]])
+            API({size: quantityPerPage})
+                .then((res: returnBookContentType) => {
+                    if (res.content.length !== 0 || res.content !== null) {
+                        const temp = [[...res.content]]
+                        setFetchedData(() => temp)
+                        // setOffset((prev) => prev + 1)
+                        // window.localStorage.setItem(`${identifier}-inf_fetched_data`, JSON.stringify(temp))
+                    }
                 }
-            })
+            );
+            // API({fetchedData: fetchedData, size: quantityPerPage})
+            // .then((res: returnBookContentType) => {
+            //     if (res.content.length !== 0 || res.content !== null) {
+            //         setFetchedData(() => [[...res.content]])
+            //     }
+            // })
         }
 
         if (loadPage) {
@@ -70,44 +83,57 @@ const HorizontalCarousel = ({API}: HorizontalCarouselProps) => {
     }, [])
 
     useEffect(() => {
-        const loadScroll = window.localStorage.getItem('recent_scroll')
-        if (loadScroll && fetchedData.length !== 0 && scrollRef.current) {
-            // setTimeout(function() {
-                
-            // }, 1000)
+        const loadScroll = window.localStorage.getItem(`${identifier}-recent_scroll`)
+        if (loadScroll && scrollRef.current) {
+     
             scrollRef.current.scrollTo(Number(JSON.parse(loadScroll)), 0)
             
             
         }
-    }, [fetchedData.length === 0])
+    }, [scrollRef.current && scrollRef.current.scrollWidth <= Number(window.localStorage.getItem(`${identifier}-recent_scroll`))])
 
     useEffect(() => {
         if (getFetch === true && fetchedData) {
             const lastContent = fetchedData[fetchedData.length - 1][fetchedData[fetchedData.length - 1].length - 1]
             if (lastContent) {
-                console.log(lastContent)
-                API({fetchedData: fetchedData, prevId: lastContent.bookId, prevScore: lastContent.avgScore, size: quantityPerPage})
+
+
+                API({lastContent: lastContent, size: quantityPerPage})
                 .then((res: returnBookContentType) => {
-                    // setFetchedData(() => [...fetchedData, [...res.content]])
-                    if (res.content.length !== 0 || res.content !== null) {
-                        const temp = [...fetchedData, [...res.content]]
-                        setFetchedData(() => temp)
-                        // setOffset((prev) => prev + 1)
-                        window.localStorage.setItem('inf_fetched_data', JSON.stringify(temp))
-                        console.log(fetchedData)
+                        if (res.content.length !== 0 || res.content !== null) {
+                            const temp = [...fetchedData, [...res.content]]
+                            setFetchedData(() => temp)
+                            // setOffset((prev) => prev + 1)
+                            window.localStorage.setItem(`${identifier}-inf_fetched_data`, JSON.stringify(temp))
+
+                        }
                     }
-                })
+                );
+
+
+                // console.log(lastContent)
+                // API({fetchedData: fetchedData, prevId: lastContent.bookId, prevScore: lastContent.avgScore, size: quantityPerPage})
+                // .then((res: returnBookContentType) => {
+                //     // setFetchedData(() => [...fetchedData, [...res.content]])
+                //     if (res.content.length !== 0 || res.content !== null) {
+                //         const temp = [...fetchedData, [...res.content]]
+                //         setFetchedData(() => temp)
+                //         // setOffset((prev) => prev + 1)
+                //         window.localStorage.setItem('inf_fetched_data', JSON.stringify(temp))
+                //         console.log(fetchedData)
+                //     }
+                // })
             }
             setFetch(false)
         }
     }, [getFetch])
 
-    // useEffect(() => {
-    //     if (dummyPageRef.current) {
-    //         setDummyWidth(() => dummyPageRef?.current?.clientWidth)
-    //         setDummyHeight(() => dummyPageRef?.current?.clientHeight)
-    //     }
-    // }, [getFetch])
+    useEffect(() => {
+        if (dummyPageRef.current) {
+            setDummyWidth(() => dummyPageRef?.current?.clientWidth)
+            setDummyHeight(() => dummyPageRef?.current?.clientHeight)
+        }
+    }, [getFetch])
 
 
 
@@ -122,12 +148,12 @@ const HorizontalCarousel = ({API}: HorizontalCarouselProps) => {
                 //     setFetch(true)   
                 // }
                 if (scrollRef.current && scrollRef.current.scrollLeft !== 0) {
-                    window.localStorage.setItem('recent_scroll', String(scrollRef.current.scrollLeft))
+                    window.localStorage.setItem(`${identifier}-recent_scroll`, String(scrollRef.current.scrollLeft))
                 }
-                if (dummyPageRef.current) {
-                    setDummyWidth(() => dummyPageRef?.current?.clientWidth)
-                    setDummyHeight(() => dummyPageRef?.current?.clientHeight)
-                }
+                // if (dummyPageRef.current) {
+                //     setDummyWidth(() => dummyPageRef?.current?.clientWidth)
+                //     setDummyHeight(() => dummyPageRef?.current?.clientHeight)
+                // }
                 
             }, 1000),
         [fetchedData]
@@ -149,44 +175,47 @@ const HorizontalCarousel = ({API}: HorizontalCarouselProps) => {
 
 
     
-    const pageRender = fetchedData.map((page: any, pageIdx: number) => {
+    const pageRender = useMemo(() => fetchedData.map((page: any, pageIdx: number) => {
         const contentRender = page.map((content: bookContentType, contentIdx: number) => {
             return (
-                <div css={cardWrapperCSS({ width: cardLayout.width, height: cardLayout.height, minWidth: cardLayout.minWidth, minHeight: cardLayout.minHeight, margin: cardLayout.margin })}>
+                <div key={`horizontalCarousel-${identifier}-${content.bookId}`} css={cardWrapperCSS({ width: cardLayout.width, height: cardLayout.height, minWidth: cardLayout.minWidth, minHeight: cardLayout.minHeight, margin: cardLayout.margin })}>
                     <BookCard showPlatform={true} bookData={content} minWidth={cardLayout.minWidth} minHeight={cardLayout.minHeight} />  
                 </div>
             )
         })
         if (page.length !== 0) {
             return (
-                <div key={`infinity-${pageIdx}`} id={`${pageIdx}`} ref={(el) => {pageClassRef.current[pageIdx] = el;}}>
+                <div key={`horizontalCarousel-${identifier}-${pageIdx}`} id={`${pageIdx}`} ref={(el) => {pageClassRef.current[pageIdx] = el;}}>
                     {onScreenContentIdx === pageIdx || onScreenContentIdx === pageIdx - 1 || onScreenContentIdx === pageIdx + 1 ? 
-                    <div css={contentPageWrapperCSS({isMobile, isTablet, isDeskTop})}>{contentRender}</div> : <div id={`${pageIdx}`} css={dummyWrapperCSS({standardWidth: dummyWidth, standardHeight: dummyHeight})} /> // css={dummyWrapperCSS({standardWidth: dummyWidth, standardHeight: dummyHeight})}
+                    <div css={contentPageWrapperCSS({isMobile, isTablet, isDeskTop})}>{contentRender}</div> : <div id={`${pageIdx}`} css={dummyWrapperCSS({standardWidth: dummyWidth, standardHeight: dummyHeight, dummyPageRef})} /> // css={dummyWrapperCSS({standardWidth: dummyWidth, standardHeight: dummyHeight})}
                 }
                 </div>
             )
         }
-    })
+    }),
+    [fetchedData]
+    )
 
 
 
-    const dummyRender = dummy.map((page: any, pageIdx: number) => {
-        const contentRender = page.map((content: bookContentType, contentIdx: number) => {
+    const dummyRender = useMemo(() => dummy.map((page: any, pageIdx: number) => {
+            const contentRender = page.map((content: bookContentType, contentIdx: number) => {
+                return (
+                    <div key={`horizontalCarousel-dummyCard-${identifier}-${contentIdx}`} ref={dummyCardRef} css={cardWrapperCSS({ width: cardLayout.width, height: cardLayout.height, minWidth: cardLayout.minWidth, minHeight: cardLayout.minHeight, margin: cardLayout.margin })}>
+                        <BookCard showPlatform={true} bookData={content} minWidth={cardLayout.minWidth} minHeight={cardLayout.minHeight} />  
+                    </div>
+                )
+            })
+
             return (
-                <div ref={dummyCardRef} css={cardWrapperCSS({ width: cardLayout.width, height: cardLayout.height, minWidth: cardLayout.minWidth, minHeight: cardLayout.minHeight, margin: cardLayout.margin })}>
-                    <BookCard showPlatform={true} bookData={content} minWidth={cardLayout.minWidth} minHeight={cardLayout.minHeight} />  
-                </div>
-            )
-        })
-        if (page.length !== 0) {
-            return (
-                <div css={css`visibility: hidden; position: absolute;`} key={`dummy-${pageIdx}`}>
-                    {dummyWidth}, {dummyHeight}
+                <div key={`horizontalCarousel-dummyPage-${identifier}`} css={css`visibility: hidden; position: absolute;`}>
                     <div className={'dummy'} ref={dummyPageRef} css={contentPageWrapperCSS({isMobile, isTablet, isDeskTop})}>{contentRender}</div>
                 </div>
             )
-        }
-    })
+            
+        }),
+        [dummy]
+    )
 
 
     
@@ -199,13 +228,12 @@ const HorizontalCarousel = ({API}: HorizontalCarouselProps) => {
             if (entry.isIntersecting) {
                 if ($target.id && $target.id !== 'scrollStart') {
                     setOnScreenContentIdx(() => Number($target.id))
-                    window.localStorage.setItem('recent_page', $target.id)
+                    window.localStorage.setItem(`${identifier}-recent_page`, $target.id)
                 } 
                 if ($target.id === 'scrollStart' && fetchedData.length !== 0) {
                     setFetch(true)   
                 }
 
-                console.log('화면에 보이는 Div', $target.id)
             // $target.classList.add("screening");
             }
         })
@@ -232,6 +260,7 @@ const HorizontalCarousel = ({API}: HorizontalCarouselProps) => {
 
     }, [pageClassRef.current.length, fetchedData])
 
+    
     useEffect(() => {
         cardClassRef.current.forEach((item: any) => {
             if (item) {
@@ -266,7 +295,7 @@ const HorizontalCarousel = ({API}: HorizontalCarouselProps) => {
 
 
     return (
-        <div onClick={() => {console.log(dummyCardRef.current.style)}} css={carouselOuterWrapperCSS}>
+        <div css={carouselOuterWrapperCSS}>
             <div
                 css={[indicatorBtn, prevBtn({ isDeskTop, isTablet, isMobile })]}
                 onClick={prevBtnClickHandler}
@@ -301,7 +330,7 @@ const HorizontalCarousel = ({API}: HorizontalCarouselProps) => {
 }
 
 const carouselOuterWrapperCSS = css`
-    width: 100vw;
+    width: 100%;
     position: relative;
     display: flex;
     justify-content: center;
@@ -317,9 +346,12 @@ const scrollWrapperCSS = css`
     display: flex;
     align-items: center;
     overflow-x: scroll;
-    width: 90%;
-
-    -webkit-mask-image: linear-gradient(
+    width: 100%;
+    border-radius: 10px;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    /* -webkit-mask-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0) 0%,
     var(--back-color) 1%,
@@ -332,15 +364,16 @@ const scrollWrapperCSS = css`
     var(--back-color) 1%,
     var(--back-color) 99%,
     rgba(0, 0, 0, 0) 100%
-  );
+  ); */
 
 `
 
 
 
-const dummyWrapperCSS = ({standardWidth, standardHeight}: {standardWidth?: any; standardHeight?: any}) => {
+const dummyWrapperCSS = ({standardWidth, standardHeight, dummyPageRef}: {standardWidth?: any; standardHeight?: any; dummyPageRef: any;}) => {
     return css`
-        width: ${standardWidth ? standardWidth + 'px' : standardWidth + 'px'};
+        /* width: ${standardWidth ? standardWidth + 'px' : standardWidth + 'px'}; */
+        width: ${dummyPageRef.current.clientWidth}px;
         /* height: ${standardHeight ? standardHeight + 'px' : '100vh'}; */
         
         /* width: 100vw;
@@ -357,6 +390,8 @@ const contentPageWrapperCSS = ({isMobile, isTablet, isDeskTop}: {isMobile: boole
         flex-direction: column;
         align-items: center; */
         display: flex;
+        /* border: 3px solid red; */
+        
     `
 }
 
@@ -373,8 +408,10 @@ const cardWrapperCSS = ({ width, height, minWidth, minHeight, margin }: { width:
     return css`
         width: ${width};
         height: ${height};
-        margin: ${margin}px;
-
+        min-width: ${minWidth};
+        min-height: ${minHeight};
+        margin-right: ${margin}px;
+        margin-left: ${margin}px;
     `
 }
 
@@ -412,8 +449,8 @@ const prevBtn = ({ isDeskTop, isTablet, isMobile }: nextPrevBtnProps) => {
   return css`
     left: 20px;
     /* background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); */
-    /* transform: ${(isDeskTop === true && `translate(-105px, 0px)`) ||
-    (isTablet === true && `translate(-50px, 0px)`)}; */
+    transform: ${(isDeskTop === true && `translate(-105px, 0px)`) ||
+    (isTablet === true && `translate(-50px, 0px)`)};
     &:hover {
       /* background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); */
       font-size: 54px;
@@ -425,8 +462,8 @@ const nextBtn = ({ isDeskTop, isTablet, isMobile }: nextPrevBtnProps) => {
   return css`
     right: 20px;
     /* background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); */
-    /* transform: ${(isDeskTop === true && `translate(105px, 0px)`) ||
-    (isTablet === true && `translate(50px, 0px)`)}; */
+    transform: ${(isDeskTop === true && `translate(105px, 0px)`) ||
+    (isTablet === true && `translate(50px, 0px)`)};
     &:hover {
       /* background: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); */
       font-size: 54px;

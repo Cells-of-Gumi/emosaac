@@ -157,7 +157,7 @@ const WaterfallCardModal = ({
                 />
 
                 </div>
-                {bookData && <TagList tag={bookData.tag} />}
+                {bookData && <TagList tag={bookData.tag} identifier={`waterfall-${bookData.bookId}`} />}
               </div>
               
             </div>

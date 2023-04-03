@@ -6,6 +6,8 @@ import ScrollableCarousel from "../UI/ScrollableCarousel/ScrollableCarousel";
 import { useIsResponsive } from "../Responsive/useIsResponsive";
 import { useRef } from "react";
 import { bookContentType } from "@/types/books";
+import HorizontalCarousel from "../UI/ScrollableCarousel/HorizontalCarousel";
+import React from "react";
 
 interface SortByGenreProps {
     fetchList: any;
@@ -18,10 +20,11 @@ const SortByGenre = ({fetchList}: SortByGenreProps) => {
 
     const rowsRender = fetchList.map((el: any, idx: number) => {
         return (
-            <>
+            <React.Fragment key={`sortByGenre-${el.identifier}`}>
                 <RowTitle beforeLabel={el.beforeLabel} highlightedLabel={el.highlightedLabel} afterLabel={el?.afterLabel} />
                 <div css={bookCarouselWrapperCSS}>
-                <ScrollableCarousel API={el.API} identifier={el.identifier} />
+                {/* <ScrollableCarousel API={el.API} identifier={el.identifier} /> */}
+                <HorizontalCarousel API={el.API} identifier={el.identifier} />
                 </div>
                 <div css={whiteSpace1CSS} />
                 {Math.ceil(fetchList.length / 2) === idx && 
@@ -35,7 +38,7 @@ const SortByGenre = ({fetchList}: SortByGenreProps) => {
                     css={bannerImage}
                 />
                 }
-            </>
+            </React.Fragment>
         )
     })
 

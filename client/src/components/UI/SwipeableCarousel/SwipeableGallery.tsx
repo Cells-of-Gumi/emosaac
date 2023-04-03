@@ -138,7 +138,7 @@ const SwipeableGallery = ({ parentRef, content }: any) => {
   //
 
   const indicator = postData.content.map((el: any, idx: number) => {
-    return <div css={indicatorCSS({ idx, contentCount })}></div>;
+    return <div key={`indicator-${idx}`} css={indicatorCSS({ idx, contentCount })}></div>;
   });
 
   const indicatorBtn = (
@@ -165,9 +165,9 @@ const SwipeableGallery = ({ parentRef, content }: any) => {
       >
         <div className={styles.wrapper}>
           <div className={styles.moveable} ref={movingDiv}>
-            {postData.content.map((el: any) => {
+            {postData.content.map((el: any, idx: number) => {
               return (
-                <div className={styles.content} style={{ width: width + "px" }}>
+                <div key={`banner-${idx}`} className={styles.content} style={{ width: width + "px" }}>
                   {el}
                 </div>
               ); //, height: height + 'px'

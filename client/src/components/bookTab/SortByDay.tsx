@@ -15,8 +15,8 @@ export default function SortByDay() {
   return (
 
     <>
-      <HorizontalCarousel API={infinityScrollAPI}/>
-      <HorizontalCarousel API={infinityScrollAPI}/>
+      <VerticalScroll API={infinityScrollAPI}/>
+      {/* <HorizontalCarousel API={infinityScrollAPI}/> */}
     </>
         
 

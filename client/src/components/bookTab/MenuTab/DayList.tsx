@@ -2,6 +2,7 @@
 import { jsx, css } from "@emotion/react";
 import { returnGenresType } from "@/types/books";
 import { useIsResponsive } from "../../Responsive/useIsResponsive";
+import React from 'react'
 
 
 const DayList = ({ selected, selectHandler }: { selected: number, selectHandler: Function }) => {
@@ -9,11 +10,11 @@ const DayList = ({ selected, selectHandler }: { selected: number, selectHandler:
   const days = ['월', '화', '수', '목', '금', '토', '일']
   const renderGenres = days.map((el, idx) => {
       return (
-        <>
+        <React.Fragment key={`dayList-${el}`}>
          <div css={tagWrapperCSS({selected: selected, curIdx: idx, isMobile: isMobile})} onClick={() => {selectHandler(idx)}}>{el}</div>
 
          
-        </>
+        </React.Fragment>
         
       );
   });
