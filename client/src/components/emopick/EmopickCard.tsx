@@ -6,6 +6,7 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { useMediaQuery } from "react-responsive";
 import { RiPlayCircleFill, RiPlayCircleLine } from "react-icons/ri";
 import EmopickThumbnail from "./EmopickThumbnail";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 
 type emopickInfoType = {
   writerInfo: {
@@ -18,6 +19,8 @@ type emopickInfoType = {
   thumbnails: string;
   createdDate: string;
   modifiedDate: string;
+  likeCnt: number;
+  bookCnt: number;
 };
 
 interface Props {
@@ -38,10 +41,13 @@ const EmopickCard = ({ emopick }: Props) => {
     <div
       key={emopick.emopickId}
       onClick={() => onClickBox(emopick.emopickId)}
+      onMouseOver={() => setIsMouseOnCard(true)}
+      onMouseLeave={() => setIsMouseOnCard(false)}
       css={pickWrapCSS({ isDeskTop, isTablet, isMobile })}
     >
       <EmopickThumbnail
         thumbnails={emopick.thumbnails}
+        bookCnt={emopick.bookCnt}
         isMouseOnCard={isMouseOnCard}
       />
       <div css={pickContentWrapCSS({ isDeskTop, isTablet, isMobile })}>
@@ -52,7 +58,9 @@ const EmopickCard = ({ emopick }: Props) => {
             <div>{emopick.title}</div>
           </div>
           {/* <div>{emo.createdDate}</div> */}
-          <div>좋아요 20개 · 1시간 전</div>
+          <div>
+            <AiFillHeart /> {emopick.likeCnt} · 1시간 전
+          </div>
         </div>
         {/* 사용자 정보 */}
         <div>
@@ -77,7 +85,7 @@ const pickWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   cursor: pointer;
   width: 100%;
   display: grid;
-  grid-template-columns: ${!isMobile ? "230px 1fr" : "180px 1fr"};
+  grid-template-columns: ${!isMobile ? "210px 1fr" : "160px 1fr"};
   column-gap: ${!isMobile ? "20px" : "20px"};
   transition: all 0.3s;
 `;
@@ -102,8 +110,13 @@ const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
         }
       }
       & > div:nth-of-type(2) {
-        color: var(--text-color-3);
+        margin-left: 4px;
+        color: var(--text-color-4);
         font-size: 14px;
+        display: flex;
+        & > svg {
+          margin-right: 4px;
+        }
       }
     }
     // 작성자 정보

@@ -15,6 +15,8 @@ type emopickInfoType = {
   emopickId: number;
   title: string;
   thumbnails: string;
+  likeCnt: number;
+  bookCnt: number;
   createdDate: string;
   modifiedDate: string;
 };

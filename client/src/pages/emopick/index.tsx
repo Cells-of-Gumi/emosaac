@@ -20,6 +20,8 @@ type emopickInfoType = {
   thumbnails: string;
   createdDate: string;
   modifiedDate: string;
+  likeCnt: number;
+  bookCnt: number;
 };
 
 type Props = {
@@ -46,9 +48,7 @@ const index = (data: Props) => {
   useEffect(() => {
     setEmopickList(data);
   }, []);
-  // useEffect(() => {
-  //   console.log(emopickList.content);
-  // }, []);
+
   console.log(emopickList);
   return (
     <div>

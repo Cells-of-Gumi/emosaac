@@ -31,7 +31,7 @@ import {
   RiPlayCircleLine,
   RiArrowLeftSLine,
 } from "react-icons/ri";
-import { GrClose } from "react-icons/gr";
+import { IoCloseOutline } from "react-icons/io5";
 import Link from "next/link";
 
 export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
@@ -45,6 +45,8 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
   const [isSearchClicked, setIsSearchClicked] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
+  const [profileImg, setProfileImg] = useState("");
+  const [nickname, setNickname] = useState("");
   const [isHome, setIsHome] = useState(false);
   const [isPopUpOpen, setIsPopUpOpen] = useState(false);
   const [currentRoute, setCurrentRoute] = useState({
@@ -74,6 +76,18 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
       setIsLogin(false);
     }
   }, []);
+
+  useEffect(() => {
+    const imageUrl = localStorage.getItem("imageUrl");
+    const nick = localStorage.getItem("nickname");
+    if (isLogin) {
+      imageUrl && setProfileImg(imageUrl);
+      nick && setNickname(nick);
+    } else {
+      setProfileImg("");
+      setNickname("");
+    }
+  }, [isLogin]);
 
   useEffect(() => {
     if (!isSearchBoxOpen) {
@@ -271,9 +285,18 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
           {isMobile && (
             <div css={mobileBottomCSS}>
               <div css={popUpCSS(isPopUpOpen)}>
-                <GrClose onClick={() => setIsPopUpOpen(false)} />
-                <div>김현영님, 안녕하세요</div>
+                <IoCloseOutline
+                  onClick={() => setIsPopUpOpen(false)}
+                  size={20}
+                />
                 <div>
+                  {isLogin ? (
+                    <>{nickname}님, 안녕하세요</>
+                  ) : (
+                    "로그인이 필요합니다."
+                  )}
+                </div>
+                <div onClick={() => setIsPopUpOpen(false)}>
                   <div>
                     <Link href={"/mypage"} replace>
                       MY PAGE
@@ -308,14 +331,14 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
                   </Link>
                 </li>
                 <li>
-                  <a>
+                  <Link href="/webtoon" replace>
                     {currentRoute.webtoon ? (
                       <MdCookie size={24} />
                     ) : (
                       <MdOutlineCookie size={24} />
                     )}
                     <div>웹툰</div>
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <Link href="/novel" replace>
@@ -338,14 +361,14 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
                   </Link>
                 </li>
                 <li onClick={() => setIsPopUpOpen(true)}>
-                  <Link href="/mypage">
+                  <a>
                     {currentRoute.mypage ? (
                       <MdPerson size={24} />
                     ) : (
                       <MdOutlinePersonOutline size={24} />
                     )}
                     <div>MY</div>
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -383,7 +406,7 @@ const routerCSS = (isCurrentRoute: boolean) => {
 
 const navTopCSS = (isHome: boolean) => css`
   position: fixed;
-  z-index: 30;
+  z-index: 200;
   top: 0;
   left: 0;
   width: 100%;
@@ -493,18 +516,19 @@ const menuWrapCSS = (isDeskTop: boolean, isTablet: boolean) => {
 
 const mobileBottomCSS = css`
   position: fixed;
-  z-index: 20;
+  z-index: 200;
   bottom: 0;
   left: 0;
 `;
 
 const popUpCSS = (isPopUpOpen: boolean) => css`
+  z-index: 120;
   transition: all 0.3s ease;
   position: relative;
   width: 100vw;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 80px);
   background-color: var(--back-color);
-  border-radius: 20px 20px 0px 0px;
+  border-radius: 10px 10px 0px 0px;
   padding-top: 10px;
   transform: ${isPopUpOpen ? "translateY(0px)" : "translateY(100vh)"};
   & > svg {
@@ -512,6 +536,7 @@ const popUpCSS = (isPopUpOpen: boolean) => css`
     position: absolute;
     top: 20px;
     right: 20px;
+    color: var(--text-color);
   }
   & > div:nth-of-type(1) {
     // 안녕하세요
@@ -529,8 +554,9 @@ const popUpCSS = (isPopUpOpen: boolean) => css`
 `;
 
 const dockBarCSS = css`
+  cursor: pointer;
   position: fixed;
-  z-index: 22;
+  z-index: 200;
   display: grid;
   background-color: var(--back-color-op);
   box-shadow: var(--shadow-color);

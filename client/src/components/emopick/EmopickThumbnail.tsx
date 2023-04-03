@@ -5,17 +5,27 @@ import { useEffect, useState } from "react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { useMediaQuery } from "react-responsive";
 import { RiPlayCircleFill, RiPlayCircleLine } from "react-icons/ri";
+import { MdOutlinePlaylistPlay } from "react-icons/md";
 
 interface Props {
   thumbnails: string;
-  isMouseOnCard?: boolean;
+  bookCnt: number;
+  isMouseOnCard?: boolean | null;
 }
 
-const EmopickThumbnail = ({ thumbnails, isMouseOnCard }: Props) => {
+const EmopickThumbnail = ({ thumbnails, bookCnt, isMouseOnCard }: Props) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [isMouseOnThumb, setIsMousOnThumb] = useState(false);
   return (
-    <div css={pickThumbnailWrapCSS({ isDeskTop, isTablet, isMobile })}>
+    <div
+      css={pickThumbnailWrapCSS(
+        { isDeskTop, isTablet, isMobile },
+        isMouseOnThumb,
+        isMouseOnCard !== undefined && isMouseOnCard
+      )}
+      onMouseOver={() => setIsMousOnThumb(true)}
+      onMouseLeave={() => setIsMousOnThumb(false)}
+    >
       <div>
         {thumbnails
           .split(" ")
@@ -25,7 +35,16 @@ const EmopickThumbnail = ({ thumbnails, isMouseOnCard }: Props) => {
               <img src={thumb} alt="thumbnail" />
             </div>
           ))}
-        <div></div>
+        <div>
+          {isMouseOnCard || isMouseOnThumb ? (
+            "전체 보기"
+          ) : (
+            <>
+              {bookCnt}
+              <MdOutlinePlaylistPlay size={20} />
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -37,21 +56,22 @@ interface IsResponsive {
   isMobile: boolean;
 }
 
-const pickThumbnailWrapCSS = ({
-  isDeskTop,
-  isTablet,
-  isMobile,
-}: IsResponsive) =>
+const pickThumbnailWrapCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  isMouseOnThumb: boolean,
+  isMouseOnCard: boolean | null
+) =>
   css`
     & > div:nth-of-type(1) {
       // 썸네일 다발
-      height: ${!isMobile ? "200px" : "160px"};
+      width: ${!isMobile ? "210px" : "160px"};
+      height: ${!isMobile ? "210px" : "160px"};
       position: relative;
       border-radius: 10px;
       overflow: hidden;
       & > div {
         width: ${!isMobile ? "150px" : "100px"};
-        height: 200px;
+        height: 210px;
         border-radius: 10px;
         overflow: hidden;
         position: absolute;
@@ -74,10 +94,19 @@ const pickThumbnailWrapCSS = ({
         left: 0px;
       }
       & > div:nth-of-type(5) {
-        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        width: ${isMouseOnCard || isMouseOnThumb ? "100%" : "50%"};
         border-radius: 0px 10px 10px 0px;
         right: 0px;
-        background-color: rgba(0, 0, 0, 0.6);
+        background-color: rgba(0, 0, 0, 0.7);
+        transition: all 0.2s ease-in-out;
+        & > svg {
+          margin-top: 8px;
+        }
       }
     }
   `;
