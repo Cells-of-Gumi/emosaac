@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getToken } from "@/api/instance";
 import { getEmopickList } from "@/api/emopick/getEmopickList";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
+import { useMediaQuery } from "react-responsive";
 import { isReadable } from "stream";
 
 type emopickInfoType = {
@@ -32,6 +33,9 @@ type Props = {
 };
 
 const index = (data: Props) => {
+  const isEmoLimit = !useMediaQuery({
+    query: "(min-width: 1250px) or (max-width: 1023px)",
+  });
   const router = useRouter();
   const [emopickList, setEmopickList] = useState<Props>(data);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -57,7 +61,7 @@ const index = (data: Props) => {
         <div></div>
       </div>
       <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
-        <div css={listWrapCSS({ isDeskTop, isTablet, isMobile })}>
+        <div css={listWrapCSS({ isDeskTop, isTablet, isMobile }, isEmoLimit)}>
           {emopickList &&
             emopickList?.data?.content.map((emo, idx) => (
               <div
@@ -78,6 +82,7 @@ const index = (data: Props) => {
                           <img src={thumb} alt={emo.title} />
                         </div>
                       ))}
+                    <div></div>
                   </div>
                 </div>
                 <div
@@ -127,19 +132,19 @@ const pageTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   color: #000;
   height: ${isDeskTop ? "250px" : isTablet ? "200px" : "150px"};
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-radius: 20px;
+  grid-template-columns: 2fr 1fr;
+  border-radius: ${!isMobile ? "20px" : "10px"};
   margin-top: ${!isMobile ? "30px" : "20px"};
   & > div:nth-of-type(1) {
     margin: auto 0;
     & > h2 {
       letter-spacing: 0px;
       font-weight: 900;
-      font-size: 40px;
+      font-size: ${!isMobile ? "40px" : "24px"};
       line-height: 50px;
       color: #000;
       & > span {
-        font-size: 50px;
+        font-size: ${!isMobile ? "50px" : "34px"};
       }
     }
     & > div {
@@ -149,32 +154,24 @@ const pageTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   }
 `;
 
-const listWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
+const listWrapCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  isEmoLimit: boolean
+) => css`
   display: grid;
   /* margin-top: 40px; */
-  grid-template-columns: ${!isMobile ? "1fr 1fr" : "1fr"};
-  column-gap: ${isMobile ? "10px" : "20px"};
-  row-gap: ${isMobile ? "10px" : "20px"};
+  grid-template-columns: ${isDeskTop && !isEmoLimit ? "1fr 1fr" : "1fr"};
+  column-gap: ${isMobile ? "10px" : "30px"};
+  row-gap: ${isMobile ? "20px" : "40px"};
 `;
 
 const pickWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   cursor: pointer;
-  padding: ${isDeskTop ? "20px 20px" : isTablet ? "20px 20px" : "10px 10px"};
-  border-radius: 10px;
-  border: 1px solid var(--border-color);
-  box-shadow: var(--shadow-color);
   width: 100%;
   display: grid;
-  grid-template-columns: 100px 1fr;
-  column-gap: ${isMobile ? "10px" : "20px"};
-  background-color: var(--back-color-2);
+  grid-template-columns: ${!isMobile ? "230px 1fr" : "180px 1fr"};
+  column-gap: 20px;
   transition: all 0.3s;
-  :hover {
-    background-color: var(--main-color);
-    & div {
-      color: #000 !important;
-    }
-  }
 `;
 
 const pickThumbnailWrapCSS = ({
@@ -185,30 +182,52 @@ const pickThumbnailWrapCSS = ({
   css`
     & > div:nth-of-type(1) {
       // 썸네일 다발
-      height: 150px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-radius: 4px;
+      height: ${!isMobile ? "200px" : "160px"};
+      position: relative;
+      border-radius: 10px;
       overflow: hidden;
       & > div {
+        width: ${!isMobile ? "150px" : "100px"};
+        height: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+        position: absolute;
         & > img {
           width: 100%;
           height: 100%;
           object-fit: cover;
         }
       }
+      & > div:nth-of-type(1) {
+        left: 60px;
+      }
+      & > div:nth-of-type(2) {
+        left: 40px;
+      }
+      & > div:nth-of-type(3) {
+        left: 20px;
+      }
+      & > div:nth-of-type(4) {
+        left: 0px;
+      }
+      & > div:nth-of-type(5) {
+        width: 50%;
+        border-radius: 0px 10px 10px 0px;
+        right: 0px;
+        background-color: rgba(0, 0, 0, 0.6);
+      }
     }
   `;
 
 const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css`
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; */
     // 글 정보
     & > div:nth-of-type(1) {
       & > div:nth-of-type(1) {
-        font-size: 24px;
+        font-size: 20px;
         line-height: 50px;
         font-weight: bold;
       }
@@ -219,7 +238,7 @@ const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
     // 작성자 정보
     & > div:nth-of-type(2) {
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
       align-items: flex-end;
       & > div:nth-of-type(1) {
         font-weight: bold;
