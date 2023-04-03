@@ -14,6 +14,7 @@ import getBookMark from "@/api/user/getBookMark";
 import BookMark from "./BookMark";
 
 const MyPage = ({ myinfo }: any) => {
+  // console.log(myinfo);
   const router = useRouter();
   const token = getToken();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -232,7 +233,7 @@ const chartwrapperCSS = (
   flex-direction: column;
   grid-template-columns: 1fr 1.5fr;
   justify-content: ${isTablet ? "center" : "center"};
-  align-items:  ${isTablet ? "center" : "center"};
+  align-items: ${isTablet ? "center" : "center"};
   column-gap: 50px;
   width: 100%;
   /* height: 400px; */
