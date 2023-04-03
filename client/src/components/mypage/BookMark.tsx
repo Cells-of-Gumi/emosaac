@@ -39,7 +39,7 @@ const BookMark = ({ typeCode }: BookMarkProps) => {
     getBookMark(prevId, prevTime, size, typeCode).then((res) => {
       const data = res;
       if (data !== null) {
-        console.log(data);
+        // console.log(data);
         setBookmarks(data.content);
       }
     });
@@ -55,19 +55,6 @@ const BookMark = ({ typeCode }: BookMarkProps) => {
           />
         </div>
       ) : (
-        // <div css={bookmarkimageCSS(isDeskTop, isTablet, isMobile)}>
-        //   {bookmarks.map((bookmark) => (
-        //     <img
-        //       key={bookmark.bookId}
-        //       src={bookmark.thumbnail}
-        //       alt="북마크 썸네일"
-        //       css={imageCSS(isDeskTop, isTablet, isMobile)}
-        //       onClick={() => {
-        //         router.push(`books/${bookmark.bookId}`);
-        //       }}
-        //     />
-        //   ))}
-        // </div>
         <div css={nobookmarkCSS}>
           북마크 한 {typeCode === 0 ? "웹툰" : "웹소설"}이 없어요
         </div>
@@ -83,6 +70,7 @@ const bookmarkwrapCSS = css`
   width: 100%;
   & > h3 {
     font-size: 25px;
+    margin-bottom: 20px;
   }
 `;
 
