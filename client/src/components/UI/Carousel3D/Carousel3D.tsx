@@ -106,8 +106,6 @@ const Carousel3D = ({
       setCarouselAngle(carouselStartAngle + dragSpaceX);
     }
   }, [mouseMoveClientX]);
-
-  console.log(bookData);
   return (
     <div css={containerCSS}>
       <div css={sceneCSS(isDeskTop, isTablet, isMobile)}>
