@@ -7,7 +7,10 @@ import naver from "../../assets/social_naver.png";
 import OauthLoginButton from "../UI/OauthLogin/OauthLoginButton";
 import { useRouter } from "next/router";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
-export default function OauthLogin() {
+interface LoginProps {
+  isDarkMode: boolean;
+}
+const OauthLogin = ({ isDarkMode }: LoginProps) => {
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const onClickNaver = () => {
@@ -24,11 +27,19 @@ export default function OauthLogin() {
     <>
       <main css={topWrapperCSS(isDeskTop)}>
         <section css={logosectionCSS(isDeskTop)}>
-          <img
-            css={imageWrapperCSS(isDeskTop)}
-            src={"/assets/emosaac_logo.png"}
-            alt="이모작의 로고입니다."
-          />
+          {isDarkMode ? (
+            <img
+              css={imageWrapperCSS(isDeskTop)}
+              src={"/assets/emosaac_logo_white.png"}
+              alt="이모작의 로고입니다."
+            />
+          ) : (
+            <img
+              css={imageWrapperCSS(isDeskTop)}
+              src={"/assets/emosaac_logo.png"}
+              alt="이모작의 로고입니다."
+            />
+          )}
         </section>
         <section>
           <div css={buttonWrapperCSS}>
@@ -57,13 +68,13 @@ export default function OauthLogin() {
       </main>
     </>
   );
-}
+};
 const topWrapperCSS = (isDeskTop: boolean) => css`
   display: flex;
   flex-direction: ${isDeskTop ? "row" : "column"};
   justify-content: center;
   align-items: center;
-  height: 85vh;
+  height: 650px;
 `;
 const logosectionCSS = (isDeskTop: boolean) => css`
   display: ${isDeskTop ? null : "flex"};
@@ -91,3 +102,4 @@ const buttonWrapperCSS = css`
 const eachButtonCSS = css`
   margin-bottom: 50px;
 `;
+export default OauthLogin;
