@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getToken } from "@/api/instance";
 import { getEmopickList } from "@/api/emopick/getEmopickList";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
+import { isReadable } from "stream";
 
 type emopickInfoType = {
   writerInfo: {
@@ -14,6 +15,7 @@ type emopickInfoType = {
   };
   emopickId: number;
   title: string;
+  thumbnails: string;
   createdDate: string;
   modifiedDate: string;
 };
@@ -42,34 +44,66 @@ const index = (data: Props) => {
   // useEffect(() => {
   //   console.log(emopickList.content);
   // }, []);
+  console.log(emopickList);
   return (
     <div>
-      {/* <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
+      <div css={pageTitleCSS({ isDeskTop, isTablet, isMobile })}>
         <div>
-          <h2>EMOPICK</h2>
+          <h2>
+            <span>emo</span>PICK!
+          </h2>
           <div>이모작 유저들의 추천 리스트를 만나보세요</div>
         </div>
-        <div>
+        <div></div>
+      </div>
+      <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
+        <div css={listWrapCSS({ isDeskTop, isTablet, isMobile })}>
           {emopickList &&
-            emopickList.data.content.map((emo, idx) => (
-              <div key={idx} onClick={() => onClickBox(emo.emopickId)}>
-                <div>
-                  <div>{emo.emopickId}</div>
-                  <div>{emo.title}</div>
-                  <div>{emo.createdDate}</div>
-                  <div>{emo.modifiedDate}</div>
-                </div>
-                <div>
-                  <div>{emo.writerInfo.nickname}</div>
+            emopickList?.data?.content.map((emo, idx) => (
+              <div
+                key={idx}
+                onClick={() => onClickBox(emo.emopickId)}
+                css={pickWrapCSS({ isDeskTop, isTablet, isMobile })}
+              >
+                {/* 썸네일 */}
+                <div
+                  css={pickThumbnailWrapCSS({ isDeskTop, isTablet, isMobile })}
+                >
                   <div>
-                    <img src={emo.writerInfo.profileImg} alt="profile" />
+                    {emo.thumbnails
+                      .split(" ")
+                      .slice(0, 4)
+                      .map((thumb, idx) => (
+                        <div key={idx}>
+                          <img src={thumb} alt={emo.title} />
+                        </div>
+                      ))}
+                  </div>
+                </div>
+                <div
+                  css={pickContentWrapCSS({ isDeskTop, isTablet, isMobile })}
+                >
+                  {/* 글 정보 */}
+                  <div>
+                    <div>{emo.title}</div>
+                    {/* <div>{emo.createdDate}</div> */}
+                    <div>1시간 전</div>
+                  </div>
+                  {/* 사용자 정보 */}
+                  <div>
+                    <div>writer.</div>
+                    <div>{emo.writerInfo.nickname}</div>
+                    <div>
+                      <img src={emo.writerInfo.profileImg} alt="profile" />
+                      {/* <img src="/assets/bazzi.jpg" alt="profile" /> */}
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
         </div>
-      </div> */}
-      <div css={serviceCSS}>서비스 준비중입니다.</div>
+      </div>
+      {/* <div css={serviceCSS}>서비스 준비중입니다.</div> */}
     </div>
   );
 };
@@ -82,11 +116,131 @@ interface IsResponsive {
 
 const innerCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
-    ${isDeskTop && "margin: 20px 105px"}
-    ${isTablet && "margin: 20px 50px"}
-    ${isMobile && "margin: 20px 20px"}
+    padding: ${isDeskTop ? "20px 105px" : isTablet ? "20px 50px" : "20px 20px"};
   `;
 };
+
+const pageTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
+  margin: ${isDeskTop ? "20px 105px" : isTablet ? "20px 50px" : "20px 20px"};
+  padding: ${isDeskTop ? "20px 50px" : isTablet ? "20px 50px" : "20px 20px"};
+  background: linear-gradient(-210deg, #f6ba44, #f0a503, #f1a100);
+  color: #000;
+  height: ${isDeskTop ? "250px" : isTablet ? "200px" : "150px"};
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 20px;
+  margin-top: ${!isMobile ? "30px" : "20px"};
+  & > div:nth-of-type(1) {
+    margin: auto 0;
+    & > h2 {
+      letter-spacing: 0px;
+      font-weight: 900;
+      font-size: 40px;
+      line-height: 50px;
+      color: #000;
+      & > span {
+        font-size: 50px;
+      }
+    }
+    & > div {
+      color: #000;
+      line-height: 30px;
+    }
+  }
+`;
+
+const listWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
+  display: grid;
+  /* margin-top: 40px; */
+  grid-template-columns: ${!isMobile ? "1fr 1fr" : "1fr"};
+  column-gap: ${isMobile ? "10px" : "20px"};
+  row-gap: ${isMobile ? "10px" : "20px"};
+`;
+
+const pickWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
+  cursor: pointer;
+  padding: ${isDeskTop ? "20px 20px" : isTablet ? "20px 20px" : "10px 10px"};
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-color);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  column-gap: ${isMobile ? "10px" : "20px"};
+  background-color: var(--back-color-2);
+  transition: all 0.3s;
+  :hover {
+    background-color: var(--main-color);
+    & div {
+      color: #000 !important;
+    }
+  }
+`;
+
+const pickThumbnailWrapCSS = ({
+  isDeskTop,
+  isTablet,
+  isMobile,
+}: IsResponsive) =>
+  css`
+    & > div:nth-of-type(1) {
+      // 썸네일 다발
+      height: 150px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-radius: 4px;
+      overflow: hidden;
+      & > div {
+        & > img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  `;
+
+const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
+  css`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // 글 정보
+    & > div:nth-of-type(1) {
+      & > div:nth-of-type(1) {
+        font-size: 24px;
+        line-height: 50px;
+        font-weight: bold;
+      }
+      & > div:nth-of-type(2) {
+        color: var(--text-color-3);
+      }
+    }
+    // 작성자 정보
+    & > div:nth-of-type(2) {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      & > div:nth-of-type(1) {
+        font-weight: bold;
+      }
+      & > div:nth-of-type(2) {
+      }
+      & > div:nth-of-type(3) {
+        width: 40px;
+        height: 40px;
+        border-radius: 50px;
+        overflow: hidden;
+        background-color: var(--back-color-3);
+        margin-left: 10px;
+        & > img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  `;
 
 const serviceCSS = css`
   height: 500px;

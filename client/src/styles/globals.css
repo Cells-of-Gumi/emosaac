@@ -16,7 +16,7 @@
   --back-color-op-opp: #17171b55;
   --alert-color: #ff1e1e;
   --hover-color: contrast(30%);
-  --shadow-color: 0px 0px 20px #00000030;
+  --shadow-color: 0px 10px 10px #00000030;
   --soft-grey: #f0f3ff;
 }
 
@@ -38,7 +38,7 @@
   --back-color-op-opp: #d8dbe755;
   --alert-color: #ff1e1e;
   --hover-color: contrast(50%);
-  --shadow-color: 0px 0px 20px #ffffff30;
+  --shadow-color: 0px 10px 10px #ffffff30;
   --soft-grey: #101013;
 }
 
@@ -209,7 +209,8 @@ div {
 button {
   color: var(--text-color);
 }
-g, path, svg {
+g,
+path,
+svg {
   stroke: var(--text-color);
-
 }
