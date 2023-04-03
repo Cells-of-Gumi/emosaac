@@ -59,8 +59,8 @@ const Carousel3D = ({
     setIsMouseActive(false);
   };
   const onTouchStart = (e: any) => {
-    setMouseDownClientX(e.changedTouches[0].clientX * 10);
-    setMouseDownClientY(e.changedTouches[0].clientY * 10);
+    setMouseDownClientX(e.changedTouches[0].clientX * 3);
+    setMouseDownClientY(e.changedTouches[0].clientY * 3);
     setIsMouseLeave(false);
   };
   const onTouchEnd = (e: any) => {
@@ -78,7 +78,7 @@ const Carousel3D = ({
   };
   const onMouseMove = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     // console.log(e.clientX);
-    setIsMouseOver(true);
+    !isMobile && setIsMouseOver(true);
     if (!isMouseLeave) {
       setMouseMoveClientX(e.clientX);
       setMouseMoveClientY(e.clientY);
@@ -95,7 +95,7 @@ const Carousel3D = ({
     setIsMouseActive(false);
   };
   const onMouseEnter = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    setIsMouseOver(true);
+    !isMobile && setIsMouseOver(true);
   };
 
   useEffect(() => {
