@@ -14,6 +14,7 @@ type emopickInfoType = {
   };
   emopickId: number;
   title: string;
+  thumbnails: string;
   createdDate: string;
   modifiedDate: string;
 };
