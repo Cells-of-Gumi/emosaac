@@ -23,6 +23,7 @@ import SortByGenre from "@/components/bookTab/SortByGenre";
 import SortByDay from "@/components/bookTab/SortByDay";
 import Waterfall from "@/components/scan/Waterfall/Waterfall";
 import FloatingButton from "@/components/scan/FloatingButton/FloatingButton";
+import HorizontalCarousel from "@/components/UI/ScrollableCarousel/HorizontalCarousel";
 
 
 interface HomeProps {
@@ -116,34 +117,7 @@ export default function Home({
           />
         </div>
 
-        {/* <Test/> */}
-        <Waterfall
-            bookData={highlightedBookData}
-            identifier={'row-2'}
-            rotate={1}
-            duration={2000}
-          />
-
-        {/* <div css={highlightedCarouselWrapper}>
-          <Waterfall
-            bookData={highlightedBookData}
-            windowWrapperRef={indexWrapperRef}
-            angleBottom={1000}
-            identifier={'row-2'}
-            rotate={1}
-            duration={2000}
-          />
-        </div> */}
-
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-
+        <div css={whiteSpace1CSS} />
         <div css={highlightedCarouselWrapper}>
           <HighlightedCarousel
             bookData={highlightedBookData}
