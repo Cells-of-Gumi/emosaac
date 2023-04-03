@@ -23,6 +23,16 @@ import SortByGenre from "@/components/bookTab/SortByGenre";
 import SortByDay from "@/components/bookTab/SortByDay";
 import Waterfall from "@/components/scan/Waterfall/Waterfall";
 import FloatingButton from "@/components/scan/FloatingButton/FloatingButton";
+import HorizontalCarousel from "@/components/UI/ScrollableCarousel/HorizontalCarousel";
+
+import { getHighPrediction } from "@/api/recommendation/getHighPrediction";
+import { getMdRecommendation } from "@/api/recommendation/getMdRecommendation";
+import { getPersonalRecommendation } from "@/api/recommendation/getPersonalRecommendation";
+import { getRelative } from "@/api/recommendation/getRelative";
+import { getReleased } from "@/api/recommendation/getReleased";
+import { getTop3GenreBooks } from "@/api/recommendation/getTop3GenreBooks";
+import { getTop30 } from "@/api/recommendation/getTop30";
+import { getUserCharacteristicRecommendation } from "@/api/recommendation/getUserCharacteristicRecommendation";
 
 
 interface HomeProps {
@@ -83,25 +93,231 @@ export default function Home({
 
   };
 
-  const getBooksByGenreAPI = ({
-    bookList,
+
+  // const getBooksByGenreAPI = ({
+  //   lastContent,
+  //   size,
+  // }: {
+  //   lastContent: bookContentType;
+  //   size: number;
+  // }) => {
+  //   const prevId = lastContent ? lastContent.bookId : 0;
+  //   const prevScore = lastContent ? lastContent.avgScore : 10;
+  //   return getBooksByGenre({
+  //     genreCode: 10,
+  //     typeCode: 0,
+  //     prevId: prevId,
+  //     prevScore: prevScore,
+  //     size: size,
+  //   });
+  // };
+  
+
+
+  const getHighPredictionAPI = ({
+    lastContent,
     size,
   }: {
-    bookList: bookContentType[];
+    lastContent: bookContentType;
     size: number;
   }) => {
-    const prevId = bookList.length ? bookList[bookList.length - 1].bookId : 0;
-    const prevScore = bookList.length
-      ? bookList[bookList.length - 1].avgScore
-      : 10;
-    return getBooksByGenre({
-      genreCode: 10,
-      typeCode: 0,
+    const prevId = lastContent ? lastContent.bookId : 0;
+    const prevScore = lastContent ? lastContent.avgScore : 10;
+    return getHighPrediction({
+      typeCode: (params === 'webtoon' ? 0 : 1),
       prevId: prevId,
       prevScore: prevScore,
       size: size,
     });
-  };
+  }
+
+  const getReleasedAPI = ({
+    lastContent,
+    size,
+  }: {
+    lastContent: bookContentType;
+    size: number;
+  }) => {
+    const prevId = lastContent ? lastContent.bookId : 20000;
+    const prevRegist = lastContent ? lastContent.regist : '2023.03.20';
+    return getReleased({
+      typeCode: (params === 'webtoon' ? 0 : 1),
+      prevId: prevId,
+      prevRegist: prevRegist,
+      size: size,
+    });
+  }
+
+
+  const getTop3GenreBooksAPI = ({
+    order,
+    lastContent,
+    size,
+  }: {
+    order: number;
+    lastContent: bookContentType;
+    size: number;
+  }) => {
+    const prevId = lastContent ? lastContent.bookId : 0;
+    const prevScore = lastContent ? lastContent.avgScore : 10;
+    return getTop3GenreBooks({
+      order,
+      typeCode: (params === 'webtoon' ? 0 : 1),
+      prevId: prevId,
+      prevScore: prevScore,
+      size: size,
+    });
+  }
+
+  const getTop30API = ({
+    lastContent,
+    size,
+  }: {
+    lastContent: bookContentType;
+    size: number;
+  }) => {
+    const prevId = lastContent ? lastContent.bookId : 20000;
+    const prevScore = lastContent ? lastContent.avgScore : 10;
+    const hit = lastContent ? lastContent.hit : 1000;
+    return getTop30({
+      typeCode: (params === 'webtoon' ? 0 : 1),
+      prevId: prevId,
+      prevScore: prevScore,
+      size: size,
+      hit: hit
+    });
+  }
+
+  const getMdRecommendationAPI = ({
+    lastContent,
+    size,
+  }: {
+    lastContent: bookContentType;
+    size: number;
+  }) => {
+
+    return getMdRecommendation({
+      typeCode: (params === 'webtoon' ? 0 : 1),
+    });
+  }
+  
+  const getPersonalRecommendationAPI = ({
+    lastContent,
+    size,
+  }: {
+    lastContent: bookContentType;
+    size: number;
+  }) => {
+
+    return getPersonalRecommendation({
+      typeCode: (params === 'webtoon' ? 0 : 1),
+    });
+  }
+
+  const getRelativeAPI = ({
+    lastContent,
+    size,
+  }: {
+    lastContent: bookContentType;
+    size: number;
+  }) => {
+
+    return getRelative({
+      bookId: 0,
+    });
+  }
+
+  const getUserCharacteristicRecommendationAPI = ({
+    lastContent,
+    size,
+  }: {
+    lastContent: bookContentType;
+    size: number;
+  }) => {
+
+    return getUserCharacteristicRecommendation({
+      typeCode: (params === 'webtoon' ? 0 : 1),
+    });
+  }
+
+
+  const bookHomeFetchList = [
+    {
+      API: getHighPredictionAPI,
+      identifier: 'HighPrediction',
+      beforeLabel: '예측 점수 ',
+      highlightedLabel: 'EMOSAAC!',
+    },
+    {
+      API: getReleasedAPI,
+      identifier: 'Released',
+      beforeLabel: '올해의 신작 ',
+      highlightedLabel: 'EMOSAAC!',
+    },
+    // {
+    //   API: getTop3GenreBooksAPI.bind({order: 1}),
+    //   identifier: 'Top3GenreBooks',
+    //   beforeLabel: '가장 선호하는 장르 TOP 1 ',
+    //   highlightedLabel: 'EMOSAAC!',
+    // },
+    // {
+    //   API: getTop3GenreBooksAPI.bind({order: 2}),
+    //   identifier: 'Top3GenreBooks',
+    //   beforeLabel: '가장 선호하는 장르 TOP 2 ',
+    //   highlightedLabel: 'EMOSAAC!',
+    // },
+    {
+      API: getTop30API,
+      identifier: 'Top30',
+      beforeLabel: 'TOP 30 ',
+      highlightedLabel: 'EMOSAAC!',
+    },
+    // {
+    //   API: getMdRecommendationAPI,
+    //   identifier: 'MdRecommendation',
+    //   beforeLabel: 'MD 추천 ',
+    //   highlightedLabel: 'EMOSAAC!',
+    // },
+    // {
+    //   API: getPersonalRecommendationAPI,
+    //   identifier: 'PersonalRecommendation',
+    //   beforeLabel: '나와 비슷한 취향을 가진 사람이 읽은 작품 추천 ',
+    //   highlightedLabel: 'EMOSAAC!',
+    // },
+    // {
+    //   API: getRelativeAPI,
+    //   identifier: 'Relative',
+    //   beforeLabel: '최근 읽은 작품과 비슷한 작품 추천 ',
+    //   highlightedLabel: 'EMOSAAC!',
+    // },
+    // {
+    //   API: getUserCharacteristicRecommendationAPI,
+    //   identifier: 'UserCharacteristicRecommendation',
+    //   beforeLabel: '개인 맞춤형 추천 ',
+    //   highlightedLabel: 'EMOSAAC!',
+    // },
+
+
+    
+    
+    
+  ]
+
+
+
+// useEffect(() => {
+//   getMdRecommendation({
+//     typeCode: (params === 'webtoon' ? 0 : 1),
+//   }).then((res) => console.log(res))
+
+//   getTop30({
+//     typeCode: (params === 'webtoon' ? 0 : 1),
+//     prevId: 20000,
+//     prevScore: 10,
+//     size: 10,
+//     hit: 1000
+//   }).then((res) => console.log(res))
+// }, [])
 
 
   const highlightedCarouselRender = (
@@ -116,34 +332,7 @@ export default function Home({
           />
         </div>
 
-        {/* <Test/> */}
-        <Waterfall
-            bookData={highlightedBookData}
-            identifier={'row-2'}
-            rotate={1}
-            duration={2000}
-          />
-
-        {/* <div css={highlightedCarouselWrapper}>
-          <Waterfall
-            bookData={highlightedBookData}
-            windowWrapperRef={indexWrapperRef}
-            angleBottom={1000}
-            identifier={'row-2'}
-            rotate={1}
-            duration={2000}
-          />
-        </div> */}
-
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-      <div css={whiteSpace2CSS} />
-
+        <div css={whiteSpace1CSS} />
         <div css={highlightedCarouselWrapper}>
           <HighlightedCarousel
             bookData={highlightedBookData}
@@ -155,15 +344,15 @@ export default function Home({
   )
 
 
-  const bookHomeFetchList = [
-    {
-      API: getBooksByGenreAPI,
-      identifier: 'test1',
-      beforeLabel: '너만의',
-      highlightedLabel: 'EMOSAAC!',
+  // const bookHomeFetchList = [
+  //   {
+  //     API: getBooksByGenreAPI,
+  //     identifier: 'test1',
+  //     beforeLabel: '너만의',
+  //     highlightedLabel: 'EMOSAAC!',
 
-    }
-  ]
+  //   }
+  // ]
 
   return (
     <div ref={indexWrapperRef} css={indexWrapperCSS}>

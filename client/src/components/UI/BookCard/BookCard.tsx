@@ -94,6 +94,7 @@ const BookCard = ({
       const result = platformBase.findIndex(findPlatform);
       return (
         <img
+          key={`BookCard-${bookData.bookId}-platform-${result}`}
           src={
             (result === 0 && "/assets/platform_naver_webtoon.webp") ||
             (result === 1 && "/assets/platform_naver_series.webp") ||

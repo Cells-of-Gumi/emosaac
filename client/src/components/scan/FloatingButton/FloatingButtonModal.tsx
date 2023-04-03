@@ -62,7 +62,7 @@ const FloatingButtonModal = ({
 
 
   const modalLayout = {
-    widthValue: beforePhase === 0 ? (isMobile ? 380 : 450) : (beforePhase === 1 ? 280 : (beforePhase === 2 ? 1920 : (beforePhase === 3 ? 300 : 450))),
+    widthValue: beforePhase === 0 ? (isMobile ? 360 : 450) : (beforePhase === 1 ? 280 : (beforePhase === 2 ? 1920 : (beforePhase === 3 ? 300 : 450))),
     heightValue: beforePhase === 0 ? 538 : (beforePhase === 1 ? 280 : (beforePhase === 2 ? 1080 : (beforePhase === 3 ? 300 : 538))),
   };
 
