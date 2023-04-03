@@ -16,7 +16,7 @@ export async function getRecommendTest({
       headers.Authorization = token;
     }
     const { data }: { data: searchBookType } = await defaultAxiosInstance.get(
-      `/recommand/md?typeCode=${typeCode}`,
+      `/recommend/md?typeCode=${typeCode}`,
       { headers }
     );
     if (data.status === 200) {
