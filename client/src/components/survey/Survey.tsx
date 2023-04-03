@@ -37,8 +37,8 @@ const Survey = () => {
       }).catch((error) => {
         console.log(error);
       });
-      alert("제출되었습니다!");
-      router.push("/");
+      alert("제출되었습니다! 정확한 추천을 위해 회원정보를 입력해주세요");
+      router.push("/mypage/edit");
     } else {
       alert("웹툰과 소설을 각각 5개씩 선택해주세요.");
     }
