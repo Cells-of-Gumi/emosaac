@@ -22,7 +22,7 @@ export default function index() {
   const [carouselStartAngle, setCarouselStartAngle] = useState<number>(0);
   const [currentScroll, setCurrentScroll] = useState<number>(0);
   const [isLogin, setIsLogin] = useState(false);
-  const [clickedPlatform, setClickedPlatform] = useState("kakao");
+  const [clickedPlatform, setClickedPlatform] = useState("naver");
   const [mouseCursorClientX, setMouseCursorClientX] = useState(0);
   const [mouseCursorClientY, setMouseCursorClientY] = useState(0);
   const [isMouseOver, setIsMouseOver] = useState(false);
