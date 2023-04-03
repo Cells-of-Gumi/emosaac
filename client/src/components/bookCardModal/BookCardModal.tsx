@@ -91,7 +91,6 @@ const BookCardModal = ({
 
   const onClickNavigateHandler = () => {
     router.push(`/books/${bookData.bookId}`);
-    console.log("gg");
   };
 
   return (

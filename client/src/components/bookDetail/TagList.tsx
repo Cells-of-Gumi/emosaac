@@ -1,23 +1,34 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
+import { useEffect, useState, useRef } from "react";
 
 interface TagListProps {
   tag: string;
 }
 
 const TagList = ({ tag }: TagListProps) => {
+  const [tagList, setTagList] = useState(tag.split(" ").filter(i => i.length !== 0))
+  const tagListWrapperRef = useRef<HTMLDivElement>(null)
 
-  const renderTags = tag.split(" ").map((el, idx) => {
+  useEffect(() => {
+
+  }, [])
+
+  const renderTags = tagList.map((el, idx) => {
     if (el.trim() !== '') {
-        return <div css={tagWrapperCSS}>#{el},</div>;
+      return <div css={tagWrapperCSS}>#{el}{idx !== tagList.length - 1 && ','}</div>;
     }
-    
   });
+
+
+
+  
+
+
   return (
     <div css={outerWrapperCSS}>
-        <div css={tagListWrapperCSS}>{renderTags}</div>
+        <div ref={tagListWrapperRef} css={tagListWrapperCSS} >{renderTags}</div>
     </div>
-    
   );
 };
 
@@ -33,6 +44,7 @@ position: absolute;
     width: 110%;
     overflow-x: scroll;
     overflow-y: hidden;
+
     padding-left: 50px;
     /* padding-right: -20px; */
     margin-left: -50px;

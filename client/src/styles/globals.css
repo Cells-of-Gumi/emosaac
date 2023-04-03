@@ -209,8 +209,7 @@ div {
 button {
   color: var(--text-color);
 }
-g,
-path,
-svg {
+/* g, path, svg {
   stroke: var(--text-color);
-}
+
+} */
