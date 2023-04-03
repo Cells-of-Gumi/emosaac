@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import { getBookDetail } from "@/api/book/getBookDetail";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { resolve } from "node:path/win32";
 import { BiChevronRightCircle } from "react-icons/bi";
 import Button from "@/components/UI/Button/Button";
@@ -37,7 +37,8 @@ interface BookDetailProps {
 const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [commentModalState, setCommentModalState] = useState<boolean>(false);
-
+  const [unfoldStory, setUnfoldStory] = useState<boolean>(false)
+  const storyWrapperRef = useRef<HTMLDivElement>(null)
 
 
 
@@ -122,7 +123,13 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
               <div>{bookData.author}</div>
             </div>
 
-            <div css={storyWrapperCSS}>{bookData.story}</div>
+            <div css={storyWrapperCSS({unfoldStory})} ref={storyWrapperRef}>
+              {bookData.story}
+              
+              
+            </div>
+            {storyWrapperRef.current && storyWrapperRef?.current?.innerText.length < bookData.story.length && unfoldStory === false && <div onClick={() => {setUnfoldStory(() => true)}} css={unfoldStringCSS}>...더보기</div>}
+
             <TagList tag={bookData.tag} />
           </div>
           <div css={buttonWrapperCSS({ isDeskTop })}>
@@ -400,17 +407,21 @@ const boldTextCSS = css`
   font-weight: 700;
 `;
 
-const storyWrapperCSS = css`
-  /* width: 70%; */
-  /* height: 70px; */
-
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
-  margin-bottom: 8px;
-  line-height: 130%;
-`;
+const storyWrapperCSS = ({unfoldStory}: {unfoldStory: boolean}) => {
+  return css`
+    /* width: 70%; */
+    /* height: 70px; */
+    ${unfoldStory ? null : `
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 4;
+      overflow: hidden;
+    `}
+    
+    margin-bottom: 8px;
+    line-height: 130%;
+  `;
+} 
 
 const buttonWrapperCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   return css`
@@ -448,4 +459,12 @@ align-items: center;
 const bookInfoOuterWrapperCSS = css`
   margin-bottom: 24px;
 `;
+
+const unfoldStringCSS = css`
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color-4);
+  cursor:pointer;
+`
 export default BookDetail;

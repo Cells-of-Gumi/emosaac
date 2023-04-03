@@ -60,7 +60,7 @@ interface ToggleBtnProps {
 
     return (
         <div onClick={bookmarkHandler} css={btnWrapperCSS({isMobile})}>
-            <UseAnimations animation={bookmark} reverse={bookmarkValue} size={50} />
+            <UseAnimations strokeColor={'var(--text-color)'} animation={bookmark} reverse={bookmarkValue} size={50} />
             {/* {bookmarkValue ? bookmarkClicked : bookmarkNotClicked} */}
         </div>
     )
@@ -95,7 +95,7 @@ export const HasBeenReadToggle = ({isClicked, bookId}: ToggleBtnProps) => {
     return (
         <div onClick={hasBeenReadHandler} css={btnWrapperCSS({isMobile})}>
             {/* {hasBeenReadValue ? checkboxClicked : checkboxNotClicked} */}
-            <UseAnimations animation={radioButton} reverse={hasBeenReadValue} size={48} />
+            <UseAnimations strokeColor={'var(--text-color)'} animation={radioButton} reverse={hasBeenReadValue} size={48} />
             <span css={css`margin-left: 14px;`}>{hasBeenReadValue ? '읽음' : '읽지 않음'}</span>
             
         </div>

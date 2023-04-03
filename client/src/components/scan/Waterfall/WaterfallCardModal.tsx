@@ -338,6 +338,7 @@ const titleCSS = css`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  /* width: 40%; */
 `;
 
 const dateCSS = css`
@@ -370,6 +371,7 @@ const starRatingWrapperCSS = css`
 `
 
 const bookInfoWrapperCSS = css`
+  width: 80%;
   height: 100%;
   flex: 1;
   display: flex;

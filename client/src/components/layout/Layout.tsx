@@ -8,6 +8,8 @@ import { useState, useEffect } from "react";
 interface Props {
   children: any;
   myInfo: any;
+  isDarkMode: boolean;
+  setIsDarkMode: Function;
 }
 
 const Layout = (props: Props) => {
@@ -36,7 +38,7 @@ const Layout = (props: Props) => {
           : notHomeCSS({ isDeskTop, isTablet, isMobile }),
       ]}
     >
-      <NavigationBar myInfo={props.myInfo} />
+      <NavigationBar myInfo={props.myInfo} isDarkMode={props.isDarkMode} setIsDarkMode={props.setIsDarkMode} />
       {props.children}
     </div>
   );
