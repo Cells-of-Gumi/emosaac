@@ -17,9 +17,11 @@ import { postOcr } from "@/api/ocr/postOcr";
 
 import FloatingButtonModalSubmitForm from "./FloatingButtonModalSubmitForm";
 import FloatingButtonModalLoading from "./FloatingButtonModalLoading";
+import FloatingButtonModalFinish from "./FloatingButtonModalFinish";
 import ScanMain from "../ScanMain";
 
 import { bookContentType } from "@/types/books";
+import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 
 
 interface FloatingButtonModalProps {
@@ -27,6 +29,7 @@ interface FloatingButtonModalProps {
   isMouseOn: boolean;
   setModalToggler: Function;
   parentRef: any;
+  isDarkMode: boolean;
 
 }
 
@@ -35,8 +38,10 @@ const FloatingButtonModal = ({
   isMouseOn,
   setModalToggler,
   parentRef,
+  isDarkMode
 }: FloatingButtonModalProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [contentToggler, setContentToggler] = useState<boolean>(false);
   const [isOpened, setisOpened] = useState<boolean>(false);
   const [isClosing, setIsClosing] = useState<boolean>(false);
@@ -57,8 +62,8 @@ const FloatingButtonModal = ({
 
 
   const modalLayout = {
-    widthValue: beforePhase === 0 ? 350 : (beforePhase === 1 ? 280 : (beforePhase === 2 ? 1920 : 350)),
-    heightValue: beforePhase === 0 ? 410 : (beforePhase === 1 ? 280 : (beforePhase === 2 ? 1080 : 410)),
+    widthValue: beforePhase === 0 ? (isMobile ? 380 : 450) : (beforePhase === 1 ? 280 : (beforePhase === 2 ? 1920 : (beforePhase === 3 ? 300 : 450))),
+    heightValue: beforePhase === 0 ? 538 : (beforePhase === 1 ? 280 : (beforePhase === 2 ? 1080 : (beforePhase === 3 ? 300 : 538))),
   };
 
   useEffect(() => {
@@ -137,7 +142,7 @@ const FloatingButtonModal = ({
 
         {afterPhase === 0 &&
           <div css={phaseCSS({targetPhase: 0, beforePhase: beforePhase, afterPhase: afterPhase})}>
-            <FloatingButtonModalSubmitForm modalHandler={modalHandler} phaseHandler={phaseHandler} onClickSubmitHandler={onClickSubmitHandler} />
+            <FloatingButtonModalSubmitForm modalHandler={modalHandler} phaseHandler={phaseHandler} onClickSubmitHandler={onClickSubmitHandler} isDarkMode={isDarkMode} />
           </div>
         }
 
@@ -149,11 +154,15 @@ const FloatingButtonModal = ({
 
         {afterPhase === 2 && bookData !== null &&
           <div css={phaseCSS({targetPhase: 2, beforePhase: beforePhase, afterPhase: afterPhase})}>
-            <ScanMain bookData={bookData} modalHandler={modalHandler} />
+            <ScanMain bookData={bookData} phaseHandler={phaseHandler} />
           </div>
         }
         
-        
+        {afterPhase === 3 &&
+          <div css={phaseCSS({targetPhase: 3, beforePhase: beforePhase, afterPhase: afterPhase})}>
+            <FloatingButtonModalFinish modalHandler={modalHandler} />
+          </div>
+        }
 
 
 
@@ -191,6 +200,7 @@ const wrapperCSS = ({
     transition-property: width height;
     will-change: width height left top transform;
     transition-duration: 0.5s;
+    
     /* transition-timing-function: ease-in; */
     overflow: hidden;
 
@@ -241,6 +251,7 @@ const phaseCSS = ({targetPhase, beforePhase, afterPhase}: {targetPhase: number; 
   return css`
     transition-property: opacity;
     transition-duration: 0.5s;
+    transition-delay: 0.2s;
     opacity: ${beforePhase === targetPhase ? '100%' : '0%'};
     width: 100%;
     height: 100%;

@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
+import { useEffect, useState, useRef } from "react";
 
 interface TagListProps {
   tag: string;
@@ -11,6 +12,7 @@ const TagList = ({ tag }: TagListProps) => {
       return <div css={tagWrapperCSS}>#{el},</div>;
     }
   });
+
   return (
     <div css={outerWrapperCSS}>
       <div css={tagListWrapperCSS}>{renderTags}</div>
