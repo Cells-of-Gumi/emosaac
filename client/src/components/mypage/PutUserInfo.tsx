@@ -57,6 +57,7 @@ const PutUserInfo = ({ myInfo }: any) => {
   }, [profileImage, myInfo?.imageUrl]);
   const onClickGender = (newGender: number) => {
     setGender(newGender);
+    // console.log(gender);
   };
   // nickname, age, 성별 수정시 localstorage변경
   // useEffect(() => {}, [age, nickname]);
@@ -90,7 +91,8 @@ const PutUserInfo = ({ myInfo }: any) => {
       alert("연령대를 선택해주세요.");
       return;
     }
-    if (gender) {
+    if (gender === null) {
+      // console.log(gender);
       alert("성별을 선택해주세요.");
       return;
     }
