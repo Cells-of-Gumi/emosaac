@@ -85,7 +85,7 @@ const pickWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   cursor: pointer;
   width: 100%;
   display: grid;
-  grid-template-columns: ${!isMobile ? "210px 1fr" : "130px 1fr"};
+  grid-template-columns: ${!isMobile ? "210px 1fr" : "100px 1fr"};
   column-gap: ${!isMobile ? "20px" : "20px"};
   transition: all 0.3s;
 `;
@@ -102,10 +102,10 @@ const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        line-height: ${isMobile ? "40px" : "50px"};
+        padding: ${isMobile ? "8px 0" : "20px 0"};
         font-weight: bold;
         & > div {
-          font-size: ${isMobile ? "18px" : "20px"};
+          font-size: ${isMobile ? "16px" : "20px"};
           margin-left: 4px;
         }
       }

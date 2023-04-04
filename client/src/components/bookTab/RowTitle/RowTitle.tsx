@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
+import { useIsResponsive } from "../../Responsive/useIsResponsive";
 
 interface RowTitleProps {
     beforeLabel?: string;
@@ -10,14 +11,15 @@ interface RowTitleProps {
 }
 
 const RowTitle = ({beforeLabel, highlightedLabel, afterLabel, noLine, marginBottom}: RowTitleProps) => {
+    const [isDeskTop, isTablet, isMobile] = useIsResponsive();
 
     return (
         <div css={rowTitleWrapperCSS({marginBottom})}>
             {noLine !== true && <div css={lineCSS} />}
             <div css={labelWrapperCSS}>
-                <span css={normalLabelCSS}>{beforeLabel}</span>
-                <span css={highlightedLabelCSS}>{highlightedLabel}</span>
-                <span css={normalLabelCSS}>{afterLabel}</span>
+                <span css={normalLabelCSS({isMobile})}>{beforeLabel}</span>
+                <span css={highlightedLabelCSS({isMobile})}>{highlightedLabel}</span>
+                <span css={normalLabelCSS({isMobile})}>{afterLabel}</span>
             </div>
             
         </div>
@@ -51,18 +53,22 @@ const labelWrapperCSS = css`
     position: absolute;
     background-color: var(--back-color);
     padding: 24px;
-    left: 1%;
+    /* left: 1%; */
 `
 
-const normalLabelCSS = css`
-    font-size: 28px;
-    color: var(--text-color);
-`
+const normalLabelCSS = ({isMobile} : {isMobile: boolean}) => {
+    return css`
+        font-size: ${isMobile ? '16px' : '28px'};
+        color: var(--text-color);
+    `
+}
 
-const highlightedLabelCSS = css`
-    font-size: 36px;
-    color: #FF6565;
-`
+const highlightedLabelCSS = ({isMobile} : {isMobile: boolean}) => {
+    return css`
+        font-size: ${isMobile ? '24px' : '36px'};
+        color: #FF6565;
+    `
+}
 
 
 export default RowTitle

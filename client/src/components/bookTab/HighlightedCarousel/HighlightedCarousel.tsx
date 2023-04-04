@@ -10,9 +10,10 @@ import { throttle } from "lodash";
 interface HighlightedCarousel {
   bookData: bookContentType[];
   windowWrapperRef: any;
+  identifier: string;
 }
 
-const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
+const Waterfall = ({ bookData, windowWrapperRef, identifier }: HighlightedCarousel) => {
   const [bookDataList, setBookDataList] = useState<bookContentType[]>([...bookData]);
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const dummyNormalRef = useRef<HTMLInputElement>(null);
@@ -124,7 +125,7 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
       return (
         <div
           // ref={(ele) => (wrapperRef.current[idx] = ele)}
-          key={`${el.title}-${windowWidth}`}
+          key={`${el.title}-${windowWidth}-${identifier}`}
           css={imgWrapperCSS({
             idx,
             widthValue: cardLayout.widthValue,

@@ -61,7 +61,7 @@ const index = (data: Props) => {
           </h2>
           <div>이모작 유저들의 추천 리스트를 만나보세요</div>
         </div>
-        <div></div>
+        <img src={"/assets/clap.png"} alt="박수" />
       </div>
       <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
         <EmopickListView {...data} />
@@ -84,22 +84,27 @@ const innerCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
 };
 
 const pageTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
+  position: relative;
   margin: ${isDeskTop ? "20px 105px" : isTablet ? "20px 50px" : "20px 20px"};
-  padding: ${isDeskTop ? "20px 50px" : isTablet ? "20px 50px" : "20px 20px"};
+  padding: ${isDeskTop ? "20px 50px" : isTablet ? "20px 30px" : "20px 20px"};
   background: linear-gradient(-210deg, #f6ba44, #f0a503, #f1a100);
   color: #000;
   height: ${isDeskTop ? "250px" : isTablet ? "200px" : "150px"};
-  display: grid;
-  grid-template-columns: 2fr 1fr;
   border-radius: ${!isMobile ? "20px" : "10px"};
   margin-top: ${!isMobile ? "30px" : "20px"};
+  margin-bottom: ${!isMobile ? "50px" : "20px"};
   & > div:nth-of-type(1) {
-    margin: auto 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     & > h2 {
       letter-spacing: 0px;
       font-weight: 900;
       font-size: ${!isMobile ? "40px" : "24px"};
-      line-height: 50px;
+      line-height: ${!isMobile ? "50px" : "40px"};
+      padding-top: ${isDeskTop ? "20px" : isTablet ? "10px" : "0px"};
       color: #000;
       & > span {
         font-size: ${!isMobile ? "50px" : "34px"};
@@ -108,8 +113,17 @@ const pageTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
     & > div {
       font-size: ${!isMobile ? "18px" : "14px"};
       color: #000;
-      line-height: 30px;
+      line-height: ${!isMobile ? "30px" : "20px"};
     }
+  }
+  & > img {
+    position: absolute;
+    bottom: ${isDeskTop ? "-30px" : isTablet ? "-20px" : "-20px"};
+    right: ${isDeskTop ? "20px" : isTablet ? "15px" : "10px"};
+    width: ${isDeskTop ? "300px" : isTablet ? "250px" : "170px"};
+    height: ${isDeskTop ? "300px" : isTablet ? "250px" : "170px"};
+    object-fit: contain;
+    object-position: bottom center;
   }
 `;
 
