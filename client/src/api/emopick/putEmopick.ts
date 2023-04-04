@@ -17,7 +17,7 @@ type emopickType = {
   data: number;
 };
 
-export async function postEmopick({
+export async function putEmopick({
   emopickId,
   request,
   token,
