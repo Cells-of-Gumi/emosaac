@@ -12,6 +12,7 @@ import getRecommendGenre from "./../../api/mypage/ReommendTopGenre";
 import { getToken } from "@/api/instance";
 import getBookMark from "@/api/user/getBookMark";
 import BookMark from "./BookMark";
+import AlreadyReadList from "./AlreadyReadList";
 
 const MyPage = ({ myinfo }: any) => {
   // console.log(myinfo);
@@ -230,7 +231,7 @@ const MyPage = ({ myinfo }: any) => {
           <section>
             <BookMark typeCode={typeCode} />
           </section>
-          <section></section>
+          <section>{/* <AlreadyReadList typeCode={typeCode} /> */}</section>
         </div>
       )}
     </>
