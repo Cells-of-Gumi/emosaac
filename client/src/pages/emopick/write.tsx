@@ -236,7 +236,7 @@ const searchModalCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
 const bookSetCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   height: 400px;
   margin-top: 20px;
-  padding: ${isDeskTop ? "30px 30px" : isTablet ? "20px 20px" : "10px 10px"};
+  padding: ${isDeskTop ? "30px 30px" : isTablet ? "20px 20px" : "20px 20px"};
   overflow-y: scroll;
   background-color: var(--back-color);
   border-radius: 5px;
