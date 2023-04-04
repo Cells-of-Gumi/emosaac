@@ -14,26 +14,13 @@ interface Props {
 
 const Layout = (props: Props) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const [isHome, setIsHome] = useState(false);
-  const router = useRouter();
-  useEffect(() => {
-    if (router.asPath === "/") {
-      setIsHome(true);
-    } else {
-      setIsHome(false);
-    }
-  }, [router.asPath]);
-
   return (
-    <div
-      css={[
-        backCSS({ isDeskTop, isTablet, isMobile }),
-        isHome
-          ? isHomeCSS({ isDeskTop, isTablet, isMobile })
-          : notHomeCSS({ isDeskTop, isTablet, isMobile }),
-      ]}
-    >
-      <NavigationBar myInfo={props.myInfo} isDarkMode={props.isDarkMode} setIsDarkMode={props.setIsDarkMode} />
+    <div css={backCSS({ isDeskTop, isTablet, isMobile })}>
+      <NavigationBar
+        myInfo={props.myInfo}
+        isDarkMode={props.isDarkMode}
+        setIsDarkMode={props.setIsDarkMode}
+      />
       {props.children}
     </div>
   );
@@ -51,30 +38,11 @@ const backCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     height: 100vh;
     background-color: var(--back-color);
     color: var(--text-color);
-  `;
-};
-
-const isHomeCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
-  return css`
-    ${isDeskTop
-      ? "padding-top: 0px;"
-      : isTablet
-      ? "padding-top: 0px;"
-      : isMobile
-      ? "padding: 0px 0px 75px;"
-      : null}
-  `;
-};
-
-const notHomeCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
-  return css`
     ${isDeskTop
       ? "padding-top: 70px;"
       : isTablet
       ? "padding-top: 110px;"
-      : isMobile
-      ? "padding: 60px 0 75px;"
-      : null}
+      : "padding: 60px 0 75px;"}
   `;
 };
 
