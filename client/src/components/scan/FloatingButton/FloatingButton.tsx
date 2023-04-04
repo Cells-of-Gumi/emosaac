@@ -45,11 +45,14 @@ const FloatingButton = ({ isDarkMode }: { isDarkMode: boolean }) => {
       onClick={showModal}
     >
       {modalToggler && modal}
-      <UseAnimations
-        strokeColor={"var(--text-color)"}
-        animation={archive}
-        size={isMobile ? 35 : 50}
-      />
+      <div css={iconWrapperCSS({modalToggler})}>
+        <UseAnimations
+          strokeColor={"var(--text-color)"}
+          animation={archive}
+          size={isMobile ? 35 : 50}
+        />
+      </div>
+      
     </div>
   );
 };
@@ -73,16 +76,30 @@ const floatingButtonWrapperCSS = ({
     box-shadow: 0px 0px 5px 1px rgba(150, 150, 150, 0.4);
     display: flex;
     visibility: ${modalToggler ? "hidden" : "block"};
-    opacity: ${modalToggler ? "0%" : "100%"};
     justify-content: center;
-
     padding-top: 7px;
-    transition-property: padding opacity;
-    transition-duration: 0.2s;
     cursor: pointer;
     &:hover {
       padding-top: 14px;
     }
+  `;
+};
+
+
+
+const iconWrapperCSS = ({
+  modalToggler,
+
+}: {
+  modalToggler: boolean;
+
+}) => {
+  return css`
+    visibility: ${modalToggler ? "hidden" : "block"};
+    opacity: ${modalToggler ? "0%" : "100%"};
+    transition-property: opacity;
+    transition-duration: 0.5s;
+
   `;
 };
 
