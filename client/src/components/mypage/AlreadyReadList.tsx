@@ -5,8 +5,9 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { useRouter } from "next/router";
-import ScrollableCarousel from "../UI/HorizontalScroll/backup/ScrollableCarousel";
+
 import getAlreadyRead from "@/api/user/getAlreadyRead";
+import HorizontalScroll from "../UI/HorizontalScroll/HorizontalScroll";
 type AlreadyProps = {
   typeCode: number;
 };
@@ -50,7 +51,7 @@ const AlreadyReadList = ({ typeCode }: AlreadyProps) => {
       <h3>북마크 목록</h3>
       {alreadyLists && alreadyLists.length > 0 ? (
         <div>
-          <ScrollableCarousel
+          <HorizontalScroll
             API={getAlreadyListkAPI}
             identifier={"북마크리스트"}
           />

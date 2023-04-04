@@ -48,7 +48,7 @@ const BookMark = ({ typeCode }: BookMarkProps) => {
     <section css={bookmarkwrapCSS}>
       <h3>북마크 목록</h3>
       {bookmarks && bookmarks.length > 0 ? (
-        <div>
+        <div css={scrollCSS}>
           <ScrollableCarousel
             API={getBookMarkAPI}
             identifier={"북마크리스트"}
@@ -72,6 +72,10 @@ const bookmarkwrapCSS = css`
     font-size: 25px;
     margin-bottom: 20px;
   }
+`;
+
+const scrollCSS = css`
+  width: 100%;
 `;
 
 const bookmarkimageCSS = (
