@@ -231,7 +231,9 @@ const MyPage = ({ myinfo }: any) => {
           <section>
             <BookMark typeCode={typeCode} />
           </section>
-          <section>{/* <AlreadyReadList typeCode={typeCode} /> */}</section>
+          <section>
+            <AlreadyReadList typeCode={typeCode} />
+          </section>
         </div>
       )}
     </>
