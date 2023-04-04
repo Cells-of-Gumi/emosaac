@@ -54,7 +54,7 @@ const EmopickCard = ({ emopick }: Props) => {
         {/* 글 정보 */}
         <div>
           <div>
-            <RiPlayCircleFill size={24} />
+            <RiPlayCircleFill size={isMobile ? 20 : 24} />
             <div>{emopick.title}</div>
           </div>
           {/* <div>{emo.createdDate}</div> */}
@@ -85,7 +85,7 @@ const pickWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   cursor: pointer;
   width: 100%;
   display: grid;
-  grid-template-columns: ${!isMobile ? "210px 1fr" : "160px 1fr"};
+  grid-template-columns: ${!isMobile ? "210px 1fr" : "130px 1fr"};
   column-gap: ${!isMobile ? "20px" : "20px"};
   transition: all 0.3s;
 `;
@@ -102,10 +102,10 @@ const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        font-size: 20px;
-        line-height: 50px;
+        line-height: ${isMobile ? "40px" : "50px"};
         font-weight: bold;
         & > div {
+          font-size: ${isMobile ? "18px" : "20px"};
           margin-left: 4px;
         }
       }
