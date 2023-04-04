@@ -102,7 +102,7 @@ const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding: ${isMobile ? "8px 0" : "20px 0"};
+        padding: ${isMobile ? "4px 0" : "10px 0"};
         font-weight: bold;
         & > div {
           font-size: ${isMobile ? "16px" : "20px"};
@@ -112,7 +112,7 @@ const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
       & > div:nth-of-type(2) {
         margin-left: 4px;
         color: var(--text-color-4);
-        font-size: 14px;
+        font-size: ${isMobile ? "12px" : "14px"};
         display: flex;
         & > svg {
           margin-right: 4px;
@@ -126,8 +126,8 @@ const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
       align-items: center;
       margin: 10px 0;
       & > div:nth-of-type(1) {
-        width: 30px;
-        height: 30px;
+        width: ${isMobile ? "24px" : "30px"};
+        height: ${isMobile ? "24px" : "30px"};
         border-radius: 50px;
         overflow: hidden;
         background-color: var(--back-color-3);
@@ -138,7 +138,8 @@ const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
         }
       }
       & > div:nth-of-type(2) {
-        margin-left: 10px;
+        margin-left: ${isMobile ? "6px" : "10px"};
+        font-size: ${isMobile ? "12px" : "16px"};
       }
     }
   `;
