@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import EmopickSearchModal from "@/components/emopick/EmopickSearchModal";
 import { postEmopickList } from "@/api/emopick/postEmopick";
+import { FiSearch } from "react-icons/fi";
 
 // request: {
 //   content: string;
@@ -36,16 +37,18 @@ const write = () => {
   }
   return (
     <div>
-      <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
-        <div css={pageTitleCSS({ isDeskTop, isTablet, isMobile })}>
-          <h3>emo.PICK 작성하기</h3>
+      <div css={pageTitleCSS({ isDeskTop, isTablet, isMobile })}>
+        <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
+          <h3>emo.PICK 등록하기</h3>
           <div>당신이 추천하고 싶은 작품을 소개해주세요.</div>
         </div>
-        <div>
-          <form
-            onSubmit={submitEmopick}
-            css={formCSS({ isDeskTop, isTablet, isMobile })}
-          >
+      </div>
+      <div>
+        <form
+          onSubmit={submitEmopick}
+          css={formCSS({ isDeskTop, isTablet, isMobile })}
+        >
+          <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
             <div
               css={[
                 formColumnCSS({ isDeskTop, isTablet, isMobile }),
@@ -74,22 +77,27 @@ const write = () => {
               <textarea
                 name="content"
                 id="content"
-                cols={30}
-                rows={10}
                 css={TextareaCSS({ isDeskTop, isTablet, isMobile })}
                 placeholder="내용을 입력해주세요."
               ></textarea>
             </div>
-            <div
-              css={[
-                formColumnCSS({ isDeskTop, isTablet, isMobile }),
-                recommendCSS({ isDeskTop, isTablet, isMobile }),
-              ]}
-            >
+          </div>
+          <div
+            css={[
+              innerCSS({ isDeskTop, isTablet, isMobile }),
+              recommendCSS({ isDeskTop, isTablet, isMobile }),
+            ]}
+          >
+            <div css={formColumnCSS({ isDeskTop, isTablet, isMobile })}>
               <h3>
-                추천 작품 & 리뷰<span>설명</span>
+                추천 작품 & 리뷰<span>추천 작품과 리뷰를 남겨주세요.</span>
+                <button
+                  css={searchButtonCSS({ isDeskTop, isTablet, isMobile })}
+                >
+                  <FiSearch size={20} />
+                  웹툰 / 웹소설 찾기
+                </button>
               </h3>
-              <div css={searchBarCSS({ isDeskTop, isTablet, isMobile })}></div>
               <div css={bookSetCSS({ isDeskTop, isTablet, isMobile })}>
                 {/* 여기는 스크롤 */}
                 <div>
@@ -100,11 +108,9 @@ const write = () => {
                     여기에 웹툰 웹소설 썸네일
                   </div>
                   <div css={bookReviewCSS({ isDeskTop, isTablet, isMobile })}>
-                    여기에 추천 문구
+                    {/* 여기에 추천 문구 */}
                     <textarea
                       name="review"
-                      cols={30}
-                      rows={10}
                       css={TextareaCSS({ isDeskTop, isTablet, isMobile })}
                       placeholder="내용을 입력해주세요."
                     ></textarea>
@@ -112,6 +118,8 @@ const write = () => {
                 </div>
               </div>
             </div>
+          </div>
+          <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
             <div css={buttonWrapCSS({ isDeskTop, isTablet, isMobile })}>
               <button id="preview_button" type="button">
                 뒤로 가기
@@ -124,10 +132,10 @@ const write = () => {
                 제출
               </button>
             </div>
-          </form>
-        </div>
-        <EmopickSearchModal />
+          </div>
+        </form>
       </div>
+      <EmopickSearchModal />
     </div>
   );
 };
@@ -139,20 +147,24 @@ interface IsResponsive {
 }
 
 const innerCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
-  padding: ${isDeskTop ? "40px 105px" : isTablet ? "30px 50px" : "20px 20px"};
+  padding: ${isDeskTop ? "20px 105px" : isTablet ? "15px 50px" : "10px 20px"};
 `;
 const pageTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
-  display: flex;
-  flex-direction: ${isMobile ? "column" : "row"};
-  align-items: ${isMobile ? "flex-start" : "center"};
-  & > h3 {
-    font-size: ${isDeskTop ? "24px" : isTablet ? "20px" : "18px"};
-    font-weight: bold;
-    margin-right: 10px;
-  }
+  background-color: var(--main-color);
   & > div {
-    font-size: ${isDeskTop ? "16px" : isTablet ? "14px" : "12px"};
-    margin-top: ${isMobile ? "8px" : "0px"};
+    display: flex;
+    flex-direction: ${isMobile ? "column" : "row"};
+    align-items: ${isMobile ? "flex-start" : "center"};
+    height: ${isDeskTop ? "120px" : isTablet ? "100px" : "80px"};
+    & > h3 {
+      font-size: ${isDeskTop ? "24px" : isTablet ? "20px" : "18px"};
+      font-weight: bold;
+      margin-right: 10px;
+    }
+    & > div {
+      font-size: ${isDeskTop ? "16px" : isTablet ? "14px" : "12px"};
+      margin-top: ${isMobile ? "8px" : "0px"};
+    }
   }
 `;
 const formCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css``;
@@ -167,7 +179,7 @@ const formColumnCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
       font-weight: bold;
       height: 40px;
       & > span {
-        font-size: ${isDeskTop ? "12px" : isTablet ? "10px" : "10px"};
+        font-size: ${isDeskTop ? "14px" : isTablet ? "14px" : "10px"};
         font-weight: normal;
         color: var(--text-color-3);
         margin-left: 10px;
@@ -194,27 +206,55 @@ const TextareaCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   overflow-y: scroll;
   border: none;
   background-color: var(--back-color-2);
+  height: 240px;
 `;
 const titleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css``;
 const contentCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css``;
-const recommendCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css``;
-const searchBarCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css``;
+const recommendCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
+  background-color: var(--main-color-2);
+`;
+const searchButtonCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
+  css`
+    cursor: pointer;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--main-color);
+    margin-left: 10px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    > svg {
+      margin-right: 6px;
+    }
+  `;
 const searchModalCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css``;
 const bookSetCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   height: 400px;
-  padding: ${isDeskTop ? "20px 20px" : isTablet ? "15px 15px" : "10px 10px"};
+  margin-top: 20px;
+  padding: ${isDeskTop ? "30px 30px" : isTablet ? "20px 20px" : "10px 10px"};
   overflow-y: scroll;
-  background-color: bisque;
+  background-color: var(--back-color);
   border-radius: 5px;
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+  }
   & > div {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 180px 1fr;
     column-gap: 20px;
   }
 `;
 const bookThumbnailCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
-  css``;
+  css`
+    border-radius: 5px;
+    background-color: var(--back-color-3);
+    height: 240px;
+  `;
 const bookReviewCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css``;
 const buttonWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
@@ -235,6 +275,7 @@ const buttonWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
 const submitButtonCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css`
     background-color: var(--main-color) !important;
+    border: none !important;
   `;
 
 export default write;
