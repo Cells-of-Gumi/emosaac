@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import { FiSearch } from "react-icons/fi";
 
 interface Props {
-  isSearchClicked: boolean;
-  setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
+  isSearchClicked?: boolean;
+  setIsSearchBoxOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
 export const SearchBarMobile = (props: Props) => {
@@ -29,7 +29,7 @@ export const SearchBarMobile = (props: Props) => {
         alert("검색어를 입력해주세요");
       } else {
         const [prevId, prevScore, size] = [20493, 10, 10];
-        props.setIsSearchBoxOpen(false);
+        props.setIsSearchBoxOpen && props.setIsSearchBoxOpen(false);
         if (isTagName) {
           const tagName = searchInput.slice(1);
           router.push({
@@ -59,7 +59,7 @@ export const SearchBarMobile = (props: Props) => {
       // props.setIsSearchBoxOpen(false);
     } else {
       const [prevId, prevScore, size] = [20493, 10, 10];
-      props.setIsSearchBoxOpen(false);
+      props.setIsSearchBoxOpen && props.setIsSearchBoxOpen(false);
       console.log("여기옴?");
       console.log("여기옴?");
       if (isTagName) {
