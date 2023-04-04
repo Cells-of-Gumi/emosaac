@@ -111,6 +111,7 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
     ) {
       if (hasNext === true) {
         const lastContent = bookListData[bookListData.length - 1]
+        console.log(lastContent)
         API({lastContent: lastContent, size: quantityPerPage}).then(
           (res: returnBookContentType) => {
             if (res.content.length === 0 && bookListData.length === 0) {

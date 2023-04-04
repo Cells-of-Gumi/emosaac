@@ -36,7 +36,7 @@ export async function getReleased({typeCode, prevId, prevRegist, size, token}: p
     }
 
     const query1 = prevId !== undefined ? `&prevId=${prevId}` : ''
-    const query2 = prevRegist !== undefined ? `&prevScore=${prevRegist}` : ''
+    const query2 = prevRegist !== undefined ? `&prevRegist=${prevRegist}` : ''
     const query3 = size !== undefined ? `&size=${size}` : ''
 
 
