@@ -94,7 +94,8 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
             // }, 1000)
             window.scrollTo(0, Number(JSON.parse(loadScroll)))
         }
-    }, [fetchedData])
+    }, [fetchedData.length !== 0])
+
 
     useEffect(() => {
         if (getFetch === true && fetchedData) {
