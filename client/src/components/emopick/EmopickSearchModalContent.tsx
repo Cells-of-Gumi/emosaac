@@ -18,6 +18,7 @@ interface Props {
         bookId: number;
         typeCd: number;
         review: string;
+        thumbnail: string;
       }[]
     | [];
   setBookList?: Dispatch<
@@ -27,6 +28,7 @@ interface Props {
         bookId: number;
         typeCd: number;
         review: string;
+        thumbnail: string;
       }[]
     >
   >;
@@ -62,12 +64,17 @@ const EmopickSearchModalContent = ({
           setPrevId(prevData.bookId);
           setPrevScore(prevData.avgScore);
         } else {
-          setIsPageEnd(true);
+          // setIsPageEnd(true);
         }
       }
     );
   }
-  useEffect(() => {}, [searchInput]);
+  useEffect(() => {
+    setIsPageEnd(false);
+    if (searchInput && searchInput.length > 0) {
+      getSearchBooks(0, 10);
+    }
+  }, [searchInput]);
 
   return (
     <div>
@@ -80,6 +87,7 @@ const EmopickSearchModalContent = ({
           searchInput={searchInput}
           setSearchInput={setSearchInput}
           setSelectedBookList={setSelectedBookList}
+          setBooks={setBooks}
         />
       ) : (
         <EmopickSearchBar
@@ -87,6 +95,7 @@ const EmopickSearchModalContent = ({
           searchInput={searchInput}
           setSearchInput={setSearchInput}
           setSelectedBookList={setSelectedBookList}
+          setBooks={setBooks}
         />
       )}
       {isSearchBoxOpen && (
@@ -100,6 +109,7 @@ const EmopickSearchModalContent = ({
           prevId={prevId}
           prevScore={prevScore}
           isPageEnd={isPageEnd}
+          bookList={bookList}
         />
       )}
     </div>
