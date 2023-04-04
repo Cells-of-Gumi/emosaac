@@ -32,8 +32,8 @@ const OAuth2RedirectHandler = (props: any) => {
         .then((userInfo) => {
           if (userInfo) {
             localStorage.setItem("userId", JSON.stringify(userInfo.userId));
-            localStorage.setItem("nickname", JSON.stringify(userInfo.nickname));
-            localStorage.setItem("imageUrl", JSON.stringify(userInfo.imageUrl));
+            localStorage.setItem("nickname", userInfo.nickname);
+            localStorage.setItem("imageUrl", userInfo.imageUrl);
             localStorage.setItem("gender", JSON.stringify(userInfo.gender));
             localStorage.setItem("age", JSON.stringify(userInfo.age));
           }
