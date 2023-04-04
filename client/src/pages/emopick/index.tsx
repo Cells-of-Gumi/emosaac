@@ -89,7 +89,7 @@ const pageTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   position: relative;
   margin: ${isDeskTop ? "20px 105px" : isTablet ? "20px 50px" : "20px 20px"};
   padding: ${isDeskTop ? "20px 50px" : isTablet ? "20px 30px" : "20px 20px"};
-  background: linear-gradient(-210deg, #f6ba44, #f0a503, #f1a100);
+  background: linear-gradient(-210deg, #f0b70c, var(--main-color));
   color: #000;
   height: ${isDeskTop ? "250px" : isTablet ? "200px" : "150px"};
   border-radius: ${!isMobile ? "20px" : "10px"};

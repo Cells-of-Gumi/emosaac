@@ -6,6 +6,8 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import EmopickSearchModal from "@/components/emopick/EmopickSearchModal";
 import { postEmopickList } from "@/api/emopick/postEmopick";
 import { FiSearch } from "react-icons/fi";
+import { SearchBar } from "@/components/UI/NavigationBar/SearchBar";
+import { SearchBarMobile } from "@/components/UI/NavigationBar/SearchBarMobile";
 
 // request: {
 //   content: string;
@@ -25,11 +27,12 @@ const write = () => {
   // const [novelList, setNovelList] = useState({ 7189: "레벨업 할게요" });
   const [webtoonList, setWebtoonList] = useState({});
   const [novelList, setNovelList] = useState({});
+  const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
   function submitEmopick(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault;
     const token = localStorage.getItem("token");
     const request = { title, content, novelList, webtoonList };
-    // if (Object.keys(bookList).length > 3 && title.length > 0 && content.length > 0) {
+    // if (Object.keys(bookList).length > 3 && title.length > 1 && content.length > 9) {
     //   postEmopickList({ request, token }).then((res) => {
     //     console.log(res);
     //   });
@@ -56,7 +59,7 @@ const write = () => {
               ]}
             >
               <h3>
-                제목<span>설명</span>
+                제목<span>2자 이상 30자 이하로 작성해주세요.</span>
               </h3>
               <input
                 type="text"
@@ -72,7 +75,7 @@ const write = () => {
               ]}
             >
               <h3>
-                내용<span>설명</span>
+                내용<span>10자 이상 500자 이하로 작성해주세요.</span>
               </h3>
               <textarea
                 name="content"
@@ -91,13 +94,18 @@ const write = () => {
             <div css={formColumnCSS({ isDeskTop, isTablet, isMobile })}>
               <h3>
                 추천 작품 & 리뷰<span>추천 작품과 리뷰를 남겨주세요.</span>
-                <button
-                  css={searchButtonCSS({ isDeskTop, isTablet, isMobile })}
-                >
-                  <FiSearch size={20} />
-                  웹툰 / 웹소설 찾기
-                </button>
               </h3>
+              <div css={searchBarCSS({ isDeskTop, isTablet, isMobile })}>
+                $
+                {isMobile ? (
+                  <SearchBarMobile
+                    isSearchClicked={false}
+                    setIsSearchBoxOpen={setIsSearchBoxOpen}
+                  />
+                ) : (
+                  <SearchBar setIsSearchBoxOpen={setIsSearchBoxOpen} />
+                )}
+              </div>
               <div css={bookSetCSS({ isDeskTop, isTablet, isMobile })}>
                 {/* 여기는 스크롤 */}
                 <div>
@@ -180,7 +188,7 @@ const formColumnCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
       font-weight: bold;
       height: 40px;
       & > span {
-        font-size: ${isDeskTop ? "14px" : isTablet ? "14px" : "10px"};
+        font-size: ${isDeskTop ? "14px" : isTablet ? "14px" : "12px"};
         font-weight: normal;
         color: var(--text-color-3);
         margin-left: 10px;
@@ -214,9 +222,9 @@ const contentCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css``;
 const recommendCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   background-color: var(--main-color-2);
 `;
-const searchButtonCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
+const searchBarCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css`
-    cursor: pointer;
+    /* cursor: pointer;
     height: 40px;
     border-radius: 5px;
     border: none;
@@ -229,13 +237,12 @@ const searchButtonCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
     width: 160px;
     > svg {
       margin-right: 6px;
-    }
+    } */
   `;
 const searchModalCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css``;
 const bookSetCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   height: 400px;
-  margin-top: 20px;
   padding: ${isDeskTop ? "30px 30px" : isTablet ? "20px 20px" : "20px 20px"};
   overflow-y: scroll;
   background-color: var(--back-color);
