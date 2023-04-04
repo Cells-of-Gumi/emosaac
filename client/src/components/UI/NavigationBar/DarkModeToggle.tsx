@@ -36,7 +36,7 @@ export const DarkModeToggle = (props: Props) => {
       // light > dark모드로 바꾸기
       props.setIsDarkMode(true);
     }
-    
+
     document.documentElement.setAttribute(
       "data-theme",
       darkMode === "dark" ? "light" : "dark"

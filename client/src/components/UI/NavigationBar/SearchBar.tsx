@@ -7,7 +7,7 @@ import { FiSearch } from "react-icons/fi";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 
 interface Props {
-  setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
+  setIsSearchBoxOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
 export const SearchBar = (props: Props) => {
@@ -42,14 +42,14 @@ export const SearchBar = (props: Props) => {
   function onChangeSearchInput(event: React.ChangeEvent<HTMLInputElement>) {
     const inputText = event.target.value;
     setSearchInput(inputText);
-    props.setIsSearchBoxOpen(true);
+    props.setIsSearchBoxOpen && props.setIsSearchBoxOpen(true);
   }
   function onEnterKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter") {
       if (searchInput === "") {
         alert("검색어를 입력해주세요");
       } else {
-        props.setIsSearchBoxOpen(false);
+        props.setIsSearchBoxOpen && props.setIsSearchBoxOpen(false);
         const [prevId, prevScore, size] = [20493, 10, 10];
         if (isTagName) {
           const tagName = searchInput.slice(1);

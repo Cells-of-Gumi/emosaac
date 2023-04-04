@@ -9,7 +9,7 @@ interface Props {
   isDropDownOpen: boolean;
   setSelectedCate: Dispatch<SetStateAction<string>>;
   setIsDropDownOpen: Dispatch<SetStateAction<boolean>>;
-  setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
+  setIsSearchBoxOpen?: Dispatch<SetStateAction<boolean>>;
 }
 
 export const DropDown = (props: Props) => {
@@ -18,7 +18,7 @@ export const DropDown = (props: Props) => {
   // const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   function onClickDropDown() {
     props.setIsDropDownOpen(!props.isDropDownOpen);
-    props.setIsSearchBoxOpen(true);
+    props.setIsSearchBoxOpen && props.setIsSearchBoxOpen(true);
   }
   function onClickSelected(selected: string) {
     props.setSelectedCate(selected);
