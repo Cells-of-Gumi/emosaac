@@ -138,7 +138,7 @@ const BookCard = ({
     } else {
       hideModal()
     }
-  }, 200), []);
+  }, 350), []);
 
   return (
     <div
@@ -149,7 +149,7 @@ const BookCard = ({
  
       onMouseMove={() => {call(true)}}
       onMouseEnter={() => {call(true)}}
-
+      onWheel={() => {call(false);}}
       onMouseLeave={() => {call(false); hideModal(); setIsMouseOnStart(() => false)}}
     >
       {user !== null && isMobile() === false && modalToggler && modal}
