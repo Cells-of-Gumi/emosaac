@@ -295,7 +295,7 @@ const dummyWrapperCSS = ({standardWidth, standardHeight}: {standardWidth?: any; 
 
 const contentPageWrapperCSS = ({isMobile, isTablet, isDeskTop}: {isMobile: boolean; isTablet: boolean; isDeskTop: boolean}) => {
     return css`
-        ${isDeskTop === false ? 'width: 100vw;': 'width: 50%'};
+        ${isDeskTop === false ? 'width: 100vw;': 'width: 100%'};
         /* display: flex;
         flex-direction: column;
         align-items: center; */
