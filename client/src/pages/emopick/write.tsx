@@ -155,6 +155,7 @@ const pageTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
     display: flex;
     flex-direction: ${isMobile ? "column" : "row"};
     align-items: ${isMobile ? "flex-start" : "center"};
+    justify-content: ${isMobile ? "center" : "flex-start"};
     height: ${isDeskTop ? "120px" : isTablet ? "100px" : "80px"};
     & > h3 {
       font-size: ${isDeskTop ? "24px" : isTablet ? "20px" : "18px"};
