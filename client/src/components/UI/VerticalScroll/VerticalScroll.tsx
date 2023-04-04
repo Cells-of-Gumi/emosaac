@@ -40,11 +40,10 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
     const [getFetch, setGetFetch] = useState<boolean>(false)
     const scrollWrapperRef = useRef<HTMLDivElement>(null)
     const pageClassRef = useRef<any>([])
-    const dummyClassRef = useRef<any>([])
     const actualPageRef = useRef<any>(null)
     const [onScreenContentIdx, setOnScreenContentIdx] = useState<number>(0)
-    const [dummyWidth, setDummyWidth] = useState<number>(0)
-    const [dummyHeight, setDummyHeight] = useState<number>(0)
+
+    
 
     useEffect(() => {
         const loadData = window.sessionStorage.getItem(`${identifier}-inf_fetched_data`)
@@ -94,10 +93,8 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
                 
             // }, 1000)
             window.scrollTo(0, Number(JSON.parse(loadScroll)))
-            
-            
         }
-    }, [fetchedData.length === 0])
+    }, [fetchedData])
 
     useEffect(() => {
         if (getFetch === true && fetchedData) {
@@ -138,12 +135,7 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
         
     }, [getFetch])
 
-    useEffect(() => {
-        if (getFetch === true && (dummyHeight === 0 || dummyHeight === undefined)) {
-            setDummyWidth(() => actualPageRef?.current?.clientWidth)
-            setDummyHeight(() => actualPageRef?.current?.clientHeight)
-        }
-    }, [getFetch])
+
 
 
 
@@ -195,17 +187,13 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
             
             return (
                 <div css={css`${isDeskTop ? 'width: auto;' : 'width: 100vw;'}`} key={`${identifier}-infinity-${pageIdx}`} id={`${pageIdx}`} ref={(el) => {pageClassRef.current[pageIdx] = el;}}>
-                    {onScreenContentIdx === pageIdx || onScreenContentIdx === pageIdx - 1 || onScreenContentIdx === pageIdx + 1 ? 
-                    <div ref={page.length === quantityPerPage ? actualPageRef : null} css={contentPageWrapperCSS({isMobile, isTablet, isDeskTop})}>{contentRender}</div> : <div id={`${pageIdx}`} css={dummyWrapperCSS({standardWidth: dummyWidth, standardHeight: dummyHeight})} /> // css={dummyWrapperCSS({standardWidth: dummyWidth, standardHeight: dummyHeight})}
-                }
-                    
-                    
+                    <div ref={page.length === quantityPerPage ? actualPageRef : null} css={contentPageWrapperCSS({isMobile, isTablet, isDeskTop})}>{contentRender}</div>
                 </div>
             )
         }
-            
-        
     })
+
+
 
 
     
@@ -259,6 +247,10 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
 
     return (
         <div  css={scrollWrapperCSS}>
+
+ 
+
+            
             {pageRender}
 
             <div css={scrollDivSCC} id={"scrollStart"} ref={scrollWrapperRef}>
@@ -281,17 +273,7 @@ const scrollWrapperCSS = css`
 
 
 
-const dummyWrapperCSS = ({standardWidth, standardHeight}: {standardWidth?: any; standardHeight?: any}) => {
-    return css`
-        width: ${standardWidth ? standardWidth + 'px' : '100vw'};
-        height: ${standardHeight ? standardHeight + 'px' : '100vh'};
-        
-        /* width: 100vw;
-        height: 100vh; */
-        /* background-color: gray; */
-        /* border: 2px solid red; */
-    `
-}
+
 
 const contentPageWrapperCSS = ({isMobile, isTablet, isDeskTop}: {isMobile: boolean; isTablet: boolean; isDeskTop: boolean}) => {
     return css`
@@ -303,7 +285,7 @@ const contentPageWrapperCSS = ({isMobile, isTablet, isDeskTop}: {isMobile: boole
         grid-template-columns: ${isDeskTop ? "repeat(5,1fr)" : "50% 50%"};
         /* grid-template-columns: 50% 50%; */
         place-items: center;
-        content-visibility: auto;
+        /* content-visibility: auto; */
 
     `
 }
@@ -322,6 +304,7 @@ const cardWrapperCSS = ({ width, height, minWidth, minHeight, margin }: { width:
         width: ${width};
         height: ${height};
         margin: ${margin};
+        content-visibility: auto;
     `
 }
 

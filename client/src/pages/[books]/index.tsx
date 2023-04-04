@@ -54,10 +54,10 @@ export default function Home({
 }: HomeProps) {
   const parentRef = useRef<HTMLDivElement>(null);
   const indexWrapperRef = useRef<HTMLDivElement>(null);
-  const [selectedGenre, setSelectedGenre] = useState<number>(window.localStorage.getItem(`${params}-_genre`) ? Number(window.localStorage.getItem(`${params}-selected_genre`)) : -2);
+  const [selectedGenre, setSelectedGenre] = useState<number>(window.sessionStorage.getItem(`${params}-selected_genre`) ? Number(window.sessionStorage.getItem(`${params}-selected_genre`)) : -2);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
 
-  const [selectedDay, setSelectedDay] = useState<number>(window.localStorage.getItem(`${params}-selected_day`) ? Number(window.localStorage.getItem(`${params}-selected_day`)) : 0);
+  const [selectedDay, setSelectedDay] = useState<number>(window.sessionStorage.getItem(`${params}-selected_day`) ? Number(window.sessionStorage.getItem(`${params}-selected_day`)) : 0);
 
   // useEffect(() => {
   //   return () => {
@@ -85,24 +85,15 @@ export default function Home({
 
   
   const selectGenreHandler = (selected: number) => {
-    window.localStorage.setItem(`${params}-selected_genre`, String(selected))
+    window.sessionStorage.setItem(`${params}-selected_genre`, String(selected))
 
-    if (selected === -1) {
-      window.localStorage.removeItem('inf_fetched_data')
-      window.localStorage.removeItem('recent_scroll')
-      window.localStorage.removeItem('recent_page')
-    }
+
     
     setSelectedGenre(() => selected);
   };
 
   const selectDayHandler = (selected: number) => {
-    window.localStorage.setItem(`${params}-selected_day`, String(selected))
-
-    window.localStorage.removeItem('inf_fetched_data')
-    window.localStorage.removeItem('recent_scroll')
-    window.localStorage.removeItem('recent_page')
-    
+    window.sessionStorage.setItem(`${params}-selected_day`, String(selected))
     setSelectedDay(() => selected);
 
   };
