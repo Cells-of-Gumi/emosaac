@@ -49,13 +49,15 @@ export const BasicButton = ({ setIsSearchBoxOpen, myInfo }: Props) => {
     router.push("/mypage");
   };
   useEffect(() => {
-    getMyInfo().then((res) => {
-      const data = res;
-      // console.log(data);
-      if (data) {
-        setNickname(data?.nickname);
-      }
-    });
+    if (window.localStorage.getItem('access_token')) {
+      getMyInfo().then((res) => {
+        const data = res;
+        // console.log(data);
+        if (data) {
+          setNickname(data?.nickname);
+        }
+      });
+    }
   }, []);
   // 비 로그인시 로그인, 로그인 이면 프로필 사진 보이게. 호버하면 마이페이지랑 로그아웃 버튼
   return (
