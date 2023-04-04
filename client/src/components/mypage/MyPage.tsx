@@ -230,6 +230,7 @@ const MyPage = ({ myinfo }: any) => {
           <section>
             <BookMark typeCode={typeCode} />
           </section>
+          <section></section>
         </div>
       )}
     </>
