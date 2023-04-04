@@ -1,126 +1,57 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import RowTitle from "./RowTitle/RowTitle";
-import HighlightedCarousel from "./HighlightedCarousel/HighlightedCarousel";
-
-import { useIsResponsive } from "../Responsive/useIsResponsive";
-import { useRef, useState } from "react";
+import { getBooksByGenre } from "@/api/book/getBooksByGenre";
+import { getBookDetail } from "@/api/book/getBookDetail";
+// import { getToken } from "@/api/instance";
+import VerticalScroll from "../UI/VerticalScroll/VerticalScroll";
+import BookCard from "@/components/UI/BookCard/BookCard";
+// import HorizontalCarousel from "../UI/ScrollableCarousel/HorizontalCarousel";
+import { getBooksByDay } from "@/api/book/getBooksByDay";
 import { bookContentType } from "@/types/books";
 
-import React from "react";
-import HorizontalCarouselWrapper from "./HorizontalCarouselWrapper";
-
 interface SortByGenreProps {
-    fetchList: any;
+  selectedGenre: number;
+  params: string;
 }
 
-const SortByGenre = ({fetchList}: SortByGenreProps) => {
-    const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-    const indexWrapperRef = useRef<HTMLDivElement>(null);
+export default function SortByGenre({selectedGenre, params}: SortByGenreProps) {
 
+  const getBooksByGenreAPI = ({
+    lastContent,
+    size,
+  }: {
+    lastContent?: bookContentType;
+    size: number;
+  }) => {
+    const prevId = lastContent ? lastContent.bookId : 0;
+    const prevScore = lastContent ? lastContent.avgScore : 10;
+    return getBooksByGenre({
+      genreCode: selectedGenre,
+      typeCode: (params === 'webtoon' ? 0 : 1),
+      prevId: prevId,
+      prevScore: prevScore,
+      size: size,
+    });
+  };
 
+  return (
 
-    const rowsRender = fetchList.map((el: any, idx: number) => {
-        return (
-            <React.Fragment key={`sortByGenre-${el.identifier}`}>
-              {/* <div css={whiteSpace1CSS} />
-                <RowTitle beforeLabel={el.beforeLabel} highlightedLabel={el.highlightedLabel} afterLabel={el?.afterLabel} />
-                <div css={bookCarouselWrapperCSS}>
-                <HorizontalCarousel API={el.API} identifier={el.identifier} setHasData={setHasData} />
-                </div>
-                <div css={whiteSpace1CSS} /> */}
-                <HorizontalCarouselWrapper el={el} />
-                {Math.ceil(fetchList.length / 2) === idx && 
-                <img
-                    src={
-                    isMobile === true
-                        ? "/assets/content_banner_mobile.png"
-                        : "/assets/content_banner_desktop_tablet.png"
-                    }
-                    alt={""}
-                    css={bannerImage}
-                />
-                }
-            </React.Fragment>
-        )
-    })
+    <>
+      <VerticalScroll key={`sortByGenre-${params}-${selectedGenre}`} identifier={`sortBytDay-${params}-${selectedGenre}`} API={getBooksByGenreAPI}/>
+      {/* <HorizontalCarousel API={infinityScrollAPI}/> */}
+    </>
+        
 
-    return (
-        <div css={indexWrapperCSS}>
+      
 
-            <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
-                {rowsRender}
-                {/* <RowTitle beforeLabel="너만의" highlightedLabel=" EMOSAAC!" />
-                <div css={bookCarouselWrapperCSS}>
-                <ScrollableCarousel API={recvBooks} identifier={"test1"} />
-                </div>
-                <div css={whiteSpace1CSS} /> */}
-            </div>
-
-            
-        </div>
-    )
+  );
 }
 
-
-const indexWrapperCSS = css`
+const infinityWrapperCSS = css`
   width: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+  height: 100%;
+  background-color: red;
 
-const bannerImage = css`
-  width: 100%;
-  height: auto;
-`;
+`
 
-const whiteSpace1CSS = css`
-  width: 100%;
-  height: 3vw;
-  min-height: 24px;
-`;
-
-const whiteSpace2CSS = css`
-  width: 100%;
-  height: 7vw;
-  min-height: 72px;
-`;
-
-const bannerWrapperCSS = css`
-  width: 100%;
-  overflow: hidden;
-`;
-
-const highlightedCarouselWrapper = css`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-const bookCarouselWrapperCSS = css`
-  width: 100%;
-  /* overflow: hidden; */
-  border-radius: 10px; ;
-`;
-
-interface innerLayoutWrapperCSSProps {
-  isDeskTop: boolean;
-  isTablet: boolean;
-  isMobile: boolean;
-}
-const innerLayoutWrapperCSS = ({
-  isDeskTop,
-  isTablet,
-  isMobile,
-}: innerLayoutWrapperCSSProps) => {
-  const whiteSpace = (isDeskTop && 210) || (isTablet && 100) || (isMobile && 0);
-  return css`
-    width: calc(100% - ${whiteSpace}px);
-    /* margin: 0px 105px; */
-  `;
-};
-
-
-export default SortByGenre
+// 이후 작업들...

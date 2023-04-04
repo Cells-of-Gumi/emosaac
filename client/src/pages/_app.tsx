@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
         setMyInfo(() => false);
       });
     } else {
-      setMyInfo(() => 'anonymous')
+      setMyInfo(() => false)
     }
     
   }, [pageProps]);

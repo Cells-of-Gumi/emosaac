@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { throttle } from "lodash";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
@@ -22,6 +22,7 @@ import ScanMain from "../ScanMain";
 
 import { bookContentType } from "@/types/books";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
+
 
 
 interface FloatingButtonModalProps {
@@ -60,10 +61,18 @@ const FloatingButtonModal = ({
   }
 
 
+  useEffect(() => {
+    
+    document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = 'auto';
+    };
+    
+  }, [])
 
   const modalLayout = {
-    widthValue: beforePhase === 0 ? (isMobile ? 360 : 450) : (beforePhase === 1 ? 280 : (beforePhase === 2 ? 1920 : (beforePhase === 3 ? 300 : 450))),
-    heightValue: beforePhase === 0 ? 538 : (beforePhase === 1 ? 280 : (beforePhase === 2 ? 1080 : (beforePhase === 3 ? 300 : 538))),
+    widthValue: beforePhase === 0 ? (isMobile ? 360 : 450) : (beforePhase === 1 ? 280 : (beforePhase === 2 ? (isMobile ? 360 : 1920) : (beforePhase === 3 ? 300 : 300))),
+    heightValue: beforePhase === 0 ? 538 : (beforePhase === 1 ? 280 : (beforePhase === 2 ? (isMobile ? 620 : 1080) : (beforePhase === 3 ? 300 : 300))),
   };
 
   useEffect(() => {
@@ -116,60 +125,63 @@ const FloatingButtonModal = ({
 
 
   return (
-    <div
-      // onClick={modalHandler}
-      // onWheelCapture={onWheelHandler}
-      
-      ref={wrapperRef}
-      css={wrapperCSS({
-        modalToggler: contentToggler,
-        parentRef: parentRef,
-        wrapperRef: wrapperRef,
-        widthValue: modalLayout.widthValue,
-        heightValue: modalLayout.heightValue,
-        isClosing,
-        isOpened
-      })}
-    >
+    <React.Fragment>
+      <div css={backdropCSS({isOpened, isClosing})} />
       <div
-        className={'inner-wrapper'}
-        css={innerWrapperCSS({
-          modalToggler: modalToggler,
-          contentToggler: contentToggler,
-          isOpened: isOpened,
+        // onClick={modalHandler}
+        // onWheelCapture={onWheelHandler}
+        
+        ref={wrapperRef}
+        css={wrapperCSS({
+          modalToggler: contentToggler,
+          parentRef: parentRef,
+          wrapperRef: wrapperRef,
+          widthValue: modalLayout.widthValue,
+          heightValue: modalLayout.heightValue,
+          isClosing,
+          isOpened
         })}
       >
+        <div
+          className={'inner-wrapper'}
+          css={innerWrapperCSS({
+            modalToggler: modalToggler,
+            contentToggler: contentToggler,
+            isOpened: isOpened,
+          })}
+        >
 
-        {afterPhase === 0 &&
-          <div css={phaseCSS({targetPhase: 0, beforePhase: beforePhase, afterPhase: afterPhase})}>
-            <FloatingButtonModalSubmitForm modalHandler={modalHandler} phaseHandler={phaseHandler} onClickSubmitHandler={onClickSubmitHandler} isDarkMode={isDarkMode} />
-          </div>
-        }
+          {afterPhase === 0 &&
+            <div css={phaseCSS({targetPhase: 0, beforePhase: beforePhase, afterPhase: afterPhase})}>
+              <FloatingButtonModalSubmitForm modalHandler={modalHandler} phaseHandler={phaseHandler} onClickSubmitHandler={onClickSubmitHandler} isDarkMode={isDarkMode} />
+            </div>
+          }
 
-        {afterPhase === 1 &&
-          <div css={phaseCSS({targetPhase: 1, beforePhase: beforePhase, afterPhase: afterPhase})}>
-            <FloatingButtonModalLoading/>
-          </div>
-        }
+          {afterPhase === 1 &&
+            <div css={phaseCSS({targetPhase: 1, beforePhase: beforePhase, afterPhase: afterPhase})}>
+              <FloatingButtonModalLoading/>
+            </div>
+          }
 
-        {afterPhase === 2 && bookData !== null &&
-          <div css={phaseCSS({targetPhase: 2, beforePhase: beforePhase, afterPhase: afterPhase})}>
-            <ScanMain bookData={bookData} phaseHandler={phaseHandler} />
-          </div>
-        }
-        
-        {afterPhase === 3 &&
-          <div css={phaseCSS({targetPhase: 3, beforePhase: beforePhase, afterPhase: afterPhase})}>
-            <FloatingButtonModalFinish modalHandler={modalHandler} />
-          </div>
-        }
-
-
+          {afterPhase === 2 && bookData !== null &&
+            <div css={phaseCSS({targetPhase: 2, beforePhase: beforePhase, afterPhase: afterPhase})}>
+              <ScanMain bookData={bookData} phaseHandler={phaseHandler} />
+            </div>
+          }
+          
+          {afterPhase === 3 &&
+            <div css={phaseCSS({targetPhase: 3, beforePhase: beforePhase, afterPhase: afterPhase})}>
+              <FloatingButtonModalFinish modalHandler={modalHandler} phaseHandler={phaseHandler} />
+            </div>
+          }
 
 
-        
+
+
+          
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 
@@ -260,7 +272,19 @@ const phaseCSS = ({targetPhase, beforePhase, afterPhase}: {targetPhase: number; 
 
 
 
-
+const backdropCSS = ({isOpened, isClosing}: {isOpened: boolean; isClosing: boolean}) => {
+  return css`
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(10px);
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    opacity: ${isOpened ? (isClosing ? '0%' : '100%') : '0%'};
+    
+  `
+}
 
 
 export default FloatingButtonModal;

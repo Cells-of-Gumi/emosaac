@@ -121,7 +121,7 @@ const FloatingButtonModalSubmitForm = ({modalHandler, phaseHandler, onClickSubmi
         </div>
         {/* <div css={css`border-bottom: 1px solid var(--border-color-2); margin-bottom: 16px;`}/> */}
         <div css={footerCSS}>
-            <Button width={'47.5%'} height={'48px'} onClick={modalHandler} cancelTheme={true}>취소</Button>
+            <Button width={'47.5%'} height={'48px'} onClick={() => {modalHandler(); phaseHandler(4);}} cancelTheme={true}>취소</Button>
             <Button width={'47.5%'} height={'48px'} onClick={() => {onClickSubmitHandler({image, contentType})}}>제출</Button>
         </div>
       </>

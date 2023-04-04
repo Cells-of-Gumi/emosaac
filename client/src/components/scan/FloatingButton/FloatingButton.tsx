@@ -73,10 +73,11 @@ const floatingButtonWrapperCSS = ({
     box-shadow: 0px 0px 5px 1px rgba(150, 150, 150, 0.4);
     display: flex;
     visibility: ${modalToggler ? "hidden" : "block"};
+    opacity: ${modalToggler ? "0%" : "100%"};
     justify-content: center;
 
     padding-top: 7px;
-    transition-property: padding;
+    transition-property: padding opacity;
     transition-duration: 0.2s;
     cursor: pointer;
     &:hover {

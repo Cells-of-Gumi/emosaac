@@ -21,7 +21,10 @@ import { bookDetailType } from "@/types/books";
 import PlatformRatingHover from "@/components/bookDetail/PlatformRatingHover";
 import { getToken } from "@/api/instance";
 
-
+import { bookContentType } from "@/types/books";
+import { getRelative } from "@/api/recommendation/getRelative";
+import { getBooksByAuthor } from "@/api/book/getBooksByAuthor";
+import SortByRows from "@/components/bookTab/SortByRows";
 
 
 
@@ -39,6 +42,52 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
   const [commentModalState, setCommentModalState] = useState<boolean>(false);
   const [unfoldStory, setUnfoldStory] = useState<boolean>(false)
   const storyWrapperRef = useRef<HTMLDivElement>(null)
+
+  const getRelativeAPI = ({
+    lastContent,
+    size,
+  }: {
+    lastContent: bookContentType;
+    size: number;
+  }) => {
+
+    return getRelative({
+      bookId: bookData.bookId,
+    });
+  }
+
+  const getBooksByAuthorAPI = ({
+    lastContent,
+    size,
+  }: {
+    lastContent: bookContentType;
+    size: number;
+  }) => {
+
+    return getBooksByAuthor({
+      bookId: bookData.bookId,
+    });
+  }
+
+
+
+  const bookFetchList = [
+    {
+      API: getRelativeAPI,
+      identifier: `getRelative-${bookData.bookId}`,
+      beforeLabel: '비슷한 작품 ',
+      highlightedLabel: 'EMOSAAC!',
+      requireLogin: false,
+    },
+    {
+      API: getBooksByAuthorAPI,
+      identifier: `getBooksByAuthor-${bookData.bookId}`,
+      beforeLabel: '같은 작가의 작품 ',
+      highlightedLabel: 'EMOSAAC!',
+      requireLogin: false,
+    },
+  ]
+
 
 
 
@@ -183,6 +232,7 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
           </div>
         </div>
       </div>
+      <SortByRows fetchList={bookFetchList} myInfo={myInfo}/>
     </div>
   );
 };
