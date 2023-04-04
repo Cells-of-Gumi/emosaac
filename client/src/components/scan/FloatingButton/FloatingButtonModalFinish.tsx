@@ -4,11 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import UseAnimations from 'react-useanimations';
 import alertCircle from 'react-useanimations/lib/alertCircle'
 
-const FloatingButtonModalFinish = ({modalHandler}: {modalHandler: Function}) => {
+
+const FloatingButtonModalFinish = ({modalHandler, phaseHandler}: {modalHandler: Function; phaseHandler: Function;}) => {
 
     useEffect(() => {
         setTimeout(() => {
             modalHandler()
+            phaseHandler(4)
         }, 2000)
     }, [])
 

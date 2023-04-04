@@ -12,11 +12,18 @@ import loading2 from 'react-useanimations/lib/loading2'
 
 
 interface VerticalScrollProps {
-    API: ({fetchedData, prevId, prevScore, size}: {fetchedData: any; prevId?: number; prevScore?: number; size: number}) => Promise<any>;
-
+    // API: ({fetchedData, prevId, prevScore, size}: {fetchedData: any; prevId?: number; prevScore?: number; size: number}) => Promise<any>;
+    API: ({
+        lastContent,
+        size,
+      }: {
+        lastContent?: bookContentType;
+        size: number;
+      }) => Promise<any>;
+    identifier: string;
 }
 
-const VerticalScroll = ({API}: VerticalScrollProps) => {
+const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
     const [isDeskTop, isTablet, isMobile] = useIsResponsive();
     const cardLayout = {
         width: isDeskTop ?  "200px" : "45vw",
@@ -40,19 +47,33 @@ const VerticalScroll = ({API}: VerticalScrollProps) => {
     const [dummyHeight, setDummyHeight] = useState<number>(0)
 
     useEffect(() => {
-        const loadData = window.localStorage.getItem('inf_fetched_data')
-        const loadPage = window.localStorage.getItem('recent_page')
+        const loadData = window.sessionStorage.getItem(`${identifier}-inf_fetched_data`)
+        const loadPage = window.sessionStorage.getItem(`${identifier}-recent_page`)
 
         console.log('로드', loadData && JSON.parse(loadData))
         if (loadData) {
             setFetchedData(() => JSON.parse(loadData))
         } else {
-            API({fetchedData: fetchedData, size: quantityPerPage})
+
+            API({ size: quantityPerPage })
             .then((res: returnBookContentType) => {
                 if (res.content.length !== 0 || res.content !== null) {
-                    setFetchedData(() => [[...res.content]])
+                    
+                const temp = [[...res.content]];
+                setFetchedData(() => temp);
                 }
             })
+            .catch((err) => {
+
+            })
+
+
+            // API({fetchedData: fetchedData, size: quantityPerPage})
+            // .then((res: returnBookContentType) => {
+            //     if (res.content.length !== 0 || res.content !== null) {
+            //         setFetchedData(() => [[...res.content]])
+            //     }
+            // })
         }
 
         if (loadPage) {
@@ -67,7 +88,7 @@ const VerticalScroll = ({API}: VerticalScrollProps) => {
     }, [])
 
     useEffect(() => {
-        const loadScroll = window.localStorage.getItem('recent_scroll')
+        const loadScroll = window.sessionStorage.getItem(`${identifier}-recent_scroll`)
         if (loadScroll && fetchedData.length !== 0) {
             // setTimeout(function() {
                 
@@ -83,18 +104,33 @@ const VerticalScroll = ({API}: VerticalScrollProps) => {
             const lastContent = fetchedData[fetchedData.length - 1][fetchedData[fetchedData.length - 1].length - 1]
             if (lastContent) {
                 console.log(lastContent)
-                API({fetchedData: fetchedData, prevId: lastContent.bookId, prevScore: lastContent.avgScore, size: quantityPerPage})
-                .then((res: returnBookContentType) => {
-                    // setFetchedData(() => [...fetchedData, [...res.content]])
-                    if (res.content.length !== 0 || res.content !== null) {
-                        const temp = [...fetchedData, [...res.content]]
-                        setFetchedData(() => temp)
+
+                API({ lastContent: lastContent, size: quantityPerPage }).then(
+                    (res: returnBookContentType) => {
+                        if (res.content.length !== 0 || res.content !== null) {
+                        const temp = [...fetchedData, [...res.content]];
+                        setFetchedData(() => temp);
                         // setOffset((prev) => prev + 1)
-                        window.localStorage.setItem('inf_fetched_data', JSON.stringify(temp))
-                        console.log(fetchedData)
+                        window.sessionStorage.setItem(
+                            `${identifier}-inf_fetched_data`,
+                            JSON.stringify(temp)
+                        );
+                        }
                     }
+                );
+
+                // API({fetchedData: fetchedData, prevId: lastContent.bookId, prevScore: lastContent.avgScore, size: quantityPerPage})
+                // .then((res: returnBookContentType) => {
+                //     // setFetchedData(() => [...fetchedData, [...res.content]])
+                //     if (res.content.length !== 0 || res.content !== null) {
+                //         const temp = [...fetchedData, [...res.content]]
+                //         setFetchedData(() => temp)
+                //         // setOffset((prev) => prev + 1)
+                //         window.sessionStorage.setItem('inf_fetched_data', JSON.stringify(temp))
+                //         console.log(fetchedData)
+                //     }
                     
-                })
+                // })
                 
             }
             setFetch(false)
@@ -122,7 +158,7 @@ const VerticalScroll = ({API}: VerticalScrollProps) => {
                 //     setFetch(true)   
                 // }
                 if (document.documentElement.scrollTop !== 0) {
-                    window.localStorage.setItem('recent_scroll', String(document.documentElement.scrollTop))
+                    window.sessionStorage.setItem(`${identifier}-recent_scroll`, String(document.documentElement.scrollTop))
                 }
                 
             }, 1000),
@@ -148,7 +184,7 @@ const VerticalScroll = ({API}: VerticalScrollProps) => {
     const pageRender = fetchedData.map((page: any, pageIdx: number) => {
         const contentRender = page.map((content: bookContentType, contentIdx: number) => {
             return (
-                <div css={cardWrapperCSS({ width: cardLayout.width, height: cardLayout.height, minWidth: cardLayout.minWidth, minHeight: cardLayout.minHeight, margin: cardLayout.margin })}>
+                <div key={`${identifier}-infinity-card-${(pageIdx * quantityPerPage) +contentIdx}`} css={cardWrapperCSS({ width: cardLayout.width, height: cardLayout.height, minWidth: cardLayout.minWidth, minHeight: cardLayout.minHeight, margin: cardLayout.margin })}>
                     <BookCard showPlatform={true} bookData={content} minWidth={cardLayout.minWidth} minHeight={cardLayout.minHeight} />  
                 </div>
                 
@@ -158,7 +194,7 @@ const VerticalScroll = ({API}: VerticalScrollProps) => {
         if (page.length !== 0) {
             
             return (
-                <div css={css`${isDeskTop ? 'width: auto;' : 'width: 100vw;'}`} key={`infinity-${pageIdx}`} id={`${pageIdx}`} ref={(el) => {pageClassRef.current[pageIdx] = el;}}>
+                <div css={css`${isDeskTop ? 'width: auto;' : 'width: 100vw;'}`} key={`${identifier}-infinity-${pageIdx}`} id={`${pageIdx}`} ref={(el) => {pageClassRef.current[pageIdx] = el;}}>
                     {onScreenContentIdx === pageIdx || onScreenContentIdx === pageIdx - 1 || onScreenContentIdx === pageIdx + 1 ? 
                     <div ref={page.length === quantityPerPage ? actualPageRef : null} css={contentPageWrapperCSS({isMobile, isTablet, isDeskTop})}>{contentRender}</div> : <div id={`${pageIdx}`} css={dummyWrapperCSS({standardWidth: dummyWidth, standardHeight: dummyHeight})} /> // css={dummyWrapperCSS({standardWidth: dummyWidth, standardHeight: dummyHeight})}
                 }
@@ -182,7 +218,7 @@ const VerticalScroll = ({API}: VerticalScrollProps) => {
             if (entry.isIntersecting) {
                 if ($target.id !== 'scrollStart') {
                     setOnScreenContentIdx(() => Number($target.id))
-                    window.localStorage.setItem('recent_page', $target.id)
+                    window.sessionStorage.setItem(`${identifier}-recent_page`, $target.id)
                 } 
                 if ($target.id === 'scrollStart' && fetchedData.length !== 0) {
                     setFetch(true)   
@@ -267,6 +303,7 @@ const contentPageWrapperCSS = ({isMobile, isTablet, isDeskTop}: {isMobile: boole
         grid-template-columns: ${isDeskTop ? "repeat(5,1fr)" : "50% 50%"};
         /* grid-template-columns: 50% 50%; */
         place-items: center;
+        content-visibility: auto;
 
     `
 }
