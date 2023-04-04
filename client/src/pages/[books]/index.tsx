@@ -164,7 +164,7 @@ export default function Home({
     size: number;
   }) => {
     const prevId = lastContent ? lastContent.bookId : 0;
-    const prevScore = lastContent ? lastContent.avgScore : 10;
+    const prevScore = lastContent ? lastContent.predictScore : 10;
     return getHighPrediction({
       typeCode: (params === 'webtoon' ? 0 : 1),
       prevId: prevId,
