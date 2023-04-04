@@ -15,6 +15,7 @@ interface Props {
         bookId: number;
         typeCd: number;
         review: string;
+        thumbnail: string;
       }[]
     | [];
   setBookList: Dispatch<
@@ -24,6 +25,7 @@ interface Props {
         bookId: number;
         typeCd: number;
         review: string;
+        thumbnail: string;
       }[]
     >
   >;

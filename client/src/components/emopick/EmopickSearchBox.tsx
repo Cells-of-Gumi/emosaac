@@ -11,7 +11,7 @@ import {
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { useRouter } from "next/router";
 import { returnSearchHistoryType } from "@/types/search";
-import SearchBookCard from "../UI/NavigationBar/SearchBookCard";
+import EmopickSearchBookCard from "./EmopickSearchBookCard";
 import ToggleButton from "../UI/Button/ToggleButton";
 import { getSearchHistory } from "@/api/search/getSearchHistory";
 import { getBookDetail } from "@/api/book/getBookDetail";
@@ -30,6 +30,15 @@ interface Props {
   prevId: number;
   prevScore: number;
   isPageEnd: boolean;
+  bookList?:
+    | {
+        title: string;
+        bookId: number;
+        typeCd: number;
+        review: string;
+        thumbnail: string;
+      }[]
+    | [];
 }
 
 const EmopickSearchBox = ({
@@ -42,22 +51,31 @@ const EmopickSearchBox = ({
   prevId,
   prevScore,
   isPageEnd,
+  bookList,
 }: Props) => {
   const router = useRouter();
-  const [bookData, setBookData] = useState<returnSearchHistoryType[] | null>(
+  const [bookData, setBookData] = useState<returnSearchHistoryType[] | any[]>(
     []
   );
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const booksWrapRef = useRef<HTMLDivElement>(null);
   const [getBooks, setGetBooks] = useState<boolean>(false);
+  const booksWrapRef = useRef<HTMLDivElement>(null);
   const onWheelHandler = useMemo(
     () =>
       throttle((event) => {
-        const htmlEl = document.getElementsByTagName("html")[0];
+        console.log(isPageEnd);
         if (isPageEnd === false) {
+          console.log(booksWrapRef.current?.scrollTop);
+          console.log(booksWrapRef.current?.clientHeight);
+          console.log(booksWrapRef.current?.scrollHeight);
           if (
-            htmlEl &&
-            htmlEl.clientHeight + htmlEl.scrollTop + 200 > htmlEl.scrollHeight
+            booksWrapRef &&
+            booksWrapRef.current?.scrollTop &&
+            booksWrapRef.current?.clientHeight &&
+            booksWrapRef.current.scrollTop +
+              booksWrapRef.current.clientHeight +
+              100 >
+              booksWrapRef.current.scrollHeight
           ) {
             setGetBooks(() => true);
           }
@@ -74,10 +92,10 @@ const EmopickSearchBox = ({
       getSearchBooks(prevId, prevScore);
     }
   }, [getBooks]);
+
   useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    getSearchHistory({ token }).then((res: any) => setBookData(res));
-  }, []);
+    setBookData(books);
+  }, [books]);
 
   return (
     <div css={searchWrapCSS}>
@@ -92,19 +110,23 @@ const EmopickSearchBox = ({
           <div css={recentHistoryCSS({ isDeskTop, isTablet, isMobile })}>
             <h3>검색 결과</h3>
             {bookData && (
-              <div css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}>
+              <div
+                css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}
+                ref={booksWrapRef}
+                onWheel={onWheelHandler}
+                onTouchMove={onWheelHandler}
+              >
                 {bookData.map((book, idx) => (
-                  <div
-                    css={bookWrapCSS(book.typeCd === 0)}
-                    onClick={onClickBack}
-                    key={idx}
-                  >
+                  <div css={bookWrapCSS(book.typeCd === 0)} key={idx}>
                     <span>{book && book.typeCd === 0 ? "웹툰" : "웹소설"}</span>
-                    <SearchBookCard
+                    <EmopickSearchBookCard
                       bookData={book}
                       showPlatform={false}
                       width={"100%"}
-                      // height={isMobile ? "150px" : "200px"}
+                      height={isMobile ? "170px" : "190px"}
+                      setSelectedBookList={setSelectedBookList}
+                      selectedBookList={selectedBookList}
+                      bookList={bookList}
                     />
                     <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
                       <div>{book.title}</div>
@@ -180,8 +202,6 @@ const recentHistoryCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
       margin-bottom: 20px;
     }
     & > div {
-      ${isDeskTop && "max-width: 700px;"}
-      ${!isDeskTop && "max-width: 600px;"}
     }
   `;
 };
@@ -189,10 +209,11 @@ const recentHistoryCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
 const booksWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: ${isMobile ? "1fr 1fr 1fr" : "1fr 1fr 1fr 1fr"};
     ${isDeskTop && "column-gap: 20px;"}
     ${!isDeskTop && "column-gap: 10px;"}
-    overflow-x: scroll;
+    height: 300px;
+    overflow-y: scroll;
   `;
 };
 
@@ -201,6 +222,7 @@ const bookWrapCSS = (isWebtoon: boolean) => css`
   display: grid;
   grid-template-rows: 1fr 40px;
   line-height: 40px;
+  height: fit-content;
   & > span {
     position: absolute;
     z-index: 10;

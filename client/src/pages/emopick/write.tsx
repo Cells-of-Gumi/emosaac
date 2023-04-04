@@ -24,16 +24,38 @@ const write = () => {
   const [title, setTitle] = useState("이모픽 등록 테스트");
   const [content, setContent] = useState("이모픽 등록 테스트 내용내용");
   const [bookList, setBookList] = useState([
-    { title: "모죠의 일지", bookId: 3281, typeCd: 0, review: "짱잼입니다용" },
+    {
+      title: "모죠의 일지",
+      bookId: 3281,
+      typeCd: 0,
+      review: "짱잼입니다용",
+      thumbnail: "",
+    },
     {
       title: "나 혼자만 레벨업",
       bookId: 7189,
       typeCd: 1,
       review: "레벨업 할게요",
+      thumbnail: "",
     },
   ]);
   // 전송할때만 쓰는 리스트
-  const [selectedBookList, setSelectedBookList] = useState<any>([]);
+  const [selectedBookList, setSelectedBookList] = useState<any>([
+    {
+      title: "모죠의 일지",
+      bookId: 3281,
+      typeCd: 0,
+      review: "짱잼입니다용",
+      thumbnail: "",
+    },
+    {
+      title: "나 혼자만 레벨업",
+      bookId: 7189,
+      typeCd: 1,
+      review: "레벨업 할게요",
+      thumbnail: "",
+    },
+  ]);
   const [webtoonList, setWebtoonList] = useState({});
   const [novelList, setNovelList] = useState({});
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);

@@ -10,6 +10,7 @@ interface Props {
   searchInput: string;
   setSearchInput: Dispatch<SetStateAction<string>>;
   setSelectedBookList: Dispatch<SetStateAction<any[]>>;
+  setBooks: Dispatch<SetStateAction<any[]>>;
 }
 
 export const EmopickSearchBar = ({
@@ -17,6 +18,7 @@ export const EmopickSearchBar = ({
   searchInput,
   setSearchInput,
   setSelectedBookList,
+  setBooks,
 }: Props) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [isTagName, setIsTagName] = useState(false);
@@ -28,7 +30,7 @@ export const EmopickSearchBar = ({
     }
   }, [searchInput]);
   function onChangeSearchInput(event: React.ChangeEvent<HTMLInputElement>) {
-    setSelectedBookList([]);
+    setBooks([]);
     const inputText = event.target.value;
     setSearchInput(inputText);
     if (inputText && inputText.length > 0) {
