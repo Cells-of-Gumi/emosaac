@@ -6,7 +6,7 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { returnBookContentType } from "@/types/books";
 
 // import Test from "./Test";
-import BookCard from "../BookCard/BookCard";
+import BookCard from "../../BookCard/BookCard";
 
 const ScrollableCarousel = ({ API, identifier }: any) => {
   const wrapperRef = useRef<HTMLInputElement>(null);

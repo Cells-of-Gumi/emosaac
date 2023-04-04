@@ -155,7 +155,7 @@ const SwipeableGallery = ({ parentRef, content }: any) => {
   return (
     <div css={outerWrapperCSS}>
       {isMobile === false && indicatorBtn}
-      <div css={indicatorWrapperCSS}>{indicator}</div>
+      <div css={indicatorWrapperCSS({isMobile})}>{indicator}</div>
       <Swipe
         onSwipeStart={(event: any) => {
           event.stopPropagation();
@@ -233,18 +233,20 @@ const nextBtnCSS = css`
   }
 `;
 
-const indicatorWrapperCSS = css`
-  z-index: 9;
-  position: absolute;
-  color: white;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  pointer-events: none;
-  padding-bottom: 16px;
-`;
+const indicatorWrapperCSS = ({isMobile}: {isMobile: boolean}) => {
+  return css`
+    z-index: 9;
+    position: absolute;
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    pointer-events: none;
+    padding-bottom: ${isMobile ? '8px' : '16px'};
+  `;
+} 
 
 interface indicatorCSSProps {
   idx: number;
