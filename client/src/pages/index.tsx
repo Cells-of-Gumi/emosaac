@@ -27,59 +27,7 @@ export default function index() {
   const [mouseCursorClientY, setMouseCursorClientY] = useState(0);
   const [isMouseOver, setIsMouseOver] = useState(false);
   const [isMouseActive, setIsMouseActive] = useState(false);
-  const [booksByPlatform, setBooksByPlatform] = useState<{
-    kakao: any[] | null;
-    naver: any[] | null;
-    ridi: any[] | null;
-  }>({
-    kakao: null,
-    naver: null,
-    ridi: null,
-  });
-
-  useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    if (token) {
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
-    }
-
-    let [prevId, prevRegist, size, typeCd] = [20000, "2023.03.20", 30, 0];
-    getNewBooksForPlatform({ prevId, prevRegist, size, typeCd, token }).then(
-      (res) => {
-        if (res !== null) {
-          const content = res?.content;
-          const kakao_content = content.filter((c) => c.platform === 1);
-          const naver_content = content.filter((c) => c.platform === 2);
-          const ridi_content = content.filter((c) => c.platform === 4);
-          setBooksByPlatform({
-            kakao: kakao_content,
-            naver: naver_content,
-            ridi: ridi_content,
-          });
-        }
-      }
-    );
-    [prevId, prevRegist, size, typeCd] = [20000, "2023.03.20", 30, 1];
-    getNewBooksForPlatform({ prevId, prevRegist, size, typeCd, token }).then(
-      (res) => {
-        if (res !== null) {
-          const content = res?.content;
-          const kakao_content = content.filter((c) => c.platform === 1);
-          const naver_content = content.filter((c) => c.platform === 2);
-          const ridi_content = content.filter((c) => c.platform === 4);
-          setBooksByPlatform((prev: any) => {
-            return {
-              kakao: [...prev?.kakao, ...kakao_content],
-              naver: [...prev?.naver, ...naver_content],
-              ridi: [...prev?.ridi, ...ridi_content],
-            };
-          });
-        }
-      }
-    );
-  }, []);
+  const [booksByPlatform, setBooksByPlatform] = useState<any>(null);
 
   const laptopRef = useRef<HTMLImageElement>(null);
   const pageRef = useRef<HTMLDivElement>(null);
@@ -130,7 +78,23 @@ export default function index() {
     [currentScroll]
   );
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+
+    getNewBooksForPlatform().then((res) => {
+      if (res !== null) {
+        const content = res;
+        console.log(content);
+        setBooksByPlatform(content);
+      }
+    });
+  }, []);
+
   return (
     <div onWheel={onWheel}>
       <div

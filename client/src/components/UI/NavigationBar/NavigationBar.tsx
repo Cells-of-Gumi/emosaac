@@ -70,7 +70,7 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
     setIsSearchClicked(true);
   }
   function onClickLogout() {
-    // localStorage.clear();
+    localStorage.clear();
     setIsSearchBoxOpen(false);
     router.push({
       pathname: "/",
@@ -323,12 +323,14 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
                       </Link>
                     )}
                   </div>
-                  <div onClick={() => onClickLogout()}>
-                    <a>
-                      <RiLogoutBoxRLine size={24} />
-                      로그아웃
-                    </a>
-                  </div>
+                  {isLogin && (
+                    <div onClick={() => onClickLogout()}>
+                      <a>
+                        <RiLogoutBoxRLine size={24} />
+                        로그아웃
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
               <ul
@@ -533,17 +535,18 @@ const menuWrapCSS = (isDeskTop: boolean, isTablet: boolean) => {
 
 const mobileBottomCSS = css`
   position: fixed;
-  z-index: 200;
+  z-index: 180;
   bottom: 0;
   left: 0;
 `;
 
 const popUpCSS = (isPopUpOpen: boolean) => css`
+  box-shadow: 0px -10px 10px rgba(120, 120, 120, 0.3);
   z-index: 120;
   transition: all 0.3s ease;
   position: relative;
   width: 100vw;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 120px);
   background-color: var(--back-color);
   border-radius: 10px 10px 0px 0px;
   padding-top: 10px;
