@@ -12,6 +12,7 @@ export type bookContentType = {
   genreName: string;
   typeCd: number;
   tag: string;
+  predictScore?: number;
 };
 
 export type returnBookContentType = {
