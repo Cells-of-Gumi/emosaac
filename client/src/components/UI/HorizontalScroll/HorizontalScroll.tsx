@@ -9,7 +9,7 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import UseAnimations from "react-useanimations";
 import loading2 from "react-useanimations/lib/loading2";
 
-interface HorizontalCarouselProps {
+interface HorizontalScrollProps {
   // API: ({fetchedData, prevId, prevScore, size}: {fetchedData: any; prevId?: number; prevScore?: number; size: number}) => Promise<any>;
   API: ({
     lastContent,
@@ -19,9 +19,10 @@ interface HorizontalCarouselProps {
     size: number;
   }) => Promise<any>;
   identifier: string;
+  setNoData: Function;
 }
 
-const HorizontalCarousel = ({ API, identifier }: HorizontalCarouselProps) => {
+const HorizontalScroll = ({ API, identifier, setNoData }: HorizontalScrollProps) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const cardLayout = {
     width: "10vw",
@@ -33,7 +34,7 @@ const HorizontalCarousel = ({ API, identifier }: HorizontalCarouselProps) => {
   };
 
   const [fetchedData, setFetchedData] = useState<any>([]);
-  const [quantityPerPage, setQuantityPerPage] = useState<number>(10);
+  const [quantityPerPage, setQuantityPerPage] = useState<number>(20);
   // const [offset, setOffset] = useState<number>(0)
   const [getFetch, setGetFetch] = useState<boolean>(false);
   const isEndOfPageRef = useRef<HTMLDivElement>(null);
@@ -55,16 +56,27 @@ const HorizontalCarousel = ({ API, identifier }: HorizontalCarouselProps) => {
     const loadPage = window.localStorage.getItem(`${identifier}-recent_page`);
 
     if (loadData) {
+      console.log('로컬로컬', JSON.parse(loadData))
       setFetchedData(() => JSON.parse(loadData));
     } else {
-      API({ size: quantityPerPage }).then((res: returnBookContentType) => {
+      API({ size: quantityPerPage })
+      .then((res: returnBookContentType) => {
         if (res.content.length !== 0 || res.content !== null) {
+            
           const temp = [[...res.content]];
           setFetchedData(() => temp);
           // setOffset((prev) => prev + 1)
           // window.localStorage.setItem(`${identifier}-inf_fetched_data`, JSON.stringify(temp))
         }
-      });
+        if (res.content.length === 0 && setNoData) {
+            setNoData(() => true)
+        }
+      })
+      .catch((err) => {
+        if (setNoData) {
+          setNoData(() => true)
+        }
+      })
       // API({fetchedData: fetchedData, size: quantityPerPage})
       // .then((res: returnBookContentType) => {
       //     if (res.content.length !== 0 || res.content !== null) {
@@ -199,7 +211,7 @@ const HorizontalCarousel = ({ API, identifier }: HorizontalCarouselProps) => {
           return (
             <div
               key={`horizontalCarousel-${identifier}-${pageIdx}`}
-              id={`${pageIdx}`}
+              id={`${identifier}-${pageIdx}`}
               ref={(el) => {
                 pageClassRef.current[pageIdx] = el;
               }}
@@ -219,6 +231,7 @@ const HorizontalCarousel = ({ API, identifier }: HorizontalCarouselProps) => {
                   </div>
                 ) : (
                   <div
+                    className={'out-of-sight'}
                     id={`${pageIdx}`}
                     css={dummyWrapperCSS({
                       standardWidth: dummyWidth,
@@ -266,6 +279,7 @@ const HorizontalCarousel = ({ API, identifier }: HorizontalCarouselProps) => {
         return (
           <div
             key={`horizontalCarousel-dummyPage-${identifier}`}
+            className={'dummy-wrapper-absolute'}
             css={css`
               visibility: hidden;
               position: absolute;
@@ -292,13 +306,16 @@ const HorizontalCarousel = ({ API, identifier }: HorizontalCarouselProps) => {
       // 화면에 노출 상태에 따라 해당 엘리먼트의 class를 컨트롤 합니다.
       if (entry.isIntersecting) {
         if ($target.id && $target.id !== "scrollStart") {
-          setOnScreenContentIdx(() => Number($target.id));
-          window.localStorage.setItem(`${identifier}-recent_page`, $target.id);
+          const pageId = $target.id
+          const regex = /[^0-9]/g;
+          const result = pageId.replace(regex, "");
+          setOnScreenContentIdx(() => Number(result));
+          window.localStorage.setItem(`${identifier}-recent_page`, result);
         }
         if ($target.id === "scrollStart" && fetchedData.length !== 0) {
           setFetch(true);
         }
-
+        console.log('보이는 요소 : ', $target.id)
         // $target.classList.add("screening");
       }
     });
@@ -333,6 +350,12 @@ const HorizontalCarousel = ({ API, identifier }: HorizontalCarouselProps) => {
       const calcShownCards =
         Math.floor(scrollRef.current.clientWidth / cardWidth) - 1;
       const result = cardWidth * calcShownCards;
+
+      window.localStorage.setItem(
+        `${identifier}-recent_scroll`,
+        String(scrollRef.current.scrollLeft - result)
+      );
+
       scrollRef.current.scrollTo({
         left: scrollRef.current.scrollLeft - result,
         top: 0,
@@ -348,6 +371,12 @@ const HorizontalCarousel = ({ API, identifier }: HorizontalCarouselProps) => {
       const calcShownCards =
         Math.floor(scrollRef.current.clientWidth / cardWidth) - 1;
       const result = cardWidth * calcShownCards;
+
+      window.localStorage.setItem(
+        `${identifier}-recent_scroll`,
+        String(result + scrollRef.current.scrollLeft)
+      );
+
       scrollRef.current.scrollTo({
         left: result + scrollRef.current.scrollLeft,
         top: 0,
@@ -461,6 +490,7 @@ const contentPageWrapperCSS = ({
 }) => {
   return css`
     width: auto;
+    min-height: 100px;
     /* display: flex;
         flex-direction: column;
         align-items: center; */
@@ -555,4 +585,4 @@ const nextBtn = ({ isDeskTop, isTablet, isMobile }: nextPrevBtnProps) => {
   `;
 };
 
-export default HorizontalCarousel;
+export default HorizontalScroll;

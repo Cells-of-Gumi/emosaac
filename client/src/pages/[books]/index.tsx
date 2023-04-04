@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import { useState, useRef, useEffect } from "react";
-import ScrollableCarousel from "@/components/UI/ScrollableCarousel/ScrollableCarousel";
+// import ScrollableCarousel from "@/components/UI/ScrollableCarousel/ScrollableCarousel";
 import SwipeableGallery from "@/components/UI/SwipeableCarousel/SwipeableGallery";
 import { recvBooks } from "@/api/DummyData";
 // import banner1 from "../../assets/temp_banner_1.png";
@@ -23,7 +23,7 @@ import SortByGenre from "@/components/bookTab/SortByGenre";
 import SortByDay from "@/components/bookTab/SortByDay";
 import Waterfall from "@/components/scan/Waterfall/Waterfall";
 import FloatingButton from "@/components/scan/FloatingButton/FloatingButton";
-import HorizontalCarousel from "@/components/UI/ScrollableCarousel/HorizontalCarousel";
+// import HorizontalCarousel from "@/components/UI/ScrollableCarousel/HorizontalCarousel";
 
 import { getHighPrediction } from "@/api/recommendation/getHighPrediction";
 import { getMdRecommendation } from "@/api/recommendation/getMdRecommendation";
@@ -59,8 +59,8 @@ export default function Home({
   // 임시 데이터
   const postData = {
     content: [
-      <img src={"/assets/temp_banner_1.png"} alt={""} css={bannerImage} />,
-      <img src={"/assets/temp_banner_2.png"} alt={""} css={bannerImage} />,
+      <img src={isMobile ? "/assets/temp_banner_1_mobile.png" : "/assets/temp_banner_1.png"} alt={""} css={bannerImage} />,
+      <img src={isMobile ? "/assets/temp_banner_2_mobile.png" : "/assets/temp_banner_2.png"} alt={""} css={bannerImage} />,
     ],
   };
 
@@ -149,19 +149,35 @@ export default function Home({
   }
 
 
-  const getTop3GenreBooksAPI = ({
-    order,
+  const getTop1GenreBooksAPI = ({
     lastContent,
     size,
   }: {
-    order: number;
     lastContent: bookContentType;
     size: number;
   }) => {
     const prevId = lastContent ? lastContent.bookId : 0;
     const prevScore = lastContent ? lastContent.avgScore : 10;
     return getTop3GenreBooks({
-      order,
+      order: 1,
+      typeCode: (params === 'webtoon' ? 0 : 1),
+      prevId: prevId,
+      prevScore: prevScore,
+      size: size,
+    });
+  }
+
+  const getTop2GenreBooksAPI = ({
+    lastContent,
+    size,
+  }: {
+    lastContent: bookContentType;
+    size: number;
+  }) => {
+    const prevId = lastContent ? lastContent.bookId : 0;
+    const prevScore = lastContent ? lastContent.avgScore : 10;
+    return getTop3GenreBooks({
+      order: 2,
       typeCode: (params === 'webtoon' ? 0 : 1),
       prevId: prevId,
       prevScore: prevScore,
@@ -254,28 +270,22 @@ export default function Home({
       beforeLabel: '올해의 신작 ',
       highlightedLabel: 'EMOSAAC!',
     },
-    // {
-    //   API: getTop3GenreBooksAPI.bind({order: 1}),
-    //   identifier: `Top3GenreBooks-${params}`,
-    //   beforeLabel: '가장 선호하는 장르 TOP 1 ',
-    //   highlightedLabel: 'EMOSAAC!',
-    // },
-    // {
-    //   API: getTop3GenreBooksAPI.bind({order: 2}),
-    //   identifier: `Top3GenreBooks-${params}`,
-    //   beforeLabel: '가장 선호하는 장르 TOP 2 ',
-    //   highlightedLabel: 'EMOSAAC!',
-    // },
+    {
+      API: getTop1GenreBooksAPI,
+      identifier: `Top3GenreBooks-${params}`,
+      beforeLabel: '가장 선호하는 장르 TOP 1 ',
+      highlightedLabel: 'EMOSAAC!',
+    },
+    {
+      API: getTop2GenreBooksAPI.bind({order: 2}),
+      identifier: `Top3GenreBooks-${params}`,
+      beforeLabel: '가장 선호하는 장르 TOP 2 ',
+      highlightedLabel: 'EMOSAAC!',
+    },
     {
       API: getTop30API,
       identifier: `Top30-${params}`,
       beforeLabel: 'TOP 30 ',
-      highlightedLabel: 'EMOSAAC!',
-    },
-    {
-      API: getMdRecommendationAPI,
-      identifier: `MdRecommendation-${params}`,
-      beforeLabel: 'MD 추천 ',
       highlightedLabel: 'EMOSAAC!',
     },
     {
@@ -305,16 +315,16 @@ export default function Home({
 
 
 
-useEffect(() => {
-  getTop3GenreBooks({
-    order: 1,
-    typeCode: (params === 'webtoon' ? 0 : 1),
-    prevId: 0,
-    prevScore: 10,
-    size: 10,
-  }).then((res) => console.log(res))
-  .catch((err) => console.log(err))
-}, [])
+// useEffect(() => {
+//   getTop3GenreBooks({
+//     order: 1,
+//     typeCode: (params === 'webtoon' ? 0 : 1),
+//     prevId: 0,
+//     prevScore: 10,
+//     size: 10,
+//   }).then((res) => console.log('top3', res))
+//   .catch((err) => console.log(err))
+// }, [])
 
 
   const highlightedCarouselRender = (
@@ -329,11 +339,13 @@ useEffect(() => {
           />
         </div>
 
-        <div css={whiteSpace1CSS} />
+
         <div css={highlightedCarouselWrapper}>
           <HighlightedCarousel
+            key={params}
             bookData={highlightedBookData}
             windowWrapperRef={indexWrapperRef}
+            identifier={params}
           />
         </div>
       <div css={whiteSpace2CSS} />
@@ -370,7 +382,7 @@ useEffect(() => {
 
       {selectedGenre === -2 && <SortByGenre fetchList={bookHomeFetchList}/>}
 
-      {selectedGenre === -1 && <SortByDay />}
+      {selectedGenre === -1 && <SortByDay params={params} selectedDay={selectedDay} />}
       
 
       {/* <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
@@ -487,22 +499,36 @@ export const getStaticProps = async (context: any) => {
     );
   }
 
-  const highlightedBookData = await getBooksByGenre({
-    genreCode: 10,
-    typeCode: 0,
-    prevId: 0,
-    prevScore: 10,
-    size: 30,
-  })
-    .then((res) => {
-      if (res !== null) {
-        return res.content;
-      }
-    })
-    .catch((err) => {
-      console.log("pages/books/index.tsx => getBooksByGenre", err);
-    });
+  // const highlightedBookData = await getBooksByGenre({
+  //   genreCode: 10,
+  //   typeCode: 0,
+  //   prevId: 0,
+  //   prevScore: 10,
+  //   size: 30,
+  // })
+  //   .then((res) => {
+  //     if (res !== null) {
+  //       return res.content;
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     console.log("pages/books/index.tsx => getBooksByGenre", err);
+  //   });
 
+
+    const highlightedBookData = await getMdRecommendation({
+      typeCode: (params === 'webtoon' ? 0 : 1),
+    })
+      .then((res) => {
+        if (res !== null) {
+          return res.content;
+        }
+      })
+      .catch((err) => {
+        console.log("pages/books/index.tsx => getBooksByGenre", err);
+      });
+
+    
   return {
     props: {
       highlightedBookData: highlightedBookData,
@@ -522,6 +548,7 @@ const indexWrapperCSS = css`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 64px;
 `;
 
 const bannerImage = css`

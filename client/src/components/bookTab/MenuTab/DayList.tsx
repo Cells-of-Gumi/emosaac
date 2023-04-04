@@ -7,7 +7,7 @@ import React from 'react'
 
 const DayList = ({ selected, selectHandler }: { selected: number, selectHandler: Function }) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const days = ['월', '화', '수', '목', '금', '토', '일']
+  const days = ['월', '화', '수', '목', '금', '토', '일', '완결']
   const renderGenres = days.map((el, idx) => {
       return (
         <React.Fragment key={`dayList-${el}`}>
