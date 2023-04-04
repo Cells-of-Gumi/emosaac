@@ -25,14 +25,6 @@ const PutUserInfo = ({ myInfo }: any) => {
   const [image, setImage] = useState<string | undefined>(myInfo?.imageUrl);
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [selectedAge, setSelectedAge] = useState<number | null>(null);
-  // 프로필 변경 함수
-  const onClickProfileImageChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (event.target.files) {
-      setProfileImage(event.target.files[0]);
-    }
-  };
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -43,6 +35,8 @@ const PutUserInfo = ({ myInfo }: any) => {
         setImage(reader.result as string);
       };
       reader.readAsDataURL(file);
+    } else {
+      setImage(myInfo?.imageUrl);
     }
   };
   // 넣으면 바로 프로필 사진이 바뀌게 하는 useEffect
@@ -53,14 +47,19 @@ const PutUserInfo = ({ myInfo }: any) => {
         setImage(reader.result as string);
       };
       reader.readAsDataURL(profileImage);
+    } else {
+      setImage(myInfo?.imageUrl);
     }
-  }, [profileImage]);
+  }, [profileImage, myInfo?.imageUrl]);
   const onClickGender = (newGender: number) => {
     setGender(newGender);
   };
+  // nickname, age, 성별 수정시 localstorage변경
   useEffect(() => {
     localStorage.setItem("age", age?.toString() || "");
-  }, [age]);
+    localStorage.setItem("nickname", nickname?.toString());
+    localStorage.setItem("gender", gender?.toString() || "");
+  }, [age, nickname]);
   // 정보 수정 제출 함수
   const onClickSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -168,13 +167,6 @@ const PutUserInfo = ({ myInfo }: any) => {
                 />
               </label>
             </div>
-            <input
-              id="profileImage"
-              type="file"
-              accept="image/*"
-              style={{ display: "none" }}
-              onChange={onClickProfileImageChange}
-            />
           </div>
           <div css={nicknamewrapCSS}>
             <label htmlFor="" css={nicknameCSS}>

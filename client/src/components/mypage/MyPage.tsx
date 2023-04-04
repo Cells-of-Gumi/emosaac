@@ -48,7 +48,7 @@ const MyPage = ({ myinfo }: any) => {
 
   useEffect(() => {
     if (typeCode === 0) {
-      getRecommendGenre(0, typeCode, token).then((res) => {
+      getRecommendGenre(1, typeCode, token).then((res) => {
         const data = res;
         // console.log(data);
         if (data !== null) {
@@ -56,7 +56,7 @@ const MyPage = ({ myinfo }: any) => {
           setBookId(data.bookId);
         }
       });
-      getRecommendGenre(1, typeCode, token).then((res) => {
+      getRecommendGenre(0, typeCode, token).then((res) => {
         const data = res;
         if (data !== null) {
           setWorstGenreWebtoonImage(data.thumbnail);
@@ -64,14 +64,14 @@ const MyPage = ({ myinfo }: any) => {
         }
       });
     } else if (typeCode === 1) {
-      getRecommendGenre(0, typeCode, token).then((res) => {
+      getRecommendGenre(1, typeCode, token).then((res) => {
         const data = res;
         if (data !== null) {
           setTopGenreNovelImage(data.thumbnail);
           setBookId(data.bookId);
         }
       });
-      getRecommendGenre(1, typeCode, token).then((res) => {
+      getRecommendGenre(0, typeCode, token).then((res) => {
         const data = res;
         if (data !== null) {
           setWrostGenreNovelImage(data.thumbnail);

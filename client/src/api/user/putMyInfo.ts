@@ -1,7 +1,7 @@
 import { defaultAxiosFormDataInstance } from "../instance";
 
 interface PutMyInfoProps {
-  file: File | null;
+  file: File | string | null;
   gender?: number | null | undefined;
   age?: number | null | undefined;
   nickName: string;
@@ -17,7 +17,11 @@ function createFormData(myInfo: PutMyInfoProps): FormData {
     formdata.append("age", myInfo.age.toString());
   }
   if (myInfo.file !== null) {
-    formdata.append("file", myInfo.file);
+    if (typeof myInfo.file === "string") {
+      formdata.append("existingImageUrl", myInfo.file);
+    } else {
+      formdata.append("file", myInfo.file);
+    }
   }
   return formdata;
 }
