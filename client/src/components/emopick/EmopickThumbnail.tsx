@@ -64,14 +64,14 @@ const pickThumbnailWrapCSS = (
   css`
     & > div:nth-of-type(1) {
       // 썸네일 다발
-      width: ${!isMobile ? "210px" : "160px"};
-      height: ${!isMobile ? "210px" : "160px"};
+      width: ${!isMobile ? "210px" : "130px"};
+      height: ${!isMobile ? "210px" : "130px"};
       position: relative;
       border-radius: 10px;
       overflow: hidden;
       & > div {
-        width: ${!isMobile ? "150px" : "100px"};
-        height: 210px;
+        width: ${!isMobile ? "150px" : "70px"};
+        height: ${!isMobile ? "210px" : "130px"};
         border-radius: 10px;
         overflow: hidden;
         position: absolute;
