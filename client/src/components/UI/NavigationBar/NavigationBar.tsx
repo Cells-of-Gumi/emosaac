@@ -301,8 +301,14 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
                 <div>
                   {isLogin ? (
                     <>
-                      {/* <img src={profileImg} alt="프로필" /> */}
-                      <img src={"/assets/bazzi.jpg"} alt="프로필" />
+                      {profileImg ? (
+                        <img src={profileImg} alt="프로필" />
+                      ) : (
+                        <img
+                          src={"/assets/emosaac_logo_mobile.png"}
+                          alt="프로필"
+                        />
+                      )}
                       {nickname}님, 안녕하세요
                     </>
                   ) : (

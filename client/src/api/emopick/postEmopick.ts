@@ -27,7 +27,8 @@ export async function postEmopickList({
     }
     const { data }: { data: emopickType } = await defaultAxiosInstance.post(
       `/emopicks`,
-      { request, headers }
+      request,
+      headers
     );
     if (data.status === 200) {
       return data.data;
