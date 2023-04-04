@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 // import ScrollableCarousel from "@/components/UI/ScrollableCarousel/ScrollableCarousel";
 import SwipeableGallery from "@/components/UI/SwipeableCarousel/SwipeableGallery";
 import { recvBooks } from "@/api/DummyData";
@@ -36,6 +36,7 @@ import { getUserCharacteristicRecommendation } from "@/api/recommendation/getUse
 import { getBooksByDay } from "@/api/book/getBooksByDay";
 import VerticalScroll from "@/components/UI/VerticalScroll/VerticalScroll";
 import SortByGenre from "@/components/bookTab/SortByGenre";
+import { throttle, debounce } from "lodash";
 
 interface HomeProps {
   highlightedBookData: bookContentType[];
@@ -56,7 +57,7 @@ export default function Home({
   const indexWrapperRef = useRef<HTMLDivElement>(null);
   const [selectedGenre, setSelectedGenre] = useState<number>(window.sessionStorage.getItem(`${params}-selected_genre`) ? Number(window.sessionStorage.getItem(`${params}-selected_genre`)) : -2);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-
+  const [isScrolling, setIsScrolling] = useState<boolean>(false)
   const [selectedDay, setSelectedDay] = useState<number>(window.sessionStorage.getItem(`${params}-selected_day`) ? Number(window.sessionStorage.getItem(`${params}-selected_day`)) : 0);
 
   // useEffect(() => {
@@ -66,6 +67,25 @@ export default function Home({
   //   }
     
   // }, [params])
+
+  useEffect(() => {
+
+    window.addEventListener('scroll', throttleScroll);
+    window.addEventListener('scroll', debounceScroll);
+    return () => {
+      window.removeEventListener('scroll', throttleScroll); //clean up
+      window.removeEventListener('scroll', debounceScroll); //clean up
+    };
+  }, []);
+
+
+  const throttleScroll = useMemo(() => throttle(() => {
+    setIsScrolling(() => true)
+  }, 1000), []);
+  const debounceScroll = useMemo(() => debounce(() => {
+    setIsScrolling(() => false)
+  }, 10), []);
+
 
   // ________________________________________________________________________________________________
   // 임시 데이터
@@ -100,6 +120,7 @@ export default function Home({
 
 
 
+  
 
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   
@@ -413,7 +434,7 @@ export default function Home({
   // ]
 
   return (
-    <div ref={indexWrapperRef} css={indexWrapperCSS}>
+    <div ref={indexWrapperRef} css={indexWrapperCSS({isScrolling})}>
       
       {myInfo !== false && <FloatingButton isDarkMode={isDarkMode}/>}
       <div css={bannerWrapperCSS} ref={parentRef}>
@@ -595,13 +616,15 @@ export const getStaticProps = async (context: any) => {
 
 
 
-const indexWrapperCSS = css`
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 64px;
-`;
+const indexWrapperCSS = ({isScrolling}: {isScrolling: boolean}) => {
+  return css`
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 64px;
+  `;
+  }
 
 const bannerImage = css`
   width: 100%;

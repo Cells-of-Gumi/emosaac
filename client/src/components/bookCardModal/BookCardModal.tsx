@@ -36,8 +36,8 @@ const BookCardModal = ({
   const router = useRouter();
 
   const modalLayout = {
-    widthValue: 450,
-    heightValue: 500,
+    widthValue: 380,
+    heightValue: 520,
   };
 
   useEffect(() => {
@@ -97,7 +97,7 @@ const BookCardModal = ({
     <div
       onMouseLeave={modalHandler}
       // onWheelCapture={onWheelHandler}
-
+      onMouseMove={(e) => {e.stopPropagation()}}
       ref={wrapperRef}
       css={wrapperCSS({
         modalToggler: contentToggler,
@@ -266,7 +266,7 @@ const backgroundCSS = ({ imgUrl }: backgroundCSSProps) => {
     position: absolute;
     left: -5%;
     top: -5%;
-    height: 350px;
+    height: 370px;
     background: no-repeat url("${imgUrl}") 0 / cover;
     filter: blur(10px);
     -webkit-filter: blur(10px);
@@ -278,7 +278,7 @@ const backgroundCSS = ({ imgUrl }: backgroundCSSProps) => {
 
 const imageWrapperCSS = css`
   width: 100%;
-  height: 350px;
+  height: 370px;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -311,14 +311,14 @@ const imageCSS = ({
       : `transform: scale(1.1)`};
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.5);
     width: auto;
-    height: ${modalToggler ? "350px" : imgHeight};
+    height: ${modalToggler ? "370px" : imgHeight};
     min-height: ${imgMinHeight};
   `;
 };
 
 const spaceDivCSS = css`
   width: 100%;
-  height: 350px;
+  height: 370px;
 `;
 
 const contentDivCSS = css`

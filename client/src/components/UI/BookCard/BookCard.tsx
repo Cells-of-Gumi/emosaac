@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import BookCardModal from "@/components/bookCardModal/BookCardModal";
 import Portal from "@/components/function/Portal";
 import { useRouter } from "next/router";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { bookContentType } from "@/types/books";
+import { throttle, debounce } from "lodash";
 
 interface BookData {
   title: string;
@@ -55,6 +56,7 @@ const BookCard = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [modalToggler, setModalToggler] = useState<boolean>(false);
   const [isMouseOn, setIsMouseOn] = useState<boolean>(false);
+  
   const platformBase = [
     "https://comic.naver.com/",
     "https://series.naver.com/",
@@ -63,9 +65,10 @@ const BookCard = ({
   ];
 
   const showModal = () => {
-    setTimeout(function () {
-      setModalToggler(() => true);
-    }, 400);
+    // setTimeout(function () {
+      
+    // }, 10);
+    setModalToggler(() => true);
     setIsMouseOn(() => true);
   };
 
@@ -125,17 +128,29 @@ const BookCard = ({
     <div css={platformBarCSS}>{bookData.href && platformRender}</div>
   );
 
+
+
+  const [isMouseOnStart, setIsMouseOnStart] = useState<boolean>(false)
+
+  const call = useMemo(() => debounce((toggle) => {
+    if (toggle === true) {
+      showModal()
+    } else {
+      hideModal()
+    }
+  }, 350), []);
+
   return (
     <div
       className={"bookcard-outer-wrapper"}
       css={cardOuterWrapper({ width, height, minWidth, minHeight, margin })}
       ref={wrapperRef}
       onClick={instantlyRedirect}
-      onMouseOver={(event) => {
-        event.stopPropagation();
-        showModal();
-      }}
-      onMouseLeave={hideModal}
+ 
+      onMouseMove={() => {call(true)}}
+      onMouseEnter={() => {call(true)}}
+      onWheel={() => {call(false);}}
+      onMouseLeave={() => {call(false); hideModal(); setIsMouseOnStart(() => false)}}
     >
       {user !== null && isMobile() === false && modalToggler && modal}
       <div css={typeCdWrapCSS(bookData.typeCd === 0, isD)}>
