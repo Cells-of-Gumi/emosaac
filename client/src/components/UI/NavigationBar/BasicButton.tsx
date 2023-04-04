@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useState, Dispatch, SetStateAction } from "react";
 import { useEffect } from "react";
 import getMyInfo from "./../../../api/user/getMyInfo";
+import { getListByTagName } from "@/api/search/getSearchBooksByTagName";
 
 interface Props {
   setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
@@ -13,6 +14,7 @@ interface Props {
 
 export const BasicButton = ({ setIsSearchBoxOpen, myInfo }: Props) => {
   const router = useRouter();
+  const defaultProfileImage = "/assets/default_image.png";
   const [isLogin, setIsLogin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [nickname, setNickname] = useState<string>("");
@@ -49,7 +51,7 @@ export const BasicButton = ({ setIsSearchBoxOpen, myInfo }: Props) => {
     router.push("/mypage");
   };
   useEffect(() => {
-    if (window.localStorage.getItem('access_token')) {
+    if (window.localStorage.getItem("access_token")) {
       getMyInfo().then((res) => {
         const data = res;
         // console.log(data);
@@ -70,7 +72,11 @@ export const BasicButton = ({ setIsSearchBoxOpen, myInfo }: Props) => {
         >
           <div css={profileimgCSS}>
             <img
-              src={myInfo && myInfo.imageUrl}
+              src={
+                myInfo && myInfo.imageUrl?.includes("/null")
+                  ? defaultProfileImage
+                  : myInfo?.imageUrl
+              }
               alt="프로필 사진"
               css={imgCSS}
             />
@@ -95,14 +101,17 @@ const topCSS = css`
 const profileimgCSS = css`
   border-radius: 100%;
   background-color: var(--back-color-4);
-  width: 60%;
-  height: 60%;
+  width: 36px;
+  height: 36px;
 `;
 
 const imgCSS = css`
-  width: 100%;
-  height: 100%;
+  width: 36px;
+  height: 36px;
   border-radius: 100%;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: center center;
 `;
 const slideIn = keyframes`
   from {

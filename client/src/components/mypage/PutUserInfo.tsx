@@ -15,6 +15,8 @@ const PutUserInfo = ({ myInfo }: any) => {
   const [nickname, setNickname] = useState("");
   const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
   const [nicknameValidityMessage, setNicknameValidityMessage] = useState("");
+  const [nicknameLenghValidityMessage, setNicknameLenghValidityMessage] =
+    useState("");
   const [gender, setGender] = useState<number | null>(null);
   const [age, setAge] = useState<number | null>(
     localStorage.getItem("age")
@@ -26,6 +28,7 @@ const PutUserInfo = ({ myInfo }: any) => {
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false);
   const [selectedAge, setSelectedAge] = useState<number | null>(null);
 
+  // 프로필 사진 변경
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -39,6 +42,7 @@ const PutUserInfo = ({ myInfo }: any) => {
       setImage(myInfo?.imageUrl);
     }
   };
+
   // 넣으면 바로 프로필 사진이 바뀌게 하는 useEffect
   useEffect(() => {
     if (profileImage) {
@@ -53,32 +57,43 @@ const PutUserInfo = ({ myInfo }: any) => {
   }, [profileImage, myInfo?.imageUrl]);
   const onClickGender = (newGender: number) => {
     setGender(newGender);
+    // console.log(gender);
   };
   // nickname, age, 성별 수정시 localstorage변경
-  useEffect(() => {
-    localStorage.setItem("age", age?.toString() || "");
-    localStorage.setItem("nickname", nickname?.toString());
-    localStorage.setItem("gender", gender?.toString() || "");
-  }, [age, nickname]);
+  // useEffect(() => {}, [age, nickname]);
+
   // 정보 수정 제출 함수
   const onClickSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const ageFromLocalStorage = localStorage.getItem("age")
       ? parseInt(localStorage.getItem("age") as string)
       : null;
-    const isFirstTime = localStorage.getItem("nickName") === null;
+    const isFirstTime =
+      localStorage.getItem("nickName") === "" ||
+      localStorage.getItem("age") === "" ||
+      localStorage.getItem("gender") === "";
+    // console.log(isFirstTime);
     // 닉네임 최소 2자 ~ 10자
-    if (
-      isFirstTime &&
-      (!nickname ||
-        localStorage.getItem("gender") === null ||
-        localStorage.getItem("age") === null)
-    ) {
-      alert("모든 항목을 입력해주세요.");
+    // console.log(!nickname, gender, age);
+    // if (isFirstTime && (!nickname || !gender || !age)) {
+    //   alert("모든 항목을 입력해주세요.");
+    //   return;
+    // }
+    if (!nickname) {
+      alert("닉네임을 입력해주세요.");
       return;
     }
     if (!isNicknameDuplicate) {
-      alert("!!!!닉네임 중복확인을 해주세요");
+      alert("닉네임 중복확인을 해주세요");
+      return;
+    }
+    if (!age) {
+      alert("연령대를 선택해주세요.");
+      return;
+    }
+    if (gender === null) {
+      // console.log(gender);
+      alert("성별을 선택해주세요.");
       return;
     }
 
@@ -89,6 +104,9 @@ const PutUserInfo = ({ myInfo }: any) => {
       nickName: nickname,
     };
     try {
+      localStorage.setItem("age", age?.toString() || "");
+      localStorage.setItem("nickname", nickname?.toString());
+      localStorage.setItem("gender", gender?.toString() || "");
       const response = await putMyInfo(myInfo);
       // console.log(response);
 
@@ -101,10 +119,19 @@ const PutUserInfo = ({ myInfo }: any) => {
   // 닉네임 input 함수
   const handleNicknameInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(event.target.value);
+    // if (nickname.length < 2 || nickname.length <= 10) {
+    //   alert("닉네임은 2자에서 10자 사이만 가능해요");
+    //   setNickname("");
+    //   return;
+    // }
     // console.log(nickname);
   };
   // 중복 검사 함수
   const onClickCheckDuplicateNickname = () => {
+    if (!nickname) {
+      alert("닉네임을 입력해주세요!");
+      return;
+    }
     getIsNickname(nickname, token).then((res) => {
       // console.log(res);
       if (res === false) {
@@ -118,7 +145,7 @@ const PutUserInfo = ({ myInfo }: any) => {
     });
   };
   // 연령대 클릭 함수
-  const handleClickAge = (selectedAge: number) => {
+  const handleClickAge = (selectedAge: number | null) => {
     setAge(selectedAge);
     setSelectedAge(selectedAge);
     setDropdownVisible(false);
@@ -232,6 +259,9 @@ const PutUserInfo = ({ myInfo }: any) => {
               </div>
             </button>
             <div css={dropdownContentCSS(dropdownVisible)}>
+              <div onClick={() => handleClickAge(null)} css={dropdownItemCSS}>
+                연령대를 선택해주세요
+              </div>
               <div onClick={() => handleClickAge(10)} css={dropdownItemCSS}>
                 10대
               </div>
@@ -341,7 +371,7 @@ const dropdownContainerCSS = css`
 `;
 
 const dropdownButtonCSS = css`
-  background-color: white;
+  background-color: var(--back-color);
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 8px 12px;
@@ -352,7 +382,7 @@ const dropdownButtonCSS = css`
 
 const dropdownContentCSS = (dropdownVisible: boolean) => css`
   position: absolute;
-  background-color: white;
+  background-color: var(--back-color);
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 5px;
@@ -361,15 +391,16 @@ const dropdownContentCSS = (dropdownVisible: boolean) => css`
   opacity: ${dropdownVisible ? 1 : 0};
   visibility: ${dropdownVisible ? "visible" : "hidden"};
   transform: translateY(${dropdownVisible ? 0 : -10}px);
-  width: 47%;
+  width: 55%;
+  color: var(--text-color);
 `;
 
 const dropdownItemCSS = css`
   padding: 5px;
   cursor: pointer;
-
+  color: var(--text-color);
   &:hover {
-    background-color: #f1f1f1;
+    background-color: var(--back-color);
   }
 `;
 const genderwrapCSS = css`
@@ -393,7 +424,8 @@ const genderbuttonCSS = (
   margin-right: 3px;
   background-color: ${selectedGender === currentGender
     ? "var(--main-color)"
-    : ""};
+    : "var(--back-color)"};
+  color: var(--text-color);
 `;
 const agewrapCSS = css`
   margin-top: 20px;

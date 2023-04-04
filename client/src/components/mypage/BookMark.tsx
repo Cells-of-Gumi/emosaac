@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { useRouter } from "next/router";
-import ScrollableCarousel from "../UI/ScrollableCarousel/ScrollableCarousel";
+import ScrollableCarousel from "../UI/HorizontalScroll/backup/ScrollableCarousel";
 type BookMarkProps = {
   typeCode: number;
 };
