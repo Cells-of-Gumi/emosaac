@@ -22,7 +22,7 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
     Array(9).fill("LOADING")
   );
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const [hasNext, setHasNext] = useState<boolean>(true)
+  const [hasNext, setHasNext] = useState<boolean>(window.sessionStorage.getItem(`${identifier}-horizontal-inf_has_next`) ? JSON.parse(String(window.sessionStorage.getItem(`${identifier}-horizontal-inf_has_next`))) : true)
 
   const cardLayout = {
     width: "10vw",
@@ -109,9 +109,10 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
           wrapperRef.current.clientWidth) ||
       bookListData.length - loadingTag.length - standard <= loadingTag.length
     ) {
+      
       if (hasNext === true) {
+        
         const lastContent = bookListData[bookListData.length - 1]
-        console.log(lastContent)
         API({lastContent: lastContent, size: quantityPerPage}).then(
           (res: returnBookContentType) => {
             if (res.content.length === 0 && bookListData.length === 0) {
@@ -126,6 +127,10 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
                 JSON.stringify(temp)
             );
 
+            window.sessionStorage.setItem(
+              `${identifier}-horizontal-inf_has_next`,
+                JSON.stringify(res.hasNext)
+            );
             setHasNext(() => res.hasNext)
 
 
@@ -157,10 +162,11 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
 
   useEffect(() => {
     const loadData = window.sessionStorage.getItem(`${identifier}-horizontal-inf_fetched_data`)
-    
+    const hasNext = window.sessionStorage.getItem(`${identifier}-horizontal-inf_has_next`);
 
     if (loadData) {
       setBookListData(() => JSON.parse(loadData))
+      setHasNext(() => JSON.parse(String(hasNext)))
     } else {
       fetchMoreData();
     }
@@ -176,10 +182,13 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
     }
 
   }, [cardsRef.current.length])
-
+  
   const generateLoadingData = () => {
     // setBookListResult(() => [...bookListData, ...loadingTag]);
     if (hasNext === true) {
+
+      
+
       setBookListResult(() => [...bookListData, ...loadingTag]);
     } else {
       setBookListResult(() => [...bookListData]);

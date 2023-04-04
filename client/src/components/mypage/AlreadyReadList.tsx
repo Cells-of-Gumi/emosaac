@@ -10,6 +10,8 @@ import HorizontalScroll from "../UI/HorizontalScroll/HorizontalScroll";
 import { returnBookContentType, bookContentType } from "@/types/books";
 import { getAlreadyRead } from "@/api/user/getAlreadyRead";
 
+import SortByRows from "../bookTab/SortByRows";
+
 type AlreadyProps = {
   typeCode: number;
 };
@@ -27,7 +29,7 @@ const AlreadyReadList = ({ typeCode }: AlreadyProps) => {
     bookList: returnGetAlreadyProps[];
     size: number;
   }) => {
-    const prevId = bookList.length ? bookList[bookList.length - 1].bookId : 0;
+    const prevId = bookList.length ? bookList[bookList?.length - 1].bookId : 0;
     const prevTime = bookList.length
       ? bookList[bookList.length - 1].prevTime
       : "";
@@ -39,6 +41,7 @@ const AlreadyReadList = ({ typeCode }: AlreadyProps) => {
   const [prevTime, setPrevTime] = useState<string>("0");
   const [size, setSize] = useState<number>(7);
   const [alreadyLists, setAlreadyLists] = useState<bookContentType[]>([]);
+
   useEffect(() => {
     getAlreadyRead({ prevId, prevTime, size, typeCode }).then((res) => {
       const data = res;
@@ -49,30 +52,39 @@ const AlreadyReadList = ({ typeCode }: AlreadyProps) => {
     });
   }, [typeCode]);
 
+
+  const bookFetchList = [
+    {
+      API: getAlreadyListkAPI,
+      identifier: `getAlreadyList-${typeCode}`,
+      beforeLabel: '읽은 목록 ',
+      requireLogin: false,
+    },
+  ]
+
   return (
     <section css={bookmarkwrapCSS}>
-      <h3>읽은 목록</h3>
+      {/* <h3>읽은 목록</h3> */}
       {alreadyLists && alreadyLists.length > 0 ? (
         <div>
-          <Temp
-            key={`temp1-${typeCode}`}
-            API={getAlreadyListkAPI}
-            identifier={`temp1-${typeCode}`}
-          />
+          <SortByRows fetchList={bookFetchList}/>
+
         </div>
       ) : (
         <div css={nobookmarkCSS}>
           읽은 {typeCode === 0 ? "웹툰" : "웹소설"}이 없어요
         </div>
       )}
+
+      
     </section>
   );
 };
 const bookmarkwrapCSS = css`
   display: flex;
   flex-direction: column;
-  padding-left: 20px;
-  margin-right: 50px;
+  /* padding-left: 20px;
+  margin-right: 50px; */
   width: 100%;
   margin-top: 50px;
   & > h3 {
@@ -119,12 +131,3 @@ const nobookmarkCSS = css`
 `;
 export default AlreadyReadList;
 
-const Temp = ({ API, identifier }: any) => {
-  return (
-    <HorizontalScroll
-      API={API}
-      identifier={"북마크리스트"}
-      key={`temp1-${identifier}`}
-    />
-  );
-};
