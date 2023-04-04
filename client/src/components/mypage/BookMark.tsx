@@ -65,7 +65,7 @@ const BookMark = ({ typeCode }: BookMarkProps) => {
 const bookmarkwrapCSS = css`
   display: flex;
   flex-direction: column;
-  margin-left: 30px;
+  padding-left: 20px;
   margin-right: 50px;
   width: 100%;
   & > h3 {
