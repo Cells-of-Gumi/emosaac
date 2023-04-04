@@ -11,7 +11,7 @@ import HorizontalCarouselWrapper from "./HorizontalCarouselWrapper";
 
 interface SortByGenreProps {
     fetchList: any;
-    myInfo: any;
+    myInfo?: any;
 }
 
 const SortByRows = ({fetchList, myInfo}: SortByGenreProps) => {
@@ -25,7 +25,7 @@ const SortByRows = ({fetchList, myInfo}: SortByGenreProps) => {
 
         
           return (
-              <React.Fragment key={`sortByGenre-${el.identifier}`}>
+              <React.Fragment key={`sortByRows-${el.identifier}`}>
                 {/* <div css={whiteSpace1CSS} />
                   <RowTitle beforeLabel={el.beforeLabel} highlightedLabel={el.highlightedLabel} afterLabel={el?.afterLabel} />
                   <div css={bookCarouselWrapperCSS}>
