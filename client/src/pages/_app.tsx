@@ -20,13 +20,19 @@ export default function App({ Component, pageProps }: AppProps) {
   const [loginModalState, setLoginModalState] = useState<boolean>(false);
 
   useEffect(() => {
-    getMyInfo()
+    if (window.localStorage.getItem('access_token')) {
+      getMyInfo()
       .then((res) => {
         setMyInfo(() => res);
       })
       .catch((err) => {
+        console.log('_app.tsx - getMyInfo => ', err)
         setMyInfo(() => false);
       });
+    } else {
+      setMyInfo(() => 'anonymous')
+    }
+    
   }, [pageProps]);
 
   return (
