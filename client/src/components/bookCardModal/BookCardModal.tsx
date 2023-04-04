@@ -373,6 +373,7 @@ const bookInfoWrapperCSS = css`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 80%;
 `;
 
 const additionalInfoWrapperCSS = css``;

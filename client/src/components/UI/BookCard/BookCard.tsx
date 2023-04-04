@@ -184,6 +184,7 @@ const cardOuterWrapper = ({
     height: ${height !== undefined ? height : "100%"};
     ${minWidth && `min-width: ${minWidth}`};
     ${minHeight && `min-height: ${minHeight}`};
+    content-visibility: auto;
   `;
 };
 
