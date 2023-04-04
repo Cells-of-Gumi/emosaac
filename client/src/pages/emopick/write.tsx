@@ -87,13 +87,13 @@ const write = () => {
               ]}
             >
               <h3>
-                추천<span>설명</span>
+                추천 작품 & 리뷰<span>설명</span>
               </h3>
               <div css={searchBarCSS({ isDeskTop, isTablet, isMobile })}></div>
               <div css={bookSetCSS({ isDeskTop, isTablet, isMobile })}>
-                여기는 스크롤
+                {/* 여기는 스크롤 */}
                 <div>
-                  맵으로 합니다
+                  {/* 맵으로 합니다 */}
                   <div
                     css={bookThumbnailCSS({ isDeskTop, isTablet, isMobile })}
                   >
@@ -201,7 +201,18 @@ const recommendCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css``;
 const searchBarCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css``;
 const searchModalCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css``;
-const bookSetCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css``;
+const bookSetCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
+  height: 400px;
+  padding: ${isDeskTop ? "20px 20px" : isTablet ? "15px 15px" : "10px 10px"};
+  overflow-y: scroll;
+  background-color: bisque;
+  border-radius: 5px;
+  & > div {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    column-gap: 20px;
+  }
+`;
 const bookThumbnailCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css``;
 const bookReviewCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
@@ -214,10 +225,16 @@ const buttonWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
     grid-template-columns: 1fr 1fr;
     column-gap: 20px;
     & > button {
+      cursor: pointer;
       height: 40px;
+      border-radius: 5px;
+      border: 1px solid var(--border-color-2);
+      background-color: var(--back-color-2);
     }
   `;
 const submitButtonCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
-  css``;
+  css`
+    background-color: var(--main-color) !important;
+  `;
 
 export default write;

@@ -69,7 +69,7 @@ const listWrapCSS = (
   /* margin-top: 40px; */
   grid-template-columns: ${isDeskTop && !isEmoLimit ? "1fr 1fr" : "1fr"};
   column-gap: ${isMobile ? "10px" : "30px"};
-  row-gap: ${isMobile ? "20px" : "40px"};
+  row-gap: ${isMobile ? "30px" : "40px"};
 `;
 
 export default EmopickListView;
