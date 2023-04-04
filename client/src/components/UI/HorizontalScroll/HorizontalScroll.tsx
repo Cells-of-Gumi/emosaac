@@ -253,6 +253,7 @@ const cardWrapperCSS = ({ padding }: { padding: string }) => {
   return css`
     padding-left: ${padding};
     padding-right: ${padding};
+    
   `;
 };
 
@@ -268,6 +269,7 @@ const carousel = css`
   box-sizing: border-box;
   overflow-x: scroll;
   border-radius: 10px;
+  content-visibility: auto;
 
   &::-webkit-scrollbar {
     display: none;
