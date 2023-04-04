@@ -61,7 +61,7 @@ const index = (data: Props) => {
           </h2>
           <div>이모작 유저들의 추천 리스트를 만나보세요</div>
         </div>
-        <div></div>
+        <img src={"/assets/clap.png"} alt="박수" />
       </div>
       <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
         <EmopickListView {...data} />
@@ -84,13 +84,12 @@ const innerCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
 };
 
 const pageTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
+  position: relative;
   margin: ${isDeskTop ? "20px 105px" : isTablet ? "20px 50px" : "20px 20px"};
   padding: ${isDeskTop ? "20px 50px" : isTablet ? "20px 50px" : "20px 20px"};
   background: linear-gradient(-210deg, #f6ba44, #f0a503, #f1a100);
   color: #000;
   height: ${isDeskTop ? "250px" : isTablet ? "200px" : "150px"};
-  display: grid;
-  grid-template-columns: 2fr 1fr;
   border-radius: ${!isMobile ? "20px" : "10px"};
   margin-top: ${!isMobile ? "30px" : "20px"};
   & > div:nth-of-type(1) {
@@ -110,6 +109,14 @@ const pageTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
       color: #000;
       line-height: 30px;
     }
+  }
+  & > img {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    width: ${isDeskTop ? "250px" : isTablet ? "200px" : "150px"};
+    height: ${isDeskTop ? "250px" : isTablet ? "200px" : "150px"};
+    object-fit: cover;
   }
 `;
 
