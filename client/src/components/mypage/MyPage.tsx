@@ -229,10 +229,10 @@ const MyPage = ({ myinfo }: any) => {
             </article>
           </section>
           <section>
-            <BookMark typeCode={typeCode} />
+            <BookMark key={`bookmark-${typeCode}`} typeCode={typeCode} />
           </section>
           <section>
-            <AlreadyReadList typeCode={typeCode} />
+            <AlreadyReadList key={`AlreadyRead-${typeCode}`} typeCode={typeCode} />
           </section>
         </div>
       )}
