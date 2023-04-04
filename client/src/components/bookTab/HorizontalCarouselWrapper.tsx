@@ -6,7 +6,7 @@ import RowTitle from "./RowTitle/RowTitle";
 import HorizontalScroll from "../UI/HorizontalScroll/HorizontalScroll";
 import { bookContentType } from "@/types/books";
 
-import ScrollableCarousel from "../UI/HorizontalScroll/backup/ScrollableCarousel";
+
 
 const HorizontalCarouselWrapper = ({el}: {el: any}) => {
     const [noData, setNoData] = useState<boolean>(false)
@@ -19,7 +19,7 @@ const HorizontalCarouselWrapper = ({el}: {el: any}) => {
                     <div css={bookCarouselWrapperCSS}>
                     {/* <ScrollableCarousel API={el.API} identifier={el.identifier} /> */}
                     {/* <HorizontalScroll API={el.API} identifier={el.identifier} setNoData={setNoData} /> */}
-                    <ScrollableCarousel API={el.API} identifier={el.identifier} />
+                    <HorizontalScroll API={el.API} identifier={el.identifier} setNoData={setNoData} />
                     </div>
                     <div css={whiteSpace1CSS} />
             </React.Fragment>

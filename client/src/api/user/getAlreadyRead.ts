@@ -27,11 +27,11 @@ type returnType = {
     hasNext: boolean;
   };
 };
-async function getAlreadyReadProps(
-  typeCode: number,
+async function getAlreadyRead(
   prevId: number,
+  prevTime: string,
   size: number,
-  prevTime: number
+  typeCode: number
 ): Promise<returnType["data"] | null> {
   try {
     const { data }: { data: returnType } = await defaultAxiosInstance.get(
@@ -46,3 +46,4 @@ async function getAlreadyReadProps(
     throw error;
   }
 }
+export default getAlreadyRead;

@@ -19,7 +19,7 @@ import { getGenres } from "@/api/book/getGenres";
 import { returnGenresType } from "@/types/books";
 import GenreList from "@/components/bookTab/MenuTab/GenreList";
 import DayList from "@/components/bookTab/MenuTab/DayList";
-import SortByGenre from "@/components/bookTab/SortByGenre";
+import SortByRows from "@/components/bookTab/SortByRows";
 import SortByDay from "@/components/bookTab/SortByDay";
 import Waterfall from "@/components/scan/Waterfall/Waterfall";
 import FloatingButton from "@/components/scan/FloatingButton/FloatingButton";
@@ -33,28 +33,36 @@ import { getReleased } from "@/api/recommendation/getReleased";
 import { getTop3GenreBooks } from "@/api/recommendation/getTop3GenreBooks";
 import { getTop30 } from "@/api/recommendation/getTop30";
 import { getUserCharacteristicRecommendation } from "@/api/recommendation/getUserCharacteristicRecommendation";
-
+import { getBooksByDay } from "@/api/book/getBooksByDay";
+import VerticalScroll from "@/components/UI/VerticalScroll/VerticalScroll";
+import SortByGenre from "@/components/bookTab/SortByGenre";
 
 interface HomeProps {
   highlightedBookData: bookContentType[];
   genres: returnGenresType;
   params: any;
   isDarkMode: boolean;
+  myInfo: any;
 }
 
 export default function Home({
   highlightedBookData,
   genres,
   params,
-  isDarkMode
+  isDarkMode,
+  myInfo,
 }: HomeProps) {
   const parentRef = useRef<HTMLDivElement>(null);
   const indexWrapperRef = useRef<HTMLDivElement>(null);
-  const [selectedGenre, setSelectedGenre] = useState<number>(window.localStorage.getItem('selected_genre') ? Number(window.localStorage.getItem('selected_genre')) : -2);
+  const [selectedGenre, setSelectedGenre] = useState<number>(window.localStorage.getItem(`${params}-_genre`) ? Number(window.localStorage.getItem(`${params}-selected_genre`)) : -2);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
 
-  const [selectedDay, setSelectedDay] = useState<number>(window.localStorage.getItem('selected_day') ? Number(window.localStorage.getItem('selected_day')) : 0);
+  const [selectedDay, setSelectedDay] = useState<number>(window.localStorage.getItem(`${params}-selected_day`) ? Number(window.localStorage.getItem(`${params}-selected_day`)) : 0);
 
+  useEffect(() => {
+    setSelectedGenre(() => window.localStorage.getItem(`${params}-_genre`) ? Number(window.localStorage.getItem(`${params}-selected_genre`)) : -2)
+    setSelectedDay(() => window.localStorage.getItem(`${params}-selected_day`) ? Number(window.localStorage.getItem(`${params}-selected_day`)) : 0)
+  }, [params])
   // ________________________________________________________________________________________________
   // 임시 데이터
   const postData = {
@@ -73,7 +81,7 @@ export default function Home({
 
   
   const selectGenreHandler = (selected: number) => {
-    window.localStorage.setItem('selected_genre', String(selected))
+    window.localStorage.setItem(`${params}-selected_genre`, String(selected))
 
     if (selected === -1) {
       window.localStorage.removeItem('inf_fetched_data')
@@ -85,32 +93,62 @@ export default function Home({
   };
 
   const selectDayHandler = (selected: number) => {
+    window.localStorage.setItem(`${params}-selected_day`, String(selected))
+
     window.localStorage.removeItem('inf_fetched_data')
     window.localStorage.removeItem('recent_scroll')
     window.localStorage.removeItem('recent_page')
-    window.localStorage.setItem('selected_day', String(selected))
+    
     setSelectedDay(() => selected);
 
   };
 
 
-  // const getBooksByGenreAPI = ({
-  //   lastContent,
-  //   size,
-  // }: {
-  //   lastContent: bookContentType;
-  //   size: number;
-  // }) => {
-  //   const prevId = lastContent ? lastContent.bookId : 0;
-  //   const prevScore = lastContent ? lastContent.avgScore : 10;
-  //   return getBooksByGenre({
-  //     genreCode: 10,
-  //     typeCode: 0,
-  //     prevId: prevId,
-  //     prevScore: prevScore,
-  //     size: size,
-  //   });
-  // };
+
+
+  const days = ["일", "월", "화", "수", "목", "금", "토"];
+  
+  const getBooksByDayAPI = ({
+    lastContent,
+    size,
+  }: {
+    lastContent?: bookContentType;
+    size: number;
+  }) => {
+    // return getBooksByGenre({genreCode: 11, typeCode: 0, prevId, prevScore, size})
+    const prevId = lastContent ? lastContent.bookId : 0;
+    const prevScore = lastContent ? lastContent.avgScore : 10;
+    return getBooksByDay({
+      day: days[new Date().getDay()],
+      typeCode: params === "webtoon" ? 0 : 1,
+      prevId: prevId,
+      prevScore: prevScore,
+      genreCode: selectedGenre,
+      size,
+      
+    });
+  };
+
+
+
+
+  const getBooksByGenreAPI = ({
+    lastContent,
+    size,
+  }: {
+    lastContent?: bookContentType;
+    size: number;
+  }) => {
+    const prevId = lastContent ? lastContent.bookId : 0;
+    const prevScore = lastContent ? lastContent.avgScore : 10;
+    return getBooksByGenre({
+      genreCode: selectedGenre,
+      typeCode: (params === 'webtoon' ? 0 : 1),
+      prevId: prevId,
+      prevScore: prevScore,
+      size: size,
+    });
+  };
   
 
 
@@ -263,55 +301,71 @@ export default function Home({
       identifier: `HighPrediction-${params}`,
       beforeLabel: '예측 점수 ',
       highlightedLabel: 'EMOSAAC!',
+      requireLogin: true,
     },
     {
       API: getReleasedAPI,
       identifier: `Released-${params}`,
       beforeLabel: '올해의 신작 ',
       highlightedLabel: 'EMOSAAC!',
+      requireLogin: false,
     },
     {
       API: getTop1GenreBooksAPI,
       identifier: `Top3GenreBooks-${params}`,
       beforeLabel: '가장 선호하는 장르 TOP 1 ',
       highlightedLabel: 'EMOSAAC!',
+      requireLogin: true,
     },
     {
       API: getTop2GenreBooksAPI.bind({order: 2}),
       identifier: `Top3GenreBooks-${params}`,
       beforeLabel: '가장 선호하는 장르 TOP 2 ',
       highlightedLabel: 'EMOSAAC!',
+      requireLogin: true,
     },
     {
       API: getTop30API,
       identifier: `Top30-${params}`,
       beforeLabel: 'TOP 30 ',
       highlightedLabel: 'EMOSAAC!',
+      requireLogin: false,
     },
     {
       API: getPersonalRecommendationAPI,
       identifier: `PersonalRecommendation-${params}`,
       beforeLabel: '나와 비슷한 취향을 가진 사람이 읽은 작품 추천 ',
       highlightedLabel: 'EMOSAAC!',
+      requireLogin: true,
     },
     {
       API: getRelativeAPI,
       identifier: `Relative-${params}`,
       beforeLabel: '최근 읽은 작품과 비슷한 작품 추천 ',
       highlightedLabel: 'EMOSAAC!',
+      requireLogin: true,
     },
     {
       API: getUserCharacteristicRecommendationAPI,
       identifier: `UserCharacteristicRecommendation-${params}`,
       beforeLabel: '개인 맞춤형 추천 ',
       highlightedLabel: 'EMOSAAC!',
+      requireLogin: true,
     },
-
-
-    
-    
-    
   ]
+
+
+
+  const bookGenreFetchList = [
+    {
+      API: getBooksByDayAPI,
+      identifier: `getBooksByGenre-${params}-${selectedGenre}`,
+      beforeLabel: '장르 추천 ',
+      highlightedLabel: 'EMOSAAC!',
+      requireLogin: false,
+    },
+  ]
+
 
 
 
@@ -366,7 +420,7 @@ export default function Home({
   return (
     <div ref={indexWrapperRef} css={indexWrapperCSS}>
       
-      <FloatingButton isDarkMode={isDarkMode} />
+      {myInfo !== false && <FloatingButton isDarkMode={isDarkMode}/>}
       <div css={bannerWrapperCSS} ref={parentRef}>
         <SwipeableGallery parentRef={parentRef} content={postData} />
       </div>
@@ -380,10 +434,13 @@ export default function Home({
 
       {selectedGenre === -2 && highlightedCarouselRender}
 
-      {selectedGenre === -2 && <SortByGenre fetchList={bookHomeFetchList}/>}
+      {selectedGenre === -2 && <SortByRows fetchList={bookHomeFetchList} myInfo={myInfo}/>}
 
       {selectedGenre === -1 && <SortByDay params={params} selectedDay={selectedDay} />}
       
+      {selectedGenre >= 0 && <SortByRows fetchList={bookGenreFetchList} myInfo={myInfo}/>}
+
+      {selectedGenre >= 0 && <SortByGenre selectedGenre={selectedGenre} params={params} />}
 
       {/* <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
         <RowTitle beforeLabel="너만의" highlightedLabel=" EMOSAAC!" />

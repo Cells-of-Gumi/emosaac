@@ -51,7 +51,7 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
       }
     }
     
-  }, isIntervalOn ? 0 : (duration !== undefined ? duration : 1000));
+  }, (duration !== undefined ? duration : 1000));
 
   const prevBtnHandler = () => {
     if (currentIdx > 0) {
@@ -73,7 +73,7 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
 
     setModalOn(() => boolean)
     
-    setTimeout(() => {setIntervalOn(() => boolean)}, 1)
+    // setTimeout(() => {setIntervalOn(() => boolean)}, 1)
   }
 
   const renderBooks = bookDataList
@@ -136,7 +136,7 @@ const imgCSS = css`
 const waterfallOuterWrapperCSS = ({responsiveLayout}: {responsiveLayout: any}) => {
   return css`
     width: auto;;
-    height: ${responsiveLayout.height * 1.1 + responsiveLayout.unit};
+    height: ${responsiveLayout.height + responsiveLayout.unit};
     /* margin: 0 auto; */
     transform-style: preserve-3d;
     display: flex;
