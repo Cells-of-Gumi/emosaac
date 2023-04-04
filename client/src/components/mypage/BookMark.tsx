@@ -23,9 +23,9 @@ const BookMark = ({ typeCode }: BookMarkProps) => {
     bookList: returnGetBookMarkProps[];
     size: number;
   }) => {
-    const prevId = bookList.length ? bookList[bookList.length - 1].bookId : 0;
-    const prevTime = bookList.length
-      ? bookList[bookList.length - 1].prevTime
+    const prevId = bookList?.length ? bookList[bookList.length - 1].bookId : 0;
+    const prevTime = bookList?.length
+      ? bookList[bookList.length - 1]?.prevTime
       : "";
     return getBookMark(prevId, prevTime, size, typeCode);
   };
@@ -47,7 +47,7 @@ const BookMark = ({ typeCode }: BookMarkProps) => {
   return (
     <section css={bookmarkwrapCSS}>
       <h3>북마크 목록</h3>
-      {bookmarks && bookmarks.length > 0 ? (
+      {bookmarks && bookmarks?.length > 0 ? (
         <div css={scrollCSS}>
           <ScrollableCarousel
             API={getBookMarkAPI}
