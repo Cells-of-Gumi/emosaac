@@ -59,10 +59,14 @@ export default function Home({
 
   const [selectedDay, setSelectedDay] = useState<number>(window.localStorage.getItem(`${params}-selected_day`) ? Number(window.localStorage.getItem(`${params}-selected_day`)) : 0);
 
-  useEffect(() => {
-    setSelectedGenre(() => window.localStorage.getItem(`${params}-_genre`) ? Number(window.localStorage.getItem(`${params}-selected_genre`)) : -2)
-    setSelectedDay(() => window.localStorage.getItem(`${params}-selected_day`) ? Number(window.localStorage.getItem(`${params}-selected_day`)) : 0)
-  }, [params])
+  // useEffect(() => {
+  //   return () => {
+  //     setSelectedGenre(() => window.localStorage.getItem(`${params}-_genre`) ? Number(window.localStorage.getItem(`${params}-selected_genre`)) : -2)
+  //   setSelectedDay(() => window.localStorage.getItem(`${params}-selected_day`) ? Number(window.localStorage.getItem(`${params}-selected_day`)) : 0)
+  //   }
+    
+  // }, [params])
+
   // ________________________________________________________________________________________________
   // 임시 데이터
   const postData = {
@@ -312,14 +316,14 @@ export default function Home({
     },
     {
       API: getTop1GenreBooksAPI,
-      identifier: `Top3GenreBooks-${params}`,
+      identifier: `Top1GenreBooks-${params}`,
       beforeLabel: '가장 선호하는 장르 TOP 1 ',
       highlightedLabel: 'EMOSAAC!',
       requireLogin: true,
     },
     {
-      API: getTop2GenreBooksAPI.bind({order: 2}),
-      identifier: `Top3GenreBooks-${params}`,
+      API: getTop2GenreBooksAPI,
+      identifier: `Top2GenreBooks-${params}`,
       beforeLabel: '가장 선호하는 장르 TOP 2 ',
       highlightedLabel: 'EMOSAAC!',
       requireLogin: true,
