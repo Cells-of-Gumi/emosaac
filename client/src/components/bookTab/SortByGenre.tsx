@@ -2,12 +2,13 @@
 import { jsx, css } from "@emotion/react";
 import RowTitle from "./RowTitle/RowTitle";
 import HighlightedCarousel from "./HighlightedCarousel/HighlightedCarousel";
-import ScrollableCarousel from "../UI/ScrollableCarousel/ScrollableCarousel";
+
 import { useIsResponsive } from "../Responsive/useIsResponsive";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { bookContentType } from "@/types/books";
-import HorizontalCarousel from "../UI/ScrollableCarousel/HorizontalCarousel";
+
 import React from "react";
+import HorizontalCarouselWrapper from "./HorizontalCarouselWrapper";
 
 interface SortByGenreProps {
     fetchList: any;
@@ -18,16 +19,17 @@ const SortByGenre = ({fetchList}: SortByGenreProps) => {
     const indexWrapperRef = useRef<HTMLDivElement>(null);
 
 
+
     const rowsRender = fetchList.map((el: any, idx: number) => {
         return (
             <React.Fragment key={`sortByGenre-${el.identifier}`}>
-              <div css={whiteSpace1CSS} />
+              {/* <div css={whiteSpace1CSS} />
                 <RowTitle beforeLabel={el.beforeLabel} highlightedLabel={el.highlightedLabel} afterLabel={el?.afterLabel} />
                 <div css={bookCarouselWrapperCSS}>
-                {/* <ScrollableCarousel API={el.API} identifier={el.identifier} /> */}
-                <HorizontalCarousel API={el.API} identifier={el.identifier} />
+                <HorizontalCarousel API={el.API} identifier={el.identifier} setHasData={setHasData} />
                 </div>
-                <div css={whiteSpace1CSS} />
+                <div css={whiteSpace1CSS} /> */}
+                <HorizontalCarouselWrapper el={el} />
                 {Math.ceil(fetchList.length / 2) === idx && 
                 <img
                     src={
