@@ -59,7 +59,9 @@ const index = (data: Props) => {
           <h2>
             <span>emo</span>PICK!
           </h2>
-          <div>이모작 유저들의 추천 리스트를 만나보세요</div>
+          <div>
+            이모작 유저들의 {isMobile && <br />}추천 리스트를 만나보세요
+          </div>
         </div>
         <img src={"/assets/clap.png"} alt="박수" />
       </div>
@@ -113,15 +115,15 @@ const pageTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
     & > div {
       font-size: ${!isMobile ? "18px" : "14px"};
       color: #000;
-      line-height: ${!isMobile ? "30px" : "20px"};
+      line-height: ${!isMobile ? "30px" : "16px"};
     }
   }
   & > img {
     position: absolute;
     bottom: ${isDeskTop ? "-30px" : isTablet ? "-20px" : "-20px"};
-    right: ${isDeskTop ? "20px" : isTablet ? "15px" : "10px"};
-    width: ${isDeskTop ? "300px" : isTablet ? "250px" : "170px"};
-    height: ${isDeskTop ? "300px" : isTablet ? "250px" : "170px"};
+    right: ${isDeskTop ? "20px" : isTablet ? "15px" : "4px"};
+    width: ${isDeskTop ? "300px" : isTablet ? "250px" : "150px"};
+    height: ${isDeskTop ? "300px" : isTablet ? "250px" : "150px"};
     object-fit: contain;
     object-position: bottom center;
   }
