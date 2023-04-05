@@ -8,7 +8,7 @@ const FloatingButtonModalLoading = () => {
 
     return (
         <div css={loadingWrapperCSS}>
-            <UseAnimations strokeColor={'var(--text-color)'} animation={loading2} size={96} />
+            <UseAnimations strokeColor={'var(--text-color)'} fillColor={'var(--back-color-2)'} animation={loading2} size={96} />
             <div css={descWrapperCSS}>이미지를 분석중입니다.</div>
         </div>
     )

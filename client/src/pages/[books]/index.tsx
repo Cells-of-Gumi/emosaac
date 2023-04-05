@@ -56,11 +56,7 @@ export default function Home({
   // webtoon, novel
   const parentRef = useRef<HTMLDivElement>(null);
   const indexWrapperRef = useRef<HTMLDivElement>(null);
-  const [selectedGenre, setSelectedGenre] = useState<number>(
-    window.sessionStorage.getItem(`${params}-selected_genre`)
-      ? Number(window.sessionStorage.getItem(`${params}-selected_genre`))
-      : -2
-  );
+  const [selectedGenre, setSelectedGenre] = useState<number>(-2);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [isScrolling, setIsScrolling] = useState<boolean>(false);
   const [selectedDay, setSelectedDay] = useState<number>(
@@ -470,6 +466,7 @@ export default function Home({
         genres={genres}
         selected={selectedGenre}
         selectHandler={selectGenreHandler}
+        params={params}
       />
       {selectedGenre === -1 && (
         <DayList selected={selectedDay} selectHandler={selectDayHandler} />

@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import { useEffect, useState, useRef } from "react";
+import { useRouter } from "next/router";
 
 interface TagListProps {
   identifier: string;
@@ -8,12 +9,18 @@ interface TagListProps {
 }
 
 const TagList = ({identifier, tag }: TagListProps) => {
+  const router = useRouter()
+
+  const onClickTagHandler = (value: string) => {
+    router.push(`/search/tagname?type=total&query=${value}`);
+  }
   const renderTags = tag?.split(" ").map((el, idx) => {
     if (el.trim() !== "") {
-      return <div key={`${identifier}-${el}`} css={tagWrapperCSS}>#{el},</div>;
+      return <div key={`${identifier}-${el}`} css={tagWrapperCSS} onClick={() => {onClickTagHandler(el)}}>#{el},</div>;
     }
   });
 
+ 
   return (
     <div css={outerWrapperCSS}>
       <div css={tagListWrapperCSS}>{renderTags}</div>
@@ -62,9 +69,10 @@ const tagWrapperCSS = css`
   /* padding: 14px; */
   margin-right: 14px;
   /* margin-bottom: 14px; */
-  color: black;
+  /* color: black; */
   white-space: pre;
   color: var(--text-color-4);
+  cursor: pointer;
 `;
 
 export default TagList;
