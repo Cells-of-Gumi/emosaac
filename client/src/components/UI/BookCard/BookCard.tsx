@@ -138,7 +138,7 @@ const BookCard = ({
     } else {
       hideModal()
     }
-  }, 350), []);
+  }, 250), []);
 
   return (
     <div

@@ -121,8 +121,8 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
         bookId={bookData.bookId}
         stateHandler={setCommentModalState}
       />
-      <BookmarkToggle bookId={bookData.bookId} isClicked={bookData.bookmark} />
-      <HasBeenReadToggle bookId={bookData.bookId} isClicked={bookData.read} />
+      <BookmarkToggle key={`bookmark-toggle-${bookData.title}`} bookId={bookData.bookId} isClicked={bookData.bookmark} />
+      <HasBeenReadToggle key={`has-been-read-toggle-${bookData.title}`} bookId={bookData.bookId} isClicked={bookData.read} />
       {/* <button onClick={() => {setCommentModalState(true); console.log(commentModalState)}}>test</button> */}
     </div>
   );
@@ -144,6 +144,7 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
             <span css={myScoreStringCSS}>내 평점 :</span>
             <div css={platformRatingWrapperCSS}>
               <PlatformRatingHover
+                key={`rating-hover${bookData.title}`}
                 href={bookData.href}
                 avgGrade={bookData.avgScore}
                 grade={bookData.grade.split("_")}
@@ -151,6 +152,7 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
               <BiChevronRightCircle css={scoreBtnCSS({isMobile})} />
             </div>
             <StarRating
+              key={`rating-${bookData.title}`}
               onClick={putBookRatingHandler}
               readonly={false}
               initialValue={bookData.myScore}
@@ -179,10 +181,11 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
             </div>
             {storyWrapperRef.current && storyWrapperRef?.current?.innerText.length < bookData.story.length && unfoldStory === false && <div onClick={() => {setUnfoldStory(() => true)}} css={unfoldStringCSS}>...더보기</div>}
 
-            <TagList identifier={`${bookData.bookId}`} tag={bookData.tag} />
+            <TagList key={`tag-${bookData.title}`} identifier={`${bookData.bookId}`} tag={bookData.tag} />
           </div>
           <div css={buttonWrapperCSS({ isDeskTop })}>
             <RedirButton
+              key={`redir-button-${bookData.title}`}
               width={isMobile ? "100%" : "50%"}
               height={"64px"}
               platform={bookData.platform}
@@ -203,10 +206,11 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
   return (
     <div css={mainContentCSS} className={"top-level-el"}>
       <FixedModal
+        key={`comment-${bookData.title}`}
         modalState={commentModalState}
         stateHandler={setCommentModalState}
         content={
-          <DetailComment bookTitle={bookData.title} bookId={bookData.bookId} myInfo={myInfo} />
+          <DetailComment  bookTitle={bookData.title} bookId={bookData.bookId} myInfo={myInfo} />
         }
       />
 
