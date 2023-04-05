@@ -23,6 +23,7 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
   const [isModalOn, setModalOn] = useState<boolean>(false)
   const [isIntervalOn, setIntervalOn] = useState<boolean>(false)
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const [ratingList, setRatingList] = useState<any>({})
 
 
 
@@ -94,6 +95,8 @@ const Waterfall = ({ bookData, identifier, rotate, duration }: HighlightedCarous
               waterfallWrapperRef={wrapperRef}
               width={'95%'}
               height={'95%'}
+              setRatingList={setRatingList}
+              ratingList={ratingList}
           />
           {/* <img css={imgCSS} src={el.thumbnail}/> */}
         </div>
@@ -125,6 +128,7 @@ const cardCSS = ({duration, responsiveLayout, rotateY, idx, showCount, center, i
     display: flex;
     justify-content: center;
     align-items: center;
+    will-change: width, height, transform;
   `
 }
 
