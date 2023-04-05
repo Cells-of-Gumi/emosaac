@@ -21,8 +21,24 @@ import { returnSearchBooksType } from "@/types/search";
 import { throttle } from "lodash";
 
 interface Props {
-  setSelectedBookList: Dispatch<SetStateAction<any[]>>;
-  selectedBookList: any[];
+  setSelectedBookList: Dispatch<
+    SetStateAction<
+      {
+        title: string;
+        bookId: number;
+        typeCd: number;
+        review: string;
+        thumbnail: string;
+      }[]
+    >
+  >;
+  selectedBookList: {
+    title: string;
+    bookId: number;
+    typeCd: number;
+    review: string;
+    thumbnail: string;
+  }[];
   setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
   books: returnSearchBooksType[];
   type: string;
@@ -30,15 +46,14 @@ interface Props {
   prevId: number;
   prevScore: number;
   isPageEnd: boolean;
-  bookList?:
-    | {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    | [];
+  bookList?: {
+    title: string;
+    bookId: number;
+    typeCd: number;
+    review: string;
+    thumbnail: string;
+  }[];
+  searchInput: string;
 }
 
 const EmopickSearchBox = ({
@@ -52,22 +67,30 @@ const EmopickSearchBox = ({
   prevScore,
   isPageEnd,
   bookList,
+  searchInput,
 }: Props) => {
+  type bookType = {
+    title: string;
+    bookId: number;
+    typeCd: number;
+    review: string;
+    thumbnail: string;
+  };
   const router = useRouter();
   const [bookData, setBookData] = useState<returnSearchHistoryType[] | any[]>(
     []
   );
+  const [someBook, setSomeBook] = useState<any>({});
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [getBooks, setGetBooks] = useState<boolean>(false);
+  const [selectedBookIdList, setSelectedBookIdList] = useState<number[]>([]);
+  const [bookIdList, setBookIdList] = useState<number[]>([]);
   const booksWrapRef = useRef<HTMLDivElement>(null);
   const onWheelHandler = useMemo(
     () =>
       throttle((event) => {
         console.log(isPageEnd);
         if (isPageEnd === false) {
-          console.log(booksWrapRef.current?.scrollTop);
-          console.log(booksWrapRef.current?.clientHeight);
-          console.log(booksWrapRef.current?.scrollHeight);
           if (
             booksWrapRef &&
             booksWrapRef.current?.scrollTop &&
@@ -85,6 +108,41 @@ const EmopickSearchBox = ({
   );
   function onClickBack() {
     setIsSearchBoxOpen(false);
+  }
+
+  function findBook(book: any) {
+    return book.bookId === someBook.bookId;
+  }
+  function selectBook(oneBookData: any) {
+    setSomeBook(oneBookData);
+    if (!bookList?.some(findBook)) {
+      if (
+        selectedBookIdList &&
+        selectedBookIdList.includes(oneBookData.bookId)
+      ) {
+        const newSelectedBookIdList = selectedBookIdList.filter((bookId) => {
+          return bookId !== oneBookData.bookId;
+        });
+        const newSelectedBookList = selectedBookList.filter((book) => {
+          return book.bookId !== oneBookData.bookId;
+        });
+        setSelectedBookIdList(newSelectedBookIdList);
+        setSelectedBookList(newSelectedBookList);
+      } else {
+        const nowBookObj: bookType = {
+          title: oneBookData.title,
+          bookId: oneBookData.bookId,
+          typeCd: oneBookData.typeCd,
+          review: "ggggg",
+          thumbnail: oneBookData.thumbnail,
+        };
+        setSelectedBookIdList((prev) => [...prev, oneBookData.bookId]);
+        setSelectedBookList((prev) => [...prev, nowBookObj]);
+      }
+    } else {
+      alert("이미 리뷰를 작성중인 작품입니다.");
+    }
+    console.log(selectedBookList);
   }
   useEffect(() => {
     if (getBooks === true) {
@@ -111,37 +169,65 @@ const EmopickSearchBox = ({
             <h3>검색 결과</h3>
             {bookData && (
               <div
-                css={booksWrapCSS({ isDeskTop, isTablet, isMobile })}
+                css={booksWrapCSS(
+                  { isDeskTop, isTablet, isMobile },
+                  bookData.length === 0
+                )}
                 ref={booksWrapRef}
                 onWheel={onWheelHandler}
                 onTouchMove={onWheelHandler}
               >
-                {bookData.map((book, idx) => (
-                  <div css={bookWrapCSS(book.typeCd === 0)} key={idx}>
-                    <span>{book && book.typeCd === 0 ? "웹툰" : "웹소설"}</span>
-                    <EmopickSearchBookCard
-                      bookData={book}
-                      showPlatform={false}
-                      width={"100%"}
-                      height={isMobile ? "170px" : "190px"}
-                      setSelectedBookList={setSelectedBookList}
-                      selectedBookList={selectedBookList}
-                      bookList={bookList}
-                    />
-                    <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
-                      <div>{book.title}</div>
+                {bookData.length === 0 &&
+                  (searchInput !== "" ? (
+                    <div css={noResCSS({ isDeskTop, isTablet, isMobile })}>
+                      일치하는 검색 결과가 없습니다.
                     </div>
-                  </div>
-                ))}
+                  ) : (
+                    <div css={noResCSS({ isDeskTop, isTablet, isMobile })}>
+                      검색어를 입력해주세요.
+                    </div>
+                  ))}
+
+                {bookData.length > 0 &&
+                  bookData.map((book, idx) => (
+                    <div
+                      css={bookWrapCSS(book.typeCd === 0)}
+                      key={idx}
+                      onClick={() => selectBook(book)}
+                    >
+                      <span>
+                        {book && book.typeCd === 0 ? "웹툰" : "웹소설"}
+                      </span>
+                      <EmopickSearchBookCard
+                        bookData={book}
+                        showPlatform={false}
+                        width={"100%"}
+                        height={isMobile ? "170px" : "190px"}
+                        setSelectedBookList={setSelectedBookList}
+                        selectedBookList={selectedBookList}
+                        bookList={bookList}
+                        selectedBookIdList={selectedBookIdList}
+                      />
+                      <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
+                        <div>{book.title}</div>
+                      </div>
+                    </div>
+                  ))}
               </div>
             )}
           </div>
-          <div
-            css={flipCSS({ isDeskTop, isTablet, isMobile })}
-            onClick={onClickBack}
+          <button
+            type="button"
+            css={addButtonCSS(
+              { isDeskTop, isTablet, isMobile },
+              selectedBookIdList.length === 0
+            )}
+            disabled={selectedBookIdList.length > 0 ? false : true}
           >
-            접기 <MdOutlineKeyboardDoubleArrowUp size={20} />
-          </div>
+            {selectedBookIdList.length > 0
+              ? `${selectedBookIdList.length}개 작품 추가하기`
+              : "작품을 선택해주세요"}
+          </button>
         </div>
       </div>
     </div>
@@ -175,10 +261,10 @@ const searchBoxCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     /* position: absolute; */
     width: ${isMobile ? "calc(100vw - 40px)" : "700px"};
     margin: ${isMobile ? "0 20px" : "0px"};
-    padding: ${isMobile ? "20px 20px 10px" : "20px 50px 4px"};
+    padding: ${isMobile ? "20px 20px 20px" : "20px 50px 20px"};
     border-radius: 0 0 10px 10px;
     background-color: var(--back-color-2);
-    box-shadow: var(--shadow-color);
+    /* box-shadow: var(--shadow-color); */
     animation: ${visibleCSS("-100px")} 0.3s;
   `;
 };
@@ -197,22 +283,29 @@ const recentHistoryCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
     margin-bottom: 30px;
     & > h3 {
-      font-size: 16px;
+      font-size: ${isDeskTop ? "18px" : isTablet ? "16px" : "14px"};
+      line-height: ${isDeskTop ? "30px" : isTablet ? "26px" : "20px"};
       font-weight: bold;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     & > div {
     }
   `;
 };
 
-const booksWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
+const booksWrapCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  isNoData: boolean
+) => {
   return css`
-    display: grid;
-    grid-template-columns: ${isMobile ? "1fr 1fr 1fr" : "1fr 1fr 1fr 1fr"};
+    display: ${isNoData ? "block" : "grid"};
+    ${!isNoData &&
+    (isMobile
+      ? "grid-template-columns: 1fr 1fr 1fr;"
+      : "grid-template-columns: 1fr 1fr 1fr 1fr;")}
     ${isDeskTop && "column-gap: 20px;"}
     ${!isDeskTop && "column-gap: 10px;"}
-    height: 300px;
+    height: ${isNoData ? "120px" : "280px"};
     overflow-y: scroll;
   `;
 };
@@ -241,6 +334,13 @@ const bookWrapCSS = (isWebtoon: boolean) => css`
     font-size: 12px;
   }
 `;
+
+const noResCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
+  return css`
+    line-height: 100px;
+    font-size: ${isDeskTop ? "14px" : isTablet ? "14px" : "14px"};
+  `;
+};
 
 const titleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
@@ -292,5 +392,16 @@ const flipCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     }
   `;
 };
+
+const addButtonCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  isDisable: boolean
+) => css`
+  cursor: ${isDisable ? "not-allowed" : "pointer"};
+  background-color: ${isDisable ? "#bbb" : "var(--main-color)"};
+  border-radius: 5px;
+  height: 40px;
+  width: ${isMobile ? "100%" : "100%"};
+`;
 
 export default EmopickSearchBox;
