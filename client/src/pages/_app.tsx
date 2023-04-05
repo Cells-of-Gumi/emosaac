@@ -23,6 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
     if (window.localStorage.getItem('access_token')) {
       getMyInfo()
       .then((res) => {
+        console.log(res)
         setMyInfo(() => res);
       })
       .catch((err) => {

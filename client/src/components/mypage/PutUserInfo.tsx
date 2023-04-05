@@ -135,11 +135,11 @@ const PutUserInfo = ({ myInfo }: any) => {
     getIsNickname(nickname, token).then((res) => {
       // console.log(res);
       if (res === false) {
-        setNicknameValidityMessage("사용 가능한 닉네임이에요");
+        setNicknameValidityMessage("사용 가능한 닉네임이에요.");
         // 중복확인을 했다는 flag
         setIsNicknameDuplicate(true);
       } else {
-        setNicknameValidityMessage("사용이 불가능한 닉네임이에요");
+        setNicknameValidityMessage("사용이 불가능한 닉네임이에요.");
         setIsNicknameDuplicate(false);
       }
     });
@@ -170,6 +170,44 @@ const PutUserInfo = ({ myInfo }: any) => {
       // console.log(myInfo);
     });
   }, []);
+
+  const selectAge = (
+    <div css={dropdownContainerCSS}>
+            <button
+              css={dropdownButtonCSS}
+              onClick={(event) => {
+                setDropdownVisible(!dropdownVisible), event.preventDefault();
+              }}
+            >
+              <div>
+                {selectedAge ? `${selectedAge}대` : "연령대를 선택해주세요"}
+              </div>
+            </button>
+            <div css={dropdownContentCSS(dropdownVisible)}>
+              <div onClick={() => handleClickAge(null)} css={dropdownItemCSS}>
+                연령대를 선택해주세요.
+              </div>
+              <div onClick={() => handleClickAge(10)} css={dropdownItemCSS}>
+                10대
+              </div>
+              <div onClick={() => handleClickAge(20)} css={dropdownItemCSS}>
+                20대
+              </div>
+              <div onClick={() => handleClickAge(30)} css={dropdownItemCSS}>
+                30대
+              </div>
+              <div onClick={() => handleClickAge(40)} css={dropdownItemCSS}>
+                40대
+              </div>
+              <div onClick={() => handleClickAge(50)} css={dropdownItemCSS}>
+                50대
+              </div>
+              <div onClick={() => handleClickAge(60)} css={dropdownItemCSS}>
+                60대 이상
+              </div>
+            </div>
+          </div>
+  )
   return (
     <>
       <section>
@@ -196,10 +234,14 @@ const PutUserInfo = ({ myInfo }: any) => {
             </div>
           </div>
           <div css={nicknamewrapCSS}>
+
+          <div>이메일</div>
+          <div css={css`margin-top: 6px; margin-bottom: 40px; color: var(--back-color-4);`}>{myInfo.email}</div>
+
             <label htmlFor="" css={nicknameCSS}>
-              <h3>닉네임</h3>
+              <div>닉네임</div>
               <div css={nicknameexplainCSS}>
-                2글자 ~ 10글자 사이로 입력해주세요
+                {nickname.length}/10
               </div>
             </label>
             <input
@@ -218,12 +260,15 @@ const PutUserInfo = ({ myInfo }: any) => {
             </button>
           </div>
           {!isNicknameDuplicate ? (
-            <div>{nicknameValidityMessage}</div>
+            <div css={nicknameValidityCSS}>{nicknameValidityMessage}</div>
           ) : (
-            <div>{nicknameValidityMessage}</div>
+            <div css={nicknameValidityCSS}>{nicknameValidityMessage}</div>
           )}
           <div css={genderwrapCSS}>
-            <h3 css={genderCSS}>성별</h3>
+          <div css={agewrapCSS}>
+            <div css={genderCSS}>성별/연령대</div>
+            <div css={explainCSS}>성별/연령대에 맞게 추천을 해드려요!</div>
+          </div>
             <button
               onClick={(event) => {
                 event.preventDefault();
@@ -242,12 +287,10 @@ const PutUserInfo = ({ myInfo }: any) => {
             >
               여성
             </button>
+            {selectAge}
           </div>
-          <div css={agewrapCSS}>
-            <h3 css={ageCSS}>연령대</h3>
-            <div css={explainCSS}>연령대에 맞게 추천을 해드려요!</div>
-          </div>
-          <div css={dropdownContainerCSS}>
+      
+          {/* <div css={dropdownContainerCSS}>
             <button
               css={dropdownButtonCSS}
               onClick={(event) => {
@@ -281,7 +324,7 @@ const PutUserInfo = ({ myInfo }: any) => {
                 60대 이상
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div css={submitwrapCSS}>
             <button type="submit" css={submitCSS}>
@@ -318,18 +361,19 @@ const nicknamewrapCSS = css`
 
 const nicknameCSS = css`
   display: flex;
+  align-items: end;
 `;
 const nicknameexplainCSS = css`
   margin-left: 2px;
-  margin-top: 10px;
-  font-size: 10px;
+
+  font-size: 12px;
 `;
 const nicknameconfirmCSS = css`
   position: absolute;
   cursor: pointer;
   color: var(--main-color);
   border: 1px solid var(--border-color);
-  background-color: var(--back-color);
+  background-color: rgba(0,0,0,0);
   border-radius: 5px;
   padding: 3px 3px;
   /* color :  */
@@ -351,15 +395,21 @@ const imageCSS = css`
 `;
 const inputwrapCSS = css`
   border: none;
-  border-bottom: 3px solid var(--main-color);
-  margin-top: 10px;
+  transition-property: border-bottom;
+  transition-duration: 0.3s;
+  border-bottom: 3px solid var(--back-color-3);
+  margin-top: 4px;
   width: 100%;
+  font-size: 16px;
+  padding: 4px;
   :focus {
     outline: none;
+    border-bottom: 3px solid var(--main-color);
+    background-color: var(--back-color-2);
   }
   ::placeholder {
-    color: var(--text-color);
-    font-weight: bold;
+    /* color: var(--text-color); */
+    /* font-weight: bold; */
   }
   background-color: var(--back-color);
   color: var(--text-color);
@@ -371,12 +421,13 @@ const dropdownContainerCSS = css`
 `;
 
 const dropdownButtonCSS = css`
-  background-color: var(--back-color);
-  border: 1px solid #ccc;
+  background-color: var(--back-color-2);
+  /* border: 1px solid #ccc; */
   border-radius: 5px;
-  padding: 8px 12px;
+  /* padding: 8px 12px; */
   cursor: pointer;
-  height: auto; /* height를 auto로 설정하여 내용물에 따라 높이가 자동 조절되도록 합니다. */
+  height: 30px; 
+  padding: 0px 16px 0px 16px;
   white-space: nowrap; /* 글자가 한 줄로 표시되도록 합니다. */
 `;
 
@@ -391,7 +442,7 @@ const dropdownContentCSS = (dropdownVisible: boolean) => css`
   opacity: ${dropdownVisible ? 1 : 0};
   visibility: ${dropdownVisible ? "visible" : "hidden"};
   transform: translateY(${dropdownVisible ? 0 : -10}px);
-  width: 55%;
+  width: 180px;
   color: var(--text-color);
 `;
 
@@ -424,27 +475,34 @@ const genderbuttonCSS = (
   margin-right: 3px;
   background-color: ${selectedGender === currentGender
     ? "var(--main-color)"
-    : "var(--back-color)"};
+    : "var(--back-color-2)"};
   color: var(--text-color);
 `;
 const agewrapCSS = css`
+  /* height: 20px; */
   margin-top: 20px;
+  display: flex;
+  align-items: center;
 `;
 
 const ageCSS = css`
   border: none;
   /* border-bottom: 3px solid var(--main-color); */
-  padding-bottom: 1px;
+  padding-bottom: 4px;
 `;
 
 const explainCSS = css`
-  margin-left: 2px;
-  margin-top: 6px;
-  font-size: 10px;
+  margin-left: 6px;
+  /* margin-top: 6px; */
+  font-size: 13px;
+  color: var(--text-color-4);
 `;
 
 const submitwrapCSS = css`
-  height: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 40px;
+
 `;
 
 const submitCSS = css`
@@ -455,4 +513,11 @@ const submitCSS = css`
   border-radius: 5px;
   background-color: var(--main-color);
 `;
+
+const nicknameValidityCSS = css`
+  font-size: 14px;
+  margin-top: 3px;  
+  color: var(--text-color-4);
+`
+
 export default PutUserInfo;

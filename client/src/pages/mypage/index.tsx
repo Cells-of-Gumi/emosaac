@@ -4,7 +4,7 @@ export default function mypage({ myInfo }: any) {
   // console.log(myInfo);
   return (
     <>
-      <MyPage myinfo={myInfo} />
+      <MyPage myInfo={myInfo} />
     </>
   );
 }
