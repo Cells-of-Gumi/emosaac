@@ -12,9 +12,11 @@ import HorizontalCarouselWrapper from "./HorizontalCarouselWrapper";
 interface SortByGenreProps {
     fetchList: any;
     myInfo?: any;
+    titleColor?: string;
+    hideBanner?: boolean;
 }
 
-const SortByRows = ({fetchList, myInfo}: SortByGenreProps) => {
+const SortByRows = ({fetchList, myInfo, titleColor, hideBanner}: SortByGenreProps) => {
     const [isDeskTop, isTablet, isMobile] = useIsResponsive();
     const indexWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -32,8 +34,8 @@ const SortByRows = ({fetchList, myInfo}: SortByGenreProps) => {
                   <HorizontalCarousel API={el.API} identifier={el.identifier} setHasData={setHasData} />
                   </div>
                   <div css={whiteSpace1CSS} /> */}
-                  <HorizontalCarouselWrapper el={el} />
-                  {Math.ceil(fetchList.length / 2) === idx && 
+                  <HorizontalCarouselWrapper el={el} titleColor={titleColor} />
+                  {Math.ceil(fetchList.length / 2) === idx && !hideBanner &&
                   <img
                       src={
                       isMobile === true

@@ -8,14 +8,14 @@ import { bookContentType } from "@/types/books";
 
 
 
-const HorizontalCarouselWrapper = ({el}: {el: any}) => {
+const HorizontalCarouselWrapper = ({el, titleColor}: {el: any; titleColor?: string;}) => {
     const [noData, setNoData] = useState<boolean>(false)
     
     if (noData === false) {
         return (
             <React.Fragment>
                 <div css={whiteSpace1CSS} />
-                    <RowTitle beforeLabel={el.beforeLabel} highlightedLabel={el.highlightedLabel} afterLabel={el?.afterLabel} />
+                    <RowTitle beforeLabel={el.beforeLabel} highlightedLabel={el.highlightedLabel} afterLabel={el?.afterLabel} backgroundColor={titleColor} />
                     <div css={bookCarouselWrapperCSS}>
                     {/* <ScrollableCarousel API={el.API} identifier={el.identifier} /> */}
                     {/* <HorizontalScroll API={el.API} identifier={el.identifier} setNoData={setNoData} /> */}

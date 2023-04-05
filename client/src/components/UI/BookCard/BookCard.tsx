@@ -195,7 +195,7 @@ const cardOuterWrapper = ({
   return css`
     ${margin && `margin: ${margin}`};
     position: relative;
-    width: ${width !== undefined ? width : "auto"};
+    width: ${width !== undefined ? width : "100%"};
     height: ${height !== undefined ? height : "100%"};
     ${minWidth && `min-width: ${minWidth}`};
     ${minHeight && `min-height: ${minHeight}`};

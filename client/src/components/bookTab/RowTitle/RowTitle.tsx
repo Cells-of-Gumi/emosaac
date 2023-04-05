@@ -8,6 +8,7 @@ interface RowTitleProps {
   afterLabel?: string;
   noLine?: true;
   marginBottom?: string;
+  backgroundColor?: string;
 }
 
 const RowTitle = ({
@@ -16,13 +17,14 @@ const RowTitle = ({
   afterLabel,
   noLine,
   marginBottom,
+  backgroundColor
 }: RowTitleProps) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
 
   return (
     <div css={rowTitleWrapperCSS({ marginBottom })}>
       {noLine !== true && <div css={lineCSS} />}
-      <div css={labelWrapperCSS}>
+      <div css={labelWrapperCSS({backgroundColor})}>
         <span css={normalLabelCSS({ isMobile })}>{beforeLabel}</span>
         <span css={highlightedLabelCSS({ isMobile })}>{highlightedLabel}</span>
         <span css={normalLabelCSS({ isMobile })}>{afterLabel}</span>
@@ -52,12 +54,14 @@ const lineCSS = css`
   background-color: var(--border-color-2);
 `;
 
-const labelWrapperCSS = css`
-  position: absolute;
-  background-color: var(--back-color);
-  padding: 12px;
-  /* left: 1%; */
-`;
+const labelWrapperCSS = ({backgroundColor}: {backgroundColor: string | undefined}) => {
+  return css`
+    position: absolute;
+    background-color: ${backgroundColor ? backgroundColor : 'var(--back-color)'};
+    padding: 12px;
+    /* left: 1%; */
+  `;
+}
 
 const normalLabelCSS = ({ isMobile }: { isMobile: boolean }) => {
   return css`

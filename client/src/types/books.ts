@@ -13,6 +13,7 @@ export type bookContentType = {
   typeCd: number;
   tag: string;
   predictScore?: number;
+  modifiedDate?: number;
 };
 
 export type returnBookContentType = {

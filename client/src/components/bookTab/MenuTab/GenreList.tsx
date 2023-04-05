@@ -2,7 +2,7 @@
 import { jsx, css } from "@emotion/react";
 import { returnGenresType } from "@/types/books";
 import { useIsResponsive } from "../../Responsive/useIsResponsive";
-import React from "react";
+import React, {useRef} from "react";
 
 const GenreList = ({
   genres,
@@ -14,7 +14,7 @@ const GenreList = ({
   selectHandler: Function;
 }) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const renderGenres = genres.map((el, idx) => {
     return (
       <React.Fragment key={`genreList-${el.name}`}>
@@ -26,6 +26,7 @@ const GenreList = ({
           })}
           onClick={() => {
             selectHandler(el.genreId);
+            scrollHandler()
           }}
         >
           {el.name}
@@ -34,8 +35,22 @@ const GenreList = ({
     );
   });
 
+  const scrollHandler = () => {
+    const scrollTiming = JSON.parse(String(window.sessionStorage.getItem('scroll_timing')))
+    if (!scrollTiming && wrapperRef.current) {
+
+      window.scrollTo({
+        left: 0,
+        top: wrapperRef.current.offsetTop - (isMobile ? 48 : 84),
+        behavior: "smooth",
+      });
+      
+    }
+    
+  }
+
   return (
-    <div css={outerWrapperCSS({ isMobile })}>
+    <div ref={wrapperRef} css={outerWrapperCSS({ isMobile })}>
       <div css={tagListWrapperCSS({ isMobile })}>
         <div
           css={tagWrapperCSS({
@@ -45,6 +60,7 @@ const GenreList = ({
           })}
           onClick={() => {
             selectHandler(-2);
+            scrollHandler()
           }}
         >
           추천
@@ -57,6 +73,7 @@ const GenreList = ({
           })}
           onClick={() => {
             selectHandler(-1);
+            scrollHandler()
           }}
         >
           요일별
