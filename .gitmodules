@@ -1,0 +1,3 @@
+[submodule "emosaac_front"]
+	path = emosaac_front
+	url = https://lab.ssafy.com/gms9424/emosaac_front.git
