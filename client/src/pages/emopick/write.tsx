@@ -18,26 +18,34 @@ import { EmopickBookSearchRes } from "@/components/emopick/EmopickBookSearchRes"
 // };
 // token?: string | null;
 
+type bookType = {
+  title: string;
+  bookId: number;
+  typeCd: number;
+  review: string;
+  thumbnail: string;
+};
+
 const write = () => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [title, setTitle] = useState("이모픽 등록 테스트");
   const [content, setContent] = useState("이모픽 등록 테스트 내용내용");
-  const [bookList, setBookList] = useState([
-    {
-      title: "모죠의 일지",
-      bookId: 3281,
-      typeCd: 0,
-      review: "짱잼입니다용",
-      thumbnail: "",
-    },
-    {
-      title: "나 혼자만 레벨업",
-      bookId: 7189,
-      typeCd: 1,
-      review: "레벨업 할게요",
-      thumbnail: "",
-    },
+  const [bookList, setBookList] = useState<bookType[]>([
+    // {
+    //   title: "모죠의 일지",
+    //   bookId: 3281,
+    //   typeCd: 0,
+    //   review: "짱잼입니다용",
+    //   thumbnail: "",
+    // },
+    // {
+    //   title: "나 혼자만 레벨업",
+    //   bookId: 7189,
+    //   typeCd: 1,
+    //   review: "레벨업 할게요",
+    //   thumbnail: "",
+    // },
   ]);
   // 전송할때만 쓰는 리스트
   const [selectedBookList, setSelectedBookList] = useState<any>([
@@ -76,7 +84,7 @@ const write = () => {
     }
   }
   useEffect(() => {
-    console.log(selectedBookList);
+    // console.log(selectedBookList);
   }, [selectedBookList]);
   return (
     <div>
@@ -283,24 +291,23 @@ const searchModalCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
 const bookSetCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   height: 400px;
   padding: ${isDeskTop ? "30px 0px" : isTablet ? "20px 0px" : "20px 0px"};
-  overflow-y: scroll;
+  overflow-y: auto;
   background-color: var(--back-color);
-  border-radius: 5px;
   ::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0);
-    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0) !important;
   }
   & > div {
     display: grid;
-    grid-template-columns: 180px 1fr;
+    grid-template-columns: ${isMobile ? "110px 1fr" : "180px 1fr"};
     column-gap: 20px;
+    overflow: visible;
   }
 `;
 const bookThumbnailCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css`
     border-radius: 5px;
     background-color: var(--back-color-3);
-    height: 240px;
+    height: ${isMobile ? "134px" : "240px"};
   `;
 const bookReviewCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css``;

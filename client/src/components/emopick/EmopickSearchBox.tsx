@@ -19,6 +19,15 @@ import { BasicButton } from "../UI/NavigationBar/BasicButton";
 import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
 import { returnSearchBooksType } from "@/types/search";
 import { throttle } from "lodash";
+import { atom, useAtom } from "jotai";
+
+type bookType = {
+  title: string;
+  bookId: number;
+  typeCd: number;
+  review: string;
+  thumbnail: string;
+};
 
 interface Props {
   setSelectedBookList: Dispatch<
@@ -54,6 +63,8 @@ interface Props {
     thumbnail: string;
   }[];
   searchInput: string;
+  setBookList: Dispatch<SetStateAction<bookType[]>>;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const EmopickSearchBox = ({
@@ -68,19 +79,13 @@ const EmopickSearchBox = ({
   isPageEnd,
   bookList,
   searchInput,
+  setBookList,
+  setIsModalOpen,
 }: Props) => {
-  type bookType = {
-    title: string;
-    bookId: number;
-    typeCd: number;
-    review: string;
-    thumbnail: string;
-  };
   const router = useRouter();
   const [bookData, setBookData] = useState<returnSearchHistoryType[] | any[]>(
     []
   );
-  const [someBook, setSomeBook] = useState<any>({});
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [getBooks, setGetBooks] = useState<boolean>(false);
   const [selectedBookIdList, setSelectedBookIdList] = useState<number[]>([]);
@@ -89,7 +94,6 @@ const EmopickSearchBox = ({
   const onWheelHandler = useMemo(
     () =>
       throttle((event) => {
-        console.log(isPageEnd);
         if (isPageEnd === false) {
           if (
             booksWrapRef &&
@@ -106,24 +110,19 @@ const EmopickSearchBox = ({
       }, 300),
     [books]
   );
-  function onClickBack() {
-    setIsSearchBoxOpen(false);
-  }
 
-  function findBook(book: any) {
-    return book.bookId === someBook.bookId;
-  }
   function selectBook(oneBookData: any) {
-    setSomeBook(oneBookData);
-    if (!bookList?.some(findBook)) {
+    if (bookIdList && !bookIdList.includes(oneBookData)) {
       if (
         selectedBookIdList &&
         selectedBookIdList.includes(oneBookData.bookId)
       ) {
-        const newSelectedBookIdList = selectedBookIdList.filter((bookId) => {
+        const newSelectedBookIdList = selectedBookIdList?.filter((bookId) => {
+          console.log(bookId !== oneBookData.bookId);
           return bookId !== oneBookData.bookId;
         });
-        const newSelectedBookList = selectedBookList.filter((book) => {
+        const newSelectedBookList = selectedBookList?.filter((book) => {
+          console.log(book.bookId !== oneBookData.bookId);
           return book.bookId !== oneBookData.bookId;
         });
         setSelectedBookIdList(newSelectedBookIdList);
@@ -139,11 +138,17 @@ const EmopickSearchBox = ({
         setSelectedBookIdList((prev) => [...prev, oneBookData.bookId]);
         setSelectedBookList((prev) => [...prev, nowBookObj]);
       }
-    } else {
-      alert("이미 리뷰를 작성중인 작품입니다.");
     }
-    console.log(selectedBookList);
   }
+
+  function addBook(oneBook: any) {
+    console.log(selectedBookList);
+    setBookList((prev) => [...prev, ...selectedBookList]);
+    setSelectedBookIdList([]);
+    setSelectedBookList([]);
+    setIsModalOpen(false);
+  }
+
   useEffect(() => {
     if (getBooks === true) {
       setGetBooks(() => false);
@@ -155,6 +160,21 @@ const EmopickSearchBox = ({
     setBookData(books);
   }, [books]);
 
+  useEffect(() => {
+    console.log(selectedBookList);
+  }, [searchInput]);
+
+  useEffect(() => {
+    if (bookList !== undefined && bookList.length > 0) {
+      const newBookIdList = bookList.map((book) => {
+        return book.bookId;
+      });
+      setBookIdList(newBookIdList);
+    } else {
+      setBookIdList([]);
+    }
+    console.log(bookList);
+  }, [bookList]);
   return (
     <div css={searchWrapCSS}>
       <div
@@ -207,6 +227,7 @@ const EmopickSearchBox = ({
                         selectedBookList={selectedBookList}
                         bookList={bookList}
                         selectedBookIdList={selectedBookIdList}
+                        bookIdList={bookIdList}
                       />
                       <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
                         <div>{book.title}</div>
@@ -217,6 +238,7 @@ const EmopickSearchBox = ({
             )}
           </div>
           <button
+            onClick={addBook}
             type="button"
             css={addButtonCSS(
               { isDeskTop, isTablet, isMobile },
@@ -261,7 +283,7 @@ const searchBoxCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     /* position: absolute; */
     width: ${isMobile ? "calc(100vw - 40px)" : "700px"};
     margin: ${isMobile ? "0 20px" : "0px"};
-    padding: ${isMobile ? "20px 20px 20px" : "20px 50px 20px"};
+    padding: ${isMobile ? "20px 20px 20px" : "20px 30px 20px"};
     border-radius: 0 0 10px 10px;
     background-color: var(--back-color-2);
     /* box-shadow: var(--shadow-color); */

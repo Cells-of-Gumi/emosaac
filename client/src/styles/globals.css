@@ -194,16 +194,23 @@ h3 {
   box-sizing: border-box;
 }
 ::-webkit-scrollbar {
+  position: fixed !important;
+  right: 0;
   width: 10px;
   height: 10px;
+  background-color: rgba(0, 0, 0, 0) !important;
+  opacity: 0 !important;
 }
 ::-webkit-scrollbar-thumb {
   background-color: var(--back-color-4);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-track {
-  background-color: var(--back-color-2);
+  position: fixed !important;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0) !important;
   border-radius: 10px;
+  opacity: 0 !important;
 }
 div {
   color: var(--text-color);
