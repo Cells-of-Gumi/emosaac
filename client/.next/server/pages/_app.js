@@ -2104,12 +2104,12 @@ const RequireLogin = ()=>{
     const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_2__/* .useIsResponsive */ .j)();
     const [currentTheme, setCurrentTheme] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)();
     const onClickNaver = ()=>{
-        const authUrl = "http://j8d203.p.ssafy.io:8081/api/oauth2/authorize/naver?redirect_uri=http://localhost:3000/oauth2/redirect" ?? 0;
+        const authUrl = "https://j8d203.p.ssafy.io/api/oauth2/authorize/naver?redirect_uri=https://j8d203.p.ssafy.io/oauth2/redirect" ?? 0;
         // console.log(authUrl);
         window.location.href = authUrl;
     };
     const onClickKakao = ()=>{
-        const authUrl = "http://j8d203.p.ssafy.io:8081/api/oauth2/authorize/kakao?redirect_uri=http://localhost:3000/oauth2/redirect" ?? 0;
+        const authUrl = "https://j8d203.p.ssafy.io/api/oauth2/authorize/kakao?redirect_uri=https://j8d203.p.ssafy.io/oauth2/redirect" ?? 0;
         // console.log(authUrl);
         window.location.href = authUrl;
     };
@@ -2332,6 +2332,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([jota
 
 
 // import { useMediaQuery } from "react-responsive";
+// import { useRouter } from "next/router";
 function App({ Component , pageProps  }) {
     const [isDeskTop, isTablet, isMobile] = (0,_components_Responsive_useIsResponsive__WEBPACK_IMPORTED_MODULE_6__/* .useIsResponsive */ .j)();
     const isClient = (0,_components_Responsive_useIsClient__WEBPACK_IMPORTED_MODULE_5__/* .useIsClient */ .O)();
@@ -2352,6 +2353,21 @@ function App({ Component , pageProps  }) {
     }, [
         pageProps
     ]);
+    // const router = useRouter();
+    // useEffect(() => {
+    //   console.log("되고있나요");
+    //   const userId = localStorage.getItem("userId");
+    //   const nickname = localStorage.getItem("nickname");
+    //   const age = localStorage.getItem("age");
+    //   const gender = localStorage.getItem("gender");
+    //   if (
+    //     userId &&
+    //     (nickname === "null" || age === "null" || gender === "null")
+    //   ) {
+    //     alert("회원정보를 입력해주셔야 해요");
+    //     router.push("/mypage/edit");
+    //   }
+    // }, []);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(jotai__WEBPACK_IMPORTED_MODULE_2__.Provider, {
         store: _jotai_atom__WEBPACK_IMPORTED_MODULE_3__/* ["default"] */ .ZP,
         children: [

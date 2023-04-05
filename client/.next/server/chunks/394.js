@@ -31,7 +31,7 @@ function getToken(req) {
 function createDefaultInstance(req) {
     const token = getToken(req);
     const instance = axios__WEBPACK_IMPORTED_MODULE_0__["default"].create({
-        baseURL: "http://j8d203.p.ssafy.io:8081/api",
+        baseURL: "https://j8d203.p.ssafy.io/api",
         headers: {
             "Content-Type": "application/JSON;charset=utf-8",
             Authorization: token
@@ -67,7 +67,7 @@ function createDefaultInstance(req) {
 function defaultFormDataInstance() {
     const token = getToken();
     const instance = axios__WEBPACK_IMPORTED_MODULE_0__["default"].create({
-        baseURL: "http://j8d203.p.ssafy.io:8081/api",
+        baseURL: "https://j8d203.p.ssafy.io/api",
         headers: {
             "Content-Type": "multipart/form-data;boundary=----WebKitFormBoundarylTMBUUyXqgLqmAdj",
             Authorization: token
