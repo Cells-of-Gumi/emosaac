@@ -8,9 +8,6 @@ test-job: # 임의로 지정한 JOB 이름
     # /home/gitlab-runner/builds/sZ_Zkzi3/0/s08-bigdata-recom-sub2/S08P22D203
     - git pull origin fe/develop
 
-    - pm2 stop emosaac
-    - pm2 kill
-
     - sudo chown -R `whoami` ~/.npm
     - sudo chown -R `whoami` /usr/local/lib/node_modules
     - cd client
@@ -23,14 +20,46 @@ test-job: # 임의로 지정한 JOB 이름
     - sudo npm run build
 
     - sudo chown -R  gitlab-runner:gitlab-runner .next 
-    - pm2 list
-    
-    - pm2 start npm --name "emosaac" -w -i max -- start
-    # - sudo npm run start
 
-    # reload 
-    # - pm2 reload emosaac 
-    
+    # 새로운 소스코드로 실행
+    - pm2 start npm --name "emosaac" -w -i max -- start
 
   tags: 
     - nextjs # build-server 태그가 달린 runner에서 실행
+    
+# test-job: # 임의로 지정한 JOB 이름
+#   stage: deploy # build, test, deploy 3단계 스테이지 중 하나
+#   only:
+#     - fe/develop # develop 브랜치 이벤트 발생시 실행
+#   before_script:
+#     # - git submodule update --init --recursive
+#   script: 
+#     # /home/gitlab-runner/builds/sZ_Zkzi3/0/s08-bigdata-recom-sub2/S08P22D203
+#     - git pull origin fe/develop
+
+#     - pm2 stop emosaac
+#     - pm2 kill
+
+#     - sudo chown -R `whoami` ~/.npm
+#     - sudo chown -R `whoami` /usr/local/lib/node_modules
+#     - cd client
+#     - cp .env.production .env
+#     # - rm .env.local
+
+#     - npm i
+#     - npm install universal-cookie
+#     - npm install cookie
+#     - sudo npm run build
+
+#     - sudo chown -R  gitlab-runner:gitlab-runner .next 
+#     - pm2 list
+    
+#     - pm2 start npm --name "emosaac" -w -i max -- start
+#     # - sudo npm run start
+
+#     # reload 
+#     # - pm2 reload emosaac 
+    
+
+#   tags: 
+#     - nextjs # build-server 태그가 달린 runner에서 실행
