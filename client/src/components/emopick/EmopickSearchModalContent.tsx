@@ -9,55 +9,57 @@ import { EmopickSearchBar } from "./EmopickSearchBar";
 import EmopickSearchBox from "./EmopickSearchBox";
 import { getListByContent } from "@/api/search/getSearchBooksByContent";
 import { IoCloseOutline } from "react-icons/io5";
+import { useAtom } from "jotai";
+import { selectedBookListAtom } from "@/jotai/atom";
 // {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string, forced?: boolean, blur?: boolean, isDarkMode?: boolean}
 
 interface Props {
-  bookList?: {
-    title: string;
-    bookId: number;
-    typeCd: number;
-    review: string;
-    thumbnail: string;
-  }[];
-  setBookList: Dispatch<
-    SetStateAction<
-      {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    >
-  >;
-  selectedBookList:
-    | {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    | [];
-  setSelectedBookList: Dispatch<
-    SetStateAction<
-      {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    >
-  >;
+  // bookList?: {
+  //   title: string;
+  //   bookId: number;
+  //   typeCd: number;
+  //   review: string;
+  //   thumbnail: string;
+  // }[];
+  // setBookList: Dispatch<
+  //   SetStateAction<
+  //     {
+  //       title: string;
+  //       bookId: number;
+  //       typeCd: number;
+  //       review: string;
+  //       thumbnail: string;
+  //     }[]
+  //   >
+  // >;
+  // selectedBookList:
+  //   | {
+  //       title: string;
+  //       bookId: number;
+  //       typeCd: number;
+  //       review: string;
+  //       thumbnail: string;
+  //     }[]
+  //   | [];
+  // setSelectedBookList: Dispatch<
+  //   SetStateAction<
+  //     {
+  //       title: string;
+  //       bookId: number;
+  //       typeCd: number;
+  //       review: string;
+  //       thumbnail: string;
+  //     }[]
+  //   >
+  // >;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const EmopickSearchModalContent = ({
-  bookList,
-  setBookList,
-  selectedBookList,
-  setSelectedBookList,
+  // bookList,
+  // setBookList,
+  // selectedBookList,
+  // setSelectedBookList,
   setIsModalOpen,
 }: Props) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -69,6 +71,7 @@ const EmopickSearchModalContent = ({
   const [prevId, setPrevId] = useState(0);
   const [prevScore, setPrevScore] = useState(10);
   const [isPageEnd, setIsPageEnd] = useState(false);
+  const [selectedBookList, setSelectedBookList] = useAtom(selectedBookListAtom);
   function getSearchBooks(prevId: number, prevScore: number) {
     const type = "total";
     const content = searchInput;
@@ -88,8 +91,13 @@ const EmopickSearchModalContent = ({
     );
   }
   function onClickClose() {
+    // setSelectedBookList([]);
     setIsModalOpen(false);
   }
+  useEffect(() => {
+    setSelectedBookList([]);
+    setBooks([]);
+  }, []);
   useEffect(() => {
     setIsPageEnd(false);
     if (searchInput && searchInput.length > 0) {
@@ -111,7 +119,7 @@ const EmopickSearchModalContent = ({
             setIsSearchBoxOpen={setIsSearchBoxOpen}
             searchInput={searchInput}
             setSearchInput={setSearchInput}
-            setSelectedBookList={setSelectedBookList}
+            // setSelectedBookList={setSelectedBookList}
             setBooks={setBooks}
           />
         ) : (
@@ -119,15 +127,15 @@ const EmopickSearchModalContent = ({
             setIsSearchBoxOpen={setIsSearchBoxOpen}
             searchInput={searchInput}
             setSearchInput={setSearchInput}
-            setSelectedBookList={setSelectedBookList}
+            // setSelectedBookList={setSelectedBookList}
             setBooks={setBooks}
           />
         )}
       </div>
 
       <EmopickSearchBox
-        selectedBookList={selectedBookList}
-        setSelectedBookList={setSelectedBookList}
+        // selectedBookList={selectedBookList}
+        // setSelectedBookList={setSelectedBookList}
         setIsSearchBoxOpen={setIsSearchBoxOpen}
         books={books}
         type={"total"}
@@ -135,9 +143,9 @@ const EmopickSearchModalContent = ({
         prevId={prevId}
         prevScore={prevScore}
         isPageEnd={isPageEnd}
-        bookList={bookList}
+        // bookList={bookList}
+        // setBookList={setBookList}
         searchInput={searchInput}
-        setBookList={setBookList}
         setIsModalOpen={setIsModalOpen}
       />
     </div>

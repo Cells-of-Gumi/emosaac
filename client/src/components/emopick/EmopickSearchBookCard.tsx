@@ -8,8 +8,13 @@ import naverSeries from "../../../assets/platform_naver_series.webp";
 import naverWebtoon from "../../../assets/platform_naver_webtoon.webp";
 import kakaoPage from "../../../assets/platform_kakao_page.png";
 import Portal from "@/components/function/Portal";
-
 import { BsCheck2Circle } from "react-icons/bs";
+import { useAtom } from "jotai";
+import { addedBookListAtom } from "@/jotai/atom";
+import { addedBookIdListAtom } from "@/jotai/atom";
+import { selectedBookListAtom } from "@/jotai/atom";
+import { selectedBookIdListAtom } from "@/jotai/atom";
+
 interface BookData {
   title: string;
   thumbnail: string;
@@ -24,33 +29,33 @@ interface Props {
   height?: string;
   minWidth?: string;
   minHeight?: string;
-  selectedBookList: {
-    title: string;
-    bookId: number;
-    typeCd: number;
-    review: string;
-    thumbnail: string;
-  }[];
-  setSelectedBookList: Dispatch<
-    SetStateAction<
-      {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    >
-  >;
-  bookList?: {
-    title: string;
-    bookId: number;
-    typeCd: number;
-    review: string;
-    thumbnail: string;
-  }[];
+  // selectedBookList: {
+  //   title: string;
+  //   bookId: number;
+  //   typeCd: number;
+  //   review: string;
+  //   thumbnail: string;
+  // }[];
+  // setSelectedBookList: Dispatch<
+  //   SetStateAction<
+  //     {
+  //       title: string;
+  //       bookId: number;
+  //       typeCd: number;
+  //       review: string;
+  //       thumbnail: string;
+  //     }[]
+  //   >
+  // >;
+  // addedBookList?: {
+  //   title: string;
+  //   bookId: number;
+  //   typeCd: number;
+  //   review: string;
+  //   thumbnail: string;
+  // }[];
   selectedBookIdList: number[];
-  bookIdList: number[];
+  addedBookIdList: number[];
 }
 
 const EmopickSearchBookCard = ({
@@ -60,11 +65,11 @@ const EmopickSearchBookCard = ({
   height,
   minWidth,
   minHeight,
-  selectedBookList,
-  setSelectedBookList,
-  bookList,
+  // selectedBookList,
+  // setSelectedBookList,
+  // addedBookList,
   selectedBookIdList,
-  bookIdList,
+  addedBookIdList,
 }: Props) => {
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -86,6 +91,12 @@ const EmopickSearchBookCard = ({
   const [isMouseOn, setIsMouseOn] = useState<boolean>(false);
   const platformBar = <div css={platformBarCSS}></div>;
   const [bookObj, setBookObj] = useState<bookType | null>(null);
+  const [addedBookList, setAddedBookList] = useAtom(addedBookListAtom);
+  const [selectedBookList, setSelectedBookList] = useAtom(selectedBookListAtom);
+  // const [addedBookIdList, setAddedBookIdList] = useAtom(addedBookIdListAtom);
+  // const [selectedBookIdList, setSelectedBookIdList] = useAtom(
+  //   selectedBookIdListAtom
+  // );
 
   useEffect(() => {
     bookObj && setSelectedBookList((prev) => [...prev, bookObj]);
@@ -104,7 +115,7 @@ const EmopickSearchBookCard = ({
         css={cardInnerWrapperCSS(
           { width, height, minWidth, minHeight },
           selectedBookIdList.includes(bookData.bookId),
-          bookIdList.includes(bookData.bookId)
+          addedBookIdList.includes(bookData.bookId)
         )}
       >
         <div>
@@ -122,7 +133,7 @@ const EmopickSearchBookCard = ({
           className={"img"}
           src={bookData && bookData.thumbnail}
           alt={bookData && bookData.title}
-          css={imageCSS(bookIdList.includes(bookData.bookId))}
+          css={imageCSS(addedBookIdList.includes(bookData.bookId))}
         />
         {showPlatform && bookData !== "LOADING" && platformBar}
       </div>

@@ -19,7 +19,12 @@ import { BasicButton } from "../UI/NavigationBar/BasicButton";
 import { MdOutlineKeyboardDoubleArrowUp } from "react-icons/md";
 import { returnSearchBooksType } from "@/types/search";
 import { throttle } from "lodash";
-import { atom, useAtom } from "jotai";
+// import { atom, useAtom } from "jotai";
+import { useAtom } from "jotai";
+import { addedBookListAtom } from "@/jotai/atom";
+import { addedBookIdListAtom } from "@/jotai/atom";
+import { selectedBookListAtom } from "@/jotai/atom";
+import { selectedBookIdListAtom } from "@/jotai/atom";
 
 type bookType = {
   title: string;
@@ -30,24 +35,24 @@ type bookType = {
 };
 
 interface Props {
-  setSelectedBookList: Dispatch<
-    SetStateAction<
-      {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    >
-  >;
-  selectedBookList: {
-    title: string;
-    bookId: number;
-    typeCd: number;
-    review: string;
-    thumbnail: string;
-  }[];
+  // setSelectedBookList: Dispatch<
+  //   SetStateAction<
+  //     {
+  //       title: string;
+  //       bookId: number;
+  //       typeCd: number;
+  //       review: string;
+  //       thumbnail: string;
+  //     }[]
+  //   >
+  // >;
+  // selectedBookList: {
+  //   title: string;
+  //   bookId: number;
+  //   typeCd: number;
+  //   review: string;
+  //   thumbnail: string;
+  // }[];
   setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
   books: returnSearchBooksType[];
   type: string;
@@ -55,31 +60,31 @@ interface Props {
   prevId: number;
   prevScore: number;
   isPageEnd: boolean;
-  bookList?: {
-    title: string;
-    bookId: number;
-    typeCd: number;
-    review: string;
-    thumbnail: string;
-  }[];
+  // bookList?: {
+  //   title: string;
+  //   bookId: number;
+  //   typeCd: number;
+  //   review: string;
+  //   thumbnail: string;
+  // }[];
+  // setBookList: Dispatch<SetStateAction<bookType[]>>;
   searchInput: string;
-  setBookList: Dispatch<SetStateAction<bookType[]>>;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const EmopickSearchBox = ({
   setIsSearchBoxOpen,
-  setSelectedBookList,
-  selectedBookList,
+  // setSelectedBookList,
+  // selectedBookList,
   books,
   type,
   getSearchBooks,
   prevId,
   prevScore,
   isPageEnd,
-  bookList,
+  // bookList,
+  // setBookList,
   searchInput,
-  setBookList,
   setIsModalOpen,
 }: Props) => {
   const router = useRouter();
@@ -89,8 +94,14 @@ const EmopickSearchBox = ({
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [getBooks, setGetBooks] = useState<boolean>(false);
   const [selectedBookIdList, setSelectedBookIdList] = useState<number[]>([]);
-  const [bookIdList, setBookIdList] = useState<number[]>([]);
+  const [addedBookIdList, setAddedBookIdList] = useState<number[]>([]);
   const booksWrapRef = useRef<HTMLDivElement>(null);
+  const [addedBookList, setAddedBookList] = useAtom(addedBookListAtom);
+  const [selectedBookList, setSelectedBookList] = useAtom(selectedBookListAtom);
+  // const [addedBookIdList, setAddedBookIdList] = useAtom(addedBookIdListAtom);
+  // const [selectedBookIdList, setSelectedBookIdList] = useAtom(
+  //   selectedBookIdListAtom
+  // );
   const onWheelHandler = useMemo(
     () =>
       throttle((event) => {
@@ -112,7 +123,7 @@ const EmopickSearchBox = ({
   );
 
   function selectBook(oneBookData: any) {
-    if (bookIdList && !bookIdList.includes(oneBookData)) {
+    if (addedBookIdList && !addedBookIdList.includes(oneBookData.bookId)) {
       if (
         selectedBookIdList &&
         selectedBookIdList.includes(oneBookData.bookId)
@@ -125,26 +136,28 @@ const EmopickSearchBox = ({
           console.log(book.bookId !== oneBookData.bookId);
           return book.bookId !== oneBookData.bookId;
         });
-        setSelectedBookIdList(newSelectedBookIdList);
+        // setSelectedBookIdList(newSelectedBookIdList);
         setSelectedBookList(newSelectedBookList);
       } else {
         const nowBookObj: bookType = {
           title: oneBookData.title,
           bookId: oneBookData.bookId,
           typeCd: oneBookData.typeCd,
-          review: "ggggg",
+          review: "",
           thumbnail: oneBookData.thumbnail,
         };
-        setSelectedBookIdList((prev) => [...prev, oneBookData.bookId]);
-        setSelectedBookList((prev) => [...prev, nowBookObj]);
+        // setSelectedBookIdList((prev) => [...prev, oneBookData.bookId]);
+        console.log(selectedBookList);
+        console.log(selectedBookIdList);
+        setSelectedBookList([...selectedBookList, nowBookObj]);
       }
     }
   }
 
   function addBook(oneBook: any) {
     console.log(selectedBookList);
-    setBookList((prev) => [...prev, ...selectedBookList]);
-    setSelectedBookIdList([]);
+    setAddedBookList((prev) => [...prev, ...selectedBookList]);
+    // setSelectedBookIdList([]);
     setSelectedBookList([]);
     setIsModalOpen(false);
   }
@@ -161,20 +174,28 @@ const EmopickSearchBox = ({
   }, [books]);
 
   useEffect(() => {
-    console.log(selectedBookList);
-  }, [searchInput]);
-
-  useEffect(() => {
-    if (bookList !== undefined && bookList.length > 0) {
-      const newBookIdList = bookList.map((book) => {
+    if (addedBookList !== undefined && addedBookList.length > 0) {
+      const newBookIdList = addedBookList.map((book) => {
         return book.bookId;
       });
-      setBookIdList(newBookIdList);
+      setAddedBookIdList(newBookIdList);
     } else {
-      setBookIdList([]);
+      setAddedBookIdList([]);
     }
-    console.log(bookList);
-  }, [bookList]);
+    // console.log(addedBookList);
+  }, [selectedBookList]);
+
+  useEffect(() => {
+    if (selectedBookList !== undefined && selectedBookList.length > 0) {
+      const newBookIdList = selectedBookList.map((book) => {
+        return book.bookId;
+      });
+      setSelectedBookIdList(newBookIdList);
+    } else {
+      setSelectedBookIdList([]);
+    }
+    console.log(selectedBookList);
+  }, [selectedBookList]);
   return (
     <div css={searchWrapCSS}>
       <div
@@ -223,11 +244,11 @@ const EmopickSearchBox = ({
                         showPlatform={false}
                         width={"100%"}
                         height={isMobile ? "170px" : "190px"}
-                        setSelectedBookList={setSelectedBookList}
-                        selectedBookList={selectedBookList}
-                        bookList={bookList}
+                        // setSelectedBookList={setSelectedBookList}
+                        // selectedBookList={selectedBookList}
+                        // addedBookList={addedBookList}
                         selectedBookIdList={selectedBookIdList}
-                        bookIdList={bookIdList}
+                        addedBookIdList={addedBookIdList}
                       />
                       <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
                         <div>{book.title}</div>
@@ -323,7 +344,7 @@ const booksWrapCSS = (
     display: ${isNoData ? "block" : "grid"};
     ${!isNoData &&
     (isMobile
-      ? "grid-template-columns: 1fr 1fr 1fr;"
+      ? "grid-template-columns: 1fr 1fr;"
       : "grid-template-columns: 1fr 1fr 1fr 1fr;")}
     ${isDeskTop && "column-gap: 20px;"}
     ${!isDeskTop && "column-gap: 10px;"}
@@ -423,7 +444,12 @@ const addButtonCSS = (
   background-color: ${isDisable ? "#bbb" : "var(--main-color)"};
   border-radius: 5px;
   height: 40px;
-  width: ${isMobile ? "100%" : "100%"};
+  width: 100%;
+  transition: all 0.2s;
+  /* font-weight: bold; */
+  &:hover {
+    background-color: ${isDisable ? "#bbb" : "var(--main-color-op)"};
+  }
 `;
 
 export default EmopickSearchBox;

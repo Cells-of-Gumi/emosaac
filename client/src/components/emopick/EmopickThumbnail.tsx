@@ -28,7 +28,7 @@ const EmopickThumbnail = ({ thumbnails, bookCnt, isMouseOnCard }: Props) => {
     >
       <div>
         {thumbnails
-          .split(" ")
+          ?.split(" ")
           .slice(0, 4)
           .map((thumb, idx) => (
             <div key={idx}>
