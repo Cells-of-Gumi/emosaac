@@ -282,7 +282,7 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
             {hasNext &&
                 <div css={scrollDivSCC} id={"scrollStart"} ref={scrollWrapperRef}>
                     {/* ∨ */}
-                    <UseAnimations strokeColor={'var(--text-color)'} animation={loading2} size={50} />
+                    <UseAnimations strokeColor={'var(--text-color)'} fillColor={'var(--back-color-2)'} animation={loading2} size={50} />
                 </div>
             }
             
