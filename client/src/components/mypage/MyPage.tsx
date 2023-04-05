@@ -31,12 +31,7 @@ const MyPage = ({ myInfo }: any) => {
 
   
 
-  useEffect(() => {
-    const loadTabIdx = Number(window.sessionStorage.getItem('my_profile_tab_idx'))
-    if (loadTabIdx) {
-      setTabState(() => loadTabIdx)
-    }
-  }, [])
+  
 
 
 
@@ -53,13 +48,19 @@ const MyPage = ({ myInfo }: any) => {
     setTypeCode(() => value)
   }
 
-  const tabConfig = [
+  const tabConfig: {label: string; setTabState: number; execFunction: Function}[] = [
     {label: '웹툰', setTabState: 0, execFunction: onClickTypeCodeHandler.bind(this, 0)},
     {label: '웹소설', setTabState: 1, execFunction: onClickTypeCodeHandler.bind(this, 1)},
-    {label: 'EMOSAAC', setTabState: 2, execFunction: null},
+    {label: 'EMOSAAC', setTabState: 2, execFunction: () => {}},
   ]
 
-
+useEffect(() => {
+    const loadTabIdx = Number(window.sessionStorage.getItem('my_profile_tab_idx'))
+    if (loadTabIdx) {
+      setTabState(() => loadTabIdx)
+      tabConfig[loadTabIdx].execFunction()
+    }
+  }, [])
 
   const tabRender = tabConfig.map((el, idx) => {
     return (

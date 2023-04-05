@@ -70,7 +70,7 @@ const dropdownCSS = css`
     width: 160px;
     height: 40px;
     /* box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.1); */
-    border: 1px solid rgb(220, 220, 220);
+    border: 1px solid var(--back-color-4);
     background-color: var(--back-color);
     border-radius: 5px;
     display: flex;

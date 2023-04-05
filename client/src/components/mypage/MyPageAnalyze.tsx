@@ -50,13 +50,13 @@ const MyPageAnalyze = ({typeCode} : {typeCode: number}) => {
   const bookFetchList = [
     {
       API: getHasBeenReadBooksAPI,
-      identifier: `getAlreadyList-${typeCode}`,
+      identifier: `getAlreadyList-${typeCode}-${Math.floor(Math.random() * 100000)}`,
       beforeLabel: "읽은 목록 ",
       requireLogin: false,
     },
     {
       API: getBookmarkBooksAPI,
-      identifier: `getBookmarkList-${typeCode}`,
+      identifier: `getBookmarkList-${typeCode}-${Math.floor(Math.random() * 100000)}`,
       beforeLabel: "북마크 목록 ",
       requireLogin: false,
     },

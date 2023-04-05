@@ -39,6 +39,7 @@ const EmopickCard = ({ emopick }: Props) => {
   }
   return (
     <div
+      className={'emopick-card-wrapper'}
       key={emopick.emopickId}
       onClick={() => onClickBox(emopick.emopickId)}
       onMouseOver={() => setIsMouseOnCard(true)}
