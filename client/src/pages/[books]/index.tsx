@@ -80,11 +80,19 @@ export default function Home({
 
 
   const throttleScroll = useMemo(() => throttle(() => {
+    if (indexWrapperRef.current) {
+      indexWrapperRef.current.style.pointerEvents = 'none'
+    }
+    
     setIsScrolling(() => true)
-  }, 1000), []);
+  }, 100), []);
   const debounceScroll = useMemo(() => debounce(() => {
+    if (indexWrapperRef.current) {
+      indexWrapperRef.current.style.pointerEvents = 'auto'
+    }
+    
     setIsScrolling(() => false)
-  }, 10), []);
+  }, 200), []);
 
 
   // ________________________________________________________________________________________________
@@ -435,7 +443,7 @@ export default function Home({
 
   return (
     <div ref={indexWrapperRef} css={indexWrapperCSS({isScrolling})}>
-      
+      {/* <FloatingButton isDarkMode={isDarkMode}/> */}
       {myInfo !== false && <FloatingButton isDarkMode={isDarkMode}/>}
       <div css={bannerWrapperCSS} ref={parentRef}>
         <SwipeableGallery parentRef={parentRef} content={postData} />

@@ -18,10 +18,12 @@ import { postOcr } from "@/api/ocr/postOcr";
 import FloatingButtonModalSubmitForm from "./FloatingButtonModalSubmitForm";
 import FloatingButtonModalLoading from "./FloatingButtonModalLoading";
 import FloatingButtonModalFinish from "./FloatingButtonModalFinish";
+import FloatingButtonModalError from "./FloatingButtonModalError";
 import ScanMain from "../ScanMain";
 
 import { bookContentType } from "@/types/books";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
+
 
 
 
@@ -52,6 +54,7 @@ const FloatingButtonModal = ({
   const [afterPhase, setAfterPhase] = useState<number>(0)
 
   const [bookData, setBookData] = useState<bookContentType[] | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
   const phaseHandler = (phase: number) => {
     setBeforePhase(() => phase)
@@ -60,6 +63,10 @@ const FloatingButtonModal = ({
     }, 500)
   }
 
+
+
+
+  
 
   useEffect(() => {
     
@@ -71,8 +78,8 @@ const FloatingButtonModal = ({
   }, [])
 
   const modalLayout = {
-    widthValue: beforePhase === 0 ? (isMobile ? 360 : 450) : (beforePhase === 1 ? 280 : (beforePhase === 2 ? (isMobile ? 360 : 1920) : (beforePhase === 3 ? 300 : 300))),
-    heightValue: beforePhase === 0 ? 538 : (beforePhase === 1 ? 280 : (beforePhase === 2 ? (isMobile ? 620 : 1080) : (beforePhase === 3 ? 300 : 300))),
+    widthValue: beforePhase === 0 ? (isMobile ? 360 : 450) : (beforePhase === 1 ? 280 : (beforePhase === 2 ? (isMobile ? 360 : 1920) : (beforePhase === 3 ? 300 : (beforePhase === 4 ? 300 : 300)))),
+    heightValue: beforePhase === 0 ? 538 : (beforePhase === 1 ? 280 : (beforePhase === 2 ? (isMobile ? 620 : 1080) : (beforePhase === 3 ? 300 : (beforePhase === 4 ? 300 : 300)))),
   };
 
   useEffect(() => {
@@ -102,11 +109,33 @@ const FloatingButtonModal = ({
         
       }, 500);
     } else {
-      setModalToggler(() => false);
+      setTimeout(function () {
+        setModalToggler(() => false);
+        
+        
+      }, 500);
+      
     }
     setContentToggler(() => false);
     setIsClosing(() => true)
   };
+
+
+  useEffect(() => {
+    router.beforePopState(({ url, as, options }) => {
+      if (as !== router.asPath) {
+        window.history.pushState('', '');
+        router.push(router.asPath);
+        modalHandler();
+        return false
+      }
+
+      return true
+    })
+    return () => {
+    router.beforePopState(() => true);
+    };
+  }, [])
 
 
   const onClickSubmitHandler = ({image, contentType}: {image: File | null, contentType: 0 | 1}) => {
@@ -115,10 +144,22 @@ const FloatingButtonModal = ({
       phaseHandler(1)
       postOcr({file: image, typeCode: contentType})
       .then((res) => {
-        setBookData(() => res)
-        phaseHandler(2)
+        if (res && res.length !== 0) {
+          setBookData(() => res)
+          phaseHandler(2)
+        } else {
+          setErrorMessage(() => '이미지에 작품이 존재하지 않는 것 같습니다!')
+          phaseHandler(4)
+        }
+        
+        
 
         console.log(res)
+      })
+      .catch((err) => {
+        console.log(err)
+        setErrorMessage(() => err.message)
+        phaseHandler(4)
       })
     }
   }
@@ -172,6 +213,12 @@ const FloatingButtonModal = ({
           {afterPhase === 3 &&
             <div css={phaseCSS({targetPhase: 3, beforePhase: beforePhase, afterPhase: afterPhase})}>
               <FloatingButtonModalFinish modalHandler={modalHandler} phaseHandler={phaseHandler} />
+            </div>
+          }
+
+          {afterPhase === 4 && errorMessage &&
+            <div css={phaseCSS({targetPhase: 4, beforePhase: beforePhase, afterPhase: afterPhase})}>
+              <FloatingButtonModalError modalHandler={modalHandler} phaseHandler={phaseHandler} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />
             </div>
           }
 

@@ -10,7 +10,7 @@ const FloatingButtonModalFinish = ({modalHandler, phaseHandler}: {modalHandler: 
     useEffect(() => {
         setTimeout(() => {
             modalHandler()
-            phaseHandler(4)
+            phaseHandler(10)
         }, 2000)
     }, [])
 
