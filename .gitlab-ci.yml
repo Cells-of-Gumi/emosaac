@@ -24,11 +24,9 @@ test-job: # 임의로 지정한 JOB 이름
 
     - sudo chown -R  gitlab-runner:gitlab-runner .next 
     - pm2 list
-
-    # - sudo npm run start
     
     - pm2 start npm --name "emosaac" -w -i max -- start
-    - sudo npm run start
+    # - sudo npm run start
 
     # reload 
     # - pm2 reload emosaac 
