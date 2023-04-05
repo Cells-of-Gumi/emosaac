@@ -56,7 +56,7 @@ const FloatingButtonModalSubmitForm = ({modalHandler, phaseHandler, onClickSubmi
 
 
     const descDetail = (
-      <div className={'detail-backdrop'} css={backdropCSS}>
+      <div className={'detail-backdrop'} css={backdropCSS} onClick={(event) => {event.stopPropagation()}}>
         <div css={descDetailWrapperCSS}>
           <img css={exampleImgCSS} src={'/assets/scan_example.jpg'} />
           <div css={descStringWrapperCSS}>
@@ -281,6 +281,7 @@ const showMoreDetailCSS = css`
   margin-left: 8px;
   font-size: 14px;
   font-weight: 700;
+  user-select: none;
   cursor: pointer;
   &:hover .detail-backdrop {
     opacity: 100%;

@@ -27,14 +27,7 @@ interface EmopickInfinityScrollProps {
 
 const EmopickInfinityScroll = ({API, identifier}: EmopickInfinityScrollProps) => {
     const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-    const cardLayout = {
-        // width: isDeskTop ?  "200px" : "45vw",
-        // height: isDeskTop ? "300px" : "70vw",
-        minWidth: isDeskTop ? "200px" : "45vw",
-        minHeight: isDeskTop ? "300px" : "70vw",
-        padding: "0.5vw",
-        margin: isDeskTop ? "16px" : "2vw"
-    };
+
 
     const [fetchedData, setFetchedData] = useState<any>([])
     const [quantityPerPage, setQuantityPerPage] = useState<number>(20)
@@ -216,7 +209,7 @@ const EmopickInfinityScroll = ({API, identifier}: EmopickInfinityScrollProps) =>
         if (page.length !== 0) {
             
             return (
-                <div css={css`${isDeskTop ? 'width: 100%;' : 'width: 100vw;'}`} key={`${identifier}-infinity-${pageIdx}`} id={`${pageIdx}`} ref={(el) => {pageClassRef.current[pageIdx] = el;}}>
+                <div css={css`width: 100%;`} key={`${identifier}-infinity-${pageIdx}`} id={`${pageIdx}`} ref={(el) => {pageClassRef.current[pageIdx] = el;}}>
                     <div ref={page.length === quantityPerPage ? actualPageRef : null} css={contentPageWrapperCSS({isMobile, isTablet, isDeskTop})}>{contentRender}</div>
                 </div>
             )
@@ -335,7 +328,7 @@ const scrollDivSCC = css`
 const cardWrapperCSS = () => {
     return css`
 
-        margin: 36px;;
+        margin: 24px;;
         content-visibility: auto;
     `
 }

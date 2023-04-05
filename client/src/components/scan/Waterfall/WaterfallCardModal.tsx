@@ -230,7 +230,7 @@ const wrapperCSS = ({
   // const activated = isRightEdge === true ? rightStandard : leftStandard;
 
   return css`
-    transform: ${isOpened ? (isClosing ? `rotateY(${rotateY * 1.6}deg)` : null) : `rotateY(${rotateY * 1.6}deg)`} ;
+    /* transform: ${isOpened ? (isClosing ? `rotateY(${rotateY * 1.6}deg)` : null) : `rotateY(${rotateY * 1.6}deg)`} ; */
     position: absolute;
     z-index: 999999999;
     transition-property: width height;
