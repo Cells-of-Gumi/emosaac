@@ -1908,7 +1908,7 @@ const storyWrapperCSS = ({ unfoldStory  })=>{
       -webkit-line-clamp: 4;
       overflow: hidden;
     `}
-    
+
     margin-bottom: 8px;
     line-height: 130%;
   `;
@@ -1931,9 +1931,9 @@ const myScoreStringCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
   /* margin-right: 4px; */
 `;
 const platformRatingWrapperCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
-height: 100%;
-display: flex;
-align-items: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
   position: relative;
   margin-right: 8px;
 
@@ -1949,7 +1949,7 @@ const unfoldStringCSS = _emotion_react__WEBPACK_IMPORTED_MODULE_1__.css`
   font-size: 14px;
   font-weight: 500;
   color: var(--text-color-4);
-  cursor:pointer;
+  cursor: pointer;
 `;
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BookDetail);
 
