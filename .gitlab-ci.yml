@@ -17,10 +17,10 @@ test-job: # 임의로 지정한 JOB 이름
     - cp .env.production .env
     # - rm .env.local
 
-    # - npm i
-    # - npm install universal-cookie
-    # - npm install cookie
-    # - sudo npm run build
+    - npm i
+    - npm install universal-cookie
+    - npm install cookie
+    - sudo npm run build
 
     - sudo chown -R  gitlab-runner:gitlab-runner .next/ 
     - pm2 list
