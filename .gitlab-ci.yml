@@ -8,8 +8,8 @@ test-job: # 임의로 지정한 JOB 이름
     # /home/gitlab-runner/builds/sZ_Zkzi3/0/s08-bigdata-recom-sub2/S08P22D203
     - git pull origin fe/develop
 
-    - pm2 stop emosaac
-    - pm2 kill
+    # - pm2 stop emosaac
+    # - pm2 kill
 
     - sudo chown -R `whoami` ~/.npm
     - sudo chown -R `whoami` /usr/local/lib/node_modules
@@ -22,14 +22,14 @@ test-job: # 임의로 지정한 JOB 이름
     - npm install cookie
     - sudo npm run build
 
-    - sudo chown -R  gitlab-runner:gitlab-runner .next 
+    - sudo chown -R  gitlab-runner:gitlab-runner .next/ 
     - pm2 list
-
-    # - sudo npm run start
     
-    - pm2 start npm --name "emosaac" -w -i max -- start
-    - sudo npm run start
+    # - pm2 start npm --name "emosaac" -w -i max -- start
+    - pm2 restart emosaac
 
+    # - sudo npm run start 
+    
     # reload 
     # - pm2 reload emosaac 
     

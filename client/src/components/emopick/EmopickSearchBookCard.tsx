@@ -50,6 +50,7 @@ interface Props {
     thumbnail: string;
   }[];
   selectedBookIdList: number[];
+  bookIdList: number[];
 }
 
 const EmopickSearchBookCard = ({
@@ -63,6 +64,7 @@ const EmopickSearchBookCard = ({
   setSelectedBookList,
   bookList,
   selectedBookIdList,
+  bookIdList,
 }: Props) => {
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -71,6 +73,7 @@ const EmopickSearchBookCard = ({
   useEffect(() => {
     setUser(() => navigator.userAgent);
   }, []);
+
   type bookType = {
     title: string;
     bookId: number;
@@ -83,9 +86,6 @@ const EmopickSearchBookCard = ({
   const [isMouseOn, setIsMouseOn] = useState<boolean>(false);
   const platformBar = <div css={platformBarCSS}></div>;
   const [bookObj, setBookObj] = useState<bookType | null>(null);
-  function findBook(book: any) {
-    return book.bookId === bookData.bookId;
-  }
 
   useEffect(() => {
     bookObj && setSelectedBookList((prev) => [...prev, bookObj]);
@@ -103,12 +103,15 @@ const EmopickSearchBookCard = ({
         className={"bookcard-inner-wrapper"}
         css={cardInnerWrapperCSS(
           { width, height, minWidth, minHeight },
-          selectedBookIdList.includes(bookData.bookId)
+          selectedBookIdList.includes(bookData.bookId),
+          bookIdList.includes(bookData.bookId)
         )}
       >
         <div>
           <BsCheck2Circle size={isMobile ? 20 : 24} />
-          선택 완료
+          {selectedBookIdList.includes(bookData.bookId)
+            ? "선택 완료"
+            : "리뷰 작성중"}
         </div>
         <div
           css={skeletonLoadingTagCSS({
@@ -119,7 +122,7 @@ const EmopickSearchBookCard = ({
           className={"img"}
           src={bookData && bookData.thumbnail}
           alt={bookData && bookData.title}
-          css={imageCSS}
+          css={imageCSS(bookIdList.includes(bookData.bookId))}
         />
         {showPlatform && bookData !== "LOADING" && platformBar}
       </div>
@@ -162,7 +165,8 @@ interface CardInnerWrapperProps {
 
 const cardInnerWrapperCSS = (
   { width, height, minWidth, minHeight }: CardInnerWrapperProps,
-  isInclueded: boolean
+  isInSelect: boolean,
+  isInAdd: boolean
 ) => {
   return css`
     position: relative;
@@ -179,8 +183,8 @@ const cardInnerWrapperCSS = (
     justify-content: center;
     align-items: center;
     & > div:nth-of-type(1) {
-      visibility: ${isInclueded ? "visible" : "hidden"};
-      opacity: ${isInclueded ? "1" : "0"};
+      visibility: ${isInSelect || isInAdd ? "visible" : "hidden"};
+      opacity: ${isInSelect || isInAdd ? "1" : "0"};
       border-radius: 9px;
       position: absolute;
       display: flex;
@@ -191,10 +195,12 @@ const cardInnerWrapperCSS = (
       height: 100%;
       width: 100%;
       background-color: rgba(0, 0, 0, 0.6);
-      color: var(--main-color);
+      color: ${isInSelect ? "var(--main-color)" : "#fff"};
       font-weight: bold;
       overflow: hidden;
-      border: 5px solid var(--main-color);
+      border: ${isInSelect
+        ? "5px solid var(--main-color)"
+        : "5px solid #8f8f8f"};
       /* box-shadow: inset 0px 0px 0px 10px var(--main-color); */
     }
   `;
@@ -210,13 +216,13 @@ const platformBarCSS = css`
   pointer-events: none;
 `;
 
-const imageCSS = css`
+const imageCSS = (isInAdd: boolean) => css`
   width: 100%;
   height: 100%;
   transition: transform 0.3s;
   object-fit: cover;
   &:hover {
-    transform: scale(1.1);
+    ${isInAdd ? null : "transform: scale(1.1);"}
   }
 `;
 

@@ -111,7 +111,7 @@ const PutUserInfo = ({ myInfo }: any) => {
       // console.log(response);
 
       alert("수정되었어요");
-      router.push("/mypage");
+      router.push("/webtoon");
     } catch (error) {
       console.log(error);
     }

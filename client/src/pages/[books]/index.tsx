@@ -85,22 +85,28 @@ export default function Home({
     };
   }, []);
 
+  const throttleScroll = useMemo(
+    () =>
+      throttle(() => {
+        if (indexWrapperRef.current) {
+          indexWrapperRef.current.style.pointerEvents = "none";
+        }
 
-  const throttleScroll = useMemo(() => throttle(() => {
-    if (indexWrapperRef.current) {
-      indexWrapperRef.current.style.pointerEvents = 'none'
-    }
-    
-    setIsScrolling(() => true)
-  }, 100), []);
-  const debounceScroll = useMemo(() => debounce(() => {
-    if (indexWrapperRef.current) {
-      indexWrapperRef.current.style.pointerEvents = 'auto'
-    }
-    
-    setIsScrolling(() => false)
-  }, 200), []);
+        setIsScrolling(() => true);
+      }, 100),
+    []
+  );
+  const debounceScroll = useMemo(
+    () =>
+      debounce(() => {
+        if (indexWrapperRef.current) {
+          indexWrapperRef.current.style.pointerEvents = "auto";
+        }
 
+        setIsScrolling(() => false);
+      }, 200),
+    []
+  );
 
   // ________________________________________________________________________________________________
   // 임시 데이터
@@ -328,7 +334,7 @@ export default function Home({
       identifier: `HighPrediction-${params}`,
       beforeLabel: `놀라지마세요, `,
       highlightedLabel: "완전 내 취향",
-      afterLabel: " 작품을 보여줄게요",
+      afterLabel: ` ${params === "webtoon" ? "웹툰" : "웹소설"}을 보여줄게요`,
       requireLogin: true,
     },
     {
@@ -336,7 +342,7 @@ export default function Home({
       identifier: `Relative-${params}`,
       beforeLabel: "최근 읽은 작품과  ",
       highlightedLabel: "비슷한",
-      afterLabel: " 작품을 보여줄게요",
+      afterLabel: ` ${params === "webtoon" ? "웹툰" : "웹소설"}을 보여줄게요`,
       requireLogin: true,
     },
     {
@@ -355,21 +361,23 @@ export default function Home({
       afterLabel: "를 보여줄게요",
       requireLogin: true,
     },
-    {
-      API: getPersonalRecommendationAPI,
-      identifier: `PersonalRecommendation-${params}`,
-      // beforeLabel: "나와 ",
-      highlightedLabel: "비슷한 취향",
-      afterLabel: "을 가진 사람이 읽은 작품을 보여줄게요",
-      requireLogin: true,
-    },
+    // {
+    //   API: getPersonalRecommendationAPI,
+    //   identifier: `PersonalRecommendation-${params}`,
+    //   // beforeLabel: "나와 ",
+    //   highlightedLabel: "비슷한 취향",
+    //   afterLabel: `을 가진 사람이 읽은 ${
+    //     params === "webtoon" ? "웹툰" : "웹소설"
+    //   }을 보여줄게요`,
+    //   requireLogin: true,
+    // },
     {
       API: getUserCharacteristicRecommendationAPI,
       identifier: `UserCharacteristicRecommendation-${params}`,
       highlightedLabel: `${myInfo.age}대 ${
         myInfo.gender === 0 ? "남성" : "여성"
       }`,
-      afterLabel: "이 좋아하는 작품",
+      afterLabel: `이 많이 본 ${params === "webtoon" ? "웹툰" : "웹소설"}`,
       requireLogin: true,
     },
     {
@@ -377,7 +385,7 @@ export default function Home({
       identifier: `Released-${params}`,
       beforeLabel: "지난 1년간  ",
       highlightedLabel: "새로 나온",
-      afterLabel: " 작품",
+      afterLabel: ` ${params === "webtoon" ? "웹툰" : "웹소설"}`,
       requireLogin: false,
     },
 
@@ -412,6 +420,9 @@ export default function Home({
   //   .catch((err) => console.log(err))
   // }, [])
   // const RowtitleBeforeLabe = `${myInfo.nickname}님께 `;
+  const rowTitleAfterLabel = ` ${
+    params === "webtoon" ? "웹툰" : "웹소설"
+  }을 보여줄게요`;
   const highlightedCarouselRender = (
     <>
       <div css={whiteSpace1CSS} />
@@ -419,7 +430,7 @@ export default function Home({
         <RowTitle
           beforeLabel="당신께 "
           highlightedLabel="강력 추천하는"
-          afterLabel=" 작품이에요"
+          afterLabel={rowTitleAfterLabel}
           noLine={true}
           marginBottom={"35px"}
         />
@@ -448,9 +459,9 @@ export default function Home({
   // ]
 
   return (
-    <div ref={indexWrapperRef} css={indexWrapperCSS({isScrolling})}>
+    <div ref={indexWrapperRef} css={indexWrapperCSS({ isScrolling })}>
       {/* <FloatingButton isDarkMode={isDarkMode}/> */}
-      {myInfo !== false && <FloatingButton isDarkMode={isDarkMode}/>}
+      {myInfo !== false && <FloatingButton isDarkMode={isDarkMode} />}
       <div css={bannerWrapperCSS} ref={parentRef}>
         <SwipeableGallery parentRef={parentRef} content={postData} />
       </div>

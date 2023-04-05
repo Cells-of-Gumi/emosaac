@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import EmopickFloatingButton from "./EmopickFloatingButton";
 import FixedModal from "../UI/FixedModal/FixedModal";
@@ -74,6 +74,7 @@ const EmopickSearchModal = ({
             setBookList={setBookList}
             selectedBookList={selectedBookList}
             setSelectedBookList={setSelectedBookList}
+            setIsModalOpen={setIsModalOpen}
           />
         }
       />
