@@ -8,7 +8,7 @@ test-job: # 임의로 지정한 JOB 이름
     # /home/gitlab-runner/builds/sZ_Zkzi3/0/s08-bigdata-recom-sub2/S08P22D203
     - git pull origin fe/develop
 
-    - sudo chown -R  gitlab-runner:gitlab-runner client/.next 
+    - ls -al
 
     # - pm2 stop emosaac
     # - pm2 kill
