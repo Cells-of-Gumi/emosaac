@@ -10,14 +10,13 @@ test-job: # 임의로 지정한 JOB 이름
 
     # - pm2 stop emosaac
     # - pm2 kill
+    - sudo chown -R  gitlab-runner:gitlab-runner .next 
 
     - sudo chown -R `whoami` ~/.npm
     - sudo chown -R `whoami` /usr/local/lib/node_modules
     - cd client
     - cp .env.production .env
     # - rm .env.local
-
-    - echo "hi"
 
     # - npm i
     # - npm install universal-cookie
