@@ -29,15 +29,11 @@ const AlreadyReadList = ({ typeCode }: AlreadyProps) => {
     bookList: returnGetAlreadyProps[];
     size: number;
   }) => {
-    if (bookList) {
-      const prevId = bookList?.length
-        ? bookList[bookList?.length - 1].bookId
-        : 0;
-      const prevTime = bookList?.length
-        ? bookList[bookList.length - 1].prevTime
-        : "";
-      return getAlreadyRead({ prevId, prevTime, size, typeCode });
-    }
+    const prevId = bookList?.length ? bookList[bookList?.length - 1].bookId : 0;
+    const prevTime = bookList?.length
+      ? bookList[bookList?.length - 1].prevTime
+      : "";
+    return getAlreadyRead({ prevId, prevTime, size, typeCode });
   };
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
