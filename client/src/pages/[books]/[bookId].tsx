@@ -26,11 +26,6 @@ import { getRelative } from "@/api/recommendation/getRelative";
 import { getBooksByAuthor } from "@/api/book/getBooksByAuthor";
 import SortByRows from "@/components/bookTab/SortByRows";
 
-
-
-
-
-
 interface BookDetailProps {
   bookData: bookDetailType;
   myInfo: any;
@@ -40,8 +35,8 @@ interface BookDetailProps {
 const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [commentModalState, setCommentModalState] = useState<boolean>(false);
-  const [unfoldStory, setUnfoldStory] = useState<boolean>(false)
-  const storyWrapperRef = useRef<HTMLDivElement>(null)
+  const [unfoldStory, setUnfoldStory] = useState<boolean>(false);
+  const storyWrapperRef = useRef<HTMLDivElement>(null);
 
   const getRelativeAPI = ({
     lastContent,
@@ -50,11 +45,10 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
     lastContent: bookContentType;
     size: number;
   }) => {
-
     return getRelative({
       bookId: bookData.bookId,
     });
-  }
+  };
 
   const getBooksByAuthorAPI = ({
     lastContent,
@@ -63,40 +57,33 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
     lastContent: bookContentType;
     size: number;
   }) => {
-
     return getBooksByAuthor({
       bookId: bookData.bookId,
     });
-  }
-
-
+  };
 
   const bookFetchList = [
     {
       API: getRelativeAPI,
       identifier: `getRelative-${bookData.bookId}`,
-      beforeLabel: '비슷한 작품 ',
-      highlightedLabel: 'EMOSAAC!',
+      beforeLabel: "비슷한 작품 ",
+      highlightedLabel: "EMOSAAC!",
       requireLogin: false,
     },
     {
       API: getBooksByAuthorAPI,
       identifier: `getBooksByAuthor-${bookData.bookId}`,
-      beforeLabel: '같은 작가의 작품 ',
-      highlightedLabel: 'EMOSAAC!',
+      beforeLabel: "같은 작가의 작품 ",
+      highlightedLabel: "EMOSAAC!",
       requireLogin: false,
     },
-  ]
-
-
-
+  ];
 
   useEffect(() => {
-    console.log(myInfo)
+    console.log(myInfo);
     if (myInfo === false) {
-      loginHandler(() => true)
+      loginHandler(() => true);
     }
-    
   }, [myInfo]);
 
   const desktopDecoration = (
@@ -121,8 +108,16 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
         bookId={bookData.bookId}
         stateHandler={setCommentModalState}
       />
-      <BookmarkToggle key={`bookmark-toggle-${bookData.title}`} bookId={bookData.bookId} isClicked={bookData.bookmark} />
-      <HasBeenReadToggle key={`has-been-read-toggle-${bookData.title}`} bookId={bookData.bookId} isClicked={bookData.read} />
+      <BookmarkToggle
+        key={`bookmark-toggle-${bookData.title}`}
+        bookId={bookData.bookId}
+        isClicked={bookData.bookmark}
+      />
+      <HasBeenReadToggle
+        key={`has-been-read-toggle-${bookData.title}`}
+        bookId={bookData.bookId}
+        isClicked={bookData.read}
+      />
       {/* <button onClick={() => {setCommentModalState(true); console.log(commentModalState)}}>test</button> */}
     </div>
   );
@@ -139,8 +134,7 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
 
           <div css={titleCSS({ isDeskTop })}>{bookData.title}</div>
 
-          <div css={scoreDivCSS({isMobile})}>
-          
+          <div css={scoreDivCSS({ isMobile })}>
             <span css={myScoreStringCSS}>내 평점 :</span>
             <div css={platformRatingWrapperCSS}>
               <PlatformRatingHover
@@ -149,7 +143,7 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
                 avgGrade={bookData.avgScore}
                 grade={bookData.grade.split("_")}
               />
-              <BiChevronRightCircle css={scoreBtnCSS({isMobile})} />
+              <BiChevronRightCircle css={scoreBtnCSS({ isMobile })} />
             </div>
             <StarRating
               key={`rating-${bookData.title}`}
@@ -174,14 +168,28 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
               <div>{bookData.author}</div>
             </div>
 
-            <div css={storyWrapperCSS({unfoldStory})} ref={storyWrapperRef}>
+            <div css={storyWrapperCSS({ unfoldStory })} ref={storyWrapperRef}>
               {bookData.story}
-              
-              
             </div>
-            {storyWrapperRef.current && storyWrapperRef?.current?.innerText.length < bookData.story.length && unfoldStory === false && <div onClick={() => {setUnfoldStory(() => true)}} css={unfoldStringCSS}>...더보기</div>}
+            {storyWrapperRef.current &&
+              storyWrapperRef?.current?.innerText.length <
+                bookData.story.length &&
+              unfoldStory === false && (
+                <div
+                  onClick={() => {
+                    setUnfoldStory(() => true);
+                  }}
+                  css={unfoldStringCSS}
+                >
+                  ...더보기
+                </div>
+              )}
 
-            <TagList key={`tag-${bookData.title}`} identifier={`${bookData.bookId}`} tag={bookData.tag} />
+            <TagList
+              key={`tag-${bookData.title}`}
+              identifier={`${bookData.bookId}`}
+              tag={bookData.tag}
+            />
           </div>
           <div css={buttonWrapperCSS({ isDeskTop })}>
             <RedirButton
@@ -210,7 +218,11 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
         modalState={commentModalState}
         stateHandler={setCommentModalState}
         content={
-          <DetailComment  bookTitle={bookData.title} bookId={bookData.bookId} myInfo={myInfo} />
+          <DetailComment
+            bookTitle={bookData.title}
+            bookId={bookData.bookId}
+            myInfo={myInfo}
+          />
         }
       />
 
@@ -236,7 +248,7 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
           </div>
         </div>
       </div>
-      <SortByRows fetchList={bookFetchList} myInfo={myInfo}/>
+      <SortByRows fetchList={bookFetchList} myInfo={myInfo} />
     </div>
   );
 };
@@ -419,23 +431,23 @@ const titleCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   `;
 };
 
-const scoreDivCSS = ({isMobile}: {isMobile: boolean}) => {
+const scoreDivCSS = ({ isMobile }: { isMobile: boolean }) => {
   return css`
-    font-size: ${isMobile ? '18px' : '24px'};
+    font-size: ${isMobile ? "18px" : "24px"};
     font-weight: 500;
     display: flex;
     align-items: center;
     margin-bottom: 12px;
   `;
-}
+};
 
-const scoreBtnCSS = ({isMobile}: {isMobile: boolean}) => {
+const scoreBtnCSS = ({ isMobile }: { isMobile: boolean }) => {
   return css`
     margin-left: 12px;
-    width: ${isMobile ? '20px' : '24px'};
-    height: ${isMobile ? '20px' : '24px'};
+    width: ${isMobile ? "20px" : "24px"};
+    height: ${isMobile ? "20px" : "24px"};
   `;
-}
+};
 
 const bottomContentCSS = css`
   display: flex;
@@ -461,21 +473,23 @@ const boldTextCSS = css`
   font-weight: 700;
 `;
 
-const storyWrapperCSS = ({unfoldStory}: {unfoldStory: boolean}) => {
+const storyWrapperCSS = ({ unfoldStory }: { unfoldStory: boolean }) => {
   return css`
     /* width: 70%; */
     /* height: 70px; */
-    ${unfoldStory ? null : `
+    ${unfoldStory
+      ? null
+      : `
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 4;
       overflow: hidden;
     `}
-    
+
     margin-bottom: 8px;
     line-height: 130%;
   `;
-} 
+};
 
 const buttonWrapperCSS = ({ isDeskTop }: { isDeskTop: boolean }) => {
   return css`
@@ -499,9 +513,9 @@ const myScoreStringCSS = css`
 `;
 
 const platformRatingWrapperCSS = css`
-height: 100%;
-display: flex;
-align-items: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
   position: relative;
   margin-right: 8px;
 
@@ -519,6 +533,6 @@ const unfoldStringCSS = css`
   font-size: 14px;
   font-weight: 500;
   color: var(--text-color-4);
-  cursor:pointer;
-`
+  cursor: pointer;
+`;
 export default BookDetail;
