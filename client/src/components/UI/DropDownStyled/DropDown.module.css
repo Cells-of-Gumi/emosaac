@@ -39,7 +39,7 @@
 }
 
 .item-label {
-  color: black;
+  color: var(--text-color);
   display: flex;
   width: 100%;
 }
