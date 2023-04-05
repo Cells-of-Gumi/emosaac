@@ -12,15 +12,13 @@ import { getListByContent } from "@/api/search/getSearchBooksByContent";
 // {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string, forced?: boolean, blur?: boolean, isDarkMode?: boolean}
 
 interface Props {
-  bookList?:
-    | {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    | [];
+  bookList?: {
+    title: string;
+    bookId: number;
+    typeCd: number;
+    review: string;
+    thumbnail: string;
+  }[];
   setBookList?: Dispatch<
     SetStateAction<
       {
@@ -32,8 +30,26 @@ interface Props {
       }[]
     >
   >;
-  selectedBookList: any[] | [];
-  setSelectedBookList: Dispatch<SetStateAction<any[] | []>>;
+  selectedBookList:
+    | {
+        title: string;
+        bookId: number;
+        typeCd: number;
+        review: string;
+        thumbnail: string;
+      }[]
+    | [];
+  setSelectedBookList: Dispatch<
+    SetStateAction<
+      {
+        title: string;
+        bookId: number;
+        typeCd: number;
+        review: string;
+        thumbnail: string;
+      }[]
+    >
+  >;
 }
 
 const EmopickSearchModalContent = ({
@@ -98,20 +114,20 @@ const EmopickSearchModalContent = ({
           setBooks={setBooks}
         />
       )}
-      {isSearchBoxOpen && (
-        <EmopickSearchBox
-          selectedBookList={selectedBookList}
-          setSelectedBookList={setSelectedBookList}
-          setIsSearchBoxOpen={setIsSearchBoxOpen}
-          books={books}
-          type={"total"}
-          getSearchBooks={getSearchBooks}
-          prevId={prevId}
-          prevScore={prevScore}
-          isPageEnd={isPageEnd}
-          bookList={bookList}
-        />
-      )}
+
+      <EmopickSearchBox
+        selectedBookList={selectedBookList}
+        setSelectedBookList={setSelectedBookList}
+        setIsSearchBoxOpen={setIsSearchBoxOpen}
+        books={books}
+        type={"total"}
+        getSearchBooks={getSearchBooks}
+        prevId={prevId}
+        prevScore={prevScore}
+        isPageEnd={isPageEnd}
+        bookList={bookList}
+        searchInput={searchInput}
+      />
     </div>
   );
 };

@@ -24,17 +24,32 @@ interface Props {
   height?: string;
   minWidth?: string;
   minHeight?: string;
-  selectedBookList: any[];
-  setSelectedBookList: Dispatch<SetStateAction<any[]>>;
-  bookList?:
-    | {
+  selectedBookList: {
+    title: string;
+    bookId: number;
+    typeCd: number;
+    review: string;
+    thumbnail: string;
+  }[];
+  setSelectedBookList: Dispatch<
+    SetStateAction<
+      {
         title: string;
         bookId: number;
         typeCd: number;
         review: string;
         thumbnail: string;
       }[]
-    | [];
+    >
+  >;
+  bookList?: {
+    title: string;
+    bookId: number;
+    typeCd: number;
+    review: string;
+    thumbnail: string;
+  }[];
+  selectedBookIdList: number[];
 }
 
 const EmopickSearchBookCard = ({
@@ -47,6 +62,7 @@ const EmopickSearchBookCard = ({
   selectedBookList,
   setSelectedBookList,
   bookList,
+  selectedBookIdList,
 }: Props) => {
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -55,35 +71,25 @@ const EmopickSearchBookCard = ({
   useEffect(() => {
     setUser(() => navigator.userAgent);
   }, []);
-
+  type bookType = {
+    title: string;
+    bookId: number;
+    typeCd: number;
+    review: string;
+    thumbnail: string;
+  };
   const wrapperRef = useRef<HTMLInputElement>(null);
   const [modalToggler, setModalToggler] = useState<boolean>(false);
   const [isMouseOn, setIsMouseOn] = useState<boolean>(false);
   const platformBar = <div css={platformBarCSS}></div>;
+  const [bookObj, setBookObj] = useState<bookType | null>(null);
   function findBook(book: any) {
     return book.bookId === bookData.bookId;
   }
-  function selectBook() {
-    if (!bookList?.some(findBook)) {
-      if (selectedBookList.some(findBook)) {
-      } else {
-        console.log("gg");
-        setSelectedBookList((prev) => [
-          ...prev,
-          {
-            title: bookData.title,
-            bookId: bookData.bookId,
-            typeCd: bookData.typeCd,
-            review: "",
-            thumbnail: bookData.thumbnail,
-          },
-        ]);
-      }
-    } else {
-      alert("이미 리뷰를 작성중인 작품입니다.");
-    }
-    console.log(selectedBookList);
-  }
+
+  useEffect(() => {
+    bookObj && setSelectedBookList((prev) => [...prev, bookObj]);
+  }, [bookObj]);
   return (
     <div
       className={"bookcard-outer-wrapper"}
@@ -92,13 +98,12 @@ const EmopickSearchBookCard = ({
       onMouseOver={(event) => {
         event.stopPropagation();
       }}
-      onClick={selectBook}
     >
       <div
         className={"bookcard-inner-wrapper"}
         css={cardInnerWrapperCSS(
           { width, height, minWidth, minHeight },
-          selectedBookList.some(findBook)
+          selectedBookIdList.includes(bookData.bookId)
         )}
       >
         <div>
