@@ -85,20 +85,22 @@ export default function Home({
     };
   }, []);
 
-  const throttleScroll = useMemo(
-    () =>
-      throttle(() => {
-        setIsScrolling(() => true);
-      }, 1000),
-    []
-  );
-  const debounceScroll = useMemo(
-    () =>
-      debounce(() => {
-        setIsScrolling(() => false);
-      }, 10),
-    []
-  );
+
+  const throttleScroll = useMemo(() => throttle(() => {
+    if (indexWrapperRef.current) {
+      indexWrapperRef.current.style.pointerEvents = 'none'
+    }
+    
+    setIsScrolling(() => true)
+  }, 100), []);
+  const debounceScroll = useMemo(() => debounce(() => {
+    if (indexWrapperRef.current) {
+      indexWrapperRef.current.style.pointerEvents = 'auto'
+    }
+    
+    setIsScrolling(() => false)
+  }, 200), []);
+
 
   // ________________________________________________________________________________________________
   // 임시 데이터
@@ -446,8 +448,9 @@ export default function Home({
   // ]
 
   return (
-    <div ref={indexWrapperRef} css={indexWrapperCSS({ isScrolling })}>
-      {myInfo !== false && <FloatingButton isDarkMode={isDarkMode} />}
+    <div ref={indexWrapperRef} css={indexWrapperCSS({isScrolling})}>
+      {/* <FloatingButton isDarkMode={isDarkMode}/> */}
+      {myInfo !== false && <FloatingButton isDarkMode={isDarkMode}/>}
       <div css={bannerWrapperCSS} ref={parentRef}>
         <SwipeableGallery parentRef={parentRef} content={postData} />
       </div>

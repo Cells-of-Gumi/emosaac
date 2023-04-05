@@ -6,7 +6,9 @@ import UseAnimations from 'react-useanimations';
 import radioButton from 'react-useanimations/lib/radioButton'
 
 import Button from "@/components/UI/Button/Button";
+import Portal from "@/components/function/Portal";
 import { postOcr } from "@/api/ocr/postOcr";
+import { useRouter } from "next/router";
 
 import {
   MdCookie,
@@ -52,10 +54,25 @@ const FloatingButtonModalSubmitForm = ({modalHandler, phaseHandler, onClickSubmi
     }
   };
 
+
+    const descDetail = (
+      <div className={'detail-backdrop'} css={backdropCSS}>
+        <div css={descDetailWrapperCSS}>
+          <img css={exampleImgCSS} src={'/assets/scan_example.jpg'} />
+          <div css={descStringWrapperCSS}>
+            <div css={css`font-size: 18px; font-weight: 700; margin-bottom: 8px;`}>어떤 이미지를 사용하면 되나요?</div>
+            <div css={css`font-size: 15px; font-weight: 500; color: var(--text-color-4);`}>웹툰의 제목이 포함된 보관함이 잘 보이게 스크린샷을 찍고, 스캔을 시작하세요!</div>
+          </div>
+          
+        </div>
+      </div>
+      
+    )
   
 
     return(
         <>
+          
             <div>
             <div css={headerCSS}>
             <img css={headerIconCSS} src={isDarkMode === true ? "/assets/scan_icon_white.png" : "/assets/scan_icon.png"}/>
@@ -64,7 +81,14 @@ const FloatingButtonModalSubmitForm = ({modalHandler, phaseHandler, onClickSubmi
             </div>
             <div css={descWrapperCSS}>
               <div css={css`color: var(--text-color-4); margin-top: 20px; margin-bottom: 5px;`}>각 플랫폼의 보관함을 캡쳐해서 가져올 수 있습니다.</div>
-              <div css={css`color: var(--text-color-4);`}>더 정확한 개인 맞춤형 추천이 가능해집니다.</div>
+              <div css={css`color: var(--text-color-4);`}>더 정확한 개인 맞춤형 추천이 가능해집니다. 
+              <span css={showMoreDetailCSS}>
+                자세히
+                {/* <Portal selector=".overlay-root"> */}
+                  {descDetail}
+                {/* </Portal> */}
+              </span>
+              </div>
             </div>
             
             </div>
@@ -251,5 +275,57 @@ const descWrapperCSS = css`
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
+`
+
+const showMoreDetailCSS = css`
+  margin-left: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  &:hover .detail-backdrop {
+    opacity: 100%;
+  }
+`
+const backdropCSS = css`
+  z-index: 999999;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+  opacity: 0%;
+  pointer-events: none;
+  /* background-color: black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  top: 0;
+
+`
+
+const descDetailWrapperCSS = css`
+  width: 360px;
+  height: 620px;
+  background-color: var(--back-color);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  border-radius: 10px;;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+`
+
+const exampleImgCSS = css`
+  height: auto;
+  width: 100%;
+  border-radius: 10px;
+
+`
+
+const descStringWrapperCSS = css`
+  margin-top: 20px;
+  
 `
 export default FloatingButtonModalSubmitForm
