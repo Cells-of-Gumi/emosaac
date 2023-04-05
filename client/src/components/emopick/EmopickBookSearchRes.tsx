@@ -72,7 +72,7 @@ const searchBarWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
       align-items: center;
       cursor: pointer;
       position: absolute;
-      right: 0;
+      right: 0px;
       height: ${isMobile ? "40px" : "50px"};
       background-color: var(--main-color);
       color: #000;
