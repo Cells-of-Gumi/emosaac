@@ -8,7 +8,7 @@ import { bookContentType } from "@/types/books";
 
 
 
-const HorizontalCarouselWrapper = ({el, titleColor}: {el: any; titleColor: string;}) => {
+const HorizontalCarouselWrapper = ({el, titleColor}: {el: any; titleColor?: string;}) => {
     const [noData, setNoData] = useState<boolean>(false)
     
     if (noData === false) {

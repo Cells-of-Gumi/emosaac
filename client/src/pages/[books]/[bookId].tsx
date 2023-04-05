@@ -77,19 +77,21 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
       identifier: `getRelative-${bookData.bookId}`,
       beforeLabel: '비슷한 작품 ',
       highlightedLabel: 'EMOSAAC!',
-      requireLogin: false,
+      requireLogin: true,
     },
     {
       API: getBooksByAuthorAPI,
       identifier: `getBooksByAuthor-${bookData.bookId}`,
       beforeLabel: '같은 작가의 작품 ',
       highlightedLabel: 'EMOSAAC!',
-      requireLogin: false,
+      requireLogin: true,
     },
   ]
 
 
-
+  useEffect(() => {
+    window.sessionStorage.setItem('scroll_timing', JSON.stringify(true))
+  }, [])
 
   useEffect(() => {
     console.log(myInfo)

@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 import { keyframes } from "@emotion/react";
 import MiddleWideButton from "../UI/Button/MiddleWideButton";
-import { useState } from "react";
+import React, { useState } from "react";
 import Chart from "./Chart";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -17,6 +17,8 @@ import { bookContentType } from "@/types/books";
 import MyPagePersonalInfo from "./MyPagePersonalInfo";
 import MyPageAnalyze from "./MyPageAnalyze";
 import SortByRows from "../bookTab/SortByRows";
+import { getMyEmopick } from "@/api/emopick/getMyEmopickList";
+import MyPageEmopick from "./MyPageEmopick";
 
 
 const MyPage = ({ myInfo }: any) => {
@@ -29,7 +31,12 @@ const MyPage = ({ myInfo }: any) => {
 
   
 
-
+  useEffect(() => {
+    const loadTabIdx = Number(window.sessionStorage.getItem('my_profile_tab_idx'))
+    if (loadTabIdx) {
+      setTabState(() => loadTabIdx)
+    }
+  }, [])
 
 
 
@@ -38,6 +45,7 @@ const MyPage = ({ myInfo }: any) => {
   const [tabState, setTabState] = useState<number>(0)
 
   const onClickTabHandler = (value: number) => {
+    window.sessionStorage.setItem('my_profile_tab_idx', JSON.stringify(value))
     setTabState(() => value)
   }
 
@@ -51,7 +59,7 @@ const MyPage = ({ myInfo }: any) => {
     {label: 'EMOSAAC', setTabState: 2, execFunction: null},
   ]
 
-  
+
 
   const tabRender = tabConfig.map((el, idx) => {
     return (
@@ -62,55 +70,6 @@ const MyPage = ({ myInfo }: any) => {
   })
 
 
-  const getHasBeenReadBooksAPI = ({
-    lastContent,
-    size,
-  }: {
-    lastContent: bookContentType;
-    size: number;
-  }) => {
-    const prevId = lastContent ? lastContent.bookId : 0;
-    const prevTime = lastContent ? lastContent.modifiedDate : 0;
-    return getHasBeenReadBooks({
-      typeCode,
-      prevId,
-      prevTime,
-      size: size,
-    });
-  };
-
-  const getBookmarkBooksAPI = ({
-    lastContent,
-    size,
-  }: {
-    lastContent: bookContentType;
-    size: number;
-  }) => {
-    const prevId = lastContent ? lastContent.bookId : 0;
-    const prevTime = lastContent ? lastContent.modifiedDate : 0;
-    return getBookmarkBooks({
-      typeCode,
-      prevId,
-      prevTime,
-      size: size,
-    });
-  };
-
-  
-  const bookFetchList = [
-    {
-      API: getHasBeenReadBooksAPI,
-      identifier: `getAlreadyList-${typeCode}`,
-      beforeLabel: "읽은 목록 ",
-      requireLogin: false,
-    },
-    {
-      API: getBookmarkBooksAPI,
-      identifier: `getBookmarkList-${typeCode}`,
-      beforeLabel: "북마크 목록 ",
-      requireLogin: false,
-    },
-  ];
 
   return (
     <>
@@ -120,8 +79,14 @@ const MyPage = ({ myInfo }: any) => {
                 {tabRender}
               </div>
               <div css={myPageTabContentCSS({isMobile})}>
-                <MyPageAnalyze typeCode={typeCode}/>
-                <SortByRows fetchList={bookFetchList} titleColor={'rgba(0,0,0,0)'} />
+                {(tabState === 0 || tabState === 1) &&
+                    <MyPageAnalyze typeCode={typeCode}/>
+                }
+                {tabState === 2 &&
+                    <MyPageEmopick/>
+                }
+
+                
               </div>
               
               
@@ -138,6 +103,7 @@ const MyPage = ({ myInfo }: any) => {
 const myPageWrapperCSS = ({isMobile}: {isMobile: boolean}) => {
   return css`
     ${isMobile ? 'padding: 24px 16px 0px 16px' : 'padding: 64px 105px 0px 105px'};
+    
   `
 }
 
@@ -150,7 +116,7 @@ const myPageTabWrapperCSS = css`
 
 const myPageTabContentCSS = ({isMobile}: {isMobile: boolean}) => {
   return css`
-    ${isMobile ? 'padding: 36px 8px 8px 8px' : 'padding: 48px 16px 16px 16px'};
+    ${isMobile ? 'padding: 8px 8px 8px 8px' : 'padding: 16px 16px 16px 16px'};
     
     background-color: var(--back-color-2);
   `
@@ -169,6 +135,7 @@ const tabIndividualCSS = ({targetState, currentState}: {targetState: number, cur
     user-select: none;
     cursor: pointer;
     border-radius: 4px 4px 0px 0px;
+    font-weight: ${targetState === currentState ? '700' : null};
   `
 }
 export default MyPage;
