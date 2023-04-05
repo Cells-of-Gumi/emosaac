@@ -9,56 +9,56 @@ import EmopickSearchModalContent from "./EmopickSearchModalContent";
 // {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string, forced?: boolean, blur?: boolean, isDarkMode?: boolean}
 
 interface Props {
-  bookList?:
-    | {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    | [];
-  setBookList: Dispatch<
-    SetStateAction<
-      {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    >
-  >;
-  selectedBookList:
-    | {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    | [];
-  setSelectedBookList: Dispatch<
-    SetStateAction<
-      | {
-          title: string;
-          bookId: number;
-          typeCd: number;
-          review: string;
-          thumbnail: string;
-        }[]
-      | []
-    >
-  >;
+  // bookList?:
+  //   | {
+  //       title: string;
+  //       bookId: number;
+  //       typeCd: number;
+  //       review: string;
+  //       thumbnail: string;
+  //     }[]
+  //   | [];
+  // setBookList: Dispatch<
+  //   SetStateAction<
+  //     {
+  //       title: string;
+  //       bookId: number;
+  //       typeCd: number;
+  //       review: string;
+  //       thumbnail: string;
+  //     }[]
+  //   >
+  // >;
+  // selectedBookList:
+  //   | {
+  //       title: string;
+  //       bookId: number;
+  //       typeCd: number;
+  //       review: string;
+  //       thumbnail: string;
+  //     }[]
+  //   | [];
+  // setSelectedBookList: Dispatch<
+  //   SetStateAction<
+  //     | {
+  //         title: string;
+  //         bookId: number;
+  //         typeCd: number;
+  //         review: string;
+  //         thumbnail: string;
+  //       }[]
+  //     | []
+  //   >
+  // >;
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const EmopickSearchModal = ({
-  bookList,
-  setBookList,
-  selectedBookList,
-  setSelectedBookList,
+  // bookList,
+  // setBookList,
+  // selectedBookList,
+  // setSelectedBookList,
   isModalOpen,
   setIsModalOpen,
 }: Props) => {
@@ -70,10 +70,10 @@ const EmopickSearchModal = ({
         stateHandler={setIsModalOpen}
         content={
           <EmopickSearchModalContent
-            bookList={bookList}
-            setBookList={setBookList}
-            selectedBookList={selectedBookList}
-            setSelectedBookList={setSelectedBookList}
+            // bookList={bookList}
+            // setBookList={setBookList}
+            // selectedBookList={selectedBookList}
+            // setSelectedBookList={setSelectedBookList}
             setIsModalOpen={setIsModalOpen}
           />
         }

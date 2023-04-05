@@ -54,7 +54,7 @@ export async function getEmopickDetail({
       headers.Authorization = token;
     }
     const { data }: { data: emopickType } = await defaultAxiosInstance.get(
-      `/emopicks/like/${emopickId}`,
+      `/emopicks/${emopickId}`,
       { headers }
     );
     if (data.status === 200) {

@@ -47,8 +47,8 @@ const EmopickListView = (data: Props) => {
     <div>
       <div css={listWrapCSS({ isDeskTop, isTablet, isMobile }, isEmoLimit)}>
         {emopickList &&
-          emopickList?.data?.content.map((emopick) => (
-            <EmopickCard emopick={emopick} />
+          emopickList?.data?.content.map((emopick, idx) => (
+            <EmopickCard emopick={emopick} key={idx} />
           ))}
       </div>
     </div>

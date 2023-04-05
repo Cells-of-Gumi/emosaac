@@ -4,6 +4,9 @@ import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/router";
 import { FiSearch, FiPlus } from "react-icons/fi";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
+import { useAtom } from "jotai";
+import { addedBookListAtom } from "@/jotai/atom";
+import { addedBookTitleListAtom } from "@/jotai/atom";
 
 interface Props {
   titleList: string[];
@@ -12,6 +15,10 @@ interface Props {
 export const EmopickBookSearchRes = ({ titleList }: Props) => {
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
+  const [addedBookList, setAddedBookList] = useAtom(addedBookListAtom);
+  // const [titleList] = useAtom(addedBookTitleListAtom);
+  // const [titleListUpdate, setTitleListUpdate] = useState<string[]>([]);
+
   return (
     <div css={searchBarWrapCSS({ isDeskTop, isTablet, isMobile })}>
       <div css={searchIconCSS}>
@@ -20,10 +27,15 @@ export const EmopickBookSearchRes = ({ titleList }: Props) => {
       <input
         disabled
         type="text"
-        placeholder="작품을 찾아보세요."
+        placeholder="추천 하고싶은 작품을 검색해보세요"
         css={inputWrapCSS}
         value={
-          titleList.length < 3
+          isMobile
+            ? titleList.length < 2
+              ? titleList.join(", ")
+              : titleList.slice(0, 1).join(", ") +
+                ` 외 ${titleList.length - 1}건`
+            : titleList.length < 3
             ? titleList.join(", ")
             : titleList.slice(0, 2).join(", ") + ` 외 ${titleList.length - 2}건`
         }
@@ -64,6 +76,10 @@ const searchBarWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
       margin: auto 0;
     }
     & > button {
+      transition: all 0.2s;
+      &:hover {
+        background-color: var(--main-color-op);
+      }
       & > svg {
         margin-right: 6px;
       }
@@ -96,6 +112,7 @@ const inputWrapCSS = css`
   outline: none;
   background-color: var(--back-color-2);
   ::placeholder {
+    color: var(--text-color-2);
     font-weight: bold;
   }
 `;
