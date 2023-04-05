@@ -2,19 +2,32 @@
 import { jsx, css } from "@emotion/react";
 import { returnGenresType } from "@/types/books";
 import { useIsResponsive } from "../../Responsive/useIsResponsive";
-import React, {useRef} from "react";
+import React, {useRef,useEffect} from "react";
 
 const GenreList = ({
   genres,
   selected,
   selectHandler,
+  params
 }: {
   genres: returnGenresType;
   selected: number;
   selectHandler: Function;
+  params: string;
 }) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const wrapperRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const loadGenre = Number(window.sessionStorage.getItem(`${params}-selected_genre`))
+    selectHandler(loadGenre ? loadGenre : -2)
+  }, [genres])
+
+  useEffect(() => {
+    selectHandler(-2)
+  }, [params])
+
+
   const renderGenres = genres.map((el, idx) => {
     return (
       <React.Fragment key={`genreList-${el.name}`}>
@@ -46,7 +59,6 @@ const GenreList = ({
       });
       
     }
-    
   }
 
   return (
