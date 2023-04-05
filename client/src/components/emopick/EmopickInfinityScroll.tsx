@@ -2,32 +2,34 @@
 import { jsx, css } from "@emotion/react";
 import React, { useEffect, useMemo, useState, useRef } from "react"
 import { throttle } from "lodash";
-import BookCard from "../../UI/BookCard/BookCard";
-import { bookContentType, returnBookContentType } from "@/types/books";
+import EmopickCard from "./EmopickCard";
+
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 
 import UseAnimations from 'react-useanimations';
 import loading2 from 'react-useanimations/lib/loading2'
+import { emopickContentType, returnEmopickType } from "@/types/emopick";
 
 
 
-interface VerticalScrollProps {
+
+interface EmopickInfinityScrollProps {
     // API: ({fetchedData, prevId, prevScore, size}: {fetchedData: any; prevId?: number; prevScore?: number; size: number}) => Promise<any>;
     API: ({
         lastContent,
         size,
       }: {
-        lastContent?: bookContentType;
+        lastContent?: emopickContentType;
         size: number;
       }) => Promise<any>;
     identifier: string;
 }
 
-const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
+const EmopickInfinityScroll = ({API, identifier}: EmopickInfinityScrollProps) => {
     const [isDeskTop, isTablet, isMobile] = useIsResponsive();
     const cardLayout = {
-        width: isDeskTop ?  "200px" : "45vw",
-        height: isDeskTop ? "300px" : "70vw",
+        // width: isDeskTop ?  "200px" : "45vw",
+        // height: isDeskTop ? "300px" : "70vw",
         minWidth: isDeskTop ? "200px" : "45vw",
         minHeight: isDeskTop ? "300px" : "70vw",
         padding: "0.5vw",
@@ -65,14 +67,14 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
         const scrollTiming = JSON.parse(String(window.sessionStorage.getItem(`scroll_timing`)))
         
 
-        console.log('로드', loadData && JSON.parse(loadData))
-        if (loadData && scrollTiming) {
+        console.log('로드', loadData && JSON.parse(loadData) && scrollTiming)
+        if (loadData) {
             setFetchedData(() => JSON.parse(loadData))
             setHasNext(() => localHasNext)
         } else {
             if (hasNext) {
                 API({ size: quantityPerPage })
-                .then((res: returnBookContentType) => {
+                .then((res: returnEmopickType) => {
                     if (res.content.length !== 0 || res.content !== null) {
                         
                     const temp = [[...res.content]];
@@ -108,8 +110,10 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
 
     useEffect(() => {
         const loadScroll = window.sessionStorage.getItem(`${identifier}-recent_scroll`)
+
         const scrollTiming = JSON.parse(String(window.sessionStorage.getItem(`scroll_timing`)))
-        console.log('스크롤타이밍', scrollTiming)
+      
+    
         if (loadScroll && fetchedData.length !== 0 && scrollTiming) {
             // setTimeout(function() {
                 
@@ -129,7 +133,7 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
                 console.log(lastContent)
           
                 API({ lastContent: lastContent, size: quantityPerPage }).then(
-                    (res: returnBookContentType) => {
+                    (res: returnEmopickType) => {
                         if (res.content.length !== 0 || res.content !== null) {
                         const temp = [...fetchedData, [...res.content]];
                         setFetchedData(() => temp);
@@ -200,10 +204,10 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
 
     
     const pageRender = fetchedData.map((page: any, pageIdx: number) => {
-        const contentRender = page.map((content: bookContentType, contentIdx: number) => {
+        const contentRender = page.map((content: emopickContentType, contentIdx: number) => {
             return (
-                <div key={`${identifier}-infinity-card-${(pageIdx * quantityPerPage) +contentIdx}`} css={cardWrapperCSS({ width: cardLayout.width, height: cardLayout.height, minWidth: cardLayout.minWidth, minHeight: cardLayout.minHeight, margin: cardLayout.margin })}>
-                    <BookCard showPlatform={true} bookData={content} minWidth={cardLayout.minWidth} minHeight={cardLayout.minHeight} />  
+                <div key={`${identifier}-infinity-card-${(pageIdx * quantityPerPage) +contentIdx}`} css={cardWrapperCSS}>
+                    <EmopickCard emopick={content}/>
                 </div>
                 
             )
@@ -212,7 +216,7 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
         if (page.length !== 0) {
             
             return (
-                <div css={css`${isDeskTop ? 'width: auto;' : 'width: 100vw;'}`} key={`${identifier}-infinity-${pageIdx}`} id={`${pageIdx}`} ref={(el) => {pageClassRef.current[pageIdx] = el;}}>
+                <div css={css`${isDeskTop ? 'width: 100%;' : 'width: 100vw;'}`} key={`${identifier}-infinity-${pageIdx}`} id={`${pageIdx}`} ref={(el) => {pageClassRef.current[pageIdx] = el;}}>
                     <div ref={page.length === quantityPerPage ? actualPageRef : null} css={contentPageWrapperCSS({isMobile, isTablet, isDeskTop})}>{contentRender}</div>
                 </div>
             )
@@ -281,7 +285,7 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
 
             {hasNext &&
                 <div css={scrollDivSCC} id={"scrollStart"} ref={scrollWrapperRef}>
-                    {/* ∨ */}
+                {/* ∨ */}
                     <UseAnimations strokeColor={'var(--text-color)'} animation={loading2} size={50} />
                 </div>
             }
@@ -306,14 +310,14 @@ const scrollWrapperCSS = css`
 
 const contentPageWrapperCSS = ({isMobile, isTablet, isDeskTop}: {isMobile: boolean; isTablet: boolean; isDeskTop: boolean}) => {
     return css`
-        ${isDeskTop === false ? 'width: 100vw;': 'width: 100%'};
+        ${isDeskTop === false ? 'width: 100%;': 'width: 100%'};
         /* display: flex;
         flex-direction: column;
         align-items: center; */
         display: grid;
-        grid-template-columns: ${isDeskTop ? "repeat(5,1fr)" : "50% 50%"};
+        grid-template-columns: ${isDeskTop ? "50% 50%" : "100%"};
         /* grid-template-columns: 50% 50%; */
-        place-items: center;
+        /* place-items: center; */
         /* content-visibility: auto; */
 
     `
@@ -328,13 +332,12 @@ const scrollDivSCC = css`
 `
 
 
-const cardWrapperCSS = ({ width, height, minWidth, minHeight, margin }: { width: string, height: string, minWidth: string, minHeight: string, margin: string }) => {
+const cardWrapperCSS = () => {
     return css`
-        width: ${width};
-        height: ${height};
-        margin: ${margin};
+
+        margin: 36px;;
         content-visibility: auto;
     `
 }
 
-export default VerticalScroll
+export default EmopickInfinityScroll

@@ -189,8 +189,11 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
       `${identifier}-horizontal-recent_scroll`
     );
 
+
+    
     if (loadScroll && wrapperRef.current) {
       wrapperRef.current.scrollTo(Number(JSON.parse(loadScroll)), 0);
+
     }
   }, [cardsRef.current.length]);
 
