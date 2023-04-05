@@ -9,6 +9,11 @@ import { FiSearch } from "react-icons/fi";
 import { SearchBar } from "@/components/UI/NavigationBar/SearchBar";
 import { SearchBarMobile } from "@/components/UI/NavigationBar/SearchBarMobile";
 import { EmopickBookSearchRes } from "@/components/emopick/EmopickBookSearchRes";
+import { atom, useAtom } from "jotai";
+import { addedBookListAtom } from "@/jotai/atom";
+import { selectedBookListAtom } from "@/jotai/atom";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { FiSmile } from "react-icons/fi";
 
 // request: {
 //   content: string;
@@ -27,65 +32,108 @@ type bookType = {
 };
 
 const write = () => {
+  const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [title, setTitle] = useState("이모픽 등록 테스트");
-  const [content, setContent] = useState("이모픽 등록 테스트 내용내용");
-  const [bookList, setBookList] = useState<bookType[]>([
-    // {
-    //   title: "모죠의 일지",
-    //   bookId: 3281,
-    //   typeCd: 0,
-    //   review: "짱잼입니다용",
-    //   thumbnail: "",
-    // },
-    // {
-    //   title: "나 혼자만 레벨업",
-    //   bookId: 7189,
-    //   typeCd: 1,
-    //   review: "레벨업 할게요",
-    //   thumbnail: "",
-    // },
-  ]);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const [addedBookList, setAddedBookList] = useAtom(addedBookListAtom);
+  const [selectedBookList, setSelectedBookList] = useAtom(selectedBookListAtom);
+  // const [bookList, setBookList] = useState<bookType[]>([
+  //   // {
+  //   //   title: "모죠의 일지",
+  //   //   bookId: 3281,
+  //   //   typeCd: 0,
+  //   //   review: "짱잼입니다용",
+  //   //   thumbnail: "",
+  //   // },
+  //   // {
+  //   //   title: "나 혼자만 레벨업",
+  //   //   bookId: 7189,
+  //   //   typeCd: 1,
+  //   //   review: "레벨업 할게요",
+  //   //   thumbnail: "",
+  //   // },
+  // ]);
   // 전송할때만 쓰는 리스트
-  const [selectedBookList, setSelectedBookList] = useState<any>([
-    // {
-    //   title: "모죠의 일지",
-    //   bookId: 3281,
-    //   typeCd: 0,
-    //   review: "짱잼입니다용",
-    //   thumbnail: "",
-    // },
-    // {
-    //   title: "나 혼자만 레벨업",
-    //   bookId: 7189,
-    //   typeCd: 1,
-    //   review: "레벨업 할게요",
-    //   thumbnail: "",
-    // },
-  ]);
+  // const [selectedBookList, setSelectedBookList] = useState<any>([
+  //   // {
+  //   //   title: "모죠의 일지",
+  //   //   bookId: 3281,
+  //   //   typeCd: 0,
+  //   //   review: "짱잼입니다용",
+  //   //   thumbnail: "",
+  //   // },
+  //   // {
+  //   //   title: "나 혼자만 레벨업",
+  //   //   bookId: 7189,
+  //   //   typeCd: 1,
+  //   //   review: "레벨업 할게요",
+  //   //   thumbnail: "",
+  //   // },
+  // ]);
   const [webtoonList, setWebtoonList] = useState({});
   const [novelList, setNovelList] = useState({});
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
-  function submitEmopick(e: React.FormEvent<HTMLFormElement>) {
+  const [currentReview, setCurrentReview] = useState(true);
+  // const [addedBookIdx, setAddedBookIdx] = useState<number>(0);
+  function submitEmopick(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault;
     const token = localStorage.getItem("token");
     const request = { title, content, novelList, webtoonList };
     if (title.length < 2 || title.length > 30) {
-      alert("제목은 2자 이상 30자 이하로 입력해주세요.");
+      alert("제목은 2자 이상 30자 이하로 입력해주세요😀");
     } else if (content.length < 10 || content.length > 500) {
-      alert("이모픽 내용은 10자 이상 500자 이하로 작성해주세요.");
-    } else if (bookList.length < 4) {
-      alert("이모픽 추천 작품을 4개 이상 등록해주세요.");
+      alert("이모픽 내용은 10자 이상 500자 이하로 작성해주세요😀");
+    } else if (addedBookList.length < 4) {
+      alert("이모픽 추천 작품을 4개 이상 등록해주세요😀");
     } else {
-      postEmopickList({ request, token }).then((res) => {
-        console.log(res);
-      });
+      setAddedBookList([]);
+      setSelectedBookList([]);
+      postEmopickList({ request, token }).then((res) => {});
+      alert("이모픽 등록이 완료되었습니다😀");
+      router.push("/emopick");
     }
   }
+  function onChangeTitle(event: React.ChangeEvent<HTMLInputElement>) {
+    const inputText = event.target.value;
+    setTitle(inputText);
+  }
+  function onChangeContent(event: React.ChangeEvent<HTMLTextAreaElement>) {
+    const inputText = event.target.value;
+    setContent(inputText);
+  }
+  function onChangeReview(
+    event: React.ChangeEvent<HTMLTextAreaElement>,
+    addedBookIdx: number
+  ) {
+    const copyAddedBookList = addedBookList;
+    copyAddedBookList[addedBookIdx].review = event.target.value;
+    console.log(copyAddedBookList);
+    setAddedBookList((prev) => copyAddedBookList);
+    setCurrentReview(!currentReview);
+  }
+
+  function onClickDelete(addedBookIdx: number) {
+    const copyAddedBookList = addedBookList;
+    const cuttingList = copyAddedBookList.splice(addedBookIdx, 1);
+    console.log(cuttingList);
+    setAddedBookList(copyAddedBookList);
+    setCurrentReview(!currentReview);
+  }
   useEffect(() => {
-    // console.log(selectedBookList);
-  }, [selectedBookList]);
+    const webtoons = addedBookList.filter((book) => book.typeCd === 0);
+    const novels = addedBookList.filter((book) => book.typeCd === 1);
+    const webObj = {};
+    const novObj = {};
+    webtoons.forEach((webtoon) => (webObj[webtoon.bookId] = webtoon.review));
+    novels.forEach((novel) => (novObj[novel.bookId] = novel.review));
+    setWebtoonList(webObj);
+    setNovelList(novObj);
+    console.log(webtoonList);
+    console.log(novelList);
+  }, [addedBookList, currentReview]);
+
   return (
     <div>
       <div css={pageTitleCSS({ isDeskTop, isTablet, isMobile })}>
@@ -95,10 +143,7 @@ const write = () => {
         </div>
       </div>
       <div>
-        <form
-          onSubmit={submitEmopick}
-          css={formCSS({ isDeskTop, isTablet, isMobile })}
-        >
+        <form css={formCSS({ isDeskTop, isTablet, isMobile })}>
           <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
             <div
               css={[
@@ -114,6 +159,7 @@ const write = () => {
                 id="title"
                 css={inputTextCSS({ isDeskTop, isTablet, isMobile })}
                 placeholder="제목을 입력해주세요."
+                onChange={onChangeTitle}
               />
             </div>
             <div
@@ -130,6 +176,7 @@ const write = () => {
                 id="content"
                 css={TextareaCSS({ isDeskTop, isTablet, isMobile })}
                 placeholder="내용을 입력해주세요."
+                onChange={onChangeContent}
               ></textarea>
             </div>
           </div>
@@ -141,35 +188,61 @@ const write = () => {
           >
             <div css={formColumnCSS({ isDeskTop, isTablet, isMobile })}>
               <h3>
-                추천 작품 & 리뷰<span>추천 작품과 리뷰를 남겨주세요.</span>
+                추천 작품 & 리뷰
+                <span>추천 작품과 리뷰를 남겨주세요. (최소 4개 이상)</span>
               </h3>
               <div
                 css={searchBarCSS({ isDeskTop, isTablet, isMobile })}
                 onClick={() => setIsModalOpen(true)}
               >
                 <EmopickBookSearchRes
-                  titleList={bookList?.map((book) => book.title)}
+                  titleList={addedBookList?.map((book) => book.title)}
                 />
               </div>
-              <div css={bookSetCSS({ isDeskTop, isTablet, isMobile })}>
-                {/* 여기는 스크롤 */}
-                <div>
-                  {/* 맵으로 합니다 */}
-                  <div
-                    css={bookThumbnailCSS({ isDeskTop, isTablet, isMobile })}
-                  >
-                    여기에 웹툰 웹소설 썸네일
-                  </div>
-                  <div css={bookReviewCSS({ isDeskTop, isTablet, isMobile })}>
-                    {/* 여기에 추천 문구 */}
-                    <textarea
-                      name="review"
-                      css={TextareaCSS({ isDeskTop, isTablet, isMobile })}
-                      placeholder="내용을 입력해주세요."
-                    ></textarea>
-                  </div>
+              {addedBookList.length === 0 && (
+                <div css={noBookSetCSS({ isDeskTop, isTablet, isMobile })}>
+                  <FiSmile size={isMobile ? 20 : 24} />
+                  작품을 추가하고 리뷰를 등록해주세요
                 </div>
-              </div>
+              )}
+              {addedBookList.length !== 0 && (
+                <div css={bookSetCSS({ isDeskTop, isTablet, isMobile })}>
+                  {addedBookList.map((addedBook, idx) => (
+                    <div key={addedBook.bookId}>
+                      {/* 맵으로 합니다 */}
+                      <div
+                        onClick={() => onClickDelete(idx)}
+                        css={bookThumbnailCSS({
+                          isDeskTop,
+                          isTablet,
+                          isMobile,
+                        })}
+                      >
+                        <img src={addedBook.thumbnail} alt={addedBook.title} />
+                        {/* <p>{addedBook.title}</p> */}
+                        <div>
+                          <IoCloseCircleOutline size={isMobile ? 20 : 24} />
+                          리뷰 삭제하기
+                        </div>
+                      </div>
+                      <div
+                        css={bookReviewCSS({ isDeskTop, isTablet, isMobile })}
+                      >
+                        {/* 여기에 추천 문구 */}
+                        <textarea
+                          name="review"
+                          css={TextareaCSS({ isDeskTop, isTablet, isMobile })}
+                          placeholder="내용을 입력해주세요."
+                          onChange={(event) => {
+                            onChangeReview(event, idx);
+                            // setAddedBookIdx(idx);
+                          }}
+                        ></textarea>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
           <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
@@ -178,9 +251,10 @@ const write = () => {
                 뒤로 가기
               </button>
               <button
+                onClick={submitEmopick}
                 id="submit_button"
                 css={submitButtonCSS({ isDeskTop, isTablet, isMobile })}
-                type="submit"
+                type="button"
               >
                 제출
               </button>
@@ -189,10 +263,10 @@ const write = () => {
         </form>
       </div>
       <EmopickSearchModal
-        bookList={bookList}
-        setBookList={setBookList}
-        selectedBookList={selectedBookList}
-        setSelectedBookList={setSelectedBookList}
+        // bookList={addedBookList}
+        // setBookList={setAddedBookList}
+        // selectedBookList={selectedBookList}
+        // setSelectedBookList={setSelectedBookList}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
       />
@@ -296,18 +370,76 @@ const bookSetCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   ::-webkit-scrollbar-track {
     background-color: rgba(0, 0, 0, 0) !important;
   }
+  transition: all 0.3s;
   & > div {
     display: grid;
     grid-template-columns: ${isMobile ? "110px 1fr" : "180px 1fr"};
-    column-gap: 20px;
+    column-gap: ${isMobile ? "10px" : "20px"};
     overflow: visible;
+    padding: ${isDeskTop ? "10px 0px" : isTablet ? "10px 0px" : "5px 0px"};
+  }
+`;
+const noBookSetCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: ${isDeskTop ? "30px 0px" : isTablet ? "20px 0px" : "20px 0px"};
+  text-align: center;
+  font-size: ${isDeskTop ? "16px" : isTablet ? "14px" : "14px"};
+  color: var(--back-color-4);
+  font-weight: bold;
+  > svg {
+    margin-bottom: 10px;
   }
 `;
 const bookThumbnailCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css`
-    border-radius: 5px;
+    position: relative;
+    border-radius: ${isMobile ? "5px" : "9px"};
     background-color: var(--back-color-3);
-    height: ${isMobile ? "134px" : "240px"};
+    height: ${isMobile ? "150px" : "240px"};
+    overflow: hidden;
+    & > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    & > p {
+      height: 20px;
+      font-size: ${isDeskTop ? "16px" : isTablet ? "14px" : "14px"};
+    }
+    & > div {
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.2s;
+      border-radius: ${isMobile ? "5px" : "9px"};
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 10;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-weight: bold;
+      overflow: hidden;
+      cursor: pointer;
+      & > svg {
+        margin-bottom: 10px;
+      }
+    }
+    :hover > div {
+      visibility: visible;
+      opacity: 1;
+      /* border: 5px solid #8f8f8f; */
+      /* box-shadow: inset 0px 0px 0px 10px var(--main-color); */
+    }
   `;
 const bookReviewCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css``;

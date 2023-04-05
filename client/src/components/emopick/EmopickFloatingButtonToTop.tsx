@@ -8,17 +8,22 @@ import { HiOutlinePencil } from "react-icons/hi";
 import { useState, useRef } from "react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { useRouter } from "next/router";
+import { TiArrowSortedUp } from "react-icons/ti";
 
-const EmopickFloatingButton = () => {
+const EmopickFloatingButtonToTop = () => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const router = useRouter();
+  function goTop() {
+    const htmlEl = document.getElementsByTagName("html")[0];
+    window.scroll({
+      behavior: "smooth",
+      left: 0,
+      top: htmlEl.clientTop,
+    });
+  }
   return (
-    <div
-      css={floatingButtonWrapperCSS(isMobile)}
-      onClick={() => router.push("/emopick/write")}
-    >
-      <HiOutlinePencil size={isMobile ? 30 : 35} />
-      <span></span>
+    <div css={floatingButtonWrapperCSS(isMobile)} onClick={goTop}>
+      <TiArrowSortedUp size={isMobile ? 30 : 35} />
     </div>
   );
 };
@@ -28,7 +33,7 @@ const floatingButtonWrapperCSS = (isMobile: boolean) => {
     position: fixed;
     width: ${isMobile ? "60px" : "80px"};
     height: ${isMobile ? "60px" : "80px"};
-    background-color: var(--main-color);
+    /* background-color: var(--main-color); */
     border-radius: 200px;
     right: ${isMobile ? "20px" : "40px"};
     bottom: ${isMobile ? "75px" : "40px"};
@@ -41,24 +46,11 @@ const floatingButtonWrapperCSS = (isMobile: boolean) => {
     transition-duration: 0.2s;
     padding-bottom: 4px;
     cursor: pointer;
-    color: #000;
+    transition: all 0.3s;
     &:hover {
-      padding-right: ${isMobile ? "10px" : "14px"};
-      & > span {
-        left: ${isMobile ? "17px" : "23px"};
-        width: ${isMobile ? "23px" : "31px"};
-      }
-    }
-    & > span {
-      position: absolute;
-      bottom: ${isMobile ? "15px" : "22px"};
-      left: ${isMobile ? "22px" : "30px"};
-      background-color: #000;
-      width: ${isMobile ? "18px" : "24px"};
-      height: ${isMobile ? "2.4px" : "3px"};
-      transition: all 0.2s;
+      transform: translateY(${isMobile ? "-5px" : "-10px"});
     }
   `;
 };
 
-export default EmopickFloatingButton;
+export default EmopickFloatingButtonToTop;

@@ -15,11 +15,18 @@ type emopickBookType = {
 const addedBookListAtom = atom<emopickBookType[]>([]);
 const selectedBookListAtom = atom<emopickBookType[]>([]);
 
-const addedBookIdListAtom = atom((get) =>
+const addedBookIdListAtom = atom<number[]>((get) =>
   get(addedBookListAtom).map((addedBook) => addedBook.bookId)
 );
-const selectedBookIdListAtom = atom((get) =>
+const selectedBookIdListAtom = atom<number[]>((get) =>
   get(addedBookListAtom).map((addedBook) => addedBook.bookId)
+);
+const addedBookIdListAtomTest = atom<number[]>((get) =>
+  get(addedBookListAtom).map((addedBook) => addedBook.bookId)
+);
+
+const addedBookTitleListAtom = atom<string[]>((get) =>
+  get(addedBookListAtom).map((addedBook) => addedBook.title)
 );
 
 // const readWriteAtom = atom(
@@ -37,5 +44,7 @@ export {
   addedBookListAtom,
   selectedBookListAtom,
   addedBookIdListAtom,
+  addedBookIdListAtomTest,
   selectedBookIdListAtom,
+  addedBookTitleListAtom,
 };

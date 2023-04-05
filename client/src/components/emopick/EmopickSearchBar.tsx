@@ -9,17 +9,17 @@ interface Props {
   setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
   searchInput: string;
   setSearchInput: Dispatch<SetStateAction<string>>;
-  setSelectedBookList: Dispatch<
-    SetStateAction<
-      {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    >
-  >;
+  // setSelectedBookList: Dispatch<
+  //   SetStateAction<
+  //     {
+  //       title: string;
+  //       bookId: number;
+  //       typeCd: number;
+  //       review: string;
+  //       thumbnail: string;
+  //     }[]
+  //   >
+  // >;
   setBooks: Dispatch<SetStateAction<any[]>>;
 }
 
@@ -27,7 +27,7 @@ export const EmopickSearchBar = ({
   setIsSearchBoxOpen,
   searchInput,
   setSearchInput,
-  setSelectedBookList,
+  // setSelectedBookList,
   setBooks,
 }: Props) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
