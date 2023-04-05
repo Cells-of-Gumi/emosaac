@@ -6,9 +6,8 @@ test-job: # 임의로 지정한 JOB 이름
     # - git submodule update --init --recursive
   script: 
     # /home/gitlab-runner/builds/sZ_Zkzi3/0/s08-bigdata-recom-sub2/S08P22D203
-    - git pull origin fe/develop
-
     - ls -al
+    - git pull origin fe/develop
 
     # - pm2 stop emosaac
     # - pm2 kill
