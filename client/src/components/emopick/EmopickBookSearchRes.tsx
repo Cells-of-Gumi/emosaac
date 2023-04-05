@@ -57,7 +57,8 @@ const searchBarWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     & > input {
       color: #000;
       background-color: var(--main-color-2);
-      font-size: ${isDeskTop ? "16px" : isTablet ? "14px" : "13px"};
+      font-size: ${isDeskTop ? "14px" : isTablet ? "14px" : "13px"};
+      font-weight: bold;
     }
     & > * {
       margin: auto 0;
@@ -77,7 +78,8 @@ const searchBarWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
       color: #000;
       padding: ${isMobile ? "0 15px" : "0 15px"};
       border-radius: 5px;
-      font-size: ${isDeskTop ? "16px" : isTablet ? "14px" : "13px"};
+      font-size: ${isDeskTop ? "14px" : isTablet ? "14px" : "13px"};
+      font-weight: bold;
     }
   `;
 };

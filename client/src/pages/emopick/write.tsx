@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import EmopickSearchModal from "@/components/emopick/EmopickSearchModal";
 import { postEmopickList } from "@/api/emopick/postEmopick";
@@ -41,20 +41,20 @@ const write = () => {
   ]);
   // 전송할때만 쓰는 리스트
   const [selectedBookList, setSelectedBookList] = useState<any>([
-    {
-      title: "모죠의 일지",
-      bookId: 3281,
-      typeCd: 0,
-      review: "짱잼입니다용",
-      thumbnail: "",
-    },
-    {
-      title: "나 혼자만 레벨업",
-      bookId: 7189,
-      typeCd: 1,
-      review: "레벨업 할게요",
-      thumbnail: "",
-    },
+    // {
+    //   title: "모죠의 일지",
+    //   bookId: 3281,
+    //   typeCd: 0,
+    //   review: "짱잼입니다용",
+    //   thumbnail: "",
+    // },
+    // {
+    //   title: "나 혼자만 레벨업",
+    //   bookId: 7189,
+    //   typeCd: 1,
+    //   review: "레벨업 할게요",
+    //   thumbnail: "",
+    // },
   ]);
   const [webtoonList, setWebtoonList] = useState({});
   const [novelList, setNovelList] = useState({});
@@ -75,6 +75,9 @@ const write = () => {
       });
     }
   }
+  useEffect(() => {
+    console.log(selectedBookList);
+  }, [selectedBookList]);
   return (
     <div>
       <div css={pageTitleCSS({ isDeskTop, isTablet, isMobile })}>

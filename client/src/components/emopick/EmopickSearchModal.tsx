@@ -29,8 +29,27 @@ interface Props {
       }[]
     >
   >;
-  selectedBookList: any[] | [];
-  setSelectedBookList: Dispatch<SetStateAction<any[] | []>>;
+  selectedBookList:
+    | {
+        title: string;
+        bookId: number;
+        typeCd: number;
+        review: string;
+        thumbnail: string;
+      }[]
+    | [];
+  setSelectedBookList: Dispatch<
+    SetStateAction<
+      | {
+          title: string;
+          bookId: number;
+          typeCd: number;
+          review: string;
+          thumbnail: string;
+        }[]
+      | []
+    >
+  >;
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }

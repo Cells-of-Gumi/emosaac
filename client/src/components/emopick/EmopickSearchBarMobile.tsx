@@ -9,7 +9,17 @@ interface Props {
   setIsSearchBoxOpen: Dispatch<SetStateAction<boolean>>;
   searchInput: string;
   setSearchInput: Dispatch<SetStateAction<string>>;
-  setSelectedBookList: Dispatch<SetStateAction<any[]>>;
+  setSelectedBookList: Dispatch<
+    SetStateAction<
+      {
+        title: string;
+        bookId: number;
+        typeCd: number;
+        review: string;
+        thumbnail: string;
+      }[]
+    >
+  >;
   setBooks: Dispatch<SetStateAction<any[]>>;
 }
 
@@ -65,8 +75,9 @@ const searchBarWrapCSS = css`
   column-gap: 20px;
   height: 45px;
   background-color: var(--back-color-2);
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   font-weight: bold;
+  border-bottom: 1px solid var(--border-color);
   & > input {
     color: var(--text-color);
   }
