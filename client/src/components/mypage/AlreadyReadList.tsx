@@ -29,11 +29,15 @@ const AlreadyReadList = ({ typeCode }: AlreadyProps) => {
     bookList: returnGetAlreadyProps[];
     size: number;
   }) => {
-    const prevId = bookList.length ? bookList[bookList?.length - 1].bookId : 0;
-    const prevTime = bookList.length
-      ? bookList[bookList.length - 1].prevTime
-      : "";
-    return getAlreadyRead({ prevId, prevTime, size, typeCode });
+    if (bookList) {
+      const prevId = bookList?.length
+        ? bookList[bookList?.length - 1].bookId
+        : 0;
+      const prevTime = bookList?.length
+        ? bookList[bookList.length - 1].prevTime
+        : "";
+      return getAlreadyRead({ prevId, prevTime, size, typeCode });
+    }
   };
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -52,31 +56,27 @@ const AlreadyReadList = ({ typeCode }: AlreadyProps) => {
     });
   }, [typeCode]);
 
-
   const bookFetchList = [
     {
       API: getAlreadyListkAPI,
       identifier: `getAlreadyList-${typeCode}`,
-      beforeLabel: '읽은 목록 ',
+      beforeLabel: "읽은 목록 ",
       requireLogin: false,
     },
-  ]
+  ];
 
   return (
     <section css={bookmarkwrapCSS}>
       {/* <h3>읽은 목록</h3> */}
-      {alreadyLists && alreadyLists.length > 0 ? (
+      {alreadyLists && alreadyLists?.length > 0 ? (
         <div>
-          <SortByRows fetchList={bookFetchList}/>
-
+          <SortByRows fetchList={bookFetchList} />
         </div>
       ) : (
         <div css={nobookmarkCSS}>
           읽은 {typeCode === 0 ? "웹툰" : "웹소설"}이 없어요
         </div>
       )}
-
-      
     </section>
   );
 };
@@ -130,4 +130,3 @@ const nobookmarkCSS = css`
   align-items: center;
 `;
 export default AlreadyReadList;
-
