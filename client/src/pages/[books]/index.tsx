@@ -53,28 +53,35 @@ export default function Home({
   isDarkMode,
   myInfo,
 }: HomeProps) {
+  // webtoon, novel
   const parentRef = useRef<HTMLDivElement>(null);
   const indexWrapperRef = useRef<HTMLDivElement>(null);
-  const [selectedGenre, setSelectedGenre] = useState<number>(window.sessionStorage.getItem(`${params}-selected_genre`) ? Number(window.sessionStorage.getItem(`${params}-selected_genre`)) : -2);
+  const [selectedGenre, setSelectedGenre] = useState<number>(
+    window.sessionStorage.getItem(`${params}-selected_genre`)
+      ? Number(window.sessionStorage.getItem(`${params}-selected_genre`))
+      : -2
+  );
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const [isScrolling, setIsScrolling] = useState<boolean>(false)
-  const [selectedDay, setSelectedDay] = useState<number>(window.sessionStorage.getItem(`${params}-selected_day`) ? Number(window.sessionStorage.getItem(`${params}-selected_day`)) : 0);
+  const [isScrolling, setIsScrolling] = useState<boolean>(false);
+  const [selectedDay, setSelectedDay] = useState<number>(
+    window.sessionStorage.getItem(`${params}-selected_day`)
+      ? Number(window.sessionStorage.getItem(`${params}-selected_day`))
+      : 0
+  );
 
   // useEffect(() => {
   //   return () => {
   //     setSelectedGenre(() => window.localStorage.getItem(`${params}-_genre`) ? Number(window.localStorage.getItem(`${params}-selected_genre`)) : -2)
   //   setSelectedDay(() => window.localStorage.getItem(`${params}-selected_day`) ? Number(window.localStorage.getItem(`${params}-selected_day`)) : 0)
   //   }
-    
+
   // }, [params])
-
   useEffect(() => {
-
-    window.addEventListener('scroll', throttleScroll);
-    window.addEventListener('scroll', debounceScroll);
+    window.addEventListener("scroll", throttleScroll);
+    window.addEventListener("scroll", debounceScroll);
     return () => {
-      window.removeEventListener('scroll', throttleScroll); //clean up
-      window.removeEventListener('scroll', debounceScroll); //clean up
+      window.removeEventListener("scroll", throttleScroll); //clean up
+      window.removeEventListener("scroll", debounceScroll); //clean up
     };
   }, []);
 
@@ -99,8 +106,24 @@ export default function Home({
   // 임시 데이터
   const postData = {
     content: [
-      <img src={isMobile ? "/assets/temp_banner_1_mobile.png" : "/assets/temp_banner_1.png"} alt={""} css={bannerImage} />,
-      <img src={isMobile ? "/assets/temp_banner_2_mobile.png" : "/assets/temp_banner_2.png"} alt={""} css={bannerImage} />,
+      <img
+        src={
+          isMobile
+            ? "/assets/temp_banner_1_mobile.png"
+            : "/assets/temp_banner_1.png"
+        }
+        alt={""}
+        css={bannerImage}
+      />,
+      <img
+        src={
+          isMobile
+            ? "/assets/temp_banner_2_mobile.png"
+            : "/assets/temp_banner_2.png"
+        }
+        alt={""}
+        css={bannerImage}
+      />,
     ],
   };
 
@@ -111,27 +134,19 @@ export default function Home({
 
   // ________________________________________________________________________________________________
 
-  
   const selectGenreHandler = (selected: number) => {
-    window.sessionStorage.setItem(`${params}-selected_genre`, String(selected))
+    window.sessionStorage.setItem(`${params}-selected_genre`, String(selected));
 
-
-    
     setSelectedGenre(() => selected);
   };
 
   const selectDayHandler = (selected: number) => {
-    window.sessionStorage.setItem(`${params}-selected_day`, String(selected))
+    window.sessionStorage.setItem(`${params}-selected_day`, String(selected));
     setSelectedDay(() => selected);
-
   };
 
-
-
-  
-
   const days = ["일", "월", "화", "수", "목", "금", "토"];
-  
+
   const getBooksByDayAPI = ({
     lastContent,
     size,
@@ -149,12 +164,8 @@ export default function Home({
       prevScore: prevScore,
       genreCode: selectedGenre,
       size,
-      
     });
   };
-
-
-
 
   const getBooksByGenreAPI = ({
     lastContent,
@@ -167,14 +178,12 @@ export default function Home({
     const prevScore = lastContent ? lastContent.avgScore : 10;
     return getBooksByGenre({
       genreCode: selectedGenre,
-      typeCode: (params === 'webtoon' ? 0 : 1),
+      typeCode: params === "webtoon" ? 0 : 1,
       prevId: prevId,
       prevScore: prevScore,
       size: size,
     });
   };
-  
-
 
   const getHighPredictionAPI = ({
     lastContent,
@@ -186,12 +195,12 @@ export default function Home({
     const prevId = lastContent ? lastContent.bookId : 0;
     const prevScore = lastContent ? lastContent.predictScore : 10;
     return getHighPrediction({
-      typeCode: (params === 'webtoon' ? 0 : 1),
+      typeCode: params === "webtoon" ? 0 : 1,
       prevId: prevId,
       prevScore: prevScore,
       size: size,
     });
-  }
+  };
 
   const getReleasedAPI = ({
     lastContent,
@@ -201,15 +210,14 @@ export default function Home({
     size: number;
   }) => {
     const prevId = lastContent ? lastContent.bookId : 20000;
-    const prevRegist = lastContent ? lastContent.regist : '2023.03.20';
+    const prevRegist = lastContent ? lastContent.regist : "2023.03.20";
     return getReleased({
-      typeCode: (params === 'webtoon' ? 0 : 1),
+      typeCode: params === "webtoon" ? 0 : 1,
       prevId: prevId,
       prevRegist: prevRegist,
       size: size,
     });
-  }
-
+  };
 
   const getTop1GenreBooksAPI = ({
     lastContent,
@@ -222,12 +230,12 @@ export default function Home({
     const prevScore = lastContent ? lastContent.avgScore : 10;
     return getTop3GenreBooks({
       order: 1,
-      typeCode: (params === 'webtoon' ? 0 : 1),
+      typeCode: params === "webtoon" ? 0 : 1,
       prevId: prevId,
       prevScore: prevScore,
       size: size,
     });
-  }
+  };
 
   const getTop2GenreBooksAPI = ({
     lastContent,
@@ -240,12 +248,12 @@ export default function Home({
     const prevScore = lastContent ? lastContent.avgScore : 10;
     return getTop3GenreBooks({
       order: 2,
-      typeCode: (params === 'webtoon' ? 0 : 1),
+      typeCode: params === "webtoon" ? 0 : 1,
       prevId: prevId,
       prevScore: prevScore,
       size: size,
     });
-  }
+  };
 
   const getTop30API = ({
     lastContent,
@@ -258,13 +266,13 @@ export default function Home({
     const prevScore = lastContent ? lastContent.avgScore : 10;
     const hit = lastContent ? lastContent.hit : 1000;
     return getTop30({
-      typeCode: (params === 'webtoon' ? 0 : 1),
+      typeCode: params === "webtoon" ? 0 : 1,
       prevId: prevId,
       prevScore: prevScore,
       size: size,
-      hit: hit
+      hit: hit,
     });
-  }
+  };
 
   const getMdRecommendationAPI = ({
     lastContent,
@@ -273,12 +281,11 @@ export default function Home({
     lastContent: bookContentType;
     size: number;
   }) => {
-
     return getMdRecommendation({
-      typeCode: (params === 'webtoon' ? 0 : 1),
+      typeCode: params === "webtoon" ? 0 : 1,
     });
-  }
-  
+  };
+
   const getPersonalRecommendationAPI = ({
     lastContent,
     size,
@@ -286,11 +293,10 @@ export default function Home({
     lastContent: bookContentType;
     size: number;
   }) => {
-
     return getPersonalRecommendation({
-      typeCode: (params === 'webtoon' ? 0 : 1),
+      typeCode: params === "webtoon" ? 0 : 1,
     });
-  }
+  };
 
   const getRelativeAPI = ({
     lastContent,
@@ -299,11 +305,10 @@ export default function Home({
     lastContent: bookContentType;
     size: number;
   }) => {
-
     return getRelative({
       bookId: 0,
     });
-  }
+  };
 
   const getUserCharacteristicRecommendationAPI = ({
     lastContent,
@@ -312,124 +317,125 @@ export default function Home({
     lastContent: bookContentType;
     size: number;
   }) => {
-
     return getUserCharacteristicRecommendation({
-      typeCode: (params === 'webtoon' ? 0 : 1),
+      typeCode: params === "webtoon" ? 0 : 1,
     });
-  }
-
+  };
 
   const bookHomeFetchList = [
     {
       API: getHighPredictionAPI,
       identifier: `HighPrediction-${params}`,
-      beforeLabel: '예측 점수 ',
-      highlightedLabel: 'EMOSAAC!',
-      requireLogin: true,
-    },
-    {
-      API: getReleasedAPI,
-      identifier: `Released-${params}`,
-      beforeLabel: '올해의 신작 ',
-      highlightedLabel: 'EMOSAAC!',
-      requireLogin: false,
-    },
-    {
-      API: getTop1GenreBooksAPI,
-      identifier: `Top1GenreBooks-${params}`,
-      beforeLabel: '가장 선호하는 장르 TOP 1 ',
-      highlightedLabel: 'EMOSAAC!',
-      requireLogin: true,
-    },
-    {
-      API: getTop2GenreBooksAPI,
-      identifier: `Top2GenreBooks-${params}`,
-      beforeLabel: '가장 선호하는 장르 TOP 2 ',
-      highlightedLabel: 'EMOSAAC!',
-      requireLogin: true,
-    },
-    {
-      API: getTop30API,
-      identifier: `Top30-${params}`,
-      beforeLabel: 'TOP 30 ',
-      highlightedLabel: 'EMOSAAC!',
-      requireLogin: false,
-    },
-    {
-      API: getPersonalRecommendationAPI,
-      identifier: `PersonalRecommendation-${params}`,
-      beforeLabel: '나와 비슷한 취향을 가진 사람이 읽은 작품 추천 ',
-      highlightedLabel: 'EMOSAAC!',
+      beforeLabel: `놀라지마세요, `,
+      highlightedLabel: "완전 내 취향",
+      afterLabel: " 작품을 보여줄게요",
       requireLogin: true,
     },
     {
       API: getRelativeAPI,
       identifier: `Relative-${params}`,
-      beforeLabel: '최근 읽은 작품과 비슷한 작품 추천 ',
-      highlightedLabel: 'EMOSAAC!',
+      beforeLabel: "최근 읽은 작품과  ",
+      highlightedLabel: "비슷한",
+      afterLabel: " 작품을 보여줄게요",
+      requireLogin: true,
+    },
+    {
+      API: getTop1GenreBooksAPI,
+      identifier: `Top1GenreBooks-${params}`,
+      // beforeLabel: `${myInfo.nickname}님이 `,
+      highlightedLabel: "가장 선호하는 장르 ",
+      afterLabel: "를 보여줄게요",
+      requireLogin: true,
+    },
+    {
+      API: getTop2GenreBooksAPI,
+      identifier: `Top2GenreBooks-${params}`,
+      // beforeLabel: `${myInfo.nickname}님이  `,
+      highlightedLabel: "두번째 선호하는 장르",
+      afterLabel: "를 보여줄게요",
+      requireLogin: true,
+    },
+    {
+      API: getPersonalRecommendationAPI,
+      identifier: `PersonalRecommendation-${params}`,
+      // beforeLabel: "나와 ",
+      highlightedLabel: "비슷한 취향",
+      afterLabel: "을 가진 사람이 읽은 작품을 보여줄게요",
       requireLogin: true,
     },
     {
       API: getUserCharacteristicRecommendationAPI,
       identifier: `UserCharacteristicRecommendation-${params}`,
-      beforeLabel: '개인 맞춤형 추천 ',
-      highlightedLabel: 'EMOSAAC!',
+      highlightedLabel: `${myInfo.age}대 ${
+        myInfo.gender === 0 ? "남성" : "여성"
+      }`,
+      afterLabel: "이 좋아하는 작품",
       requireLogin: true,
     },
-  ]
+    {
+      API: getReleasedAPI,
+      identifier: `Released-${params}`,
+      beforeLabel: "지난 1년간  ",
+      highlightedLabel: "새로 나온",
+      afterLabel: " 작품",
+      requireLogin: false,
+    },
 
-
+    {
+      API: getTop30API,
+      identifier: `Top30-${params}`,
+      beforeLabel: "이모들이  ",
+      highlightedLabel: "가장 많이 조회한",
+      afterLabel: " 작품",
+      requireLogin: false,
+    },
+  ];
 
   const bookGenreFetchList = [
     {
       API: getBooksByDayAPI,
       identifier: `getBooksByGenre-${params}-${selectedGenre}`,
-      beforeLabel: '장르 추천 ',
-      highlightedLabel: 'EMOSAAC!',
+      beforeLabel: "장르 추천 ",
+      highlightedLabel: "EMOSAAC!",
       requireLogin: false,
     },
-  ]
+  ];
 
-
-
-
-// useEffect(() => {
-//   getTop3GenreBooks({
-//     order: 1,
-//     typeCode: (params === 'webtoon' ? 0 : 1),
-//     prevId: 0,
-//     prevScore: 10,
-//     size: 10,
-//   }).then((res) => console.log('top3', res))
-//   .catch((err) => console.log(err))
-// }, [])
-
-
+  // useEffect(() => {
+  //   getTop3GenreBooks({
+  //     order: 1,
+  //     typeCode: (params === 'webtoon' ? 0 : 1),
+  //     prevId: 0,
+  //     prevScore: 10,
+  //     size: 10,
+  //   }).then((res) => console.log('top3', res))
+  //   .catch((err) => console.log(err))
+  // }, [])
+  // const RowtitleBeforeLabe = `${myInfo.nickname}님께 `;
   const highlightedCarouselRender = (
     <>
       <div css={whiteSpace1CSS} />
-        <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
-          <RowTitle
-            beforeLabel="희MD"
-            highlightedLabel=" EMOSAAC!"
-            noLine={true}
-            marginBottom={"45px"}
-          />
-        </div>
+      <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
+        <RowTitle
+          beforeLabel="당신께 "
+          highlightedLabel="강력 추천하는"
+          afterLabel=" 작품이에요"
+          noLine={true}
+          marginBottom={"35px"}
+        />
+      </div>
 
-
-        <div css={highlightedCarouselWrapper}>
-          <HighlightedCarousel
-            key={params}
-            bookData={highlightedBookData}
-            windowWrapperRef={indexWrapperRef}
-            identifier={params}
-          />
-        </div>
+      <div css={highlightedCarouselWrapper}>
+        <HighlightedCarousel
+          key={params}
+          bookData={highlightedBookData}
+          windowWrapperRef={indexWrapperRef}
+          identifier={params}
+        />
+      </div>
       <div css={whiteSpace2CSS} />
     </>
-  )
-
+  );
 
   // const bookHomeFetchList = [
   //   {
@@ -454,17 +460,27 @@ export default function Home({
         selected={selectedGenre}
         selectHandler={selectGenreHandler}
       />
-      {selectedGenre === -1 && <DayList selected={selectedDay} selectHandler={selectDayHandler}/>}
+      {selectedGenre === -1 && (
+        <DayList selected={selectedDay} selectHandler={selectDayHandler} />
+      )}
 
       {selectedGenre === -2 && highlightedCarouselRender}
 
-      {selectedGenre === -2 && <SortByRows fetchList={bookHomeFetchList} myInfo={myInfo}/>}
+      {selectedGenre === -2 && (
+        <SortByRows fetchList={bookHomeFetchList} myInfo={myInfo} />
+      )}
 
-      {selectedGenre === -1 && <SortByDay params={params} selectedDay={selectedDay} />}
-      
-      {selectedGenre >= 0 && <SortByRows fetchList={bookGenreFetchList} myInfo={myInfo}/>}
+      {selectedGenre === -1 && (
+        <SortByDay params={params} selectedDay={selectedDay} />
+      )}
 
-      {selectedGenre >= 0 && <SortByGenre selectedGenre={selectedGenre} params={params} />}
+      {selectedGenre >= 0 && (
+        <SortByRows fetchList={bookGenreFetchList} myInfo={myInfo} />
+      )}
+
+      {selectedGenre >= 0 && (
+        <SortByGenre selectedGenre={selectedGenre} params={params} />
+      )}
 
       {/* <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
         <RowTitle beforeLabel="너만의" highlightedLabel=" EMOSAAC!" />
@@ -484,9 +500,6 @@ export default function Home({
         alt={""}
         css={bannerImage}
       /> */}
-
-
-
 
       {/* <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
         <div css={whiteSpace1CSS} />
@@ -559,8 +572,6 @@ export async function getStaticPaths(context: any) {
 
 // getStaticPaths는 getStaticProps와 함께 사용하여야 합니다.
 
-
-
 export const getStaticProps = async (context: any) => {
   type paramsType = "webtoon" | "novel";
   const params: paramsType = context.params.books;
@@ -596,20 +607,18 @@ export const getStaticProps = async (context: any) => {
   //     console.log("pages/books/index.tsx => getBooksByGenre", err);
   //   });
 
-
-    const highlightedBookData = await getMdRecommendation({
-      typeCode: (params === 'webtoon' ? 0 : 1),
+  const highlightedBookData = await getMdRecommendation({
+    typeCode: params === "webtoon" ? 0 : 1,
+  })
+    .then((res) => {
+      if (res !== null) {
+        return res.content;
+      }
     })
-      .then((res) => {
-        if (res !== null) {
-          return res.content;
-        }
-      })
-      .catch((err) => {
-        console.log("pages/books/index.tsx => getBooksByGenre", err);
-      });
+    .catch((err) => {
+      console.log("pages/books/index.tsx => getBooksByGenre", err);
+    });
 
-    
   return {
     props: {
       highlightedBookData: highlightedBookData,
@@ -620,11 +629,7 @@ export const getStaticProps = async (context: any) => {
   };
 };
 
-
-
-
-
-const indexWrapperCSS = ({isScrolling}: {isScrolling: boolean}) => {
+const indexWrapperCSS = ({ isScrolling }: { isScrolling: boolean }) => {
   return css`
     overflow: hidden;
     display: flex;
@@ -632,7 +637,7 @@ const indexWrapperCSS = ({isScrolling}: {isScrolling: boolean}) => {
     align-items: center;
     padding-bottom: 64px;
   `;
-  }
+};
 
 const bannerImage = css`
   width: 100%;
