@@ -22,7 +22,17 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
     Array(9).fill("LOADING")
   );
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const [hasNext, setHasNext] = useState<boolean>(window.sessionStorage.getItem(`${identifier}-horizontal-inf_has_next`) ? JSON.parse(String(window.sessionStorage.getItem(`${identifier}-horizontal-inf_has_next`))) : true)
+  const [hasNext, setHasNext] = useState<boolean>(
+    window.sessionStorage.getItem(`${identifier}-horizontal-inf_has_next`)
+      ? JSON.parse(
+          String(
+            window.sessionStorage.getItem(
+              `${identifier}-horizontal-inf_has_next`
+            )
+          )
+        )
+      : true
+  );
 
   const cardLayout = {
     width: "10vw",
@@ -64,7 +74,7 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
       if (nextStandard < cardsRef.current.length) {
         setPage((prev) => prev + 1);
       }
-      if (cardsRef.current[idx] ) {
+      if (cardsRef.current[idx]) {
         setStandard(() => idx);
         wrapperRef.current.scrollTo({
           left: cardsRef.current[idx].offsetLeft,
@@ -72,7 +82,7 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
           behavior: "smooth",
         });
       }
-      
+
       fetchMoreData();
     }
   };
@@ -109,36 +119,32 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
           wrapperRef.current.clientWidth) ||
       bookListData.length - loadingTag.length - standard <= loadingTag.length
     ) {
-      
       if (hasNext === true) {
-        
-        const lastContent = bookListData[bookListData.length - 1]
-        API({lastContent: lastContent, size: quantityPerPage}).then(
+        const lastContent = bookListData[bookListData.length - 1];
+        API({ lastContent: lastContent, size: quantityPerPage }).then(
           (res: returnBookContentType) => {
             if (res.content.length === 0 && bookListData.length === 0) {
-              setNoData(() => true)
+              setNoData(() => true);
             }
-            console.log(res)
-            const temp = [...bookListData, ...res.content]
+            console.log(res);
+            const temp = [...bookListData, ...res.content];
             setBookListData((prev) => temp);
 
             window.sessionStorage.setItem(
               `${identifier}-horizontal-inf_fetched_data`,
-                JSON.stringify(temp)
+              JSON.stringify(temp)
             );
 
             window.sessionStorage.setItem(
               `${identifier}-horizontal-inf_has_next`,
-                JSON.stringify(res.hasNext)
+              JSON.stringify(res.hasNext)
             );
-            setHasNext(() => res.hasNext)
-
+            setHasNext(() => res.hasNext);
 
             // alert('fwe')
           }
         );
       }
-      
     }
   };
 
@@ -152,43 +158,45 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
           );
           setStandard(() => standard);
           if (wrapperRef.current.scrollLeft !== 0) {
-            window.sessionStorage.setItem(`${identifier}-horizontal-recent_scroll`, String(wrapperRef.current.scrollLeft))
+            window.sessionStorage.setItem(
+              `${identifier}-horizontal-recent_scroll`,
+              String(wrapperRef.current.scrollLeft)
+            );
           }
-          
         }
       }, 300),
     [bookListData, setBookListData]
   );
 
   useEffect(() => {
-    const loadData = window.sessionStorage.getItem(`${identifier}-horizontal-inf_fetched_data`)
-    const hasNext = window.sessionStorage.getItem(`${identifier}-horizontal-inf_has_next`);
+    const loadData = window.sessionStorage.getItem(
+      `${identifier}-horizontal-inf_fetched_data`
+    );
+    const hasNext = window.sessionStorage.getItem(
+      `${identifier}-horizontal-inf_has_next`
+    );
 
     if (loadData) {
-      setBookListData(() => JSON.parse(loadData))
-      setHasNext(() => JSON.parse(String(hasNext)))
+      setBookListData(() => JSON.parse(loadData));
+      setHasNext(() => JSON.parse(String(hasNext)));
     } else {
       fetchMoreData();
     }
-
-    
   }, []);
 
   useEffect(() => {
-    const loadScroll = window.sessionStorage.getItem(`${identifier}-horizontal-recent_scroll`)
+    const loadScroll = window.sessionStorage.getItem(
+      `${identifier}-horizontal-recent_scroll`
+    );
 
     if (loadScroll && wrapperRef.current) {
-      wrapperRef.current.scrollTo(Number(JSON.parse(loadScroll)), 0)
+      wrapperRef.current.scrollTo(Number(JSON.parse(loadScroll)), 0);
     }
+  }, [cardsRef.current.length]);
 
-  }, [cardsRef.current.length])
-  
   const generateLoadingData = () => {
     // setBookListResult(() => [...bookListData, ...loadingTag]);
     if (hasNext === true) {
-
-      
-
       setBookListResult(() => [...bookListData, ...loadingTag]);
     } else {
       setBookListResult(() => [...bookListData]);
@@ -196,9 +204,7 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
   };
 
   useEffect(() => {
-      
-        generateLoadingData();
-      
+    generateLoadingData();
   }, [bookListData]);
 
   const renderCards = useMemo(
@@ -262,7 +268,6 @@ const cardWrapperCSS = ({ padding }: { padding: string }) => {
   return css`
     padding-left: ${padding};
     padding-right: ${padding};
-    
   `;
 };
 

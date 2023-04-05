@@ -31,6 +31,8 @@ interface Props {
   isModalOnHandler: Function;
   rotateY: number;
   waterfallWrapperRef: any;
+  setRatingList: Function;
+  ratingList: any;
 }
 
 const WaterfallCard = ({
@@ -43,7 +45,9 @@ const WaterfallCard = ({
   margin,
   isModalOnHandler,
   rotateY,
-  waterfallWrapperRef
+  waterfallWrapperRef,
+  setRatingList,
+  ratingList,
 }: Props) => {
 
   const [user, setUser] = useState<any>(null);
@@ -103,6 +107,8 @@ const WaterfallCard = ({
         isModalOnHandler={isModalOnHandler}
         rotateY={rotateY}
         waterfallWrapperRef={waterfallWrapperRef}
+        setRatingList={setRatingList}
+        ratingList={ratingList}
       />
     </Portal>
   );
@@ -133,7 +139,7 @@ const WaterfallCard = ({
           className={"img"}
           src={bookData && bookData.thumbnail}
           alt={bookData && bookData.title}
-          css={imageCSS}
+          css={imageCSS({hasValue: ratingList[bookData.bookId] ? true : false})}
         />
         {showPlatform && bookData !== "LOADING" && platformBar}
       </div>
@@ -206,14 +212,17 @@ const platformBarCSS = css`
   align-items: center;
 `;
 
-const imageCSS = css`
-  width: auto;
-  height: 100%;
-  transition: transform 0.3s;
-  &:hover {
-    transform: scale(1.1);
-  }
-`;
+const imageCSS = ({hasValue}: {hasValue: boolean}) => {
+  return css`
+    width: auto;
+    height: 100%;
+    transition: transform 0.3s;
+    ${hasValue && 'filter: brightness(20%)'};
+    &:hover {
+      transform: scale(1.1);
+    }
+  `;
+}
 
 interface skeletonLoadingTagCSSProps {
   state: boolean;

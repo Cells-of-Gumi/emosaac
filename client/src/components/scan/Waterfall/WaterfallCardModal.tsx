@@ -24,6 +24,8 @@ interface WaterfallCardModalProps {
   isModalOnHandler: Function;
   rotateY: number;
   waterfallWrapperRef: any;
+  setRatingList: Function;
+  ratingList: any;
 }
 
 const WaterfallCardModal = ({
@@ -36,7 +38,9 @@ const WaterfallCardModal = ({
   imgMinHeight,
   isModalOnHandler,
   rotateY,
-  waterfallWrapperRef
+  waterfallWrapperRef,
+  setRatingList,
+  ratingList,
 }: WaterfallCardModalProps) => {
   const wrapperRef = useRef<HTMLInputElement>(null);
   const [contentToggler, setContentToggler] = useState<boolean>(false);
@@ -93,7 +97,13 @@ const WaterfallCardModal = ({
 
 
   const putBookRatingHandler = (score: number) => {
+    const temp = ratingList
+    temp[bookData.bookId] = score
+    setRatingList(() => temp)
     putBookRating({ bookId: bookData.bookId, score: score });
+
+  //   setRatingList,
+  // ratingList,
   };
 
   return (
@@ -153,7 +163,7 @@ const WaterfallCardModal = ({
                 <StarRating
                   onClick={putBookRatingHandler}
                   readonly={false}
-                  initialValue={bookData.myScore}
+                  initialValue={ratingList[bookData.bookId] ? ratingList[bookData.bookId] : bookData.myScore}
                 />
 
                 </div>
@@ -220,11 +230,11 @@ const wrapperCSS = ({
   // const activated = isRightEdge === true ? rightStandard : leftStandard;
 
   return css`
-    /* transform: ${isOpened ? (isClosing ? `rotateY(${rotateY * 1.6}deg)` : null) : `rotateY(${rotateY * 1.6}deg)`} ; */
+    transform: ${isOpened ? (isClosing ? `rotateY(${rotateY * 1.6}deg)` : null) : `rotateY(${rotateY * 1.6}deg)`} ;
     position: absolute;
     z-index: 999999999;
     transition-property: width height;
-    will-change: width height left top  transform;
+    will-change: width, height, left, top, transform;
     transition-duration: 0.3s;
     /* transition-timing-function: ease-in; */
     overflow: hidden;
