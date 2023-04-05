@@ -52,7 +52,9 @@ const PlatformRatingHover = ({avgGrade, grade, href}: PlatformRatingHoverProps) 
     return (
         <div className={"platform-rating-wrapper"} css={platformRatingHoverWrapperCSS}>
             <div css={ratingWrapperCSS}>
-                <div css={ratingStringWrapperCSS}>평균 </div>
+                <div css={ratingStringWrapperCSS}>
+                <img src={"/assets/emosaac_logo_mobile.png"} css={platformIconCSS} />
+                </div>
                 <StarRating initialValue={Number(avgGrade)} readonly={true}/>
             </div>
             
