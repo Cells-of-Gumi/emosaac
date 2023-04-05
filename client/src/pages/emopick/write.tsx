@@ -124,8 +124,8 @@ const write = () => {
   useEffect(() => {
     const webtoons = addedBookList.filter((book) => book.typeCd === 0);
     const novels = addedBookList.filter((book) => book.typeCd === 1);
-    const webObj = {};
-    const novObj = {};
+    const webObj: { [key: number]: string } = {};
+    const novObj: { [key: number]: string } = {};
     webtoons.forEach((webtoon) => (webObj[webtoon.bookId] = webtoon.review));
     novels.forEach((novel) => (novObj[novel.bookId] = novel.review));
     setWebtoonList(webObj);
