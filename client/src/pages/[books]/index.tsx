@@ -88,15 +88,23 @@ export default function Home({
   const throttleScroll = useMemo(
     () =>
       throttle(() => {
+        if (indexWrapperRef.current) {
+          indexWrapperRef.current.style.pointerEvents = "none";
+        }
+
         setIsScrolling(() => true);
-      }, 1000),
+      }, 100),
     []
   );
   const debounceScroll = useMemo(
     () =>
       debounce(() => {
+        if (indexWrapperRef.current) {
+          indexWrapperRef.current.style.pointerEvents = "auto";
+        }
+
         setIsScrolling(() => false);
-      }, 10),
+      }, 200),
     []
   );
 
