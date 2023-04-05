@@ -8,20 +8,18 @@ import { EmopickSearchBarMobile } from "./EmopickSearchBarMobile";
 import { EmopickSearchBar } from "./EmopickSearchBar";
 import EmopickSearchBox from "./EmopickSearchBox";
 import { getListByContent } from "@/api/search/getSearchBooksByContent";
-
+import { IoCloseOutline } from "react-icons/io5";
 // {width?: string, height?: string, content: any, modalState: any, stateHandler: any, overflow?: string, forced?: boolean, blur?: boolean, isDarkMode?: boolean}
 
 interface Props {
-  bookList?:
-    | {
-        title: string;
-        bookId: number;
-        typeCd: number;
-        review: string;
-        thumbnail: string;
-      }[]
-    | [];
-  setBookList?: Dispatch<
+  bookList?: {
+    title: string;
+    bookId: number;
+    typeCd: number;
+    review: string;
+    thumbnail: string;
+  }[];
+  setBookList: Dispatch<
     SetStateAction<
       {
         title: string;
@@ -32,8 +30,27 @@ interface Props {
       }[]
     >
   >;
-  selectedBookList: any[] | [];
-  setSelectedBookList: Dispatch<SetStateAction<any[] | []>>;
+  selectedBookList:
+    | {
+        title: string;
+        bookId: number;
+        typeCd: number;
+        review: string;
+        thumbnail: string;
+      }[]
+    | [];
+  setSelectedBookList: Dispatch<
+    SetStateAction<
+      {
+        title: string;
+        bookId: number;
+        typeCd: number;
+        review: string;
+        thumbnail: string;
+      }[]
+    >
+  >;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const EmopickSearchModalContent = ({
@@ -41,6 +58,7 @@ const EmopickSearchModalContent = ({
   setBookList,
   selectedBookList,
   setSelectedBookList,
+  setIsModalOpen,
 }: Props) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [isSearchBoxOpen, setIsSearchBoxOpen] = useState(false);
@@ -69,6 +87,9 @@ const EmopickSearchModalContent = ({
       }
     );
   }
+  function onClickClose() {
+    setIsModalOpen(false);
+  }
   useEffect(() => {
     setIsPageEnd(false);
     if (searchInput && searchInput.length > 0) {
@@ -81,37 +102,44 @@ const EmopickSearchModalContent = ({
       <h3 css={headlineCSS({ isDeskTop, isTablet, isMobile })}>
         작품 검색하기
       </h3>
-      {isMobile ? (
-        <EmopickSearchBarMobile
-          setIsSearchBoxOpen={setIsSearchBoxOpen}
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-          setSelectedBookList={setSelectedBookList}
-          setBooks={setBooks}
-        />
-      ) : (
-        <EmopickSearchBar
-          setIsSearchBoxOpen={setIsSearchBoxOpen}
-          searchInput={searchInput}
-          setSearchInput={setSearchInput}
-          setSelectedBookList={setSelectedBookList}
-          setBooks={setBooks}
-        />
-      )}
-      {isSearchBoxOpen && (
-        <EmopickSearchBox
-          selectedBookList={selectedBookList}
-          setSelectedBookList={setSelectedBookList}
-          setIsSearchBoxOpen={setIsSearchBoxOpen}
-          books={books}
-          type={"total"}
-          getSearchBooks={getSearchBooks}
-          prevId={prevId}
-          prevScore={prevScore}
-          isPageEnd={isPageEnd}
-          bookList={bookList}
-        />
-      )}
+      <div css={searchBarCSS({ isDeskTop, isTablet, isMobile })}>
+        <button onClick={onClickClose}>
+          <IoCloseOutline size={isMobile ? 20 : 24} />
+        </button>
+        {isMobile ? (
+          <EmopickSearchBarMobile
+            setIsSearchBoxOpen={setIsSearchBoxOpen}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+            setSelectedBookList={setSelectedBookList}
+            setBooks={setBooks}
+          />
+        ) : (
+          <EmopickSearchBar
+            setIsSearchBoxOpen={setIsSearchBoxOpen}
+            searchInput={searchInput}
+            setSearchInput={setSearchInput}
+            setSelectedBookList={setSelectedBookList}
+            setBooks={setBooks}
+          />
+        )}
+      </div>
+
+      <EmopickSearchBox
+        selectedBookList={selectedBookList}
+        setSelectedBookList={setSelectedBookList}
+        setIsSearchBoxOpen={setIsSearchBoxOpen}
+        books={books}
+        type={"total"}
+        getSearchBooks={getSearchBooks}
+        prevId={prevId}
+        prevScore={prevScore}
+        isPageEnd={isPageEnd}
+        bookList={bookList}
+        searchInput={searchInput}
+        setBookList={setBookList}
+        setIsModalOpen={setIsModalOpen}
+      />
     </div>
   );
 };
@@ -129,4 +157,18 @@ const headlineCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   margin: ${isMobile ? "0 20px" : "0"};
 `;
 
+const searchBarCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
+  position: relative;
+  & > button {
+    cursor: pointer;
+    position: absolute;
+    z-index: 30;
+    right: ${isMobile ? "20px" : "0px"};
+    background-color: var(--back-color-2);
+    top: 2px;
+    height: 41px;
+    width: 45px;
+    border-radius: 5px;
+  }
+`;
 export default EmopickSearchModalContent;

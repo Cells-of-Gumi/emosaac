@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useState, Dispatch, SetStateAction } from "react";
+import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import EmopickFloatingButton from "./EmopickFloatingButton";
 import FixedModal from "../UI/FixedModal/FixedModal";
@@ -29,8 +29,27 @@ interface Props {
       }[]
     >
   >;
-  selectedBookList: any[] | [];
-  setSelectedBookList: Dispatch<SetStateAction<any[] | []>>;
+  selectedBookList:
+    | {
+        title: string;
+        bookId: number;
+        typeCd: number;
+        review: string;
+        thumbnail: string;
+      }[]
+    | [];
+  setSelectedBookList: Dispatch<
+    SetStateAction<
+      | {
+          title: string;
+          bookId: number;
+          typeCd: number;
+          review: string;
+          thumbnail: string;
+        }[]
+      | []
+    >
+  >;
   isModalOpen: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
@@ -55,6 +74,7 @@ const EmopickSearchModal = ({
             setBookList={setBookList}
             selectedBookList={selectedBookList}
             setSelectedBookList={setSelectedBookList}
+            setIsModalOpen={setIsModalOpen}
           />
         }
       />
