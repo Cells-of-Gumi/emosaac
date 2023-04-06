@@ -4,7 +4,8 @@ import { useState, useEffect, useRef, useMemo } from "react";
 import { bookContentType, returnBookContentType } from "@/types/books";
 import BookCard from "../BookCard/BookCard";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
-import { debounce } from "lodash";
+import { debounce, throttle } from "lodash";
+
 
 const HorizontalScroll = ({
   API,
@@ -47,6 +48,72 @@ const HorizontalScroll = ({
 
   }, []);
 
+
+// 스크롤 저장부분 시작---------------------------------------------------------------------------------------------------------
+  useEffect(() => {
+    const loadScroll = window.localStorage.getItem(`index_scroll_value`)
+    const preventValue = JSON.parse(String(window.sessionStorage.getItem(`prevent_index_scroll`)))
+    const scrollTiming = JSON.parse(String(window.sessionStorage.getItem(`scroll_timing_horizontal`)))
+    
+    if (loadScroll && preventValue !== true && scrollTiming === true ) {
+      if (stopVerticalScroll !== true) {
+        document.documentElement.scrollTo({
+          left: 0,
+          top: Number(JSON.parse(loadScroll)),
+          behavior: "auto",
+        });
+      }
+      window.sessionStorage.removeItem(`prevent_index_scroll`)
+      
+    }
+    
+  }, [scrollRef.current])
+
+
+  const onScrollHandler = useMemo(
+    () =>
+      throttle(() => {
+
+          if (scrollRef.current && scrollRef.current.scrollLeft !== 0) {
+            window.sessionStorage.setItem(
+              `${identifier}-horizontal-recent_scroll`,
+              String(scrollRef.current.scrollLeft)
+            );
+          }
+      }, 300),
+    [bookListData, setBookListData]
+  );
+
+  useEffect(() => {
+    const loadData = window.sessionStorage.getItem(
+      `${identifier}-horizontal-inf_fetched_data`
+    );
+    const hasNext = window.sessionStorage.getItem(
+      `${identifier}-horizontal-inf_has_next`
+    );
+
+    if (loadData) {
+      setBookListData(() => JSON.parse(loadData));
+      setHasNext(() => JSON.parse(String(hasNext)));
+    } else {
+      setGetFetch(() => true);
+    }
+  }, []);
+
+  useEffect(() => {
+    const loadScroll = window.sessionStorage.getItem(
+      `${identifier}-horizontal-recent_scroll`
+    );
+
+
+    
+    if (loadScroll && scrollRef.current) {
+      scrollRef.current.scrollTo(Number(JSON.parse(loadScroll)), 0);
+
+    }
+  }, [cardsRef.current.length]);
+
+
   useEffect(() => {
     if (getFetch === true && hasNext === true) {
       const lastContent = bookListData[bookListData.length - 1];
@@ -76,14 +143,9 @@ const HorizontalScroll = ({
     }
   }, [getFetch]);
 
-  const getShowCount = () => {
-    if (dummyRef.current && scrollRef.current) {
-      const count = Math.floor(
-        scrollRef.current.clientWidth / dummyRef.current.clientWidth
-      );
-      return count;
-    }
-  };
+
+// 스크롤 저장부분 끝---------------------------------------------------------------------------------------------------------
+
 
   const cardsRender = useMemo(() => bookListData.map((el, idx) => {
     return (
@@ -105,6 +167,7 @@ const HorizontalScroll = ({
     );
   }), [bookListData]);
 
+
   const getFetchPoint = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       // entry의 target으로 DOM에 접근합니다.
@@ -118,6 +181,7 @@ const HorizontalScroll = ({
     });
   });
 
+
   const options = {
     root: null,
     // 타겟 이미지 접근 전 이미지를 불러오기 위해 rootMargin을 설정했습니다.
@@ -126,36 +190,14 @@ const HorizontalScroll = ({
   }
 
   const getVisibleCard = new IntersectionObserver((entries) => {
-
       entries.forEach((entry:any) => {
-        // entry의 target으로 DOM에 접근합니다.
-        const $target = entry.target;
-        
-
-
-        // if (entry.isIntersecting === true) {
-        //   const curIdx = Number($target.id)
-        //   if (curIdx > leftCard) {
-        //     setRightCardHandler(curIdx)
-        //   }
-        //   if (curIdx < rightCard) {
-        //     setLeftCardHandler(curIdx)
-        //   }
-        // }
-        
         if (entry.intersectionRatio > 0) {
           entry.target.classList.add(`${identifier}-visible-card`);
 
         } else {
           entry.target.classList.remove(`${identifier}-visible-card`);
         }
-  
-
-  
       }, options);
-
-    
-
   })
 
 
@@ -166,13 +208,23 @@ const HorizontalScroll = ({
         cardsRef.current[cardsRef.current.length - quantity]
       );
     }
-
-    cardsRef.current.forEach((item: any) => {
-      if (item) {
-        getVisibleCard.observe(item);
-      }
-    });
-
+    const visibleCards = document.querySelectorAll(`.${identifier}-visible-card`)
+    const leftRange = Number(visibleCards[0]?.id) - quantity < 0 ? 0 : Number(visibleCards[0]?.id) - quantity
+    const rightRange = Number(visibleCards[visibleCards.length - 1]?.id) + quantity + 1 > cardsRef.current.length - 1 ? cardsRef.current.length - 1 : Number(visibleCards[visibleCards.length - 1]?.id) + quantity + 1
+    if (!leftRange || !rightRange) {
+      cardsRef.current.forEach((item: any) => {
+        if (item) {
+          getVisibleCard.observe(item);
+        }
+      });
+    } else {
+      cardsRef.current.slice(leftRange, rightRange).forEach((item: any) => {
+        if (item) {
+          getVisibleCard.observe(item);
+        }
+      });
+    }
+    
     return () => getFetchPoint.disconnect();
   }, [cardsRef.current.length, bookListData]);
 
@@ -188,6 +240,10 @@ const HorizontalScroll = ({
         top: 0,
         behavior: "smooth",
       });
+      window.sessionStorage.setItem(
+        `${identifier}-horizontal-recent_scroll`,
+        String(cardsRef.current[to]?.offsetLeft)
+      );
     }
 
   }, 20), [leftCard, rightCard])
@@ -204,6 +260,10 @@ const HorizontalScroll = ({
         top: 0,
         behavior: "smooth",
       });
+      window.sessionStorage.setItem(
+        `${identifier}-horizontal-recent_scroll`,
+        String(cardsRef.current[to]?.offsetLeft)
+      );
     }
 
   }, 20), [leftCard, rightCard])
@@ -234,7 +294,7 @@ const HorizontalScroll = ({
         〉
       </div>
 
-      <div ref={scrollRef} css={carousel}>
+      <div ref={scrollRef} css={carousel} onWheel={onScrollHandler} onTouchMove={onScrollHandler}>
         {cardsRender}
       </div>
       <div ref={dummyRef} css={dummyCSS({ cardLayout })} />
