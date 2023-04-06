@@ -74,7 +74,7 @@ const MyPageAnalyze = ({typeCode} : {typeCode: number}) => {
               
             </div>
         </div>
-        <SortByRows fetchList={bookFetchList} titleColor={'var(--back-color-2)'} hideBanner={true} />
+        <SortByRows fetchList={bookFetchList} titleColor={'var(--soft-grey-2)'} hideBanner={true} />
       </div>
         
     )
