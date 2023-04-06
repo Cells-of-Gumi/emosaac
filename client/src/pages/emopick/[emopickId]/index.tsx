@@ -6,6 +6,7 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { getToken } from "@/api/instance";
 import { getEmopickDetail } from "@/api/emopick/getEmopickDetail";
 import EmopickFloatingButtonToTop from "@/components/emopick/EmopickFloatingButtonToTop";
+import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
 
 type emopickReviewType = {
   bookId: number;
@@ -52,61 +53,47 @@ const index = ({ data }: returnEmopickType) => {
         <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
           <h2>{data.title}</h2>
           <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div>작성자 정보</div>
-          <div css={likeCSS({ isDeskTop, isTablet, isMobile })}>좋아용</div>
+          <div>하트 n개 총 n개의 작품</div>
         </div>
-        <div css={contentCSS({ isDeskTop, isTablet, isMobile })}></div>
-        <div css={columnWrapCSS({ isDeskTop, isTablet, isMobile })}>
-          <h3>웹툰</h3>
-          <div css={noBookWrapCSS({ isDeskTop, isTablet, isMobile })}></div>
-          <div css={bookWrapCSS({ isDeskTop, isTablet, isMobile })}></div>
+        <div css={contentCSS({ isDeskTop, isTablet, isMobile })}>
+          <RiDoubleQuotesL />
+          {data.content}
+          <RiDoubleQuotesR />
         </div>
         <div css={columnWrapCSS({ isDeskTop, isTablet, isMobile })}>
-          <h3>웹소설</h3>
-          <div css={noBookWrapCSS({ isDeskTop, isTablet, isMobile })}></div>
+          <h3>
+            <div>
+              웹툰<span>총 n개</span>
+            </div>
+            토글버튼
+          </h3>
+          <div css={noBookWrapCSS({ isDeskTop, isTablet, isMobile })}>
+            추천한 웹툰이 없습니다
+          </div>
+          <div css={bookWrapCSS({ isDeskTop, isTablet, isMobile })}>
+            {/* 여기부턴 맵으로 돌린다 */}
+            <div>
+              <div>1. 웹툰 제목</div>
+              <div>
+                <div>썸네일</div>
+                <div>리뷰</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div css={columnWrapCSS({ isDeskTop, isTablet, isMobile })}>
+          <h3>
+            <div>
+              웹소설<span>총 n개</span>
+            </div>
+            토글버튼
+          </h3>
+          <div css={noBookWrapCSS({ isDeskTop, isTablet, isMobile })}>
+            추천한 웹소설이 없습니다
+          </div>
           <div css={bookWrapCSS({ isDeskTop, isTablet, isMobile })}></div>
         </div>
+        <div css={likeCSS({ isDeskTop, isTablet, isMobile })}>좋아용</div>
       </div>
     </div>
   );
@@ -119,6 +106,7 @@ interface IsResponsive {
 }
 const innerCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   scroll-behavior: smooth;
+  padding: ${isDeskTop ? "20px 105px" : isTablet ? "15px 50px" : "10px 20px"};
 `;
 const titleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css``;
 const likeCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css``;
