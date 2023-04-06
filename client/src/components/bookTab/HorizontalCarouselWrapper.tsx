@@ -10,34 +10,31 @@ import { bookContentType } from "@/types/books";
 
 const HorizontalCarouselWrapper = ({el, titleColor, stopVerticalScroll}: {el: any; titleColor?: string; stopVerticalScroll? : boolean}) => {
     const [noData, setNoData] = useState<boolean>(false)
-    const [loading, setLoading] = useState<boolean>(true)
-    
-    if (noData === false) {
+
+   
         return (
-            <div css={horizontalCarouselWrapperCSS({loading})} >
-            
+          
+            <React.Fragment>
+              {noData === false &&
+              <React.Fragment>
+                
                 <div css={whiteSpace1CSS} />
                     <RowTitle beforeLabel={el.beforeLabel} highlightedLabel={el.highlightedLabel} afterLabel={el?.afterLabel} backgroundColor={titleColor} />
                     <div css={bookCarouselWrapperCSS}>
                     {/* <ScrollableCarousel API={el.API} identifier={el.identifier} /> */}
                     {/* <HorizontalScroll API={el.API} identifier={el.identifier} setNoData={setNoData} /> */}
-                    <HorizontalScroll API={el.API} identifier={el.identifier} setNoData={setNoData} stopVerticalScroll={stopVerticalScroll} setLoading={setLoading} />
+                    <HorizontalScroll API={el.API} identifier={el.identifier} setNoData={setNoData} stopVerticalScroll={stopVerticalScroll} />
                     </div>
                     <div css={whiteSpace1CSS} />
-                    
-            </div>
+                    </React.Fragment>
+                  }
+            </React.Fragment>
         )
 
     
 }
 
-const horizontalCarouselWrapperCSS = ({loading}: {loading: boolean}) => {
-  return css`
-    transition-property: opacity;
-    transition-duration: 0.3s;
-    opacity: ${loading === false ? '100%' : '0%'};
-  `
-}
+
 
 const indexWrapperCSS = css`
   width: 100%;

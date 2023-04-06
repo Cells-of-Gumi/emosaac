@@ -14,7 +14,6 @@ const HorizontalScroll = ({
   identifier,
   setNoData,
   stopVerticalScroll,
-  setLoading,
 }: any) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [bookListData, setBookListData] = useState<bookContentType[]>([]);
@@ -104,11 +103,9 @@ const HorizontalScroll = ({
       }
       setBookListData(() => JSON.parse(loadData));
       setHasNext(() => JSON.parse(String(hasNext)));
-      setLoading(() => false)
     } else {
       setGetFetch(() => true);
     }
-    
   }, []);
 
   useEffect(() => {
@@ -148,7 +145,6 @@ const HorizontalScroll = ({
           setHasNext(() => res.hasNext);
           
           setGetFetch(() => false);
-          setLoading(() => false)
           // alert('fwe')
         }
       )
