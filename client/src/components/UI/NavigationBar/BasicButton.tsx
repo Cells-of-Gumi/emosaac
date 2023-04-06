@@ -149,7 +149,8 @@ const hoverwrapCSS = (isOpen: boolean) => css`
 
 const ButtonWrapCSS = css`
   cursor: pointer;
-  height: 36px;
+  width: 50px;
+  height: 37px;
   background-color: var(--back-color);
   color: var(--text-color-2);
 `;
