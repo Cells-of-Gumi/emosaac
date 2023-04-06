@@ -107,8 +107,6 @@ const HorizontalScroll = ({
       `${identifier}-horizontal-recent_scroll`
     );
 
-
-    
     if (loadScroll && scrollRef.current) {
       scrollRef.current.scrollTo(Number(JSON.parse(loadScroll)), 0);
 
