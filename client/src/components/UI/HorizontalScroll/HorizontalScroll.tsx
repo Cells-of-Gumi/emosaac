@@ -51,6 +51,8 @@ const HorizontalScroll = ({
   }, []);
 
 
+
+
 // 스크롤 저장부분 시작---------------------------------------------------------------------------------------------------------
   useEffect(() => {
     const loadScroll = window.localStorage.getItem(`index_scroll_value`)
@@ -95,6 +97,10 @@ const HorizontalScroll = ({
     );
 
     if (loadData) {
+      if (loadData.length === 0) {
+        setNoData(() => true)
+        
+      }
       setBookListData(() => JSON.parse(loadData));
       setHasNext(() => JSON.parse(String(hasNext)));
     } else {
@@ -119,9 +125,11 @@ const HorizontalScroll = ({
       const lastContent = bookListData[bookListData.length - 1];
       API({ lastContent: lastContent, size: quantity }).then(
         (res: returnBookContentType) => {
-          if (res.content.length === 0 && bookListData.length === 0) {
+          if ((res.content.length === 0 || !res.content) && bookListData.length === 0) {
+            
             setNoData(() => true);
           }
+          console.log(identifier, res)
           const temp = [...bookListData, ...res.content];
           setBookListData((prev) => temp);
 
@@ -135,11 +143,22 @@ const HorizontalScroll = ({
             JSON.stringify(res.hasNext)
           );
           setHasNext(() => res.hasNext);
+          
           setGetFetch(() => false);
           // alert('fwe')
         }
-      );
-    }
+      )
+      .catch(() => {
+        if (bookListData.length === 0) {
+          setNoData(() => true);
+          
+          // alert(identifier)
+        }
+      })
+    } else if (hasNext === false && bookListData.length === 0) {
+      setNoData(() => true);
+      console.log('test')
+    } 
   }, [getFetch]);
 
 
@@ -227,6 +246,7 @@ const HorizontalScroll = ({
     return () => getFetchPoint.disconnect();
   }, [cardsRef.current.length, bookListData]);
 
+  
 
   const prevBtnClickHandler = useMemo(() => debounce(() => {
     const visibleCards = document.querySelectorAll(`.${identifier}-visible-card`)
