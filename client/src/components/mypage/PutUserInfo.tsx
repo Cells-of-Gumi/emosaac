@@ -8,8 +8,10 @@ import { useEffect } from "react";
 import getMyInfo from "@/api/user/getMyInfo";
 import Router from "next/router";
 import { useRouter } from "next/router";
+import { useIsResponsive } from "../Responsive/useIsResponsive";
 const PutUserInfo = ({ myInfo }: any) => {
   const router = useRouter();
+  const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const defaultProfileImage = "/assets/default_image.png";
   const token = getToken();
   const [nickname, setNickname] = useState("");
@@ -209,7 +211,7 @@ const PutUserInfo = ({ myInfo }: any) => {
   return (
     <>
       <section>
-        <form action="" css={formCSS} onSubmit={onClickSubmit}>
+        <form action="" css={formCSS({isMobile})} onSubmit={onClickSubmit}>
           <article css={textwrapCSS}>
             <h2>회원정보수정</h2>
           </article>
@@ -335,23 +337,26 @@ const PutUserInfo = ({ myInfo }: any) => {
             </button>
           </div>
         </form>
+        <div css={css`height: ${isMobile && '120px'};`}/>
       </section>
     </>
   );
 };
 
-const formCSS = css`
-  color: var(--text-color);
-  display: flex;
-  min-height: 400px; // 변경된 부분
-  flex-direction: column;
-  justify-content: space-between;
-  width: 400px;
-  padding: 45px;
-  border-radius: 5px;
-  margin: 20px auto;
-  border: 1px solid var(--border-color);
-`;
+const formCSS = ({isMobile}: {isMobile: boolean}) => {
+  return css`
+    color: var(--text-color);
+    display: flex;
+    min-height: 400px; // 변경된 부분
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    padding: 45px;
+    border-radius: 5px;
+    margin: 20px auto;
+    border: ${!isMobile && `1px solid var(--border-color)`};
+  `
+} 
 const textwrapCSS = css`
   text-align: left;
   margin-bottom: 70px;

@@ -27,13 +27,7 @@ const HorizontalCarouselWrapper = ({el, titleColor, stopVerticalScroll}: {el: an
                     
             </div>
         )
-    } else {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+
     
 }
 

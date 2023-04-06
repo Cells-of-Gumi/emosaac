@@ -20,6 +20,7 @@ const GenreList = ({
 
   useEffect(() => {
     const loadGenre = Number(window.sessionStorage.getItem(`${params}-selected_genre`))
+    
     selectHandler(loadGenre ? loadGenre : -2)
   }, [genres])
 

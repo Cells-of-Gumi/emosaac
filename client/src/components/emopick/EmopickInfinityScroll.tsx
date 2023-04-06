@@ -8,6 +8,8 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 
 import UseAnimations from "react-useanimations";
 import loading2 from "react-useanimations/lib/loading2";
+import alertTriangle from "react-useanimations/lib/alertTriangle";
+
 import { emopickContentType, returnEmopickType } from "@/types/emopick";
 
 interface EmopickInfinityScrollProps {
@@ -262,7 +264,18 @@ const EmopickInfinityScroll = ({
   return (
     <div css={scrollWrapperCSS}>
       {pageRender}
-
+      
+      {fetchedData[0]?.length === 0 &&
+        <div css={css`width: 100%; height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center;`}>
+          <UseAnimations
+            strokeColor={"var(--text-color)"}
+            fillColor={"var(--back-color-2)"}
+            animation={alertTriangle}
+            size={170}
+          />
+          글 목록이 비어있어요.
+        </div>
+      }
       {hasNext && (
         <div css={scrollDivSCC} id={"scrollStart"} ref={scrollWrapperRef}>
           {/* ∨ */}
