@@ -138,7 +138,12 @@ const HorizontalScroll = ({
           setGetFetch(() => false);
           // alert('fwe')
         }
-      );
+      )
+      .catch(() => {
+        if (bookListData.length === 0) {
+          setNoData(() => true);
+        }
+      })
     }
   }, [getFetch]);
 
