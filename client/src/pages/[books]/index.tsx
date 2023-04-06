@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 // import ScrollableCarousel from "@/components/UI/ScrollableCarousel/ScrollableCarousel";
 import SwipeableGallery from "@/components/UI/SwipeableCarousel/SwipeableGallery";
 import { recvBooks } from "@/api/DummyData";
@@ -37,6 +37,7 @@ import { getBooksByDay } from "@/api/book/getBooksByDay";
 import VerticalScroll from "@/components/UI/VerticalScroll/VerticalScroll";
 import SortByGenre from "@/components/bookTab/SortByGenre";
 import { throttle, debounce } from "lodash";
+import Footer from "@/components/UI/Footer/Footer";
 
 interface HomeProps {
   highlightedBookData: bookContentType[];
@@ -348,7 +349,6 @@ export default function Home({
     {
       API: getTop1GenreBooksAPI,
       identifier: `Top1GenreBooks-${params}`,
-      // beforeLabel: `${myInfo.nickname}님이 `,
       highlightedLabel: "가장 선호하는 장르 ",
       afterLabel: "를 보여줄게요",
       requireLogin: true,
@@ -356,21 +356,11 @@ export default function Home({
     {
       API: getTop2GenreBooksAPI,
       identifier: `Top2GenreBooks-${params}`,
-      // beforeLabel: `${myInfo.nickname}님이  `,
       highlightedLabel: "두번째 선호하는 장르",
       afterLabel: "를 보여줄게요",
       requireLogin: true,
     },
-    // {
-    //   API: getPersonalRecommendationAPI,
-    //   identifier: `PersonalRecommendation-${params}`,
-    //   // beforeLabel: "나와 ",
-    //   highlightedLabel: "비슷한 취향",
-    //   afterLabel: `을 가진 사람이 읽은 ${
-    //     params === "webtoon" ? "웹툰" : "웹소설"
-    //   }을 보여줄게요`,
-    //   requireLogin: true,
-    // },
+
     {
       API: getUserCharacteristicRecommendationAPI,
       identifier: `UserCharacteristicRecommendation-${params}`,
@@ -409,17 +399,7 @@ export default function Home({
     },
   ];
 
-  // useEffect(() => {
-  //   getTop3GenreBooks({
-  //     order: 1,
-  //     typeCode: (params === 'webtoon' ? 0 : 1),
-  //     prevId: 0,
-  //     prevScore: 10,
-  //     size: 10,
-  //   }).then((res) => console.log('top3', res))
-  //   .catch((err) => console.log(err))
-  // }, [])
-  // const RowtitleBeforeLabe = `${myInfo.nickname}님께 `;
+
   const rowTitleAfterLabel = ` ${
     params === "webtoon" ? "웹툰" : "웹소설"
   }을 보여줄게요`;
@@ -448,17 +428,12 @@ export default function Home({
     </>
   );
 
-  // const bookHomeFetchList = [
-  //   {
-  //     API: getBooksByGenreAPI,
-  //     identifier: 'test1',
-  //     beforeLabel: '너만의',
-  //     highlightedLabel: 'EMOSAAC!',
 
-  //   }
-  // ]
 
   return (
+    <React.Fragment>
+
+    
     <div ref={indexWrapperRef} css={indexWrapperCSS({ isScrolling })}>
       {/* <FloatingButton isDarkMode={isDarkMode}/> */}
       {myInfo !== false && <FloatingButton isDarkMode={isDarkMode} />}
@@ -494,63 +469,15 @@ export default function Home({
         <SortByGenre selectedGenre={selectedGenre} params={params} />
       )}
 
-      {/* <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
-        <RowTitle beforeLabel="너만의" highlightedLabel=" EMOSAAC!" />
-        <div css={bookCarouselWrapperCSS}>
-          <ScrollableCarousel API={getBooksByGenreAPI} identifier={"test1"} />
-        </div>
-        <div css={whiteSpace1CSS} />
 
-      </div>
+      
 
-      <img
-        src={
-          isMobile === true
-            ? "/assets/content_banner_mobile.png"
-            : "/assets/content_banner_desktop_tablet.png"
-        }
-        alt={""}
-        css={bannerImage}
-      /> */}
-
-      {/* <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
-        <div css={whiteSpace1CSS} />
-        <RowTitle beforeLabel="너만의" highlightedLabel=" EMOSAAC!" />
-        <div css={bookCarouselWrapperCSS}>
-          <ScrollableCarousel API={recvBooks} identifier={"test1"} />
-        </div>
-        <div css={whiteSpace1CSS} />
-        <RowTitle beforeLabel="너만의" highlightedLabel=" EMOSAAC!" />
-        <div css={bookCarouselWrapperCSS}>
-          <ScrollableCarousel API={recvBooks} identifier={"test1"} />
-        </div>
-        <div css={whiteSpace1CSS} />
-      </div> */}
     </div>
+    
+    </React.Fragment>
   );
 }
 
-// export const getServerSideProps = async (context: any) => {
-//   // const params = await context.params;
-
-//   // 임시 API
-//   const data = await getBooksByGenre({genreCode: 10, typeCode: 0, prevId: 0, prevScore: 10, size: 20 })
-//     .then((res) => {
-//       if (res !== null) {
-//         return res.content;
-//       }
-//     })
-//     .catch((err) => {
-//       console.log("pages/books/index.tsx => getBooksByGenre", err);
-//     });
-
-//   return await {
-//     props: {
-//       highlightedBookData: data,
-//       // params: params.books,
-//     },
-//   };
-// };
 
 export async function getStaticPaths(context: any) {
   if (process.env.SKIP_BUILD_STATIC_GENERATION) {
@@ -565,24 +492,11 @@ export async function getStaticPaths(context: any) {
     { params: { books: "novel" } },
   ];
 
-  // { fallback: false } means other routes should 404
+
   return { paths, fallback: false };
 
-  // const params = context.params;
-  // console.log(params);
-
-  // return {
-  //   // 아래의 코드는 동적 라우팅 주소를 하드코딩 한 것입니다.
-  //   // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
-
-  //   // 아래의 코드는 동적 라우팅 주소 배열을 받아오는 함수를 이용하여 paths에 유효한 주소값을 모두 받아옵니다.
-  //   // 자세한 코드는 getAllPostIds.tsx 파일을 참조하도록 합니다.
-  //   paths: [{ params: { books: 'webtoon' } }, { params: { books: 'novel' } }],
-  //   fallback: false, // true, false 외에도 'blocking'으로 설정할 수 있습니다.
-  // };
 }
 
-// getStaticPaths는 getStaticProps와 함께 사용하여야 합니다.
 
 export const getStaticProps = async (context: any) => {
   type paramsType = "webtoon" | "novel";
@@ -603,21 +517,7 @@ export const getStaticProps = async (context: any) => {
     );
   }
 
-  // const highlightedBookData = await getBooksByGenre({
-  //   genreCode: 10,
-  //   typeCode: 0,
-  //   prevId: 0,
-  //   prevScore: 10,
-  //   size: 30,
-  // })
-  //   .then((res) => {
-  //     if (res !== null) {
-  //       return res.content;
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.log("pages/books/index.tsx => getBooksByGenre", err);
-  //   });
+
 
   const highlightedBookData = await getMdRecommendation({
     typeCode: params === "webtoon" ? 0 : 1,

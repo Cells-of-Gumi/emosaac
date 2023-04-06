@@ -13,6 +13,7 @@ import RequireUserInfo from "@/components/UI/RequireLogin/RequireUserInfo";
 
 // import { useMediaQuery } from "react-responsive";
 import { useRouter } from "next/router";
+import Footer from "@/components/UI/Footer/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -109,6 +110,7 @@ export default function App({ Component, pageProps }: AppProps) {
             isDarkMode={isDarkMode}
           />
         )}
+        <Footer />
       </Layout>
     </Provider>
   );

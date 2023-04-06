@@ -144,7 +144,7 @@ const myPageTabContentCSS = ({ isMobile }: { isMobile: boolean }) => {
   return css`
     ${isMobile ? "padding: 8px 8px 8px 8px" : "padding: 16px 16px 16px 16px"};
 
-    background-color: var(--back-color-2);
+    background-color: var(--soft-grey-2);
   `;
 };
 
@@ -161,8 +161,8 @@ const tabIndividualCSS = ({
     width: 128px;
     height: 100%;
     background-color: ${targetState === currentState
-      ? "var(--back-color-2)"
-      : null};
+      ? "var(--soft-grey-2)"
+      : "var(--soft-grey)"};
     display: flex;
     justify-content: center;
     align-items: center;
