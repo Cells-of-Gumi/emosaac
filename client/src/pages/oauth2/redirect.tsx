@@ -24,7 +24,7 @@ const OAuth2RedirectHandler = (props: any) => {
     const token = getUrlParameter("token", window.location.search);
     const error = getUrlParameter("error", window.location.search);
     const code = getUrlParameter("code", window.location.search);
-    console.log(code);
+    // console.log(code);
 
     if (token) {
       localStorage.setItem(ACCESS_TOKEN, token);
@@ -37,7 +37,7 @@ const OAuth2RedirectHandler = (props: any) => {
             localStorage.setItem("gender", JSON.stringify(userInfo.gender));
             localStorage.setItem("age", JSON.stringify(userInfo.age));
           }
-          console.log(userInfo);
+          // console.log(userInfo);
         })
         .catch((error) => {
           console.error("Error fetching user info:", error);

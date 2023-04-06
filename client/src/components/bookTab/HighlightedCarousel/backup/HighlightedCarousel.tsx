@@ -12,8 +12,13 @@ interface HighlightedCarousel {
   windowWrapperRef: any;
 }
 
-const HighlightedCarousel = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
-  const [bookDataList, setBookDataList] = useState<bookContentType[]>([...bookData]);
+const HighlightedCarousel = ({
+  bookData,
+  windowWrapperRef,
+}: HighlightedCarousel) => {
+  const [bookDataList, setBookDataList] = useState<bookContentType[]>([
+    ...bookData,
+  ]);
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const dummyNormalRef = useRef<HTMLInputElement>(null);
   // const wrapperRef = useRef<any>([]);
@@ -48,7 +53,6 @@ const HighlightedCarousel = ({ bookData, windowWrapperRef }: HighlightedCarousel
     // console.log(temp);
   }, []);
 
-
   // const handleResize = () => {
   //   if (carouselWrapperRef.current !== null) {
   //     const calcLeft =
@@ -60,33 +64,35 @@ const HighlightedCarousel = ({ bookData, windowWrapperRef }: HighlightedCarousel
   //   }
   // }
 
-  const [windowWidth, setWindowWidth] = useState<any>(0)
-  
+  const [windowWidth, setWindowWidth] = useState<any>(0);
+
   const handleResize = useMemo(
     () =>
-        throttle((event) => {
-          if (carouselWrapperRef.current !== null) {
-            const calcLeft =
-            carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth
+      throttle((event) => {
+        if (carouselWrapperRef.current !== null) {
+          const calcLeft =
+            carouselWrapperRef.current.clientWidth >
+            windowWrapperRef?.current?.offsetWidth
               ? -(
-                  carouselWrapperRef.current.clientWidth - windowWrapperRef?.current?.offsetWidth
-                ) / 2 + "px" : "0px";
-            carouselWrapperRef.current.style.left = calcLeft
-          }
-          setWindowWidth(() => window.innerWidth)
-        }, 1000),
+                  carouselWrapperRef.current.clientWidth -
+                  windowWrapperRef?.current?.offsetWidth
+                ) /
+                  2 +
+                "px"
+              : "0px";
+          carouselWrapperRef.current.style.left = calcLeft;
+        }
+        setWindowWidth(() => window.innerWidth);
+      }, 1000),
     []
-);
-
+  );
 
   useEffect(() => {
-    
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
-    }
-  }, [])
-
+    };
+  }, []);
 
   const prevBtnHandler = () => {
     if (currentIdx > 0) {
@@ -147,7 +153,7 @@ const HighlightedCarousel = ({ bookData, windowWrapperRef }: HighlightedCarousel
   };
 
   const onSwipeEnd = () => {
-    console.log(positionx);
+    // console.log(positionx);
     if (positionx > 40) {
       prevBtnHandler();
     }
@@ -215,7 +221,6 @@ const HighlightedCarousel = ({ bookData, windowWrapperRef }: HighlightedCarousel
               normalRef: dummyNormalRef,
               carouselWrapperRef: carouselWrapperRef,
               windowWrapperRef: windowWrapperRef,
-              
             })}
           >
             {renderBooks}
@@ -433,13 +438,18 @@ const carouselInnerWrapperCSS = ({
     normalRef?.current?.clientWidth < minWidthValue
       ? (minWidthValue + minSpaceValue) * 4 + minHighlightedWidthValue + "px"
       : (widthValue + spaceValue) * 4 + highlightedWidthValue + unit;
-  
+
   const calcLeft =
-    carouselWrapperRef?.current?.clientWidth > windowWrapperRef?.current?.offsetWidth
+    carouselWrapperRef?.current?.clientWidth >
+    windowWrapperRef?.current?.offsetWidth
       ? -(
-          carouselWrapperRef?.current?.clientWidth - windowWrapperRef?.current?.offsetWidth
-        ) / 2 + "px" : "0px";
-        
+          carouselWrapperRef?.current?.clientWidth -
+          windowWrapperRef?.current?.offsetWidth
+        ) /
+          2 +
+        "px"
+      : "0px";
+
   return css`
     width: ${calcWidth};
     left: ${calcLeft};

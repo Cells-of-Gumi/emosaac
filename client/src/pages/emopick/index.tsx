@@ -50,7 +50,7 @@ const index = (data: Props) => {
     setEmopickList(data);
   }, []);
 
-  console.log(emopickList);
+  // console.log(emopickList);
   return (
     <div>
       <EmopickFloatingButton />

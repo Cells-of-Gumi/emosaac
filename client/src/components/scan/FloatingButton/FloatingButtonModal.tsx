@@ -4,13 +4,13 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { throttle } from "lodash";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
-import { useRouter } from "next/router"
+import { useRouter } from "next/router";
 import { bookDetailType } from "@/types/books";
 import { getBookDetail } from "@/api/book/getBookDetail";
 
-import UseAnimations from 'react-useanimations';
+import UseAnimations from "react-useanimations";
 // EVERY ANIMATION NEEDS TO BE IMPORTED FIRST -> YOUR BUNDLE WILL INCLUDE ONLY WHAT IT NEEDS
-import radioButton from 'react-useanimations/lib/radioButton'
+import radioButton from "react-useanimations/lib/radioButton";
 
 import Button from "@/components/UI/Button/Button";
 import { postOcr } from "@/api/ocr/postOcr";
@@ -24,16 +24,12 @@ import ScanMain from "../ScanMain";
 import { bookContentType } from "@/types/books";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 
-
-
-
 interface FloatingButtonModalProps {
   modalToggler: boolean;
   isMouseOn: boolean;
   setModalToggler: Function;
   parentRef: any;
   isDarkMode: boolean;
-
 }
 
 const FloatingButtonModal = ({
@@ -41,137 +37,147 @@ const FloatingButtonModal = ({
   isMouseOn,
   setModalToggler,
   parentRef,
-  isDarkMode
+  isDarkMode,
 }: FloatingButtonModalProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [contentToggler, setContentToggler] = useState<boolean>(false);
   const [isOpened, setisOpened] = useState<boolean>(false);
   const [isClosing, setIsClosing] = useState<boolean>(false);
-  const router = useRouter()
+  const router = useRouter();
 
-  const [beforePhase, setBeforePhase] = useState<number>(0)
-  const [afterPhase, setAfterPhase] = useState<number>(0)
+  const [beforePhase, setBeforePhase] = useState<number>(0);
+  const [afterPhase, setAfterPhase] = useState<number>(0);
 
-  const [bookData, setBookData] = useState<bookContentType[] | null>(null)
-  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [bookData, setBookData] = useState<bookContentType[] | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const phaseHandler = (phase: number) => {
-    setBeforePhase(() => phase)
+    setBeforePhase(() => phase);
     setTimeout(() => {
-      setAfterPhase(() => phase)
-    }, 500)
-  }
-
-
-
-
-  
+      setAfterPhase(() => phase);
+    }, 500);
+  };
 
   useEffect(() => {
-    
     document.body.style.overflowY = "hidden";
     return () => {
-      document.body.style.overflowY = 'auto';
+      document.body.style.overflowY = "auto";
     };
-    
-  }, [])
+  }, []);
 
   const modalLayout = {
-    widthValue: beforePhase === 0 ? (isMobile ? 360 : 450) : (beforePhase === 1 ? 280 : (beforePhase === 2 ? (isMobile ? 360 : 1920) : (beforePhase === 3 ? 300 : (beforePhase === 4 ? 300 : 300)))),
-    heightValue: beforePhase === 0 ? 538 : (beforePhase === 1 ? 280 : (beforePhase === 2 ? (isMobile ? 620 : 1080) : (beforePhase === 3 ? 300 : (beforePhase === 4 ? 300 : 300)))),
+    widthValue:
+      beforePhase === 0
+        ? isMobile
+          ? 360
+          : 450
+        : beforePhase === 1
+        ? 280
+        : beforePhase === 2
+        ? isMobile
+          ? 360
+          : 1920
+        : beforePhase === 3
+        ? 300
+        : beforePhase === 4
+        ? 300
+        : 300,
+    heightValue:
+      beforePhase === 0
+        ? 538
+        : beforePhase === 1
+        ? 280
+        : beforePhase === 2
+        ? isMobile
+          ? 620
+          : 1080
+        : beforePhase === 3
+        ? 300
+        : beforePhase === 4
+        ? 300
+        : 300,
   };
 
   useEffect(() => {
     if (isMouseOn === true && modalToggler === true) {
       setContentToggler(() => true);
       setisOpened(() => true);
-
     }
-
-    
   }, []);
-
-
 
   const modalHandler = () => {
     if (isMouseOn === true && contentToggler === true) {
       setTimeout(function () {
         if (wrapperRef.current !== null) {
-          wrapperRef.current.style.opacity = '0'
+          wrapperRef.current.style.opacity = "0";
         }
-        
       }, 500);
-      
+
       setTimeout(function () {
         setModalToggler(() => false);
-        
-        
       }, 500);
     } else {
       setTimeout(function () {
         setModalToggler(() => false);
-        
-        
       }, 500);
-      
     }
     setContentToggler(() => false);
-    setIsClosing(() => true)
+    setIsClosing(() => true);
   };
-
 
   useEffect(() => {
     router.beforePopState(({ url, as, options }) => {
       if (as !== router.asPath) {
-        window.history.pushState('', '');
+        window.history.pushState("", "");
         router.push(router.asPath);
         modalHandler();
-        return false
+        return false;
       }
 
-      return true
-    })
+      return true;
+    });
     return () => {
-    router.beforePopState(() => true);
+      router.beforePopState(() => true);
     };
-  }, [])
+  }, []);
 
+  const onClickSubmitHandler = ({
+    image,
+    contentType,
+  }: {
+    image: File | null;
+    contentType: 0 | 1;
+  }) => {
+    if (image !== null && contentType !== null) {
+      phaseHandler(1);
+      postOcr({ file: image, typeCode: contentType })
+        .then((res) => {
+          if (res && res.length !== 0) {
+            setBookData(() => res);
+            phaseHandler(2);
+          } else {
+            setErrorMessage(() => "이미지에 작품이 존재하지 않는 것 같습니다!");
+            phaseHandler(4);
+          }
 
-  const onClickSubmitHandler = ({image, contentType}: {image: File | null, contentType: 0 | 1}) => {
-    
-    if( image !== null && contentType !== null) {
-      phaseHandler(1)
-      postOcr({file: image, typeCode: contentType})
-      .then((res) => {
-        if (res && res.length !== 0) {
-          setBookData(() => res)
-          phaseHandler(2)
-        } else {
-          setErrorMessage(() => '이미지에 작품이 존재하지 않는 것 같습니다!')
-          phaseHandler(4)
-        }
-        
-        
-
-        console.log(res)
-      })
-      .catch((err) => {
-        console.log(err)
-        setErrorMessage(() => err.message)
-        phaseHandler(4)
-      })
+          // console.log(res)
+        })
+        .catch((err) => {
+          console.log(err);
+          setErrorMessage(() => err.message);
+          phaseHandler(4);
+        });
     }
-  }
-
+  };
 
   return (
     <React.Fragment>
-      <div css={backdropCSS({isOpened, isClosing})} />
+      <div css={backdropCSS({ isOpened, isClosing })} />
       <div
         // onClick={modalHandler}
         // onWheelCapture={onWheelHandler}
-        
+
         ref={wrapperRef}
         css={wrapperCSS({
           modalToggler: contentToggler,
@@ -180,52 +186,89 @@ const FloatingButtonModal = ({
           widthValue: modalLayout.widthValue,
           heightValue: modalLayout.heightValue,
           isClosing,
-          isOpened
+          isOpened,
         })}
       >
         <div
-          className={'inner-wrapper'}
+          className={"inner-wrapper"}
           css={innerWrapperCSS({
             modalToggler: modalToggler,
             contentToggler: contentToggler,
             isOpened: isOpened,
           })}
         >
-
-          {afterPhase === 0 &&
-            <div css={phaseCSS({targetPhase: 0, beforePhase: beforePhase, afterPhase: afterPhase})}>
-              <FloatingButtonModalSubmitForm modalHandler={modalHandler} phaseHandler={phaseHandler} onClickSubmitHandler={onClickSubmitHandler} isDarkMode={isDarkMode} />
+          {afterPhase === 0 && (
+            <div
+              css={phaseCSS({
+                targetPhase: 0,
+                beforePhase: beforePhase,
+                afterPhase: afterPhase,
+              })}
+            >
+              <FloatingButtonModalSubmitForm
+                modalHandler={modalHandler}
+                phaseHandler={phaseHandler}
+                onClickSubmitHandler={onClickSubmitHandler}
+                isDarkMode={isDarkMode}
+              />
             </div>
-          }
+          )}
 
-          {afterPhase === 1 &&
-            <div css={phaseCSS({targetPhase: 1, beforePhase: beforePhase, afterPhase: afterPhase})}>
-              <FloatingButtonModalLoading/>
+          {afterPhase === 1 && (
+            <div
+              css={phaseCSS({
+                targetPhase: 1,
+                beforePhase: beforePhase,
+                afterPhase: afterPhase,
+              })}
+            >
+              <FloatingButtonModalLoading />
             </div>
-          }
+          )}
 
-          {afterPhase === 2 && bookData !== null &&
-            <div css={phaseCSS({targetPhase: 2, beforePhase: beforePhase, afterPhase: afterPhase})}>
+          {afterPhase === 2 && bookData !== null && (
+            <div
+              css={phaseCSS({
+                targetPhase: 2,
+                beforePhase: beforePhase,
+                afterPhase: afterPhase,
+              })}
+            >
               <ScanMain bookData={bookData} phaseHandler={phaseHandler} />
             </div>
-          }
-          
-          {afterPhase === 3 &&
-            <div css={phaseCSS({targetPhase: 3, beforePhase: beforePhase, afterPhase: afterPhase})}>
-              <FloatingButtonModalFinish modalHandler={modalHandler} phaseHandler={phaseHandler} />
+          )}
+
+          {afterPhase === 3 && (
+            <div
+              css={phaseCSS({
+                targetPhase: 3,
+                beforePhase: beforePhase,
+                afterPhase: afterPhase,
+              })}
+            >
+              <FloatingButtonModalFinish
+                modalHandler={modalHandler}
+                phaseHandler={phaseHandler}
+              />
             </div>
-          }
+          )}
 
-          {afterPhase === 4 && errorMessage &&
-            <div css={phaseCSS({targetPhase: 4, beforePhase: beforePhase, afterPhase: afterPhase})}>
-              <FloatingButtonModalError modalHandler={modalHandler} phaseHandler={phaseHandler} errorMessage={errorMessage} setErrorMessage={setErrorMessage} />
+          {afterPhase === 4 && errorMessage && (
+            <div
+              css={phaseCSS({
+                targetPhase: 4,
+                beforePhase: beforePhase,
+                afterPhase: afterPhase,
+              })}
+            >
+              <FloatingButtonModalError
+                modalHandler={modalHandler}
+                phaseHandler={phaseHandler}
+                errorMessage={errorMessage}
+                setErrorMessage={setErrorMessage}
+              />
             </div>
-          }
-
-
-
-
-          
+          )}
         </div>
       </div>
     </React.Fragment>
@@ -249,37 +292,40 @@ const wrapperCSS = ({
   widthValue,
   heightValue,
   isClosing,
-  isOpened
+  isOpened,
 }: wrapperCSSProps) => {
-
-
   return css`
     position: absolute;
     /* z-index: 9; */
     transition-property: width height;
     will-change: width height left top transform;
     transition-duration: 0.5s;
-    
+
     /* transition-timing-function: ease-in; */
     overflow: hidden;
 
     width: ${modalToggler
-      ? `${widthValue === 1920 ? '100vw' : widthValue + 'px'}`
+      ? `${widthValue === 1920 ? "100vw" : widthValue + "px"}`
       : `${parentRef?.current?.clientWidth}px`};
     height: ${modalToggler
-      ? `${heightValue === 1080 ? '100vh' : heightValue + 'px'}`
+      ? `${heightValue === 1080 ? "100vh" : heightValue + "px"}`
       : `${parentRef?.current?.clientHeight}px`};
-    left: ${modalToggler ? (widthValue === 1920 ? '0px' : `calc(50vw - ${(widthValue / 2)}px)`) : `${parentRef?.current?.getBoundingClientRect().left}px`};
-    top: ${modalToggler ?  (heightValue === 1080 ? '0px' : `calc(50vh - ${(heightValue / 2)}px)`) : `${parentRef?.current?.getBoundingClientRect().top}px`};
-
+    left: ${modalToggler
+      ? widthValue === 1920
+        ? "0px"
+        : `calc(50vw - ${widthValue / 2}px)`
+      : `${parentRef?.current?.getBoundingClientRect().left}px`};
+    top: ${modalToggler
+      ? heightValue === 1080
+        ? "0px"
+        : `calc(50vh - ${heightValue / 2}px)`
+      : `${parentRef?.current?.getBoundingClientRect().top}px`};
 
     ${modalToggler ? `pointer-events: auto` : `pointer-events: none`};
     /* background-color: white; */
 
     background-color: var(--back-color-2);
-    border-radius: ${modalToggler
-      ? '10px'
-      : `200px`};
+    border-radius: ${modalToggler ? "10px" : `200px`};
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
   `;
 };
@@ -301,25 +347,34 @@ const innerWrapperCSS = ({
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
   `;
 };
 
-const phaseCSS = ({targetPhase, beforePhase, afterPhase}: {targetPhase: number; beforePhase: number; afterPhase: number;}) => {
-
+const phaseCSS = ({
+  targetPhase,
+  beforePhase,
+  afterPhase,
+}: {
+  targetPhase: number;
+  beforePhase: number;
+  afterPhase: number;
+}) => {
   return css`
     transition-property: opacity;
     transition-duration: 0.5s;
-    opacity: ${beforePhase === targetPhase ? '100%' : '0%'};
+    opacity: ${beforePhase === targetPhase ? "100%" : "0%"};
     width: 100%;
     height: 100%;
-  `
+  `;
+};
 
-}
-
-
-
-const backdropCSS = ({isOpened, isClosing}: {isOpened: boolean; isClosing: boolean}) => {
+const backdropCSS = ({
+  isOpened,
+  isClosing,
+}: {
+  isOpened: boolean;
+  isClosing: boolean;
+}) => {
   return css`
     position: fixed;
     background-color: rgba(0, 0, 0, 0.3);
@@ -328,10 +383,8 @@ const backdropCSS = ({isOpened, isClosing}: {isOpened: boolean; isClosing: boole
     backdrop-filter: blur(10px);
     transition-property: opacity;
     transition-duration: 0.3s;
-    opacity: ${isOpened ? (isClosing ? '0%' : '100%') : '0%'};
-    
-  `
-}
-
+    opacity: ${isOpened ? (isClosing ? "0%" : "100%") : "0%"};
+  `;
+};
 
 export default FloatingButtonModal;

@@ -55,8 +55,8 @@ const DetailCommentViewElement = ({
         (res: returnCommentArrayType | null) => {
           if (res !== null) {
             setChildComments(() => res);
-            console.log("refreshChildCommentsHandler", parentId, res);
-            console.log("childComments", childComments);
+            // console.log("refreshChildCommentsHandler", parentId, res);
+            // console.log("childComments", childComments);
             setOffset(() => 2);
           }
         }
@@ -70,7 +70,7 @@ const DetailCommentViewElement = ({
         (res: returnCommentArrayType | null) => {
           if (res !== null) {
             setChildComments((prev) => [...prev, ...res]);
-            console.log("getChildCommentsHandler", parentId, res);
+            // console.log("getChildCommentsHandler", parentId, res);
             setOffset((prev) => prev + 1);
           }
         }
