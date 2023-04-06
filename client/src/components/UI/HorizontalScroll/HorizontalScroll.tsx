@@ -1,12 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import React, { useRef, useState, useEffect, useMemo } from "react";
-import { throttle } from "lodash";
-import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
-import { returnBookContentType } from "@/types/books";
-
-// import Test from "./Test";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { bookContentType, returnBookContentType } from "@/types/books";
 import BookCard from "../BookCard/BookCard";
+import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
+import { debounce } from "lodash";
 
 const HorizontalScroll = ({
   API,
@@ -14,19 +12,24 @@ const HorizontalScroll = ({
   setNoData,
   stopVerticalScroll,
 }: any) => {
-  const wrapperRef = useRef<HTMLInputElement>(null);
-  const cardsRef = useRef<any>([]);
-  const [bookListData, setBookListData] = useState<object[]>([]);
-  type BookList = object | string;
-  const [bookListResult, setBookListResult] = useState<BookList[]>([]);
-  const [page, setPage] = useState<number>(0);
-  const [wrapperWidth, setWrapperWidth] = useState<number>(0);
-  const [standard, setStandard] = useState<number>(0);
-  const [quantityPerPage, setQuantityPerPage] = useState<number>(10);
-  const [loadingTag, setLoadingTag] = useState<string[]>(
-    Array(9).fill("LOADING")
-  );
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
+  const [bookListData, setBookListData] = useState<bookContentType[]>([]);
+  const [quantity, setQuantity] = useState<number>(10);
+  const [getFetch, setGetFetch] = useState<boolean>(false);
+  const [leftCard, setLeftCard] = useState<number>(0)
+  const [rightCard, setRightCard] = useState<number>(0)
+  const cardsRef = useRef<any>([]);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const dummyRef = useRef<HTMLDivElement>(null);
+
+  const cardLayout = {
+    width: "10vw",
+    height: "15vw",
+    minWidth: "150px",
+    minHeight: "225px",
+    padding: "0.5vw",
+  };
+
   const [hasNext, setHasNext] = useState<boolean>(
     window.sessionStorage.getItem(`${identifier}-horizontal-inf_has_next`)
       ? JSON.parse(
@@ -39,226 +42,179 @@ const HorizontalScroll = ({
       : true
   );
 
-  const cardLayout = {
-    width: "10vw",
-    height: "15vw",
-    minWidth: "150px",
-    minHeight: "225px",
-    padding: "0.5vw",
-  };
+  useEffect(() => {
+    setGetFetch(() => true);
 
-  const generatePage = (value: number) => {
-    if (
-      wrapperRef.current !== null &&
-      wrapperRef.current.clientWidth !== wrapperWidth
-    ) {
-      const width = wrapperRef.current.clientWidth;
-      const quantity = Math.floor(
-        wrapperRef.current.clientWidth / cardsRef.current[0].clientWidth
-      );
-      const newPage = Math.ceil(standard / quantity);
-      setPage(() => newPage);
-      setWrapperWidth(() => width);
-      setQuantityPerPage(() => quantity);
-      return newPage + value;
-    } else {
-      return page + value;
-    }
-  };
+  }, []);
 
   useEffect(() => {
-    const loadScroll = window.localStorage.getItem(`index_scroll_value`);
-    const preventValue = JSON.parse(
-      String(window.sessionStorage.getItem(`prevent_index_scroll`))
-    );
-    const scrollTiming = JSON.parse(
-      String(window.sessionStorage.getItem(`scroll_timing_horizontal`))
-    );
+    if (getFetch === true && hasNext === true) {
+      const lastContent = bookListData[bookListData.length - 1];
+      API({ lastContent: lastContent, size: quantity }).then(
+        (res: returnBookContentType) => {
+          console.log("fewfewefw");
+          if (res.content.length === 0 && bookListData.length === 0) {
+            setNoData(() => true);
+          }
+          const temp = [...bookListData, ...res.content];
+          setBookListData((prev) => temp);
 
-    if (loadScroll && preventValue !== true && scrollTiming === true) {
-      if (stopVerticalScroll !== true) {
-        document.documentElement.scrollTo({
-          left: 0,
-          top: Number(JSON.parse(loadScroll)),
-          behavior: "auto",
-        });
-      }
-      window.sessionStorage.removeItem(`prevent_index_scroll`);
-    }
-  }, [wrapperRef.current]);
+          window.sessionStorage.setItem(
+            `${identifier}-horizontal-inf_fetched_data`,
+            JSON.stringify(temp)
+          );
 
-  const nextBtnClickHandler = () => {
-    if (wrapperRef.current !== null) {
-      const quantity = Math.floor(
-        wrapperRef.current.clientWidth / cardsRef.current[0].clientWidth
+          window.sessionStorage.setItem(
+            `${identifier}-horizontal-inf_has_next`,
+            JSON.stringify(res.hasNext)
+          );
+          setHasNext(() => res.hasNext);
+          setGetFetch(() => false);
+          // alert('fwe')
+        }
       );
-      const nextStandard = generatePage(1) * quantity;
-      const idx =
-        nextStandard < cardsRef.current.length
-          ? nextStandard
-          : cardsRef.current.length - 1;
-      if (nextStandard < cardsRef.current.length) {
-        setPage((prev) => prev + 1);
-      }
-      if (cardsRef.current[idx]) {
-        setStandard(() => idx);
-        wrapperRef.current.scrollTo({
-          left: cardsRef.current[idx].offsetLeft,
-          top: 0,
-          behavior: "smooth",
-        });
-      }
+    }
+  }, [getFetch]);
 
-      fetchMoreData();
+  const getShowCount = () => {
+    if (dummyRef.current && scrollRef.current) {
+      const count = Math.floor(
+        scrollRef.current.clientWidth / dummyRef.current.clientWidth
+      );
+      return count;
     }
   };
 
-  const prevBtnClickHandler = () => {
-    if (wrapperRef.current !== null) {
-      const quantity = Math.floor(
-        wrapperRef.current.clientWidth / cardsRef.current[0].clientWidth
-      );
-      const prevStandard = generatePage(-1) * quantity;
-      const idx = prevStandard >= 0 ? prevStandard : 0;
-      if (prevStandard >= 0) {
-        setPage((prev) => prev - 1);
+  const cardsRender = useMemo(() => bookListData.map((el, idx) => {
+    return (
+      <div
+        id={`${idx}`}
+        css={cardWrapperCSS({ padding: cardLayout.padding })}
+        ref={(el) => (cardsRef.current[idx] = el)}
+      >
+        <BookCard
+          showPlatform={true}
+          bookData={el}
+          hideType={true}
+          width={cardLayout.width}
+          height={cardLayout.height}
+          minWidth={cardLayout.minWidth}
+          minHeight={cardLayout.minHeight}
+        />
+      </div>
+    );
+  }), [bookListData]);
+
+  const getFetchPoint = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      // entry의 target으로 DOM에 접근합니다.
+      const $target = entry.target;
+
+      // 화면에 노출 상태에 따라 해당 엘리먼트의 class를 컨트롤 합니다.
+      if (entry.isIntersecting) {
+        setGetFetch(() => true);
+        // $target.classList.add("screening");
       }
-      setStandard(() => idx);
-      wrapperRef.current.scrollTo({
-        left: cardsRef.current[idx].offsetLeft,
+    });
+  });
+
+  const options = {
+    root: null,
+    // 타겟 이미지 접근 전 이미지를 불러오기 위해 rootMargin을 설정했습니다.
+    rootMargin: '0px 0px 0px 0px',
+    threshold: 1
+  }
+
+  const getVisibleCard = new IntersectionObserver((entries) => {
+
+      entries.forEach((entry:any) => {
+        // entry의 target으로 DOM에 접근합니다.
+        const $target = entry.target;
+        
+
+
+        // if (entry.isIntersecting === true) {
+        //   const curIdx = Number($target.id)
+        //   if (curIdx > leftCard) {
+        //     setRightCardHandler(curIdx)
+        //   }
+        //   if (curIdx < rightCard) {
+        //     setLeftCardHandler(curIdx)
+        //   }
+        // }
+        
+        if (entry.intersectionRatio > 0) {
+          entry.target.classList.add(`${identifier}-visible-card`);
+
+        } else {
+          entry.target.classList.remove(`${identifier}-visible-card`);
+        }
+  
+
+  
+      }, options);
+
+    
+
+  })
+
+
+
+  useEffect(() => {
+    if (cardsRef.current[cardsRef.current.length - quantity]) {
+      getFetchPoint.observe(
+        cardsRef.current[cardsRef.current.length - quantity]
+      );
+    }
+
+    cardsRef.current.forEach((item: any) => {
+      if (item) {
+        getVisibleCard.observe(item);
+      }
+    });
+
+    return () => getFetchPoint.disconnect();
+  }, [cardsRef.current.length, bookListData]);
+
+
+  const prevBtnClickHandler = useMemo(() => debounce(() => {
+    const visibleCards = document.querySelectorAll(`.${identifier}-visible-card`)
+    const calc = Number(visibleCards[0].id) - visibleCards.length + 1
+    const to = calc < 0 ? 0 : calc
+    console.log(visibleCards)
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        left: cardsRef.current[to]?.offsetLeft,
         top: 0,
         behavior: "smooth",
       });
     }
-  };
 
-  const fetchMoreData = () => {
-    let standard = 0;
-    if (wrapperRef.current !== null && cardsRef.current[0] !== null) {
-      standard = Math.ceil(
-        wrapperRef.current.scrollLeft / cardsRef.current[0]?.clientWidth
-      );
+  }, 20), [leftCard, rightCard])
+
+
+  const nextBtnClickHandler = useMemo(() => debounce(() => {
+    const visibleCards = document.querySelectorAll(`.${identifier}-visible-card`)
+    const calc = Number(visibleCards[visibleCards.length - 1].id)
+    const to = calc > cardsRef.current.length - 1 ? cardsRef.current.length - 1 : calc
+    console.log(visibleCards)
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        left: cardsRef.current[to]?.offsetLeft,
+        top: 0,
+        behavior: "smooth",
+      });
     }
-    if (
-      (wrapperRef.current !== null &&
-        wrapperRef.current.scrollWidth - wrapperRef.current.scrollLeft - 200 <
-          wrapperRef.current.clientWidth) ||
-      bookListData.length - loadingTag.length - standard <= loadingTag.length
-    ) {
-      if (hasNext === true) {
-        const lastContent = bookListData[bookListData.length - 1];
-        API({ lastContent: lastContent, size: quantityPerPage }).then(
-          (res: returnBookContentType) => {
-            if (res.content.length === 0 && bookListData.length === 0) {
-              setNoData(() => true);
-            }
-            // console.log(res);
-            const temp = [...bookListData, ...res.content];
-            setBookListData((prev) => temp);
 
-            window.sessionStorage.setItem(
-              `${identifier}-horizontal-inf_fetched_data`,
-              JSON.stringify(temp)
-            );
+  }, 20), [leftCard, rightCard])
 
-            window.sessionStorage.setItem(
-              `${identifier}-horizontal-inf_has_next`,
-              JSON.stringify(res.hasNext)
-            );
-            setHasNext(() => res.hasNext);
 
-            // alert('fwe')
-          }
-        );
-      }
-    }
-  };
 
-  const onScrollHandler = useMemo(
-    () =>
-      throttle(() => {
-        if (wrapperRef.current !== null) {
-          fetchMoreData();
-          const standard = Math.ceil(
-            wrapperRef.current.scrollLeft / cardsRef.current[0].clientWidth
-          );
-          setStandard(() => standard);
-          if (wrapperRef.current.scrollLeft !== 0) {
-            window.sessionStorage.setItem(
-              `${identifier}-horizontal-recent_scroll`,
-              String(wrapperRef.current.scrollLeft)
-            );
-          }
-        }
-      }, 300),
-    [bookListData, setBookListData]
-  );
 
-  useEffect(() => {
-    const loadData = window.sessionStorage.getItem(
-      `${identifier}-horizontal-inf_fetched_data`
-    );
-    const hasNext = window.sessionStorage.getItem(
-      `${identifier}-horizontal-inf_has_next`
-    );
-
-    if (loadData) {
-      setBookListData(() => JSON.parse(loadData));
-      setHasNext(() => JSON.parse(String(hasNext)));
-    } else {
-      fetchMoreData();
-    }
-  }, []);
-
-  useEffect(() => {
-    const loadScroll = window.sessionStorage.getItem(
-      `${identifier}-horizontal-recent_scroll`
-    );
-
-    if (loadScroll && wrapperRef.current) {
-      wrapperRef.current.scrollTo(Number(JSON.parse(loadScroll)), 0);
-    }
-  }, [cardsRef.current.length]);
-
-  const generateLoadingData = () => {
-    // setBookListResult(() => [...bookListData, ...loadingTag]);
-    if (hasNext === true) {
-      setBookListResult(() => [...bookListData, ...loadingTag]);
-    } else {
-      setBookListResult(() => [...bookListData]);
-    }
-  };
-
-  useEffect(() => {
-    generateLoadingData();
-  }, [bookListData]);
-
-  const renderCards = useMemo(
-    () =>
-      bookListResult.map((el, idx) => {
-        return (
-          <div
-            key={`${identifier}-${idx}`}
-            ref={(el) => (cardsRef.current[idx] = el)}
-            css={cardWrapperCSS({ padding: cardLayout.padding })}
-          >
-            <BookCard
-              hideType={true}
-              bookData={el}
-              showPlatform={true}
-              width={cardLayout.width}
-              height={cardLayout.height}
-              minWidth={cardLayout.minWidth}
-              minHeight={cardLayout.minHeight}
-            />
-          </div>
-        );
-      }),
-    [bookListResult]
-  );
 
   return (
     <div css={carouselWrapper}>
+
       <div
         css={[indicatorBtn, prevBtn({ isDeskTop, isTablet, isMobile })]}
         onClick={prevBtnClickHandler}
@@ -277,25 +233,13 @@ const HorizontalScroll = ({
       >
         〉
       </div>
-      <div
-        ref={wrapperRef}
-        css={carousel}
-        onWheel={onScrollHandler}
-        onTouchMove={onScrollHandler}
-      >
-        {renderCards}
+
+      <div ref={scrollRef} css={carousel}>
+        {cardsRender}
       </div>
+      <div ref={dummyRef} css={dummyCSS({ cardLayout })} />
     </div>
   );
-};
-
-export default HorizontalScroll;
-
-const cardWrapperCSS = ({ padding }: { padding: string }) => {
-  return css`
-    padding-left: ${padding};
-    padding-right: ${padding};
-  `;
 };
 
 const carouselWrapper = css`
@@ -316,6 +260,29 @@ const carousel = css`
     display: none;
   }
 `;
+
+const cardWrapperCSS = ({ padding }: { padding: string }) => {
+  return css`
+    padding-left: ${padding};
+    padding-right: ${padding};
+  `;
+};
+
+const dummyCSS = ({ cardLayout }: { cardLayout: any }) => {
+  return css`
+    width: ${cardLayout.width};
+    height: ${cardLayout.height};
+    min-width: ${cardLayout.minWidth};
+    min-height: ${cardLayout.minHeight};
+    padding-left: ${cardLayout.padding};
+    padding-right: ${cardLayout.padding};
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+  `;
+};
+
+
 
 const indicatorBtn = css`
   z-index: 9;
@@ -371,3 +338,5 @@ const nextBtn = ({ isDeskTop, isTablet, isMobile }: nextPrevBtnProps) => {
     }
   `;
 };
+
+export default HorizontalScroll;
