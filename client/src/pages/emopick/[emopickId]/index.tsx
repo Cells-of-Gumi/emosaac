@@ -35,6 +35,8 @@ import { useMediaQuery } from "react-responsive";
 import { FiSmile } from "react-icons/fi";
 import FixedModal from "@/components/UI/FixedModal/FixedModal";
 import DetailComment from "@/components/DetailComment/DetailComment";
+import { putEmopickLike } from "@/api/emopick/putEmopickLike";
+import { deleteEmopick } from "@/api/emopick/deleteEmopick";
 
 type emopickReviewType = {
   bookId: number;
@@ -56,7 +58,7 @@ type returnEmopickType = {
     nickname: string;
     profileImg: string;
   };
-  emopickId: number;
+  // emopickId: number;
   title: string;
   content: string;
   thumbnails: string;
@@ -79,6 +81,7 @@ const index = ({ data, myInfo }: PropsList) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWriter, setIsWriter] = useState(false);
+  const [isHeartFill, setIsHeartFill] = useState(data.emoLike);
   const isLimit = useMediaQuery({
     query: "max-width: 1163px",
   });
@@ -91,21 +94,40 @@ const index = ({ data, myInfo }: PropsList) => {
     }
   }, []);
   function onClickFunc() {}
+  function putEmoLike() {
+    const token = localStorage.getItem("access_token");
+    const emo = router.query.emopickId;
+    setIsHeartFill((prev) => !prev);
+    if (typeof emo === "string") {
+      putEmopickLike({ emopickId: Number(emo), token }).then((res) => {});
+    }
+  }
+  function deleteEmo() {
+    const token = localStorage.getItem("access_token");
+    const emo = router.query.emopickId;
+    if (typeof emo === "string") {
+      deleteEmopick({ emopickId: Number(emo), token }).then((res) => {
+        alert("이모픽 삭제가 완료되었습니다😀");
+        router.push("/emopick");
+      });
+    }
+  }
   return (
     <div>
       <EmopickFloatingButtonToTop />
-      {/* <FixedModal
+      <FixedModal
         key={`comment-${data.title}`}
         modalState={isModalOpen}
         stateHandler={setIsModalOpen}
         content={
           <DetailComment
             bookTitle={data.title}
-            bookId={data.emopickId}
+            bookId={Number(router.query.emopickId)}
             myInfo={myInfo}
+            commentType={1}
           />
         }
-      /> */}
+      />
       <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
         <div
           css={titleCSS(
@@ -132,8 +154,12 @@ const index = ({ data, myInfo }: PropsList) => {
             <button onClick={() => setIsModalOpen(true)}>
               <BsChatSquareDotsFill size={28} />
             </button>
-            <button>
-              <AiOutlineHeart size={28} />
+            <button onClick={putEmoLike}>
+              {isHeartFill ? (
+                <AiFillHeart size={28} color="red" />
+              ) : (
+                <AiOutlineHeart size={28} />
+              )}
             </button>
             <button>
               <BsThreeDotsVertical size={28} />
@@ -141,9 +167,9 @@ const index = ({ data, myInfo }: PropsList) => {
                 <Link href={`/emopick/${router.query.emopickId}/update`}>
                   <div>수정</div>
                 </Link>
-                <Link href={`/emopick/${router.query.emopickId}/delete`}>
+                <a onClick={deleteEmo}>
                   <div>삭제</div>
-                </Link>
+                </a>
               </div>
             </button>
           </div>
@@ -211,12 +237,6 @@ const index = ({ data, myInfo }: PropsList) => {
                                 이모작에서 보기
                               </Link>
                             </button>
-                            <div>
-                              {/* 디테일에서 가져오자 */}
-                              웹툰 사이트에서 보기
-                              {/* {book.platform} */}
-                              {/* {book.href} */}
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -317,9 +337,9 @@ const innerCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   position: relative;
   scroll-behavior: smooth;
   padding: ${isDeskTop
-    ? "20px 105px 40px"
+    ? "20px 105px 20px"
     : isTablet
-    ? "15px 50px 30px"
+    ? "15px 50px 20px"
     : "10px 20px 70px"};
   display: ${isMobile ? "block" : "grid"};
   grid-template-columns: ${isDeskTop
@@ -342,6 +362,10 @@ const titleCSS = (
   { isDeskTop, isTablet, isMobile }: IsResponsive,
   profile: string
 ) => css`
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; */
   background-color: var(--back-color-2);
   background-image: url(${profile});
   background-size: cover;
@@ -358,21 +382,21 @@ const titleCSS = (
   left: ${isDeskTop ? "105px" : isTablet ? "50px" : "auto"};
   padding: ${!isDeskTop ? "20px 20px" : "30px 30px"};
   height: ${isDeskTop
-    ? "calc(100vh - 105px)"
+    ? "calc(100vh - 93px - 223px)"
     : isTablet
-    ? "calc(100vh - 140px)"
+    ? "calc(100vh - 96px -223px)"
     : "auto"};
   margin-bottom: ${isMobile ? "10px" : "0"};
   & > img {
     display: block;
-    width: ${isDeskTop ? "200px" : isTablet ? "130px" : "120px"};
-    height: ${isDeskTop ? "200px" : isTablet ? "130px" : "120px"};
+    width: ${isDeskTop ? "160px" : isTablet ? "130px" : "120px"};
+    height: ${isDeskTop ? "160px" : isTablet ? "130px" : "120px"};
     border-radius: 50%;
     object-fit: cover;
     object-position: center center;
   }
   & > h2 {
-    font-size: ${isDeskTop ? "26px" : isTablet ? "20px" : "18px"};
+    font-size: ${isDeskTop ? "24px" : isTablet ? "20px" : "18px"};
     font-weight: bold;
     padding-top: 20px;
     text-align: center;
@@ -390,7 +414,8 @@ const titleCSS = (
     width: 100%;
     /* background-color: yellow; */
     text-align: center;
-    line-height: 20px;
+    height: 24px;
+    line-height: 24px;
   }
 `;
 const titleButtonCSS = (
@@ -403,12 +428,12 @@ const titleButtonCSS = (
     align-items: center;
     width: ${isMobile
       ? isWriter
-        ? "240px"
-        : "200px"
+        ? "150px"
+        : "110px"
       : isWriter
       ? "150px"
       : "110px"};
-    padding-top: ${isMobile ? "10px" : "20px"};
+    padding-top: ${isMobile ? "4px" : "6px"};
     & > button {
       cursor: pointer;
       display: flex;
@@ -477,8 +502,9 @@ const contentCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   padding: 30px 30px;
   text-align: center;
   /* display: table-cell; */
-  line-height: 160px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   & > svg:nth-of-type(1) {
     position: absolute;
     top: 20px;
@@ -617,13 +643,11 @@ const bookButtonCSS = (
 ) =>
   css`
     /* width: 30%; */
-    width: ${isLimit ? "400px" : "100%"};
-    display: grid;
-    grid-template-columns: ${isLimit ? "1fr 1fr" : "1fr"};
-    column-gap: 10px;
-    row-gap: 10px;
     margin-top: 14px;
+    width: 100%;
     & > * {
+      cursor: pointer;
+      width: ${isDeskTop ? "250px" : "100%"};
       display: flex;
       justify-content: center;
       align-items: center;
@@ -640,9 +664,9 @@ const bookButtonCSS = (
   `;
 const reviewCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   margin-top: 14px;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 20px;
-  min-height: 40px;
+  /* min-height: 40px; */
   background-color: var(--back-color-2);
 `;
 
