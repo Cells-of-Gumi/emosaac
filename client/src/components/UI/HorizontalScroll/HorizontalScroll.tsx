@@ -1,8 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { bookContentType, returnBookContentType } from "@/types/books";
 import BookCard from "../BookCard/BookCard";
+import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
+import { debounce } from "lodash";
 
 const HorizontalScroll = ({
   API,
@@ -10,9 +12,12 @@ const HorizontalScroll = ({
   setNoData,
   stopVerticalScroll,
 }: any) => {
+  const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [bookListData, setBookListData] = useState<bookContentType[]>([]);
   const [quantity, setQuantity] = useState<number>(10);
   const [getFetch, setGetFetch] = useState<boolean>(false);
+  const [leftCard, setLeftCard] = useState<number>(0)
+  const [rightCard, setRightCard] = useState<number>(0)
   const cardsRef = useRef<any>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
   const dummyRef = useRef<HTMLDivElement>(null);
@@ -39,6 +44,7 @@ const HorizontalScroll = ({
 
   useEffect(() => {
     setGetFetch(() => true);
+
   }, []);
 
   useEffect(() => {
@@ -79,7 +85,7 @@ const HorizontalScroll = ({
     }
   };
 
-  const cardsRender = bookListData.map((el, idx) => {
+  const cardsRender = useMemo(() => bookListData.map((el, idx) => {
     return (
       <div
         id={`${idx}`}
@@ -97,7 +103,7 @@ const HorizontalScroll = ({
         />
       </div>
     );
-  });
+  }), [bookListData]);
 
   const getFetchPoint = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -112,17 +118,47 @@ const HorizontalScroll = ({
     });
   });
 
-  const getHidingCard = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      // entry의 target으로 DOM에 접근합니다.
-      const $target = entry.target;
+  const options = {
+    root: null,
+    // 타겟 이미지 접근 전 이미지를 불러오기 위해 rootMargin을 설정했습니다.
+    rootMargin: '0px 0px 0px 0px',
+    threshold: 1
+  }
 
-      let hiding: number = 0;
-      if (entry.isIntersecting === false) {
-        hiding = Number($target.id);
-      }
-    });
-  });
+  const getVisibleCard = new IntersectionObserver((entries) => {
+
+      entries.forEach((entry:any) => {
+        // entry의 target으로 DOM에 접근합니다.
+        const $target = entry.target;
+        
+
+
+        // if (entry.isIntersecting === true) {
+        //   const curIdx = Number($target.id)
+        //   if (curIdx > leftCard) {
+        //     setRightCardHandler(curIdx)
+        //   }
+        //   if (curIdx < rightCard) {
+        //     setLeftCardHandler(curIdx)
+        //   }
+        // }
+        
+        if (entry.intersectionRatio > 0) {
+          entry.target.classList.add(`${identifier}-visible-card`);
+
+        } else {
+          entry.target.classList.remove(`${identifier}-visible-card`);
+        }
+  
+
+  
+      }, options);
+
+    
+
+  })
+
+
 
   useEffect(() => {
     if (cardsRef.current[cardsRef.current.length - quantity]) {
@@ -133,15 +169,71 @@ const HorizontalScroll = ({
 
     cardsRef.current.forEach((item: any) => {
       if (item) {
-        getHidingCard.observe(item);
+        getVisibleCard.observe(item);
       }
     });
 
     return () => getFetchPoint.disconnect();
   }, [cardsRef.current.length, bookListData]);
 
+
+  const prevBtnClickHandler = useMemo(() => debounce(() => {
+    const visibleCards = document.querySelectorAll(`.${identifier}-visible-card`)
+    const calc = Number(visibleCards[0].id) - visibleCards.length + 1
+    const to = calc < 0 ? 0 : calc
+    console.log(visibleCards)
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        left: cardsRef.current[to]?.offsetLeft,
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+
+  }, 20), [leftCard, rightCard])
+
+
+  const nextBtnClickHandler = useMemo(() => debounce(() => {
+    const visibleCards = document.querySelectorAll(`.${identifier}-visible-card`)
+    const calc = Number(visibleCards[visibleCards.length - 1].id)
+    const to = calc > cardsRef.current.length - 1 ? cardsRef.current.length - 1 : calc
+    console.log(visibleCards)
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        left: cardsRef.current[to]?.offsetLeft,
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+
+  }, 20), [leftCard, rightCard])
+
+
+
+
+
   return (
     <div css={carouselWrapper}>
+
+      <div
+        css={[indicatorBtn, prevBtn({ isDeskTop, isTablet, isMobile })]}
+        onClick={prevBtnClickHandler}
+        onMouseEnter={(event) => {
+          event.stopPropagation();
+        }}
+      >
+        〈
+      </div>
+      <div
+        css={[indicatorBtn, nextBtn({ isDeskTop, isTablet, isMobile })]}
+        onClick={nextBtnClickHandler}
+        onMouseEnter={(event) => {
+          event.stopPropagation();
+        }}
+      >
+        〉
+      </div>
+
       <div ref={scrollRef} css={carousel}>
         {cardsRender}
       </div>
@@ -187,6 +279,63 @@ const dummyCSS = ({ cardLayout }: { cardLayout: any }) => {
     position: absolute;
     visibility: hidden;
     pointer-events: none;
+  `;
+};
+
+
+
+const indicatorBtn = css`
+  z-index: 9;
+  position: absolute;
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--text-color);
+  padding-left: 8px;
+  padding-right: 8px;
+
+  transition-property: background font-size;
+  transition-duration: 0.2s;
+  cursor: pointer;
+  user-select: none;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+`;
+
+interface nextPrevBtnProps {
+  isDeskTop: boolean;
+  isTablet: boolean;
+  isMobile: boolean;
+}
+
+const prevBtn = ({ isDeskTop, isTablet, isMobile }: nextPrevBtnProps) => {
+  return css`
+    left: 0;
+    /* background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); */
+    transform: ${(isDeskTop === true && `translate(-105px, 0px)`) ||
+    (isTablet === true && `translate(-50px, 0px)`)};
+    &:hover {
+      /* background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); */
+      font-size: 54px;
+    }
+  `;
+};
+
+const nextBtn = ({ isDeskTop, isTablet, isMobile }: nextPrevBtnProps) => {
+  return css`
+    right: 0;
+    /* background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)); */
+    transform: ${(isDeskTop === true && `translate(105px, 0px)`) ||
+    (isTablet === true && `translate(50px, 0px)`)};
+    &:hover {
+      /* background: linear-gradient(to left, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); */
+      font-size: 54px;
+    }
   `;
 };
 
