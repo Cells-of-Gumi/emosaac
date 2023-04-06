@@ -337,6 +337,7 @@ const PutUserInfo = ({ myInfo }: any) => {
             </button>
           </div>
         </form>
+        <div css={css`height: ${isMobile && '100px'};`}/>
       </section>
     </>
   );
@@ -346,7 +347,7 @@ const formCSS = ({isMobile}: {isMobile: boolean}) => {
   return css`
     color: var(--text-color);
     display: flex;
-    min-height: ${isMobile ? '120vh' : '400px'}; // 변경된 부분
+    min-height: 400px; // 변경된 부분
     flex-direction: column;
     justify-content: space-between;
     width: 400px;
