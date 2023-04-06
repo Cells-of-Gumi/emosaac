@@ -108,10 +108,10 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
 
     useEffect(() => {
         const loadScroll = window.sessionStorage.getItem(`${identifier}-recent_scroll`)
-        const scrollTiming = JSON.parse(String(window.sessionStorage.getItem(`scroll_timing`)))
         
-        console.log('스크롤타이밍', scrollTiming)
-        if (loadScroll && fetchedData.length !== 0 && scrollTiming) {
+        
+        
+        if (loadScroll && fetchedData.length !== 0 ) {
             // setTimeout(function() {
                 
             // }, 1000)

@@ -64,6 +64,7 @@ export default function Home({
       ? Number(window.sessionStorage.getItem(`${params}-selected_day`))
       : 0
   );
+  const [randomIdentifier, setRandomIdentifier] = useState<number>(0)
 
   // useEffect(() => {
   //   return () => {
@@ -72,6 +73,11 @@ export default function Home({
   //   }
 
   // }, [params])
+
+  useEffect(() => {
+    setRandomIdentifier(() => Math.floor(Math.random() * 100000))
+  }, [])
+
   useEffect(() => {
     
 
@@ -331,7 +337,7 @@ export default function Home({
     },
     {
       API: getRelativeAPI,
-      identifier: `Relative-${params}`,
+      identifier: `Relative-${params}-${randomIdentifier}`,
       beforeLabel: "최근 읽은 작품과  ",
       highlightedLabel: "비슷한",
       afterLabel: ` ${params === "webtoon" ? "웹툰" : "웹소설"}을 보여줄게요`,
