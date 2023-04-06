@@ -15,7 +15,6 @@ import { selectedBookListAtom } from "@/jotai/atom";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FiSmile } from "react-icons/fi";
 
-
 // request: {
 //   content: string;
 //   novelList: object;
@@ -95,12 +94,11 @@ const write = () => {
         alert("이모픽 등록이 완료되었습니다😀");
         router.push("/emopick");
       });
-      
     }
   }
   const onClickGoBack = () => {
     router.push("/emopick");
-  }
+  };
 
   function onChangeTitle(event: React.ChangeEvent<HTMLInputElement>) {
     const inputText = event.target.value;
@@ -116,7 +114,7 @@ const write = () => {
   ) {
     const copyAddedBookList = addedBookList;
     copyAddedBookList[addedBookIdx].review = event.target.value;
-    console.log(copyAddedBookList);
+    // console.log(copyAddedBookList);
     setAddedBookList((prev) => copyAddedBookList);
     setCurrentReview(!currentReview);
   }
@@ -124,7 +122,7 @@ const write = () => {
   function onClickDelete(addedBookIdx: number) {
     const copyAddedBookList = addedBookList;
     const cuttingList = copyAddedBookList.splice(addedBookIdx, 1);
-    console.log(cuttingList);
+    // console.log(cuttingList);
     setAddedBookList(copyAddedBookList);
     setCurrentReview(!currentReview);
   }
@@ -137,12 +135,16 @@ const write = () => {
     novels.forEach((novel) => (novObj[novel.bookId] = novel.review));
     setWebtoonList(webObj);
     setNovelList(novObj);
-    console.log(webtoonList);
-    console.log(novelList);
+    // console.log(webtoonList);
+    // console.log(novelList);
   }, [addedBookList, currentReview]);
 
   return (
-    <div css={css`padding-bottom: 64px;`}>
+    <div
+      css={css`
+        padding-bottom: 64px;
+      `}
+    >
       <div css={pageTitleCSS({ isDeskTop, isTablet, isMobile })}>
         <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
           <h3>emo.PICK 등록하기</h3>
@@ -159,7 +161,16 @@ const write = () => {
               ]}
             >
               <h3>
-                제목<span css={formWordCSS({minLimit: 2, maxLimit: 30, target: title.length})}>2자 이상 30자 이하로 작성해주세요. ({title.length}/30)</span>
+                제목
+                <span
+                  css={formWordCSS({
+                    minLimit: 2,
+                    maxLimit: 30,
+                    target: title.length,
+                  })}
+                >
+                  2자 이상 30자 이하로 작성해주세요. ({title.length}/30)
+                </span>
               </h3>
               <input
                 type="text"
@@ -176,7 +187,16 @@ const write = () => {
               ]}
             >
               <h3>
-                내용<span css={formWordCSS({minLimit: 10, maxLimit: 500, target: content.length})}>10자 이상 500자 이하로 작성해주세요. ({content.length}/500)</span>
+                내용
+                <span
+                  css={formWordCSS({
+                    minLimit: 10,
+                    maxLimit: 500,
+                    target: content.length,
+                  })}
+                >
+                  10자 이상 500자 이하로 작성해주세요. ({content.length}/500)
+                </span>
               </h3>
               <textarea
                 name="content"
@@ -280,11 +300,6 @@ const write = () => {
     </div>
   );
 };
-
-
-
-
-
 
 interface IsResponsive {
   isDeskTop: boolean;
@@ -477,11 +492,18 @@ const submitButtonCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
     border: none !important;
   `;
 
-
-const formWordCSS = ({minLimit, maxLimit, target}: {minLimit: number; maxLimit: number; target: number;}) => {
+const formWordCSS = ({
+  minLimit,
+  maxLimit,
+  target,
+}: {
+  minLimit: number;
+  maxLimit: number;
+  target: number;
+}) => {
   return css`
-    color: ${target > maxLimit && 'red !important'};
-  `
-}
+    color: ${target > maxLimit && "red !important"};
+  `;
+};
 
 export default write;

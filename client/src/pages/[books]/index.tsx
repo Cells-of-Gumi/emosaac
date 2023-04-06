@@ -64,7 +64,7 @@ export default function Home({
       ? Number(window.sessionStorage.getItem(`${params}-selected_day`))
       : 0
   );
-  const [randomIdentifier, setRandomIdentifier] = useState<number>(0)
+  const [randomIdentifier, setRandomIdentifier] = useState<number>(0);
 
   // useEffect(() => {
   //   return () => {
@@ -73,16 +73,12 @@ export default function Home({
   //   }
 
   // }, [params])
-  
-  
 
   useEffect(() => {
-    setRandomIdentifier(() => Math.floor(Math.random() * 100000))
-  }, [])
+    setRandomIdentifier(() => Math.floor(Math.random() * 100000));
+  }, []);
 
   useEffect(() => {
-    
-
     window.addEventListener("scroll", throttleScroll);
     window.addEventListener("scroll", debounceScroll);
     return () => {
@@ -90,8 +86,6 @@ export default function Home({
       window.removeEventListener("scroll", debounceScroll); //clean up
     };
   }, []);
-
-
 
   const throttleScroll = useMemo(
     () =>
@@ -111,15 +105,17 @@ export default function Home({
           indexWrapperRef.current.style.pointerEvents = "auto";
         }
         if (document.documentElement.scrollTop !== 0) {
-          window.localStorage.setItem(`index_scroll_value`, String(document.documentElement.scrollTop))
-          window.sessionStorage.removeItem(`scroll_timing_horizontal`)
+          window.localStorage.setItem(
+            `index_scroll_value`,
+            String(document.documentElement.scrollTop)
+          );
+          window.sessionStorage.removeItem(`scroll_timing_horizontal`);
         }
-        
+
         setIsScrolling(() => false);
       }, 200),
     []
   );
-
 
   const postData = {
     content: [

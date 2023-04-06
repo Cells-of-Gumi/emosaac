@@ -84,7 +84,16 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
     } else {
       setIsLogin(false);
     }
-  }, []);
+  }, [isPopUpOpen]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [router.events]);
 
   useEffect(() => {
     const imageUrl = localStorage.getItem("imageUrl");
@@ -110,6 +119,8 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
     } else {
       setIsHome(false);
     }
+
+    setIsPopUpOpen(false);
 
     const pathName = router.asPath.split("/")[1];
     switch (pathName) {
@@ -178,13 +189,16 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
             )}
             <div css={navBackCSS(isTablet)}>
               <div
-                css={navWrapCSS({
-                  isSearchBoxOpen,
-                  isNavLimit,
-                  isDeskTop,
-                  isTablet,
-                  isMobile,
-                })}
+                css={navWrapCSS(
+                  {
+                    isSearchBoxOpen,
+                    isNavLimit,
+                    isDeskTop,
+                    isTablet,
+                    isMobile,
+                  },
+                  isLogin
+                )}
               >
                 <Link href={{ pathname: "/" }}>
                   <h1
@@ -236,25 +250,31 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
                   isDarkMode={isDarkMode}
                   setIsDarkMode={setIsDarkMode}
                 />
-
-                {isDeskTop ? (
+                {isDeskTop && (
                   <BasicButton
                     setIsSearchBoxOpen={setIsSearchBoxOpen}
                     myInfo={myInfo}
                   />
-                ) : isTablet ? (
-                  <Link href={{ pathname: "/login" }}>
-                    <MdPerson
-                      size={24}
-                      css={css`
-                        color: var(--text-color);
-                      `}
-                      onClick={() => {
-                        setIsSearchBoxOpen(false);
-                      }}
+                )}
+                {isTablet &&
+                  (!isLogin ? (
+                    <Link href={{ pathname: "/login" }}>
+                      <MdPerson
+                        size={24}
+                        css={css`
+                          color: var(--text-color);
+                        `}
+                        onClick={() => {
+                          setIsSearchBoxOpen(false);
+                        }}
+                      />
+                    </Link>
+                  ) : (
+                    <BasicButton
+                      setIsSearchBoxOpen={setIsSearchBoxOpen}
+                      myInfo={myInfo}
                     />
-                  </Link>
-                ) : null}
+                  ))}
                 {isMobile && (
                   <FiSearch
                     size={24}
@@ -385,7 +405,7 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
                     <div>이모픽</div>
                   </Link>
                 </li>
-                <li onClick={() => setIsPopUpOpen(true)}>
+                <li onClick={() => setIsPopUpOpen(!isPopUpOpen)}>
                   <a>
                     {currentRoute.mypage ? (
                       <MdPerson size={24} />
@@ -467,25 +487,25 @@ const navBackCSS = (isTablet: boolean) => {
   `;
 };
 
-const navWrapCSS = ({
-  isSearchBoxOpen,
-  isNavLimit,
-  isDeskTop,
-  isTablet,
-  isMobile,
-}: IsResponsive) => {
+const navWrapCSS = (
+  { isSearchBoxOpen, isNavLimit, isDeskTop, isTablet, isMobile }: IsResponsive,
+  isLogin: boolean
+) => {
   return css`
     position: relative;
     display: none;
     grid-template-columns: none;
     ${(isDeskTop || isTablet || isMobile) && "display : grid;"}
     ${isDeskTop
-      ? "grid-template-columns: 130px 180px 1fr 60px 80px;"
+      ? isLogin
+        ? "grid-template-columns: 130px 180px 1fr 60px 36px;"
+        : "grid-template-columns: 130px 180px 1fr 60px 80px;"
       : isTablet
       ? "grid-template-columns: 130px 1fr 60px 24px;"
       : isMobile
       ? "grid-template-columns: 40px 1fr 60px 20px;"
       : "grid-template-columns: none;"}
+      
     ${!isMobile && "column-gap: 24px;"}
     ${isMobile && "column-gap: 20px;"}
     margin: ${isDeskTop
@@ -549,15 +569,16 @@ const mobileBottomCSS = css`
 const popUpCSS = (isPopUpOpen: boolean) => css`
   box-shadow: 0px -10px 10px rgba(120, 120, 120, 0.3);
   z-index: 120;
-  transition: all 0.3s ease;
-  position: relative;
+  transition: all 0.3s;
+  position: absolute;
+  bottom: ${isPopUpOpen ? "55px" : "calc(55px - 100vh)"};
   width: 100vw;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 140px);
   background-color: var(--back-color);
   border-radius: 10px 10px 0px 0px;
   padding-top: 10px;
-  display: ${isPopUpOpen ? "block" : "none"};
-  transform: ${isPopUpOpen ? "translateY(0px)" : "translateY(100vh)"};
+  visibility: ${isPopUpOpen ? "visible" : "hidden"};
+  /* pointer-events: ${isPopUpOpen ? "auto" : "none"}; */
   & > svg {
     cursor: pointer;
     position: absolute;

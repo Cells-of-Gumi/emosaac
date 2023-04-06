@@ -15,7 +15,6 @@
 // import Button from "@/components/UI/Button/Button";
 // import { postOcr } from "@/api/ocr/postOcr";
 
-
 // interface FloatingButtonModalProps {
 //   modalToggler: boolean;
 //   isMouseOn: boolean;
@@ -41,9 +40,8 @@
 //   useEffect(() => {
 //     const temp = document.documentElement.getAttribute("data-theme")
 //     setCurrentTheme(() => temp)
-    
-//   }, [])
 
+//   }, [])
 
 //   const modalLayout = {
 //     widthValue: 350,
@@ -57,10 +55,7 @@
 
 //     }
 
-    
 //   }, []);
-
-
 
 //   const modalHandler = () => {
 //     if (isMouseOn === true && contentToggler === true) {
@@ -68,13 +63,12 @@
 //         if (wrapperRef.current !== null) {
 //           wrapperRef.current.style.opacity = '0'
 //         }
-        
+
 //       }, 300);
-      
+
 //       setTimeout(function () {
 //         setModalToggler(() => false);
-        
-        
+
 //       }, 300);
 //     } else {
 //       setModalToggler(() => false);
@@ -82,7 +76,6 @@
 //     setContentToggler(() => false);
 //     setIsClosing(() => true)
 //   };
-
 
 //   const [image, setImage] = useState<File | null>(null);
 //   const [contentType, setContentType] = useState<0 | 1 | null>(null)
@@ -103,14 +96,14 @@
 //         console.log(res)
 //       })
 //     }
-    
+
 //   }
 
 //   return (
 //     <div
 //       // onClick={modalHandler}
 //       // onWheelCapture={onWheelHandler}
-      
+
 //       ref={wrapperRef}
 //       css={wrapperCSS({
 //         modalToggler: contentToggler,
@@ -132,53 +125,51 @@
 //         <div>
 //           <div css={headerCSS}>
 //             <img css={headerIconCSS} src={currentTheme === 'dark' ? "/assets/scan_icon_white.png" : "/assets/scan_icon.png"}/>
-//             <div css={headerTitleCSS}>  
+//             <div css={headerTitleCSS}>
 //               작품 스캔
 //             </div>
-          
-            
+
 //           </div>
 //           <div css={bodyCSS}>
 
 //             <form method="post" encType="multipart/form-data">
 //               <div css={altInputCSS}>
 //                 <div css={altInputPathCSS}>{inputRef?.current?.files ? inputRef?.current?.files[0]?.name : '이미지를 첨부해 주세요.'}</div>
-            
+
 //                       <label css={altInputButtonCSS} className="button" htmlFor="chooseFile">
 //                           파일 선택
 //                       </label>
-      
+
 //               </div>
-                
+
 //               <input ref={inputRef} css={css`display: none;`} type="file" id="chooseFile" name="chooseFile" accept="image/*" onChange={onClickImageChange} />
 //             </form>
-            
-            
+
 //             <div css={radioButtonSectorCSS}>
 //               스캔하려는 작품의 종류를 선택해 주세요!
 
 //               <div css={radioButtonInnerSectorCSS}>
 //                 <div css={radioButtonWrapperCSS} onClick={() => {setContentType(() => 0)}}>
-                  
+
 //                   <UseAnimations key={`webtoon-${contentType}`} animation={radioButton} reverse={contentType === 0 ? true : false} size={28} />
 //                   웹툰
 //                 </div>
 //                 <div css={radioButtonWrapperCSS} onClick={() => {setContentType(() => 1)}}>
-                  
+
 //                   <UseAnimations key={`novel-${contentType}`} animation={radioButton} reverse={contentType === 1 ? true : false}  size={28} />
 //                   웹소설
 //                 </div>
 //               </div>
-              
+
 //             </div>
-            
+
 //           </div>
 //         </div>
 //         <div css={footerCSS}>
 //           <Button width={'47.5%'} height={'48px'} onClick={modalHandler} cancelTheme={true}>취소</Button>
 //           <Button width={'47.5%'} height={'48px'} onClick={onClickSubmitHandler}>제출</Button>
 //         </div>
-        
+
 //       </div>
 //     </div>
 //   );
@@ -242,7 +233,7 @@
 //       : `${parentRef?.current?.clientHeight}px`};
 //     left: ${modalToggler ? `calc(50vw - ${(widthValue / 2)}px)` : `${parentRef?.current?.getBoundingClientRect().left}px`};
 //     top: ${modalToggler ? `calc(50vh - ${(heightValue / 2)}px)` : `${parentRef?.current?.getBoundingClientRect().top}px`};
-    
+
 //     ${modalToggler ? `pointer-events: auto` : `pointer-events: none`};
 //     /* background-color: white; */
 
@@ -271,14 +262,9 @@
 //     display: flex;
 //     flex-direction: column;
 //     justify-content: space-between;
-    
+
 //   `;
 // };
-
-
-
-
-
 
 // const footerCSS = css`
 //   display: flex;
@@ -375,7 +361,5 @@
 //     background-color: var(--border-color);
 //   }
 // `
-
-
 
 // export default FloatingButtonModal;
