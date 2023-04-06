@@ -85,14 +85,26 @@ const myPageAnalyzeWrapperCSS = ({isDeskTop}: {isDeskTop: boolean}) => {
     width: 100%;
     margin-top: 36px;
     display: flex;
-    ${isDeskTop ? `
+    /* ${isDeskTop ? `
       
       justify-content: space-around;
     ` : `
       flex-direction: column;
       align-items: center;
-    `}
-    
+    `} */
+    @media (max-width: 1280px) {
+      & {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+    }
+    @media (min-width: 1281px) {
+      & {
+        justify-content: space-around;
+      }
+      
+    }
     /* margin-top: 64px; */
   `
 } 

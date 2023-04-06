@@ -8,15 +8,18 @@ import { bookContentType } from "@/types/books";
 
 import React from "react";
 import HorizontalCarouselWrapper from "./HorizontalCarouselWrapper";
+import Link from "next/link";
+
 
 interface SortByGenreProps {
     fetchList: any;
     myInfo?: any;
     titleColor?: string;
     hideBanner?: boolean;
+    stopVerticalScroll?: boolean;
 }
 
-const SortByRows = ({fetchList, myInfo, titleColor, hideBanner}: SortByGenreProps) => {
+const SortByRows = ({fetchList, myInfo, titleColor, hideBanner, stopVerticalScroll}: SortByGenreProps) => {
     const [isDeskTop, isTablet, isMobile] = useIsResponsive();
     const indexWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -34,17 +37,20 @@ const SortByRows = ({fetchList, myInfo, titleColor, hideBanner}: SortByGenreProp
                   <HorizontalCarousel API={el.API} identifier={el.identifier} setHasData={setHasData} />
                   </div>
                   <div css={whiteSpace1CSS} /> */}
-                  <HorizontalCarouselWrapper el={el} titleColor={titleColor} />
+                  <HorizontalCarouselWrapper el={el} titleColor={titleColor} stopVerticalScroll={stopVerticalScroll} />
                   {Math.ceil(fetchList.length / 2) === idx && !hideBanner &&
-                  <img
-                      src={
-                      isMobile === true
-                          ? "/assets/content_banner_mobile.png"
-                          : "/assets/content_banner_desktop_tablet.png"
-                      }
-                      alt={""}
-                      css={bannerImage}
-                  />
+                  <Link href={'http://localhost:3000/books/2556'}>
+                    <img
+                        src={
+                        isMobile === true
+                            ? "/assets/content_banner_mobile.png"
+                            : "/assets/content_banner_desktop_tablet.png"
+                        }
+                        alt={""}
+                        css={bannerImage}
+                    />
+                  </Link>
+                  
                   }
               </React.Fragment>
           )

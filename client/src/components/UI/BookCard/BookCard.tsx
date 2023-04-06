@@ -22,6 +22,7 @@ interface Props {
   minWidth?: string;
   minHeight?: string;
   margin?: string;
+  hideType?: boolean;
 }
 
 const BookCard = ({
@@ -32,6 +33,7 @@ const BookCard = ({
   minWidth,
   minHeight,
   margin,
+  hideType,
 }: Props) => {
   const [user, setUser] = useState<any>(null);
   useEffect(() => {
@@ -153,9 +155,9 @@ const BookCard = ({
       onMouseLeave={() => {call(false); hideModal(); setIsMouseOnStart(() => false)}}
     >
       {user !== null && isMobile() === false && modalToggler && modal}
-      <div css={typeCdWrapCSS(bookData.typeCd === 0, isD)}>
+      {hideType !== true && <div css={typeCdWrapCSS(bookData.typeCd === 0, isD)}>
         {bookData && bookData.typeCd === 0 ? "웹툰" : "웹소설"}
-      </div>
+      </div>}
       <div
         className={"bookcard-inner-wrapper"}
         css={cardInnerWrapperCSS({ width, height, minWidth, minHeight })}

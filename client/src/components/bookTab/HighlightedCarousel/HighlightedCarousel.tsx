@@ -146,6 +146,7 @@ const Waterfall = ({ bookData, windowWrapperRef, identifier }: HighlightedCarous
           {/* <img src={el.img} css={imgCSS} /> */}
 
           <BookCard
+            hideType={true}
             bookData={el}
             showPlatform={true}
             // width={`${wrapperRef?.current[idx]?.clientWidth}px`}

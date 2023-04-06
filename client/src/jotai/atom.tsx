@@ -29,6 +29,7 @@ const addedBookTitleListAtom = atom<string[]>((get) =>
   get(addedBookListAtom).map((addedBook) => addedBook.title)
 );
 
+const preventDefaultScroll = atom<boolean>(false)
 // const readWriteAtom = atom(
 //     (get) => get(priceAtom) * 2,
 //     (get, set, newPrice) => {
@@ -47,4 +48,5 @@ export {
   addedBookIdListAtomTest,
   selectedBookIdListAtom,
   addedBookTitleListAtom,
+  preventDefaultScroll
 };
