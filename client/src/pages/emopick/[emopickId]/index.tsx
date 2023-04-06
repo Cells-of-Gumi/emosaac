@@ -68,9 +68,19 @@ type returnEmopickType = {
 };
 
 const index = ({ data }: returnEmopickType) => {
+  const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const router = useRouter();
+  const [isWriter, setIsWriter] = useState(false);
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (data.writerInfo.userId.toString() === userId) {
+      setIsWriter(true);
+    } else {
+      setIsWriter(false);
+    }
+  }, []);
+  function onClickFunc() {}
   return (
     <div>
       <EmopickFloatingButtonToTop />
@@ -94,7 +104,9 @@ const index = ({ data }: returnEmopickType) => {
           <span>
             웹툰 {data.webtoon.length} · 웹소설 {data.novel.length}
           </span>
-          <div css={titleButtonCSS({ isDeskTop, isTablet, isMobile })}>
+          <div
+            css={titleButtonCSS({ isDeskTop, isTablet, isMobile }, isWriter)}
+          >
             <button>
               <BsChatSquareDotsFill size={28} />
             </button>
@@ -148,7 +160,7 @@ const index = ({ data }: returnEmopickType) => {
                           <span>이모작 평점</span>
                           <StarRating
                             key={`rating-${book.title}`}
-                            onClick={console.log()}
+                            onClick={onClickFunc}
                             readonly={true}
                             initialValue={book.avgScore}
                             size={isMobile ? 25 : 30}
@@ -212,7 +224,7 @@ const index = ({ data }: returnEmopickType) => {
                           <span>이모작 평점</span>
                           <StarRating
                             key={`rating-${book.title}`}
-                            onClick={console.log()}
+                            onClick={onClickFunc}
                             readonly={true}
                             initialValue={book.avgScore}
                             size={isMobile ? 25 : 30}
@@ -330,12 +342,21 @@ const titleCSS = (
     line-height: 20px;
   }
 `;
-const titleButtonCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
+const titleButtonCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  isWriter: boolean
+) =>
   css`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: ${isMobile ? "240px" : "150px"};
+    width: ${isMobile
+      ? isWriter
+        ? "240px"
+        : "200px"
+      : isWriter
+      ? "150px"
+      : "110px"};
     padding-top: ${isMobile ? "10px" : "20px"};
     & > button {
       cursor: pointer;
@@ -348,13 +369,12 @@ const titleButtonCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
       background-color: rgba(0, 0, 0, 0);
     }
     & > button:nth-of-type(3) {
+      ${!isWriter && "display : none;"}
       position: relative;
       & > div {
         background-color: var(--back-color);
         border: 1px solid var(--border-color-2);
         position: absolute;
-        /* visibility: hidden; */
-        /* opacity: 0; */
         top: 0px;
         left: 36px;
         border-radius: 10px;
@@ -561,7 +581,7 @@ export const getServerSideProps = async (context: any) => {
   // 토큰을 getBookDetail 함수에 전달
   const data = await getEmopickDetail({ emopickId: emopickId, token })
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       return res;
     })
     .catch((err) => {

@@ -19,8 +19,6 @@
 // };
 // const BookMark = ({ typeCode }: BookMarkProps) => {
 
-
-
 //   const getBookMarkAPI = ({
 //     bookList,
 //     size,
@@ -34,9 +32,6 @@
 //       : "";
 //     return getBookMark(prevId, prevTime, size, typeCode);
 //   };
-
-
-  
 
 //   const router = useRouter();
 //   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -54,7 +49,6 @@
 //       }
 //     });
 //   }, [typeCode]);
-
 
 //   const bookFetchList = [
 //     {
@@ -81,7 +75,7 @@
 //           북마크 한 {typeCode === 0 ? "웹툰" : "웹소설"}이 없어요
 //         </div>
 //       )}
-      
+
 //     </section>
 //   );
 // };

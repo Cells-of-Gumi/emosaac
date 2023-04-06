@@ -62,7 +62,7 @@
 //       API({ size: quantityPerPage })
 //       .then((res: returnBookContentType) => {
 //         if (res.content.length !== 0 || res.content !== null) {
-            
+
 //           const temp = [[...res.content]];
 //           setFetchedData(() => temp);
 //           // setOffset((prev) => prev + 1)
