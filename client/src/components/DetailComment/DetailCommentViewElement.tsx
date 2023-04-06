@@ -34,12 +34,14 @@ const DetailCommentViewElement = ({
   parentId,
   refreshCommentsHandler,
   myInfo,
+  commentType,
 }: {
   bookId: number;
   comment: CommentType;
   parentId: number | null;
   refreshCommentsHandler: Function;
   myInfo: any;
+  commentType?: number;
 }) => {
   const [likeState, setLikeState] = useState<boolean>(comment.likeState);
   const [likeStatusSize, setLikeStatusSize] = useState<number>(
@@ -138,6 +140,7 @@ const DetailCommentViewElement = ({
       commentId={comment.commentId}
       parentId={parentId}
       refreshCommentsHandler={refreshCommentsReHandler}
+      commentType={commentType}
     />
   );
   const commentContent = toggleEditComment ? (
