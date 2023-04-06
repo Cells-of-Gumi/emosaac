@@ -220,6 +220,7 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
             css={cardWrapperCSS({ padding: cardLayout.padding })}
           >
             <BookCard
+              hideType={true}
               bookData={el}
               showPlatform={true}
               width={cardLayout.width}

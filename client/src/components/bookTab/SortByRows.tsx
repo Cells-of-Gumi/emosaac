@@ -8,6 +8,8 @@ import { bookContentType } from "@/types/books";
 
 import React from "react";
 import HorizontalCarouselWrapper from "./HorizontalCarouselWrapper";
+import Link from "next/link";
+
 
 interface SortByGenreProps {
     fetchList: any;
@@ -36,15 +38,18 @@ const SortByRows = ({fetchList, myInfo, titleColor, hideBanner}: SortByGenreProp
                   <div css={whiteSpace1CSS} /> */}
                   <HorizontalCarouselWrapper el={el} titleColor={titleColor} />
                   {Math.ceil(fetchList.length / 2) === idx && !hideBanner &&
-                  <img
-                      src={
-                      isMobile === true
-                          ? "/assets/content_banner_mobile.png"
-                          : "/assets/content_banner_desktop_tablet.png"
-                      }
-                      alt={""}
-                      css={bannerImage}
-                  />
+                  <Link href={'http://localhost:3000/books/2556'}>
+                    <img
+                        src={
+                        isMobile === true
+                            ? "/assets/content_banner_mobile.png"
+                            : "/assets/content_banner_desktop_tablet.png"
+                        }
+                        alt={""}
+                        css={bannerImage}
+                    />
+                  </Link>
+                  
                   }
               </React.Fragment>
           )
