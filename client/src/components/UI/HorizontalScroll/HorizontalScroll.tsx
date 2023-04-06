@@ -5,6 +5,8 @@ import { bookContentType, returnBookContentType } from "@/types/books";
 import BookCard from "../BookCard/BookCard";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { debounce, throttle } from "lodash";
+import UseAnimations from "react-useanimations";
+import loading2 from "react-useanimations/lib/loading2";
 
 
 const HorizontalScroll = ({
@@ -21,7 +23,7 @@ const HorizontalScroll = ({
   const [rightCard, setRightCard] = useState<number>(0)
   const cardsRef = useRef<any>([]);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const dummyRef = useRef<HTMLDivElement>(null);
+
 
   const cardLayout = {
     width: "10vw",
@@ -296,8 +298,19 @@ const HorizontalScroll = ({
 
       <div ref={scrollRef} css={carousel} onWheel={onScrollHandler} onTouchMove={onScrollHandler}>
         {cardsRender}
+        {hasNext &&
+          <div css={loadingDivCSS({cardLayout})}>
+            <UseAnimations
+              strokeColor={"var(--text-color)"}
+              fillColor={"var(--back-color)"}
+              animation={loading2}
+              size={50}
+            />
+          </div>
+        }
+        
       </div>
-      <div ref={dummyRef} css={dummyCSS({ cardLayout })} />
+      
     </div>
   );
 };
@@ -328,19 +341,6 @@ const cardWrapperCSS = ({ padding }: { padding: string }) => {
   `;
 };
 
-const dummyCSS = ({ cardLayout }: { cardLayout: any }) => {
-  return css`
-    width: ${cardLayout.width};
-    height: ${cardLayout.height};
-    min-width: ${cardLayout.minWidth};
-    min-height: ${cardLayout.minHeight};
-    padding-left: ${cardLayout.padding};
-    padding-right: ${cardLayout.padding};
-    position: absolute;
-    visibility: hidden;
-    pointer-events: none;
-  `;
-};
 
 
 
@@ -398,5 +398,20 @@ const nextBtn = ({ isDeskTop, isTablet, isMobile }: nextPrevBtnProps) => {
     }
   `;
 };
+
+
+const loadingDivCSS = ({cardLayout}: {cardLayout: any}) => {
+  return css`
+    display: flex;
+    height: ${cardLayout.height};
+    min-height: ${cardLayout.minHeight};
+    align-items: center;
+    justify-content: center;
+    padding-left: 16px;
+    padding-right: 16px;
+
+  `;
+} 
+
 
 export default HorizontalScroll;
