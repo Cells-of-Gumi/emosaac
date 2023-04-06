@@ -346,7 +346,7 @@ const formCSS = ({isMobile}: {isMobile: boolean}) => {
   return css`
     color: var(--text-color);
     display: flex;
-    min-height: 400px; // 변경된 부분
+    min-height: ${isMobile ? '500px' : '400px'}; // 변경된 부분
     flex-direction: column;
     justify-content: space-between;
     width: 400px;
@@ -354,8 +354,7 @@ const formCSS = ({isMobile}: {isMobile: boolean}) => {
     border-radius: 5px;
     margin: 20px auto;
     border: ${!isMobile && `1px solid var(--border-color)`};
-    padding-bottom: ${isMobile && '128px'};
-  `;
+  `
 } 
 const textwrapCSS = css`
   text-align: left;
