@@ -58,6 +58,7 @@ const BookCard = ({
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [modalToggler, setModalToggler] = useState<boolean>(false);
   const [isMouseOn, setIsMouseOn] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true)
   
   const platformBase = [
     "https://comic.naver.com/",
@@ -164,7 +165,7 @@ const BookCard = ({
       >
         <div
           css={skeletonLoadingTagCSS({
-            state: bookData !== "LOADING" ? true : false,
+            state:  loading === false ? true : false,
           })}
         />
         <img
@@ -172,8 +173,9 @@ const BookCard = ({
           src={bookData && bookData.thumbnail}
           alt={bookData && bookData.title}
           css={imageCSS}
+          onLoad={() => {setLoading(() => false)}}
         />
-        {showPlatform && bookData !== "LOADING" && platformBar}
+        {showPlatform && loading === false && platformBar}
       </div>
     </div>
   );
