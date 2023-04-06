@@ -346,7 +346,7 @@ const formCSS = ({isMobile}: {isMobile: boolean}) => {
   return css`
     color: var(--text-color);
     display: flex;
-    min-height: ${isMobile ? '500px' : '400px'}; // 변경된 부분
+    min-height: ${isMobile ? '120vh' : '400px'}; // 변경된 부분
     flex-direction: column;
     justify-content: space-between;
     width: 400px;
