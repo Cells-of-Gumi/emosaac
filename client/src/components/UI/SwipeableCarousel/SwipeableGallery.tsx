@@ -15,7 +15,6 @@ const SwipeableGallery = ({ parentRef, content }: any) => {
 
   const [width, setWidth] = useState(null);
   const [height, setHeight] = useState(null);
-  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     setWidth(() => parentRef.current.clientWidth);
@@ -154,7 +153,7 @@ const SwipeableGallery = ({ parentRef, content }: any) => {
   );
 
   return (
-    <div css={outerWrapperCSS({loading})}>
+    <div css={outerWrapperCSS}>
       {isMobile === false && indicatorBtn}
       <div css={indicatorWrapperCSS({isMobile})}>{indicator}</div>
       <Swipe
@@ -180,22 +179,15 @@ const SwipeableGallery = ({ parentRef, content }: any) => {
       {/* {positionx}
       {contentCount}
       {endSwipe.toString()} */}
-      <img css={css`display: none;`} src={"/assets/emosaac_logo.png"} onLoad={() => {setLoading(() => false)}}/>
     </div>
   );
 };
 
 export default SwipeableGallery;
 
-const outerWrapperCSS = ({loading}: {loading: boolean}) => {
-    return css`
-    position: relative;
-
-    transition-property: opacity;
-    transition-duration: 0.3s;
-    opacity: ${loading === false ? '100%' : '0%'};
-  `;
-}
+const outerWrapperCSS = css`
+  position: relative;
+`;
 
 const prevBtnCSS = css`
   z-index: 9;
