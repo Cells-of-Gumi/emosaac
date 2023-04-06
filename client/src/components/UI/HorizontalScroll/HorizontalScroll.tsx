@@ -111,7 +111,7 @@ const HorizontalScroll = ({
       scrollRef.current.scrollTo(Number(JSON.parse(loadScroll)), 0);
 
     }
-  }, [cardsRef.current.length]);
+  }, [cardsRef.current.length !== 0]);
 
 
   useEffect(() => {
@@ -119,7 +119,6 @@ const HorizontalScroll = ({
       const lastContent = bookListData[bookListData.length - 1];
       API({ lastContent: lastContent, size: quantity }).then(
         (res: returnBookContentType) => {
-          console.log("fewfewefw");
           if (res.content.length === 0 && bookListData.length === 0) {
             setNoData(() => true);
           }
