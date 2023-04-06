@@ -354,7 +354,7 @@ const formCSS = ({isMobile}: {isMobile: boolean}) => {
     border-radius: 5px;
     margin: 20px auto;
     border: ${!isMobile && `1px solid var(--border-color)`};
-    margin-bottom: 48px;
+    padding-bottom: ${isMobile && '128px'};
   `;
 } 
 const textwrapCSS = css`
