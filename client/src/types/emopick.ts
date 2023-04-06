@@ -38,3 +38,39 @@ export type emopickContentType = {
     last: boolean;
     hasNext: boolean;
   };
+
+
+
+
+  export type emopickDetailReviewType = {
+    bookId: number;
+    platform: number;
+    thumbnail: string;
+    title: string;
+    author: string;
+    href: string;
+    genre: string;
+    regist: string;
+    grade: string;
+    avgScore: number;
+    review: string;
+  };
+  
+  export type returnEmopickDetailType = {
+    writerInfo: {
+      userId: number;
+      nickname: string;
+      profileImg: string;
+    };
+    emopickId: number;
+    title: string;
+    content: string;
+    thumbnails: string;
+    emoLike: boolean;
+    likeCnt: number;
+    bookCnt: number;
+    createdDate: string;
+    modifiedDate: string;
+    webtoon: emopickDetailReviewType[];
+    novel: emopickDetailReviewType[];
+  };
