@@ -60,8 +60,8 @@ export const SearchBarMobile = (props: Props) => {
     } else {
       const [prevId, prevScore, size] = [20493, 10, 10];
       props.setIsSearchBoxOpen && props.setIsSearchBoxOpen(false);
-      console.log("여기옴?");
-      console.log("여기옴?");
+      // console.log("여기옴?");
+      // console.log("여기옴?");
       if (isTagName) {
         const tagName = searchInput.slice(1);
         router.push({

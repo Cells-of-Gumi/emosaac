@@ -129,11 +129,11 @@ const EmopickSearchBox = ({
         selectedBookIdList.includes(oneBookData.bookId)
       ) {
         const newSelectedBookIdList = selectedBookIdList?.filter((bookId) => {
-          console.log(bookId !== oneBookData.bookId);
+          // console.log(bookId !== oneBookData.bookId);
           return bookId !== oneBookData.bookId;
         });
         const newSelectedBookList = selectedBookList?.filter((book) => {
-          console.log(book.bookId !== oneBookData.bookId);
+          // console.log(book.bookId !== oneBookData.bookId);
           return book.bookId !== oneBookData.bookId;
         });
         // setSelectedBookIdList(newSelectedBookIdList);
@@ -147,15 +147,15 @@ const EmopickSearchBox = ({
           thumbnail: oneBookData.thumbnail,
         };
         // setSelectedBookIdList((prev) => [...prev, oneBookData.bookId]);
-        console.log(selectedBookList);
-        console.log(selectedBookIdList);
+        // console.log(selectedBookList);
+        // console.log(selectedBookIdList);
         setSelectedBookList([...selectedBookList, nowBookObj]);
       }
     }
   }
 
   function addBook(oneBook: any) {
-    console.log(selectedBookList);
+    // console.log(selectedBookList);
     setAddedBookList((prev) => [...prev, ...selectedBookList]);
     // setSelectedBookIdList([]);
     setSelectedBookList([]);
@@ -194,7 +194,7 @@ const EmopickSearchBox = ({
     } else {
       setSelectedBookIdList([]);
     }
-    console.log(selectedBookList);
+    // console.log(selectedBookList);
   }, [selectedBookList]);
   return (
     <div css={searchWrapCSS}>

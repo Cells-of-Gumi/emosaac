@@ -7,14 +7,15 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { bookContentType } from "@/types/books";
 import { throttle } from "lodash";
 
-
 interface HighlightedCarousel {
   bookData: bookContentType[];
   windowWrapperRef: any;
 }
 
 const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
-  const [bookDataList, setBookDataList] = useState<bookContentType[]>([...bookData]);
+  const [bookDataList, setBookDataList] = useState<bookContentType[]>([
+    ...bookData,
+  ]);
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const dummyNormalRef = useRef<HTMLInputElement>(null);
   // const wrapperRef = useRef<any>([]);
@@ -22,7 +23,7 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
 
   const dummyHighlightedRef = useRef<HTMLInputElement>(null);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const [showCount, setShowCount] = useState<number>(7)
+  const [showCount, setShowCount] = useState<number>(7);
 
   const cardLayout = {
     widthValue: 13,
@@ -37,7 +38,10 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
   };
 
   useEffect(() => {
-    if (bookDataList[0].title !== bookDataList[bookDataList.length - showCount].title) {
+    if (
+      bookDataList[0].title !==
+      bookDataList[bookDataList.length - showCount].title
+    ) {
       const temp = bookDataList.concat(bookDataList.slice(0, showCount));
       setBookDataList(() => temp);
     }
@@ -45,7 +49,6 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
     // console.log(bookDataList);
     // console.log(temp);
   }, []);
-
 
   // const handleResize = () => {
   //   if (carouselWrapperRef.current !== null) {
@@ -58,46 +61,38 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
   //   }
   // }
 
-  const [windowWidth, setWindowWidth] = useState<any>(0)
-  
+  const [windowWidth, setWindowWidth] = useState<any>(0);
+
   const handleResize = useMemo(
     () =>
-        throttle((event) => {
-          if (carouselWrapperRef.current !== null && dummyNormalRef.current !== null) {
-
-            // const calcWidth =
-            // dummyNormalRef.current.clientWidth < cardLayout.minWidthValue
-            //   ? (cardLayout.minWidthValue + cardLayout.minSpaceValue) * (showCount - 1) + cardLayout.minHighlightedWidthValue + "px"
-            //   : (cardLayout.widthValue + cardLayout.spaceValue) * (showCount - 1) + cardLayout.highlightedWidthValue + cardLayout.unit;
-
-            // carouselWrapperRef.current.style.width = calcWidth
-
-            
-            // const calcLeft =
-            // carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth
-            //   ? -(
-            //       carouselWrapperRef.current.clientWidth - windowWrapperRef?.current?.offsetWidth
-            //     ) / 2 + "px" : "0px";
-            // carouselWrapperRef.current.style.left = calcLeft
-
-
-            
-
-          }
-          setWindowWidth(() => window.innerWidth)
-        }, 1000),
+      throttle((event) => {
+        if (
+          carouselWrapperRef.current !== null &&
+          dummyNormalRef.current !== null
+        ) {
+          // const calcWidth =
+          // dummyNormalRef.current.clientWidth < cardLayout.minWidthValue
+          //   ? (cardLayout.minWidthValue + cardLayout.minSpaceValue) * (showCount - 1) + cardLayout.minHighlightedWidthValue + "px"
+          //   : (cardLayout.widthValue + cardLayout.spaceValue) * (showCount - 1) + cardLayout.highlightedWidthValue + cardLayout.unit;
+          // carouselWrapperRef.current.style.width = calcWidth
+          // const calcLeft =
+          // carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth
+          //   ? -(
+          //       carouselWrapperRef.current.clientWidth - windowWrapperRef?.current?.offsetWidth
+          //     ) / 2 + "px" : "0px";
+          // carouselWrapperRef.current.style.left = calcLeft
+        }
+        setWindowWidth(() => window.innerWidth);
+      }, 1000),
     []
-);
-
+  );
 
   useEffect(() => {
-    
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
-    }
-  }, [])
-
+    };
+  }, []);
 
   const prevBtnHandler = () => {
     if (currentIdx > 0) {
@@ -120,21 +115,27 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
     .map((el, idx) => {
       return (
         // <div key={`${el.title}-${windowWidth}`} css={css`perspective: 600px;`}>
-          <div
-            // ref={(ele) => (wrapperRef.current[idx] = ele)}
-            key={`${el.title}-${windowWidth}`}
-            css={imgWrapperCSS({showCount, idx, widthValue: cardLayout.widthValue, heightValue: cardLayout.heightValue, unit: cardLayout.unit})}
-          >
-            {/* <img src={el.img} css={imgCSS} /> */}
+        <div
+          // ref={(ele) => (wrapperRef.current[idx] = ele)}
+          key={`${el.title}-${windowWidth}`}
+          css={imgWrapperCSS({
+            showCount,
+            idx,
+            widthValue: cardLayout.widthValue,
+            heightValue: cardLayout.heightValue,
+            unit: cardLayout.unit,
+          })}
+        >
+          {/* <img src={el.img} css={imgCSS} /> */}
 
-            <BookCard
-              bookData={el}
-              showPlatform={true}
-              // width={`${wrapperRef?.current[idx]?.clientWidth}px`}
-              // height={`${wrapperRef?.current[idx]?.clientHeight}px`}
-            />
-            {/* <img src={el.img} css={imgCSS({idx, widthValue: cardLayout.widthValue, heightValue: cardLayout.heightValue, unit: cardLayout.unit, highlightedWidthValue: cardLayout.highlightedWidthValue, highlightedHeightValue: cardLayout.highlightedHeightValue, spaceValue: cardLayout.spaceValue, normalRef: dummyNormalRef, highlightedRef: dummyHighlightedRef, minWidthValue: cardLayout.minWidthValue, minHeightValue: cardLayout.minHeightValue, minHighlightedWidthValue: cardLayout.minHighlightedWidthValue, minHighlightedHeightValue: cardLayout.minHighlightedHeightValue, minSpaceValue: cardLayout.minSpaceValue })} /> */}
-          </div>
+          <BookCard
+            bookData={el}
+            showPlatform={true}
+            // width={`${wrapperRef?.current[idx]?.clientWidth}px`}
+            // height={`${wrapperRef?.current[idx]?.clientHeight}px`}
+          />
+          {/* <img src={el.img} css={imgCSS({idx, widthValue: cardLayout.widthValue, heightValue: cardLayout.heightValue, unit: cardLayout.unit, highlightedWidthValue: cardLayout.highlightedWidthValue, highlightedHeightValue: cardLayout.highlightedHeightValue, spaceValue: cardLayout.spaceValue, normalRef: dummyNormalRef, highlightedRef: dummyHighlightedRef, minWidthValue: cardLayout.minWidthValue, minHeightValue: cardLayout.minHeightValue, minHighlightedWidthValue: cardLayout.minHighlightedWidthValue, minHighlightedHeightValue: cardLayout.minHighlightedHeightValue, minSpaceValue: cardLayout.minSpaceValue })} /> */}
+        </div>
         // </div>
       );
     });
@@ -146,7 +147,7 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
   };
 
   const onSwipeEnd = () => {
-    console.log(positionx);
+    // console.log(positionx);
     if (positionx > 40) {
       prevBtnHandler();
     }
@@ -169,7 +170,7 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
   return (
     // <div css={carouselOuterWrapperCSS({highlightedHeightValue: cardLayout.highlightedHeightValue, unit: cardLayout.unit, minHighlightedHeightValue: cardLayout.minHighlightedHeightValue, highlightedRef: dummyHighlightedRef})}></div>
 
-    <div className={"carousel-outer-wrapper"} css={carouselOuterWrapperCSS} >
+    <div className={"carousel-outer-wrapper"} css={carouselOuterWrapperCSS}>
       <Swipe
         onSwipeStart={(event: any) => {
           event.stopPropagation();
@@ -180,22 +181,13 @@ const Waterfall = ({ bookData, windowWrapperRef }: HighlightedCarousel) => {
       >
         {isMobile === false && indicatorBtn}
 
-        <div css={carouselInnerWrapperCSS}>
-          
-        </div>
+        <div css={carouselInnerWrapperCSS}></div>
 
-      
         <div css={wrapperContainerCss}>
-          <div css={wrapperTopCss}>
-          </div>
-          <div css={wrapperCenterCss}>
-          {renderBooks}
-          </div>
-          <div css={wrapperBottomCss}>
-          </div>
+          <div css={wrapperTopCss}></div>
+          <div css={wrapperCenterCss}>{renderBooks}</div>
+          <div css={wrapperBottomCss}></div>
         </div>
-        
-        
       </Swipe>
     </div>
   );
@@ -247,7 +239,6 @@ const nextBtnCSS = css`
   }
 `;
 
-
 interface imgWrapperCSSProps {
   showCount: number;
   idx: number;
@@ -255,9 +246,13 @@ interface imgWrapperCSSProps {
   heightValue: number;
   unit: string;
 }
-const imgWrapperCSS = ({showCount, idx, widthValue, heightValue, unit}: imgWrapperCSSProps) => {
-
-
+const imgWrapperCSS = ({
+  showCount,
+  idx,
+  widthValue,
+  heightValue,
+  unit,
+}: imgWrapperCSSProps) => {
   return css`
     transition-property: width height;
     transition-duration: 0.3s;
@@ -265,68 +260,67 @@ const imgWrapperCSS = ({showCount, idx, widthValue, heightValue, unit}: imgWrapp
     height: ${heightValue + unit};
 
     transform: rotateY(45deg);
-
-  `
-}
+  `;
+};
 
 const carouselOuterWrapperCSS = () => {
   return css`
     position: relative;
     width: 100vw;
     height: 50vh;
-  `
-}
+  `;
+};
 
 const carouselInnerWrapperCSS = () => {
   return css`
     display: flex;
     position: absolute;
     perspective: 400px;
-  `
-}
+  `;
+};
 
 const wrapperTopCss = () => {
   return css`
-    background-color:#FFFFFF;
-    width:100vw;
-    height:200px;
-    border-bottom-left-radius:100%;
-    border-bottom-right-radius:100%;
+    background-color: #ffffff;
+    width: 100vw;
+    height: 200px;
+    border-bottom-left-radius: 100%;
+    border-bottom-right-radius: 100%;
     z-index: 100;
     position: relative;
-  `
-}
+  `;
+};
 
 const wrapperCenterCss = () => {
   return css`
-    background-color:black;
-    width:100vw;
-    height:300px;
-    color:#FFF;
-    text-align:center;
+    background-color: black;
+    width: 100vw;
+    height: 300px;
+    color: #fff;
+    text-align: center;
 
     display: flex;
     justify-content: center;
     perspective: 600px;
     /* overflow: hidden; */
-  `
-}
+  `;
+};
 
 const wrapperBottomCss = () => {
   return css`
-    background-color:#FFFFFF;
-    width:100vw;
-    height:300px;
-    border-top-left-radius:100%;
-    border-top-right-radius:100%;
+    background-color: #ffffff;
+    width: 100vw;
+    height: 300px;
+    border-top-left-radius: 100%;
+    border-top-right-radius: 100%;
     z-index: 100;
     position: relative;
-  `
-}
+  `;
+};
 
 const wrapperContainerCss = () => {
   return css`
-    width:100vw;
-    background-color:black;
-  `
-}
+    width: 100vw;
+    background-color: black;
+  `;
+};

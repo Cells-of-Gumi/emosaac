@@ -13,8 +13,14 @@ interface HighlightedCarousel {
   identifier: string;
 }
 
-const Waterfall = ({ bookData, windowWrapperRef, identifier }: HighlightedCarousel) => {
-  const [bookDataList, setBookDataList] = useState<bookContentType[]>([...bookData]);
+const Waterfall = ({
+  bookData,
+  windowWrapperRef,
+  identifier,
+}: HighlightedCarousel) => {
+  const [bookDataList, setBookDataList] = useState<bookContentType[]>([
+    ...bookData,
+  ]);
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const dummyNormalRef = useRef<HTMLInputElement>(null);
   // const wrapperRef = useRef<any>([]);
@@ -22,7 +28,7 @@ const Waterfall = ({ bookData, windowWrapperRef, identifier }: HighlightedCarous
 
   const dummyHighlightedRef = useRef<HTMLInputElement>(null);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
-  const [showCount, setShowCount] = useState<number>(9)
+  const [showCount, setShowCount] = useState<number>(9);
 
   const cardLayout = {
     widthValue: 13,
@@ -41,7 +47,10 @@ const Waterfall = ({ bookData, windowWrapperRef, identifier }: HighlightedCarous
   };
 
   useEffect(() => {
-    if (bookDataList[0].title !== bookDataList[bookDataList.length - showCount].title) {
+    if (
+      bookDataList[0].title !==
+      bookDataList[bookDataList.length - showCount].title
+    ) {
       const temp = bookDataList.concat(bookDataList.slice(0, showCount));
       setBookDataList(() => temp);
     }
@@ -49,7 +58,6 @@ const Waterfall = ({ bookData, windowWrapperRef, identifier }: HighlightedCarous
     // console.log(bookDataList);
     // console.log(temp);
   }, []);
-
 
   // const handleResize = () => {
   //   if (carouselWrapperRef.current !== null) {
@@ -62,46 +70,51 @@ const Waterfall = ({ bookData, windowWrapperRef, identifier }: HighlightedCarous
   //   }
   // }
 
-  const [windowWidth, setWindowWidth] = useState<any>(0)
-  
+  const [windowWidth, setWindowWidth] = useState<any>(0);
+
   const handleResize = useMemo(
     () =>
-        throttle((event) => {
-          if (carouselWrapperRef.current !== null && dummyNormalRef.current !== null) {
-
-            const calcWidth =
+      throttle((event) => {
+        if (
+          carouselWrapperRef.current !== null &&
+          dummyNormalRef.current !== null
+        ) {
+          const calcWidth =
             dummyNormalRef.current.clientWidth < cardLayout.minWidthValue
-              ? (cardLayout.minWidthValue + cardLayout.minSpaceValue) * (showCount - 1) + cardLayout.minHighlightedWidthValue + "px"
-              : (cardLayout.widthValue + cardLayout.spaceValue) * (showCount - 1) + cardLayout.highlightedWidthValue + cardLayout.unit;
+              ? (cardLayout.minWidthValue + cardLayout.minSpaceValue) *
+                  (showCount - 1) +
+                cardLayout.minHighlightedWidthValue +
+                "px"
+              : (cardLayout.widthValue + cardLayout.spaceValue) *
+                  (showCount - 1) +
+                cardLayout.highlightedWidthValue +
+                cardLayout.unit;
 
-            carouselWrapperRef.current.style.width = calcWidth
+          carouselWrapperRef.current.style.width = calcWidth;
 
-            
-            const calcLeft =
-            carouselWrapperRef.current.clientWidth > windowWrapperRef?.current?.offsetWidth
+          const calcLeft =
+            carouselWrapperRef.current.clientWidth >
+            windowWrapperRef?.current?.offsetWidth
               ? -(
-                  carouselWrapperRef.current.clientWidth - windowWrapperRef?.current?.offsetWidth
-                ) / 2 + "px" : "0px";
-            carouselWrapperRef.current.style.left = calcLeft
-
-
-            
-
-          }
-          setWindowWidth(() => window.innerWidth)
-        }, 1000),
+                  carouselWrapperRef.current.clientWidth -
+                  windowWrapperRef?.current?.offsetWidth
+                ) /
+                  2 +
+                "px"
+              : "0px";
+          carouselWrapperRef.current.style.left = calcLeft;
+        }
+        setWindowWidth(() => window.innerWidth);
+      }, 1000),
     []
-);
-
+  );
 
   useEffect(() => {
-    
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
-    }
-  }, [])
-
+    };
+  }, []);
 
   const prevBtnHandler = () => {
     if (currentIdx > 0) {
@@ -140,7 +153,7 @@ const Waterfall = ({ bookData, windowWrapperRef, identifier }: HighlightedCarous
             minHighlightedWidthValue: cardLayout.minHighlightedWidthValue,
             minHighlightedHeightValue: cardLayout.minHighlightedHeightValue,
             minSpaceValue: cardLayout.minSpaceValue,
-            showCount: showCount
+            showCount: showCount,
           })}
         >
           {/* <img src={el.img} css={imgCSS} /> */}
@@ -164,7 +177,7 @@ const Waterfall = ({ bookData, windowWrapperRef, identifier }: HighlightedCarous
   };
 
   const onSwipeEnd = () => {
-    console.log(positionx);
+    // console.log(positionx);
     if (positionx > 40) {
       prevBtnHandler();
     }
@@ -232,8 +245,7 @@ const Waterfall = ({ bookData, windowWrapperRef, identifier }: HighlightedCarous
               normalRef: dummyNormalRef,
               carouselWrapperRef: carouselWrapperRef,
               windowWrapperRef: windowWrapperRef,
-              showCount: showCount
-              
+              showCount: showCount,
             })}
           >
             {renderBooks}
@@ -333,16 +345,24 @@ const imgWrapperCSS = ({
   minHighlightedWidthValue,
   minHighlightedHeightValue,
   minSpaceValue,
-  showCount
+  showCount,
 }: imgWrapperCSSProps) => {
   const calcWidth =
     normalRef?.current?.clientWidth < minWidthValue
-      ? (idx === Math.floor(showCount / 2) ? minHighlightedWidthValue : minWidthValue) + "px"
-      : (idx === Math.floor(showCount / 2) ? highlightedWidthValue : widthValue) + unit;
+      ? (idx === Math.floor(showCount / 2)
+          ? minHighlightedWidthValue
+          : minWidthValue) + "px"
+      : (idx === Math.floor(showCount / 2)
+          ? highlightedWidthValue
+          : widthValue) + unit;
   const calcHeight =
     normalRef?.current?.clientHeight < minHeightValue
-      ? (idx === Math.floor(showCount / 2) ? minHighlightedHeightValue : minHeightValue) + "px"
-      : (idx === Math.floor(showCount / 2) ? highlightedHeightValue : heightValue) + unit;
+      ? (idx === Math.floor(showCount / 2)
+          ? minHighlightedHeightValue
+          : minHeightValue) + "px"
+      : (idx === Math.floor(showCount / 2)
+          ? highlightedHeightValue
+          : heightValue) + unit;
   const calcLeft =
     normalRef?.current?.clientWidth < minWidthValue
       ? (idx > Math.floor(showCount / 2)
@@ -355,9 +375,12 @@ const imgWrapperCSS = ({
           : idx * (widthValue + spaceValue)) + unit;
   const calcTop =
     normalRef?.current?.clientWidth < minWidthValue
-      ? (idx !== Math.floor(showCount / 2) ? (minHighlightedHeightValue - minHeightValue) / 2 : 0) +
-        "px"
-      : (idx !== Math.floor(showCount / 2) ? (highlightedHeightValue - heightValue) / 2 : 0) + unit;
+      ? (idx !== Math.floor(showCount / 2)
+          ? (minHighlightedHeightValue - minHeightValue) / 2
+          : 0) + "px"
+      : (idx !== Math.floor(showCount / 2)
+          ? (highlightedHeightValue - heightValue) / 2
+          : 0) + unit;
   return css`
     transition-property: left top width height;
     transition-duration: 0.3s;
@@ -453,15 +476,24 @@ const carouselInnerWrapperCSS = ({
 }: carouselInnerWrapperCSSProps) => {
   const calcWidth =
     normalRef?.current?.clientWidth < minWidthValue
-      ? (minWidthValue + minSpaceValue) * (showCount - 1) + minHighlightedWidthValue + "px"
-      : (widthValue + spaceValue) * (showCount - 1) + highlightedWidthValue + unit;
-  
+      ? (minWidthValue + minSpaceValue) * (showCount - 1) +
+        minHighlightedWidthValue +
+        "px"
+      : (widthValue + spaceValue) * (showCount - 1) +
+        highlightedWidthValue +
+        unit;
+
   const calcLeft =
-    carouselWrapperRef?.current?.clientWidth > windowWrapperRef?.current?.offsetWidth
+    carouselWrapperRef?.current?.clientWidth >
+    windowWrapperRef?.current?.offsetWidth
       ? -(
-          carouselWrapperRef?.current?.clientWidth - windowWrapperRef?.current?.offsetWidth
-        ) / 2 + "px" : "0px";
-        
+          carouselWrapperRef?.current?.clientWidth -
+          windowWrapperRef?.current?.offsetWidth
+        ) /
+          2 +
+        "px"
+      : "0px";
+
   return css`
     width: ${calcWidth};
     left: ${calcLeft};

@@ -89,7 +89,7 @@ export default function index() {
     getNewBooksForPlatform().then((res) => {
       if (res !== null) {
         const content = res;
-        console.log(content);
+        // console.log(content);
         setBooksByPlatform(content);
       }
     });

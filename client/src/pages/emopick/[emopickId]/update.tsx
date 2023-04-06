@@ -35,7 +35,13 @@ type bookType = {
   thumbnail: string;
 };
 
-const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType; emopickId: number;}) => {
+const Update = ({
+  emopickData,
+  emopickId,
+}: {
+  emopickData: returnEmopickDetailType;
+  emopickId: number;
+}) => {
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -43,7 +49,6 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
   const [content, setContent] = useState(emopickData.content);
   const [addedBookList, setAddedBookList] = useAtom(addedBookListAtom);
   const [selectedBookList, setSelectedBookList] = useAtom(selectedBookListAtom);
-
 
   type emopickBookType = {
     title: string;
@@ -54,16 +59,28 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
   };
 
   useEffect(() => {
-    console.log(emopickData)
+    // console.log(emopickData);
     const loadedWebtoon = emopickData.webtoon.map((el, idx) => {
-      return {title: el.title, bookId: el.bookId, typeCd: 0, review: el.review, thumbnail: el.thumbnail}
-    })
+      return {
+        title: el.title,
+        bookId: el.bookId,
+        typeCd: 0,
+        review: el.review,
+        thumbnail: el.thumbnail,
+      };
+    });
     const loadedNovel = emopickData.novel.map((el, idx) => {
-      return {title: el.title, bookId: el.bookId, typeCd: 1, review: el.review, thumbnail: el.thumbnail}
-    })
-    const temp = [...loadedWebtoon, ...loadedNovel]
-    setAddedBookList(() => temp)
-  }, [])
+      return {
+        title: el.title,
+        bookId: el.bookId,
+        typeCd: 1,
+        review: el.review,
+        thumbnail: el.thumbnail,
+      };
+    });
+    const temp = [...loadedWebtoon, ...loadedNovel];
+    setAddedBookList(() => temp);
+  }, []);
   // const [bookList, setBookList] = useState<bookType[]>([
   //   // {
   //   //   title: "모죠의 일지",
@@ -119,13 +136,12 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
         alert("이모픽 수정이 완료되었습니다😀");
         router.push("/emopick");
       });
-      
     }
   }
 
   const onClickGoBack = () => {
     router.push(`/emopick/${emopickId}`);
-  }
+  };
 
   function onChangeTitle(event: React.ChangeEvent<HTMLInputElement>) {
     const inputText = event.target.value;
@@ -141,7 +157,7 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
   ) {
     const copyAddedBookList = addedBookList;
     copyAddedBookList[addedBookIdx].review = event.target.value;
-    console.log(copyAddedBookList);
+    // console.log(copyAddedBookList);
     setAddedBookList((prev) => copyAddedBookList);
     setCurrentReview(!currentReview);
   }
@@ -149,7 +165,7 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
   function onClickDelete(addedBookIdx: number) {
     const copyAddedBookList = addedBookList;
     const cuttingList = copyAddedBookList.splice(addedBookIdx, 1);
-    console.log(cuttingList);
+    // console.log(cuttingList);
     setAddedBookList(copyAddedBookList);
     setCurrentReview(!currentReview);
   }
@@ -162,12 +178,16 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
     novels.forEach((novel) => (novObj[novel.bookId] = novel.review));
     setWebtoonList(webObj);
     setNovelList(novObj);
-    console.log(webtoonList);
-    console.log(novelList);
+    // console.log(webtoonList);
+    // console.log(novelList);
   }, [addedBookList, currentReview]);
 
   return (
-    <div css={css`padding-bottom: 64px;`}>
+    <div
+      css={css`
+        padding-bottom: 64px;
+      `}
+    >
       <div css={pageTitleCSS({ isDeskTop, isTablet, isMobile })}>
         <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
           <h3>emo.PICK 수정하기</h3>
@@ -184,7 +204,16 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
               ]}
             >
               <h3>
-                제목<span css={formWordCSS({minLimit: 2, maxLimit: 30, target: title.length})}>2자 이상 30자 이하로 작성해주세요.  ({title.length}/30)</span>
+                제목
+                <span
+                  css={formWordCSS({
+                    minLimit: 2,
+                    maxLimit: 30,
+                    target: title.length,
+                  })}
+                >
+                  2자 이상 30자 이하로 작성해주세요. ({title.length}/30)
+                </span>
               </h3>
               <input
                 type="text"
@@ -202,7 +231,16 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
               ]}
             >
               <h3>
-                내용<span css={formWordCSS({minLimit: 10, maxLimit: 500, target: content.length})}>10자 이상 500자 이하로 작성해주세요.  ({content.length}/500)</span>
+                내용
+                <span
+                  css={formWordCSS({
+                    minLimit: 10,
+                    maxLimit: 500,
+                    target: content.length,
+                  })}
+                >
+                  10자 이상 500자 이하로 작성해주세요. ({content.length}/500)
+                </span>
               </h3>
               <textarea
                 name="content"
@@ -273,9 +311,7 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
                           }}
                           value={addedBook.review}
                         ></textarea>
-                        
                       </div>
-                      
                     </div>
                   ))}
                 </div>
@@ -311,13 +347,9 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
   );
 };
 
-
-
-
-
 export const getServerSideProps = async (context: any) => {
   const params = await context.params;
-  console.log(params);
+  // console.log(params);
   // 토큰 가져오기
   const token = getToken(context.req);
   // console.log(token);
@@ -334,14 +366,10 @@ export const getServerSideProps = async (context: any) => {
   return await {
     props: {
       emopickData: data,
-      emopickId: params.emopickId
+      emopickId: params.emopickId,
     },
   };
 };
-
-
-
-
 
 interface IsResponsive {
   isDeskTop: boolean;
@@ -534,11 +562,18 @@ const submitButtonCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
     border: none !important;
   `;
 
-
-const formWordCSS = ({minLimit, maxLimit, target}: {minLimit: number; maxLimit: number; target: number;}) => {
+const formWordCSS = ({
+  minLimit,
+  maxLimit,
+  target,
+}: {
+  minLimit: number;
+  maxLimit: number;
+  target: number;
+}) => {
   return css`
-    color: ${target > maxLimit && 'red !important'};
-  `
-}
+    color: ${target > maxLimit && "red !important"};
+  `;
+};
 
 export default Update;
