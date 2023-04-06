@@ -29,6 +29,7 @@ const Waterfall = ({
   const dummyHighlightedRef = useRef<HTMLInputElement>(null);
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [showCount, setShowCount] = useState<number>(9);
+  const [loading, setLoading] = useState<boolean>(true)
 
   const cardLayout = {
     widthValue: 13,
@@ -105,16 +106,20 @@ const Waterfall = ({
           carouselWrapperRef.current.style.left = calcLeft;
         }
         setWindowWidth(() => window.innerWidth);
+        
       }, 1000),
     []
   );
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
+    
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  
 
   const prevBtnHandler = () => {
     if (currentIdx > 0) {
@@ -140,6 +145,7 @@ const Waterfall = ({
           // ref={(ele) => (wrapperRef.current[idx] = ele)}
           key={`${el.title}-${windowWidth}-${identifier}`}
           css={imgWrapperCSS({
+            
             idx,
             widthValue: cardLayout.widthValue,
             heightValue: cardLayout.heightValue,
@@ -200,7 +206,8 @@ const Waterfall = ({
   return (
     // <div css={carouselOuterWrapperCSS({highlightedHeightValue: cardLayout.highlightedHeightValue, unit: cardLayout.unit, minHighlightedHeightValue: cardLayout.minHighlightedHeightValue, highlightedRef: dummyHighlightedRef})}></div>
 
-    <div className={"carousel-outer-wrapper"} css={carouselOuterWrapperCSS}>
+    <div className={"carousel-outer-wrapper"} css={carouselOuterWrapperCSS({loading})} >
+      <img css={css`display: none;`} src={"/assets/emosaac_logo.png"} onLoad={() => {setLoading(() => false)}}/>
       <div
         css={highlightedDecoratorCSS({
           highlightedHeightValue: cardLayout.highlightedHeightValue,
@@ -303,15 +310,21 @@ export default Waterfall;
 //     `
 // }
 
-const carouselOuterWrapperCSS = css`
-  width: 100%;
-  margin: 0 auto;
-  /* display:flex;
-        justify-content: center; */
-  display: grid;
-  place-items: center;
-  position: relative;
-`;
+const carouselOuterWrapperCSS = ({loading}: {loading: boolean}) => {
+  return css`
+    width: 100%;
+    margin: 0 auto;
+    /* display:flex;
+          justify-content: center; */
+    display: grid;
+    place-items: center;
+    position: relative;
+
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    opacity: ${loading === false ? '100%' : '0%'};
+  `;
+}
 
 interface imgWrapperCSSProps {
   idx: number;
