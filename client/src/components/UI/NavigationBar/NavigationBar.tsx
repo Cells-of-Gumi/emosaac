@@ -189,13 +189,16 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
             )}
             <div css={navBackCSS(isTablet)}>
               <div
-                css={navWrapCSS({
-                  isSearchBoxOpen,
-                  isNavLimit,
-                  isDeskTop,
-                  isTablet,
-                  isMobile,
-                })}
+                css={navWrapCSS(
+                  {
+                    isSearchBoxOpen,
+                    isNavLimit,
+                    isDeskTop,
+                    isTablet,
+                    isMobile,
+                  },
+                  isLogin
+                )}
               >
                 <Link href={{ pathname: "/" }}>
                   <h1
@@ -484,25 +487,25 @@ const navBackCSS = (isTablet: boolean) => {
   `;
 };
 
-const navWrapCSS = ({
-  isSearchBoxOpen,
-  isNavLimit,
-  isDeskTop,
-  isTablet,
-  isMobile,
-}: IsResponsive) => {
+const navWrapCSS = (
+  { isSearchBoxOpen, isNavLimit, isDeskTop, isTablet, isMobile }: IsResponsive,
+  isLogin: boolean
+) => {
   return css`
     position: relative;
     display: none;
     grid-template-columns: none;
     ${(isDeskTop || isTablet || isMobile) && "display : grid;"}
     ${isDeskTop
-      ? "grid-template-columns: 130px 180px 1fr 60px 80px;"
+      ? isLogin
+        ? "grid-template-columns: 130px 180px 1fr 60px 36px;"
+        : "grid-template-columns: 130px 180px 1fr 60px 80px;"
       : isTablet
       ? "grid-template-columns: 130px 1fr 60px 24px;"
       : isMobile
       ? "grid-template-columns: 40px 1fr 60px 20px;"
       : "grid-template-columns: none;"}
+      
     ${!isMobile && "column-gap: 24px;"}
     ${isMobile && "column-gap: 20px;"}
     margin: ${isDeskTop
