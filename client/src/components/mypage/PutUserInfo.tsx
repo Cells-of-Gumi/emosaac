@@ -241,7 +241,7 @@ const PutUserInfo = ({ myInfo }: any) => {
             <label htmlFor="" css={nicknameCSS}>
               <div>닉네임</div>
               <div css={nicknameexplainCSS}>
-                {nickname.length}/10
+                {nickname?.length}/10
               </div>
             </label>
             <input

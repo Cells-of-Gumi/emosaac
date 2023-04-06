@@ -3,14 +3,17 @@ import { css } from "@emotion/react";
 import EmopickListView from "../emopick/EmopickListView"
 import { useState, useEffect } from "react"
 import { getMyEmopick } from "@/api/emopick/getMyEmopickList"
+import { getCommentedEmopick } from "@/api/emopick/getCommentedEmopick";
+import { getLikedEmopick } from "@/api/emopick/getLikedEmopick";
 import { getEmopickList } from "@/api/emopick/getEmopickList"
 import { emopickContentType, returnEmopickType } from "@/types/emopick"
 import EmopickInfinityScroll from "../emopick/EmopickInfinityScroll"
 import DropDownStyled from "../UI/DropDownStyled/DropDownStyled";
 
+
 const MyPageEmopick = () => {
     
-    const getEmopickListAPI = ({
+    const getMyEmopickAPI = ({
         lastContent,
         size,
       }: {
@@ -18,7 +21,37 @@ const MyPageEmopick = () => {
         size: number;
       }) => {
         const prevId = lastContent ? lastContent.emopickId : 0;
-        return getEmopickList({
+        return getMyEmopick({
+          prevId,
+          size: size,
+        });
+      };
+
+
+      const getCommentedEmopickAPI = ({
+        lastContent,
+        size,
+      }: {
+        lastContent?: emopickContentType;
+        size: number;
+      }) => {
+        const prevId = lastContent ? lastContent.emopickId : 0;
+        return getCommentedEmopick({
+          prevId,
+          size: size,
+        });
+      };
+
+
+      const getLikedEmopickAPI = ({
+        lastContent,
+        size,
+      }: {
+        lastContent?: emopickContentType;
+        size: number;
+      }) => {
+        const prevId = lastContent ? lastContent.emopickId : 0;
+        return getLikedEmopick({
           prevId,
           size: size,
         });
@@ -60,7 +93,9 @@ const MyPageEmopick = () => {
             </div>
             </div>
 
-            <EmopickInfinityScroll API={getEmopickListAPI} identifier={`getMyEmopick`} />
+            {emopickState === 0 && <EmopickInfinityScroll API={getMyEmopickAPI} identifier={`getMyEmopick`} />}
+            {emopickState === 1 && <EmopickInfinityScroll API={getCommentedEmopickAPI} identifier={`getCommentedEmopick`} />}
+            {emopickState === 2 && <EmopickInfinityScroll API={getLikedEmopickAPI} identifier={`getLikedEmopick`} />}
         </div>
     )
 }

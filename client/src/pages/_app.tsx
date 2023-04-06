@@ -9,9 +9,10 @@ import { useEffect, useState } from "react";
 import getMyInfo from "@/api/user/getMyInfo";
 import FixedModal from "@/components/UI/FixedModal/FixedModal";
 import RequireLogin from "@/components/UI/RequireLogin/RequireLogin";
+import RequireUserInfo from "@/components/UI/RequireLogin/RequireUserInfo";
 
 // import { useMediaQuery } from "react-responsive";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -19,12 +20,31 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [myInfo, setMyInfo] = useState<any>(null);
   const [loginModalState, setLoginModalState] = useState<boolean>(false);
+  const [requireInfoModalState, setRequireInfoModalState] = useState<boolean>(false);
+  const router = useRouter();
 
   useEffect(() => {
     if (window.localStorage.getItem("access_token")) {
       getMyInfo()
         .then((res) => {
           setMyInfo(() => res);
+
+          if (router.pathname !== "/survey" && router.pathname !== "/mypage/edit") {
+            if (res?.webtoonGerne === null || res?.novelGerne === null) {
+              setRequireInfoModalState(() => true)
+              router.push("/survey")
+              // router.push("/mypage/edit");
+            }
+  
+            if ((res?.nickname === null || res?.age === null || res?.gender === null) && (res?.webtoonGerne !== null && res?.novelGerne !== null)) {
+              setRequireInfoModalState(() => true)
+              router.push("/mypage/edit");
+            }
+          }
+          
+
+          
+          
         })
         .catch((err) => {
           console.log("_app.tsx - getMyInfo => ", err);
@@ -33,7 +53,7 @@ export default function App({ Component, pageProps }: AppProps) {
     } else {
       setMyInfo(() => false);
     }
-  }, [pageProps]);
+  }, [router.pathname]);
   // const router = useRouter();
   // useEffect(() => {
   //   console.log("되고있나요");
@@ -65,6 +85,13 @@ export default function App({ Component, pageProps }: AppProps) {
           modalState={loginModalState}
           stateHandler={setLoginModalState}
           forced={true}
+          blur={true}
+          isDarkMode={isDarkMode}
+        />
+        <FixedModal
+          content={<RequireUserInfo />}
+          modalState={requireInfoModalState}
+          stateHandler={setRequireInfoModalState}
           blur={true}
           isDarkMode={isDarkMode}
         />

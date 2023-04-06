@@ -108,9 +108,10 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
 
     useEffect(() => {
         const loadScroll = window.sessionStorage.getItem(`${identifier}-recent_scroll`)
-        const scrollTiming = JSON.parse(String(window.sessionStorage.getItem(`scroll_timing`)))
-        console.log('스크롤타이밍', scrollTiming)
-        if (loadScroll && fetchedData.length !== 0 && scrollTiming) {
+        
+        
+        
+        if (loadScroll && fetchedData.length !== 0 ) {
             // setTimeout(function() {
                 
             // }, 1000)
@@ -203,7 +204,7 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
         const contentRender = page.map((content: bookContentType, contentIdx: number) => {
             return (
                 <div key={`${identifier}-infinity-card-${(pageIdx * quantityPerPage) +contentIdx}`} css={cardWrapperCSS({ width: cardLayout.width, height: cardLayout.height, minWidth: cardLayout.minWidth, minHeight: cardLayout.minHeight, margin: cardLayout.margin })}>
-                    <BookCard showPlatform={true} bookData={content} minWidth={cardLayout.minWidth} minHeight={cardLayout.minHeight} />  
+                    <BookCard hideType={true} showPlatform={true} bookData={content} minWidth={cardLayout.minWidth} minHeight={cardLayout.minHeight} />  
                 </div>
                 
             )

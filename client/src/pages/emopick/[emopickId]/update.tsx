@@ -184,7 +184,7 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
               ]}
             >
               <h3>
-                제목<span>2자 이상 30자 이하로 작성해주세요.</span>
+                제목<span css={formWordCSS({minLimit: 2, maxLimit: 30, target: title.length})}>2자 이상 30자 이하로 작성해주세요.  ({title.length}/30)</span>
               </h3>
               <input
                 type="text"
@@ -202,7 +202,7 @@ const Update = ({emopickData, emopickId}: {emopickData: returnEmopickDetailType;
               ]}
             >
               <h3>
-                내용<span>10자 이상 500자 이하로 작성해주세요.</span>
+                내용<span css={formWordCSS({minLimit: 10, maxLimit: 500, target: content.length})}>10자 이상 500자 이하로 작성해주세요.  ({content.length}/500)</span>
               </h3>
               <textarea
                 name="content"
@@ -533,5 +533,12 @@ const submitButtonCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
     background-color: var(--main-color) !important;
     border: none !important;
   `;
+
+
+const formWordCSS = ({minLimit, maxLimit, target}: {minLimit: number; maxLimit: number; target: number;}) => {
+  return css`
+    color: ${target > maxLimit && 'red !important'};
+  `
+}
 
 export default Update;
