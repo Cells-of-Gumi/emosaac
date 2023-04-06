@@ -69,6 +69,7 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
         if (loadData && scrollTiming) {
             setFetchedData(() => JSON.parse(loadData))
             setHasNext(() => localHasNext)
+            
         } else {
             if (hasNext) {
                 API({ size: quantityPerPage })
@@ -108,16 +109,18 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
 
     useEffect(() => {
         const loadScroll = window.sessionStorage.getItem(`${identifier}-recent_scroll`)
+        const scrollTiming = JSON.parse(String(window.sessionStorage.getItem(`scroll_timing`)))
         
         
-        
-        if (loadScroll && fetchedData.length !== 0 ) {
+        if (loadScroll && fetchedData.length !== 0 && scrollTiming ) {
             // setTimeout(function() {
                 
             // }, 1000)
             window.scrollTo(0, Number(JSON.parse(loadScroll)))
             window.sessionStorage.removeItem(`scroll_timing`)
+            
         }
+        
     }, [fetchedData.length !== 0])
 
 
@@ -178,6 +181,7 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
                 // }
                 if (document.documentElement.scrollTop !== 0) {
                     window.sessionStorage.setItem(`${identifier}-recent_scroll`, String(document.documentElement.scrollTop))
+                    window.sessionStorage.setItem(`prevent_index_scroll`, JSON.stringify(true))
                 }
                 
             }, 1000),

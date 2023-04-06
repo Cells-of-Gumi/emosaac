@@ -8,7 +8,7 @@ import { bookContentType } from "@/types/books";
 
 
 
-const HorizontalCarouselWrapper = ({el, titleColor}: {el: any; titleColor?: string;}) => {
+const HorizontalCarouselWrapper = ({el, titleColor, stopVerticalScroll}: {el: any; titleColor?: string; stopVerticalScroll? : boolean}) => {
     const [noData, setNoData] = useState<boolean>(false)
     
     if (noData === false) {
@@ -19,7 +19,7 @@ const HorizontalCarouselWrapper = ({el, titleColor}: {el: any; titleColor?: stri
                     <div css={bookCarouselWrapperCSS}>
                     {/* <ScrollableCarousel API={el.API} identifier={el.identifier} /> */}
                     {/* <HorizontalScroll API={el.API} identifier={el.identifier} setNoData={setNoData} /> */}
-                    <HorizontalScroll API={el.API} identifier={el.identifier} setNoData={setNoData} />
+                    <HorizontalScroll API={el.API} identifier={el.identifier} setNoData={setNoData} stopVerticalScroll={stopVerticalScroll} />
                     </div>
                     <div css={whiteSpace1CSS} />
             </React.Fragment>

@@ -73,6 +73,8 @@ export default function Home({
   //   }
 
   // }, [params])
+  
+  
 
   useEffect(() => {
     setRandomIdentifier(() => Math.floor(Math.random() * 100000))
@@ -108,7 +110,11 @@ export default function Home({
         if (indexWrapperRef.current) {
           indexWrapperRef.current.style.pointerEvents = "auto";
         }
-
+        if (document.documentElement.scrollTop !== 0) {
+          window.localStorage.setItem(`index_scroll_value`, String(document.documentElement.scrollTop))
+          window.sessionStorage.removeItem(`scroll_timing_horizontal`)
+        }
+        
         setIsScrolling(() => false);
       }, 200),
     []
