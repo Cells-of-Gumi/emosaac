@@ -337,7 +337,7 @@ const PutUserInfo = ({ myInfo }: any) => {
             </button>
           </div>
         </form>
-        <div css={css`height: ${isMobile && '100px'};`}/>
+        <div css={css`height: ${isMobile && '120px'};`}/>
       </section>
     </>
   );
