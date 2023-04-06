@@ -204,6 +204,8 @@
 //     }
 //   }, []);
 
+  
+
 //   useEffect(() => {
 //     const loadScroll = window.sessionStorage.getItem(
 //       `${identifier}-horizontal-recent_scroll`
