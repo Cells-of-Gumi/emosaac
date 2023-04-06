@@ -203,7 +203,7 @@ const VerticalScroll = ({API, identifier}: VerticalScrollProps) => {
         const contentRender = page.map((content: bookContentType, contentIdx: number) => {
             return (
                 <div key={`${identifier}-infinity-card-${(pageIdx * quantityPerPage) +contentIdx}`} css={cardWrapperCSS({ width: cardLayout.width, height: cardLayout.height, minWidth: cardLayout.minWidth, minHeight: cardLayout.minHeight, margin: cardLayout.margin })}>
-                    <BookCard showPlatform={true} bookData={content} minWidth={cardLayout.minWidth} minHeight={cardLayout.minHeight} />  
+                    <BookCard hideType={true} showPlatform={true} bookData={content} minWidth={cardLayout.minWidth} minHeight={cardLayout.minHeight} />  
                 </div>
                 
             )

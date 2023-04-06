@@ -83,7 +83,7 @@ const cardsWrapperCSS = ({isMobile}: {isMobile: boolean}) => {
 const individualCardWrapperCSS = ({isMobile}: {isMobile: boolean}) => {
     return css`
         
-        width: ${isMobile ? '38vw' : '13vw;'};
+        width: ${isMobile ? '38vw' : '11vw;'};
         display: inline-block;
         margin: 8px;
     `
