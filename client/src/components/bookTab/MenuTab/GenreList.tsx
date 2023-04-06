@@ -23,9 +23,6 @@ const GenreList = ({
     selectHandler(loadGenre ? loadGenre : -2)
   }, [genres])
 
-  useEffect(() => {
-    selectHandler(-2)
-  }, [params])
 
 
   const renderGenres = genres.map((el, idx) => {

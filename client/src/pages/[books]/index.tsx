@@ -73,6 +73,8 @@ export default function Home({
 
   // }, [params])
   useEffect(() => {
+    
+
     window.addEventListener("scroll", throttleScroll);
     window.addEventListener("scroll", debounceScroll);
     return () => {
@@ -80,6 +82,8 @@ export default function Home({
       window.removeEventListener("scroll", debounceScroll); //clean up
     };
   }, []);
+
+
 
   const throttleScroll = useMemo(
     () =>
@@ -104,8 +108,7 @@ export default function Home({
     []
   );
 
-  // ________________________________________________________________________________________________
-  // 임시 데이터
+
   const postData = {
     content: [
       <img
@@ -128,13 +131,6 @@ export default function Home({
       />,
     ],
   };
-
-  // const getBookData = recvBooks(0, 20).then((res: any) =>
-  //   setBookData(() => res)
-  // );
-  const [bookData, setBookData] = useState<object[]>([]);
-
-  // ________________________________________________________________________________________________
 
   const selectGenreHandler = (selected: number) => {
     window.sessionStorage.setItem(`${params}-selected_genre`, String(selected));
