@@ -84,7 +84,16 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
     } else {
       setIsLogin(false);
     }
-  }, []);
+  }, [isPopUpOpen]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  }, [router.events]);
 
   useEffect(() => {
     const imageUrl = localStorage.getItem("imageUrl");
@@ -110,6 +119,8 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
     } else {
       setIsHome(false);
     }
+
+    setIsPopUpOpen(false);
 
     const pathName = router.asPath.split("/")[1];
     switch (pathName) {
@@ -236,25 +247,31 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
                   isDarkMode={isDarkMode}
                   setIsDarkMode={setIsDarkMode}
                 />
-
-                {isDeskTop ? (
+                {isDeskTop && (
                   <BasicButton
                     setIsSearchBoxOpen={setIsSearchBoxOpen}
                     myInfo={myInfo}
                   />
-                ) : isTablet ? (
-                  <Link href={{ pathname: "/login" }}>
-                    <MdPerson
-                      size={24}
-                      css={css`
-                        color: var(--text-color);
-                      `}
-                      onClick={() => {
-                        setIsSearchBoxOpen(false);
-                      }}
+                )}
+                {isTablet &&
+                  (!isLogin ? (
+                    <Link href={{ pathname: "/login" }}>
+                      <MdPerson
+                        size={24}
+                        css={css`
+                          color: var(--text-color);
+                        `}
+                        onClick={() => {
+                          setIsSearchBoxOpen(false);
+                        }}
+                      />
+                    </Link>
+                  ) : (
+                    <BasicButton
+                      setIsSearchBoxOpen={setIsSearchBoxOpen}
+                      myInfo={myInfo}
                     />
-                  </Link>
-                ) : null}
+                  ))}
                 {isMobile && (
                   <FiSearch
                     size={24}
@@ -385,7 +402,7 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
                     <div>이모픽</div>
                   </Link>
                 </li>
-                <li onClick={() => setIsPopUpOpen(true)}>
+                <li onClick={() => setIsPopUpOpen(!isPopUpOpen)}>
                   <a>
                     {currentRoute.mypage ? (
                       <MdPerson size={24} />
@@ -549,14 +566,15 @@ const mobileBottomCSS = css`
 const popUpCSS = (isPopUpOpen: boolean) => css`
   box-shadow: 0px -10px 10px rgba(120, 120, 120, 0.3);
   z-index: 120;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
   position: relative;
   width: 100vw;
   height: calc(100vh - 120px);
   background-color: var(--back-color);
   border-radius: 10px 10px 0px 0px;
   padding-top: 10px;
-  display: ${isPopUpOpen ? "block" : "none"};
+  visibility: ${isPopUpOpen ? "visible" : "hidden"};
+  pointer-events: ${isPopUpOpen ? "auto" : "none"};
   transform: ${isPopUpOpen ? "translateY(0px)" : "translateY(100vh)"};
   & > svg {
     cursor: pointer;
