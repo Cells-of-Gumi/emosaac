@@ -82,6 +82,7 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
 
   useEffect(() => {
     window.sessionStorage.setItem('scroll_timing', JSON.stringify(true))
+    window.sessionStorage.setItem('scroll_timing_horizontal', JSON.stringify(true))
   }, [])
 
   useEffect(() => {
@@ -253,7 +254,7 @@ const BookDetail = ({ bookData, myInfo, loginHandler }: BookDetailProps) => {
           </div>
         </div>
       </div>
-      <SortByRows fetchList={bookFetchList} myInfo={myInfo} />
+      <SortByRows fetchList={bookFetchList} myInfo={myInfo} stopVerticalScroll={true} />
     </div>
   );
 };

@@ -16,9 +16,10 @@ interface SortByGenreProps {
     myInfo?: any;
     titleColor?: string;
     hideBanner?: boolean;
+    stopVerticalScroll?: boolean;
 }
 
-const SortByRows = ({fetchList, myInfo, titleColor, hideBanner}: SortByGenreProps) => {
+const SortByRows = ({fetchList, myInfo, titleColor, hideBanner, stopVerticalScroll}: SortByGenreProps) => {
     const [isDeskTop, isTablet, isMobile] = useIsResponsive();
     const indexWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -36,7 +37,7 @@ const SortByRows = ({fetchList, myInfo, titleColor, hideBanner}: SortByGenreProp
                   <HorizontalCarousel API={el.API} identifier={el.identifier} setHasData={setHasData} />
                   </div>
                   <div css={whiteSpace1CSS} /> */}
-                  <HorizontalCarouselWrapper el={el} titleColor={titleColor} />
+                  <HorizontalCarouselWrapper el={el} titleColor={titleColor} stopVerticalScroll={stopVerticalScroll} />
                   {Math.ceil(fetchList.length / 2) === idx && !hideBanner &&
                   <Link href={'http://localhost:3000/books/2556'}>
                     <img

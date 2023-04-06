@@ -8,7 +8,7 @@ import { returnBookContentType } from "@/types/books";
 // import Test from "./Test";
 import BookCard from "../BookCard/BookCard";
 
-const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
+const HorizontalScroll = ({ API, identifier, setNoData, stopVerticalScroll }: any) => {
   const wrapperRef = useRef<HTMLInputElement>(null);
   const cardsRef = useRef<any>([]);
   const [bookListData, setBookListData] = useState<object[]>([]);
@@ -60,6 +60,26 @@ const HorizontalScroll = ({ API, identifier, setNoData }: any) => {
       return page + value;
     }
   };
+
+
+  useEffect(() => {
+    const loadScroll = window.localStorage.getItem(`index_scroll_value`)
+    const preventValue = JSON.parse(String(window.sessionStorage.getItem(`prevent_index_scroll`)))
+    const scrollTiming = JSON.parse(String(window.sessionStorage.getItem(`scroll_timing_horizontal`)))
+    
+    if (loadScroll && preventValue !== true && scrollTiming === true ) {
+      if (stopVerticalScroll !== true) {
+        document.documentElement.scrollTo({
+          left: 0,
+          top: Number(JSON.parse(loadScroll)),
+          behavior: "auto",
+        });
+      }
+      window.sessionStorage.removeItem(`prevent_index_scroll`)
+      
+    }
+    
+  }, [wrapperRef.current])
 
   const nextBtnClickHandler = () => {
     if (wrapperRef.current !== null) {
