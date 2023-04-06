@@ -4,9 +4,9 @@ type putEmopickParamsType = {
   emopickId: number;
   request: {
     content: string;
-    novelList: object[];
+    novelList: object;
     title: string;
-    webtoonList: object[];
+    webtoonList: object;
   };
   token?: string | null;
 };
@@ -23,13 +23,15 @@ export async function putEmopick({
   token,
 }: putEmopickParamsType): Promise<number | null> {
   try {
+    
     const headers: any = {};
     if (token) {
       headers.Authorization = token;
     }
+    console.log('API에서!', request)
+
     const { data }: { data: emopickType } = await defaultAxiosInstance.put(
-      `/emopicks/${emopickId}`,
-      { request, headers }
+      `/emopicks/${emopickId}`, request, headers
     );
     if (data.status === 200) {
       return data.data;
