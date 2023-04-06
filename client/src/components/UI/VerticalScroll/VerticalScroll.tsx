@@ -283,7 +283,7 @@ const VerticalScroll = ({ API, identifier }: VerticalScrollProps) => {
       {pageRender}
 
       {hasNext && (
-        <div css={scrollDivSCC} id={"scrollStart"} ref={scrollWrapperRef}>
+        <div css={scrollDivCSS} id={"scrollStart"} ref={scrollWrapperRef}>
           {/* ∨ */}
           <UseAnimations
             strokeColor={"var(--text-color)"}
@@ -328,7 +328,7 @@ const contentPageWrapperCSS = ({
   `;
 };
 
-const scrollDivSCC = css`
+const scrollDivCSS = css`
   display: flex;
   justify-content: center;
   height: 48px;
