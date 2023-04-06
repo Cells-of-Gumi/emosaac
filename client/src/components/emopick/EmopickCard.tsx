@@ -6,7 +6,7 @@ import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { useMediaQuery } from "react-responsive";
 import { RiPlayCircleFill, RiPlayCircleLine } from "react-icons/ri";
 import EmopickThumbnail from "./EmopickThumbnail";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart, AiTwotoneCalendar } from "react-icons/ai";
 
 type emopickInfoType = {
   writerInfo: {
@@ -39,7 +39,7 @@ const EmopickCard = ({ emopick }: Props) => {
   }
   return (
     <div
-      className={'emopick-card-wrapper'}
+      className={"emopick-card-wrapper"}
       key={emopick.emopickId}
       onClick={() => onClickBox(emopick.emopickId)}
       onMouseOver={() => setIsMouseOnCard(true)}
@@ -60,7 +60,13 @@ const EmopickCard = ({ emopick }: Props) => {
           </div>
           {/* <div>{emo.createdDate}</div> */}
           <div>
-            <AiFillHeart /> {emopick.likeCnt} · 1시간 전
+            <AiFillHeart /> {emopick.likeCnt} ·{" "}
+            <AiTwotoneCalendar size={isMobile ? 13 : 17} />
+            {emopick.modifiedDate.slice(0, 4) +
+              "." +
+              emopick.modifiedDate.slice(5, 7) +
+              "." +
+              emopick.modifiedDate.slice(8, 10)}
           </div>
         </div>
         {/* 사용자 정보 */}
@@ -115,6 +121,7 @@ const pickContentWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
         color: var(--text-color-4);
         font-size: ${isMobile ? "12px" : "14px"};
         display: flex;
+        align-items: center;
         & > svg {
           margin-right: 4px;
         }
