@@ -567,15 +567,15 @@ const popUpCSS = (isPopUpOpen: boolean) => css`
   box-shadow: 0px -10px 10px rgba(120, 120, 120, 0.3);
   z-index: 120;
   transition: all 0.3s;
-  position: relative;
+  position: absolute;
+  bottom: ${isPopUpOpen ? "55px" : "calc(55px - 100vh)"};
   width: 100vw;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 140px);
   background-color: var(--back-color);
   border-radius: 10px 10px 0px 0px;
   padding-top: 10px;
   visibility: ${isPopUpOpen ? "visible" : "hidden"};
-  pointer-events: ${isPopUpOpen ? "auto" : "none"};
-  transform: ${isPopUpOpen ? "translateY(0px)" : "translateY(100vh)"};
+  /* pointer-events: ${isPopUpOpen ? "auto" : "none"}; */
   & > svg {
     cursor: pointer;
     position: absolute;
