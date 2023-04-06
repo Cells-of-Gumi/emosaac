@@ -21,7 +21,7 @@ export async function putEmopickLike({
       headers.Authorization = token;
     }
     const { data }: { data: emopickType } = await defaultAxiosInstance.put(
-      `/emopicks/like/${emopickId}`,
+      `/emopicks/${emopickId}/like`,
       { headers }
     );
     if (data.status === 200) {

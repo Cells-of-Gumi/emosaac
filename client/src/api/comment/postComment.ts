@@ -1,23 +1,28 @@
 import { defaultAxiosInstance } from "../instance";
 
-
 type paramsType = {
   bookId: number;
   content: string;
   parentId: number | null;
+  commentType?: number | null;
   token?: string | null;
-}
+};
 
-type returnType = number
+type returnType = number;
 
 type responseType = {
   status: number;
   message: string;
   data: returnType;
-}
+};
 
-export async function postComment({bookId, content, parentId, token}: paramsType
-): Promise<returnType | null> {
+export async function postComment({
+  bookId,
+  content,
+  parentId,
+  commentType,
+  token,
+}: paramsType): Promise<returnType | null> {
   try {
     const headers: any = {};
     if (token) {
@@ -25,12 +30,11 @@ export async function postComment({bookId, content, parentId, token}: paramsType
     }
 
     const { data }: { data: responseType } = await defaultAxiosInstance.post(
-      `/comments/${bookId}`, { content, parentId, headers }
+      `/comments/${bookId}?${commentType && commentType !== undefined ? 1 : 2}`,
+      { content, parentId, headers }
     );
-    return data.data
+    return data.data;
   } catch (error) {
-    throw error
+    throw error;
   }
 }
-
-

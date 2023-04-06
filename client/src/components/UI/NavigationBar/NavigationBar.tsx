@@ -174,252 +174,247 @@ export const NavigationBar = ({ myInfo, isDarkMode, setIsDarkMode }: any) => {
 
   return (
     <div>
-      {!isHome && (
-        <nav>
-          <div css={navTopCSS(isHome)}>
-            {isSearchBoxOpen && isMobile && (
-              <div css={searchBarMobileCSS}>
-                <RiArrowLeftSLine size={30} onClick={onClickSearchIcon} />
-                <SearchBarMobile
-                  isSearchClicked={isSearchClicked}
-                  setIsSearchBoxOpen={setIsSearchBoxOpen}
-                />
-                <FiSearch size={24} onClick={onClickSearchMobile} />
-              </div>
-            )}
-            <div css={navBackCSS(isTablet)}>
-              <div
-                css={navWrapCSS(
-                  {
-                    isSearchBoxOpen,
-                    isNavLimit,
-                    isDeskTop,
-                    isTablet,
-                    isMobile,
-                  },
-                  isLogin
-                )}
-              >
-                <Link href={{ pathname: "/" }}>
-                  <h1
-                    css={logoWrapCSS}
-                    onClick={() => {
-                      setIsSearchBoxOpen(false);
-                    }}
-                  >
-                    {isMobile && (
-                      <img alt="logo" src={"/assets/emosaac_logo_mobile.png"} />
-                    )}
-                    {!isMobile && isDarkMode && (
-                      <img alt="logo" src={"/assets/emosaac_logo_white.png"} />
-                    )}
-                    {!isMobile && !isDarkMode && (
-                      <img alt="logo" src={"/assets/emosaac_logo.png"} />
-                    )}
-                  </h1>
-                </Link>
-
-                {isDeskTop && (
-                  <div
-                    css={menuWrapCSS(isDeskTop, isTablet)}
-                    onClick={() => {
-                      setIsSearchBoxOpen(false);
-                    }}
-                  >
-                    <Link href="/webtoon" replace>
-                      <div css={routerCSS(currentRoute.webtoon)}>웹툰</div>
-                    </Link>
-                    <Link href="/novel" replace>
-                      <div css={routerCSS(currentRoute.novel)}>웹소설</div>
-                    </Link>
-                    <Link href="/emopick" replace>
-                      <div css={routerCSS(currentRoute.emopick)}>EMOPICK</div>
-                    </Link>
-                  </div>
-                )}
-                <div onClick={onClickSearchBar}>
-                  {!isMobile && (
-                    <SearchBar setIsSearchBoxOpen={setIsSearchBoxOpen} />
+      <nav>
+        <div css={navTopCSS(isHome)}>
+          {isSearchBoxOpen && isMobile && (
+            <div css={searchBarMobileCSS}>
+              <RiArrowLeftSLine size={30} onClick={onClickSearchIcon} />
+              <SearchBarMobile
+                isSearchClicked={isSearchClicked}
+                setIsSearchBoxOpen={setIsSearchBoxOpen}
+              />
+              <FiSearch size={24} onClick={onClickSearchMobile} />
+            </div>
+          )}
+          <div css={navBackCSS(isTablet)}>
+            <div
+              css={navWrapCSS(
+                {
+                  isSearchBoxOpen,
+                  isNavLimit,
+                  isDeskTop,
+                  isTablet,
+                  isMobile,
+                },
+                isLogin
+              )}
+            >
+              <Link href={{ pathname: "/" }}>
+                <h1
+                  css={logoWrapCSS}
+                  onClick={() => {
+                    setIsSearchBoxOpen(false);
+                  }}
+                >
+                  {isMobile && (
+                    <img alt="logo" src={"/assets/emosaac_logo_mobile.png"} />
                   )}
-                </div>
+                  {!isMobile && isDarkMode && (
+                    <img alt="logo" src={"/assets/emosaac_logo_white.png"} />
+                  )}
+                  {!isMobile && !isDarkMode && (
+                    <img alt="logo" src={"/assets/emosaac_logo.png"} />
+                  )}
+                </h1>
+              </Link>
 
-                <DarkModeToggle
-                  isDeskTop={isDeskTop}
-                  isTablet={isTablet}
-                  isMobile={isMobile}
-                  isDarkMode={isDarkMode}
-                  setIsDarkMode={setIsDarkMode}
+              {isDeskTop && (
+                <div
+                  css={menuWrapCSS(isDeskTop, isTablet)}
+                  onClick={() => {
+                    setIsSearchBoxOpen(false);
+                  }}
+                >
+                  <Link href="/webtoon" replace>
+                    <div css={routerCSS(currentRoute.webtoon)}>웹툰</div>
+                  </Link>
+                  <Link href="/novel" replace>
+                    <div css={routerCSS(currentRoute.novel)}>웹소설</div>
+                  </Link>
+                  <Link href="/emopick" replace>
+                    <div css={routerCSS(currentRoute.emopick)}>EMOPICK</div>
+                  </Link>
+                </div>
+              )}
+              <div onClick={onClickSearchBar}>
+                {!isMobile && (
+                  <SearchBar setIsSearchBoxOpen={setIsSearchBoxOpen} />
+                )}
+              </div>
+
+              <DarkModeToggle
+                isDeskTop={isDeskTop}
+                isTablet={isTablet}
+                isMobile={isMobile}
+                isDarkMode={isDarkMode}
+                setIsDarkMode={setIsDarkMode}
+              />
+              {isDeskTop && (
+                <BasicButton
+                  setIsSearchBoxOpen={setIsSearchBoxOpen}
+                  myInfo={myInfo}
                 />
-                {isDeskTop && (
+              )}
+              {isTablet &&
+                (!isLogin ? (
+                  <Link href={{ pathname: "/login" }}>
+                    <MdPerson
+                      size={24}
+                      css={css`
+                        color: var(--text-color);
+                      `}
+                      onClick={() => {
+                        setIsSearchBoxOpen(false);
+                      }}
+                    />
+                  </Link>
+                ) : (
                   <BasicButton
                     setIsSearchBoxOpen={setIsSearchBoxOpen}
                     myInfo={myInfo}
                   />
-                )}
-                {isTablet &&
-                  (!isLogin ? (
-                    <Link href={{ pathname: "/login" }}>
-                      <MdPerson
-                        size={24}
-                        css={css`
-                          color: var(--text-color);
-                        `}
-                        onClick={() => {
-                          setIsSearchBoxOpen(false);
-                        }}
-                      />
-                    </Link>
-                  ) : (
-                    <BasicButton
-                      setIsSearchBoxOpen={setIsSearchBoxOpen}
-                      myInfo={myInfo}
-                    />
-                  ))}
-                {isMobile && (
-                  <FiSearch
-                    size={24}
-                    css={css`
-                      cursor: pointer;
-                    `}
-                    onClick={onClickSearchIcon}
-                  />
-                )}
-              </div>
-            </div>
-            {isTablet && (
-              <div
-                css={menuWrapCSS(isDeskTop, isTablet)}
-                onClick={() => {
-                  setIsSearchBoxOpen(false);
-                }}
-              >
-                <Link href="/" replace>
-                  <div css={routerCSS(currentRoute.home)}>홈</div>
-                </Link>
-                <Link href="/webtoon" replace>
-                  <div css={routerCSS(currentRoute.webtoon)}>웹툰</div>
-                </Link>
-                <Link href="/novel" replace>
-                  <div css={routerCSS(currentRoute.novel)}>웹소설</div>
-                </Link>
-                <Link href="/emopick" replace>
-                  <div css={routerCSS(currentRoute.emopick)}>EMOPICK</div>
-                </Link>
-              </div>
-            )}
-            {isSearchBoxOpen && (
-              <SearchBox setIsSearchBoxOpen={setIsSearchBoxOpen} />
-            )}
-          </div>
-          {isMobile && (
-            <div css={mobileBottomCSS}>
-              <div css={popUpCSS(isPopUpOpen)}>
-                <IoCloseOutline
-                  onClick={() => setIsPopUpOpen(false)}
-                  size={20}
+                ))}
+              {isMobile && (
+                <FiSearch
+                  size={24}
+                  css={css`
+                    cursor: pointer;
+                  `}
+                  onClick={onClickSearchIcon}
                 />
-                <div>
-                  {isLogin ? (
-                    <>
-                      {profileImg ? (
-                        <img src={profileImg} alt="프로필" />
-                      ) : (
-                        <img
-                          src={"/assets/emosaac_logo_mobile.png"}
-                          alt="프로필"
-                        />
-                      )}
-                      {nickname}님, 안녕하세요
-                    </>
-                  ) : (
-                    "로그인이 필요합니다."
-                  )}
-                </div>
-                <div onClick={() => setIsPopUpOpen(false)}>
-                  <div>
-                    {isLogin ? (
-                      <Link href={"/mypage"} replace>
-                        <MdPerson size={24} />
-                        MY PAGE
-                      </Link>
-                    ) : (
-                      <Link href={"/login"} replace>
-                        <RiLoginBoxLine size={24} />
-                        로그인 페이지로 이동
-                      </Link>
-                    )}
-                  </div>
-                  {isLogin && (
-                    <div onClick={() => onClickLogout()}>
-                      <a>
-                        <RiLogoutBoxRLine size={24} />
-                        로그아웃
-                      </a>
-                    </div>
-                  )}
-                </div>
-              </div>
-              <ul
-                css={dockBarCSS}
-                onClick={() => {
-                  setIsSearchBoxOpen(false);
-                }}
-              >
-                <li>
-                  <Link href="/" replace>
-                    {currentRoute.home ? (
-                      <AiFillHome size={24} />
-                    ) : (
-                      <AiOutlineHome size={24} />
-                    )}
-                    <div>홈</div>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/webtoon" replace>
-                    {currentRoute.webtoon ? (
-                      <MdCookie size={24} />
-                    ) : (
-                      <MdOutlineCookie size={24} />
-                    )}
-                    <div>웹툰</div>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/novel" replace>
-                    {currentRoute.novel ? (
-                      <RiBookReadFill size={24} />
-                    ) : (
-                      <RiBookReadLine size={24} />
-                    )}
-                    <div>웹소설</div>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/emopick" replace>
-                    {currentRoute.emopick ? (
-                      <RiPlayCircleFill size={24} />
-                    ) : (
-                      <RiPlayCircleLine size={24} />
-                    )}
-                    <div>이모픽</div>
-                  </Link>
-                </li>
-                <li onClick={() => setIsPopUpOpen(!isPopUpOpen)}>
-                  <a>
-                    {currentRoute.mypage ? (
-                      <MdPerson size={24} />
-                    ) : (
-                      <MdOutlinePersonOutline size={24} />
-                    )}
-                    <div>MY</div>
-                  </a>
-                </li>
-              </ul>
+              )}
+            </div>
+          </div>
+          {isTablet && (
+            <div
+              css={menuWrapCSS(isDeskTop, isTablet)}
+              onClick={() => {
+                setIsSearchBoxOpen(false);
+              }}
+            >
+              <Link href="/" replace>
+                <div css={routerCSS(currentRoute.home)}>홈</div>
+              </Link>
+              <Link href="/webtoon" replace>
+                <div css={routerCSS(currentRoute.webtoon)}>웹툰</div>
+              </Link>
+              <Link href="/novel" replace>
+                <div css={routerCSS(currentRoute.novel)}>웹소설</div>
+              </Link>
+              <Link href="/emopick" replace>
+                <div css={routerCSS(currentRoute.emopick)}>EMOPICK</div>
+              </Link>
             </div>
           )}
-        </nav>
-      )}
+          {isSearchBoxOpen && (
+            <SearchBox setIsSearchBoxOpen={setIsSearchBoxOpen} />
+          )}
+        </div>
+        {isMobile && (
+          <div css={mobileBottomCSS}>
+            <div css={popUpCSS(isPopUpOpen)}>
+              <IoCloseOutline onClick={() => setIsPopUpOpen(false)} size={20} />
+              <div>
+                {isLogin ? (
+                  <>
+                    {profileImg ? (
+                      <img src={profileImg} alt="프로필" />
+                    ) : (
+                      <img
+                        src={"/assets/emosaac_logo_mobile.png"}
+                        alt="프로필"
+                      />
+                    )}
+                    {nickname}님, 안녕하세요
+                  </>
+                ) : (
+                  "로그인이 필요합니다."
+                )}
+              </div>
+              <div onClick={() => setIsPopUpOpen(false)}>
+                <div>
+                  {isLogin ? (
+                    <Link href={"/mypage"} replace>
+                      <MdPerson size={24} />
+                      MY PAGE
+                    </Link>
+                  ) : (
+                    <Link href={"/login"} replace>
+                      <RiLoginBoxLine size={24} />
+                      로그인 페이지로 이동
+                    </Link>
+                  )}
+                </div>
+                {isLogin && (
+                  <div onClick={() => onClickLogout()}>
+                    <a>
+                      <RiLogoutBoxRLine size={24} />
+                      로그아웃
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+            <ul
+              css={dockBarCSS}
+              onClick={() => {
+                setIsSearchBoxOpen(false);
+              }}
+            >
+              <li>
+                <Link href="/" replace>
+                  {currentRoute.home ? (
+                    <AiFillHome size={24} />
+                  ) : (
+                    <AiOutlineHome size={24} />
+                  )}
+                  <div>홈</div>
+                </Link>
+              </li>
+              <li>
+                <Link href="/webtoon" replace>
+                  {currentRoute.webtoon ? (
+                    <MdCookie size={24} />
+                  ) : (
+                    <MdOutlineCookie size={24} />
+                  )}
+                  <div>웹툰</div>
+                </Link>
+              </li>
+              <li>
+                <Link href="/novel" replace>
+                  {currentRoute.novel ? (
+                    <RiBookReadFill size={24} />
+                  ) : (
+                    <RiBookReadLine size={24} />
+                  )}
+                  <div>웹소설</div>
+                </Link>
+              </li>
+              <li>
+                <Link href="/emopick" replace>
+                  {currentRoute.emopick ? (
+                    <RiPlayCircleFill size={24} />
+                  ) : (
+                    <RiPlayCircleLine size={24} />
+                  )}
+                  <div>이모픽</div>
+                </Link>
+              </li>
+              <li onClick={() => setIsPopUpOpen(!isPopUpOpen)}>
+                <a>
+                  {currentRoute.mypage ? (
+                    <MdPerson size={24} />
+                  ) : (
+                    <MdOutlinePersonOutline size={24} />
+                  )}
+                  <div>MY</div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        )}
+      </nav>
     </div>
   );
 };
