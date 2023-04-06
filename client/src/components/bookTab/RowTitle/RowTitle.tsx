@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { jsx, css } from "@emotion/react";
 import { useIsResponsive } from "../../Responsive/useIsResponsive";
+import { useState } from "react";
 
 interface RowTitleProps {
   beforeLabel?: string;
@@ -20,11 +21,13 @@ const RowTitle = ({
   backgroundColor
 }: RowTitleProps) => {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
+  const [loading, setLoading] = useState<boolean>(true)
 
   return (
-    <div css={rowTitleWrapperCSS({ marginBottom })}>
+    <div css={rowTitleWrapperCSS({ marginBottom, loading })} >
+      <img css={css`display: none;`} src={"/assets/emosaac_logo.png"} onLoad={() => {setLoading(() => false)}}/>
       {noLine !== true && <div css={lineCSS} />}
-      <div css={labelWrapperCSS({backgroundColor})}>
+      <div css={labelWrapperCSS({backgroundColor})} >
         <span css={normalLabelCSS({ isMobile })}>{beforeLabel}</span>
         <span css={highlightedLabelCSS({ isMobile })}>{highlightedLabel}</span>
         <span css={normalLabelCSS({ isMobile })}>{afterLabel}</span>
@@ -35,9 +38,10 @@ const RowTitle = ({
 
 interface rowTitleWrapperCSSProps {
   marginBottom: string | undefined;
+  loading: boolean;
 }
 
-const rowTitleWrapperCSS = ({ marginBottom }: rowTitleWrapperCSSProps) => {
+const rowTitleWrapperCSS = ({ marginBottom, loading }: rowTitleWrapperCSSProps) => {
   return css`
     width: 100%;
     height: 36px;
@@ -45,6 +49,10 @@ const rowTitleWrapperCSS = ({ marginBottom }: rowTitleWrapperCSSProps) => {
     display: flex;
     align-items: center;
     margin-bottom: ${marginBottom !== undefined ? marginBottom : `24px`};
+
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    opacity: ${loading === false ? '100%' : '0%'};
   `;
 };
 
