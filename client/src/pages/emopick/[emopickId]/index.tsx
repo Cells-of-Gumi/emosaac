@@ -31,6 +31,10 @@ import {
 } from "@/components/bookDetail/icons";
 import { BsChatSquareDotsFill, BsThreeDotsVertical } from "react-icons/bs";
 import StarRating from "@/components/bookDetail/StarRating";
+import { useMediaQuery } from "react-responsive";
+import { FiSmile } from "react-icons/fi";
+import FixedModal from "@/components/UI/FixedModal/FixedModal";
+import DetailComment from "@/components/DetailComment/DetailComment";
 
 type emopickReviewType = {
   bookId: number;
@@ -47,31 +51,37 @@ type emopickReviewType = {
 };
 
 type returnEmopickType = {
-  data: {
-    writerInfo: {
-      userId: number;
-      nickname: string;
-      profileImg: string;
-    };
-    emopickId: number;
-    title: string;
-    content: string;
-    thumbnails: string;
-    emoLike: boolean;
-    likeCnt: number;
-    bookCnt: number;
-    createdDate: string;
-    modifiedDate: string;
-    webtoon: emopickReviewType[];
-    novel: emopickReviewType[];
+  writerInfo: {
+    userId: number;
+    nickname: string;
+    profileImg: string;
   };
+  emopickId: number;
+  title: string;
+  content: string;
+  thumbnails: string;
+  emoLike: boolean;
+  likeCnt: number;
+  bookCnt: number;
+  createdDate: string;
+  modifiedDate: string;
+  webtoon: emopickReviewType[];
+  novel: emopickReviewType[];
 };
 
-const index = ({ data }: returnEmopickType) => {
+type PropsList = {
+  data: returnEmopickType;
+  myInfo: any;
+};
+
+const index = ({ data, myInfo }: PropsList) => {
   const router = useRouter();
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isWriter, setIsWriter] = useState(false);
+  const isLimit = useMediaQuery({
+    query: "max-width: 1163px",
+  });
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     if (data.writerInfo.userId.toString() === userId) {
@@ -84,6 +94,18 @@ const index = ({ data }: returnEmopickType) => {
   return (
     <div>
       <EmopickFloatingButtonToTop />
+      {/* <FixedModal
+        key={`comment-${data.title}`}
+        modalState={isModalOpen}
+        stateHandler={setIsModalOpen}
+        content={
+          <DetailComment
+            bookTitle={data.title}
+            bookId={data.emopickId}
+            myInfo={myInfo}
+          />
+        }
+      /> */}
       <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
         <div
           css={titleCSS(
@@ -107,7 +129,7 @@ const index = ({ data }: returnEmopickType) => {
           <div
             css={titleButtonCSS({ isDeskTop, isTablet, isMobile }, isWriter)}
           >
-            <button>
+            <button onClick={() => setIsModalOpen(true)}>
               <BsChatSquareDotsFill size={28} />
             </button>
             <button>
@@ -126,7 +148,7 @@ const index = ({ data }: returnEmopickType) => {
             </button>
           </div>
         </div>
-        <div></div>
+        {!isMobile && <div></div>}
         <div css={sectionCSS({ isDeskTop, isTablet, isMobile })}>
           <div css={contentCSS({ isDeskTop, isTablet, isMobile })}>
             <RiDoubleQuotesL size={34} />
@@ -138,128 +160,147 @@ const index = ({ data }: returnEmopickType) => {
               <MdOutlineCookie size={24} />
               웹툰<span>총 {data.webtoon.length}개</span>
             </h3>
-            <div css={noBookWrapCSS({ isDeskTop, isTablet, isMobile })}>
-              추천한 웹툰이 없습니다
-            </div>
-            <div css={bookWrapCSS({ isDeskTop, isTablet, isMobile })}>
-              {/* 여기부턴 맵으로 돌린다 */}
-              {data.webtoon.map((book, idx) => (
-                <div
-                  key={idx}
-                  css={emopickCSS({ isDeskTop, isTablet, isMobile })}
-                >
-                  <div>
-                    <div css={bookTitleCSS({ isDeskTop, isTablet, isMobile })}>
-                      <span>{idx + 1}</span> {book.title}
-                    </div>
-                    <div css={bookInfoCSS({ isDeskTop, isTablet, isMobile })}>
-                      <img src={book.thumbnail} alt={book.title} />
-                      <div>
-                        {/* 웹툰 정보 */}
+            {data.webtoon.length === 0 ? (
+              <div css={noBookWrapCSS({ isDeskTop, isTablet, isMobile })}>
+                <FiSmile size={isMobile ? 20 : 24} />
+                추천한 웹툰이 없습니다
+              </div>
+            ) : (
+              <div css={bookWrapCSS({ isDeskTop, isTablet, isMobile })}>
+                {/* 여기부턴 맵으로 돌린다 */}
+                {data.webtoon.map((book, idx) => (
+                  <div
+                    key={idx}
+                    css={emopickCSS({ isDeskTop, isTablet, isMobile })}
+                  >
+                    <div>
+                      <div
+                        css={bookTitleCSS({ isDeskTop, isTablet, isMobile })}
+                      >
+                        <span>{idx + 1}</span> {book.title}
+                      </div>
+                      <div css={bookInfoCSS({ isDeskTop, isTablet, isMobile })}>
+                        <img src={book.thumbnail} alt={book.title} />
                         <div>
-                          <span>이모작 평점</span>
-                          <StarRating
-                            key={`rating-${book.title}`}
-                            onClick={onClickFunc}
-                            readonly={true}
-                            initialValue={book.avgScore}
-                            size={isMobile ? 25 : 30}
-                          />
-                          <span>{book.avgScore.toString().slice(0, 3)}</span>
-                        </div>
-                        <div>
-                          <span>{book.genre}</span> · &nbsp;
-                          <span>{book.regist.slice(0, 4)}</span> · &nbsp;
-                          {book.author}
-                        </div>
-                        <div
-                          css={bookButtonCSS({ isDeskTop, isTablet, isMobile })}
-                        >
-                          <button>
-                            <Link href={`/books/${book.bookId}`} replace>
-                              이모작에서 보기
-                            </Link>
-                          </button>
+                          {/* 웹툰 정보 */}
+                          {isMobile && <span>이모작 평점</span>}
                           <div>
-                            {/* 디테일에서 가져오자 */}
-                            웹툰 사이트에서 보기
-                            {/* {book.platform} */}
-                            {/* {book.href} */}
+                            <span>{!isMobile && "이모작 평점"}</span>
+                            <StarRating
+                              key={`rating-${book.title}`}
+                              onClick={onClickFunc}
+                              readonly={true}
+                              initialValue={book.avgScore}
+                              size={isMobile ? 25 : 30}
+                            />
+                            <span>{book.avgScore.toString().slice(0, 3)}</span>
+                          </div>
+                          <div>
+                            <span>{book.genre}</span> · &nbsp;
+                            <span>{book.regist.slice(0, 4)}</span> · &nbsp;
+                            {book.author}
+                          </div>
+                          <div
+                            css={bookButtonCSS(
+                              { isDeskTop, isTablet, isMobile },
+                              isLimit
+                            )}
+                          >
+                            <button>
+                              <Link href={`/books/${book.bookId}`} replace>
+                                이모작에서 보기
+                              </Link>
+                            </button>
+                            <div>
+                              {/* 디테일에서 가져오자 */}
+                              웹툰 사이트에서 보기
+                              {/* {book.platform} */}
+                              {/* {book.href} */}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div css={reviewCSS({ isDeskTop, isTablet, isMobile })}>
-                      {book.review}
+                      <div css={reviewCSS({ isDeskTop, isTablet, isMobile })}>
+                        {book.review}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
           <div css={columnWrapCSS({ isDeskTop, isTablet, isMobile })}>
             <h3>
               <MdOutlineCookie size={24} />
               웹소설<span>총 {data.novel.length}개</span>
             </h3>
-            <div css={noBookWrapCSS({ isDeskTop, isTablet, isMobile })}>
-              추천한 웹소설이 없습니다
-            </div>
-            <div css={bookWrapCSS({ isDeskTop, isTablet, isMobile })}>
-              {/* 여기부턴 맵으로 돌린다 */}
-              {data.novel.map((book, idx) => (
-                <div
-                  key={idx}
-                  css={emopickCSS({ isDeskTop, isTablet, isMobile })}
-                >
-                  <div>
-                    <div css={bookTitleCSS({ isDeskTop, isTablet, isMobile })}>
-                      <span>{idx + 1}</span> {book.title}
-                    </div>
-                    <div css={bookInfoCSS({ isDeskTop, isTablet, isMobile })}>
-                      <img src={book.thumbnail} alt={book.title} />
-                      <div>
-                        {/* 웹툰 정보 */}
+            {data.novel.length === 0 ? (
+              <div css={noBookWrapCSS({ isDeskTop, isTablet, isMobile })}>
+                <FiSmile size={isMobile ? 20 : 24} />
+                추천한 웹소설이 없습니다.
+              </div>
+            ) : (
+              <div css={bookWrapCSS({ isDeskTop, isTablet, isMobile })}>
+                {/* 여기부턴 맵으로 돌린다 */}
+                {data.novel.map((book, idx) => (
+                  <div
+                    key={idx}
+                    css={emopickCSS({ isDeskTop, isTablet, isMobile })}
+                  >
+                    <div>
+                      <div
+                        css={bookTitleCSS({ isDeskTop, isTablet, isMobile })}
+                      >
+                        <span>{idx + 1}</span> {book.title}
+                      </div>
+                      <div css={bookInfoCSS({ isDeskTop, isTablet, isMobile })}>
+                        <img src={book.thumbnail} alt={book.title} />
                         <div>
-                          <span>이모작 평점</span>
-                          <StarRating
-                            key={`rating-${book.title}`}
-                            onClick={onClickFunc}
-                            readonly={true}
-                            initialValue={book.avgScore}
-                            size={isMobile ? 25 : 30}
-                          />
-                          <span>{book.avgScore.toString().slice(0, 3)}</span>
-                        </div>
-                        <div>
-                          <span>{book.genre}</span> · &nbsp;
-                          <span>{book.regist.slice(0, 4)}</span> · &nbsp;
-                          {book.author}
-                        </div>
-                        <div
-                          css={bookButtonCSS({ isDeskTop, isTablet, isMobile })}
-                        >
-                          <button>
-                            <Link href={`/books/${book.bookId}`} replace>
-                              이모작에서 보기
-                            </Link>
-                          </button>
+                          {/* 웹툰 정보 */}
                           <div>
-                            {/* 디테일에서 가져오자 */}
-                            웹툰 사이트에서 보기
-                            {/* {book.platform} */}
-                            {/* {book.href} */}
+                            <span>이모작 평점</span>
+                            <StarRating
+                              key={`rating-${book.title}`}
+                              onClick={onClickFunc}
+                              readonly={true}
+                              initialValue={book.avgScore}
+                              size={isDeskTop ? 30 : isTablet ? 20 : 18}
+                            />
+                            <span>{book.avgScore.toString().slice(0, 3)}</span>
+                          </div>
+                          <div>
+                            <span>{book.genre}</span> · &nbsp;
+                            <span>{book.regist.slice(0, 4)}</span> · &nbsp;
+                            {book.author}
+                          </div>
+                          <div
+                            css={bookButtonCSS(
+                              { isDeskTop, isTablet, isMobile },
+                              isLimit
+                            )}
+                          >
+                            <button>
+                              <Link href={`/books/${book.bookId}`} replace>
+                                이모작에서 보기
+                              </Link>
+                            </button>
+                            <div>
+                              {/* 디테일에서 가져오자 */}
+                              웹툰 사이트에서 보기
+                              {/* {book.platform} */}
+                              {/* {book.href} */}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div css={reviewCSS({ isDeskTop, isTablet, isMobile })}>
-                      {book.review}
+                      <div css={reviewCSS({ isDeskTop, isTablet, isMobile })}>
+                        {book.review}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -275,8 +316,12 @@ interface IsResponsive {
 const innerCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   position: relative;
   scroll-behavior: smooth;
-  padding: ${isDeskTop ? "20px 105px" : isTablet ? "15px 50px" : "10px 20px"};
-  display: grid;
+  padding: ${isDeskTop
+    ? "20px 105px 40px"
+    : isTablet
+    ? "15px 50px 30px"
+    : "10px 20px 70px"};
+  display: ${isMobile ? "block" : "grid"};
   grid-template-columns: ${isDeskTop
     ? "1fr 2fr"
     : isTablet
@@ -307,11 +352,17 @@ const titleCSS = (
     ? "calc((100% - 210px - 20px) / 3)"
     : isTablet
     ? "calc((100% - 100px - 20px) / 3)"
-    : "calc(100% - 40px)"};
-  position: fixed;
-  top: ${isDeskTop ? "90px" : isTablet ? "130px" : "70px"};
-  left: ${isDeskTop ? "105px" : isTablet ? "50px" : "20px"};
-  padding: ${isMobile ? "20px 20px" : "30px 30px"};
+    : "100%"};
+  position: ${isMobile ? "relative" : "fixed"};
+  top: ${isDeskTop ? "90px" : isTablet ? "125px" : "auto"};
+  left: ${isDeskTop ? "105px" : isTablet ? "50px" : "auto"};
+  padding: ${!isDeskTop ? "20px 20px" : "30px 30px"};
+  height: ${isDeskTop
+    ? "calc(100vh - 105px)"
+    : isTablet
+    ? "calc(100vh - 140px)"
+    : "auto"};
+  margin-bottom: ${isMobile ? "10px" : "0"};
   & > img {
     display: block;
     width: ${isDeskTop ? "200px" : isTablet ? "130px" : "120px"};
@@ -443,7 +494,7 @@ const contentCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
 `;
 const columnWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css`
-    padding: 20px 0px;
+    padding-top: ${isMobile ? "10px" : "20px"};
     & > h3 {
       // 웹툰
       border-radius: 10px;
@@ -468,19 +519,31 @@ const columnWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   `;
 const noBookWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
   css`
-    display: none;
+    padding: 20px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color-2);
+    margin-top: ${isMobile ? "10px" : "20px"};
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--back-color-4);
+    & > svg {
+      margin-bottom: 10px;
+    }
   `;
 const emopickCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   padding: 20px 20px;
   border-radius: 10px;
   border: 1px solid var(--border-color-2);
-  margin-bottom: 20px;
+  margin-bottom: ${isMobile ? "10px" : "20px"};
 `;
 const bookWrapCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   padding: 0px 0px;
   /* background-color: var(--back-color-2); */
   border-radius: 10px;
-  margin-top: 20px;
+  margin-top: ${isMobile ? "10px" : "20px"};
 `;
 const bookTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   font-size: 20px !important;
@@ -503,12 +566,16 @@ const bookTitleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
 `;
 const bookInfoCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: ${isDeskTop
+    ? "160px 1fr"
+    : isTablet
+    ? "130px 1fr"
+    : "100px 1fr"};
   column-gap: 20px;
   padding-top: 10px;
   & > img {
     width: 100%;
-    height: 220px;
+    height: ${isDeskTop ? "220px" : isTablet ? "180px" : "140px"};
     object-fit: cover;
     border: 10px;
     object-position: center center;
@@ -519,6 +586,9 @@ const bookInfoCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
+    & > span {
+      font-weight: bold;
+    }
     & > div:nth-of-type(1) {
       & > span {
         font-weight: bold;
@@ -541,21 +611,25 @@ const bookInfoCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
     }
   }
 `;
-const bookButtonCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) =>
+const bookButtonCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  isLimit: boolean
+) =>
   css`
     /* width: 30%; */
-    width: 400px;
-    min-width: 400px;
+    width: ${isLimit ? "400px" : "100%"};
     display: grid;
-    grid-template-columns: 1fr 1fr !important;
+    grid-template-columns: ${isLimit ? "1fr 1fr" : "1fr"};
     column-gap: 10px;
+    row-gap: 10px;
     margin-top: 14px;
     & > * {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 40px;
+      height: ${isMobile ? "35px" : "40px"};
       border-radius: 5px;
+      font-size: ${isMobile ? "12px" : "14px"};
     }
     & > button:nth-of-type(1) {
       background-color: var(--main-color);

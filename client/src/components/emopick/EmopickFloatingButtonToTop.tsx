@@ -33,7 +33,7 @@ const floatingButtonWrapperCSS = (isMobile: boolean) => {
     position: fixed;
     width: ${isMobile ? "60px" : "80px"};
     height: ${isMobile ? "60px" : "80px"};
-    /* background-color: var(--main-color); */
+    background-color: var(--back-color);
     border-radius: 200px;
     right: ${isMobile ? "20px" : "40px"};
     bottom: ${isMobile ? "75px" : "40px"};
@@ -47,8 +47,11 @@ const floatingButtonWrapperCSS = (isMobile: boolean) => {
     padding-bottom: 4px;
     cursor: pointer;
     transition: all 0.3s;
-    &:hover {
-      transform: translateY(${isMobile ? "-5px" : "-10px"});
+    & > svg {
+      transition: all 0.3s;
+    }
+    &:hover > svg {
+      transform: translateY(${isMobile ? "-5px" : "-8px"});
     }
   `;
 };
