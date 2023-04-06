@@ -90,11 +90,17 @@ const write = () => {
     } else {
       setAddedBookList([]);
       setSelectedBookList([]);
-      postEmopickList({ request, token }).then((res) => {});
-      alert("이모픽 등록이 완료되었습니다😀");
-      router.push("/emopick");
+      postEmopickList({ request, token }).then((res) => {
+        alert("이모픽 등록이 완료되었습니다😀");
+        router.push("/emopick");
+      });
+      
     }
   }
+  const onClickGoBack = () => {
+    router.push("/emopick");
+  }
+
   function onChangeTitle(event: React.ChangeEvent<HTMLInputElement>) {
     const inputText = event.target.value;
     setTitle(inputText);
@@ -135,7 +141,7 @@ const write = () => {
   }, [addedBookList, currentReview]);
 
   return (
-    <div>
+    <div css={css`padding-bottom: 64px;`}>
       <div css={pageTitleCSS({ isDeskTop, isTablet, isMobile })}>
         <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
           <h3>emo.PICK 등록하기</h3>
@@ -247,7 +253,7 @@ const write = () => {
           </div>
           <div css={innerCSS({ isDeskTop, isTablet, isMobile })}>
             <div css={buttonWrapCSS({ isDeskTop, isTablet, isMobile })}>
-              <button id="preview_button" type="button">
+              <button id="preview_button" type="button" onClick={onClickGoBack}>
                 뒤로 가기
               </button>
               <button
@@ -273,6 +279,11 @@ const write = () => {
     </div>
   );
 };
+
+
+
+
+
 
 interface IsResponsive {
   isDeskTop: boolean;

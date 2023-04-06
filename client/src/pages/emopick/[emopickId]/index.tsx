@@ -18,7 +18,7 @@ type emopickReviewType = {
   regist: string;
   grade: string;
   avgScore: number;
-  reveiw: string;
+  review: string;
 };
 
 type returnEmopickType = {
