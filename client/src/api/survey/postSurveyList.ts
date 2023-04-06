@@ -11,7 +11,7 @@ async function postSurvey({ webtoonIds, novelIds }: paramsType) {
       webtoonId: webtoonIds,
       novelId: novelIds,
     });
-    console.log(data);
+    // console.log(data);
   } catch (error) {
     console.log(error);
   }
