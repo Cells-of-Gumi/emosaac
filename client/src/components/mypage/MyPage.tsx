@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 import { keyframes } from "@emotion/react";
 import MiddleWideButton from "../UI/Button/MiddleWideButton";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import Chart from "./Chart";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -19,6 +19,8 @@ import MyPageAnalyze from "./MyPageAnalyze";
 import SortByRows from "../bookTab/SortByRows";
 import { getMyEmopick } from "@/api/emopick/getMyEmopickList";
 import MyPageEmopick from "./MyPageEmopick";
+
+import { throttle, debounce } from "lodash";
 
 
 const MyPage = ({ myInfo }: any) => {
@@ -69,6 +71,43 @@ useEffect(() => {
       </div>
     )
   })
+
+
+  useEffect(() => {
+    
+
+    window.addEventListener("scroll", throttleScroll);
+    window.addEventListener("scroll", debounceScroll);
+    return () => {
+      window.removeEventListener("scroll", throttleScroll); //clean up
+      window.removeEventListener("scroll", debounceScroll); //clean up
+    };
+  }, []);
+
+
+
+  const throttleScroll = useMemo(
+    () =>
+      throttle(() => {
+
+
+
+      }, 100),
+    []
+  );
+  const debounceScroll = useMemo(
+    () =>
+      debounce(() => {
+
+        if (document.documentElement.scrollTop !== 0) {
+          window.localStorage.setItem(`index_scroll_value`, String(document.documentElement.scrollTop))
+          window.sessionStorage.removeItem(`scroll_timing_horizontal`)
+        }
+        
+
+      }, 200),
+    []
+  );
 
 
 
