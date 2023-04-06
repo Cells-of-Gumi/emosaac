@@ -41,7 +41,7 @@ const BookCardModal = ({
   };
 
   useEffect(() => {
-    if (isMouseOn === true && modalToggler === true) {
+    if (isMouseOn === true && modalToggler === true && bookData?.title) {
       setContentToggler(() => true);
       setisOpened(() => true);
     }
