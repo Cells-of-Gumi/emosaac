@@ -143,7 +143,6 @@ const HorizontalScroll = ({
             JSON.stringify(res.hasNext)
           );
           setHasNext(() => res.hasNext);
-          
           setGetFetch(() => false);
           // alert('fwe')
         }
@@ -156,7 +155,13 @@ const HorizontalScroll = ({
         }
       })
     } else if (hasNext === false && bookListData.length === 0) {
-      setNoData(() => true);
+      const loadData = window.sessionStorage.getItem(
+        `${identifier}-horizontal-inf_fetched_data`
+      );
+      if (loadData?.length === 0 || !loadData) {
+        setNoData(() => true);
+      }
+      
 
     } 
   }, [getFetch]);
