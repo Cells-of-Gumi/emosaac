@@ -105,6 +105,7 @@ export default function index() {
 
   return (
     <>
+      {/* 깃랩 테스트 */}
       <Head>
         <title>EMOSAAC</title>
         <meta name="description" content="모든 작품, 모든 즐거움!" />
