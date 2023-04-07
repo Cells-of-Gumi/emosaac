@@ -157,7 +157,7 @@ const HorizontalScroll = ({
       })
     } else if (hasNext === false && bookListData.length === 0) {
       setNoData(() => true);
-      console.log('test')
+
     } 
   }, [getFetch]);
 
