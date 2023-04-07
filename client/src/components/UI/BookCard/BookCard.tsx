@@ -169,10 +169,8 @@ const BookCard = ({
             state:  loading === false ? true : false,
           })}
         />
-        <Image
+        <img
           className={"img"}
-          width={200}
-          height={300}
           src={bookData && bookData.thumbnail}
           alt={bookData && bookData.title}
           css={imageCSS}
