@@ -408,7 +408,7 @@ export default function Home({
       <div css={whiteSpace1CSS} />
       <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
         <RowTitle
-          beforeLabel="당신께 "
+          beforeLabel="MD가 "
           highlightedLabel="강력 추천하는"
           afterLabel={rowTitleAfterLabel}
           noLine={true}
