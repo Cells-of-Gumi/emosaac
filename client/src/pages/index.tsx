@@ -29,9 +29,9 @@ export default function index() {
   const [isMouseActive, setIsMouseActive] = useState(false);
   const [booksByPlatform, setBooksByPlatform] = useState<any>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
-
   const laptopRef = useRef<HTMLImageElement>(null);
   const pageRef = useRef<HTMLDivElement>(null);
+  //
 
   function onClickPlatform(platform: string) {
     setClickedPlatform(platform);
