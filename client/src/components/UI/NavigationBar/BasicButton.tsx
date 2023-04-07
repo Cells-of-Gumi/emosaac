@@ -33,7 +33,7 @@ export const BasicButton = ({ setIsSearchBoxOpen, myInfo }: Props) => {
     // router.push({
     //   pathname: "/",
     // });
-    // document.location.href = "/";
+    document.location.href = "/";
   }
   useEffect(() => {
     const token = localStorage.getItem("access_token");
