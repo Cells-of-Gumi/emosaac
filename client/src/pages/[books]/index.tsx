@@ -67,6 +67,8 @@ export default function Home({
   );
   const [randomIdentifier, setRandomIdentifier] = useState<number>(0);
 
+  const [bannerLoading, setBannerLoading] = useState<boolean>(true)
+
   // useEffect(() => {
   //   return () => {
   //     setSelectedGenre(() => window.localStorage.getItem(`${params}-_genre`) ? Number(window.localStorage.getItem(`${params}-selected_genre`)) : -2)
@@ -127,7 +129,8 @@ export default function Home({
             : "/assets/temp_banner_1.png"
         }
         alt={""}
-        css={bannerImage}
+        css={bannerImage({bannerLoading})}
+        onLoad={() => {setBannerLoading(() => false)}}
       />,
       <img
         src={
@@ -136,7 +139,7 @@ export default function Home({
             : "/assets/temp_banner_2.png"
         }
         alt={""}
-        css={bannerImage}
+        css={bannerImage({bannerLoading})}
       />,
     ],
   };
@@ -378,7 +381,6 @@ export default function Home({
       afterLabel: ` ${params === "webtoon" ? "웹툰" : "웹소설"}`,
       requireLogin: false,
     },
-
     {
       API: getTop30API,
       identifier: `Top30-${params}`,
@@ -408,7 +410,7 @@ export default function Home({
       <div css={whiteSpace1CSS} />
       <div css={innerLayoutWrapperCSS({ isDeskTop, isTablet, isMobile })}>
         <RowTitle
-          beforeLabel="당신께 "
+          beforeLabel="MD가 "
           highlightedLabel="강력 추천하는"
           afterLabel={rowTitleAfterLabel}
           noLine={true}
@@ -551,10 +553,16 @@ const indexWrapperCSS = ({ isScrolling }: { isScrolling: boolean }) => {
   `;
 };
 
-const bannerImage = css`
-  width: 100%;
-  height: auto;
-`;
+const bannerImage = ({bannerLoading}: {bannerLoading: boolean}) => {
+  return css`
+    width: 100%;
+    height: auto;
+    transition-duration: 0.3s;
+    transition-property: opacity;
+    opacity: ${bannerLoading === false ? '100%' : '0%'};
+    
+  `;
+} 
 
 const whiteSpace1CSS = css`
   width: 100%;

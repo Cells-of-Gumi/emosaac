@@ -52,7 +52,7 @@ const rowTitleWrapperCSS = ({ marginBottom, loading }: rowTitleWrapperCSSProps) 
 
     transition-property: opacity;
     transition-duration: 0.3s;
-    transition-delay: 1s;
+    transition-delay: 0.5s;
     opacity: ${loading === false ? '100%' : '0%'}; 
   `;
 };
