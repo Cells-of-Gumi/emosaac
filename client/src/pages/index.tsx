@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Carousel3D from "@/components/UI/Carousel3D/Carousel3D";
 import { before, throttle } from "lodash";
 import { getNewBooksForPlatform } from "@/api/home/getNewBooksForPlatform";
+import Head from "next/head";
 
 export default function index() {
   const router = useRouter();
@@ -130,11 +131,10 @@ export default function index() {
           )}
           onMouseMove={onMouseMove}
         >
+          <div>이곳에서 모든 작품을,</div>
           <div>
-            <div>이곳에서 모든 작품을,</div>
-            {isDarkMode ? <img src={logo_white} /> : <img src={logo_black} />}
-          </div>
-          <div>
+            <img src={logo_white} />
+            <img src={logo_black} />
             <div
               css={buttonWrapCSS({ isDeskTop, isTablet, isMobile }, isLogin)}
             >
@@ -243,30 +243,32 @@ export default function index() {
               새로운 컨텐츠를 끊임없이 추천해드립니다.
             </div>
           </div>
-          <div></div>
-        </div>
-        <div
-          css={fourthPageCSS({ isDeskTop, isTablet, isMobile }, currentScroll)}
-        >
-          <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
-            <h2>
+          <div
+            css={fourthPageCSS(
+              { isDeskTop, isTablet, isMobile },
+              currentScroll
+            )}
+          >
+            <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
+              <h2>
+                <div>
+                  emosaac <span>에서</span>
+                </div>
+                <div>당신의 관심 목록을 편하게 불러오세요.</div>
+              </h2>
               <div>
-                emosaac <span>에서</span>
+                다양한 플랫폼을 사용하고 있다면 OCR 스캔 기능을 사용해보세요.
+                <br />
+                캡쳐된 이미지를 업로드하면 관심 목록을 자동으로 인식해
+                <br />내 취향을 더 편리하게 반영할 수 있어요.
               </div>
-              <div>당신의 관심 목록을 편하게 불러오세요.</div>
-            </h2>
-            <div>
-              다양한 플랫폼을 사용하고 있다면 OCR 스캔 기능을 사용해보세요.
-              <br />
-              캡쳐된 이미지를 업로드하면 관심 목록을 자동으로 인식해
-              <br />내 취향을 더 편리하게 반영할 수 있어요.
             </div>
+            <img src={"/assets/scan.gif"} alt="스캔" css={scanCSS} />
+            <div></div>
           </div>
-          <img src={"/assets/scan.gif"} alt="스캔" css={scanCSS} />
-          <div></div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
