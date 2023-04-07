@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { useIsResponsive } from "@/components/Responsive/useIsResponsive";
 import { bookContentType } from "@/types/books";
 import { throttle, debounce } from "lodash";
+import Image from "next/image";
 
 interface BookData {
   title: string;
@@ -168,8 +169,10 @@ const BookCard = ({
             state:  loading === false ? true : false,
           })}
         />
-        <img
+        <Image
           className={"img"}
+          width={200}
+          height={300}
           src={bookData && bookData.thumbnail}
           alt={bookData && bookData.title}
           css={imageCSS}
