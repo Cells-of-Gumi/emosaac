@@ -28,7 +28,7 @@ export default function index() {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const [isMouseActive, setIsMouseActive] = useState(false);
   const [booksByPlatform, setBooksByPlatform] = useState<any>(null);
-
+  // 테스트
   const laptopRef = useRef<HTMLImageElement>(null);
   const pageRef = useRef<HTMLDivElement>(null);
 
