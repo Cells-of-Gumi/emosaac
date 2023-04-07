@@ -18,6 +18,7 @@ export const BasicButton = ({ setIsSearchBoxOpen, myInfo }: Props) => {
   const [isLogin, setIsLogin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [nickname, setNickname] = useState<string>("");
+  const [login, setLogin] = useState(false);
   // const token = localStorage.getItem("access_token");
   function onClickLogin() {
     setIsSearchBoxOpen(false);
@@ -27,10 +28,12 @@ export const BasicButton = ({ setIsSearchBoxOpen, myInfo }: Props) => {
   }
   function onClickLogout() {
     localStorage.clear();
+    setLogin(!login);
     setIsSearchBoxOpen(false);
-    router.push({
-      pathname: "/",
-    });
+    // router.push({
+    //   pathname: "/",
+    // });
+    document.location.href = "/";
   }
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -39,7 +42,7 @@ export const BasicButton = ({ setIsSearchBoxOpen, myInfo }: Props) => {
     } else {
       setIsLogin(false);
     }
-  }, [router.events]);
+  }, [router.events, login]);
   const handleMouseEnter = () => {
     setIsOpen(true);
   };
@@ -149,7 +152,8 @@ const hoverwrapCSS = (isOpen: boolean) => css`
 
 const ButtonWrapCSS = css`
   cursor: pointer;
-  height: 36px;
+  width: 50px;
+  height: 37px;
   background-color: var(--back-color);
   color: var(--text-color-2);
 `;

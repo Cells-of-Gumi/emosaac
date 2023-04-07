@@ -39,7 +39,7 @@ const SortByRows = ({fetchList, myInfo, titleColor, hideBanner, stopVerticalScro
                   <div css={whiteSpace1CSS} /> */}
                   <HorizontalCarouselWrapper el={el} titleColor={titleColor} stopVerticalScroll={stopVerticalScroll} />
                   {Math.ceil(fetchList.length / 2) === idx && !hideBanner &&
-                  <Link href={'http://localhost:3000/books/2556'}>
+                  <Link href={'/books/2556'}>
                     <img
                         src={
                         isMobile === true

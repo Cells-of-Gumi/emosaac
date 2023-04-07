@@ -8,8 +8,10 @@ import { useEffect } from "react";
 import getMyInfo from "@/api/user/getMyInfo";
 import Router from "next/router";
 import { useRouter } from "next/router";
+import { useIsResponsive } from "../Responsive/useIsResponsive";
 const PutUserInfo = ({ myInfo }: any) => {
   const router = useRouter();
+  const [isDeskTop, isTablet, isMobile] = useIsResponsive();
   const defaultProfileImage = "/assets/default_image.png";
   const token = getToken();
   const [nickname, setNickname] = useState("");
@@ -173,45 +175,43 @@ const PutUserInfo = ({ myInfo }: any) => {
 
   const selectAge = (
     <div css={dropdownContainerCSS}>
-            <button
-              css={dropdownButtonCSS}
-              onClick={(event) => {
-                setDropdownVisible(!dropdownVisible), event.preventDefault();
-              }}
-            >
-              <div>
-                {selectedAge ? `${selectedAge}대` : "연령대를 선택해주세요"}
-              </div>
-            </button>
-            <div css={dropdownContentCSS(dropdownVisible)}>
-              <div onClick={() => handleClickAge(null)} css={dropdownItemCSS}>
-                연령대를 선택해주세요.
-              </div>
-              <div onClick={() => handleClickAge(10)} css={dropdownItemCSS}>
-                10대
-              </div>
-              <div onClick={() => handleClickAge(20)} css={dropdownItemCSS}>
-                20대
-              </div>
-              <div onClick={() => handleClickAge(30)} css={dropdownItemCSS}>
-                30대
-              </div>
-              <div onClick={() => handleClickAge(40)} css={dropdownItemCSS}>
-                40대
-              </div>
-              <div onClick={() => handleClickAge(50)} css={dropdownItemCSS}>
-                50대
-              </div>
-              <div onClick={() => handleClickAge(60)} css={dropdownItemCSS}>
-                60대 이상
-              </div>
-            </div>
-          </div>
-  )
+      <button
+        css={dropdownButtonCSS}
+        onClick={(event) => {
+          setDropdownVisible(!dropdownVisible), event.preventDefault();
+        }}
+      >
+        <div>{selectedAge ? `${selectedAge}대` : "연령대를 선택해주세요"}</div>
+      </button>
+      <div css={dropdownContentCSS(dropdownVisible)}>
+        <div onClick={() => handleClickAge(null)} css={dropdownItemCSS}>
+          연령대를 선택해주세요.
+        </div>
+        <div onClick={() => handleClickAge(10)} css={dropdownItemCSS}>
+          10대
+        </div>
+        <div onClick={() => handleClickAge(20)} css={dropdownItemCSS}>
+          20대
+        </div>
+        <div onClick={() => handleClickAge(30)} css={dropdownItemCSS}>
+          30대
+        </div>
+        <div onClick={() => handleClickAge(40)} css={dropdownItemCSS}>
+          40대
+        </div>
+        <div onClick={() => handleClickAge(50)} css={dropdownItemCSS}>
+          50대
+        </div>
+        <div onClick={() => handleClickAge(60)} css={dropdownItemCSS}>
+          60대 이상
+        </div>
+      </div>
+    </div>
+  );
   return (
     <>
       <section>
-        <form action="" css={formCSS} onSubmit={onClickSubmit}>
+        <form action="" css={formCSS({isMobile})} onSubmit={onClickSubmit}>
           <article css={textwrapCSS}>
             <h2>회원정보수정</h2>
           </article>
@@ -234,15 +234,20 @@ const PutUserInfo = ({ myInfo }: any) => {
             </div>
           </div>
           <div css={nicknamewrapCSS}>
-
-          <div>이메일</div>
-          <div css={css`margin-top: 6px; margin-bottom: 40px; color: var(--back-color-4);`}>{myInfo.email}</div>
+            <div>이메일</div>
+            <div
+              css={css`
+                margin-top: 6px;
+                margin-bottom: 40px;
+                color: var(--back-color-4);
+              `}
+            >
+              {myInfo.email}
+            </div>
 
             <label htmlFor="" css={nicknameCSS}>
               <div>닉네임</div>
-              <div css={nicknameexplainCSS}>
-                {nickname?.length}/10
-              </div>
+              <div css={nicknameexplainCSS}>{nickname?.length}/10</div>
             </label>
             <input
               css={inputwrapCSS}
@@ -265,10 +270,10 @@ const PutUserInfo = ({ myInfo }: any) => {
             <div css={nicknameValidityCSS}>{nicknameValidityMessage}</div>
           )}
           <div css={genderwrapCSS}>
-          <div css={agewrapCSS}>
-            <div css={genderCSS}>성별/연령대</div>
-            <div css={explainCSS}>성별/연령대에 맞게 추천을 해드려요!</div>
-          </div>
+            <div css={agewrapCSS}>
+              <div css={genderCSS}>성별/연령대</div>
+              <div css={explainCSS}>성별/연령대에 맞게 추천을 해드려요!</div>
+            </div>
             <button
               onClick={(event) => {
                 event.preventDefault();
@@ -289,7 +294,7 @@ const PutUserInfo = ({ myInfo }: any) => {
             </button>
             {selectAge}
           </div>
-      
+
           {/* <div css={dropdownContainerCSS}>
             <button
               css={dropdownButtonCSS}
@@ -332,23 +337,26 @@ const PutUserInfo = ({ myInfo }: any) => {
             </button>
           </div>
         </form>
+        <div css={css`height: ${isMobile && '120px'};`}/>
       </section>
     </>
   );
 };
 
-const formCSS = css`
-  color: var(--text-color);
-  display: flex;
-  min-height: 400px; // 변경된 부분
-  flex-direction: column;
-  justify-content: space-between;
-  width: 400px;
-  padding: 45px;
-  border-radius: 5px;
-  margin: 20px auto;
-  border: 1px solid var(--border-color);
-`;
+const formCSS = ({isMobile}: {isMobile: boolean}) => {
+  return css`
+    color: var(--text-color);
+    display: flex;
+    min-height: 400px; // 변경된 부분
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    padding: 45px;
+    border-radius: 5px;
+    margin: 20px auto;
+    border: ${!isMobile && `1px solid var(--border-color)`};
+  `
+} 
 const textwrapCSS = css`
   text-align: left;
   margin-bottom: 70px;
@@ -373,7 +381,7 @@ const nicknameconfirmCSS = css`
   cursor: pointer;
   color: var(--main-color);
   border: 1px solid var(--border-color);
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   border-radius: 5px;
   padding: 3px 3px;
   /* color :  */
@@ -426,7 +434,7 @@ const dropdownButtonCSS = css`
   border-radius: 5px;
   /* padding: 8px 12px; */
   cursor: pointer;
-  height: 30px; 
+  height: 30px;
   padding: 0px 16px 0px 16px;
   white-space: nowrap; /* 글자가 한 줄로 표시되도록 합니다. */
 `;
@@ -502,7 +510,6 @@ const submitwrapCSS = css`
   margin-top: 20px;
   margin-bottom: 20px;
   height: 40px;
-
 `;
 
 const submitCSS = css`
@@ -516,8 +523,8 @@ const submitCSS = css`
 
 const nicknameValidityCSS = css`
   font-size: 14px;
-  margin-top: 3px;  
+  margin-top: 3px;
   color: var(--text-color-4);
-`
+`;
 
 export default PutUserInfo;

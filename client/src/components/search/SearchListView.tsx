@@ -6,6 +6,7 @@ import BookCard from "../UI/BookCard/BookCard";
 import { throttle } from "lodash";
 import { useIsResponsive } from "../Responsive/useIsResponsive";
 import { useRouter } from "next/router";
+import VerticalScroll from "../UI/VerticalScroll/VerticalScroll";
 
 export const SearchListView = ({
   books,

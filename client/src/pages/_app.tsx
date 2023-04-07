@@ -13,6 +13,7 @@ import RequireUserInfo from "@/components/UI/RequireLogin/RequireUserInfo";
 
 // import { useMediaQuery } from "react-responsive";
 import { useRouter } from "next/router";
+import Footer from "@/components/UI/Footer/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isDeskTop, isTablet, isMobile] = useIsResponsive();
@@ -20,7 +21,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false);
   const [myInfo, setMyInfo] = useState<any>(null);
   const [loginModalState, setLoginModalState] = useState<boolean>(false);
-  const [requireInfoModalState, setRequireInfoModalState] = useState<boolean>(false);
+  const [requireInfoModalState, setRequireInfoModalState] =
+    useState<boolean>(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -29,25 +31,30 @@ export default function App({ Component, pageProps }: AppProps) {
         .then((res) => {
           setMyInfo(() => res);
 
-          if (router.pathname !== "/survey" && router.pathname !== "/mypage/edit") {
+          if (
+            router.pathname !== "/survey" &&
+            router.pathname !== "/mypage/edit"
+          ) {
             if (res?.webtoonGerne === null || res?.novelGerne === null) {
-              setRequireInfoModalState(() => true)
-              router.push("/survey")
+              setRequireInfoModalState(() => true);
+              router.push("/survey");
               // router.push("/mypage/edit");
             }
-  
-            if ((res?.nickname === null || res?.age === null || res?.gender === null) && (res?.webtoonGerne !== null && res?.novelGerne !== null)) {
-              setRequireInfoModalState(() => true)
+
+            if (
+              (res?.nickname === null ||
+                res?.age === null ||
+                res?.gender === null) &&
+              res?.webtoonGerne !== null &&
+              res?.novelGerne !== null
+            ) {
+              setRequireInfoModalState(() => true);
               router.push("/mypage/edit");
             }
           }
-          
-
-          
-          
         })
         .catch((err) => {
-          console.log("_app.tsx - getMyInfo => ", err);
+          // console.log("_app.tsx - getMyInfo => ", err);
           setMyInfo(() => false);
         });
     } else {
@@ -103,6 +110,7 @@ export default function App({ Component, pageProps }: AppProps) {
             isDarkMode={isDarkMode}
           />
         )}
+        <Footer />
       </Layout>
     </Provider>
   );

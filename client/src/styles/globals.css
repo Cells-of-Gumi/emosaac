@@ -19,6 +19,7 @@
   --hover-color: contrast(30%);
   --shadow-color: 0px 10px 10px #00000030;
   --soft-grey: #f0f3ff;
+  --soft-grey-2: #e9edf9;
 }
 
 [data-theme="dark"] {
@@ -42,6 +43,7 @@
   --hover-color: contrast(50%);
   --shadow-color: 0px 10px 10px #ffffff30;
   --soft-grey: #101013;
+  --soft-grey-2: #0f0f12;
 }
 
 html,

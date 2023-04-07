@@ -20,6 +20,7 @@ const GenreList = ({
 
   useEffect(() => {
     const loadGenre = Number(window.sessionStorage.getItem(`${params}-selected_genre`))
+    
     selectHandler(loadGenre ? loadGenre : -2)
   }, [genres])
 
@@ -48,14 +49,13 @@ const GenreList = ({
   const scrollHandler = () => {
     const scrollTiming = JSON.parse(String(window.sessionStorage.getItem('scroll_timing')))
     if (!scrollTiming && wrapperRef.current) {
-
       window.scrollTo({
         left: 0,
         top: wrapperRef.current.offsetTop - (isMobile ? 48 : 84),
         behavior: "smooth",
       });
-      
     }
+    window.sessionStorage.removeItem(`prevent_index_scroll`)
   }
 
   return (

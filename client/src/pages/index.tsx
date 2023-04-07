@@ -63,16 +63,15 @@ export default function index() {
     () =>
       throttle(() => {
         const htmlEl = document.getElementsByTagName("html")[0];
-        if (htmlEl && htmlEl.scrollTop < 2000) {
-          if (currentScroll < htmlEl.scrollTop) {
-            setCarouselAngle((prev) => prev + htmlEl.scrollTop / 30);
-            setCarouselStartAngle((prev) => prev + htmlEl.scrollTop / 30);
-            setCurrentScroll(Number(htmlEl.scrollTop));
-          } else {
-            setCarouselAngle((prev) => prev - htmlEl.scrollTop / 30);
-            setCarouselStartAngle((prev) => prev - htmlEl.scrollTop / 30);
-            setCurrentScroll(Number(htmlEl.scrollTop));
-          }
+
+        if (currentScroll < htmlEl.scrollTop) {
+          setCarouselAngle((prev) => prev + htmlEl.scrollTop / 30);
+          setCarouselStartAngle((prev) => prev + htmlEl.scrollTop / 30);
+          setCurrentScroll(Number(htmlEl.scrollTop));
+        } else {
+          setCarouselAngle((prev) => prev - htmlEl.scrollTop / 30);
+          setCarouselStartAngle((prev) => prev - htmlEl.scrollTop / 30);
+          setCurrentScroll(Number(htmlEl.scrollTop));
         }
       }, 300),
     [currentScroll]
@@ -89,14 +88,14 @@ export default function index() {
     getNewBooksForPlatform().then((res) => {
       if (res !== null) {
         const content = res;
-        console.log(content);
+        // console.log(content);
         setBooksByPlatform(content);
       }
     });
-  }, []);
+  }, [router.events]);
 
   return (
-    <div onWheel={onWheel}>
+    <div onWheel={onWheel} css={backCSS({ isDeskTop, isTablet, isMobile })}>
       <div
         css={fullPageCSS(
           { isDeskTop, isTablet, isMobile },
@@ -117,17 +116,16 @@ export default function index() {
           )}
         </div>
         <div
-          css={firstPageTestCSS({ isDeskTop, isTablet, isMobile })}
+          css={firstPageTestCSS(
+            { isDeskTop, isTablet, isMobile },
+            currentScroll
+          )}
           onMouseMove={onMouseMove}
         >
-          <div css={firstImgWrapCSS(rotateXY, isMobile)}>
-            <img src={papers} alt="gif" ref={laptopRef} />
-          </div>
+          <div>이곳에서 모든 작품을,</div>
           <div>
-            이곳에서 <br /> 모든 <br /> 작품을,
-          </div>
-          <div>
-            {/* <img src={logo_white} /> */}
+            <img src={logo_white} />
+            <img src={logo_black} />
             <div
               css={buttonWrapCSS({ isDeskTop, isTablet, isMobile }, isLogin)}
             >
@@ -148,7 +146,8 @@ export default function index() {
         <div
           css={secondPageCSS(
             { isDeskTop, isTablet, isMobile },
-            clickedPlatform
+            clickedPlatform,
+            currentScroll
           )}
         >
           <div>
@@ -219,7 +218,9 @@ export default function index() {
             </div>
           </div>
         </div>
-        <div css={thirdPageCSS({ isDeskTop, isTablet, isMobile })}>
+        <div
+          css={thirdPageCSS({ isDeskTop, isTablet, isMobile }, currentScroll)}
+        >
           <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
             <h2>
               <div>
@@ -228,13 +229,33 @@ export default function index() {
               <div>당신의 취향에 맞는 컨텐츠를 추천받아보세요.</div>
             </h2>
             <div>
-              여기저기 흩어져있는 컨텐츠, <br /> 찾아다니느라 불편하셨죠? <br />
-              이모작에서는 약 2만 여건의 컨텐츠를 한 번에 만나보실 수 있습니다.
+              당신이 좋아할 만한 작품을 추천해드릴게요. <br />
+              이모작은 사용자의 성별, 나이, 선호 작품 등을 분석해 <br />
+              새로운 컨텐츠를 끊임없이 추천해드립니다.
             </div>
           </div>
           <div></div>
         </div>
-        <div>4</div>
+        <div
+          css={fourthPageCSS({ isDeskTop, isTablet, isMobile }, currentScroll)}
+        >
+          <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
+            <h2>
+              <div>
+                emosaac <span>에서</span>
+              </div>
+              <div>당신의 관심 목록을 편하게 불러오세요.</div>
+            </h2>
+            <div>
+              다양한 플랫폼을 사용하고 있다면 OCR 스캔 기능을 사용해보세요.
+              <br />
+              캡쳐된 이미지를 업로드하면 관심 목록을 자동으로 인식해
+              <br />내 취향을 더 편리하게 반영할 수 있어요.
+            </div>
+          </div>
+          <img src={"/assets/scan.gif"} alt="스캔" css={scanCSS} />
+          <div></div>
+        </div>
       </div>
     </div>
   );
@@ -246,6 +267,15 @@ interface IsResponsive {
   isMobile: boolean;
 }
 
+const backCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => css`
+  /* height: ${isDeskTop
+    ? "calc((100vh - 70px) * 4)"
+    : isTablet
+    ? "calc((100vh - 111px * 4))"
+    : "calc((100vh - 115px) * 4)"}; */
+  height: 6000px;
+`;
+
 const fullPageCSS = (
   { isDeskTop, isTablet, isMobile }: IsResponsive,
   mouseCursorClientX: number,
@@ -254,10 +284,21 @@ const fullPageCSS = (
   isMouseActive: boolean
 ) => {
   return css`
-    background-color: #090a0d;
-    color: #fff;
+    /* background-color: #090a0d; */
+    /* color: #fff; */
+    & > div {
+      position: fixed;
+      width: 100%;
+      height: ${isDeskTop
+        ? "calc(100vh - 70px)"
+        : isTablet
+        ? "calc(100vh - 111px)"
+        : "calc(100vh - 115px)"};
+      border: 1px solid #666;
+    }
     & > div:nth-of-type(1) {
       display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       flex-direction: column;
@@ -291,7 +332,10 @@ const firstPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   `;
 };
 
-const firstPageTestCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
+const firstPageTestCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  currentScroll: number
+) => {
   return css`
     ${isDeskTop &&
     "padding-left: 105px; padding-right: 105px; padding-top: 50px;"}
@@ -299,27 +343,27 @@ const firstPageTestCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     "padding-left: 50px; padding-right: 50px;  padding-top: 50px;"}
       ${isMobile &&
     "padding-left: 20px; padding-right: 20px;  padding-top: 50px;"}
-    position: relative;
+    position: absolute;
     height: 100vh;
     padding-top: 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #090a0d;
+    background-color: var(--back-color);
 
-    & > div:nth-of-type(2) {
+    & > div:nth-of-type(1) {
       // 이곳에서 모든 작품을
       position: relative;
       z-index: 12;
       font-size: calc(30px + 1vw);
-      line-height: calc(40px + 1vw);
+      /* line-height: calc(40px + 1vw); */
       font-weight: 900;
       text-align: left;
       text-align: center;
       /* margin-bottom: 30px; */
-      color: #fff;
+      /* color: #fff; */
     }
-    & > div:nth-of-type(3) {
+    & > div:nth-of-type(2) {
       // 이모작 로고
       display: flex;
       position: relative;
@@ -327,7 +371,7 @@ const firstPageTestCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
       z-index: 12;
       justify-content: center;
       align-items: center;
-      margin-bottom: 30px;
+      margin-top: 30px;
       & > img {
         width: 300px;
       }
@@ -345,7 +389,7 @@ const buttonWrapCSS = (
     grid-template-columns: 1fr 1fr;
     column-gap: ${!isMobile ? "14px" : "10px"};
     row-gap: ${!isMobile ? "14px" : "10px"};
-    width: ${!isMobile ? "300px" : "260px"};
+    width: ${!isMobile ? "400px" : "320px"};
     & > button:nth-of-type(1) {
       ${!isLogin && " grid-column: 1 / 3; grid-row: 1 / 2;"}
     }
@@ -355,8 +399,8 @@ const buttonWrapCSS = (
       height: 50px;
       background-color: rgba(0, 0, 0, 0);
       border-radius: 40px;
-      border: 1px solid #fff;
-      color: #fff;
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
       :hover {
         transition: all 0.2s;
         background-color: rgba(255, 255, 255, 0.1);
@@ -364,30 +408,6 @@ const buttonWrapCSS = (
     }
   `;
 };
-
-const firstImgWrapCSS = (rotateXY: number[], isMobile: boolean) => css`
-  position: absolute;
-  z-index: 10;
-  top: calc(50% - ${!isMobile ? "250px" : "170px"});
-  left: calc(50% - ${!isMobile ? "250px" : "170px"});
-  width: ${!isMobile ? "500px" : "340px"};
-  height: ${!isMobile ? "500px" : "340px"};
-  transition: all 0.3s;
-  transform: rotateX(${rotateXY[1] * 20}deg) rotateY(${rotateXY[0] * -20}deg)
-    translate3d(
-      ${rotateXY[0] * 10}px,
-      ${rotateXY[1] * 10}px,
-      ${((rotateXY[0] + 20) / (rotateXY[1] + 20)) * 10}px
-    );
-  border-radius: ${!isMobile ? "30px" : "10px"};
-  /* background-image: url("/assets/bazzi.png"); */
-  overflow: hidden;
-  & > img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-`;
 
 const titleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
   return css`
@@ -422,17 +442,24 @@ const titleCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
 
 const secondPageCSS = (
   { isDeskTop, isTablet, isMobile }: IsResponsive,
-  clickedPlatform: string
+  clickedPlatform: string,
+  currentScroll: number
 ) => {
   return css`
-    position: relative;
-    height: ${isDeskTop
+    pointer-events: ${0.01 * (currentScroll - 1000) > 1 ? "auto" : "none"};
+    opacity: calc(0.01 * ${currentScroll - 1000});
+    & div {
+      color: #000 !important;
+    }
+    /* position: relative; */
+    /* height: ${isDeskTop
       ? "calc(100vh + 160px)"
       : isTablet
       ? "calc(100vh + 100px)"
-      : "100vh"};
+      : "100vh"}; */
     transition: all 0.3s;
     overflow: hidden;
+    color: #000 !important;
     & > div {
       ${isDeskTop &&
       "padding-left: 105px; padding-right: 105px; padding-top: 50px;"}
@@ -447,6 +474,7 @@ const secondPageCSS = (
       height: 100%;
       width: 100%;
       transition: all 0.3s;
+      color: #000 !important;
     }
     & > div::after {
       overflow: hidden;
@@ -462,6 +490,7 @@ const secondPageCSS = (
       transition: all 0.3s;
       opacity: ${clickedPlatform === "naver" ? "1" : "0"};
       visibility: ${clickedPlatform === "naver" ? "visible" : "hidden"};
+      color: #000 !important;
     }
     & > div::before {
       overflow: hidden;
@@ -487,6 +516,7 @@ const secondContentCSS = (
   clickedPlatform: string
 ) => {
   return css`
+    color: #000;
     position: absolute;
     z-index: 20;
     /* top: calc(50vh +${isDeskTop
@@ -545,8 +575,14 @@ const secondContentCSS = (
   `;
 };
 
-const thirdPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
+const thirdPageCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  currentScroll: number
+) => {
   return css`
+    pointer-events: none;
+    opacity: calc(0.001 * ${currentScroll * 5 - 10000});
+    background-color: var(--back-color);
     ${isDeskTop &&
     "padding-left: 105px; padding-right: 105px; padding-top: 50px;"}
     ${isTablet &&
@@ -555,3 +591,39 @@ const thirdPageCSS = ({ isDeskTop, isTablet, isMobile }: IsResponsive) => {
     "padding-left: 20px; padding-right: 20px;  padding-top: 50px;"}
   `;
 };
+
+const fourthPageCSS = (
+  { isDeskTop, isTablet, isMobile }: IsResponsive,
+  currentScroll: number
+) => {
+  return css`
+    pointer-events: none;
+    opacity: calc(0.001 * ${currentScroll * 5 - 20000});
+    /* opacity: 0; */
+    /* color: red; */
+    /* background-color: var(--back-color); */
+    background-color: var(--main-color);
+    & div {
+      color: #000 !important;
+    }
+    ${isDeskTop &&
+    "padding-left: 105px; padding-right: 105px; padding-top: 50px;"}
+    ${isTablet &&
+    "padding-left: 50px; padding-right: 50px;  padding-top: 50px;"}
+      ${isMobile &&
+    "padding-left: 20px; padding-right: 20px;  padding-top: 50px;"}
+  `;
+};
+
+const scanCSS = css`
+  display: block;
+  transform: translateY(20px);
+  width: 400px;
+  height: 350px;
+  object-fit: contain;
+  object-position: center center;
+  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: var(--shadow-color);
+  background-color: var(--back-color);
+`;
