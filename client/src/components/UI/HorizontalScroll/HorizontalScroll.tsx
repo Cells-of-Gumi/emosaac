@@ -143,7 +143,6 @@ const HorizontalScroll = ({
             JSON.stringify(res.hasNext)
           );
           setHasNext(() => res.hasNext);
-          
           setGetFetch(() => false);
           // alert('fwe')
         }
