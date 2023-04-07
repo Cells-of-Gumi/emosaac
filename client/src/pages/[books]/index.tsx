@@ -378,7 +378,6 @@ export default function Home({
       afterLabel: ` ${params === "webtoon" ? "웹툰" : "웹소설"}`,
       requireLogin: false,
     },
-
     {
       API: getTop30API,
       identifier: `Top30-${params}`,
