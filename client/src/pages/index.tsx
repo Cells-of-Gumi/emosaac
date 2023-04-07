@@ -104,7 +104,7 @@ export default function index() {
   }, [router.events]);
 
   return (
-    <>
+    <div>
       {/* 깃랩 테스트 */}
       <Head>
         <title>EMOSAAC</title>
@@ -290,7 +290,7 @@ export default function index() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
