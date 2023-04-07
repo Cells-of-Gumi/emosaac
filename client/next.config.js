@@ -32,7 +32,8 @@ const nextConfig = {
 module.exports = {
   // output: 'standalone',
   images: {
-    loader: "imgix",
-    path: "https://j8d203.p.ssafy.io",
+    // loader: "imgix",
+    // path: "https://j8d203.p.ssafy.io",
+    domains: ['dn-img-page.kakao.com', 'image-comic.pstatic.net', 'img.ridicdn.net' ]
   },
 };
