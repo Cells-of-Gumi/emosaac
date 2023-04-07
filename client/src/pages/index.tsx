@@ -92,7 +92,7 @@ export default function index() {
         setBooksByPlatform(content);
       }
     });
-  }, []);
+  }, [router.events]);
 
   return (
     <div onWheel={onWheel} css={backCSS({ isDeskTop, isTablet, isMobile })}>
