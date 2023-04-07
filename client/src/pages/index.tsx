@@ -389,7 +389,7 @@ const firstPageTestCSS = (
     background-color: var(--back-color);
 
     & > div:nth-of-type(1) {
-      animation: ${moveMotion} 1s 1.5s;
+      animation: ${moveMotion} 0.6s 1s;
       animation-fill-mode: forwards;
       & > div {
         // 이곳에서 모든 작품을
@@ -404,15 +404,15 @@ const firstPageTestCSS = (
         /* color: #fff; */
         animation-name: ${upMotion()};
         animation-fill-mode: forwards;
-        animation-duration: 1s;
+        animation-duration: 0.7s;
       }
       & > img {
         /* animation: 애니메이션이름 지속시간 [타이밍함수 대기시간 반복횟수 반복방향 전후상태 재생/정지]; */
-        animation: ${upMotion()} 1s 0.5s;
+        animation: ${upMotion()} 0.7s 0.3s;
         /* animation-name: ${upMotion()};
         animation-duration: 1.5s; */
         opacity: 0;
-        animation-delay: 1s;
+        /* animation-delay: 1s; */
         animation-fill-mode: forwards;
         width: 250px;
         margin: 20px auto;
@@ -420,7 +420,7 @@ const firstPageTestCSS = (
       }
     }
     & > div:nth-of-type(2) {
-      animation: ${appearMotion} 0.5s 2.3s;
+      animation: ${appearMotion} 0.5s 1.6s;
       animation-fill-mode: forwards;
       display: flex;
       position: relative;
