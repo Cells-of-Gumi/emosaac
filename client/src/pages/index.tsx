@@ -30,9 +30,9 @@ export default function index() {
   const [isMouseActive, setIsMouseActive] = useState(false);
   const [booksByPlatform, setBooksByPlatform] = useState<any>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
-
   const laptopRef = useRef<HTMLImageElement>(null);
   const pageRef = useRef<HTMLDivElement>(null);
+  //
 
   function onClickPlatform(platform: string) {
     setClickedPlatform(platform);
@@ -104,167 +104,189 @@ export default function index() {
   }, [router.events]);
 
   return (
-    <div onWheel={onWheel} css={backCSS({ isDeskTop, isTablet, isMobile })}>
-      <div
-        css={fullPageCSS(
-          { isDeskTop, isTablet, isMobile },
-          mouseCursorClientX,
-          mouseCursorClientY,
-          isMouseOver,
-          isMouseActive
-        )}
-        onMouseMove={onCursorMove}
-        ref={pageRef}
-      >
-        <div onMouseEnter={() => setIsMouseOver(true)}>
-          {!isMouseActive && (
-            <>
-              <p>Click &</p>
-              <p>Drag</p>
-            </>
-          )}
-        </div>
+    <>
+      {/* 깃랩 테스트 */}
+      <Head>
+        <title>EMOSAAC</title>
+        <meta name="description" content="모든 작품, 모든 즐거움!" />
+        <meta name="keywords" content="웹툰, 웹소설, 인기" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          property="og:title"
+          content="모든 작품, 모든 즐거움! 이모작에서"
+        />
+        <meta
+          property="og:description"
+          content="모든 작품, 모든 즐거움! 이모작에서"
+        />
+        <meta property="og:image" content="/assets/emosaac_logo_mobile.png" />
+      </Head>
+
+      <div onWheel={onWheel} css={backCSS({ isDeskTop, isTablet, isMobile })}>
         <div
-          css={firstPageTestCSS(
+          css={fullPageCSS(
             { isDeskTop, isTablet, isMobile },
-            currentScroll
+            mouseCursorClientX,
+            mouseCursorClientY,
+            isMouseOver,
+            isMouseActive
           )}
-          onMouseMove={onMouseMove}
+          onMouseMove={onCursorMove}
+          ref={pageRef}
         >
-          <div>이곳에서 모든 작품을,</div>
-          <div>
-            <img src={logo_white} />
-            <img src={logo_black} />
-            <div
-              css={buttonWrapCSS({ isDeskTop, isTablet, isMobile }, isLogin)}
-            >
-              {!isLogin && (
-                <button onClick={() => onClickRouterButton("login")}>
-                  로그인
-                </button>
-              )}
-              <button onClick={() => onClickRouterButton("webtoon")}>
-                웹툰 홈으로
-              </button>
-              <button onClick={() => onClickRouterButton("novel")}>
-                웹소설 홈으로
-              </button>
-            </div>
-          </div>
-        </div>
-        <div
-          css={secondPageCSS(
-            { isDeskTop, isTablet, isMobile },
-            clickedPlatform,
-            currentScroll
-          )}
-        >
-          <div>
-            <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
-              <h2>
-                <div>
-                  emosaac <span>에서</span>
-                </div>
-                <div>대표 플랫폼 작품들을 만나보세요</div>
-              </h2>
-              <div>
-                여기저기 흩어져있는 컨텐츠, 찾아다니느라 엄청 불편했죠? <br />
-                이모작에서 <b>약 2만 여건의</b> 웹툰 / 웹소설 컨텐츠를
-                {isMobile ? <br /> : " "}한 번에 보여드릴게요.
-              </div>
-            </div>
-            <div
-              css={secondContentCSS(
-                { isDeskTop, isTablet, isMobile },
-                clickedPlatform
-              )}
-            >
-              <div>
-                <div onClick={() => onClickPlatform("kakao")}>
-                  {clickedPlatform === "kakao" ? (
-                    <img
-                      src="/assets/platform_kakao_page_clicked.png"
-                      alt="kakao"
-                    />
-                  ) : (
-                    <img src="/assets/platform_kakao_page.png" alt="kakao" />
-                  )}
-                </div>
-                <div onClick={() => onClickPlatform("naver")}>
-                  {clickedPlatform === "naver" ? (
-                    <img
-                      src="/assets/platform_naver_series_clicked.png"
-                      alt="naver"
-                    />
-                  ) : (
-                    <img src="/assets/platform_naver_series.webp" alt="naver" />
-                  )}
-                </div>
-                <div onClick={() => onClickPlatform("ridi")}>
-                  {clickedPlatform === "ridi" ? (
-                    <img src="/assets/platform_ridi_clicked.png" alt="ridi" />
-                  ) : (
-                    <img src="/assets/platform_ridi.webp" alt="ridi" />
-                  )}
-                </div>
-              </div>
-              <Carousel3D
-                setCarouselAngle={setCarouselAngle}
-                carouselAngle={carouselAngle}
-                setCarouselStartAngle={setCarouselAngle}
-                carouselStartAngle={carouselAngle}
-                bookData={booksByPlatform}
-                mouseCursorClientX={mouseCursorClientX}
-                setMouseCursorClientX={setMouseCursorClientX}
-                mouseCursorClientY={mouseCursorClientY}
-                setMouseCursorClientY={setMouseCursorClientY}
-                isMouseOver={isMouseOver}
-                setIsMouseOver={setIsMouseOver}
-                isMouseActive={isMouseActive}
-                setIsMouseActive={setIsMouseActive}
-                clickedPlatform={clickedPlatform}
-              />
-            </div>
-          </div>
-        </div>
-        <div
-          css={thirdPageCSS({ isDeskTop, isTablet, isMobile }, currentScroll)}
-        >
-          <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
-            <h2>
-              <div>
-                emosaac <span>에서</span>
-              </div>
-              <div>당신의 취향에 맞는 컨텐츠를 추천받아보세요.</div>
-            </h2>
-            <div>
-              당신이 좋아할 만한 작품을 추천해드릴게요. <br />
-              이모작은 사용자의 성별, 나이, 선호 작품 등을 분석해 <br />
-              새로운 컨텐츠를 끊임없이 추천해드립니다.
-            </div>
+          <div onMouseEnter={() => setIsMouseOver(true)}>
+            {!isMouseActive && (
+              <>
+                <p>Click &</p>
+                <p>Drag</p>
+              </>
+            )}
           </div>
           <div
-            css={fourthPageCSS(
+            css={firstPageTestCSS(
               { isDeskTop, isTablet, isMobile },
               currentScroll
             )}
+            onMouseMove={onMouseMove}
+          >
+            <div>이곳에서 모든 작품을,</div>
+            <div>
+              <img src={logo_white} />
+              <img src={logo_black} />
+              <div
+                css={buttonWrapCSS({ isDeskTop, isTablet, isMobile }, isLogin)}
+              >
+                {!isLogin && (
+                  <button onClick={() => onClickRouterButton("login")}>
+                    로그인
+                  </button>
+                )}
+                <button onClick={() => onClickRouterButton("webtoon")}>
+                  웹툰 홈으로
+                </button>
+                <button onClick={() => onClickRouterButton("novel")}>
+                  웹소설 홈으로
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            css={secondPageCSS(
+              { isDeskTop, isTablet, isMobile },
+              clickedPlatform,
+              currentScroll
+            )}
+          >
+            <div>
+              <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
+                <h2>
+                  <div>
+                    emosaac <span>에서</span>
+                  </div>
+                  <div>대표 플랫폼 작품들을 만나보세요</div>
+                </h2>
+                <div>
+                  여기저기 흩어져있는 컨텐츠, 찾아다니느라 엄청 불편했죠? <br />
+                  이모작에서 <b>약 2만 여건의</b> 웹툰 / 웹소설 컨텐츠를
+                  {isMobile ? <br /> : " "}한 번에 보여드릴게요.
+                </div>
+              </div>
+              <div
+                css={secondContentCSS(
+                  { isDeskTop, isTablet, isMobile },
+                  clickedPlatform
+                )}
+              >
+                <div>
+                  <div onClick={() => onClickPlatform("kakao")}>
+                    {clickedPlatform === "kakao" ? (
+                      <img
+                        src="/assets/platform_kakao_page_clicked.png"
+                        alt="kakao"
+                      />
+                    ) : (
+                      <img src="/assets/platform_kakao_page.png" alt="kakao" />
+                    )}
+                  </div>
+                  <div onClick={() => onClickPlatform("naver")}>
+                    {clickedPlatform === "naver" ? (
+                      <img
+                        src="/assets/platform_naver_series_clicked.png"
+                        alt="naver"
+                      />
+                    ) : (
+                      <img
+                        src="/assets/platform_naver_series.webp"
+                        alt="naver"
+                      />
+                    )}
+                  </div>
+                  <div onClick={() => onClickPlatform("ridi")}>
+                    {clickedPlatform === "ridi" ? (
+                      <img src="/assets/platform_ridi_clicked.png" alt="ridi" />
+                    ) : (
+                      <img src="/assets/platform_ridi.webp" alt="ridi" />
+                    )}
+                  </div>
+                </div>
+                <Carousel3D
+                  setCarouselAngle={setCarouselAngle}
+                  carouselAngle={carouselAngle}
+                  setCarouselStartAngle={setCarouselAngle}
+                  carouselStartAngle={carouselAngle}
+                  bookData={booksByPlatform}
+                  mouseCursorClientX={mouseCursorClientX}
+                  setMouseCursorClientX={setMouseCursorClientX}
+                  mouseCursorClientY={mouseCursorClientY}
+                  setMouseCursorClientY={setMouseCursorClientY}
+                  isMouseOver={isMouseOver}
+                  setIsMouseOver={setIsMouseOver}
+                  isMouseActive={isMouseActive}
+                  setIsMouseActive={setIsMouseActive}
+                  clickedPlatform={clickedPlatform}
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            css={thirdPageCSS({ isDeskTop, isTablet, isMobile }, currentScroll)}
           >
             <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
               <h2>
                 <div>
                   emosaac <span>에서</span>
                 </div>
-                <div>당신의 관심 목록을 편하게 불러오세요.</div>
+                <div>당신의 취향에 맞는 컨텐츠를 추천받아보세요.</div>
               </h2>
               <div>
-                다양한 플랫폼을 사용하고 있다면 OCR 스캔 기능을 사용해보세요.
-                <br />
-                캡쳐된 이미지를 업로드하면 관심 목록을 자동으로 인식해
-                <br />내 취향을 더 편리하게 반영할 수 있어요.
+                당신이 좋아할 만한 작품을 추천해드릴게요. <br />
+                이모작은 사용자의 성별, 나이, 선호 작품 등을 분석해 <br />
+                새로운 컨텐츠를 끊임없이 추천해드립니다.
               </div>
             </div>
-            <img src={"/assets/scan.gif"} alt="스캔" css={scanCSS} />
-            <div></div>
+            <div
+              css={fourthPageCSS(
+                { isDeskTop, isTablet, isMobile },
+                currentScroll
+              )}
+            >
+              <div css={titleCSS({ isDeskTop, isTablet, isMobile })}>
+                <h2>
+                  <div>
+                    emosaac <span>에서</span>
+                  </div>
+                  <div>당신의 관심 목록을 편하게 불러오세요.</div>
+                </h2>
+                <div>
+                  다양한 플랫폼을 사용하고 있다면 OCR 스캔 기능을 사용해보세요.
+                  <br />
+                  캡쳐된 이미지를 업로드하면 관심 목록을 자동으로 인식해
+                  <br />내 취향을 더 편리하게 반영할 수 있어요.
+                </div>
+              </div>
+              <img src={"/assets/scan.gif"} alt="스캔" css={scanCSS} />
+              <div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -391,7 +413,7 @@ const firstPageTestCSS = (
     background-color: var(--back-color);
 
     & > div:nth-of-type(1) {
-      animation: ${moveMotion} 1s 1.5s;
+      animation: ${moveMotion} 0.6s 1s;
       animation-fill-mode: forwards;
       & > div {
         // 이곳에서 모든 작품을
@@ -406,15 +428,15 @@ const firstPageTestCSS = (
         /* color: #fff; */
         animation-name: ${upMotion()};
         animation-fill-mode: forwards;
-        animation-duration: 1s;
+        animation-duration: 0.7s;
       }
       & > img {
         /* animation: 애니메이션이름 지속시간 [타이밍함수 대기시간 반복횟수 반복방향 전후상태 재생/정지]; */
-        animation: ${upMotion()} 1s 0.5s;
+        animation: ${upMotion()} 0.7s 0.3s;
         /* animation-name: ${upMotion()};
         animation-duration: 1.5s; */
         opacity: 0;
-        animation-delay: 1s;
+        /* animation-delay: 1s; */
         animation-fill-mode: forwards;
         width: 250px;
         margin: 20px auto;
@@ -422,7 +444,7 @@ const firstPageTestCSS = (
       }
     }
     & > div:nth-of-type(2) {
-      animation: ${appearMotion} 0.5s 2.3s;
+      animation: ${appearMotion} 0.5s 1.6s;
       animation-fill-mode: forwards;
       display: flex;
       position: relative;
