@@ -15,6 +15,7 @@ const SwipeableGallery = ({ parentRef, content }: any) => {
 
   const [width, setWidth] = useState(null);
   const [height, setHeight] = useState(null);
+  
 
   useEffect(() => {
     setWidth(() => parentRef.current.clientWidth);
