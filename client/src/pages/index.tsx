@@ -106,7 +106,7 @@ export default function index() {
   return (
     <>
       {/* 깃랩 테스트 */}
-      <Head>
+      {/* <Head>
         <title>EMOSAAC</title>
         <meta name="description" content="모든 작품, 모든 즐거움!" />
         <meta name="keywords" content="웹툰, 웹소설, 인기" />
@@ -120,7 +120,7 @@ export default function index() {
           content="모든 작품, 모든 즐거움! 이모작에서"
         />
         <meta property="og:image" content="/assets/emosaac_logo_mobile.png" />
-      </Head>
+      </Head> */}
 
       <div onWheel={onWheel} css={backCSS({ isDeskTop, isTablet, isMobile })}>
         <div
