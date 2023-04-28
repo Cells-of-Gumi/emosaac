@@ -34,5 +34,6 @@ module.exports = {
   images: {
     loader: "imgix",
     path: "https://j8d203.p.ssafy.io",
+
   },
 };
