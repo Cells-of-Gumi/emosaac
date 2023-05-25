@@ -1,0 +1,128 @@
+buildscript {
+    ext {
+        queryDslVersion = "5.0.0"
+    }
+}
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.9'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+
+    //querydsl 추가
+    id 'com.ewerk.gradle.plugins.querydsl' version '1.0.10'
+}
+
+group = 'com.emosaac'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.h2database:h2'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web' //이거 안쓰니까 바로 꺼지는 문제
+
+
+    //querydsl 추가
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+    implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+
+
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.22'
+
+//	//코드 수정시 서버 재시작
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+
+//	// https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa
+//	implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '4.1.4'
+
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+//	implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.2'
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
+
+    // map json 매핑용
+    implementation 'com.vladmihalcea:hibernate-types-55:2.20.0'
+
+    implementation 'com.google.cloud:google-cloud-vision:3.11.0'
+
+    //메일
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+//querydsl 추가
+def querydslDir = "$buildDir/generated/querydsl"
+
+querydsl {
+    jpa = true
+    querydslSourcesDir = querydslDir
+}
+sourceSets {
+    main.java.srcDir querydslDir
+}
+compileQuerydsl {
+    options.annotationProcessorPath = configurations.querydsl
+}
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    querydsl.extendsFrom compileClasspath
+}
+
+task copyPrivate(type: Copy) {
+    copy {
+        from '../emosaac2'
+        include "application.yml"
+        into 'src/main/resources'
+    }
+    copy {
+        from '../emosaac2'
+        include "application.properties"
+        into 'src/main/resources'
+    }
+    copy {
+        from '../emosaac2'
+        include "woven-name-382111-f4f2ed422bd9.json"
+        into 'src/main/resources'
+    }
+}
